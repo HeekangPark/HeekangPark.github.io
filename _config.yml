@@ -1,8 +1,3 @@
-# region : test server setting
-host: "172.26.0.1"
-port: 4000
-# endregion
-
 # region
 # Site Setting
 title: Reinventing the Wheel
