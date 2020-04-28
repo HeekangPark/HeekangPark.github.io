@@ -1,0 +1,136 @@
+$background-color: #eeeeee;
+
+figure.highlight {
+    overflow-x: auto;
+    background-color: $background-color;
+
+    padding: {
+        top: 5px;
+        bottom: 5px;
+        left: 5px;
+        right: 5px;
+    }
+
+    margin: {
+        bottom: 10px;
+    }
+
+    border-radius: 5px;
+
+    table.rouge-table {
+
+        line-height: 1.2em;
+
+        td.gutter {
+            pre.lineno {
+                text-align: right;
+                color: #888888;
+            }
+
+            padding: {
+                right: 10px;
+            }
+
+            border: {
+                right: 1px solid #cccccc;
+            }
+        }
+
+        td.code {
+            padding: {
+                left: 10px;
+            }
+        }
+    }    
+
+    .c, .cm, .c1, .cs {
+        color: #408080;
+    }
+    .k, .kc, .kd, .kn, .kp, .kr, .sx, .bp, .nt, .nb {
+        color: #008000;
+    }
+    .o, .m, .mf, .mh, .mi, .mo, .il {
+        color: #666666;
+    }
+    .cp {
+        color: #bc7a00;
+    }
+    .gd {
+        color: #a00000;
+    }
+    .gr {
+        color: #ff0000;
+    }
+    .gh, .gp {
+        color: #000080;
+    }
+    .gi {
+        color: #00a000;
+    }
+    .go {
+        color: #808080;
+    }
+    .gu {
+        color: #800080;
+    }
+    .gt {
+        color: #0040d0;
+    }
+    .kt {
+        color: #b00040;
+    }
+    .na {
+        color: #7d9029;
+    }
+    .no {
+        color: #880000;
+    }
+    .nd, .ow {
+        color: #aa22ff;
+    }
+    .ni {
+        color: #999999;
+    }
+    .ne {
+        color: #d2413a;
+    }
+    .nc, .nf, .nn {
+        color: #0000ff;
+    }
+    .nl {
+        color: #a0a000;
+    }
+    .w {
+        color: #bbbbbb;
+    }
+    .s, .sb, .sc, .sd, .s2, .sh, .s1 {
+        color: #ba2121;
+    }
+    .se {
+        color: #bb6622;
+    }
+    .si, .sr {
+        color: #bb6688;
+    }
+    .ss, .vs, .vg, .vi, .nv {
+        color: #19177c;
+    }
+    .c, .cm, .c1, .cs, .ge, .sd {
+        font-style: italic;
+    }
+    .k, .kc, .kd, .kn, .kr, .gh, .gp, .gs, .gu, .nc, .ni, .ne, .nn, .nt, .ow, .se, .si {
+        font-weight: bold;
+    }
+}
+
+code.highlighter-rouge {
+    padding: {
+        top: 3px;
+        bottom: 3px;
+        left: 5px;
+        right: 5px;
+    }
+
+    background-color: $background-color;
+    border-radius: 5px;
+}

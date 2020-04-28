@@ -1,0 +1,30 @@
+---
+---
+
+{% assign delim = ";" %}
+{% assign docs = "" | split: "" %}
+
+{% for doc in site.etc %}
+{% if doc.nav-order %}
+    {% assign docs = docs | push: doc %}
+{% endif %}
+{% endfor %}
+
+{% for doc in docs %}
+<p>{{ doc.title }} : {{ doc.nav-order }}</p>
+{% endfor %}
+
+
+
+{% for series in site.collections %}
+{% unless series.label == "posts" %}
+<div>
+    <p>{{ series.label }}</p>
+    <div>
+        {% for doc in series.docs %}
+        <pre>   {{ forloop.index | append: ". " | append: doc.title | append: " | " | append: doc.date }}</pre>
+        {% endfor %}
+    </div>
+</div>
+{% endunless %}
+{% endfor %}

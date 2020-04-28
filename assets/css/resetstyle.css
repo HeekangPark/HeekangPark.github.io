@@ -1,0 +1,23 @@
+html, body, div, span, p, nav,
+h1, h2, h3, h4, h5, h6, strong, small, b, u, i,
+ul, ol, li, a, img, figure,
+table, thead, tbody, tfoot, th, tr, td,
+pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+html {
+	font-family: "Nanum Gothic", sans-serif;
+	word-break: break-all;
+}
+
+pre, code {
+    font-family: "Nanum Gothic Coding", monospace;
+}

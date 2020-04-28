@@ -1,0 +1,75 @@
+# region : test server setting
+host: "172.26.0.1"
+port: 4000
+# endregion
+
+# region
+# Site Setting
+title: Reinventing the Wheel
+subtitle: Heekang Park's Development Blog
+baseurl: ""
+timezone: Asia/Seoul
+# endregion
+
+# region
+# Directory Settings
+assets: /assets
+layouts_dir: _layouts
+data_dir: _data
+includes_dir: _includes
+collections_dir: documents
+sass:
+  sass_dir: _sass
+# endregion
+
+# region
+# Conversion Settings
+markdown: kramdown
+excerpt_seperator: ""
+kramdown:
+  auto_id_prefix: "kramdown_"
+  auto_ids: true
+# endregion
+
+# region
+# Post Settings
+defaults:
+  -
+    scope:
+      path: ""
+      type: "jekyll"
+    values:
+      layout: "document"
+      toc: true
+  -
+    scope:
+      path: ""
+      type: "web_server"
+    values:
+      layout: "document"
+      toc: true
+  -
+    scope:
+      path: ""
+      type: "etc"
+    values:
+      layout: "default"
+
+collections:
+  jekyll:
+    output: true
+    permalink: /:collection/:name/
+    name: "지킬(Jekyll)로 깃허브(Github) 블로그 만들기"
+    category: "Web"
+    tags: ["web", "blog"]
+  web_server:
+    output: true
+    permalink: /:collection/:name/
+    name: "웹 서버(Web Server)"
+    category: "Web"
+    tags: ["web", "server"]
+  etc:
+    output: true
+    permalink: /:name/
+    name: "etc"
+# endregion

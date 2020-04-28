@@ -1,0 +1,23 @@
+<header>
+    <div class="container">
+        <div class="title-div">
+            <img src="{{ site.baseurl }}{{ site.assets }}/img/logo.png">
+            <a href="/" class="title">{{ site.title }}</a>
+        </div>
+        <nav>
+            {% include header-nav_menu_content.html %}
+        </nav>
+        <div class="nav-btn deactivated" onclick="activate_nav_btn()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+<div id="NavMenu" class="deactivated">
+    {% include header-nav_menu_content.html %}
+</div>
+
+<script
+  src="{{ site.baseurl }}{{ site.assets }}/js/header.js"></script>

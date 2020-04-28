@@ -1,0 +1,106 @@
+---
+layout: default
+---
+
+{% for item in site.collections %}
+{% if page.collection == item.label %}
+{% assign collection = item %}
+{% endif %}
+{% endfor %}
+
+<div class="document-head">
+    {% if collection %}
+    <p class="category">{{ collection.name }}</p>
+    {% endif %}
+
+    {% assign delim=";" %}
+    {% assign document_tags = page.tags | join: delim | downcase | split: delim %}
+    {% assign series_tags = collection.tags | join: delim | downcase | split: delim %}
+    {% assign tags = document_tags | concat: series_tags | compact | uniq | sort %}
+    {% if tags %}
+    <div class="tags">
+        {% for tag in tags %}
+        <a class="tag" href="{{ site.baseurl }}{{ site.assets }}/tags#{{ tag }}">{{ tag }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <p class="title">{{ page.title | upcase }}</p>
+    <p class="date">LAST EDIT : {{ page.date | date: "%Y년 %m월 %d일" }}</p>
+    
+    <div class="hits">
+        <a href="http://hits.dwyl.com/HeekangPark.github.io{{ page.url }}" target="_blank">
+            <img src="http://hits.dwyl.com/HeekangPark.github.io{{ page.url }}.svg" />
+        </a>
+    </div>
+</div>
+
+{% if collection %}
+<div class="document-series-nav-vertical">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <p class="series-title">{{ collection.name }}</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="deactivated">
+            {% assign series = collection.docs | sort: "order" %}
+            {% for document in series %}
+            <tr>
+                <td>
+                    {% if document.url == page.url %}
+                    <a href="{{ document.url }}" class="tag selected">{{ document.title }}</a>
+                    {% else %}
+                    <a href="{{ document.url }}" class="tag unselected">{{ document.title }}</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+{% if page.toc == true %}
+<div class="toc">
+    {% include toc.html html = content %}
+</div>
+{% endif %}
+
+<div class="document-content">
+    {{ content }}
+</div>
+
+{% if collection %}
+<div class="document-series-nav-horizontal">
+    {% assign series = collection.docs | sort: "order" %}
+
+    {% for document in series %}
+        {% if page.title == document.title %}
+            {% assign idx = forloop.index | minus: 1 %}
+            <div class="prev-nav">
+                {% unless forloop.first %}
+                    {% assign prev_idx = idx | minus: 1 %}
+                    {% assign prev_document = series[prev_idx] %}
+                    <a class="arrow" href="{{ prev_document.url }}"><i class="fas fa-angle-double-left"></i></a>
+                    <p class="title">{{ prev_document.title | upcase }}</p>
+                {% endunless %}
+            </div>
+
+            <div class="next-nav">
+                {% unless forloop.last %}
+                    {% assign next_idx = idx | plus: 1 %}
+                    {% assign next_document = series[next_idx] %}
+                    <a class="arrow" href="{{ next_document.url }}"><i class="fas fa-angle-double-right"></i></a>
+                    <p class="title">{{ next_document.title | upcase }}</p>
+                {% endunless %}
+            </div>
+            {% break %}
+        {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+
+<script src="{{ site.baseurl }}{{ site.assets }}/js/document.js"></script>

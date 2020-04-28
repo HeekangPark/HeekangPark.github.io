@@ -1,0 +1,245 @@
+div.docs {
+    > p.docs-title {
+        font-size: 2.5em;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    > p.docs-description {
+        font-size: 1.5em;
+        font-weight: normal;
+        text-align: center;
+        color: #555555;
+
+        margin: {
+            bottom: 20px;
+        }
+    }
+
+    > div.category {
+        $title-font-size: 1.8em;
+        $arrow-font-size: $title-font-size - 0.2em;
+        $arrow-width: ($arrow-font-size / 1em) * 16 + 0px;
+
+        border: {
+            bottom: 1px solid #eeeeee;
+        }
+
+        padding: {
+            top: 20px;
+            bottom: 20px;
+            left: 10px;
+            right: 10px;
+        }
+
+        > div.category-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            > div.category-title {
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+
+                > i {
+                    font-size: $arrow-font-size;
+                    cursor: pointer;
+                    min-width: $arrow-width;
+                }
+        
+                > p.category-title {
+                    font-size: $title-font-size;
+                }
+            }
+        }
+
+        > div.category-item {
+            padding: {
+                left: ($arrow-width * 1.1);
+            }
+
+            > div.series {
+                $title-font-size: 1.6em;
+                $arrow-font-size: $title-font-size - 0.2em;
+                $arrow-width: ($arrow-font-size / 1em) * 16 + 0px;
+
+                margin: {
+                    top: 10px;
+                    bottom: 20px;
+                }
+
+                > div.series-head {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+
+                    > div.series-title {
+                        display: flex;
+                        flex-wrap: nowrap;
+                        align-items: center;
+
+                        > i {
+                            font-size: $arrow-font-size;
+                            cursor: pointer;
+                            min-width: $arrow-width;
+                        }
+        
+                        > p.series-title {
+                            font-size: $title-font-size;
+    
+                            margin: {
+                                right: 5px;
+                            }
+                        }
+
+                        > p.document-number {
+                            margin: {
+                                right: 10px;
+                            }
+
+                            text-align: center;
+
+                            padding: {
+                                top: 5px;
+                                bottom: 5px;
+                                left: 10px;
+                                right: 10px;
+                            }
+
+                            background-color: $tag-background-color;
+                            border-radius: 50%;
+                            font-size: ($title-font-size * 0.5);
+
+                        }
+                    }
+    
+                    > div.series-tags {
+                        display: inline-flex;
+                        align-items: center;
+    
+                        > a.series-tag {
+                            font-size: $title-font-size * 0.7;
+                            opacity: 0.7;
+                            
+                            padding: {
+                                left: 8px;
+                                right: 8px;
+                                top: 2px;
+                                bottom: 2px;
+                            }
+                            border-radius: 5px;
+    
+                            margin: {
+                                right: 3px;
+                            }
+    
+                            background-color: $tag-background-color;
+                            color: $tag-color;
+    
+                            &:last-child {
+                                margin: {
+                                    right: 0px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                > div.series-item {
+                    padding: {
+                        left: ($arrow-width * 1.1);
+                    }
+
+                    > div.document {
+                        $title-font-size: 1.2em;
+
+                        margin: {
+                            top: 10px;
+                            bottom: 20px;
+                        }
+
+                        padding: {
+                            top: 10px;
+                            bottom: 10px;
+                            left: 10px;
+                            right: 10px;
+                        }
+
+                        border-radius: 10px;
+
+                        > div.document-head {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+
+                            > p.document-title {
+                                font-size: $title-font-size;
+                                display: inline-block;
+                                margin: {
+                                    right: 10px;
+                                }
+                            }
+
+                            > p.document-date {
+                                display: inline-block;
+                                font-size: $title-font-size * 0.7;
+                                margin: {
+                                    right: 10px;
+                                }
+                            }
+    
+                            > div.document-tags {
+                                display: inline-flex;
+                                
+                                > a {
+                                    font-size: $title-font-size * 0.7;
+                                    opacity: 0.7;
+                                    display: inline-block;
+                                    
+                                    padding: {
+                                        left: 8px;
+                                        right: 8px;
+                                        top: 2px;
+                                        bottom: 2px;
+                                    }
+                                    border-radius: 5px;
+            
+                                    margin: {
+                                        right: 3px;
+                                    }
+            
+                                    background-color: $tag-background-color;
+                                    color: $tag-color;
+            
+                                    &:last-child {
+                                        margin: {
+                                            right: 0px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        > p.document-description {
+                            font-size: 1em;
+                            opacity: 0.7;
+                        }
+
+                        &:hover {
+                            background-color: #f7f7f7;
+                            color: $highlight-color;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+
+        &:last-child {
+            border: {
+                bottom: 0px;
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+<head>
+    {% if page.title %}
+    {% assign title = page.title | append: " | " | append: site.title %}
+    {% else %}
+    {% assign title = site.title %}
+    {% endif %}
+
+    <meta charset="UTF-8">
+
+    <title>{{ title }}</title>
+    {% if site.data.info.name %}
+    <meta name="author" content="{{ site.data.info.name }}">
+    {% endif %}
+    {% if page.keywords %}
+    <meta name="keywords" content="{{ page.keywords }}">
+    {% endif %}
+    {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+    {% endif %}
+
+    <!--open graph-->
+    <meta property="og:title" content="{{ site.title }}">
+    <meta property="og:url" content="{{ site.baseurl }}{{ page.url }}">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:description" content="{{ title }}">
+    {% if page.layout == 'document' %}
+    <meta property="og:type" content="article">
+    {% else %}
+    <meta property="og:type" content="website">
+    {% endif %}
+    <!--twitter-->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ title }}">
+    {% if page.description %}
+    <meta name="twitter:description" content="{{ page.description }}">
+    {% endif %}
+
+    {% if site.data.info.favicon %}
+    <link rel="icon" href="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.favicon }}">
+    <link rel="apple-touch-icon" href="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.favicon }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.favicon }}">
+    {% endif %}
+
+    <!--css-->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Nanum+Gothic:wght@400;700;800&display=swap">
+    <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/resetstyle.css" type="text/css">
+    <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/0350ef153e.js" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+
+    <!--js-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>

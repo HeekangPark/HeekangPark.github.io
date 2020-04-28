@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="document-head">
+    <p class="title">{{ page.title | upcase }}</p>
+    <p class="date">LAST EDIT : {{ page.date | date: "%Y년 %m월 %d일" }}</p>
+</div>
+
+{% if page.toc == true %}
+<div class="toc">
+    {% include toc.html html = content %}
+</div>
+{% endif %}
+
+<div class="document-content">
+    {{ content }}
+</div>
+
+<script src="{{ site.baseurl }}{{ site.assets }}/js/document.js"></script>

@@ -1,0 +1,14 @@
+{% assign delim = ";" %}
+{% assign docs = "" | split: "" %}
+
+{% for doc in site.etc %}
+{% if doc.nav-order %}
+    {% assign docs = docs | push: doc %}
+{% endif %}
+{% endfor %}
+
+{% assign docs = docs | sort: "nav-order" %}
+
+{% for doc in docs %}
+<a href="{{ doc.url }}" class="{{ doc.title | downcase }}">{{ doc.title | upcase }}</a>
+{% endfor %}
