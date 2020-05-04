@@ -422,6 +422,82 @@ div.default-content {
             }
         }
 
+        blockquote {
+            padding: {
+                left: 2em;
+                right: 2em;
+                top: 1em;
+                bottom: 1em;
+            }
+
+            margin: {
+                top: 1em;
+                bottom: 1em;
+            }
+
+            background-color: #f5f5f5;
+
+            border: {
+                left: 10px solid #555555;
+                right: $border;
+                top: $border;
+                bottom: $border;
+            }
+
+            box-sizing: border-box;
+
+            p {
+                margin: {
+                    bottom: 0;
+                }
+            }
+        }
+        
+        table {
+            $table-border: 1px solid #aaaaaa;
+
+            border-collapse: separate;
+            border-spacing: 0;
+            border: {
+                top: $table-border;
+            }
+
+            margin: {
+                top: 1em;
+                bottom: 1em;
+                left: auto;
+                right: auto;
+            }
+
+            th {
+                background-color: #dde3ee;
+            }
+
+            > tbody {
+                tr {
+                    &:nth-child(2n) {
+                        td {
+                            background-color: #eef1f7;
+                        }
+                    }
+                }
+
+            }
+
+            th, td {
+                padding: {
+                    top: 0.5em;
+                    bottom: 0.5em;
+                    left: 1em;
+                    right: 1em;
+                }
+
+                border: {
+                    bottom: $table-border;
+                }
+            }
+        }
+
         a.footnote {
             &::before {
                 content: "[";
