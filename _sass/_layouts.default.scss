@@ -2,6 +2,13 @@ $default-container-width-max: 1600px;
 
 body {
     background-color: #eeeeee;
+    font-size: 1em;
+}
+
+@media screen and (max-width: $media-small) {
+    body {
+        font-size: 0.8em;
+    }
 }
 
 div.default-content {
