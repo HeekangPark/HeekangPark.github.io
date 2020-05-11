@@ -17,7 +17,7 @@ div.docs {
     }
 
     > div.category {
-        $title-font-size: 1.8em;
+        $title-font-size: 1.6em;
         $arrow-font-size: $title-font-size - 0.2em;
         $arrow-width: ($arrow-font-size / 1em) * 16 + 0px;
 
@@ -60,7 +60,7 @@ div.docs {
             }
 
             > div.series {
-                $title-font-size: 1.6em;
+                $title-font-size: 1.4em;
                 $arrow-font-size: $title-font-size - 0.2em;
                 $arrow-width: ($arrow-font-size / 1em) * 16 + 0px;
 
@@ -152,7 +152,7 @@ div.docs {
                     }
 
                     > div.document {
-                        $title-font-size: 1.2em;
+                        $title-font-size: 1.1em;
 
                         margin: {
                             top: 10px;
@@ -172,6 +172,7 @@ div.docs {
                             display: flex;
                             flex-wrap: wrap;
                             align-items: center;
+                            line-height: 1.5;
 
                             > p.document-title {
                                 font-size: $title-font-size;
