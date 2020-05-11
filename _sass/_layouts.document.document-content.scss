@@ -1,0 +1,300 @@
+div.document-content {
+    padding: {
+        top: 20px;
+    }
+
+    counter-reset: h1counter 0;
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: bold;
+
+        padding: {
+            bottom: 5px;
+        }
+
+        margin: {
+            bottom: 10px;
+        }
+
+        border : {
+            bottom: $border;
+        }
+        
+    }
+
+    h1 {
+        $font-size: 1.6em;
+        font-size: $font-size;
+
+        margin: {
+            top: $font-size * 1.5;
+        }
+
+        counter-reset: h2counter 0;
+
+        &::before{
+            content: counter(h1counter, decimal) ". ";
+            counter-increment: h1counter;
+        }
+    }
+
+    h2 {
+        $font-size: 1.5em;
+        font-size: $font-size;
+
+        margin: {
+            top: $font-size * 1.5;
+        }
+        
+        counter-reset: h3counter 0;
+
+        &::before{
+            content: counter(h1counter, decimal) "." counter(h2counter, decimal) ". ";
+            counter-increment: h2counter;
+        }
+    }
+
+    h3 {
+        $font-size: 1.4em;
+        font-size: $font-size;
+
+        margin: {
+            top: $font-size * 1.5;
+        }
+        
+        counter-reset: h4counter 0;
+
+        &::before{
+            content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) ". ";
+            counter-increment: h3counter;
+        }
+    }
+
+    h4 {
+        $font-size: 1.3em;
+        font-size: $font-size;
+
+        margin: {
+            top: $font-size * 1.5;
+        }
+        
+        counter-reset: h5counter 0;
+
+        &::before{
+            content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) ". ";
+            counter-increment: h4counter;
+        }
+    }
+
+    h5 {
+        $font-size: 1.2em;
+        font-size: $font-size;
+
+        margin: {
+            top: $font-size * 1.5;
+        }
+        
+        counter-reset: h6counter 0;
+
+        &::before{
+            content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) ". ";
+            counter-increment: h5counter;
+        }
+    }
+
+    h6 {
+        $font-size: 1.1em;
+        font-size: $font-size;
+
+        margin: {
+            top: $font-size * 1.5;
+        }
+
+        &::before{
+            content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) "." counter(h6counter, decimal) ". ";
+            counter-increment: h6counter;
+        }
+    }
+
+    p {
+        margin: {
+            bottom: 1em;
+        }
+        
+        line-height: 1.5;
+    }
+
+    ul, ol {
+        margin: {
+            bottom: 1em;
+        }
+
+        display: table;
+        word-break: break-all;
+
+        li {
+            list-style: none;
+
+            display: table-row;
+
+            line-height: 1.5;
+
+            &::before {
+                display: table-cell;
+                text-align: right;
+                word-break: keep-all;
+
+                padding: {
+                    right: 0.3em;
+                }
+            }
+        }
+    }
+
+    ol {
+        counter-reset: listcounter 0;
+        li {
+            &::before {
+                content: counter(listcounter) ".";
+                counter-increment: listcounter;
+            }
+        }
+    }
+
+    ul {
+        li {
+            &::before {
+                content: "\2022";
+            }
+        }
+    }
+
+    blockquote {
+        padding: {
+            left: 2em;
+            right: 2em;
+            top: 1em;
+            bottom: 1em;
+        }
+
+        margin: {
+            top: 1em;
+            bottom: 1em;
+        }
+
+        background-color: #f5f5f5;
+
+        border: {
+            left: 10px solid #555555;
+            right: $border;
+            top: $border;
+            bottom: $border;
+        }
+
+        box-sizing: border-box;
+
+        p {
+            margin: {
+                bottom: 0;
+            }
+        }
+    }
+    
+    table {
+        $table-border: 1px solid #aaaaaa;
+
+        border-collapse: separate;
+        border-spacing: 0;
+        border: {
+            top: $table-border;
+        }
+
+        margin: {
+            top: 1em;
+            bottom: 1em;
+            left: auto;
+            right: auto;
+        }
+
+        th {
+            background-color: #dde3ee;
+        }
+
+        > tbody {
+            tr {
+                &:nth-child(2n) {
+                    td {
+                        background-color: #eef1f7;
+                    }
+                }
+            }
+
+        }
+
+        th, td {
+            padding: {
+                top: 0.5em;
+                bottom: 0.5em;
+                left: 1em;
+                right: 1em;
+            }
+
+            border: {
+                bottom: $table-border;
+            }
+        }
+    }
+
+    a.footnote {
+        &::before {
+            content: "[";
+        }
+
+        &::after {
+            content: "]";
+        }
+
+        font-size: 0.8em;
+    }
+    
+    a {
+        &:link {
+            color: #0275d8;
+        }
+
+        &:visited {
+            color: #660099;
+        }
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    > div.footnotes {
+        margin: {
+            top: 20px;
+            bottom: 20px;
+        }
+
+        padding: {
+            top: 20px;
+        }
+
+        border: {
+            top: $border;
+        }
+
+        a.reversefootnote {
+            font-size: 0.8em;
+        }
+
+        p {
+            margin: {
+                bottom: 0;
+            }
+        }
+    }
+
+    @import "layouts.document.document-content.syntax-highlight";
+}
