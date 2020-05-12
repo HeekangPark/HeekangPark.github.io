@@ -18,11 +18,17 @@ div.default-content {
         }
 
         > div.tags {
+            $wrap-gap: 10px;
+
             display: flex;
             align-items: center;
             flex-wrap: wrap;
             justify-content: center;
             font-size: 1em;
+
+            margin: {
+                bottom: -$wrap-gap;
+            }
 
             > a.tag {
                 display: inline-block;
@@ -41,6 +47,7 @@ div.default-content {
 
                 margin: {
                     right: 10px;
+                    bottom: $wrap-gap;
                 }
 
                 &:last-child {

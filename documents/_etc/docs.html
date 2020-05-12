@@ -38,14 +38,11 @@ nav-order: 2
                         <p class="series-title"><a href="{{ documents.first.url }}">{{ series.name }}</a></p>
                         <p class="document-number">{{ documents.size }}</p>
                     </div>
-                    
                     {% assign series_tags = series.tags | compact | uniq | sort | join: delim | downcase | split: delim %}
                     {% if series_tags %}
-                    <div class="series-tags">
-                        {% for tag in series_tags %}
-                        <a href="/tags#{{ tag }}" class="series-tag">{{ tag }}</a>
-                        {% endfor %}
-                    </div>
+                    {% for tag in series_tags %}
+                    <a href="/tags#{{ tag }}" class="series-tag">{{ tag }}</a>
+                    {% endfor %}
                     {% endif %}
                 </div>
 
