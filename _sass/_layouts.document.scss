@@ -82,6 +82,13 @@ div.default-content {
         > div.hits {
             text-align: center;
             margin: {
+                bottom: 10px;
+            }
+        }
+
+        > div.likes {
+            text-align: center;
+            margin: {
                 bottom: 20px;
             }
         }
@@ -293,6 +300,20 @@ div.default-content {
         display: flex;
         justify-content: space-between;
         align-content: center;
+
+        margin: {
+            top: 3em;
+            bottom: 1em;
+        }
+
+        padding: {
+            top: 15px;
+            bottom: 15px;
+        }
+
+        border: {
+            top: $border;
+        }
 
         > div {
             display: flex;
