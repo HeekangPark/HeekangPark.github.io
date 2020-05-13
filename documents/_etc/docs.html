@@ -35,7 +35,7 @@ nav-order: 2
                 <div class="series-head">
                     <div class="series-title">
                         <i class="fas fa-angle-right"></i>
-                        <p class="series-title"><a href="{{ documents.first.url }}">{{ series.name }}</a></p>
+                        <p class="series-title series-{{ series.label }}"><a href="{{ page.url }}#{{ series.label }}">{{ series.name }}</a></p>
                         <p class="document-number">{{ documents.size }}</p>
                     </div>
                     {% assign series_tags = series.tags | compact | uniq | sort | join: delim | downcase | split: delim %}
