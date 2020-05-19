@@ -10,7 +10,7 @@ layout: default
 
 <div class="document-head">
     {% if collection %}
-    <p class="category">{{ collection.name }}</p>
+    <a class="category" href="{{ site.url }}{{ site.baseurl }}/docs/#{{ collection.label }}">{{ collection.name }}</a>
     {% endif %}
 
     {% assign delim=";" %}

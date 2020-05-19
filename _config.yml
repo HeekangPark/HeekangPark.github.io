@@ -67,30 +67,30 @@ defaults:
 collections:
   jekyll:
     output: true
-    permalink: /:collection/:name/
+    permalink: /:collection/:name
     name: "지킬(Jekyll)로 깃허브(Github) 블로그 만들기"
     category: "웹(Web)"
     tags: ["web", "blog"]
   web_server:
     output: true
-    permalink: /:collection/:name/
+    permalink: /:collection/:name
     name: "웹 서버(Web Server)"
     category: "웹(Web)"
     tags: ["web", "server"]
   machine_learning:
     output: true
-    permalink: /:collection/:name/
+    permalink: /:collection/:name
     name: "기계학습(Machine Learning)"
     category: "기계학습(Machine Learning)"
     tags: ["machine learning", "lecture", "lecture-2020.01"]
   calculus:
     output: true
-    permalink: /:collection/:name/
+    permalink: /:collection/:name
     name: "미적분학(Calculus)"
     category: "수학(Mathematics)"
     tags: ["math"]
   etc:
     output: true
-    permalink: /:name/
+    permalink: /:name
     name: "etc"
 # endregion
