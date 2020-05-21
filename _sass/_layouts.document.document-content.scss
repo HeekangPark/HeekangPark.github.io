@@ -259,11 +259,11 @@ div.document-content {
     
     a {
         &:link {
-            color: #0275d8;
+            color: $hyperlink-unclicked;
         }
 
         &:visited {
-            color: #660099;
+            color: $hyperlink-clicked;
         }
 
         &:hover {
@@ -297,4 +297,35 @@ div.document-content {
     }
 
     @import "layouts.document.document-content.syntax-highlight";
+
+    div.folder {
+        p.folder-btn {
+            cursor: pointer;
+            color: $hyperlink-unclicked;
+            text-align: center;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        div.folder-target {
+            border-radius: 5px;
+            background-color: #eeeeee;
+            padding: {
+                top: 10px;
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+            }
+            max-height: 500px;
+            overflow: auto;
+
+            p {
+                margin: {
+                    bottom: 5px;
+                }
+            }
+        }
+    }
 }
