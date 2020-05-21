@@ -296,6 +296,12 @@ div.document-content {
         }
     }
 
+    .mjx-chtml {
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-width: 100%;
+    }
+
     @import "layouts.document.document-content.syntax-highlight";
 
     div.folder {
