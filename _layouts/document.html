@@ -28,16 +28,20 @@ layout: default
     <p class="title">{{ page.title | upcase }}</p>
     <p class="date">LAST EDIT : {{ page.date | date: "%Y년 %m월 %d일" }}</p>
 
+    {% unless page.isWriting %}
     <div class="hits">
         <a href="http://hits.dwyl.com/HeekangPark.github.io{{ page.url }}" target="_blank">
             <img src="http://hits.dwyl.com/HeekangPark.github.io{{ page.url }}.svg" />
         </a>
     </div>
+    {% endunless %}
 
+    {% unless page.isWriting %}
     <div class="likes">
         <span class="likebtn-wrapper" data-ef_voting="push"></span>
         <script>(function (d, e, s) { if (d.getElementById("likebtn_wjs")) return; a = d.createElement(e); m = d.getElementsByTagName(e)[0]; a.async = 1; a.id = "likebtn_wjs"; a.src = s; m.parentNode.insertBefore(a, m) })(document, "script", "//w.likebtn.com/js/w/widget.js");</script>    
     </div>
+    {% endunless %}
 </div>
 
 {% if collection %}

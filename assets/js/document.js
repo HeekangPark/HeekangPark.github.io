@@ -1,8 +1,14 @@
 $(document).ready(function() {
+    foldAllFolders();
+
+    addTitleToFootnotes();
+});
+
+function foldAllFolders() {
     $("div.document-content div.folder p.folder-show-btn").show();
     $("div.document-content div.folder p.folder-hide-btn").hide();
     $("div.document-content div.folder div.folder-target").hide();
-});
+}
 
 $("div.default-content > div.document-series-nav-vertical > table > thead > tr > th > p.series-title").click(function () {
     var target = $(this).closest("table").children("tbody");
@@ -35,3 +41,13 @@ $("div.document-content div.folder p.folder-hide-btn").click(function() {
     show_btn.show();
     hide_btn.hide();
 });
+
+function addTitleToFootnotes() {
+    $("div.document-content div.footnotes ol li p").each(function(idx, elem) {
+        var msg = $(this).clone().children().remove().end().text().trim();
+        var id = $(this).children("a.reversefootnote").attr("href").replace(":", "\\:");
+
+        var target = $(id + " a");
+        target.attr("title", msg);
+    });
+}

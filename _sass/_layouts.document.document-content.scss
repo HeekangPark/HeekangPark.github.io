@@ -186,9 +186,6 @@ div.document-content {
 
         border: {
             left: 10px solid #555555;
-            right: $border;
-            top: $border;
-            bottom: $border;
         }
 
         box-sizing: border-box;
@@ -208,6 +205,8 @@ div.document-content {
         border: {
             top: $table-border;
         }
+
+        overflow-x: auto;
 
         margin: {
             top: 1em;
@@ -243,6 +242,12 @@ div.document-content {
                 bottom: $table-border;
             }
         }
+    }
+
+    div.table-wrapper {
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: 1000px;
     }
 
     a.footnote {
@@ -296,7 +301,7 @@ div.document-content {
         }
     }
 
-    .mjx-chtml {
+    .mathjax-wrapper {
         overflow-x: auto;
         overflow-y: hidden;
         max-width: 100%;
