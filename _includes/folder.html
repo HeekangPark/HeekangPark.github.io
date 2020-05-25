@@ -1,0 +1,21 @@
+{% capture fullpath %}{{ site.baseurl }}{{ site.assets }}/etc/{{ page.collection }}/{{ include.filename }}{% endcapture %}
+
+<div class="folder">
+    <p class="folder-btn folder-show-btn">{{ include.show_msg }}</p>
+    <p class="folder-btn folder-hide-btn">{{ include.hide_msg }}</p>
+    <div class="folder-target">
+        {% if include.mode == "raw-txt" %}
+        <pre class="target"></pre>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    $.ajax({
+        type: "GET",
+        url: "{{ fullpath }}",
+        success: function(data) {
+            $("div.folder .target").text(data);
+        }
+    });
+</script>

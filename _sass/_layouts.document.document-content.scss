@@ -332,10 +332,8 @@ div.document-content {
             max-height: 500px;
             overflow: auto;
 
-            p {
-                margin: {
-                    bottom: 5px;
-                }
+            pre {
+                line-height: 1.2;
             }
         }
     }
