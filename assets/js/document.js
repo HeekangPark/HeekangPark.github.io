@@ -44,7 +44,7 @@ $("div.document-content div.folder p.folder-hide-btn").click(function() {
 
 function addTitleToFootnotes() {
     $("div.document-content div.footnotes ol li p").each(function(idx, elem) {
-        var msg = $(this).clone().children().remove().end().text().trim();
+        var msg = $.trim($(this).clone().children("a.reversefootnote").remove().end().text());
         var id = $(this).children("a.reversefootnote").attr("href").replace(":", "\\:");
 
         var target = $(id + " a");
