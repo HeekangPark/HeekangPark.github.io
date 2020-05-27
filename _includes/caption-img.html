@@ -1,5 +1,5 @@
-<figure class="caption-img {% if include.class %}{{ include.class }}{% endif %}">
-    <img src="{{ site.baseurl }}{{ site.assets }}/img/{{ page.collection }}/{{ include.src }}" alt="{{ include.title }}">
+<figure class="caption-img">
+    <img {% if include.class %}class="{{ include.class }}"{% endif %} src="{{ site.baseurl }}{{ site.assets }}/img/{{ page.collection }}/{{ include.src }}" alt="{{ include.title }}">
     
     {% if include.title %}
     <figcaption class="title">{{ include.title }}</figcaption>

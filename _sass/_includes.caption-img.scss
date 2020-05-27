@@ -22,7 +22,12 @@ figure.caption-img {
     
     > img {
         max-width: 80%;
+        max-height: 300px;
         height: auto;
+    }
+
+    > img.no-max-height {
+        max-height: unset;
     }
 
     > figcaption.title {
