@@ -1,6 +1,7 @@
 {% capture fullpath %}{{ site.baseurl }}{{ site.assets }}/etc/{{ page.collection }}/{{ include.filename }}{% endcapture %}
+{% capture id %}{{ page.collection }}-{{ include.filename | replace: ".", "-" | replace: " ", "-" }}{% endcapture %}
 
-<div class="folder">
+<div class="folder" id="{{ id }}">
     <p class="folder-btn folder-show-btn">{{ include.show_msg }}</p>
     <p class="folder-btn folder-hide-btn">{{ include.hide_msg }}</p>
     <div class="folder-target">
@@ -15,7 +16,7 @@
         type: "GET",
         url: "{{ fullpath }}",
         success: function(data) {
-            $("div.folder .target").text(data);
+            $("div.folder#{{ id }} .target").text(data);
         }
     });
 </script>
