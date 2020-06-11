@@ -314,6 +314,10 @@ div.document-content {
     @import "layouts.document.document-content.syntax-highlight";
 
     div.folder {
+        margin: {
+            bottom: 1em;
+        }
+
         p.folder-btn {
             cursor: pointer;
             color: $hyperlink-unclicked;
