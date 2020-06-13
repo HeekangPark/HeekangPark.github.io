@@ -1,4 +1,11 @@
 div.document-content {
+    $h1-font-size: 1.6em;
+    $h2-font-size: 1.5em;
+    $h3-font-size: 1.4em;
+    $h4-font-size: 1.3em;
+    $h5-font-size: 1.2em;
+    $h6-font-size: 1.1em;
+
     padding: {
         top: 20px;
     }
@@ -23,11 +30,10 @@ div.document-content {
     }
 
     h1 {
-        $font-size: 1.6em;
-        font-size: $font-size;
+        font-size: $h1-font-size;
 
         margin: {
-            top: $font-size * 1.5;
+            top: $h1-font-size * 1.5;
         }
 
         counter-reset: h2counter 0;
@@ -36,14 +42,19 @@ div.document-content {
             content: counter(h1counter, decimal) ". ";
             counter-increment: h1counter;
         }
+
+        + h2 {
+            margin: {
+                top: $h2-font-size;
+            }
+        }
     }
 
     h2 {
-        $font-size: 1.5em;
-        font-size: $font-size;
+        font-size: $h2-font-size;
 
         margin: {
-            top: $font-size * 1.5;
+            top: $h2-font-size * 1.5;
         }
         
         counter-reset: h3counter 0;
@@ -52,14 +63,19 @@ div.document-content {
             content: counter(h1counter, decimal) "." counter(h2counter, decimal) ". ";
             counter-increment: h2counter;
         }
+
+        + h3 {
+            margin: {
+                top: $h3-font-size;
+            }
+        }
     }
 
     h3 {
-        $font-size: 1.4em;
-        font-size: $font-size;
+        font-size: $h3-font-size;
 
         margin: {
-            top: $font-size * 1.5;
+            top: $h3-font-size * 1.5;
         }
         
         counter-reset: h4counter 0;
@@ -68,14 +84,19 @@ div.document-content {
             content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) ". ";
             counter-increment: h3counter;
         }
+
+        + h4 {
+            margin: {
+                top: $h4-font-size;
+            }
+        }
     }
 
     h4 {
-        $font-size: 1.3em;
-        font-size: $font-size;
+        font-size: $h4-font-size;
 
         margin: {
-            top: $font-size * 1.5;
+            top: $h4-font-size * 1.5;
         }
         
         counter-reset: h5counter 0;
@@ -84,14 +105,19 @@ div.document-content {
             content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) ". ";
             counter-increment: h4counter;
         }
+
+        + h5 {
+            margin: {
+                top: $h5-font-size;
+            }
+        }
     }
 
     h5 {
-        $font-size: 1.2em;
-        font-size: $font-size;
+        font-size: $h5-font-size;
 
         margin: {
-            top: $font-size * 1.5;
+            top: $h5-font-size * 1.5;
         }
         
         counter-reset: h6counter 0;
@@ -100,14 +126,19 @@ div.document-content {
             content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) ". ";
             counter-increment: h5counter;
         }
+
+        + h6 {
+            margin: {
+                top: $h6-font-size;
+            }
+        }
     }
 
     h6 {
-        $font-size: 1.1em;
-        font-size: $font-size;
+        font-size: $h6-font-size;
 
         margin: {
-            top: $font-size * 1.5;
+            top: $h6-font-size * 1.5;
         }
 
         &::before{
@@ -344,5 +375,25 @@ div.document-content {
                 line-height: 1.2;
             }
         }
+    }
+}
+
+div.page-navigator {
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
+
+    display: inline-flex;
+    flex-direction: column;
+    
+    span.page-navigator-btn {
+        font-size: 30px;
+        color: #555555;
+        opacity: 20%;
+    
+        &:hover {
+            opacity: 100%;
+        }
+
     }
 }

@@ -51,3 +51,11 @@ function addTitleToFootnotes() {
         target.attr("title", msg);
     });
 }
+
+$("div.page-navigator span.page-navigator-btn#top_btn").click(function() {
+    window.scrollTo({top: 0, behavior: "smooth"});
+});
+
+$("div.page-navigator span.page-navigator-btn#bottom_btn").click(function() {
+    window.scrollTo({top: document.body.scrollHeight, behavior: "smooth"});
+});
