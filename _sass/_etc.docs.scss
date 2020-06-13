@@ -107,6 +107,8 @@ div.docs {
 
                         > p.document-number {    
                             text-align: center;
+                            word-break: keep-all;
+                            white-space: no-wrap;
                             
                             font-size: ($title-font-size * 0.5);
     
