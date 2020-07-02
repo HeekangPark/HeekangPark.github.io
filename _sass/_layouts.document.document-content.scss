@@ -226,6 +226,12 @@ div.document-content {
                 bottom: 0;
             }
         }
+
+        div.mathjax-wrapper {
+            margin: {
+                bottom: -1em;
+            }
+        }
     }
     
     table {
@@ -336,7 +342,7 @@ div.document-content {
         }
     }
 
-    .mathjax-wrapper {
+    div.mathjax-wrapper {
         overflow-x: auto;
         overflow-y: hidden;
         max-width: 100%;
