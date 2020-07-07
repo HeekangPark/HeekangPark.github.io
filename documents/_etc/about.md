@@ -1,8 +1,9 @@
 ---
 nav-order: 3
-layout: "document-without-nav"
 date: "2020-04-28"
-toc: true
+show_toc: true
+show_last_edit: true
+layout: document
 ---
 
 # About Me

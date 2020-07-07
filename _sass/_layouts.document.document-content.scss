@@ -383,23 +383,3 @@ div.document-content {
         }
     }
 }
-
-div.page-navigator {
-    position: fixed;
-    right: 20px;
-    bottom: 10px;
-
-    display: inline-flex;
-    flex-direction: column;
-    
-    span.page-navigator-btn {
-        font-size: 30px;
-        color: #555555;
-        opacity: 20%;
-    
-        &:hover {
-            opacity: 100%;
-        }
-
-    }
-}

@@ -1,6 +1,22 @@
 $border: 1px #eeeeee solid;
 
 div.default-content {
+    width: $default-container-width-max;
+    box-sizing: border-box;
+    margin: {
+        top: 10px;
+        bottom: 10px;
+        left: auto;
+        right: auto;
+    }
+    padding: {
+        top: 20px;
+        bottom: 20px;
+        left: 20px;
+        right: 20px; 
+    }
+    background-color: #ffffff;
+
     > div.document-head {
 
         border: {
@@ -366,3 +382,71 @@ div.default-content {
     }
 }
 
+@media screen and (max-width: ($default-container-width-max + 20px)) {
+    div.default-content {
+        width: calc(100% - 20px);
+        margin: {
+            left: 10px;
+            right: 10px;
+        }
+    }
+}
+
+div.comments {
+    width: $default-container-width-max;
+    box-sizing: border-box;
+    margin: {
+        top: 10px;
+        bottom: 10px;
+        left: auto;
+        right: auto;
+    }
+    padding: {
+        top: 20px;
+        bottom: 20px;
+        left: 20px;
+        right: 20px; 
+    }
+    background-color: #ffffff;
+
+    > p {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .utterances {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: ($default-container-width-max + 20px)) {
+    div.comments {
+        width: calc(100% - 20px);
+        margin: {
+            left: 10px;
+            right: 10px;
+        }
+    }
+}
+
+div.page-navigator {
+    z-index: 1;
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
+
+    display: inline-flex;
+    flex-direction: column;
+    
+    span.page-navigator-btn {
+        font-size: 30px;
+        color: #555555;
+        opacity: 20%;
+    
+        &:hover {
+            opacity: 100%;
+        }
+
+    }
+}

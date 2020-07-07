@@ -38,34 +38,62 @@ defaults:
       type: "jekyll"
     values:
       layout: "document"
-      toc: true
+      show_collection: true
+      show_tags: true
+      show_hits: true
+      show_likes: true
+      show_series_nav_vertical: true
+      show_toc: true
+      show_series_nav_horizontal: true
+      show_comment: true
   -
     scope:
       path: ""
       type: "web_server"
     values:
       layout: "document"
-      toc: true
+      show_collection: true
+      show_tags: true
+      show_hits: true
+      show_likes: true
+      show_series_nav_vertical: true
+      show_toc: true
+      show_series_nav_horizontal: true
+      show_comment: true
   -
     scope:
       path: ""
       type: "machine_learning"
     values:
       layout: "document"
-      toc: true
+      show_collection: true
+      show_tags: true
+      show_hits: true
+      show_likes: true
+      show_series_nav_vertical: true
+      show_toc: true
+      show_series_nav_horizontal: true
+      show_comment: true
   -
     scope:
       path: ""
       type: "calculus"
     values:
       layout: "document"
-      toc: true
+      show_collection: true
+      show_tags: true
+      show_hits: true
+      show_likes: true
+      show_series_nav_vertical: true
+      show_toc: true
+      show_series_nav_horizontal: true
+      show_comment: true
   -
     scope:
       path: ""
       type: "etc"
     values:
-      layout: "default"
+      layout: "document"
 
 collections:
   jekyll:
