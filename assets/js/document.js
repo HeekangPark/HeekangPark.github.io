@@ -10,8 +10,23 @@ function foldAllFolders() {
     $("div.document-content div.folder div.folder-target").hide();
 }
 
-$("div.default-content > div.document-series-nav-vertical > table > thead > tr > th > p.series-title").click(function () {
-    var target = $(this).closest("table").children("tbody");
+$("div.default-content > div.document-series-nav-vertical > table > thead > tr > th").click(function () {
+    var target = $(this).children("p.opener");
+
+    if (target.hasClass("closed")) {
+        target.removeClass("closed");
+        target.removeClass("fa-angle-down");
+        target.addClass("opened");
+        target.addClass("fa-angle-up");
+    } else if (target.hasClass("opened")) {
+        target.removeClass("opened");
+        target.removeClass("fa-angle-up");
+        target.addClass("closed");
+        target.addClass("fa-angle-down");
+
+    }
+
+    target = target.closest("table").children("tbody");
 
     if (target.hasClass("deactivated")) {
         target.removeClass("deactivated");

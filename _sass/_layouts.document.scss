@@ -145,23 +145,46 @@ div.default-content {
                             right: $border;
                         }
 
+                        padding: {
+                            top: 10px;
+                            bottom: 10px; 
+                            left: 15px;
+                            right: 15px;
+                        }
+
                         cursor: pointer;
 
+                        background-color: #dddddd;
+                        display: flex;
+                        align-items: center;
+
+                        font-size: 1em;
+
                         > p.series-title {
+                            flex: 1;
                             box-sizing: border-box;
                             text-align: center;
-                            font-size: 1em;
-                            padding: {
-                                top: 10px;
-                                bottom: 10px; 
-                            }
                             
                             border: {
                                 top-left-radius: $border-radius;
                                 top-right-radius: $border-radius;
                             }
-                
-                            background-color: #dddddd;
+                        }
+
+                        > p.opener {
+                            &.left {
+                                visibility: hidden;
+
+                                margin: {
+                                    right: 10px;
+                                }
+                            }
+
+                            &.right {
+                                margin: {
+                                    left: 10px;
+                                }
+                            }
                         }
                     }
                 }
