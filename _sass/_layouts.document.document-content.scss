@@ -5,201 +5,160 @@ div.document-content {
     $h4-font-size: 1.3em;
     $h5-font-size: 1.2em;
     $h6-font-size: 1.1em;
-
     padding: {
         top: 20px;
     }
-
     counter-reset: h1counter 0;
-
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-weight: bold;
-
         padding: {
             bottom: 5px;
         }
-
         margin: {
             bottom: 10px;
         }
-
-        border : {
+        border: {
             bottom: $border;
         }
-        
     }
-
     h1 {
         font-size: $h1-font-size;
-
         margin: {
             top: $h1-font-size * 1.5;
         }
-
         counter-reset: h2counter 0;
-
-        &::before{
+        &::before {
             content: counter(h1counter, decimal) ". ";
             counter-increment: h1counter;
         }
-
-        + h2 {
+        +h2 {
             margin: {
                 top: $h2-font-size;
             }
         }
     }
-
     h2 {
         font-size: $h2-font-size;
-
         margin: {
             top: $h2-font-size * 1.5;
         }
-        
         counter-reset: h3counter 0;
-
-        &::before{
+        &::before {
             content: counter(h1counter, decimal) "." counter(h2counter, decimal) ". ";
             counter-increment: h2counter;
         }
-
-        + h3 {
+        +h3 {
             margin: {
                 top: $h3-font-size;
             }
         }
     }
-
     h3 {
         font-size: $h3-font-size;
-
         margin: {
             top: $h3-font-size * 1.5;
         }
-        
         counter-reset: h4counter 0;
-
-        &::before{
+        &::before {
             content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) ". ";
             counter-increment: h3counter;
         }
-
-        + h4 {
+        +h4 {
             margin: {
                 top: $h4-font-size;
             }
         }
     }
-
     h4 {
         font-size: $h4-font-size;
-
         margin: {
             top: $h4-font-size * 1.5;
         }
-        
         counter-reset: h5counter 0;
-
-        &::before{
+        &::before {
             content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) ". ";
             counter-increment: h4counter;
         }
-
-        + h5 {
+        +h5 {
             margin: {
                 top: $h5-font-size;
             }
         }
     }
-
     h5 {
         font-size: $h5-font-size;
-
         margin: {
             top: $h5-font-size * 1.5;
         }
-        
         counter-reset: h6counter 0;
-
-        &::before{
+        &::before {
             content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) ". ";
             counter-increment: h5counter;
         }
-
-        + h6 {
+        +h6 {
             margin: {
                 top: $h6-font-size;
             }
         }
     }
-
     h6 {
         font-size: $h6-font-size;
-
         margin: {
             top: $h6-font-size * 1.5;
         }
-
-        &::before{
+        &::before {
             content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) "." counter(h6counter, decimal) ". ";
             counter-increment: h6counter;
         }
     }
-
     p {
         margin: {
             bottom: 1em;
         }
-        
         line-height: 1.5;
     }
-
-    ul, ol {
+    ul,
+    ol {
         margin: {
             bottom: 1em;
         }
-
         display: table;
         word-break: break-all;
-
         li {
             list-style: none;
-
             display: table-row;
-
             line-height: 1.5;
-
             &::before {
                 display: table-cell;
                 text-align: right;
                 word-break: keep-all;
-
                 padding: {
                     right: 0.3em;
                 }
             }
         }
     }
-
     ol {
         counter-reset: listcounter 0;
-        li {
+        >li {
             &::before {
                 content: counter(listcounter) ".";
                 counter-increment: listcounter;
             }
         }
     }
-
     ul {
-        li {
+        >li {
             &::before {
                 content: "\2022";
             }
         }
     }
-
     blockquote {
         padding: {
             left: 2em;
@@ -207,56 +166,44 @@ div.document-content {
             top: 1em;
             bottom: 1em;
         }
-
         margin: {
             top: 1em;
             bottom: 1em;
         }
-
         background-color: #f5f5f5;
-
         border: {
             left: 10px solid #555555;
         }
-
         box-sizing: border-box;
-
         p {
             margin: {
                 bottom: 0;
             }
         }
-
         div.mathjax-wrapper {
             margin: {
                 bottom: -1em;
             }
         }
     }
-    
     table {
         $table-border: 1px solid #aaaaaa;
-
         border-collapse: separate;
         border-spacing: 0;
         border: {
             top: $table-border;
         }
-
         overflow-x: auto;
-
         margin: {
             top: 1em;
             bottom: 1em;
             left: auto;
             right: auto;
         }
-
         th {
             background-color: #dde3ee;
         }
-
-        > tbody {
+        >tbody {
             tr {
                 &:nth-child(2n) {
                     td {
@@ -264,107 +211,86 @@ div.document-content {
                     }
                 }
             }
-
         }
-
-        th, td {
+        th,
+        td {
             padding: {
                 top: 0.5em;
                 bottom: 0.5em;
                 left: 1em;
                 right: 1em;
             }
-
             border: {
                 bottom: $table-border;
             }
         }
     }
-
     div.table-wrapper {
         overflow-x: auto;
         overflow-y: auto;
         max-height: 1000px;
     }
-
     a.footnote {
         &::before {
             content: "[";
         }
-
         &::after {
             content: "]";
         }
-
         font-size: 0.8em;
     }
-    
     a {
         &:link {
             color: $hyperlink-unclicked;
         }
-
         &:visited {
             color: $hyperlink-clicked;
         }
-
         &:hover {
             text-decoration: underline;
         }
     }
-
     del {
         color: #555555;
     }
-
-    > div.footnotes {
+    >div.footnotes {
         margin: {
             top: 20px;
             bottom: 20px;
         }
-
         padding: {
             top: 20px;
         }
-
         border: {
             top: $border;
         }
-
         a.reversefootnote {
             font-size: 0.8em;
         }
-
         p {
             margin: {
                 bottom: 0;
             }
         }
     }
-
     div.mathjax-wrapper {
         overflow-x: auto;
         overflow-y: hidden;
         max-width: 100%;
     }
-
     @import "layouts.document.document-content.syntax-highlight";
-
     div.folder {
         margin: {
             bottom: 1em;
         }
-
         p.folder-btn {
             cursor: pointer;
             color: $hyperlink-unclicked;
             text-align: center;
-
             &:hover {
                 text-decoration: underline;
             }
         }
-
         div.folder-target {
             border-radius: 5px;
             background-color: #eeeeee;
@@ -376,7 +302,6 @@ div.document-content {
             }
             max-height: 500px;
             overflow: auto;
-
             pre {
                 line-height: 1.2;
             }
