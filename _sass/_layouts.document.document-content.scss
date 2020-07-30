@@ -132,7 +132,7 @@ div.document-content {
         li {
             list-style: none;
             display: table-row;
-            line-height: 1.5;
+            line-height: 1.6;
             &::before {
                 display: table-cell;
                 text-align: right;
@@ -272,6 +272,9 @@ div.document-content {
                 bottom: 0;
             }
         }
+        ol>li {
+            line-height: 2;
+        }
     }
     div.mathjax-wrapper {
         overflow-x: auto;
@@ -306,5 +309,8 @@ div.document-content {
                 line-height: 1.2;
             }
         }
+    }
+    p.align-mid {
+        text-align: center;
     }
 }

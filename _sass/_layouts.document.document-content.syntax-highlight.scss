@@ -1,45 +1,38 @@
 $background-color: #eeeeee;
 $border: 1px solid #cccccc;
-
 figure.highlight {
     overflow-x: auto;
     background-color: $background-color;
-
     padding: {
         top: 1em;
         bottom: 1em;
         left: 10px;
         right: 10px;
     }
-
     margin: {
         bottom: 10px;
     }
-
     border-radius: 5px;
-
+    code {
+        line-height: 1.2em;
+    }
     table.rouge-table {
         width: calc(100% - 10px);
-
         margin: {
             top: 0px;
             bottom: 0px;
             left: 0px;
             right: 0px;
         }
-
         border: {
             top: $border;
             bottom: $border;
         }
-
         line-height: 1.2em;
-
         tbody {
             tr {
                 td {
                     border: 0px;
-
                     padding: {
                         top: 0.5em;
                         bottom: 0.5em;
@@ -49,29 +42,43 @@ figure.highlight {
                 }
             }
         }
-
         td.gutter {
             width: 1px;
             white-space: nowrap;
-
             pre.lineno {
                 text-align: right;
                 color: #888888;
             }
-
             border: {
                 right: $border;
             }
         }
-    }    
-
-    .c, .cm, .c1, .cs {
+    }
+    .c,
+    .cm,
+    .c1,
+    .cs {
         color: #408080;
     }
-    .k, .kc, .kd, .kn, .kp, .kr, .sx, .bp, .nt, .nb {
+    .k,
+    .kc,
+    .kd,
+    .kn,
+    .kp,
+    .kr,
+    .sx,
+    .bp,
+    .nt,
+    .nb {
         color: #008000;
     }
-    .o, .m, .mf, .mh, .mi, .mo, .il {
+    .o,
+    .m,
+    .mf,
+    .mh,
+    .mi,
+    .mo,
+    .il {
         color: #666666;
     }
     .cp {
@@ -83,7 +90,8 @@ figure.highlight {
     .gr {
         color: #ff0000;
     }
-    .gh, .gp {
+    .gh,
+    .gp {
         color: #000080;
     }
     .gi {
@@ -107,7 +115,8 @@ figure.highlight {
     .no {
         color: #880000;
     }
-    .nd, .ow {
+    .nd,
+    .ow {
         color: #aa22ff;
     }
     .ni {
@@ -116,7 +125,9 @@ figure.highlight {
     .ne {
         color: #d2413a;
     }
-    .nc, .nf, .nn {
+    .nc,
+    .nf,
+    .nn {
         color: #0000ff;
     }
     .nl {
@@ -125,22 +136,54 @@ figure.highlight {
     .w {
         color: #bbbbbb;
     }
-    .s, .sb, .sc, .sd, .s2, .sh, .s1 {
+    .s,
+    .sb,
+    .sc,
+    .sd,
+    .s2,
+    .sh,
+    .s1 {
         color: #ba2121;
     }
     .se {
         color: #bb6622;
     }
-    .si, .sr {
+    .si,
+    .sr {
         color: #bb6688;
     }
-    .ss, .vs, .vg, .vi, .nv {
+    .ss,
+    .vs,
+    .vg,
+    .vi,
+    .nv {
         color: #19177c;
     }
-    .c, .cm, .c1, .cs, .ge, .sd {
+    .c,
+    .cm,
+    .c1,
+    .cs,
+    .ge,
+    .sd {
         font-style: italic;
     }
-    .k, .kc, .kd, .kn, .kr, .gh, .gp, .gs, .gu, .nc, .ni, .ne, .nn, .nt, .ow, .se, .si {
+    .k,
+    .kc,
+    .kd,
+    .kn,
+    .kr,
+    .gh,
+    .gp,
+    .gs,
+    .gu,
+    .nc,
+    .ni,
+    .ne,
+    .nn,
+    .nt,
+    .ow,
+    .se,
+    .si {
         font-weight: bold;
     }
 }
@@ -152,7 +195,6 @@ code.highlighter-rouge {
         left: 5px;
         right: 5px;
     }
-
     background-color: $background-color;
     border-radius: 5px;
 }
@@ -160,17 +202,14 @@ code.highlighter-rouge {
 div.highlighter-rouge {
     overflow-x: auto;
     background-color: $background-color;
-
     padding: {
         top: 1em;
         bottom: 1em;
         left: 10px;
         right: 10px;
     }
-
     margin: {
         bottom: 10px;
     }
-
     border-radius: 5px;
 }

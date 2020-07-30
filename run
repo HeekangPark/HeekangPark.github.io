@@ -1,3 +1,11 @@
 #!/bin/bash
 
+pid=$(netstat -tnlp 2>/dev/null | grep ":4000" | awk -F'LISTEN *|/' '/^(tcp|udp)/{print $2}')
+if [ -n "$pid" ]
+then
+    kill $pid
+    echo Process $pid killed
+fi
+unset pid
+
 bundle exec jekyll serve --host 172.26.0.1 --port 4000

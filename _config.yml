@@ -7,6 +7,7 @@ timezone: Asia/Seoul
 plugins:
   - jekyll-sitemap
   - jekyll-feed
+exclude: ["run"]
 # endregion
 
 # region
