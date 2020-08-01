@@ -68,9 +68,9 @@ function addTitleToFootnotes() {
 }
 
 $("div.page-navigator span.page-navigator-btn#top_btn").click(function() {
-    window.scrollTo({top: 0, behavior: "smooth"});
+    window.scrollTo({top: 0, behavior: "auto"});
 });
 
 $("div.page-navigator span.page-navigator-btn#bottom_btn").click(function() {
-    window.scrollTo({top: document.body.scrollHeight, behavior: "smooth"});
+    window.scrollTo({top: document.body.scrollHeight, behavior: "auto"});
 });

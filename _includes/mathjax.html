@@ -1,14 +1,17 @@
 <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'] ],
-        displayMath: [ ['$$','$$'] ],
-        processEscapes: true
-    },
-    chtml: {
-        scale: 1.0
-    }
-});
+    MathJax.Hub.Config( {
+        tex2jax: {
+            inlineMath: [[ '$','$' ]],
+            displayMath: [[ '$$','$$' ]],
+            processEscapes: true
+        },
+        asciimath2jax: {
+            delimiters: [[ '$', '$' ]]
+        },
+        chtml: { 
+            scale: 1.0 
+        }
+    });
 </script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
