@@ -1,7 +1,7 @@
 # region
 # Site Setting
 title: Reinventing the Wheel
-subtitle: Heekang Park's Development Blog
+subtitle: Wheel's Development Blog
 baseurl: ""
 timezone: Asia/Seoul
 plugins:
