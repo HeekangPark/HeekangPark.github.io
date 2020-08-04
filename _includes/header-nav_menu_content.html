@@ -1,7 +1,7 @@
 {% assign delim = ";" %}
 {% assign docs = "" | split: "" %}
 
-{% for doc in site.etc %}
+{% for doc in site.systemdoc %}
 {% if doc.nav-order %}
     {% assign docs = docs | push: doc %}
 {% endif %}
