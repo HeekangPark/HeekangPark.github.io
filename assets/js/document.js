@@ -1,7 +1,10 @@
 $(document).ready(function() {
     foldAllFolders();
-
     addTitleToFootnotes();
+    $(".caption-img").magnificPopup({
+        delegate: "a",
+        type: "image"
+    });
 });
 
 function foldAllFolders() {

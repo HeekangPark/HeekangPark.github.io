@@ -111,6 +111,21 @@ defaults:
   -
     scope:
       path: ""
+      type: "numpy"
+    values:
+      layout: "document"
+      show_collection: true
+      show_tags: true
+      show_last_edit: true
+      show_hits: true
+      show_likes: true
+      show_series_nav_vertical: true
+      show_toc: true
+      show_series_nav_horizontal: true
+      show_comment: true
+  -
+    scope:
+      path: ""
       type: "etc"
     values:
       layout: "document"
@@ -160,13 +175,19 @@ collections:
     permalink: /:collection/:name
     name: "Oracle VM VirtualBox"
     category: "응용 프로그램 (Applications)"
-    tags: ["application"]
-  etc:
+    tags: ["application", "virtualbox", "virtual_application"]
+  numpy:
     output: true
     permalink: /:collection/:name
-    name: "기타 (Etc)"
-    category: "기타 (Etc)"
-    tags: []
+    name: "Numpy"
+    category: "라이브러리 (Libraries)"
+    tags: ["library", "numpy", "python"]
+#  etc:
+#    output: true
+#    permalink: /:collection/:name
+#    name: "기타 (Etc)"
+#    category: "기타 (Etc)"
+#    tags: []
   systemdoc:
     output: true
     permalink: /:name

@@ -1,7 +1,6 @@
 figure.caption-img {
     width: 100%;
     text-align: center;
-
     &.border {
         padding: {
             top: 10px;
@@ -9,39 +8,31 @@ figure.caption-img {
             left: 10px;
             right: 10px;
         }
-
         border: 1px solid #000000;
     }
-
     box-sizing: border-box;
-
     margin: {
         top: 1em;
         bottom: 1em;
     }
-    
-    > img {
+    img {
         max-width: 80%;
         max-height: 300px;
         height: auto;
     }
-
-    > img.no-max-height {
+    img.no-max-height {
         max-height: unset;
     }
-
-    > figcaption.title {
+    figcaption.title {
         text-align: center;
         font-weight: bold;
         font-size: 1em;
         color: #000000;
-
         margin: {
             top: 10px;
         }
     }
-
-    > figcaption.description {
+    figcaption.description {
         text-align: center;
         font-weight: normal;
         font-size: 0.9em;
@@ -51,7 +42,7 @@ figure.caption-img {
 
 @media screen and (max-width: $media-small) {
     figure.caption-img {
-        > img {
+        img {
             max-width: 100%;
         }
     }
