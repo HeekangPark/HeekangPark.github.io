@@ -141,6 +141,11 @@ div.document-content {
                     right: 0.3em;
                 }
             }
+            ol, ul {
+                margin: {
+                    bottom: 0px;
+                }
+            }
         }
     }
     ol {
