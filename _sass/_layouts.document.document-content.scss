@@ -144,6 +144,7 @@ div.document-content {
             ol, ul {
                 margin: {
                     bottom: 0px;
+                    left: 10px;
                 }
             }
         }
@@ -161,6 +162,7 @@ div.document-content {
         >li {
             &::before {
                 content: "\2022";
+                font-weight: bold;
             }
         }
     }
