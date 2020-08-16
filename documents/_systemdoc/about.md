@@ -1,9 +1,6 @@
 ---
 nav-order: 3
 date: "2020-04-28"
-show_toc: true
-show_last_edit: true
-layout: document
 ---
 
 # About Me

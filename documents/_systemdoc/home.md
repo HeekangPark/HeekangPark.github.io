@@ -1,7 +1,9 @@
 ---
 permalink: /
 nav-order: 1
-layout: document-light
+layout: default
 ---
 
-This is home page.
+<div class="default-content">
+    This is home page.
+</div>

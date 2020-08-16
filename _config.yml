@@ -39,111 +39,48 @@ defaults:
       type: "jekyll"
     values:
       layout: "document"
-      show_collection: true
-      show_tags: true
-      show_last_edit: true
-      show_hits: true
-      show_likes: true
-      show_series_nav_vertical: true
-      show_toc: true
-      show_series_nav_horizontal: true
-      show_comment: true
   -
     scope:
       path: ""
       type: "web_server"
     values:
       layout: "document"
-      show_collection: true
-      show_tags: true
-      show_last_edit: true
-      show_hits: true
-      show_likes: true
-      show_series_nav_vertical: true
-      show_toc: true
-      show_series_nav_horizontal: true
-      show_comment: true
   -
     scope:
       path: ""
       type: "machine_learning"
     values:
       layout: "document"
-      show_collection: true
-      show_tags: true
-      show_last_edit: true
-      show_hits: true
-      show_likes: true
-      show_series_nav_vertical: true
-      show_toc: true
-      show_series_nav_horizontal: true
-      show_comment: true
   -
     scope:
       path: ""
       type: "calculus"
     values:
       layout: "document"
-      show_collection: true
-      show_tags: true
-      show_last_edit: true
-      show_hits: true
-      show_likes: true
-      show_series_nav_vertical: true
-      show_toc: true
-      show_series_nav_horizontal: true
-      show_comment: true
   -
     scope:
       path: ""
       type: "virtualbox"
     values:
       layout: "document"
-      show_collection: true
-      show_tags: true
-      show_last_edit: true
-      show_hits: true
-      show_likes: true
-      show_series_nav_vertical: true
-      show_toc: true
-      show_series_nav_horizontal: true
-      show_comment: true
   -
     scope:
       path: ""
       type: "numpy"
     values:
       layout: "document"
-      show_collection: true
-      show_tags: true
-      show_last_edit: true
-      show_hits: true
-      show_likes: true
-      show_series_nav_vertical: true
-      show_toc: true
-      show_series_nav_horizontal: true
-      show_comment: true
   -
     scope:
       path: ""
       type: "etc"
     values:
       layout: "document"
-      show_collection: true
-      show_tags: true
-      show_last_edit: true
-      show_hits: true
-      show_likes: true
-      show_series_nav_vertical: true
-      show_toc: true
-      show_series_nav_horizontal: true
-      show_comment: true
   -
     scope:
       path: ""
       type: "systemdoc"
     values:
-      layout: "document"
+      layout: "document-light"
 
 collections:
   jekyll:

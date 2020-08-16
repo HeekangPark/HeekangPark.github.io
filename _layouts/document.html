@@ -10,13 +10,10 @@ layout: default
 
 <div class="default-content">
     <div class="document-head">
-        {% if page.show_collection %}
         {% if collection %}
         <a class="category" href="{{ site.url }}{{ site.baseurl }}/docs/#{{ collection.label }}">{{ collection.name }}</a>
         {% endif %}
-        {% endif %}
 
-        {% if page.show_tags %}
         {% assign delim=";" %}
         {% assign document_tags = page.tags | join: delim | downcase | split: delim %}
         {% assign series_tags = collection.tags | join: delim | downcase | split: delim %}
@@ -28,14 +25,10 @@ layout: default
             {% endfor %}
         </div>
         {% endif %}
-        {% endif %}
     
         <p class="title">{{ page.title | upcase }}</p>
-        {% if page.show_last_edit %}
         <p class="date">LAST EDIT : {{ page.date | date: "%Y년 %m월 %d일" }}</p>
-        {% endif %}
         
-        {% if page.show_hits %}
         {% unless page.isWriting %}
         <div class="hits">
             <a href="http://hits.dwyl.com/HeekangPark.github.io{{ page.url }}" target="_blank">
@@ -43,19 +36,15 @@ layout: default
             </a>
         </div>
         {% endunless %}
-        {% endif %}
     
-        {% if page.show_likes %}
         {% unless page.isWriting %}
         <div class="likes">
             <span class="likebtn-wrapper" data-ef_voting="push"></span>
             <script>(function (d, e, s) { if (d.getElementById("likebtn_wjs")) return; a = d.createElement(e); m = d.getElementsByTagName(e)[0]; a.async = 1; a.id = "likebtn_wjs"; a.src = s; m.parentNode.insertBefore(a, m) })(document, "script", "//w.likebtn.com/js/w/widget.js");</script>    
         </div>
         {% endunless %}
-        {% endif %}
     </div>
     
-    {% if page.show_series_nav_vertical %}
     {% if collection %}
     <div class="document-series-nav-vertical">
         <table>
@@ -85,19 +74,17 @@ layout: default
         </table>
     </div>
     {% endif %}
-    {% endif %}
     
-    {% if page.show_toc %}
-    <div class="toc">
-        {% include toc.html html = content %}
+    <div class="toc-content-wrapper scrollspy">
+        <div class="toc">
+            {% include toc.html html = content %}
+        </div>
+
+        <div class="document-content">
+            {{ content }}
+        </div>
     </div>
-    {% endif %}
     
-    <div class="document-content">
-        {{ content }}
-    </div>
-    
-    {% if page.show_series_nav_horizontal %}
     {% if collection %}
     <div class="document-series-nav-horizontal">
         {% assign series = collection.docs | sort: "order" %}
@@ -127,7 +114,6 @@ layout: default
         {% endfor %}
     </div>
     {% endif %}
-    {% endif %}
     
     <div class="page-navigator">
         <span id="top_btn" class="page-navigator-btn"><i class="far fa-arrow-alt-circle-up"></i></span>
@@ -135,7 +121,6 @@ layout: default
     </div>
 </div>
 
-{% if page.show_comment %}
 <div class="comments">
     <p>Comments</p>
     <script src="https://utteranc.es/client.js"
@@ -147,6 +132,5 @@ layout: default
         async>
     </script>
 </div>
-{% endif %}
 
 <script src="{{ site.baseurl }}{{ site.assets }}/js/document.js"></script>

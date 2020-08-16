@@ -41,6 +41,12 @@ div.document-content {
                 top: $h2-font-size;
             }
         }
+
+        &:first-child {
+            margin: {
+                top: 0px;
+            }
+        }
     }
     h2 {
         font-size: $h2-font-size;

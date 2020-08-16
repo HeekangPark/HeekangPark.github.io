@@ -253,8 +253,10 @@ div.default-content {
         }
     }
 
-    > div.toc {
+    div.toc {
         $indent: 1.5em;
+
+        box-sizing: border-box;
 
         border: $border;
         padding: {
@@ -404,6 +406,42 @@ div.default-content {
         }
     }
 }
+
+@media screen and (min-width: ($media-medium)) {
+    $toc-width: 400px;
+
+    div.default-content {
+        div.toc-content-wrapper.scrollspy {
+            position: relative;
+
+            div.document-content {
+                max-width: calc(100% - #{$toc-width});
+            }
+    
+            div.toc {
+                margin: {
+                    top: 20px;
+                    left: 10px;
+                }
+
+                padding: {
+                    top: 0px;
+                }
+    
+                width: $toc-width;
+                min-width: $toc-width;
+                max-width: $toc-width;
+    
+                border: 0;
+    
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+    }
+}
+
 
 @media screen and (max-width: ($default-container-width-max + 20px)) {
     div.default-content {
