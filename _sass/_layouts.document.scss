@@ -419,16 +419,22 @@ div.default-content {
 
             div.document-content {
                 max-width: calc(100% - #{$toc-width});
+                padding: {
+                    right: 10px;
+                }
+
+                border: {
+                    right: $border;
+                }
             }
     
             div.toc {
                 margin: {
-                    top: 20px;
-                    left: 10px;
-                }
-
-                padding: {
                     top: 0px;
+                }
+                
+                padding: {
+                    top: 20px;
                 }
     
                 width: $toc-width;
