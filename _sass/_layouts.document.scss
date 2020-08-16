@@ -253,90 +253,93 @@ div.default-content {
         }
     }
 
-    div.toc {
-        $indent: 1.5em;
-
-        box-sizing: border-box;
-
-        border: $border;
-        padding: {
-            top: 15px;
-            bottom: 15px;
-            left: 15px;
-            right: 15px;
-        }
-
-        margin: {
-            top: 1em;
-            bottom: 1em;
-        }
-        
-        display: inline-flex;
-        flex-direction: column;
-
-        > p.toc-title {
-            font-size: 1.1em;
-            margin: {
-                bottom: 10px;
+    > div.toc-content-wrapper {
+        > div.toc {
+            $indent: 1.5em;
+    
+            box-sizing: border-box;
+    
+            border: $border;
+            padding: {
+                top: 15px;
+                bottom: 15px;
+                left: 15px;
+                right: 15px;
             }
-        }
-
-        > div.toc-content {
+    
+            margin: {
+                top: 1em;
+                bottom: 1em;
+            }
+            
             display: inline-flex;
             flex-direction: column;
-
-            p {
-                line-height: 1.5;
-                display: inline-block;
-            }
     
-            p.toc-1 {
+            > p.toc-title {
+                font-size: 1.1em;
                 margin: {
-                    left: ($indent * 0);
+                    bottom: 10px;
                 }
             }
     
-            p.toc-2 {
-                margin: {
-                    left: ($indent * 1);
+            > div.toc-content {
+                display: inline-flex;
+                flex-direction: column;
+    
+                p {
+                    line-height: 1.5;
+                    display: inline-block;
                 }
-            }
-    
-            p.toc-3 {
-                margin: {
-                    left: ($indent * 2);
+        
+                p.toc-1 {
+                    margin: {
+                        left: ($indent * 0);
+                    }
                 }
-            }
-    
-            p.toc-4 {
-                margin: {
-                    left: ($indent * 3);
+        
+                p.toc-2 {
+                    margin: {
+                        left: ($indent * 1);
+                    }
                 }
-            }
-    
-            p.toc-5 {
-                margin: {
-                    left: ($indent * 4);
+        
+                p.toc-3 {
+                    margin: {
+                        left: ($indent * 2);
+                    }
                 }
-            }
-    
-            p.toc-6 {
-                margin: {
-                    left: ($indent * 5);
+        
+                p.toc-4 {
+                    margin: {
+                        left: ($indent * 3);
+                    }
                 }
-            }
-    
-            a {
-                color: #0275d8;
-    
-                &:hover {
-                    text-decoration: underline;
+        
+                p.toc-5 {
+                    margin: {
+                        left: ($indent * 4);
+                    }
+                }
+        
+                p.toc-6 {
+                    margin: {
+                        left: ($indent * 5);
+                    }
+                }
+        
+                a {
+                    color: #0275d8;
+        
+                    &:hover {
+                        text-decoration: underline;
+                    }
                 }
             }
         }
+    
+        @import "layouts.document.document-content";
     }
-
-    @import "layouts.document.document-content";
+    
 
     > div.document-series-nav-horizontal {
         display: flex;
