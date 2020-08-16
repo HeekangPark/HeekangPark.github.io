@@ -12,9 +12,10 @@ $(document).ready(function() {
     //toc scrollspy
     var content = $("div.toc-content-wrapper.scrollspy div.document-content");
     var toc = $("div.toc-content-wrapper.scrollspy div.toc");
-    var toc_init_offset = content.offset().top;
-    var toc_max_offset = content.height() - toc.outerHeight(true);
     $(window).scroll(function() {
+        var toc_init_offset = content.offset().top;
+        var toc_max_offset = content.height() - toc.outerHeight(true);
+        
         toc.animate({
             top: Math.min(Math.max($(window).scrollTop() - toc_init_offset, 0), toc_max_offset) + "px"
         }, {
