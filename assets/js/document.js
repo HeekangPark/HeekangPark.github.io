@@ -20,7 +20,7 @@ $(document).ready(function() {
             top: Math.min(Math.max($(window).scrollTop() - toc_init_offset, 0), toc_max_offset) + "px"
         }, {
             queue: false,
-            duration: 350
+            duration: 0
         })
     });
 });
