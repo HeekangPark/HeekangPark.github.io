@@ -1,5 +1,26 @@
 $border: 1px #eeeeee solid;
 
+div.scrollspy-horizontal-container {
+    $height: 3px;
+
+    background-color: $site-background-color;
+    width: 100%;
+    height: $height;
+    z-index: 1;
+    position: fixed;
+    display: none;
+    top: 0;
+
+    div.scrollspy-horizontal {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 0%;
+        height: $height;
+        background-color: yellowgreen;
+    }
+}
+
 div.default-content {
     width: $default-container-width-max;
     box-sizing: border-box;

@@ -15,7 +15,7 @@ header {
 
     box-sizing: border-box;
 
-    background-color: #333333;
+    background-color: $header-background-color;
     color           : #ffffff;
 
     > .container {

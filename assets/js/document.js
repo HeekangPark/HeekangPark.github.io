@@ -9,6 +9,27 @@ $(document).ready(function() {
         type: "image"
     });
 
+    //scrollspy horizontal
+    var header = $("header");
+    var nav_menu = $("#NavMenu");
+    var scrollspy_horizontal_container = $("div.scrollspy-horizontal-container");
+    var scrollspy_horizontal = $("div.scrollspy-horizontal-container div.scrollspy-horizontal");
+    $(window).scroll(function() {
+        //container
+        var header_height = header.outerHeight(true) + nav_menu.outerHeight(true);
+        var cur_scroll = $(window).scrollTop();
+        
+        if (cur_scroll > header_height) {
+            scrollspy_horizontal_container.css("display", "block");
+        } else {
+            scrollspy_horizontal_container.css("display", "none"); //invisible if current scroll position is smaller than header height
+        }
+
+        //scrollspy horizontal
+        var total_scrollable_height = $(document).height() - $(window).height();
+        scrollspy_horizontal.css("width", (cur_scroll / total_scrollable_height) * 100 + "%");
+    });
+
     //toc scrollspy
     var content = $("div.toc-content-wrapper.scrollspy div.document-content");
     var toc = $("div.toc-content-wrapper.scrollspy div.toc");
