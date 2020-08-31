@@ -12,10 +12,14 @@ date: "2020-08-31"
 $ sudo apt install python3
 {% endhighlight %}
 
-그리고 pip를 이용해 
+그리고 이렇게 설치된 파이썬에서 pip을 이용해 패키지를 설치하면 (우분투 기준) `/usr/local/lib/pythonX.Y/site-packages`[^1][^2] 디렉토리에 설치된다.
 
-이렇게 되면 파이썬은 `/usr/local/lib/pythonX.Y` 디렉토리에 설치된다.
+[^1]: X,Y는 파이썬 인터프리터의 버전을 나타낸다. 예를 들어, 파이썬 3.7의 경우 `/usr/local/lib/python3.7/dist-packages` 디렉토리에 패키지들이 설치된다.
+[^2]: 이렇게 pip으로 설치된 패키지가 저장되는 디렉토리를 "site-packages" 디렉토리라 한다. site-package 디렉토리는 운영체제에 따라 다를 수 있다. 예를 들어 우분투와 같은 데비안 계열 시스템에서는 `/usr/local/lib/pythonX.Y/dist-packages`가 site-package 디렉토리이다. 
 
+그런데 이런 시스템에는 한계사항이 많다.
+
+- `/usr/local/lib/pythonX.Y/site-packages`는 일반적으로 루트(root) 유저만 쓰기 권한을 가진다. 패키지를 설치하기 위해서는 `sudo pip install`과 같이 루트 권한이 필요하다. 루트 권한이 없는 사용자는 패키지를 설치할 수 없다.
 
 
 시스템에 설치된 파이썬에서 pip를 이용해 패키지를 설치하게 되면                                                  
