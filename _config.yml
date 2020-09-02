@@ -125,12 +125,12 @@ collections:
     name: "Numpy"
     category: "라이브러리 (Libraries)"
     tags: ["library", "numpy", "python"]
-  tricks:
-    output: true
-    permalink: /:collection/:name
-    name: "Tricks"
-    category: "기타 (Etc)"
-    tags: []
+  #tricks:
+    #output: true
+    #permalink: /:collection/:name
+    #name: "Tricks"
+    #category: "기타 (Etc)"
+    #tags: []
   etc:
     output: true
     permalink: /:collection/:name

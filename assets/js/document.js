@@ -31,18 +31,22 @@ $(document).ready(function() {
     });
 
     //toc scrollspy
+    var header_pos = [];
+    for(var i = 1; i <= 6; i++) {
+        var headers = $("div.document-content h" + i);
+        if (headers.length == 0) continue;
+
+        $.each(headers, function(item, idx) {
+            console.log(item);
+        });
+    }
     var content = $("div.toc-content-wrapper.scrollspy div.document-content");
     var toc = $("div.toc-content-wrapper.scrollspy div.toc");
     $(window).scroll(function() {
         var toc_init_offset = content.offset().top;
         var toc_max_offset = content.height() - toc.outerHeight(true);
         
-        toc.animate({
-            top: Math.min(Math.max($(window).scrollTop() - toc_init_offset, 0), toc_max_offset) + "px"
-        }, {
-            queue: false,
-            duration: 0
-        })
+        toc.css("top", Math.min(Math.max($(window).scrollTop() - toc_init_offset, 0), toc_max_offset) + "px")
     });
 });
 
