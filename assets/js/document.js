@@ -33,11 +33,8 @@ $(document).ready(function() {
     //toc scrollspy
     var header_pos = [];
     for(var i = 1; i <= 6; i++) {
-        var headers = $("div.document-content h" + i);
-        if (headers.length == 0) continue;
-
-        $.each(headers, function(item, idx) {
-            console.log(item);
+        $("div.document-content h" + i).each(function(idx, elem) {
+            console.log(idx, elem);
         });
     }
     var content = $("div.toc-content-wrapper.scrollspy div.document-content");
