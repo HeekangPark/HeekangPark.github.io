@@ -34,16 +34,37 @@ $(document).ready(function() {
     var header_pos = [];
     for(var i = 1; i <= 6; i++) {
         $("div.document-content h" + i).each(function(idx, elem) {
-            console.log(idx, elem);
+            header_pos.push({
+                id: "toc-" + elem.id,
+                top: Number($(this).offset().top)
+            })
         });
     }
+    header_pos.sort((a, b) => a.top - b.top);
+    header_pos.push({
+        id: "footnotes",
+        top: Number($("div.document-content div.footnotes").offset().top)
+    });
     var content = $("div.toc-content-wrapper.scrollspy div.document-content");
     var toc = $("div.toc-content-wrapper.scrollspy div.toc");
     $(window).scroll(function() {
+        // move toc as scrolling
         var toc_init_offset = content.offset().top;
         var toc_max_offset = content.height() - toc.outerHeight(true);
-        
-        toc.css("top", Math.min(Math.max($(window).scrollTop() - toc_init_offset, 0), toc_max_offset) + "px")
+        toc.css("top", Math.min(Math.max($(window).scrollTop() - toc_init_offset, 0), toc_max_offset) + "px");
+
+        // highlight toc item
+        $("div.toc-content-wrapper.scrollspy div.toc div.toc-content p.toc-item").removeClass("activate");
+        var target_idx = -1;
+        for(var i = 0; i < header_pos.length; i++) {
+            if($(window).scrollTop() + $(window).height() * 0.1 < header_pos[i].top) {
+                target_idx = i - 1;
+                break;
+            }
+        }
+        if(target_idx >= 0) {
+            $("#" + header_pos[target_idx].id).addClass("activate");
+        }
     });
 });
 

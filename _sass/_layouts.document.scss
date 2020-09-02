@@ -306,7 +306,7 @@ div.default-content {
             > div.toc-content {
                 display: inline-flex;
                 flex-direction: column;
-    
+
                 p {
                     line-height: 1.5;
                     display: inline-block;
@@ -432,7 +432,7 @@ div.default-content {
 }
 
 @media screen and (min-width: ($media-medium)) {
-    $toc-width: 400px;
+    $toc-width: 300px;
 
     div.default-content {
         div.toc-content-wrapper.scrollspy {
@@ -450,6 +450,8 @@ div.default-content {
             }
     
             div.toc {
+                font-size: 0.8em;
+
                 margin: {
                     top: 0px;
                 }
@@ -467,6 +469,14 @@ div.default-content {
                 position: absolute;
                 top: 0;
                 right: 0;
+
+                p.toc-item {
+                    opacity: 50%;
+
+                    &.activate {
+                        opacity: 100%;
+                    }
+                }
             }
         }
     }

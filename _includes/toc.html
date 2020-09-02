@@ -42,32 +42,32 @@
             {% assign h4counter = 0 %}
             {% assign h5counter = 0 %}
             {% assign h6counter = 0 %}
-            <p class="toc-{{ headerLevel }}"><a href="#{{ headerID }}">{{ h1counter }}.</a> {{ headerContent }}</p>
+            <p class="toc-item toc-{{ headerLevel }}" id="toc-{{ headerID }}"><a href="#{{ headerID }}">{{ h1counter }}.</a> {{ headerContent }}</p>
         {% when 2 %}
             {% assign h2counter = h2counter | plus: 1 %}
             {% assign h3counter = 0 %}
             {% assign h4counter = 0 %}
             {% assign h5counter = 0 %}
             {% assign h6counter = 0 %}
-            <p class="toc-{{ headerLevel }}"><a href="#{{ headerID }}">{{ h1counter }}.{{ h2counter }}.</a> {{ headerContent }}</p>
+            <p class="toc-item toc-{{ headerLevel }}" id="toc-{{ headerID }}"><a href="#{{ headerID }}">{{ h1counter }}.{{ h2counter }}.</a> {{ headerContent }}</p>
         {% when 3 %}
             {% assign h3counter = h3counter | plus: 1 %}
             {% assign h4counter = 0 %}
             {% assign h5counter = 0 %}
             {% assign h6counter = 0 %}
-            <p class="toc-{{ headerLevel }}"><a href="#{{ headerID }}">{{ h1counter }}.{{ h2counter }}.{{ h3counter }}.</a> {{ headerContent }}</p>
+            <p class="toc-item toc-{{ headerLevel }}" id="toc-{{ headerID }}"><a href="#{{ headerID }}">{{ h1counter }}.{{ h2counter }}.{{ h3counter }}.</a> {{ headerContent }}</p>
         {% when 4 %}
             {% assign h4counter = h4counter | plus: 1 %}
             {% assign h5counter = 0 %}
             {% assign h6counter = 0 %}
-            <p class="toc-{{ headerLevel }}"><a href="#{{ headerID }}">{{ h1counter }}.{{ h2counter }}.{{ h3counter }}.{{ h4counter }}.</a> {{ headerContent }}</p>
+            <p class="toc-item toc-{{ headerLevel }}" id="toc-{{ headerID }}"><a href="#{{ headerID }}">{{ h1counter }}.{{ h2counter }}.{{ h3counter }}.{{ h4counter }}.</a> {{ headerContent }}</p>
         {% when 5 %}
             {% assign h5counter = h5counter | plus: 1 %}
             {% assign h6counter = 0 %}
-            <p class="toc-{{ headerLevel }}"><a href="#{{ headerID }}">{{ h1counter }}.{{ h2counter }}.{{ h3counter }}.{{ h4counter }}.{{ h5counter }}.</a> {{ headerContent }}</p>
+            <p class="toc-item toc-{{ headerLevel }}" id="toc-{{ headerID }}"><a href="#{{ headerID }}">{{ h1counter }}.{{ h2counter }}.{{ h3counter }}.{{ h4counter }}.{{ h5counter }}.</a> {{ headerContent }}</p>
         {% when 6 %}
             {% assign h6counter = h6counter | plus: 1 %}
-            <p class="toc-{{ headerLevel }}"><a href="#{{ headerID }}">{{ h1counter }}.{{ h2counter }}.{{ h3counter }}.{{ h4counter }}.{{ h5counter }}.{{ h6counter }}</a> {{ headerContent }}</p>
+            <p class="toc-item toc-{{ headerLevel }}" id="toc-{{ headerID }}"><a href="#{{ headerID }}">{{ h1counter }}.{{ h2counter }}.{{ h3counter }}.{{ h4counter }}.{{ h5counter }}.{{ h6counter }}</a> {{ headerContent }}</p>
     {% endcase %}    
 {% endfor %}
 </div>

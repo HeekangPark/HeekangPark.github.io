@@ -9,7 +9,7 @@ date: "2020-08-31"
 일반적으로 우분투 환경에서 파이썬을 설치하려면 다음과 같이 `apt` 명령어를 이용한다.
 
 {% highlight bash %}
-$ sudo apt install python3
+$ sudo apt install python3 python3-pip
 {% endhighlight %}
 
 그리고 이렇게 설치된 파이썬에서 pip을 이용해 패키지를 설치하면 (우분투 기준) `/usr/local/lib/pythonX.Y/site-packages`[^1][^2] 디렉토리에 설치된다.
