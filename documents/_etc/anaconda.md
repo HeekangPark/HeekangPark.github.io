@@ -6,13 +6,7 @@ date: "2020-08-31"
 
 # 파이썬 가상환경 (Python Virtual Environment)
 
-일반적으로 우분투 환경에서 파이썬을 설치하려면 다음과 같이 `apt` 명령어를 이용한다.
-
-{% highlight bash %}
-$ sudo apt install python3 python3-pip
-{% endhighlight %}
-
-그리고 이렇게 설치된 파이썬에서 pip을 이용해 패키지를 설치하면 (우분투 기준) `/usr/local/lib/pythonX.Y/site-packages`[^1][^2] 디렉토리에 설치된다.
+pip을 이용해 패키지를 설치하면 (우분투 기준) `/usr/local/lib/pythonX.Y/site-packages`[^1][^2] 디렉토리에 설치된다.
 
 [^1]: X,Y는 파이썬 인터프리터의 버전을 나타낸다. 예를 들어, 파이썬 3.7의 경우 `/usr/local/lib/python3.7/dist-packages` 디렉토리에 패키지들이 설치된다.
 [^2]: 이렇게 pip으로 설치된 패키지가 저장되는 디렉토리를 "site-packages" 디렉토리라 한다. site-package 디렉토리는 운영체제에 따라 다를 수 있다. 예를 들어 우분투와 같은 데비안 계열 시스템에서는 `/usr/local/lib/pythonX.Y/dist-packages`가 site-package 디렉토리이다. 
