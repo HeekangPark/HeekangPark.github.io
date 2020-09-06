@@ -8,15 +8,7 @@ date: "2020-08-31"
 
 # 아나콘다(Anaconda) 설치
 
-터미널에 다음 명령어를 입력하여 아나콘다(Anaconda)를 설치한다.
 
-{% highlight bash %}
-$ wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
-$ chmod +x Anaconda3-2020.07-Linux-x86_64.sh
-$ ./Anaconda3-2020.07-Linux-x86_64.sh
-{% endhighlight %}
-
-아나콘다 설치 과정에
 
 ## 아나콘다 삭제
 

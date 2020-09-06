@@ -978,6 +978,42 @@ $("div.collapsable > p.collapsable-btn").click(function() {
 </script>
 </div>
 
+## 아나콘다 삭제하기
+
+아나콘다를 재설치하거나 아나콘다를 더이상 사용하지 않을 때는 아나콘다를 삭제해야 한다. 아나콘다 삭제는 두 가지 종류가 있다.
+
+- Option A 삭제 : 단순삭제(Simple Remove). 단순히 아나콘다를 삭제만 한다. 이 경우 몇몇 파일들은 시스템에 남지만, 시스템에 거의 아무런 영향을 끼치지 않는다. 대부분의 경우 Option A 삭제만 해도 충분하다.
+- Option B 삭제 : 완전삭제(Full Uninstall). 아나콘다 관련 모든 설정 파일, 디렉토리 일체를 모두 지우고 싶다면 Option B 삭제를 한다.
+
+### Option A 삭제
+
+만약 활성화되어 있는 가상환경이 있다면 비활성화한다. 이후 아나콘다 디렉토리가 있는 디렉토리로 가[^4] 다음 명렁어를 실행한다.
+
+[^4]: 리눅스 기준, 설치 시 별다른 옵션을 지정하지 않았다면 `$HOME`
+
+{% highlight bash %}
+$ rm -rf anaconda3
+{% endhighlight %}
+
+이후 `.bash_profile`, `.bashrc` 등의 파일에서 아나콘다 관련 코드(ex. `export PATH="$HOME/anaconda3/bin:$PATH"`)를 모두 원래 상태로 만든다.
+
+### Option B 삭제
+
+`base` 가상환경을 활성화한다. 이후 다음 명령어로 Anaconda-Clean 패키지를 설치한다.
+
+{% highlight bash %}
+$ conda install anaconda-clean
+{% endhighlight %}
+
+설치가 완료되면 Anaconda-Clean을 실행한다. 뒤의 `--yes` 옵션을 붙이지 않으면 삭제하는 파일마다 삭제 확인(confirmation)을 받는다.
+
+{% highlight bash %}
+$ anaconda-clean --yes
+{% endhighlight %}
+
+Anaconda-Clean의 실행이 완료되면 [Optiona A 삭제](#kramdown_option-a-삭제)를 진행한다.
+
+
 # 아나콘다 사용하기
 
 ## 가상환경 생성하기
@@ -988,17 +1024,17 @@ $("div.collapsable > p.collapsable-btn").click(function() {
 $ conda create -n <venv_name> python=<python_ver>
 {% endhighlight %}
 
-- `<venv_name>` : 가상환경의 이름. 가상환경의 이름은 고유해야 한다.[^4] 가상환경의 이름으로 '/', ' ', ':', '#' 문자를 사용할 수 없다.
-- `<python_ver>` : 가상환경의 파이썬 인터프리터 버전. "3.7", "3.8" 등으로 파이썬 인터프리터 버전을 지정하면 된다.[^5][^6]
+- `<venv_name>` : 가상환경의 이름. 가상환경의 이름은 고유해야 한다.[^5] 가상환경의 이름으로 '/', ' ', ':', '#' 문자를 사용할 수 없다.
+- `<python_ver>` : 가상환경의 파이썬 인터프리터 버전. "3.7", "3.8" 등으로 파이썬 인터프리터 버전을 지정하면 된다.[^6][^7]
 
-[^4]: 만약 기존에 존재하는 가상환경의 이름을 사용하게 되면 기존 가상환경을 제거하고 다시 새로운 가상환경을 만들지를 물어본다.
-[^5]: 파이썬 2도 사용할 수 있다. 다만 파이썬 2는 2020년 1월 1일부로 지원이 종료되었으므로 되도록이면 사용을 자제하자.
-[^6]: 파이썬 인터프리터 버전을 지정하지 않고도 가상환경을 만들 수 있긴 하다.(ex. `conda create -n "test"`) 이렇게 하면 시스템에 글로벌하게 설치된 파이썬이 덮어씌워지지(override) 않아 가상환경에서 파이썬을 사용해도 (가상환경의 파이썬이 아닌) 시스템의 파이썬이 사용된다. 이 상황에서 pip로 패키지를 설치하면 가상환경에 설치되는 것이 아니라 시스템에 글로벌하게 설치되어 의도치 않은 버전 문제 등이 발생할 수 있다.
+[^5]: 만약 기존에 존재하는 가상환경의 이름을 사용하게 되면 기존 가상환경을 제거하고 다시 새로운 가상환경을 만들지를 물어본다.
+[^6]: 파이썬 2도 사용할 수 있다. 다만 파이썬 2는 2020년 1월 1일부로 지원이 종료되었으므로 되도록이면 사용을 자제하자.
+[^7]: 파이썬 인터프리터 버전을 지정하지 않고도 가상환경을 만들 수 있긴 하다.(ex. `conda create -n "test"`) 이렇게 하면 시스템에 글로벌하게 설치된 파이썬이 덮어씌워지지(override) 않아 가상환경에서 파이썬을 사용해도 (가상환경의 파이썬이 아닌) 시스템의 파이썬이 사용된다. 이 상황에서 pip로 패키지를 설치하면 가상환경에 설치되는 것이 아니라 시스템에 글로벌하게 설치되어 의도치 않은 버전 문제 등이 발생할 수 있다.
 
 ex)
 {% highlight bash %}
-$ conda create -n "test1" python=3.7
-$ conda create -n "test2" python=3.8
+$ conda create -n test1 python=3.7
+$ conda create -n test2 python=3.8
 {% endhighlight %}
 
 ## 가상환경 확인하기
@@ -1010,26 +1046,27 @@ $ conda env list
 $ conda info --envs
 {% endhighlight %}
 
-가상환경을 생성하면 아나콘다가 설치된 디렉토리[^7] 밑의 `envs/` 디렉토리에 가상환경 폴더가 생성되므로, 이 디렉토리의 폴더 목록을 확인해도 생성된 가상환경들의 목록을 볼 수 있다.
+가상환경을 생성하면 아나콘다가 설치된 디렉토리[^8] 밑의 `envs/` 디렉토리에 가상환경 폴더가 생성되므로, 이 디렉토리의 폴더 목록을 확인해도 생성된 가상환경들의 목록을 볼 수 있다.
 
-[^7]: 리눅스 기준, 설치 시 별다른 옵션을 지정하지 않았다면 `$HOME/anaconda3/`
+[^8]: 리눅스 기준, 설치 시 별다른 옵션을 지정하지 않았다면 `$HOME/anaconda3/`
 
 ## 가상환경 삭제하기
 
-생성한 가상환경은 다음 명령어로 삭제할 수 있다.
+생성한 가상환경은 다음 명령어 중 하나로 삭제할 수 있다(어떤 걸 사용해도 결과는 같다).
 
 {% highlight bash %}
 $ conda env remove -n <venv_name>
+$ conda remove -n <venv_name> --all
 {% endhighlight %}
 
-- `<venv_name>` : 가상환경의 이름. 존재하지 않는 가상환경의 이름을 입력하면 아무런 일도 발생하지 않는다(아무런 가상환경도 삭제되지 않는다). 현재 활성화되어있는 가상환경을 지우면 오류 메시지가 출력되고 가상환경이 삭제되지 않는다.[^8]
+- `<venv_name>` : 가상환경의 이름. 존재하지 않는 가상환경의 이름을 입력하면 아무런 일도 발생하지 않는다(아무런 가상환경도 삭제되지 않는다). 현재 활성화되어있는 가상환경을 지우면 오류 메시지가 출력되고 가상환경이 삭제되지 않는다.[^9]
 
-[^8]: `conda deactivate` 명령어로 가상환경을 비활성화한 후 삭제해야 한다.
+[^9]: `conda deactivate` 명령어로 가상환경을 비활성화한 후 삭제해야 한다.
 
 ex)
 {% highlight bash %}
-$ conda env remove -n "test1"
-$ conda env remove -n "test2"
+$ conda env remove -n test1
+$ conda remove -n test2 --all
 {% endhighlight %}
 
 ## 가상환경 활성화하기
@@ -1070,12 +1107,54 @@ $ which python
 
 ## 가상환경 비활성화하기
 
-다음 명령어로 현재 활성화되어 있는 가상환경을 비활성화(deactivate)할 수 있다.[^9]
-
-[^9]: 아무런 가상환경도 활성화되어 있지 않다면 아무 일도 일어나지 않는다.
+다음 명령어로 현재 활성화되어 있는 가상환경을 비활성화(deactivate)할 수 있다. 아무런 가상환경도 활성화되어 있지 않다면 아무 일도 일어나지 않는다.
 
 {% highlight bash %}
 $ conda deactivate
 {% endhighlight %}
 
 활성화할 때는 `<venv_name>`을 요구했지만, 비활성화할 때는 요구하지 않는다.
+
+## 패키지 설치하기
+
+아나콘다는 pip과 같은 패키지 관리자(Package Manager)이기도 하다. 가상환경이 활성화되어 있는 상태에서 다음 명령어를 입력하면 해당 가상환경에 패키지를 설치할 수 있다.
+
+{% highlight bash %}
+$ conda install <package_name>
+{% endhighlight %}
+
+- `<package_name>` : 패키지명
+
+ex)
+{% highlight bash %}
+$ conda install numpy
+$ conda install matplotlib
+{% endhighlight %}
+
+아나콘다와 pip은 거의 동일한 역할을 한다. 다만 경우에 따라 아나콘다로 설치했을 땐 이상하게 작동하는 패키지가 pip으로 설치했을 때는 잘 작동하거나, 그 반대의 경우도 일어난다. 만약 한 패키지 관리자로 설치했을 때 오류가 발생한다면 다른 패키지 관리자를 사용해 보자.
+
+## 패키지 확인하기
+
+가상환경이 활성화되어 있는 상태에서 다음 명령어를 입력하면 현재 가상환경에 설치된 (아나콘다가 인식 가능한) 모든 패키지들을 확인할 수 있다.
+
+{% highlight bash %}
+$ conda list
+{% endhighlight %}
+
+만약 어떤 패키지가 pip과 아나콘다 둘 다 배포되어(deploy) 있으면, 해당 패키지는 아나콘다로 설치했어도 pip에서 확인할 수도 있고(`pip list`), 반대로 pip에서 설치했어도 아나콘다에서 확인할 수 있다.
+
+## 패키지 삭제하기
+
+가상환경이 활성화되어 있는 상태에서 다음 명령어를 입력하면 설치된 패키지를 제거할 수 있다. 만약 설치되어 있지 않은 패키지를 삭제하려 하면 오류 메시지가 출력된다.
+
+{% highlight bash %}
+$ conda remove <package_name>
+{% endhighlight %}
+
+- `<package_name>` : 패키지명
+
+ex)
+{% highlight bash %}
+$ conda remove numpy
+$ conda remove matplotlib
+{% endhighlight %}
