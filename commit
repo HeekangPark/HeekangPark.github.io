@@ -1,0 +1,8 @@
+#!/bin/bash
+
+git add *
+
+time=`date '+%F %H:%M'`
+git commit -m "commit from laptop, $time"
+
+git push origin master
