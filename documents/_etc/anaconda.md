@@ -1098,7 +1098,7 @@ ex)
 $ which python
 {% endhighlight %}
 
-다음 코드는 파이썬 쉘에서 현재 파이썬 인터프리터의 위치와 site-packages 디렉토리의 위치를 확인하는 코드이다. 이 방법을 통해서도 가상환경이 활성화되면 파이썬 인터프리터와 site-packages가 가상환경의 것으로 덮어씌워져 있음을 확인할 수 있다.
+다음 코드는 파이썬 쉘(REPL)에서 현재 파이썬 인터프리터의 위치와 site-packages 디렉토리의 위치를 확인하는 코드이다. 이 방법을 통해서도 가상환경이 활성화되면 파이썬 인터프리터와 site-packages가 가상환경의 것으로 덮어씌워져 있음을 확인할 수 있다.
 
 {% highlight python %}
 >>> import sys; sys.executable  # 파이썬 인터프리터 위치 출력

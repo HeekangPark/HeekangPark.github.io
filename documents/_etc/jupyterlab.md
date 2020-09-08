@@ -6,7 +6,43 @@ date: "2020-08-31"
 
 # 주피터 랩(Jupyter Lab)이란?
 
+시스템에 파이썬을 설치하면 다음과 같은 파이썬 쉘(REPL)[^1]을 사용할 수 있다. 파이썬 쉘은 파이썬 인터프리터를 대화형 모드(interactive mode)로 사용할 수 있도록 해 주는 프로그램이다.
 
+[^1]: Fig.01과 같이 사용자와 마치 문답을 주고받듯이 동작하는 프로그램을 REPL(Read-Evaluate-Print-Loop)라 한다. REPL의 예로 크롬 개발자 도구의 콘솔(Console), Node.js 등이 있다(둘 다 자바스크립트 REPL이다). 인터넷 조사 결과 Fig.01의 프로그램을 칭할 때 "파이썬 쉘"과 "파이썬 REPL"을 혼용해 사용하는 것으로 보인다(비슷하게 Node.js도 "Node 쉘"과 "Node REPL"을 혼용해 사용하는 것으로 보인다). 일반적으로 초보자들을 위한 문서에서는 (이해하기 쉬운) 파이썬 쉘이라는 표현을 더 자주 쓰고, 고급 사용자를 위한 문서에는 파이썬 REPL이라는 표현을 더 자주 쓰는 것 같다. 일단 이 문서에서는 파이썬 쉘이라는 표현을 쓸 것이다.
+
+{% include caption-img.html src="jupyterlab-python-shell-windows.png" title="Fig.01 파이썬 쉘(REPL)" description="Windows 10에 파이썬 3.8을 설치했을 때 볼 수 있는 파이썬 쉘(REPL)" %}
+
+파이썬 쉘에서는 코드를 입력하면 코드의 실행 결과를 바로 확인할 수 있고, 이전 코드의 실행 결과를 모두 기억하고 있어 간단히 파이썬 코드를 돌려보기에 좋다. 하지만 실행한 코드를 문서화하기 어렵고, 복잡한 코드를 실행하는데는 불편함이 많아 깊이있는 사용에는 무리가 따른다.
+
+이를 개선한 것이 IPython(Interactive Python)이다. IPython은 파이썬 쉘에 자동완성, 객체 정보 보기, 단축키, Magic Command 등의 다양한 부가기능을 추가해 사용성을 개선했다.
+
+{% include caption-img.html src="jupyterlab-ipython.png" title="Fig.02 IPython" description="IPython 사용 예시" %}
+
+그리고 이 IPython을 이용해 만들어진 웹 어플리케이션이 주피터 노트북(Jupyter Notebook)이다.
+
+{% include caption-img.html src="jupyterlab-jupyter-notebook.png" title="Fig.03 주피터 노트북(Jupyter Notebook)" description="주피터 노트북 사용 예시" %}
+
+주피터 노트북은 코드 작성과 실행을 서버-클라이언트 모델로 분리하였다. 즉, 사용자가 웹 브라우저(클라이언트)에서 코드를 작성하면, 코드는 서버로 전송되어 실행되고, 그 결과가 다시 웹 브라우저로 전달되어 사용자에게 보여지는 것이다. 이때 서버에서 실제로 코드를 실행하는 핵심 컴포넌트를 '커널(Kernel)'이라 한다. 주피터 노트북은 IPython을 커널로 사용한다.[^2]
+
+[^2]: 원래는 IPython만 커널로 사용가능했었다. 그래서 이름도 원래는 IPython Notebook이었다. 그런데 IPython 이외에도 C++, C#, Ruby, Typescript 등과 같은 다양한 커널을 지원하게 되면서 Jupyter Notebook으로 이름을 바꿨다.
+
+{% include caption-img.html src="jupyterlab-jupyter-notebook-architecture.png" title="Fig.04 주피터 노트북 구조" description="사용자가 웹 브라우저(클라이언트)에서 코드를 작성하면, 코드는 서버로 전송되어 실행되고, 그 결과가 다시 웹 브라우저로 전달되어 사용자에게 보여진다." %}
+
+참고로 주피터 노트북의 "노트북(Notebook)"은 노트북 컴퓨터 할 때의 노트북이 아니라 "공책"을 의미한다.[^3] 마치 공책에 글, 그래프, 그림 등 다양한 것들을 필기할 수 있듯이, 주피터 노트북을 이용하면 텍스트, 코드, 수식, 그래프, 이미지 등을 한 화면에 띄우고 조작할 수 있다.
+
+[^3]: 한국에서 노트북이라 하면 일반적으로 노트북 컴퓨터를 떠올리나, 노트북은 사실 콩글리쉬다. 노트북 컴퓨터는 영어로 laptop이라 한다. 미국에서 notebook은 공책을 의미하는 단어이다.
+
+그리고 다시, 이 주피터 노트북을 개선한 형태가 주피터 랩(Jupyter Lab)이다. 주피터 랩은 기존 주피터 노트북에 다중 탭 지원, 수려한 UI, 다양한 확장 기능 등을 추가해 만든 웹 어플리케이션이다.
+
+{% include caption-img.html src="jupyterlab-jupyter-lab.png" title="Fig.05 주피터 랩(Jupyter Lab)" description="주피터 랩 사용 예시" %}
+
+## 주피터 랩의 장점
+
+필자가 기계학습을 배우며 처음 주피터 랩을 사용할 때, 필자는 도대체 왜 주피터 랩을 사용하는지 이해할 수가 없었다. PyCharm 또는 Python IDLE 등으로도 파이썬 개발 잘 하고 있었는데, 도대체 어떤 장점이 있어서 주피터 랩을 사용해야 할까?
+
+- 셀 단위 코드 실행 : 
+
+C언어로 총 100줄짜리 코드를 작성하는 상황을 생각해 보자. 80번째 줄에 오류가 있어 약간의 수정을 가했다면, 이 수정이 맞게 되었는지 확인하기 위해서 앞의 79번쨰 줄까지 계속 다시 실행해야 한다. 
 
 # 주피터 랩 설치하기
 
