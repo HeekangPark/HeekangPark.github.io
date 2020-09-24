@@ -72,6 +72,12 @@ defaults:
   -
     scope:
       path: ""
+      type: "nas_ml"
+    values:
+      layout: "document"
+  -
+    scope:
+      path: ""
       type: "tricks"
     values:
       layout: "document"
@@ -124,6 +130,12 @@ collections:
     permalink: /:collection/:name
     name: "Numpy"
     category: "라이브러리 (Libraries)"
+    tags: ["library", "numpy", "python"]
+  nas_ml:
+    output: true
+    permalink: /:collection/:name
+    name: "NAS"
+    category: "기계학습 (Machine Learning)"
     tags: ["library", "numpy", "python"]
   #tricks:
     #output: true
