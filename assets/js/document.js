@@ -66,9 +66,12 @@ function getAllHeadersPos() {
         });
     }
     header_pos.sort((a, b) => a.top - b.top);
+    
+    var document = $("div.document-content");
+
     header_pos.push({
-        id: "footnotes",
-        top: Number($("div.document-content div.footnotes").offset().top)
+        id: "end-of-document",
+        top: Number(document.offset().top + document.height())
     });
 
     return header_pos;
