@@ -127,7 +127,7 @@ div.document-content {
         margin: {
             bottom: 1em;
         }
-        line-height: 1.5;
+        line-height: 1.7;
     }
     ul,
     ol {
@@ -139,7 +139,7 @@ div.document-content {
         li {
             list-style: none;
             display: table-row;
-            line-height: 1.6;
+            line-height: 1.7;
             &::before {
                 display: table-cell;
                 text-align: right;
