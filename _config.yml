@@ -78,7 +78,7 @@ defaults:
   -
     scope:
       path: ""
-      type: "tricks"
+      type: "javascript"
     values:
       layout: "document"
   -
@@ -137,6 +137,12 @@ collections:
     name: "NAS"
     category: "기계학습 (Machine Learning)"
     tags: ["library", "numpy", "python"]
+  javascript:
+    output: true
+    permalink: /:collection/:name
+    name: "Javascript"
+    category: "프로그래밍 언어 (Programming Language)"
+    tags: ["programming_language", "javascript", "js"]
   #tricks:
     #output: true
     #permalink: /:collection/:name
