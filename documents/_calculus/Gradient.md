@@ -1,6 +1,5 @@
 ---
 title: "그라디언트(Gradient)"
-order: 2
 date: "2020-05-01"
 ---
 

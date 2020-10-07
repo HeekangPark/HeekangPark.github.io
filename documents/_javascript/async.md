@@ -1,6 +1,6 @@
 ---
-title: "[Javascript] 자바스크립트 비동기에 관하여"
-tags: ["javascript", "nodejs"]
+title: "자바스크립트 비동기에 관하여"
+tags: []
 date: "2020-09-28"
 ---
 
@@ -54,7 +54,7 @@ Node.js가 자바스크립트 프레임워크이고, 단일 쓰레드에서 비�
 - **파일 시스템 접근, DB 접근, AJAX 요청 등 시간이 오래 걸릴 작업은 반드시 비동기 코드로 작성한다** : 대부분의 개발자들은 비동기식보다 동기식의 코드 작성이 익숙하다 보니, 비동기를 지원하는 많은 자바스크립트 프레임워크에서도 편의를 위해 동기식으로 코드를 짤 수 있는 기능을 제공하는 경우가 많다.[^9] 하지만 동기식으로 코드를 작성하면 무겁고 시간이 오래 걸리는 작업은 뒤의 모든 작업(UI 갱신 등)을 블로킹하므로, 시간이 오래 걸릴 작업은 무조건 비동기 방식으로 코드를 작성해야 한다.
 - **함수들은 기능별로 최대한 간결하게 작성한다** : 한 코드 블럭은 자바스크립트 콜 스택에 들어가면 동기적으로 한 번에 실행된다. 그리고 이 코드 블럭은 다른 작업들이 모두 블로킹한다. 따라서 비동기로 작성된 코드일지라도 한 번에 쭉 짜는 것보다 (필요하다면) 기능별로 여러 개의 함수로 나눠 여러 번 콜백이 일어나게 하는 것이 좋다. 이렇게 하면 자바스크립트가 최적의 방식을 알아서 스케줄링(Scheduling)을 하여 가장 효율적인 방식으로 코드가 실행되게 돕는다.
 
-[^9]: 예를 들어 Node.js에서 파일의 내용을 읽으려면 기본적으로 비동기 함수 `fs.readFile()`를 사용해야 하지만, `fs.readFileSync()`라는 동기식 함수도 함께 제공한다. 
+[^9]: 예를 들어 Node.js에서 파일의 내용을 읽으려면 기본적으로 `fs` 모듈의 비동기 함수 `fs.readFile()`를 사용해야 하지만, `fs` 모듈은 `fs.readFileSync()`라는 동기식 함수도 함께 제공한다. 
 
 # 비동기 코드에서 순차 실행 코드 작성하기
 
@@ -105,76 +105,75 @@ A(B);
 
 콜백 함수를 이용하는 이 방법은 자바스크립트 비동기 코드에서 순차 처리를 달성하는 가장 기초적인 방법으로, 모든 자바스크립트 런타임에서 사용 가능하다. 하지만 콜백 함수는 콜백 지옥(Callback Hell)이라 부르는 현상을 일으킬 수 있다.
 
-Node.js에서 다음과 같은 동작을 수행하는 스크립트를 작성해야 한다고 생각해 보자.
-
-- `./text/` 디렉토리에는 텍스트 파일들이 있다.
-- `fs` 모듈을 이용해 디렉토리 내 모든 파일명을 읽는다.
-- 읽은 파일명을 바탕으로 각각의 파일에 접근해 파일 내용을 읽는다.
-- `mysql` 모듈을 이용해 파일 내용이 MySQL 데이터베이스에 등록되어 있는지 확인한다.
-- 데이터베이스에 파일 내용이 등록되어 있지 않으면 데이터베이스에 넣는다.
-
-콜백 함수를 이용해 비동기식으로 코드를 작성하면 다음과 같이 된다.
+콜백 지옥이란 순차적인 처리를 위해서 익명 콜백 함수(Anonymous Callback Function) 밑에 익명 콜백 함수를 계속 사용함으로서 다음 코드와 같이 들여쓰기의 수준이 감당하기 힘들 정도로 깊어진 코드를 말한다.
 
 {% highlight javascript linenos %}
-var fs = require("fs");
-var mysql = require("mysql"); //npm install mysql로 mysql 모듈이 설치되었다고 가정
-
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'user',
-    password: 'password',
-    database: 'test'
-});
-
-var path = "./text/";
 try {
-    fs.readdir(path, function(err, files) {
+    do_something1(function(err) {
         if(err) throw err;
 
-        for(var file of files) {
-            fs.readFile(path + file, function(err, content) {
+        do_something2(function(err) {
+            if(err) throw err;
+
+            do_something3(function(err) {
                 if(err) throw err;
 
-                connection.query("SELECT * FROM Text WHERE content=?", [content], function(err, results, fields) {
+                do_something4(function(err) {
                     if(err) throw err;
 
-                    if(results.length == 0) {
-                        connection.query("INSERT INTO Text(content) VALUES (?)", [content], function(err, results, fields) {
+                    do_something5(function(err) {
+                        if(err) throw err;
+
+                        do_something6(function(err) {
                             if(err) throw err;
-                        })
-                    }
-                })
-            })
-        }
-    })
+
+                            do_something7(function(err) {
+                                if(err) throw err;
+
+                                do_something8(function(err) {
+                                    if(err) throw err;
+
+                                    do_something9(function(err) {
+                                        if(err) throw err;
+
+                                        do_something10(function(err) {
+                                            if(err) throw err;
+
+                                            console.log("DONE!");
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
 } catch(err) {
     console.error(err);
 }
 {% endhighlight %}
 
-무슨 말을 하고 싶은지 보이는가? 비동기식 코드에서는 겨우 4가지 일을 순차적으로 하기 위해서 위와 같이 깊이 내려가는 코드를 사용해야 한다. 이게 싫다면 익명 함수(Anonymous Function)을 사용하지 않고 함수에 다 이름을 붙이고 
+콜백 지옥은 코드가 한 눈에 들어오지 않아 미관상 보기도 좋지 않고, 디버깅도 어렵다. 당장 괄호 짝 맞추는 것부터 어렵다.
 
-만약 동기식으로 코드를 작성한다면, 다음과 같이 아주 간단하게 짤 수 있다.
+익명 함수(Anonymous Function)을 사용하지 않고 모든 콜백 함수에 이름을 붙이면 콜백 지옥을 없앨 수 있긴 하다. 하지만 한 번밖에 사용하지 않을 코드를 함수로 만들면 함수가 너무 많아진다는 점, 함수 정의부와 사용부가 너무 멀어져 디버깅이 어려워진다는 점, 이전 함수에서 사용한 변수를 사용하려면 추가적인 변수 전달이 필요해진다는 점 등의 단점이 있어 어쩔 수 없이 익명 함수를 이용해 콜백 함수를 작성한다.~~그리고 콜백 지옥을 마주한다.~~
 
-{% highlight javascript linenos %}
-var path = "./text/";
+## Promise
 
-var files;
-try {
-    files = fs.readdirSync(path)
-} catch(err) {
-    console.error(err);
-}
+자바스크립트에서 순차 실행이 필요한 코드를 작성하는 두 번째 방법은 Promise를 이용하는 것이다. Promise는 ES6에 처음 등장한 기능으로, IE11을 제외하면 현존하는 대부분의 브라우저(구글 크롬, 모질라 파이어폭스, 마이크로소프트 엣지, 사파리 등), 모바일 브라우저(삼성 브라우저, 오페라 모바일 등), Node.js 등에서 사용 가능하다.
 
-for(var file of files) {
-    try {
-        var content = fs.readFileSync(path + file);
-        console.log(content);
-    } catch(err) {
-        console.error(err);
-    }
-}
+자바스크립트에서 Promise는 하나의 객체(Object)로, 다음과 같이 생성할 때 반드시 함수 하나를 전달받아야 한다.[^11]
+
+[^11]: 인자를 전달하지 않거나 함수 이외의 값을 전달하면 `Uncaught TypeError`가 발생한다.
+
+{% highlight javascript %}
+new Promise(function(resolve, reject) {
+    //do something
+})
 {% endhighlight %}
 
-하지만 상술했다시피 동기식으로 코드를 작성하는 것은 
-자바스크립트는 익명 함수(Anonymous Function)을 지원하기에, 보통은 다음과 같이 코드를 작성한다.
+
+
+Promise는 약속이라는 뜻을 가진 영어 단어다. Promise 객체를 생성하는 것은 자바스크립트에게 Promise 객체의 인자로 들어온 함수를 실행해 달라는 '약속'을 하는 것과 같다. 자바스크립트는 해당 함수를 지금 당장은 아닐지라도, 언젠가 시간이 되면 반드시 처리한다.
+
