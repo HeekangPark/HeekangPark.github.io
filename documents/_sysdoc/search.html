@@ -1,0 +1,90 @@
+---
+icon: "fas fa-search"
+layout: document-list
+description: "검색 결과"
+---
+
+<div class="searchbar">
+    <i class="icon fas fa-search"></i>
+    <input class="input" type="text">
+</div>
+
+<div class="documents"></div>
+
+<script>
+$(document).ready(function() {
+    let keywords_str = decodeURI(window.location.hash.substring(1));
+    $(".main-panel .searchbar .input").val(keywords_str);
+
+    if(keywords_str.length != 0) {
+        search(keywords_str);
+    }
+});
+
+$(window).on('hashchange',function(){ 
+    window.location.reload(true); 
+});
+
+$(".main-panel .searchbar input").keydown(function(key) {
+    if(key.keyCode == 13) {
+        let query = $(this).val().toLowerCase();
+
+        window.location.href = `/search#${query}`;
+        window.location.reload(true);
+    }
+});
+
+function getDocumentHtml(document) {
+    let html = `<div class="document">
+    <p class="document-collection"><a href="/categories#${document.collection_label}">${document.category}<i class="fas fa-angle-right"></i>${document.collection_name}</a></p>
+    <p class="document-title"><a href="${document.url}">${document.title}</a></p>
+    <p class="document-preview ignore-mathjax"><a href="${document.url}">${document.preview.replace('\"', '"').replace("\\\\", "\\")}</a></p>
+    <div class="document-tags with-icon">
+        <i class="icon fas fa-tag"></i>
+        <div class="tags">
+`;
+    
+    for(let tag of document.tags) {
+        html += `            <p class="tag"><a href="/tags#${tag}">${tag}</a></p>
+`;
+    }
+    
+    html += `        </div>
+    </div>
+    <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">${document.date}</span></p>
+    <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="${document.url}"></span></p>
+</div>`;
+    
+    return html;
+}
+
+function search(keywords_str) {
+    $.ajax({
+        type: "GET",
+        url: "{{ site.baseurl }}{{ site.assets }}/etc/documents.json",
+        success: function(data) {
+            let all_documents = data.documents;
+            let result_documents = [];
+
+            let keywords = keywords_str.split(" ");
+
+            for(let document of all_documents) {
+                for(let keyword of keywords) {
+                    if(document.contents.includes(keyword)) {
+                        result_documents.push(document);
+                        break;
+                    }
+                }
+            }
+
+            let target = $(".main-panel .documents");
+            for(let document of result_documents) {
+                target.append(getDocumentHtml(document));
+            }
+
+            loadPageview();
+        }
+    });
+}
+
+</script>

@@ -1,0 +1,55 @@
+---
+permalink: /
+nav-order: 1
+icon: "fas fa-home"
+layout: default
+---
+
+<div class="welcome-title">
+    {{ site.title }}
+</div>
+
+<div class="recent-docs">
+    <p class="title">최근 추가된 문서</p>
+    <div class="content">
+        {% assign delim = ";" %}
+        {% assign documents = "" | split: delim %}
+        
+        {% for collection in site.collections %}
+            {% unless collection.label == "sysdoc" %}
+                {% for document in collection.docs %}
+                    {% assign documents = documents | push: document %}
+                {% endfor %}
+            {% endunless %}
+        {% endfor %}
+
+        {% assign documents = documents | sort: "date" | reverse %}
+
+        {% for document in documents limit:5 %}
+            {% for collection in site.collections %}
+                {% if document.collection == collection.label %}
+                    {% assign collection = collection.name %}
+                    {% assign category = collection.category %}
+                    {% assign collection_tags = collection.tags | compact | uniq | sort | join: delim | downcase | split: delim %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+            <div class="document">
+                <p class="document-collection"><a href="/categories#{{ document.collection }}">{{ category }}<i class="fas fa-angle-right"></i>{{ collection }}</a></p>
+                <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
+                <p class="document-preview ignore-mathjax"><a href="{{ document.url }}">{{ document.content | strip_html | truncate: 300 }}</a></p>
+                <div class="document-tags with-icon">
+                    <i class="icon fas fa-tag"></i>
+                    <div class="tags">
+                        {%- assign document_tags = document.tags | compact | uniq | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort -%}
+                        {%- for tag in document_tags -%}
+                            <p class="tag"><a href="/tags#{{ tag }}">{{ tag }}</a></p>
+                        {%- endfor -%}
+                    </div>
+                </div>
+                <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ document.date | date: "%Y.%m.%d" }}</span></p>
+                <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="{{ document.url }}"></span></p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

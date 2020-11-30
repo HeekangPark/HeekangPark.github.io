@@ -4,14 +4,15 @@ html, body, div, span, p, nav,
 h1, h2, h3, h4, h5, h6, strong, small, b, u, i,
 ul, ol, li, a, img, figure,
 table, thead, tbody, tfoot, th, tr, td,
-pre, blockquote {
+pre, blockquote, input {
 	margin: 0;
 	padding: 0;
-	border: 0;
+	border: none;
+	min-width: 0;
 }
 
 a {
-	text-decoration: none;
+	text-decoration: inherit;
 	color: inherit;
 }
 
@@ -22,4 +23,9 @@ html {
 
 pre, code {
     font-family: "Ubuntu Mono", "Nanum Gothic Coding", monospace;
+}
+
+body {
+    background-color: $site-background-color;
+    font-size: 1em;
 }

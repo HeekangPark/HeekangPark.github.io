@@ -2,22 +2,23 @@
     {% include google-analytics.html %}
 
     {% if page.title %}
-    {% assign title = page.title | append: " | " | append: site.title %}
+        {% assign title = page.title | append: " | " | append: site.title %}
     {% else %}
-    {% assign title = site.title %}
+        {% assign title = site.title %}
     {% endif %}
 
     <meta charset="UTF-8">
 
     <title>{{ title }}</title>
+
     {% if site.data.info.name %}
-    <meta name="author" content="{{ site.data.info.name }}">
+        <meta name="author" content="{{ site.data.info.name }}">
     {% endif %}
     {% if page.keywords %}
-    <meta name="keywords" content="{{ page.keywords }}">
+        <meta name="keywords" content="{{ page.keywords }}">
     {% endif %}
     {% if page.description %}
-    <meta name="description" content="{{ page.description }}">
+        <meta name="description" content="{{ page.description }}">
     {% endif %}
 
     <!--open graph-->
@@ -26,26 +27,46 @@
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:description" content="{{ title }}">
     {% if page.layout == 'document' %}
-    <meta property="og:type" content="article">
+        <meta property="og:type" content="article">
     {% else %}
-    <meta property="og:type" content="website">
+        <meta property="og:type" content="website">
     {% endif %}
     <!--twitter-->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{ title }}">
     {% if page.description %}
-    <meta name="twitter:description" content="{{ page.description }}">
+        <meta name="twitter:description" content="{{ page.description }}">
     {% endif %}
 
     {% if site.data.info.favicon %}
-    <link rel="icon" href="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.favicon }}">
-    <link rel="apple-touch-icon" href="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.favicon }}">
-    <link rel="apple-touch-icon-precomposed" href="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.favicon }}">
+        <link rel="icon" href="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.favicon }}">
+        <link rel="apple-touch-icon" href="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.favicon }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.favicon }}">
     {% endif %}
 
     <!--css-->
-    <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/resetstyle.css" type="text/css">
-    <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/main.css" type="text/css">
+    <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.default.css" type="text/css">
+
+    {% assign delim = ";" %}
+    {% assign sysdocs = "" | split: delim %}
+
+    {% for sysdoc in site.sysdoc %}
+        {% assign sysdoc_title_downcase = sysdoc.title | downcase %}
+        {% assign sysdocs = sysdocs | push: sysdoc_title_downcase %}
+    {% endfor %}
+
+    {% assign page_title_downcase = page.title | downcase %}
+
+    {% if sysdocs contains page_title_downcase %}
+        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/sysdoc.{{ page_title_downcase }}.css" type="text/css">
+    {% else %}
+        {% if page.layout == "document" %}
+            <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
+        {% else %}
+            <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/main.css" type="text/css">
+        {% endif %}
+    {% endif %}
+
     <script src="https://kit.fontawesome.com/0350ef153e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/magnific-popup.css" type="text/css">
 
@@ -53,6 +74,7 @@
 
     <!--js-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="{{ site.baseurl }}{{ site.assets }}/js/jquery.magnific-popup.min.js"></script>
 
     {% include mathjax.html %}

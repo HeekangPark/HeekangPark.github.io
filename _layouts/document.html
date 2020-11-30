@@ -2,84 +2,39 @@
 layout: default
 ---
 
-{% for item in site.collections %}
-{% if page.collection == item.label %}
-{% assign collection = item %}
-{% endif %}
-{% endfor %}
-
-<div class="scrollspy-horizontal-container">
-    <div class="scrollspy-horizontal"></div>
-</div>
-
-<div class="default-content">
+<div class="document">
     <div class="document-head">
+        {% for item in site.collections %}
+            {% if page.collection == item.label %}
+                {% assign collection = item %}
+            {% endif %}
+        {% endfor %}
+
         {% if collection %}
-        <a class="category" href="{{ site.url }}{{ site.baseurl }}/docs/#{{ collection.label }}">{{ collection.name }}</a>
+            <p class="document-collection"><a href="/categories#{{ collection.label }}">{{ collection.category }}<i class="fas fa-angle-right"></i>{{ collection.name }}</a></p>
         {% endif %}
 
         {% assign delim=";" %}
-        {% assign document_tags = page.tags | join: delim | downcase | split: delim %}
-        {% assign series_tags = collection.tags | join: delim | downcase | split: delim %}
-        {% assign tags = document_tags | concat: series_tags | compact | uniq | sort %}
-        {% if tags %}
-        <div class="tags">
-            {% for tag in tags %}
-            <a class="tag" href="{{ site.baseurl }}{{ site.assets }}/tags#{{ tag }}">{{ tag }}</a>
-            {% endfor %}
-        </div>
+        {% assign collection_tags = collection.tags | join: delim | downcase | split: delim %}
+        {% assign document_tags = page.tags | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort %}
+        {% if document_tags %}
+            <div class="document-tags with-icon">
+                <i class="fas fa-tag icon"></i>
+                <div class="tags">
+                    {%- for tag in document_tags -%}
+                        <p class="tag"><a href="/tags#{{ tag }}">{{ tag }}</a></p>
+                    {%- endfor -%}
+                </div>
+            </div>
         {% endif %}
     
-        <p class="title">{{ page.title | upcase }}</p>
-        <p class="date">LAST EDIT : {{ page.date | date: "%Y년 %m월 %d일" }}</p>
-        
-        {% unless page.isWriting %}
-        <div class="hits">
-            <a href="http://hits.dwyl.com/HeekangPark.github.io{{ page.url }}" target="_blank">
-                <img src="http://hits.dwyl.com/HeekangPark.github.io{{ page.url }}.svg" />
-            </a>
-        </div>
-        {% endunless %}
-    
-        {% unless page.isWriting %}
-        <div class="likes">
-            <span class="likebtn-wrapper" data-ef_voting="push"></span>
-            <script>(function (d, e, s) { if (d.getElementById("likebtn_wjs")) return; a = d.createElement(e); m = d.getElementsByTagName(e)[0]; a.async = 1; a.id = "likebtn_wjs"; a.src = s; m.parentNode.insertBefore(a, m) })(document, "script", "//w.likebtn.com/js/w/widget.js");</script>    
-        </div>
-        {% endunless %}
+        <p class="document-title">{{ page.title }}</p>
+
+        <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ page.date | date: "%Y.%m.%d" }}</span></p>
+        <p class="document-views with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="{{ page.url }}"></span></p>
     </div>
     
-    {% if collection %}
-    <div class="document-series-nav-vertical">
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        <p class="opener left closed fas fa-angle-down"></p>
-                        <p class="series-title">{{ collection.name }}</p>
-                        <p class="opener right closed fas fa-angle-down"></p>
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="deactivated">
-                {% assign series = collection.docs | sort: "order" %}
-                {% for document in series %}
-                <tr>
-                    <td>
-                        {% if document.url == page.url %}
-                        <a href="{{ document.url }}" class="tag selected">{{ document.title }}</a>
-                        {% else %}
-                        <a href="{{ document.url }}" class="tag unselected">{{ document.title }}</a>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% endif %}
-    
-    <div class="toc-content-wrapper scrollspy">
+    <div class="toc-content-container scrollspy">
         <div class="toc">
             {% include toc.html html = content %}
         </div>
@@ -89,44 +44,66 @@ layout: default
         </div>
     </div>
     
-    {% if collection %}
-    <div class="document-series-nav-horizontal">
-        {% assign series = collection.docs | sort: "order" %}
+    <div class="document-navigator">
+        {% assign documents = collection.docs | sort: "order" %}
     
-        {% for document in series %}
-        {% if page.title == document.title %}
-        {% assign idx = forloop.index | minus: 1 %}
-        <div class="prev-nav">
-            {% unless forloop.first %}
-            {% assign prev_idx = idx | minus: 1 %}
-            {% assign prev_document = series[prev_idx] %}
-            <a class="arrow" href="{{ prev_document.url }}"><i class="fas fa-angle-double-left"></i></a>
-            <p class="title">{{ prev_document.title | upcase }}</p>
+        <div class="adjacent-documents">
+            {% for document in documents %}
+                {% if page.title == document.title %}
+                    {% assign idx = forloop.index | minus: 1 %}
+                    {% assign is_first = forloop.first %}
+                    {% assign is_last = forloop.last %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% unless is_first %}
+                <div class="prev-document-btn btn">
+                    {% assign prev_idx = idx | minus: 1 %}
+                    {% assign prev_document = documents[prev_idx] %}
+                    <p class="icon"><a href="{{ prev_document.url }}"><i class="fas fa-angle-double-left"></i></a></p>
+                    <p class="title"><a href="{{ prev_document.url }}">{{ prev_document.title }}</a></p>
+                </div>
             {% endunless %}
-        </div>
-    
-        <div class="next-nav">
-            {% unless forloop.last %}
-            {% assign next_idx = idx | plus: 1 %}
-            {% assign next_document = series[next_idx] %}
-            <a class="arrow" href="{{ next_document.url }}"><i class="fas fa-angle-double-right"></i></a>
-            <p class="title">{{ next_document.title | upcase }}</p>
+            {% unless is_last %}
+                <div class="next-document-btn btn">
+                    {% assign next_idx = idx | plus: 1 %}
+                    {% assign next_document = documents[next_idx] %}
+                    <p class="icon"><a href="{{ next_document.url }}"><i class="fas fa-angle-double-right"></i></a></p>
+                    <p class="title"><a href="{{ next_document.url }}">{{ next_document.title }}</a></p>
+                </div>
             {% endunless %}
+            <script>
+                $(".main-panel .document .adjacent-documents .btn").click(function() {
+                    window.location.href = $(this).find(".icon a").attr("href");
+                });
+            </script>
         </div>
-        {% break %}
-        {% endif %}
-        {% endfor %}
-    </div>
-    {% endif %}
-    
-    <div class="page-navigator">
-        <span id="top_btn" class="page-navigator-btn"><i class="far fa-arrow-alt-circle-up"></i></span>
-        <span id="bottom_btn" class="page-navigator-btn"><i class="far fa-arrow-alt-circle-down"></i></span>
+                
+        <div class="collection-documents section">
+            <p class="section-title">이 컬랙션의 다른 문서 보기</p>
+            <div class="section-contents">
+                {% for document in documents %}
+                    <div class="collection-document">
+                        <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
+                        <div class="document-info">
+                            <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ document.date | date: "%Y.%m.%d" }}</span></p>
+                            <p class="document-views with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="{{ document.url }}"></span></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <script>
+                $(".main-panel .document .collection-documents .collection-document").click(function() {
+                    window.location.href = $(this).find(".document-title a").attr("href");
+                });
+            </script>
+        </div>
     </div>
 </div>
 
 <div class="comments">
-    <p>Comments</p>
+    <p class="title">Comments</p>
     <script src="https://utteranc.es/client.js"
         repo="{{ site.data.info.utterances-repo }}"
         issue-term="pathname"
@@ -137,4 +114,53 @@ layout: default
     </script>
 </div>
 
-<script src="{{ site.baseurl }}{{ site.assets }}/js/document.js"></script>
+<script>
+$(document).ready(function() {
+    foldAllFolders();
+
+    addTitleToFootnotes();
+
+    //image blackout popup
+    $(".main-panel .document .toc-content-container .document-content .caption-img").magnificPopup({
+        delegate: "a",
+        type: "image"
+    });
+});
+
+function addTitleToFootnotes() {
+    $(".main-panel .document .toc-content-container .document-content .footnotes ol li p").each(function(idx, elem) {
+        var msg = $.trim($(this).clone().children("a.reversefootnote").remove().end().text());
+        var id = $(this).children("a.reversefootnote").attr("href").replace(":", "\\:");
+
+        var target = $(id + " a");
+        target.attr("title", msg);
+    });
+}
+
+function foldAllFolders() {
+    $("div.document-content div.folder p.folder-show-btn").show();
+    $("div.document-content div.folder p.folder-hide-btn").hide();
+    $("div.document-content div.folder div.folder-target").hide();
+}
+
+$("div.document-content div.folder p.folder-show-btn").click(function() {
+    var target = $(this).closest("div.folder").children("div.folder-target");
+    var show_btn = $(this);
+    var hide_btn = $(this).closest("div.folder").children("p.folder-hide-btn");
+
+    target.show();
+    show_btn.hide();
+    hide_btn.show();
+});
+
+$("div.document-content div.folder p.folder-hide-btn").click(function() {
+    var target = $(this).closest("div.folder").children("div.folder-target");
+    var show_btn = $(this).closest("div.folder").children("p.folder-show-btn");
+    var hide_btn = $(this);
+
+    target.hide();
+    show_btn.show();
+    hide_btn.hide();
+});
+
+</script>

@@ -1,0 +1,137 @@
+---
+nav-order: 3
+icon: "fas fa-tags"
+layout: document-list
+description: "태그별 보기"
+---
+
+{% assign delim = ";" %}
+{% assign tags = "" %}
+
+{% for collection in site.collections %}
+    {% assign collection_tags = collection.tags | compact | uniq | join: delim | downcase %}
+    {% if collection_tags.size != 0 %}
+        {% if tags.size != 0 %}
+            {% assign tags = tags | append: delim %}
+        {% endif %}
+        {% assign tags = tags | append: collection_tags | split: delim | compact | uniq | join: delim %}
+    {% endif %}
+
+    {% for document in collection.docs %}
+        {% assign document_tags = document.tags | compact | uniq | join: delim | downcase %}
+        {% if document_tags.size != 0 %}
+            {% if tags.size != 0 %}
+                {% assign tags = tags | append: delim %}
+            {% endif %}
+            {% assign tags = tags | append: document_tags | split: delim | compact | uniq | join: delim %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+{% assign tags = tags | split: delim | compact | uniq | sort %}
+{% for tag in tags %}
+    {% assign documents = "" | split: delim %}
+    {% for collection in site.collections %}
+        {% if collection.tags contains tag %}
+            {% assign documents = documents | concat: collection.docs %}
+            {% continue %}
+        {% else %}
+            {% for document in collection.docs %}
+                {% if document.tags contains tag %}
+                    {% assign documents = documents | push: document %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    <div class="tag-document folder" id="tag-{{ tag }}">
+        <p class="folder-title"><i class="icon fas fa-folder"></i><span class="tag">{{ tag }}</span><span class="num">{{ documents | size }}</span></p>
+        <div class="documents folder-contents hidden">
+            {% for document in documents %}
+                <div class="document">
+                    {% for collection in site.collections %}
+                        {% if document.collection == collection.label %}
+                            {% assign collection = collection.name %}
+                            {% assign category = collection.category %}
+                            {% assign collection_tags = collection.tags | compact | uniq | sort | join: delim | downcase | split: delim %}
+                            {% break %}
+                        {% endif %}
+                    {% endfor %}
+                    <p class="document-collection"><a href="/categories#{{ document.collection }}">{{ category }}<i class="fas fa-angle-right"></i>{{ collection }}</a></p>
+                    <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
+                    <p class="document-preview ignore-mathjax"><a href="{{ document.url }}">{{ document.content | strip_html | truncate: 300 }}</a></p>
+                    <div class="document-tags with-icon">
+                        <i class="fas fa-tag icon"></i>
+                        <div class="tags">
+                            {%- assign document_tags = document.tags | compact | uniq | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort -%}
+                            {%- for tag in document_tags -%}
+                                <p class="tag"><a href="/tags#{{ tag }}">{{ tag }}</a></p>
+                            {%- endfor -%}
+                        </div>
+                    </div>
+                    <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ document.date | date: "%Y.%m.%d" }}</span></p>
+                    <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="{{ document.url }}"></span></p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+
+<script>
+    function openFolder(folder) {
+        let folder_icon_open = "fa-folder-open";
+        let folder_icon_close = "fa-folder";
+    
+        let icon = folder.children(".folder-title").children(".icon");
+        let target = folder.children(".folder-contents");
+    
+        icon.removeClass(folder_icon_close);
+        icon.addClass(folder_icon_open);
+        target.removeClass("hidden");
+    }
+    
+    function closeFolder(folder) {
+        let folder_icon_open = "fa-folder-open";
+        let folder_icon_close = "fa-folder";
+    
+        let icon = folder.children(".folder-title").children(".icon");
+        let target = folder.children(".folder-contents");
+    
+        icon.removeClass(folder_icon_open);
+        icon.addClass(folder_icon_close);
+        target.addClass("hidden");
+    }
+    
+    function onHashSet() {
+        $(".main-panel .tag-document").addClass("hidden");
+    
+        let tag = window.location.hash.substring(1);
+        let tag_document_object = $(`.main-panel #tag-${tag}`);
+    
+        $(".main-panel .page-description").text(`${tag}`);
+    
+        tag_document_object.removeClass("hidden");
+        openFolder(tag_document_object);
+    }
+    
+    $(window).on('hashchange',function(){ 
+        window.location.reload(true); 
+    });
+    
+    $(document).ready(function() {    
+        if(window.location.hash.length != 0) {
+            onHashSet();
+        } else {
+            $(".main-panel .folder-title").click(function() {
+                let folder = $(this).closest(".folder");
+                let target = $(this).siblings(".folder-contents");
+                
+                if(target.hasClass("hidden")) {
+                    openFolder(folder);
+                } else {
+                    closeFolder(folder);
+                }
+            });
+        }
+    });
+    
+</script>

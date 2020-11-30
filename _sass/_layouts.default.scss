@@ -1,10 +1,158 @@
 body {
-    background-color: $site-background-color;
-    font-size: 1em;
+    display: flex;
+    justify-content: center;
 }
 
-@media screen and (max-width: $media-small) {
+.horizontal-scrollspy-container {
+    $height: 0.25em;
+
+    background-color: $site-background-color;
+    width: 100%;
+    height: $height;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+
+    .horizontal-scrollspy {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: $height;
+        background-color: $horizontal-scrollspy-color;
+    }
+}
+
+.page-navigator {
+    z-index: 1;
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
+
+    display: inline-flex;
+    flex-direction: column;
+    
+    .page-navigator-btn {
+        font-size: 2em;
+        color: #555555;
+        opacity: 20%;
+        cursor: pointer;
+    
+        &:hover {
+            opacity: 80%;
+        }
+
+    }
+}
+
+.container {
+    display: grid;
+    align-items: start;
+    grid-template-columns: $left-panel-size $media-desktop;
+    column-gap: 1em;
+    
+    margin: {
+        top: 1em;
+        bottom: 1em;
+        left: 1em;
+        right: 1em;
+    }
+
+    @import "_includes.left-panel";
+
+    .main-panel {
+        padding: {
+            top: 3em;
+            bottom: 3em;
+            left: 3em;
+            right: 3em;
+        }
+        box-sizing: border-box;
+        background-color: $site-panel-color;
+
+        .left-panel-open-btn-container {
+            display: none;
+            justify-content: flex-end;
+            padding: {
+                bottom: 1em;
+            }
+
+            .left-panel-open-btn {
+                display: inline-block;
+                position: relative;
+                font-size: 1.5em;
+                width: 1em;
+                height: 1em;
+                cursor: pointer;
+                
+                .bar {
+                    width: 1em;
+                    height: 0.2em;
+                    background-color: #333333;
+                    position: absolute;
+                    display: inline-block;
+                    left: 0;
+    
+                    &.top {
+                        top: 0.1em;
+                    }
+    
+                    &.middle {
+                        top: 0.4em;
+                    }
+    
+                    &.bottom {
+                        top: 0.7em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: #{$left-panel-size + $media-desktop + 4em}) { 
     body {
+        display: initial;
+    }    
+
+    .container {
+        grid-template-columns: $left-panel-size 1fr;
+    }
+}
+
+@media screen and (max-width: #{$left-panel-size + $media-tablet + 4em}) {
+    .container {
         font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: #{$left-panel-size + $media-phone + 4em}) {
+    .container {
+        grid-template-columns: 1fr;
+
+        .left-panel {
+            display: none;
+        }
+
+        .main-panel {
+            .left-panel-open-btn-container {
+                display: flex;
+            }
+        }
+
+        &.left-panel-open {
+            .left-panel {
+                display: initial;
+                background-color: $site-background-color;
+                
+                .left-panel-close-btn-container {
+                    display: flex;
+                }
+            }
+
+            .main-panel {
+                display: none;
+            }
+        }
     }
 }

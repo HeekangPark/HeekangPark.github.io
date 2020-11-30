@@ -1,32 +1,34 @@
-div.document-content {
+.document-content {
     $h1-font-size: 1.6em;
     $h2-font-size: 1.5em;
     $h3-font-size: 1.4em;
     $h4-font-size: 1.3em;
     $h5-font-size: 1.2em;
     $h6-font-size: 1.1em;
+
     box-sizing: border-box;
-    padding: {
-        top: 20px;
-    }
+    line-height: $line-height;
+
     counter-reset: h1counter 0;
+
     h1,
     h2,
     h3,
     h4,
     h5,
     h6 {
-        font-weight: bold;
+        //font-weight: bold;
         padding: {
-            bottom: 5px;
-        }
-        margin: {
-            bottom: 10px;
+            bottom: 0.25em;
         }
         border: {
-            bottom: $border;
+            bottom: 1px solid $gray-line-color;
+        }
+        margin: {
+            bottom: 0.5em;
         }
     }
+
     h1 {
         font-size: $h1-font-size;
         margin: {
@@ -45,10 +47,11 @@ div.document-content {
 
         &:first-child {
             margin: {
-                top: 0px;
+                top: 0;
             }
         }
     }
+
     h2 {
         font-size: $h2-font-size;
         margin: {
@@ -65,6 +68,7 @@ div.document-content {
             }
         }
     }
+
     h3 {
         font-size: $h3-font-size;
         margin: {
@@ -81,6 +85,7 @@ div.document-content {
             }
         }
     }
+
     h4 {
         font-size: $h4-font-size;
         margin: {
@@ -97,6 +102,7 @@ div.document-content {
             }
         }
     }
+
     h5 {
         font-size: $h5-font-size;
         margin: {
@@ -113,22 +119,26 @@ div.document-content {
             }
         }
     }
+
     h6 {
         font-size: $h6-font-size;
         margin: {
             top: $h6-font-size * 1.5;
         }
+
         &::before {
             content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) "." counter(h6counter, decimal) ". ";
             counter-increment: h6counter;
         }
     }
+
     p {
         margin: {
             bottom: 1em;
         }
-        line-height: 1.7;
+        //line-height: $line-height;
     }
+
     ul,
     ol {
         margin: {
@@ -136,10 +146,12 @@ div.document-content {
         }
         display: table;
         word-break: break-all;
+
         li {
             list-style: none;
             display: table-row;
-            line-height: 1.7;
+            //line-height: $line-height;
+
             &::before {
                 display: table-cell;
                 text-align: right;
@@ -148,16 +160,19 @@ div.document-content {
                     right: 0.3em;
                 }
             }
+
             ol, ul {
                 margin: {
-                    bottom: 0px;
-                    left: 10px;
+                    bottom: 0;
+                    left: 1em;
                 }
             }
         }
     }
+
     ol {
         counter-reset: listcounter 0;
+
         >li {
             &::before {
                 content: counter(listcounter) ".";
@@ -165,6 +180,7 @@ div.document-content {
             }
         }
     }
+
     ul {
         >li {
             &::before {
@@ -173,6 +189,7 @@ div.document-content {
             }
         }
     }
+
     blockquote {
         padding: {
             left: 2em;
@@ -189,6 +206,7 @@ div.document-content {
             left: 10px solid #555555;
         }
         box-sizing: border-box;
+
         p {
             margin: {
                 bottom: 0;
@@ -200,51 +218,62 @@ div.document-content {
             }
         }
     }
-    table {
-        $table-border: 1px solid #aaaaaa;
-        border-collapse: separate;
-        border-spacing: 0;
-        border: {
-            top: $table-border;
-        }
+
+    .table-wrapper {
         overflow-x: auto;
-        margin: {
-            top: 1em;
-            bottom: 1em;
-            left: auto;
-            right: auto;
-        }
-        th {
-            background-color: #dde3ee;
-        }
-        >tbody {
-            tr {
-                &:nth-child(2n) {
-                    td {
-                        background-color: #eef1f7;
+        overflow-y: auto;
+        max-height: $table-max-height;
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            border: {
+                top: 1px solid $gray-line-color;
+            }
+            overflow-x: auto;
+            margin: {
+                top: 1em;
+                bottom: 1em;
+                left: auto;
+                right: auto;
+            }
+    
+            th {
+                background-color: $table-head-background-color;
+            }
+    
+            >tbody {
+                tr {
+                    &:nth-child(even) {
+                        td {
+                            background-color: $table-even-background-color;
+                        }
+                    }
+    
+                    &:nth-child(odd) {
+                        td {
+                            background-color: $table-odd-background-color;
+                        }
                     }
                 }
             }
-        }
-        th,
-        td {
-            padding: {
-                top: 0.5em;
-                bottom: 0.5em;
-                left: 1em;
-                right: 1em;
-            }
-            border: {
-                bottom: $table-border;
+    
+            th,
+            td {
+                padding: {
+                    top: 0.5em;
+                    bottom: 0.5em;
+                    left: 1em;
+                    right: 1em;
+                }
+                border: {
+                    bottom: $gray-line-color;
+                }
             }
         }
     }
-    div.table-wrapper {
-        overflow-x: auto;
-        overflow-y: auto;
-        max-height: 1000px;
-    }
-    a.footnote {
+
+    .footnote {
         &::before {
             content: "[";
         }
@@ -253,6 +282,7 @@ div.document-content {
         }
         font-size: 0.8em;
     }
+
     a {
         &:link {
             color: $hyperlink-unclicked;
@@ -264,43 +294,46 @@ div.document-content {
             text-decoration: underline;
         }
     }
+
     del {
-        color: #555555;
+        color: $del-color;
     }
-    >div.footnotes {
+
+    .footnotes {
         margin: {
-            top: 20px;
-            bottom: 20px;
+            top: 1em;
+            bottom: 2em;
         }
         padding: {
-            top: 20px;
+            top: 1em;
         }
         border: {
-            top: $border;
+            top: 1px solid $gray-line-color;
         }
-        a.reversefootnote {
+        
+        .reversefootnote {
             font-size: 0.8em;
         }
+
         p {
             margin: {
                 bottom: 0;
             }
         }
+
         ol>li {
             line-height: 2;
         }
     }
-    div.mathjax-wrapper {
-        overflow-x: auto;
-        overflow-y: hidden;
-        max-width: 100%;
-    }
+
     @import "layouts.document.document-content.syntax-highlight";
-    div.folder {
+    @import "includes.caption-img";
+
+    .folder {
         margin: {
             bottom: 1em;
         }
-        p.folder-btn {
+        .folder-btn {
             cursor: pointer;
             color: $hyperlink-unclicked;
             text-align: center;
@@ -308,7 +341,7 @@ div.document-content {
                 text-decoration: underline;
             }
         }
-        div.folder-target {
+        .folder-target {
             border-radius: 5px;
             background-color: #eeeeee;
             padding: {
@@ -324,7 +357,8 @@ div.document-content {
             }
         }
     }
-    p.align-mid {
+
+    .align-mid {
         text-align: center;
     }
 }

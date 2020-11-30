@@ -3,6 +3,7 @@ email: park.heekang33@gmail.com
 github: HeekangPark
 stackoverflow: 10383616
 google-analytics: UA-167580013-1
+google-anlytics-superProxy-public-endpoint: "https://reinventing-the-wheel-20201128.du.r.appspot.com/query?id=aiB2fnJlaW52ZW50aW5nLXRoZS13aGVlbC0yMDIwMTEyOHIVCxIIQXBpUXVlcnkYgICAmJSmgwoM"
 utterances-repo: "HeekangPark/comments.heekangpark.github.io"
 
 favicon: img/favicon.ico

@@ -1,0 +1,44 @@
+---
+---
+
+{%- assign delim = ";" -%}
+{%- assign is_first_document = true -%}
+
+{
+    "documents": [
+        {%- for collection in site.collections -%}
+            {%- unless collection.label == "sysdoc" -%}
+                {%- assign category = collection.category -%}
+                {%- assign collection_tags = collection.tags | compact | uniq | sort | join: delim | downcase | split: delim -%}
+                {%- for document in collection.docs -%}
+                    {%- assign document_tags = document.tags | compact | uniq | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort -%}
+
+                    {%- if is_first_document -%}
+                        {%- assign is_first_document = false -%}
+                    {%- else -%}
+                        ,
+                    {%- endif -%}
+
+                    {
+                        "title": "{{ document.title }}",
+                        "collection_name": "{{ collection.name }}",
+                        "collection_label": "{{ collection.label }}",
+                        "category": "{{ category }}",
+                        "tags": [
+                            {%- for tag in document_tags -%}
+                                {%- unless forloop.first -%}
+                                    ,
+                                {%- endunless -%}
+                                "{{ tag }}"
+                            {%- endfor -%}
+                        ],
+                        "url": "{{ document.url }}",
+                        "date": "{{ document.date | date: '%Y.%m.%d' }}",
+                        "preview": "{{ document.content | strip_html | strip_newlines | truncate: 300 | replace: '\', '\\\\' | replace: '"', '\"' }}",
+                        "contents": "{{ document.content | strip_html | strip_newlines | append: category | append: collection.name | append: document.title | downcase | replace: '\', '\\\\' | replace: '"', '\"' }}"
+                    }
+                {%- endfor -%}
+            {%- endunless -%}
+        {%- endfor -%}
+    ]
+}

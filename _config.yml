@@ -7,7 +7,7 @@ timezone: Asia/Seoul
 plugins:
   - jekyll-sitemap
   - jekyll-feed
-exclude: ["run"]
+exclude: ["run", "commit", "README.md"]
 # endregion
 
 # region
@@ -90,9 +90,9 @@ defaults:
   -
     scope:
       path: ""
-      type: "systemdoc"
+      type: "sysdoc"
     values:
-      layout: "document-light"
+      layout: "default"
 
 collections:
   jekyll:
@@ -155,8 +155,8 @@ collections:
     name: "기타 (Etc)"
     category: "기타 (Etc)"
     tags: []
-  systemdoc:
+  sysdoc:
     output: true
     permalink: /:name
-    name: "systemdoc"
+    name: "sysdoc"
 # endregion

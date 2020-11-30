@@ -1,15 +1,27 @@
-/* colors */
 $highlight-color: #3273dc !global;
 $footnote-color: #0275d8 !global;
 $hyperlink-unclicked: #0275d8 !global;
 $hyperlink-clicked: #660099 !global;
 
 $site-background-color: #eeeeee !global;
+$site-panel-color: #ffffff !global;
 $header-background-color: #333333 !global;
 
 $tag-color: #1e3adb !global;
 $tag-background-color: #eeeeee !global;
+$gray-text-color: #777777 !global;
+$gray-line-color: #eeeeee !global;
+$horizontal-scrollspy-color: #9acd32 !global;
+$table-head-background-color: #dde3ee !global;
+$table-even-background-color: #eef1f7 !global;
+$table-odd-background-color: #ffffff !global;
+$del-color: #555555;
 
-$media-small: 800px !global;
-$media-medium: 1200px !global;
-$default-container-width-max: 1600px !global;
+$media-phone: 25em !global;
+$media-tablet: 50em !global;
+$media-desktop: 75em !global;
+
+$left-panel-size: 18em !global;
+
+$line-height: 1.7 !global;
+$table-max-height: 30em !global;

@@ -3,8 +3,36 @@
     {% include head.html %}
 
     <body>
-        {% include header.html %}
+        <div class="horizontal-scrollspy-container">
+            <div class="horizontal-scrollspy"></div>
+        </div>
 
-        {{ content }}
+        <div class="container">
+            {% include left-panel.html %}
+        
+            <div class="main-panel">
+                <div class="left-panel-open-btn-container">
+                    <div class="left-panel-open-btn">
+                        <span class="bar top"></span>
+                        <span class="bar middle"></span>
+                        <span class="bar bottom"></span>
+                    </div>
+                    <script>
+                        $(".main-panel .left-panel-open-btn").click(function() {
+                            $("body > .container").addClass("left-panel-open");
+                        })
+                    </script>
+                </div>
+
+                {{ content }}
+            </div>
+        </div>
+
+        <div class="page-navigator">
+            <span class="page-navigator-btn top-btn"><i class="far fa-arrow-alt-circle-up"></i></span>
+            <span class="page-navigator-btn bottom-btn"><i class="far fa-arrow-alt-circle-down"></i></span>
+        </div>
+
+        <script src="{{ site.baseurl }}{{ site.assets }}/js/layout.default.js"></script>
     </body>
 </html>

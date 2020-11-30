@@ -1,0 +1,181 @@
+---
+---
+
+@charset "utf-8";
+
+@import "variables";
+@import "common";
+
+.main-panel {
+    background-color: $site-background-color !important;
+    padding: 0 !important;
+
+    .document {
+        background-color: $site-panel-color;
+        box-sizing: border-box;
+        
+        padding: {
+            top: 3em;
+            bottom: 3em;
+            left: 3em;
+            right: 3em;
+        }
+
+        .document-head {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding: {
+                bottom: 1em;
+            }
+
+            border: {
+                bottom: 1px solid $gray-line-color;
+            }
+
+            margin: {
+                bottom: 1em;
+            }
+
+            .with-icon {
+                display: grid;
+                grid-template-columns: 1.2em 1fr;
+                column-gap: 0.3em;
+                align-items: start;
+                justify-items: start;
+                margin: {
+                    bottom: 1em;
+                }
+
+                &:last-child {
+                    margin: {
+                        bottom: 0;
+                    }
+                }
+
+                .icon {
+                    color: $gray-text-color;
+                    margin: {
+                        top: 0.1em;
+                    }
+                }
+            }
+
+            .document-title {
+                font-size: 2em;
+                margin: {
+                    bottom: 0.5em;
+                }
+                text-align: center;
+            }
+        }
+
+        .toc-content-container {
+            .toc {
+                box-sizing: border-box;
+    
+                border: 1px solid $gray-line-color;
+
+                padding: {
+                    top: 1em;
+                    bottom: 1em;
+                    left: 1em;
+                    right: 1em;
+                }
+        
+                margin: {
+                    top: 1em;
+                    bottom: 2em;
+                }
+                
+                display: inline-flex;
+                flex-direction: column;
+        
+                .toc-title {
+                    font-size: 1.1em;
+                    margin: {
+                        bottom: 10px;
+                    }
+                }
+        
+                .toc-content {
+                    $indent: 1em;
+
+                    display: inline-flex;
+                    flex-direction: column;
+
+                    p {
+                        line-height: $line-height;
+                        display: inline-block;
+                    }
+            
+                    .toc-1 {
+                        margin: {
+                            left: ($indent * 0);
+                        }
+                    }
+            
+                    .toc-2 {
+                        margin: {
+                            left: ($indent * 1);
+                        }
+                    }
+            
+                    .toc-3 {
+                        margin: {
+                            left: ($indent * 2);
+                        }
+                    }
+            
+                    .toc-4 {
+                        margin: {
+                            left: ($indent * 3);
+                        }
+                    }
+            
+                    .toc-5 {
+                        margin: {
+                            left: ($indent * 4);
+                        }
+                    }
+            
+                    .toc-6 {
+                        margin: {
+                            left: ($indent * 5);
+                        }
+                    }
+            
+                    a {
+                        color: #0275d8;
+            
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            @import "layouts.document.document-content";
+        }
+    }
+
+    @media screen and (max-width: #{$left-panel-size + $media-phone + 4em}) {
+        .left-panel-open-btn-container {
+            background-color: $site-panel-color;
+
+            padding: {
+                top: 3em;
+                right: 3em;
+            }
+        }
+
+        .document {
+            padding: {
+                top: 0;
+            }
+        }
+
+
+    }
+}

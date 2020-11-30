@@ -1,0 +1,179 @@
+.left-panel {
+    padding: {
+        top: 3em;
+        bottom: 3em;
+        left: 3em;
+        right: 3em;
+    }
+    box-sizing: border-box;
+    background-color: $site-panel-color;
+
+    .left-panel-close-btn-container {
+        display: none;
+        justify-content: flex-end;
+        margin: {
+            bottom: 1em;
+        }
+
+        .left-panel-close-btn {
+            display: inline-block;
+            position: relative;
+            font-size: 1.5em;
+            width: 1em;
+            height: 1em;
+            cursor: pointer;
+            
+            .bar {
+                width: 1em;
+                height: 0.2em;
+                background-color: #333333;
+                position: absolute;
+                display: inline-block;
+                left: 0;
+
+                &.top {
+                    transform: rotate(45deg);
+                    top: 0.4em;
+                }
+
+                &.middle {
+                    display: none;
+                }
+
+                &.bottom {
+                    transform: rotate(-45deg);
+                    top: 0.4em;
+                }
+            }
+        }
+    }
+
+    .section {
+        margin: {
+            bottom: 4em;
+        }
+
+        &:last-of-type {
+            margin: {
+                bottom: 0;
+            }
+        }
+    }
+
+    .site-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .logo {
+            display: block;
+            width: 70%;
+            max-width: 8em;
+
+            img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .title {
+            margin: {
+                top: 0.5em;
+            }
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            word-break: keep-all;
+        }
+
+    }
+
+    .nav {
+        .nav-item {
+            padding: {
+                top: 0.75em;
+                bottom: 0.75em;
+            }
+
+            border: {
+                bottom: 1px solid $gray-line-color;
+            }
+
+            color: $gray-text-color;
+
+            &:hover {
+                color: #000000;
+            }
+
+            a {
+                display: grid;
+                grid-template-columns: 1.2em 1fr;
+                align-items: center;
+                column-gap: 0.3em;
+
+                .icon {
+                    justify-self: center;
+                }
+            }
+        }
+    }
+
+    .search {
+        .searchbar {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            column-gap: 0.5em;
+            width: 100%;
+            border-radius: 0.2em;
+            padding: {
+                top: 0.5em;
+                bottom: 0.5em;
+                left: 0.5em;
+                right: 0.5em;
+            }
+            border: 1px solid $gray-line-color;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            font-size: 1em;
+
+            .icon {
+                color: $gray-text-color;
+            }
+
+            .input {
+                width: 100%;
+                border: none;
+                box-sizing: border-box;
+                font-size: 0.8em;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+
+    .contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .contact-links {
+            display: grid;
+            grid-template-columns: auto auto;
+            column-gap: 0.5em;
+            color: $gray-text-color;
+            font-size: 1.75em;
+    
+            .contact-link-item {    
+                &:hover {
+                    color: #000000;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,136 @@
+---
+nav-order: 2
+icon: "fas fa-book"
+layout: document-list
+description: "카테고리별 보기"
+---
+
+{% assign delim = ";" %}
+{% assign categories = "" | split: delim %}
+
+{% assign categories_candidate = site.collections | map : "category" | compact %}
+
+{% for item in categories_candidate %}
+    {% assign categories = categories | push: item %}
+{% endfor %}
+
+{% assign categories = categories | uniq | compact | sort %}
+{% for category in categories %}
+    {% assign category_idx = forloop.index0 %}
+    <div class="category folder" index="category-{{ category_idx }}">
+        {% assign collections = site.collections | where: "category", category | sort: "label" %}
+        <p class="category-name folder-title" index="category-{{ category_idx }}-title"><i class="icon fas fa-folder"></i>{{ category }}<span class="collection-num num">{{ collections.size }}</span></p>
+        <div class="category-contents folder-contents hidden" index="category-{{ category_idx }}-contents">
+            {% for collection in collections %}
+            {% assign collection_tags = collection.tags | compact | uniq | sort | join: delim | downcase | split: delim %}
+                {% assign collection_idx = forloop.index0 %}
+                <div class="collection folder" id="collection-{{ collection.label }}" index="category-{{ category_idx }}-collection-{{ collection_idx }}">
+                    {% assign documents = collection.docs | sort: "order" %}
+                    <p class="collection-name folder-title" index="category-{{ category_idx }}-collection-{{ collection_idx }}-title"><i class="icon fas fa-folder"></i>{{ collection.name }}<span class="document-num num">{{ documents.size }}</span></p>
+                    <div class="collection-contents folder-contents hidden" index="category-{{ category_idx }}-collection-{{ collection_idx }}-contents">
+                        {% for document in documents %}
+                            <div class="document">
+                                <p class="document-title"><a href="{{ document.url }}"><i class="icon fas fa-file-alt"></i>{{ document.title }}</a></p>
+                                <p class="document-preview ignore-mathjax"><a href="{{ document.url }}">{{ document.content | strip_html | truncate: 100 }}</a></p>
+                                {%- assign document_tags = document.tags | compact | uniq | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort -%}
+                                {% if document_tags %}
+                                <div class="document-tags with-icon">
+                                    <i class="icon fas fa-tag"></i>
+                                    <div class="tags">
+                                        {%- for tag in document_tags -%}
+                                            <p class="tag"><a href="/tags#{{ tag }}">{{ tag }}</a></p>
+                                        {%- endfor -%}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ document.date | date: "%Y.%m.%d" }}</span></p>
+                                <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="{{ document.url }}"></span></p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+
+<script>
+function openFolder(folder) {
+    let folder_icon_open = "fa-folder-open";
+    let folder_icon_close = "fa-folder";
+
+    let icon = folder.children(".folder-title").children(".icon");
+    let target = folder.children(".folder-contents");
+
+    icon.removeClass(folder_icon_close);
+    icon.addClass(folder_icon_open);
+    target.removeClass("hidden");
+}
+
+function closeFolder(folder) {
+    let folder_icon_open = "fa-folder-open";
+    let folder_icon_close = "fa-folder";
+
+    let icon = folder.children(".folder-title").children(".icon");
+    let target = folder.children(".folder-contents");
+
+    icon.removeClass(folder_icon_open);
+    icon.addClass(folder_icon_close);
+    target.addClass("hidden");
+}
+
+function loadHiddenState() {
+    $(".main-panel .folder").each(function(idx, elem) {
+        let index = $(this).attr("index");
+        
+        if($.cookie(index) != undefined) {
+            openFolder($(this));
+        }
+    });
+}
+
+function onHashSet() {
+    $(".main-panel .category").addClass("hidden");
+    $(".main-panel .collection").addClass("hidden");
+
+    let collection_label = window.location.hash.substring(1);
+    let collection_object = $(`.main-panel #collection-${collection_label}`);
+    let category_object = collection_object.closest(".category");
+    let collection_name = collection_object.children(".collection-name").clone().children().remove().end().text();
+
+    $(".main-panel .page-description").text(`${collection_name}`);
+
+    collection_object.removeClass("hidden");
+    openFolder(collection_object);
+    
+    category_object.removeClass("hidden");
+    openFolder(category_object);
+}
+
+$(window).on('hashchange',function(){ 
+    window.location.reload(true); 
+});
+
+$(document).ready(function() {
+    loadHiddenState();
+
+    if(window.location.hash.length != 0) {
+        onHashSet();
+    } else {
+        $(".main-panel .folder-title").click(function() {
+            let index = $(this).attr("index").split("-").slice(0, -1).join("-");
+            let folder = $(this).closest(".folder");
+            let target = $(this).siblings(".folder-contents");
+            
+            if(target.hasClass("hidden")) {
+                openFolder(folder);
+                $.cookie(index, true, {expires: 1, path: '/'});
+            } else {
+                closeFolder(folder);
+                $.removeCookie(index, {path: '/'});
+            }
+        });
+    }
+});
+
+</script>

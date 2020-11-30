@@ -1,8 +1,17 @@
 #!/bin/bash
 
-git add *
+git config user.name "Heekang Park"
+git config user.email "park.heekang33@gmail.com"
+
+git add .
 
 time=`date '+%F %H:%M'`
-git commit -m "commit from laptop, $time"
+commit_msg="commit from laptop, $time"
+
+if [ -n "$1" ]; then
+    commit_msg=$1
+fi
+
+git commit -m "$commit_msg"
 
 git push origin master

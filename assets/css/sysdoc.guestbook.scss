@@ -1,0 +1,25 @@
+---
+---
+
+@charset "utf-8";
+
+@import "variables";
+@import "common";
+
+.main-panel {
+    .page-title {
+        width: 100%;
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+        margin: {
+            bottom: 0.5em;
+        }
+    }
+
+    .utterances {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+}

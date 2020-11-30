@@ -1,0 +1,68 @@
+<div class="left-panel">
+    <div class="left-panel-close-btn-container">
+        <div class="left-panel-close-btn">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+        </div>
+        <script>
+            $(".left-panel .left-panel-close-btn").click(function() {
+                $("body > .container").removeClass("left-panel-open");
+            })
+        </script>
+    </div>
+
+    <div class="section site-title">
+        <a href="/" class="logo"><img src="{{ site.baseurl }}{{ site.assets }}/img/logo.png"></a>
+        <p class="title"><a href="/">{{ site.title }}</a></p>
+    </div>
+
+    <div class="section nav">
+        {% assign delim = ";" %}
+        {% assign sysdocs = "" | split: "" %}
+
+        {% for sysdoc in site.sysdoc %}
+            {% if sysdoc.nav-order %}
+                {% assign sysdocs = sysdocs | push: sysdoc %}
+            {% endif %}
+        {% endfor %}
+        {% assign sysdocs = sysdocs | sort: "nav-order" %}
+        {% for sysdoc in sysdocs %}
+            <p class="nav-item">
+                <a href="{{ sysdoc.url }}">
+                    <span class="icon"><i class="{{ sysdoc.icon }}"></i></span>
+                    <span class="text">{{ sysdoc.title | upcase }}</span>
+                </a>
+            </p>
+        {% endfor %}
+    </div>
+
+    <div class="section search">
+        <div class="searchbar">
+            <i class="icon fas fa-search"></i>
+            <input class="input" type="text">
+        </div>
+    </div>
+
+    <div class="section contact">
+        <div class="contact-links">
+            <p class="contact-link-item email"><a href="mailto://{{ site.data.info.email }}"><i class="far fa-envelope"></i></a></p>
+            <p class="contact-link-item github"><a href="https://github.com/{{ site.data.info.github }}"><i class="fab fa-github"></i></a></p>
+        </div>
+    </div> 
+</div>
+
+<script>
+$(".left-panel .search .searchbar input").keydown(function(key) {
+    if(key.keyCode == 13) {
+        let query = $(this).val().toLowerCase();
+        let anchor = decodeURI(window.location.hash.substring(1));
+
+        if(anchor == query) {
+            window.location.reload(true);
+        } else {
+            window.location.href = `/search#${query}`;
+        }
+    }
+})
+</script>
