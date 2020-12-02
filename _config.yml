@@ -33,62 +33,67 @@ kramdown:
 # region
 # Post Settings
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: "jekyll"
     values:
       layout: "document"
-  -
-    scope:
+  - scope:
       path: ""
       type: "web_server"
     values:
       layout: "document"
-  -
-    scope:
+  - scope:
       path: ""
       type: "machine_learning"
     values:
       layout: "document"
-  -
-    scope:
+  - scope:
       path: ""
       type: "calculus"
     values:
       layout: "document"
-  -
-    scope:
+  - scope:
       path: ""
       type: "virtualbox"
     values:
       layout: "document"
-  -
-    scope:
+  - scope:
       path: ""
       type: "numpy"
     values:
       layout: "document"
-  -
-    scope:
+  - scope:
       path: ""
       type: "nas_ml"
     values:
       layout: "document"
-  -
-    scope:
+  - scope:
       path: ""
       type: "javascript"
     values:
       layout: "document"
-  -
-    scope:
+  - scope:
       path: ""
       type: "etc"
     values:
       layout: "document"
-  -
-    scope:
+  - scope:
+      path: ""
+      type: "etc"
+    values:
+      layout: "document"
+  - scope:
+      path: ""
+      type: "python"
+    values:
+      layout: "document"
+  - scope:
+      path: ""
+      type: "git"
+    values:
+      layout: "document"
+  - scope:
       path: ""
       type: "sysdoc"
     values:
@@ -143,12 +148,18 @@ collections:
     name: "Javascript"
     category: "프로그래밍 언어 (Programming Language)"
     tags: ["programming_language", "javascript", "js"]
-  #tricks:
-    #output: true
-    #permalink: /:collection/:name
-    #name: "Tricks"
-    #category: "기타 (Etc)"
-    #tags: []
+  python:
+    output: true
+    permalink: /:collection/:name
+    name: "Re : 제로부터 배우는 파이썬"
+    category: "프로그래밍 언어 (Programming Language)"
+    tags: ["programming_language", "python"]
+  git:
+    output: true
+    permalink: /:collection/:name
+    name: "Git"
+    category: "Git"
+    tags: ["git"]
   etc:
     output: true
     permalink: /:collection/:name

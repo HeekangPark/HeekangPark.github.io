@@ -19,6 +19,29 @@ figure.highlight {
     }
     border-radius: 0.5em;
 
+    z-index: 1;
+    position: relative;
+
+    &.result {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin: {
+            top: -2em;
+        }
+        
+        padding: {
+            top: 2em;
+        }
+        z-index: 0;
+
+        background-color: #eeeeee;
+        color: #000000;
+
+        &::before {
+            content: "[실행 결과]";
+        }
+    }
+
     code {
         line-height: $code-line-height;
     }
