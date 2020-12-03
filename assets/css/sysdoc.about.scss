@@ -13,6 +13,7 @@
     .document {
         background-color: $site-panel-color;
         box-sizing: border-box;
+        border-radius: 0.5em;
         
         padding: {
             top: 3em;
@@ -161,21 +162,11 @@
     }
 
     @media screen and (max-width: #{$left-panel-size + $media-phone + 4em}) {
-        .left-panel-open-btn-container {
-            background-color: $site-panel-color;
-
-            padding: {
-                top: 3em;
-                right: 3em;
-            }
-        }
 
         .document {
             padding: {
-                top: 0;
+                top: 5.5em;
             }
         }
-
-
     }
 }

@@ -57,8 +57,9 @@ $(".left-panel .search .searchbar input").keydown(function(key) {
     if(key.keyCode == 13) {
         let query = $(this).val().toLowerCase();
         let anchor = decodeURI(window.location.hash.substring(1));
+        let pathname = $(location).attr("pathname");
 
-        if(anchor == query) {
+        if(pathname == "/search" && anchor == query) {
             window.location.reload(true);
         } else {
             window.location.href = `/search#${query}`;

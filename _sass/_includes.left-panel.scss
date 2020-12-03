@@ -7,6 +7,8 @@
     }
     box-sizing: border-box;
     background-color: $site-panel-color;
+    box-shadow: 0.5em 0.5em 1.5em #cacaca, -0.5em -0.5em 1.5em $site-panel-color;
+    border-radius: 0.5em;
 
     .left-panel-close-btn-container {
         display: none;
@@ -135,10 +137,10 @@
                 left: 0.5em;
                 right: 0.5em;
             }
-            border: 1px solid $gray-line-color;
             box-sizing: border-box;
             background-color: #ffffff;
             font-size: 1em;
+            box-shadow: inset 0.2em 0.2em 0.6em $site-background-color, inset -0.2em -0.2em 0.6em $site-panel-color;
 
             .icon {
                 color: $gray-text-color;
@@ -149,6 +151,7 @@
                 border: none;
                 box-sizing: border-box;
                 font-size: 0.8em;
+                
 
                 &:focus {
                     outline: none;

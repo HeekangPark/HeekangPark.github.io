@@ -50,7 +50,7 @@ body {
     align-items: start;
     grid-template-columns: $left-panel-size $media-desktop;
     column-gap: 1em;
-    
+
     margin: {
         top: 1em;
         bottom: 1em;
@@ -69,9 +69,15 @@ body {
         }
         box-sizing: border-box;
         background-color: $site-panel-color;
+        box-shadow: 0.5em 0.5em 1.5em #cacaca, -0.5em -0.5em 1.5em $site-panel-color;
+        border-radius: 0.5em;
+        position: relative;
 
         .left-panel-open-btn-container {
             display: none;
+            position: absolute;
+            right: 3em;
+            top: 3em;
             justify-content: flex-end;
             padding: {
                 bottom: 1em;
@@ -135,15 +141,18 @@ body {
         }
 
         .main-panel {
+            padding: {
+                top: 5.5em;
+            }
+            
             .left-panel-open-btn-container {
-                display: flex;
+                display: initial;
             }
         }
 
         &.left-panel-open {
             .left-panel {
                 display: initial;
-                background-color: $site-background-color;
                 
                 .left-panel-close-btn-container {
                     display: flex;

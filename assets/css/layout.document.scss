@@ -9,10 +9,14 @@
 .main-panel {
     background-color: $site-background-color !important;
     padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
 
     .document {
         background-color: $site-panel-color;
         box-sizing: border-box;
+        box-shadow: 0.5em 0.5em 1.5em #cacaca, -0.5em -0.5em 1.5em $site-panel-color;
+        border-radius: 0.5em;
         
         padding: {
             top: 3em;
@@ -43,6 +47,7 @@
                 margin: {
                     bottom: 1em;
                 }
+                text-align: center;
 
                 i {
                     margin: {
@@ -339,6 +344,8 @@
 
     .comments {
         background-color: $site-panel-color;
+        box-shadow: 0.5em 0.5em 1.5em #cacaca, -0.5em -0.5em 1.5em $site-panel-color;
+        border-radius: 0.5em;
 
         margin: {
             top: 1em;
@@ -364,20 +371,13 @@
 
     @media screen and (max-width: #{$left-panel-size + $media-phone + 4em}) {
         .left-panel-open-btn-container {
-            background-color: $site-panel-color;
-
-            padding: {
-                top: 3em;
-                right: 3em;
-            }
+            display: initial;
         }
 
         .document {
             padding: {
-                top: 0;
+                top: 5.5em;
             }
         }
-
-
     }
 }
