@@ -15,7 +15,7 @@
         align-items: center;
         column-gap: 0.5em;
         width: 100%;
-        border-radius: 0.2em;
+        border-radius: 0.5em;
         padding: {
             top: 0.5em;
             bottom: 0.5em;
@@ -40,6 +40,7 @@
             border: none;
             box-sizing: border-box;
             font-size: 1em;
+            background: transparent;
 
             &:focus {
                 outline: none;
