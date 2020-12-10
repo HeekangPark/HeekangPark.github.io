@@ -35,9 +35,11 @@ layout: default
     </div>
     
     <div class="toc-content-container scrollspy">
-        <div class="toc">
-            {% include toc.html html = content %}
-        </div>
+        {% unless page.no-toc %}
+            <div class="toc">
+                {% include toc.html html = content %}
+            </div>
+        {% endunless %}
 
         <div class="document-content">
             {{ content }}

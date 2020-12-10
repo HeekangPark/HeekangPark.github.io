@@ -22,26 +22,6 @@ figure.highlight {
     z-index: 1;
     position: relative;
 
-    &.result {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        margin: {
-            top: -2em;
-        }
-        
-        padding: {
-            top: 2em;
-        }
-        z-index: 0;
-
-        background-color: #eeeeee;
-        color: #000000;
-
-        &::before {
-            content: "[실행 결과]";
-        }
-    }
-
     code {
         line-height: $code-line-height;
     }
@@ -159,6 +139,29 @@ figure.highlight {
     .il { color: #bd93f9 } /* Literal.Number.Integer.Long */
 }
 
+figure.highlight.code-result {
+    background-color: #eeeeee;
+    color: #000000;
+
+    &::before {
+        content: "[실행 결과]";
+    }
+}
+
+figure.highlight + figure.highlight.code-result {
+    padding: {
+        top: 2em;
+    }
+    
+    z-index: 0;
+
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin: {
+        top: -2em;
+    }
+}
+
 code.highlighter-rouge {
     padding: {
         top: 0.15em;
@@ -172,18 +175,27 @@ code.highlighter-rouge {
     white-space: normal;
 }
 
-/*div.highlighter-rouge {
-    overflow-x: auto;
-    background-color: $background-color;
-    color: $text-color;
+p.code-header {
+    font-family: $code-font;
+    background-color: #181a26;
+    color: #f8f8f2;
     padding: {
-        top: 1em;
-        bottom: 1em;
+        top: 0.5em;
+        bottom: 0.5em;
         left: 1em;
         right: 1em;
     }
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
     margin: {
-        bottom: 1em;
+        bottom: 0;
     }
-    border-radius: 0.5em;
-}*/
+    border: {
+        bottom: 1px solid #f8f8f2;
+    }
+
+    & + figure.highlight {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}

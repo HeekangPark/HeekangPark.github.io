@@ -17,12 +17,12 @@ a {
 }
 
 html {
-	font-family: "Nanum Gothic", sans-serif;
+	font-family: $normal-font;
 	word-break: break-all;
 }
 
 pre, code {
-    font-family: "Ubuntu Mono", "Nanum Gothic Coding", monospace;
+    font-family: $code-font;
 }
 
 body {

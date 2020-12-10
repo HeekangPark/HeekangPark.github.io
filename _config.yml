@@ -7,7 +7,7 @@ timezone: Asia/Seoul
 plugins:
   - jekyll-sitemap
   - jekyll-feed
-exclude: ["run", "commit", "README.md"]
+exclude: ["run", "commit", "README.md", "Gemfile", "Gemfile.lock"]
 # endregion
 
 # region
@@ -24,10 +24,10 @@ sass:
 # region
 # Conversion Settings
 markdown: kramdown
-excerpt_seperator: ""
 kramdown:
   auto_id_prefix: "kramdown_"
   auto_ids: true
+  smart_quotes: ["apos", "apos", "quot", "quot"]
 # endregion
 
 # region

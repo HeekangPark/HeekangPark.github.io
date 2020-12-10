@@ -5,6 +5,7 @@
     $h4-font-size: 1.3em;
     $h5-font-size: 1.2em;
     $h6-font-size: 1.1em;
+    $max-top-margin: 1.5em;
 
     box-sizing: border-box;
     line-height: $line-height;
@@ -32,7 +33,7 @@
     h1 {
         font-size: $h1-font-size;
         margin: {
-            top: $h1-font-size * 1.5;
+            top: min($h1-font-size * 1.5, $max-top-margin);
         }
         counter-reset: h2counter 0;
         &::before {
@@ -55,7 +56,7 @@
     h2 {
         font-size: $h2-font-size;
         margin: {
-            top: $h2-font-size * 1.5;
+            top: min($h2-font-size * 1.5, $max-top-margin);
         }
         counter-reset: h3counter 0;
         &::before {
@@ -72,7 +73,7 @@
     h3 {
         font-size: $h3-font-size;
         margin: {
-            top: $h3-font-size * 1.5;
+            top: min($h3-font-size * 1.5, $max-top-margin);
         }
         counter-reset: h4counter 0;
         &::before {
@@ -89,7 +90,7 @@
     h4 {
         font-size: $h4-font-size;
         margin: {
-            top: $h4-font-size * 1.5;
+            top: min($h4-font-size * 1.5, $max-top-margin);
         }
         counter-reset: h5counter 0;
         &::before {
@@ -106,7 +107,7 @@
     h5 {
         font-size: $h5-font-size;
         margin: {
-            top: $h5-font-size * 1.5;
+            top: min($h5-font-size * 1.5, $max-top-margin);
         }
         counter-reset: h6counter 0;
         &::before {
@@ -123,7 +124,7 @@
     h6 {
         font-size: $h6-font-size;
         margin: {
-            top: $h6-font-size * 1.5;
+            top: min($h6-font-size * 1.5, $max-top-margin);
         }
 
         &::before {
@@ -223,6 +224,10 @@
         overflow-x: auto;
         overflow-y: auto;
         max-height: $table-max-height;
+
+        &.no-max-height {
+            max-height: none;
+        }
 
         table {
             border-collapse: separate;
