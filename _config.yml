@@ -117,7 +117,7 @@ collections:
     permalink: /:collection/:name
     name: "기계학습 (Machine Learning)"
     category: "기계학습 (Machine Learning)"
-    tags: ["machine learning", "lecture", "lecture-2020.01"]
+    tags: ["machine learning", "lecture"]
   calculus:
     output: true
     permalink: /:collection/:name

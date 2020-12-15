@@ -36,9 +36,7 @@ layout: default
     
     <div class="toc-content-container scrollspy">
         {% unless page.no-toc %}
-            <div class="toc">
-                {% include toc.html html = content %}
-            </div>
+            {% include toc.html html = content %}
         {% endunless %}
 
         <div class="document-content">
@@ -122,6 +120,8 @@ $(document).ready(function() {
 
     addTitleToFootnotes();
 
+    activateCodeToolbox();
+
     //image blackout popup
     $(".main-panel .document .toc-content-container .document-content .caption-img").magnificPopup({
         delegate: "a",
@@ -143,26 +143,106 @@ function foldAllFolders() {
     $("div.document-content div.folder p.folder-show-btn").show();
     $("div.document-content div.folder p.folder-hide-btn").hide();
     $("div.document-content div.folder div.folder-target").hide();
+
+    $("div.document-content div.folder p.folder-show-btn").click(function() {
+        var target = $(this).closest("div.folder").children("div.folder-target");
+        var show_btn = $(this);
+        var hide_btn = $(this).closest("div.folder").children("p.folder-hide-btn");
+
+        target.show();
+        show_btn.hide();
+        hide_btn.show();
+    });
+
+    $("div.document-content div.folder p.folder-hide-btn").click(function() {
+        var target = $(this).closest("div.folder").children("div.folder-target");
+        var show_btn = $(this).closest("div.folder").children("p.folder-show-btn");
+        var hide_btn = $(this);
+
+        target.hide();
+        show_btn.show();
+        hide_btn.hide();
+    });
 }
 
-$("div.document-content div.folder p.folder-show-btn").click(function() {
-    var target = $(this).closest("div.folder").children("div.folder-target");
-    var show_btn = $(this);
-    var hide_btn = $(this).closest("div.folder").children("p.folder-hide-btn");
+function activateCodeToolbox() {
+    function addToolBox(code) {
+        let toolbox = $(`<div class="code-toolbox"></div>`);
+        toolbox.appendTo(code);
 
-    target.show();
-    show_btn.hide();
-    hide_btn.show();
-});
+        code.scroll(function() {
+            toolbox.css("right", `calc(1em - ${code.scrollLeft()}px)`);
+        })
 
-$("div.document-content div.folder p.folder-hide-btn").click(function() {
-    var target = $(this).closest("div.folder").children("div.folder-target");
-    var show_btn = $(this).closest("div.folder").children("p.folder-show-btn");
-    var hide_btn = $(this);
+        addCopyBtn(code, toolbox);
+        addToggleCodeResultBtn(code, toolbox);
+    }
 
-    target.hide();
-    show_btn.show();
-    hide_btn.hide();
-});
+    function addCopyBtn(code, toolbox) {
+        let copy_icon = "far fa-copy";
+        let check_icon = "fas fa-check";
+        let timeoutHandler = undefined;
+        let copy_btn = $(`<p class="code-toolbox-item copy-btn" title="클립보드에 복사하기"><i class="${copy_icon}"></i></p>`);
+        let copy_btn_icon = copy_btn.find("i");
+        copy_btn.appendTo(toolbox);
+        copy_btn.click(function() {
+            if(timeoutHandler) window.clearTimeout(timeoutHandler);
+            copy_btn_icon.removeClass(check_icon).addClass(copy_icon);
 
+            let content = undefined;
+            if(code.find("table").length == 0) { //code without linenos
+                content = code.text();
+            } else { //code with linenos
+                content = code.find(".rouge-table .code").text();
+            }
+            
+            let temp_textarea = $(`<textarea id="temp-textarea" style="width: 1px; height: 1px; margin: 0; padding: 0; border: none; resize: none; opacity: 0;">${content}</textarea>`);
+            temp_textarea.appendTo(code);
+
+            temp_textarea.select();
+            document.execCommand("copy");
+
+            temp_textarea.remove();
+
+            copy_btn_icon.removeClass(copy_icon).addClass(check_icon);
+            timeoutHandler = window.setTimeout(function() {
+                copy_btn_icon.removeClass(check_icon).addClass(copy_icon);
+            }, 2000);
+        });
+    }
+
+    function addToggleCodeResultBtn(code, toolbox) {
+        if(code.next().hasClass("highlight") && code.next().hasClass("code-result")) { // if code_result exists
+            let code_result = code.next();
+            code_result.hide();
+
+            let opened_icon = "fas fa-caret-square-down";
+            let closed_icon = "far fa-caret-square-down";
+
+            let toggle_code_result_btn = $(`<p class="code-toolbox-item toggle-code-result-btn closed" title="코드 실행결과 보기/닫기"><i class="${closed_icon}"></i></p>`);
+            toggle_code_result_btn.appendTo(toolbox);
+
+            toggle_code_result_btn.click(function() {
+                let icon = toggle_code_result_btn.find("i");
+
+                if(toggle_code_result_btn.hasClass("closed")) {
+                    toggle_code_result_btn.removeClass("closed");
+                    icon.removeClass(closed_icon).addClass(opened_icon);
+                    code_result.show();
+                } else {
+                    toggle_code_result_btn.addClass("closed");
+                    icon.removeClass(opened_icon).addClass(closed_icon);
+                    code_result.hide();
+                }
+            });
+        }
+    }
+
+    $(".main-panel .document .toc-content-container .document-content .highlight").each(function(idx, elem) {
+        let code = $(this);
+        if(code.hasClass("code-result")) return;  //if code-result, skip
+
+        addToolBox(code);
+    });
+}
 </script>

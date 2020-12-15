@@ -137,6 +137,10 @@
                 
                 display: inline-flex;
                 flex-direction: column;
+
+                &.hidden {
+                    display: none;
+                }
         
                 .toc-title {
                     font-size: 1.1em;
