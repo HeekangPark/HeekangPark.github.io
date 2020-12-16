@@ -91,7 +91,11 @@
                 .tags {
                     display: flex;
                     flex-wrap: wrap;
-                    gap: 0.5em;
+                    //gap: 0.5em;
+                    margin: {
+                        right: -0.5em;
+                        bottom: -0.5em;
+                    }
 
                     .tag {
                         display: block;
@@ -100,6 +104,10 @@
                             bottom: 0.2em;
                             left: 0.5em;
                             right: 0.5em;
+                        }
+                        margin: {
+                            right: 0.5em;
+                            bottom: 0.5em;
                         }
                         background-color: $tag-background-color;
                         color: $tag-color;
