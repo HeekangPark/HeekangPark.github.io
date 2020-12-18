@@ -100,6 +100,10 @@ defaults:
       layout: "default"
 
 collections:
+  sysdoc:
+    output: true
+    permalink: /:name
+    name: "sysdoc"
   jekyll:
     output: true
     permalink: /:collection/:name
@@ -166,8 +170,4 @@ collections:
     name: "기타 (Etc)"
     category: "기타 (Etc)"
     tags: []
-  sysdoc:
-    output: true
-    permalink: /:name
-    name: "sysdoc"
 # endregion
