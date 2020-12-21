@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source activate jekyll
+
+python _scripts/addCollection.py
+
+config_file="_config.yml"
+
+if [ -f "$config_file" ]
+then 
+    rm "$config_file"
+fi 
+
+touch _config.yml
+cat "_config/others.yml" >> "$config_file"
+cat "_config/collections.yml" >> "$config_file"

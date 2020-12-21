@@ -1,0 +1,4 @@
+certifi==2020.12.5
+prompt-toolkit==3.0.8
+PyYAML==5.3.1
+wcwidth==0.2.5

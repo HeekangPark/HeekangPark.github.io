@@ -8,4 +8,15 @@ then
 fi
 unset pid
 
+config_file="_config.yml"
+
+if [ -f "$config_file" ]
+then 
+    rm "$config_file"
+fi 
+
+touch _config.yml
+cat "_config/others.yml" >> "$config_file"
+cat "_config/collections.yml" >> "$config_file"
+
 bundle exec jekyll serve --host 172.26.0.1 --port 4000

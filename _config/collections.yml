@@ -1,26 +1,3 @@
-title: Reinventing the Wheel
-subtitle: Wheel's Development Blog
-baseurl: ""
-timezone: Asia/Seoul
-plugins:
-  - jekyll-sitemap
-  - jekyll-feed
-exclude: ["run", "commit", "addCollection", "README.md", "Gemfile", "Gemfile.lock", "_scripts", "_config", "requirements.txt"]
-
-assets: /assets
-layouts_dir: _layouts
-data_dir: _data
-includes_dir: _includes
-collections_dir: documents
-sass:
-  sass_dir: _sass
-
-markdown: kramdown
-kramdown:
-  auto_id_prefix: "kramdown_"
-  auto_ids: true
-  smart_quotes: ["apos", "apos", "quot", "quot"]
-
 collections:
   calculus:
     category: 수학 (Mathematics)
