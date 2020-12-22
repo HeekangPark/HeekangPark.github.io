@@ -1,13 +1,19 @@
 <figure class="caption-img">
-    <a href="{{ site.baseurl }}{{ site.assets }}/img/{{ page.collection }}/{{ include.src }}">
-        <img {% if include.class %}class="{{ include.class }}"{% endif %} src="{{ site.baseurl }}{{ site.assets }}/img/{{ page.collection }}/{{ include.src }}" alt="{{ include.title }}">
+    {% if include.outside_img %}
+        {% assign img_url = include.src %}
+    {% else %}
+        {% assign img_url = include.src | prepend: "/" | prepend: page.collection | prepend: "/img/" | prepend: site.assets | prepend: site.baseurl %}
+    {% endif %}
+
+    <a href="{{ img_url }}">
+        <img {% if include.class %}class="{{ include.class }}"{% endif %} src="{{ img_url }}" {% if include.title %}alt="{{ include.title }}"{% endif %}>
     </a>
     
     {% if include.title %}
-    <figcaption class="title">{{ include.title }}</figcaption>
+        <figcaption class="title">{{ include.title }}</figcaption>
     {% endif %}
 
     {% if include.description %}
-    <figcaption class="description">{{ include.description }}</figcaption>
+        <figcaption class="description">{{ include.description }}</figcaption>
     {% endif %}
 </figure>

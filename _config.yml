@@ -29,6 +29,14 @@ collections:
     permalink: /:collection/:name
     tags:
     - math
+  cs231n:
+    category: 기계학습 (Machine Learning)
+    name: Convolutional Neural Networks for Visual Recognition
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - machine_learning
+    - stanford
   etc:
     category: 기타 (Etc)
     name: 기타 (Etc)
@@ -173,5 +181,10 @@ defaults:
 - scope:
     path: ''
     type: git
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: cs231n
   values:
     layout: document
