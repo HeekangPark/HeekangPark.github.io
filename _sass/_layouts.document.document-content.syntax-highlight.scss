@@ -175,6 +175,12 @@ figure.highlight.code-result {
     &::before {
         content: "[실행 결과]";
     }
+
+    &.code-result-example {
+        &::before {
+            content: "[실행 결과 예시]";
+        }
+    }
 }
 
 figure.highlight + figure.highlight.code-result {
