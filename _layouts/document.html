@@ -214,7 +214,7 @@ function activateCodeToolbox() {
     function addToggleCodeResultBtn(code, toolbox) {
         if(code.next().hasClass("highlight") && code.next().hasClass("code-result")) { // if code_result exists
             let code_result = code.next();
-            code_result.hide();
+            code_result.addClass("hidden");
 
             let opened_icon = "fas fa-caret-square-down";
             let closed_icon = "far fa-caret-square-down";
@@ -228,11 +228,11 @@ function activateCodeToolbox() {
                 if(toggle_code_result_btn.hasClass("closed")) {
                     toggle_code_result_btn.removeClass("closed");
                     icon.removeClass(closed_icon).addClass(opened_icon);
-                    code_result.show();
+                    code_result.removeClass("hidden"); //show
                 } else {
                     toggle_code_result_btn.addClass("closed");
                     icon.removeClass(opened_icon).addClass(closed_icon);
-                    code_result.hide();
+                    code_result.addClass("hidden"); //hide
                 }
             });
         }
