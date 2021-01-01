@@ -102,6 +102,22 @@ pi = 3.14
 
 # java
 
+## System.out.println() 메소드를 이용하는 방법
+
+java에서는 `System.out.println()` 메소드를 이용하면 문자열 안에 변수를 넣어 출력할 수 있다.
+
+{% highlight java %}
+public 
+
+
+{% endhighlight %}
+
++를 이용하는 방법
+system.out.printf를 이용하는 방법
+string.format을 이용하는 방법
+
+
+
 # javascript
 
 # python
