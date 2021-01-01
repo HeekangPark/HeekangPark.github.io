@@ -102,14 +102,19 @@ pi = 3.14
 
 # java
 
-## System.out.println() 메소드를 이용하는 방법
+## + 연산자를 이용하는 방법
 
-java에서는 `System.out.println()` 메소드를 이용하면 문자열 안에 변수를 넣어 출력할 수 있다.
+java에서는 + 연산자를 이용하면 문자열 안에 변수를 넣어 출력할 수 있다.
 
 {% highlight java %}
-public 
-
-
+public class Test {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 3;
+        
+        System.out.println("a = " + a + ", b = " + b);
+    }
+}
 {% endhighlight %}
 
 +를 이용하는 방법
