@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Ubuntu+Mono&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR&family=Fira+Code&family=Inconsolata&display=swap');
 
 html, body, div, span, p, nav,
 h1, h2, h3, h4, h5, h6, strong, small, b, u, i,
@@ -22,7 +23,9 @@ html {
 }
 
 pre, code {
-    font-family: $code-font;
+	font-family: $code-font;
+	//font-size: 95%;
+	//font-weight: 400;
 }
 
 body {
