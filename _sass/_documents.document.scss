@@ -1,0 +1,107 @@
+.documents {
+    .document {
+        padding: {
+            top: 1.5em;
+            bottom: 1.5em;
+        }
+        border: {
+            bottom: 1px solid $gray-line-color;
+        }
+
+        &:last-child {
+            margin: {
+                bottom: 0;
+            }
+        }
+
+        .document-collection {
+            color: $gray-text-color;
+            margin: {
+                bottom: 0.5em;
+            }
+            
+            i {
+                margin: {
+                    left: 0.5em;
+                    right: 0.5em;
+                }
+            }
+        }
+
+        .document-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: {
+                bottom: 1em;
+            }
+        }
+
+        .document-preview {
+            font-size: 1em;
+            line-height: $line-height;
+            color: $gray-text-color;
+            margin: {
+                bottom: 1em;
+            }
+        }
+
+        .with-icon {
+            display: grid;
+            grid-template-columns: 1.2em 1fr;
+            column-gap: 0.3em;
+            align-items: start;
+            justify-items: start;
+            margin: {
+                bottom: 0.5em;
+            }
+            
+            &:last-child {
+                margin: {
+                    bottom: 0;
+                }
+            }
+
+            .icon {
+                color: $gray-text-color;
+                margin: {
+                    top: 0.1em;
+                }
+            }
+        }
+
+        .document-tags {
+            .icon {
+                margin: {
+                    top: 0.3em !important;
+                }
+            }
+
+            .tags {
+                display: flex;
+                flex-wrap: wrap;
+                //gap: 0.5em;
+                margin: {
+                    right: -0.5em;
+                    bottom: -0.5em;
+                }
+
+                .tag {
+                    display: block;
+                    padding: {
+                        top: 0.2em;
+                        bottom: 0.2em;
+                        left: 0.5em;
+                        right: 0.5em;
+                    }
+                    margin: {
+                        right: 0.5em;
+                        bottom: 0.5em;
+                    }
+                    background-color: $tag-background-color;
+                    color: $tag-color;
+                    border-radius: 0.2em;
+                }
+            }
+        }
+    }
+}

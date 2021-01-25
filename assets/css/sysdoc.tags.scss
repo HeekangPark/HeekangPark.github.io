@@ -10,182 +10,113 @@
 
 .main-panel {
     .hidden {
-        display: none;
+        display: none !important;
     }
 
-    .folder {
-        .folder-title {
-            cursor: pointer;
-
-            .icon {
-                margin: {
-                    right: 0.4em;
-                }
-                color: $gray-text-color;
-            }
-        
-            .num {
-                display: inline-block;
-                vertical-align: middle;
-                margin: {
-                    left: 0.5em;
-                }
-                font-size: 0.6em;
-                
-                &::before {
-                    content: "[";
-                }
-        
-                &::after {
-                    content: "]";
-                }
-            }
-        }
-
-        .folder-contents {
-            margin: {
-                left: 2em;
-            }
-        }
-    }
-
-    .tag-document {
-        box-sizing: border-box;
+    .tag-list {
+        border-radius: 1em;
+        border: solid $gray-line-color 1px;
         padding: {
-            top: 0.5em;
-            bottom: 0.5em;
+            top: 1em;
+            //bottom: 0.5em;
+            left: 1em;
+            right: 1em;
         }
+        box-sizing: border-box;
 
-        .folder-title {
-            font-size: 1.3em;
+        .tag {
+            display: inline-block;
+            padding: {
+                top: 0.2em;
+                bottom: 0.2em;
+                left: 0.5em;
+                right: 0.5em;
+            }
+            margin: {
+                bottom: 0.75em;
+                right: 0.75em;
+            }
+            background-color: $tag-background-color;
+            border-radius: 0.2em;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
 
-            .tag {
-                display: inline-block;
-                padding: {
-                    top: 0.2em;
-                    bottom: 0.2em;
-                    left: 0.5em;
-                    right: 0.5em;
-                }
-                margin: {
-                    top: 0.5em;
-                }
-                background-color: $tag-background-color;
-                color: $tag-color;
-                border-radius: 0.2em;
-                margin: {
-                    left: 0.3em;
-                }
+            &.selected {
+                background-color: #cccccc;
+            }
+
+            .tag-document-num {
+                font-size: 0.6em;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background-color:  $tag-badge-color;
+                color: #000000;
+                border-radius: 50%;
+                position: absolute;
+                width: 2em;
+                height: 2em;
+                top: -0.75em;
+                right: -1em;
             }
         }
+    }
 
-        .documents {
-            .document {
-                padding: {
-                    top: 1.5em;
-                    bottom: 1.5em;
-                }
-                border: {
-                    bottom: 1px solid $gray-line-color;
+    .controller {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        margin: {
+            top: 1em;
+        }
+
+        .mode {
+            display: flex;
+
+            .mode-item {
+                margin: {
+                    right: 1em;
                 }
 
                 &:last-child {
                     margin: {
-                        bottom: 0;
-                    }
-                }
-
-                .document-collection {
-                    color: $gray-text-color;
-                    margin: {
-                        bottom: 0.5em;
-                    }
-                    
-                    i {
-                        margin: {
-                            left: 0.5em;
-                            right: 0.5em;
-                        }
-                    }
-                }
-
-                .document-title {
-                    font-size: 1.1em;
-                    font-weight: bold;
-                    margin: {
-                        bottom: 1em;
-                    }
-                }
-
-                .document-preview {
-                    font-size: 1em;
-                    line-height: $line-height;
-                    color: $gray-text-color;
-                    margin: {
-                        bottom: 1em;
-                    }
-                }
-
-                .with-icon {
-                    display: grid;
-                    grid-template-columns: 1.2em 1fr;
-                    column-gap: 0.3em;
-                    align-items: start;
-                    justify-items: start;
-                    margin: {
-                        bottom: 0.5em;
-                    }
-                    
-                    &:last-child {
-                        margin: {
-                            bottom: 0;
-                        }
-                    }
-
-                    .icon {
-                        color: $gray-text-color;
-                        margin: {
-                            top: 0.1em;
-                        }
-                    }
-                }
-
-                .document-tags {
-                    .icon {
-                        margin: {
-                            top: 0.3em !important;
-                        }
-                    }
-
-                    .tags {
-                        display: flex;
-                        flex-wrap: wrap;
-                        //gap: 0.5em; /* safari does not support flexbox gap */
-                        margin: {
-                            right: -0.5em;
-                            bottom: -0.5em;
-                        }
-
-                        .tag {
-                            display: block;
-                            padding: {
-                                top: 0.2em;
-                                bottom: 0.2em;
-                                left: 0.5em;
-                                right: 0.5em;
-                            }
-                            margin: {
-                                right: 0.5em;
-                                bottom: 0.5em;
-                            }
-                            background-color: $tag-background-color;
-                            color: $tag-color;
-                            border-radius: 0.2em;
-                        }
+                        right: 0;
                     }
                 }
             }
         }
+
+        .reset-tag-btn {
+            font-size: inherit;
+            font-family: inherit;
+            padding: {
+                top: 0.4em;
+                bottom: 0.4em;
+                left: 0.75em;
+                right: 0.75em;
+            }
+            background-color: $tag-background-color;
+            border-radius: 0.2em;
+            border: none;
+            cursor: pointer;
+
+            &:focus {
+                outline: none;
+            }
+
+            &:hover {
+                background-color: #dddddd;
+            }
+
+            &:active {
+                background-color: #cccccc;
+            }
+        }
     }
-    
+
+    @import "documents.document";
 }

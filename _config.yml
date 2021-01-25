@@ -73,7 +73,7 @@ collections:
     output: true
     permalink: /:collection/:name
     tags:
-    - machine learning
+    - machine_learning
     - lecture
   nas_ml:
     category: 기계학습 (Machine Learning)

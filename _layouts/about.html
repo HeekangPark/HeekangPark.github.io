@@ -10,9 +10,7 @@ layout: default
     </div>
 
     <div class="toc-content-container scrollspy">
-        <div class="toc">
-            {% include toc.html html = content %}
-        </div>
+        {% include toc.html html = content %}
 
         <div class="document-content">
             {{ content }}
