@@ -1,6 +1,6 @@
 ---
 title: "[Node.js] 모듈 시스템"
-tags: ["node-js", "javascript", "common-js"]
+tags: ["node-js", "common-js", "es6", "ecmascript2015"]
 date: "2021-01-16"
 ---
 
