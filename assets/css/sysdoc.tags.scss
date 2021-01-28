@@ -76,16 +76,11 @@
 
         .mode {
             display: flex;
+            flex-shrink: 0;
 
             .mode-item {
                 margin: {
                     right: 1em;
-                }
-
-                &:last-child {
-                    margin: {
-                        right: 0;
-                    }
                 }
             }
         }
