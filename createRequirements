@@ -1,0 +1,8 @@
+#!/bin/bash
+
+eval "$(conda shell.bash hook)"
+conda activate jekyll
+
+pip freeze > requirements.txt
+
+echo -e "\033[32mrequirements.txt successfully created.\033[0m"

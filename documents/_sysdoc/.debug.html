@@ -1,0 +1,38 @@
+---
+nav-order: 6
+icon: "fas fa-bug"
+layout: default
+---
+
+{% assign delim = ";" %}
+{% assign categories = "" | split: delim %}
+
+{% assign categories_candidate = site.collections | map : "category" | compact %}
+
+{% for item in categories_candidate %}
+    {% assign categories = categories | push: item %}
+{% endfor %}
+
+{% assign categories = categories | uniq | compact | sort %}
+{% for category in categories %}
+    {% assign category_idx = forloop.index0 %}
+    {% assign collections = site.collections | where: "category", category | sort: "label" %}
+
+    {% for collection in collections %}
+        {% unless collection.label == "til" %}
+            {% continue %}
+        {% endunless %}
+
+        <p>{{ collection.label }}</p>
+        
+        {% assign documents_with_order = collection.docs | where_exp: "item", "item.order" | sort: "order" %}
+        {% assign documents_without_order = collection.docs | where_exp: "item", "item.order == Nil" | sort %}
+        {% assign documents = documents_with_order | concat: documents_without_order %}
+
+        <ul>
+            {% for document in documents %}
+                <li>{{ document.title }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endfor %}

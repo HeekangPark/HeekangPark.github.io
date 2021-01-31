@@ -1,4 +1,5 @@
 certifi==2020.12.5
 prompt-toolkit==3.0.8
+pytz==2020.5
 PyYAML==5.3.1
 wcwidth==0.2.5

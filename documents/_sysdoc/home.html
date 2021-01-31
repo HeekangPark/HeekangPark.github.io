@@ -16,7 +16,8 @@ layout: default
         {% assign documents = "" | split: delim %}
         
         {% for collection in site.collections %}
-            {% unless collection.label == "sysdoc" %}
+            {% assign exclude_labels = "sysdoc,til" | split: "," %}
+            {% unless exclude_labels contains collection.label %}
                 {% for document in collection.docs %}
                     {% assign documents = documents | push: document %}
                 {% endfor %}

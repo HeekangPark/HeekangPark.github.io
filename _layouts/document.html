@@ -45,7 +45,9 @@ layout: default
     </div>
     
     <div class="document-navigator">
-        {% assign documents = collection.docs | sort: "order" %}
+        {% assign documents_with_order = collection.docs | where_exp: "item", "item.order" | sort: "order" %}
+        {% assign documents_without_order = collection.docs | where_exp: "item", "item.order == Nil" | sort %}
+        {% assign documents = documents_with_order | concat: documents_without_order %}
     
         <div class="adjacent-documents">
             {% for document in documents %}
