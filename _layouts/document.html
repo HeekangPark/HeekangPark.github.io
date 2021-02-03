@@ -148,6 +148,12 @@ function activateFootnotePopups() {
         openedFootnotePopup = null;
     }
 
+    const html_escape = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;"
+    }
+
     let document_content = $(".main-panel .document .toc-content-container .document-content");
     let footnote_padding = 10;
     let footnote_width = document_content.width() + footnote_padding;
@@ -164,7 +170,7 @@ function activateFootnotePopups() {
         let close_btn = $(`<p class="footnote-popup-close-btn hidden">×</p>`);
         let footnote_popup = $(`<div class="footnote-popup hidden" style="width: ${footnote_width}px; left: ${footnote_left}px;">
             <div class="footnote-number">${footnote_index + 1}.</div>
-            <div class="footnote-content">${footnote_content}</div>
+            <div class="footnote-content">${footnote_content.replace(/[g<>]/g, (tag) => (html_escape[tag] || tag))}</div>
         </div>`);
         $(this).append(close_btn);
         $(this).append(footnote_popup);
