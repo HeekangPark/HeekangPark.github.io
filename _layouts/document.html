@@ -135,6 +135,7 @@ $(document).ready(function() {
 
 function activateFootnotePopups() {
     function openFootnotePopup(footnote) {
+        if(openedFootnotePopup) closeFootnotePopup(openedFootnotePopup);
         footnote.children("a.footnote").addClass("hidden");
         footnote.children(".footnote-popup-close-btn").removeClass("hidden");
         footnote.children(".footnote-popup").removeClass("hidden");
@@ -148,16 +149,22 @@ function activateFootnotePopups() {
         openedFootnotePopup = null;
     }
 
+    let document_content = $(".main-panel .document .toc-content-container .document-content");
+    let footnote_padding = 10;
+
+    function getFootnoteWidth() {
+        return document_content.width() + footnote_padding;
+    }
+
+    function getFootnoteLeft() {
+        return document_content.offset().left - footnote_padding / 2;
+    }
+
     const html_escape = {
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;"
     }
-
-    let document_content = $(".main-panel .document .toc-content-container .document-content");
-    let footnote_padding = 10;
-    let footnote_width = document_content.width() + footnote_padding;
-    let footnote_left = document_content.offset().left - footnote_padding / 2;
 
     $(".main-panel .document .toc-content-container .document-content sup[role='doc-noteref']").each(function(footnote_index, item) {
         let footnote_id = $(this).children("a").attr("href").substring(1);
@@ -168,36 +175,41 @@ function activateFootnotePopups() {
         
         //add popup
         let close_btn = $(`<p class="footnote-popup-close-btn hidden">×</p>`);
-        let footnote_popup = $(`<div class="footnote-popup hidden" style="width: ${footnote_width}px; left: ${footnote_left}px;">
+        let footnote_popup = $(`<div class="footnote-popup hidden" style="width: ${getFootnoteWidth()}px; left: ${getFootnoteLeft()}px;">
             <div class="footnote-number">${footnote_index + 1}.</div>
             <div class="footnote-content">${footnote_content.replace(/[g<>]/g, (tag) => (html_escape[tag] || tag))}</div>
         </div>`);
         $(this).append(close_btn);
         $(this).append(footnote_popup);
 
-        if($(window).width() > 600) {
-            $(this).hover(function() {
-                footnote_popup.removeClass("hidden");
-            }, function() {
-                footnote_popup.addClass("hidden");
-            });
-        } else {
+        if(isMobileBrowser() || $(window).width() < 800) {
             let anchor = $(this).children("a.footnote");
             anchor.off("click").attr("href", "javascript: void(0);"); //disable anchor click event
 
             $(this).click(function() {
                 if(footnote_popup.hasClass("hidden")) {
-                    if(openedFootnotePopup) closeFootnotePopup(openedFootnotePopup);
                     openFootnotePopup($(this));
                 } else {
                     closeFootnotePopup($(this));
                 }
+            });
+        } else {
+            $(this).hover(function() {
+                openFootnotePopup($(this));
+            }, function() {
+                closeFootnotePopup($(this));
             });
         }
     });
 
     $(window).scroll(function() {
         if(openedFootnotePopup) closeFootnotePopup(openedFootnotePopup);
+    });
+
+    $(window).resize(function() {
+        $(".main-panel .document .toc-content-container .document-content sup[role='doc-noteref'] .footnote-popup")
+        .css("width", `${getFootnoteWidth()}px`)
+        .css("left", `${getFootnoteLeft()}px`);
     })
 }
 
