@@ -166,9 +166,10 @@ function activateFootnotePopups() {
         ">": "&gt;"
     }
 
-    $(".main-panel .document .toc-content-container .document-content sup[role='doc-noteref']").each(function(footnote_index, item) {
-        let footnote_id = $(this).children("a").attr("href").substring(1);
+    $(".main-panel .document .toc-content-container .document-content sup[role='doc-noteref']").each(function(index, item) {
+        let footnote_id = $(this).children("a.footnote").attr("href").substring(1);
         let footnote_content = $.trim($(`.main-panel .document .toc-content-container .document-content .footnotes[role='doc-endnotes'] ol li#${footnote_id.replace(":", "\\:")} p`).clone().children("a.reversefootnote").remove().end().text());
+        let footnote_index = $(this).children("a.footnote").text();
 
         //add title
         //$(this).attr("title", msg);
@@ -176,7 +177,7 @@ function activateFootnotePopups() {
         //add popup
         let close_btn = $(`<p class="footnote-popup-close-btn hidden">×</p>`);
         let footnote_popup = $(`<div class="footnote-popup hidden" style="width: ${getFootnoteWidth()}px; left: ${getFootnoteLeft()}px;">
-            <div class="footnote-number">${footnote_index + 1}.</div>
+            <div class="footnote-number">${footnote_index}.</div>
             <div class="footnote-content">${footnote_content.replace(/[g<>]/g, (tag) => (html_escape[tag] || tag))}</div>
         </div>`);
         $(this).append(close_btn);
