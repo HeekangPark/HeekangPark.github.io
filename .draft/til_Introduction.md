@@ -2,6 +2,7 @@
 title: "서론"
 order: 1
 date: "2021-01-30"
+layout: "draft"
 ---
 
 남들 다 하는 TIL(Today I Learned) 포스팅

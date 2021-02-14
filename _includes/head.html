@@ -61,6 +61,8 @@
         <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/sysdoc.{{ page_title_downcase }}.css" type="text/css">
     {% elsif page.layout == "document" %}
         <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
+    {% elsif page.layout == "draft" %}
+        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
     {% endif %}
 
     <script src="https://kit.fontawesome.com/0350ef153e.js" crossorigin="anonymous"></script>

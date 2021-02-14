@@ -105,13 +105,6 @@ collections:
     name: sysdoc
     output: true
     permalink: /:name
-  til:
-    category: 기타 (Etc)
-    name: TIL (Today I Learned)
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - til
   virtualbox:
     category: 응용 프로그램 (Applications)
     name: Oracle VM VirtualBox
@@ -193,10 +186,5 @@ defaults:
 - scope:
     path: ''
     type: cs231n
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: til
   values:
     layout: document

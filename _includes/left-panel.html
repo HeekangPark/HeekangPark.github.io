@@ -20,13 +20,17 @@
     <div class="section nav">
         {% assign delim = ";" %}
         {% assign sysdocs = "" | split: "" %}
+        {% assign except = "search" | split: "," %}
 
         {% for sysdoc in site.sysdoc %}
-            {% if sysdoc.nav-order %}
+            {% assign sysdoc_title_lowercase = sysdoc.title | downcase %}
+            {% unless except contains sysdoc_title_lowercase %}
                 {% assign sysdocs = sysdocs | push: sysdoc %}
-            {% endif %}
+            {% endunless %}
         {% endfor %}
-        {% assign sysdocs = sysdocs | sort: "nav-order" %}
+        {% assign sysdocs_with_nav_order = sysdocs | where_exp: "item", "item.nav-order" | sort: "nav-order" %}
+        {% assign sysdocs_without_nav_order = sysdocs | where_exp: "item", "item.nav-order == Nil" | sort %}
+        {% assign sysdocs = sysdocs_with_nav_order | concat: sysdocs_without_nav_order %}
         {% for sysdoc in sysdocs %}
             <p class="nav-item">
                 <a href="{{ sysdoc.url }}">

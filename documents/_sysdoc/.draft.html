@@ -1,0 +1,37 @@
+---
+nav-order: 6
+icon: "fas fa-edit"
+layout: document-list
+description: "Draft"
+---
+
+{% assign drafts = "" | split: "" %}
+{% for page in site.pages %}
+    {% assign dir = page.path | split: "/" | first %}
+    {% if dir == "draft" %}
+        {% assign drafts = drafts | push: page %}
+    {% endif %}
+{% endfor %}
+
+<div class="documents">
+    {% for document in drafts %}
+        <div class="document">
+            <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
+            <p class="document-preview ignore-mathjax"><a href="{{ document.url }}">{{ document.content | strip_html | truncate: 100 }}</a></p>
+            {% if document_tags %}
+            {%- assign document_tags = document.tags | compact | uniq | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort -%}
+            <div class="document-tags with-icon">
+                <i class="icon fas fa-tag"></i>
+                <div class="tags">
+                    {%- for tag in document_tags -%}
+                        <p class="tag"><a href="/tags#{{ tag }}">{{ tag }}</a></p>
+                    {%- endfor -%}
+                </div>
+            </div>
+            {% endif %}
+            {% if document.date %}
+                <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ document.date | date: "%Y.%m.%d" }}</span></p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>

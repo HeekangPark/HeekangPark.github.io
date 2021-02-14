@@ -1,6 +1,8 @@
 <figure class="caption-img">
     {% if include.outside_img %}
         {% assign img_url = include.src %}
+    {% elsif page.layout == "draft" %}
+        {% assign img_url = include.src | prepend: "/" | prepend: "draft" | prepend: "/img/" | prepend: site.assets | prepend: site.baseurl %}
     {% else %}
         {% assign img_url = include.src | prepend: "/" | prepend: page.collection | prepend: "/img/" | prepend: site.assets | prepend: site.baseurl %}
     {% endif %}

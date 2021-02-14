@@ -147,19 +147,22 @@
         }
         display: table;
         word-break: break-all;
+        position: relative;
 
         li {
             list-style: none;
             display: table-row;
-            //line-height: $line-height;
+            position: relative;
 
             &::before {
                 display: table-cell;
+                position: relative;
                 text-align: right;
                 word-break: keep-all;
                 padding: {
                     right: 0.3em;
                 }
+                z-index: 3;
             }
 
             ol, ul {
@@ -187,6 +190,20 @@
             &::before {
                 content: "\2022";
                 font-weight: bold;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0.8em;
+                bottom: 0.8em;
+                left: 0.47em;
+                z-index: 1;
+
+                border: {
+                    left: 1px dashed #aaaaaa;
+                }
+                //height: calc(100% - 1.5em);
             }
         }
     }

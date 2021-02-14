@@ -1,22 +1,51 @@
 #!/bin/bash
 
+# kill previously running test server
 pid=$(netstat -tnlp 2>/dev/null | grep ":4000" | awk -F'LISTEN *|/' '/^(tcp|udp)/{print $2}')
+
 if [ -n "$pid" ]
 then
     kill $pid
-    echo Process $pid killed
+    echo -e "\033[31mprocess $pid killed\033[0m"
 fi
+
 unset pid
 
+# Show Draft
+draft_dir="draft"
+draft_sysdoc_hidden="documents/_sysdoc/.draft.html"
+draft_sysdoc_exposed="documents/_sysdoc/draft.html"
+
+if [ -d ".$draft_dir" ]
+then 
+    mv ".$draft_dir" "$draft_dir"
+    echo -e "\033[32mdraft directory activated\033[0m"
+fi
+
+if [ -f "$draft_sysdoc_hidden" ]
+then 
+    mv "$draft_sysdoc_hidden" "$draft_sysdoc_exposed"
+    echo -e "\033[32mdraft sysdoc activated\033[0m"
+fi
+
+unset draft_dir
+unset draft_sysdoc_hidden
+unset draft_sysdoc_exposed
+
+# Create _config.yml
 config_file="_config.yml"
 
 if [ -f "$config_file" ]
 then 
     rm "$config_file"
-fi 
+fi
 
 touch _config.yml
 cat "_config/others.yml" >> "$config_file"
 cat "_config/collections.yml" >> "$config_file"
 
+echo -e "\033[32m_config.yml created\033[0m"
+unset config_file
+
+# Run Server
 bundle exec jekyll serve --host 172.26.0.1 --port 4000

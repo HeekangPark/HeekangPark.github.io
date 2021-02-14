@@ -1,16 +1,42 @@
 #!/bin/bash
 
+# Hide Draft
+draft_dir="draft"
+draft_sysdoc_hidden="documents/_sysdoc/.draft.html"
+draft_sysdoc_exposed="documents/_sysdoc/draft.html"
+
+if [ -d "$draft_dir" ]
+then 
+    mv "$draft_dir" ".$draft_dir"
+    echo -e "\033[32mDraft directory deactivated\033[0m"
+fi
+
+if [ -f "$draft_sysdoc_exposed" ]
+then 
+    mv "$draft_sysdoc_exposed" "$draft_sysdoc_hidden"
+    echo -e "\033[32mdraft sysdoc deactivated\033[0m"
+fi
+
+unset draft_dir
+unset draft_sysdoc_hidden
+unset draft_sysdoc_exposed
+
+# Create _config.yml
 config_file="_config.yml"
 
 if [ -f "$config_file" ]
 then 
     rm "$config_file"
-fi 
+fi
 
 touch _config.yml
 cat "_config/others.yml" >> "$config_file"
 cat "_config/collections.yml" >> "$config_file"
 
+echo -e "\033[32m_config.yml created\033[0m"
+unset config_file
+
+# Git add, commit, push
 git config user.name "Heekang Park"
 git config user.email "park.heekang33@gmail.com"
 
