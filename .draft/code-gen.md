@@ -4,7 +4,7 @@ date: "2021-02-08"
 layout: "draft"
 ---
 
-논문 Triet H. M. Le, Hao Chen, Muhammad Ali Babar, 2020, "Deep Learning for Source COde Modeling and Generation: Models, Applications and Challenges" 정리
+논문 Triet H. M. Le, Hao Chen, Muhammad Ali Babar, 2020, "Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges" 정리
 
 # 서론 (Introduction)
 
@@ -53,7 +53,7 @@ layout: "draft"
   - 너무 느리고 확장성(scalability)이 낮음
 - Probabilistic Grammar는 DSL에서 높은 성능을 보이지만, 코드를 모델링하고 재사용을 위해서는 여전히 수동으로 규칙들을 디자인하는 과정이 필요하다.
 
-[^1]: 대규모의 데이터 집합 또는 데이터베이스로부터 숨겨진 유용한 패턴 정보를 추출하는 기법
+[^1]: 대규모의 데이터 집합 또는 데이터베이스로부터 숨겨진 유용한 패턴 정보를 추출하는 기법. [참고](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwik9rfN8unuAhWVad4KHaPLBKkQFjAAegQIAhAC&url=http%3A%2F%2Fwww.jics.or.kr%2Fdigital-library%2Fmanuscript%2Ffile%2F1136%2FJICS-2015-16-2-009.pdf&usg=AOvVaw3N91k9U7lktPgSu33ddj0L)
 
 ## $n$-gram language models
 
@@ -119,7 +119,7 @@ layout: "draft"
     - 단점 : 일반화가 잘 안된다. 새로운 도메인에서 학습 과정을 자동화시키는 것이 어렵다.
       - 이유 : 엄격하게 정의된 규칙(strictly defined rule) 때문
 
-[^2]: 데이터만 입력하고 중간 단계 없이 최종 단계까지 원하는 목적을 한 번에 학습하는 방법. end-to-end learning을 하기 위해서는 아주 많은 데이터가 필요하다. end-to-end learning의 반대 개념은 여러 단계를 나눠서 학습하는 것(복잡한 문제를 간단한 여러 문제로 나눠서 푸는 것)으로, 때로는 이 방법이 더 효율적일 수도 있다.
+[^2]: 데이터만 입력하고 중간 단계 없이 최종 단계까지 원하는 목적을 한 번에 학습하는 방법. end-to-end learning을 하기 위해서는 아주 많은 데이터가 필요하다. end-to-end learning의 반대 개념은 여러 단계를 나눠서 학습하는 것(복잡한 문제를 간단한 여러 문제로 나눠서 푸는 것)으로, 때로는 이 방법이 더 효율적일 수도 있다. [참고](https://www.edwith.org/deeplearningai3/lecture/34893)
 
 # 인코더-디코더 구조를 이용한 Deep Sequence 모델링 (Deep Sequence Modeling with Encoder-Decoder Framework)
 
@@ -132,7 +132,7 @@ layout: "draft"
 ## 순차 모델링을 위한 DL 모델 (Deep learning models for sequence modeling)
 
 - 순차 모델링(sequence modeling)을 위한 DL 모델은 크게 두 종류로 분류할 수 있다.
-  - 순환신경망(recurrent neural network)
+  - 순환신경망(RNN, recurrent neural network)
   - 비 순환신경망(non-recurrent neural network)
 - 조금 더 강건한(robust) 모델을 만들기 위해 다음 세 가지 기술이 사용된다.
   - 어텐션 메커니즘(attention mechanism)
@@ -142,4 +142,92 @@ layout: "draft"
 
 ### 순환신경망 (Recurrent Neural Network)
 
-- 순환신경망에서 파라미터 블럭(block of parameters)은 
+- RNN(recurrent neural network)의 파라미터 블럭(block of parameters)은 한 시퀸스(sequence)의 각 부분에 대해 여러 번 공유되어 적용되면서 심층 계산 그래프(deep computational graph)를 형성
+  - 이러한 구조는 RNN이 (기존의 MLP는 하지 못했던) 다양한 길이의 입출력 데이터들로부터 학습할 수 있게 해 줌
+- 순수한 RNN의 문제점
+  - 학습이 어려움
+  - 다양한 시간 간격(scale)에 있는 과거의 정보를 유지하고 있기 힘듦
+- RNN 파생형
+  - Gated RNN
+    - ex. LSTM(Long Short-Term Memory), GRU(Gated Recurrent Unit)
+    - 시그모이드 함수(sigmoid function)을 이용해 기억(keeping)과 망각(forgetting) 메커니즘을 구현한 RNN
+      - 각 시그모이드 함수를 게이트(gate)라 한다.
+      - ex. LSTM은 입력(input), 출력(output), 망각(forgetting)을 조절하기 위한 3개의 게이트로 구성됨
+  - Recurrent Highway Network
+    - Highway Layer를 이용해 학습 과정(training gradient)을 안정화함
+  - gated feedback RNN
+    - 추가적인 게이트(gate)를 이용해 네트워크가 자신만의 clock rate를 학습할 수 있게 함
+  - Fast-Slow RNN
+    - 현재 SOTA RNN 언어 모델
+
+### 비 순환신경망 (Non-recurrent neural networks)
+
+- temporal convolution, 시간에 대한 1차원(one-dimensional) convolution을 이용하면 계층적인 구조(hierarchical architecture)에서 장거리 관계(long-term relation)를 잡아낼 수 있다.
+  - 감정 분석(sentiment analysis), 문장 분류(sentence classification), 기계번역(machine translation), 메타 학습(meta learning) 등에 사용됨
+- 초기 CNN 모델들은 LSTM의 성능을 따라가는데 실패했지만, 오늘날의 CNN 모델들은 RNN 모델들과 비슷한 성능을 내고, 심지어 계산하기 더 빠름
+- recurrent unit과 convolutional unit을 합치는 것도 좋은 방법
+- CNN 파생형
+  - 초기 모델
+    - Dynamic CNN
+      - 문장 의미 모델링(sentence semantic modeling)에 사용됨
+      - max pooling 도입
+      - 다양한 길이의 입출력 데이터에서 관계 탐색(relation discovery)에 성공
+  - 최근 모델
+    - ConvS2S
+      - 문장 모델링(sentence modeling)에 skip connection, 어텐션(attention) 도입
+      - 당시 SOTA 번역(translation) 성능을 달성
+    - Transformer
+      - 다중 헤드 어텐션(multi-head attention), 셀프 어텐션(self attention), 위치 정보 인코딩(position encoding) 도입
+      - 디코더(decoder)가 멀리 있는 정보에도 주의를 기울일 수 있음
+      - 품질 저하 없이 학습 시간을 비약적으로 단축
+    - BERT
+      - 심층 언어 표현 모델(deep language representation model)
+      - Transformer에 양방향 학습(bidirectional training)을 도입
+      - 11개의 NLP 과제(ex. 문장 분류(sentence classification), 문장 태깅(sentence tagging), 기계독해(question answering), 개체명 인식(named entity recognition))에 대해 SOTA 달성
+      - 고정된 컨텍스트 길이(fixed-length context), 양방향성(bidirectional nature)에 대한 제약을 해결해 언어 모델링(language modeling), 언어 생성(language generation) 등에 확장 적용
+- 시퀸스 생성(sequence generation) 속도를 올리는 과제도 중요한 과제
+  - 문제점 : 모든 자기회귀모델(autoregressive model)[^3]은 ancestral sampling[^4]을 사용하기 때문에 샘플들을 순차적으로만(sequentially) 생성할 수 있다. → 빠르고 병렬적인 샘플 생성 모델이 필요
+  - Inverse-Autoregressive Flows(IAFs)
+    - 잠재 변수(latent variable)로부터 고차원의 샘플들을 병렬적으로 생성 가능
+  - parallel WaveNet
+    - WaveNet과 IAF를 결합한 것
+    - 높은 정확도(high fidelity)의 샘플 생성 가능
+    - 음성 생성(audio generation) 분야에서 (기존 모델보다) 3000배 빠르게 동작
+
+[^3]: 이전의 자신의 관측값이 이후의 자신의 관측값에 영향을 준다는 아이디어의 모델. RNN의 아이디어와 매우 유사하다. [참고](https://yamalab.tistory.com/112)
+[^4]: 부모 노드로부터 샘플을 생성한 뒤, 생성된 부모 노드의 샘플에 대해 조건부 확률을 계산해 자식 노드의 샘플링을 수행하는 샘플 추출 기법. [참고](http://norman3.github.io/prml/docs/chapter08/1.html)
+
+### 어텐션 메커니즘 (Attention mechanism)
+
+- 기존 인코더-디코더 모델(encoder-decoder framework)의 문제점 : 디코더(decoder)는 오직 하나의 컨텍스트 벡터(context vector)에만 접근할 수 있다.
+- 어텐션 매커니즘 (attention mechanism)
+  - 텍스트를 읽을 때 사람은 시퀸스의 여러 부분에 주의를 기울이며 텍스트를 이해함 → 이를 흉내낸 매커니즘
+- early binding : $\boldsymbol{h}\_t = \textrm{RNN}(\boldsymbol{h}\_{t-1},\,[\boldsymbol{e}\_{t-1};\,\boldsymbol{c}\_t])$
+  - $\textrm{RNN}()$ : RNN 모델
+  - $\boldsymbol{h}\_t$ : 각 단계(step) $t$에서의 은닉 상태값(hidden state)
+  - $\boldsymbol{c}\_t$ : input source vector
+- input source vector
+  - 어텐션 매커니즘으로 생성된 추가적인 입력값(input)
+  - 생성 방법
+    1. 컨텐츠 기반 점수 함수(content-based scoring function)을 이용, 현재 단계(step)의 어텐션 에너지(attention energy)를 계산 : $\boldsymbol{u}\_t = \textrm{score}(F,\,\boldsymbol{h}\_{t-1})$
+    2. input source vector $c\_t$ 계산 : $c\_t = F \textrm{softmax}(\boldsymbol{u}\_t)$
+      - $F$ : 인코딩된 (전체) 시퀸스(encoded sequence)
+      - $\boldsymbol{h}\_{t-1}$ : 이전 단계(step)의 은닉 상태값(hidden state)
+      - $\boldsymbol{u}\_t$ : 어텐션 에너지(attention energy)
+      - $\textrm{score}()$ : 컨텐츠 기반 점수 함수(content-based scoring function)
+        - ex. dot-product : $\textrm{score}(F,\,\boldsymbol{h}\_{t-1}) = F^{\intercal}\boldsymbol{h}\_{t-1}$
+          - 가장 간단한 점수 함수(scoring function)
+        - ex. MLP(Multi-Layer Perceptron) : $\textrm{score}(F,\,\boldsymbol{h}\_{t-1}) = \boldsymbol{v}^{\intercal} \tanh(WF + V\boldsymbol{h}\_{t-1})$
+          - 어텐션 논문에서 사용한 점수 함수(scoring function)
+          - $V$ : expected input embedding
+- 컨텐츠 기반 어텐션 에너지(content-based attention energy)로는 다른 위치(location)에서 비슷한 내용(content)를 가지고 있는 요소(element)들을 구별하는 것이 힘들다.
+  - 컨텐츠 기반 어텐션 에너지는 각 요소(element)들에 대해 각각 점수를 계산하기 때문
+  - 해결법 : 위치에 민감한 어텐션(location sensitive attention)을 사용
+    - 위치에 민감한 어텐션(location sensitive attention)은 자기회귀적(autoregressive)으로 어텐션(attention)을 생성하기 때문
+    - 그러나 역전파(backpropagation) 중 다른 RNN을 unrolling하면 비약적으로 컴퓨팅 시간이 늘어남
+  - 해결법 : 다중 헤드 셀프 어텐션(multi-head self attention)을 이용
+    - 다중 헤드 셀프 어텐션(multi-head self attention)을 이용하면 입력 시퀸스의 각 단어들의 다른 위치에 있는 연관 컨텍스트(relevant context)를 표현할 수 있음
+- 시퀸스 모델링(sequence modeling)과 어텐션 매커니즘(attention mechanism)을 합치면 현재 SOTA 기계번역(machine translation) 성능을 얻을 수 있다.
+
+### Memory-augmented neural networks
+
