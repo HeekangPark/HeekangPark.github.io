@@ -14,6 +14,15 @@ collections:
     tags:
     - machine_learning
     - stanford
+    - lecture
+  docker:
+    category: 라이브러리 (Libraries)
+    name: docker
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - docker
+    - server
   etc:
     category: 기타 (Etc)
     name: 기타 (Etc)
@@ -44,14 +53,6 @@ collections:
     tags:
     - web
     - blog
-  machine_learning:
-    category: 기계학습 (Machine Learning)
-    name: 기계학습 (Machine Learning)
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - machine_learning
-    - lecture
   nas_ml:
     category: 기계학습 (Machine Learning)
     name: NAS
@@ -78,6 +79,15 @@ collections:
     tags:
     - programming_language
     - python
+  swe3050:
+    category: 기계학습 (Machine Learning)
+    name: 기계학습원론 (SKKU SWE3050)
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - machine_learning
+    - lecture
+    - skku
   sysdoc:
     name: sysdoc
     output: true
@@ -163,5 +173,15 @@ defaults:
 - scope:
     path: ''
     type: cs231n
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: docker
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: swe3050
   values:
     layout: document

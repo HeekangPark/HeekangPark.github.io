@@ -1,6 +1,5 @@
 ---
 title: "아나콘다(Anaconda) 리눅스(Ubuntu)에 설치하기"
-order: 14
 tags: ["anaconda", "python", "framework", "linux", "ubuntu"]
 date: "2020-08-31"
 ---
