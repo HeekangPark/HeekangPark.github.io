@@ -124,6 +124,13 @@ collections:
     - application
     - virtualbox
     - virtual_application
+  vscode:
+    category: 응용 프로그램 (Applications)
+    name: VSCode
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - vscode
   web_server:
     category: 웹 (Web)
     name: 웹 서버 (Web Server)
@@ -206,5 +213,10 @@ defaults:
 - scope:
     path: ''
     type: swe3050
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: vscode
   values:
     layout: document

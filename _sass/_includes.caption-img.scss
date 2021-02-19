@@ -26,17 +26,14 @@ figure.caption-img {
     figcaption.title {
         text-align: center;
         font-weight: bold;
-        font-size: 1em;
-        color: #000000;
-        margin: {
-            top: 10px;
-        }
+        font-size: 0.9em;
+        color: $img-caption-color;
     }
     figcaption.description {
         text-align: center;
         font-weight: normal;
         font-size: 0.9em;
-        color: #555555;
+        color: $img-caption-color;
     }
 }
 

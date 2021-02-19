@@ -231,3 +231,16 @@ tags: ["machine_learning"]
 
 ### Memory-augmented neural networks
 
+- 외부 메모리(external memory) 기법은 어텐션(attention)과 자주 함께 쓰임
+  - 외부 메모리(external memory)는 내부 상태(internal state)로 사용됨
+  - 어텐션 매커니즘(attention mechanism)은 외부 메모리(external memory)를 업데이트함 → 선택적 읽기 및 업데이트(selective reading and updating)
+- MemNN (Memory Network)
+  - RAM을 흉내냄
+  - 소프트 어텐션(soft attention)은 어드레싱(addressing)의 미분 가능한 버전(differentiable version)으로 사용됨
+- memory network는 일반적으로 다음을 입력값으로 받음
+  - 쿼리(query) $q$
+    - 범용 대화(general dialogue) 설정(setting)에서, 화자가 마지막으로 말한 말(utterance). 또는 질의응답(QA, Question Answer) 설정(setting)에서, 질문(question).
+  - 메모리 벡터(memory vector) $\boldsymbol{m}$
+    - 모델이 가지고 있던 대화 기록(dialog history)
+    - 모델이 충분히 강력할 경우 이 지식(knowledge)은 전체 코드베이스(codebase) 혹은 문서(documentation) 크기만큼 클 수 있다.
+- 
