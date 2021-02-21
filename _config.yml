@@ -1,12 +1,22 @@
 title: Reinventing the Wheel
 subtitle: Wheel's Development Blog
-baseurl: ""
+baseurl: ''
 timezone: Asia/Seoul
 plugins:
-  - jekyll-sitemap
-  - jekyll-feed
-exclude: ["run", "commit", "addCollection", "createTIL", "createRequirements", "README.md", "Gemfile", "Gemfile.lock", "_scripts", "_config", "requirements.txt"]
-
+- jekyll-sitemap
+- jekyll-feed
+exclude:
+- run
+- commit
+- updateCollection
+- createTIL
+- createRequirements
+- README.md
+- Gemfile
+- Gemfile.lock
+- _scripts
+- _config
+- requirements.txt
 assets: /assets
 layouts_dir: _layouts
 data_dir: _data
@@ -14,14 +24,20 @@ includes_dir: _includes
 collections_dir: documents
 sass:
   sass_dir: _sass
-
 markdown: kramdown
 kramdown:
-  auto_id_prefix: "kramdown_"
+  auto_id_prefix: kramdown_
   auto_ids: true
-  smart_quotes: ["apos", "apos", "quot", "quot"]
-
+  smart_quotes:
+  - apos
+  - apos
+  - quot
+  - quot
 collections:
+  sysdoc:
+    name: sysdoc
+    output: true
+    permalink: /:name
   calculus:
     category: 수학 (Mathematics)
     name: 미적분학 (Calculus)
@@ -111,10 +127,6 @@ collections:
     - machine_learning
     - lecture
     - skku
-  sysdoc:
-    name: sysdoc
-    output: true
-    permalink: /:name
   virtualbox:
     category: 응용 프로그램 (Applications)
     name: Oracle VM VirtualBox
@@ -147,57 +159,7 @@ defaults:
     layout: default
 - scope:
     path: ''
-    type: jekyll
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: web_server
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: machine_learning
-  values:
-    layout: document
-- scope:
-    path: ''
     type: calculus
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: virtualbox
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: numpy
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: nas_ml
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: javascript
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: etc
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: python
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: git
   values:
     layout: document
 - scope:
@@ -212,11 +174,56 @@ defaults:
     layout: document
 - scope:
     path: ''
+    type: etc
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: git
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: javascript
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: jekyll
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: nas_ml
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: numpy
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: python
+  values:
+    layout: document
+- scope:
+    path: ''
     type: swe3050
   values:
     layout: document
 - scope:
     path: ''
+    type: virtualbox
+  values:
+    layout: document
+- scope:
+    path: ''
     type: vscode
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: web_server
   values:
     layout: document

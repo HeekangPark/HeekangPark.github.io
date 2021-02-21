@@ -1,199 +1,113 @@
-collections:
-  calculus:
-    category: 수학 (Mathematics)
-    name: 미적분학 (Calculus)
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - math
-  cs231n:
-    category: 기계학습 (Machine Learning)
-    name: Convolutional Neural Networks for Visual Recognition
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - machine_learning
-    - stanford
-    - lecture
-  docker:
-    category: 라이브러리 (Libraries)
-    name: docker
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - docker
-    - server
-  etc:
-    category: 기타 (Etc)
-    name: 기타 (Etc)
-    output: true
-    permalink: /:collection/:name
-    tags: []
-  git:
-    category: Git
-    name: Git
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - git
-  javascript:
-    category: 프로그래밍 언어 (Programming Language)
-    name: Javascript
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - programming_language
-    - javascript
-    - js
-  jekyll:
-    category: 웹 (Web)
-    name: 지킬 (Jekyll)
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - web
-    - blog
-  nas_ml:
-    category: 기계학습 (Machine Learning)
-    name: NAS
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - library
-    - numpy
-    - python
-  numpy:
-    category: 라이브러리 (Libraries)
-    name: Numpy
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - library
-    - numpy
-    - python
-  python:
-    category: 프로그래밍 언어 (Programming Language)
-    name: 'Re : 제로부터 배우는 파이썬'
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - programming_language
-    - python
-  swe3050:
-    category: 기계학습 (Machine Learning)
-    name: 기계학습원론 (SKKU SWE3050)
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - machine_learning
-    - lecture
-    - skku
-  sysdoc:
-    name: sysdoc
-    output: true
-    permalink: /:name
-  virtualbox:
-    category: 응용 프로그램 (Applications)
-    name: Oracle VM VirtualBox
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - application
-    - virtualbox
-    - virtual_application
-  vscode:
-    category: 응용 프로그램 (Applications)
-    name: VSCode
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - vscode
-  web_server:
-    category: 웹 (Web)
-    name: 웹 서버 (Web Server)
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - web
-    - server
-defaults:
-- scope:
-    path: ''
-    type: sysdoc
-  values:
-    layout: default
-- scope:
-    path: ''
-    type: jekyll
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: web_server
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: machine_learning
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: calculus
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: virtualbox
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: numpy
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: nas_ml
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: javascript
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: etc
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: python
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: git
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: cs231n
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: docker
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: swe3050
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: vscode
-  values:
-    layout: document
+calculus:
+  category: 수학 (Mathematics)
+  name: 미적분학 (Calculus)
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - math
+cs231n:
+  category: 기계학습 (Machine Learning)
+  name: Convolutional Neural Networks for Visual Recognition
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - machine_learning
+  - stanford
+  - lecture
+docker:
+  category: 라이브러리 (Libraries)
+  name: docker
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - docker
+  - server
+etc:
+  category: 기타 (Etc)
+  name: 기타 (Etc)
+  output: true
+  permalink: /:collection/:name
+  tags: []
+git:
+  category: Git
+  name: Git
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - git
+javascript:
+  category: 프로그래밍 언어 (Programming Language)
+  name: Javascript
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - programming_language
+  - javascript
+  - js
+jekyll:
+  category: 웹 (Web)
+  name: 지킬 (Jekyll)
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - web
+  - blog
+nas_ml:
+  category: 기계학습 (Machine Learning)
+  name: NAS
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - library
+  - numpy
+  - python
+numpy:
+  category: 라이브러리 (Libraries)
+  name: Numpy
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - library
+  - numpy
+  - python
+python:
+  category: 프로그래밍 언어 (Programming Language)
+  name: 'Re : 제로부터 배우는 파이썬'
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - programming_language
+  - python
+swe3050:
+  category: 기계학습 (Machine Learning)
+  name: 기계학습원론 (SKKU SWE3050)
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - machine_learning
+  - lecture
+  - skku
+virtualbox:
+  category: 응용 프로그램 (Applications)
+  name: Oracle VM VirtualBox
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - application
+  - virtualbox
+  - virtual_application
+vscode:
+  category: 응용 프로그램 (Applications)
+  name: VSCode
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - vscode
+web_server:
+  category: 웹 (Web)
+  name: 웹 서버 (Web Server)
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - web
+  - server

@@ -25,27 +25,12 @@ fi
 if [ -f "$draft_sysdoc_hidden" ]
 then 
     mv "$draft_sysdoc_hidden" "$draft_sysdoc_exposed"
-    echo -e "\033[32mdraft sysdoc activated\033[0m"
+    echo -e "\033[32mdocuments/_sysdoc/draft.html activated\033[0m"
 fi
 
 unset draft_dir
 unset draft_sysdoc_hidden
 unset draft_sysdoc_exposed
-
-# Create _config.yml
-config_file="_config.yml"
-
-if [ -f "$config_file" ]
-then 
-    rm "$config_file"
-fi
-
-touch _config.yml
-cat "_config/others.yml" >> "$config_file"
-cat "_config/collections.yml" >> "$config_file"
-
-echo -e "\033[32m_config.yml created\033[0m"
-unset config_file
 
 # Run Server
 bundle exec jekyll serve --host 172.26.0.1 --port 4000
