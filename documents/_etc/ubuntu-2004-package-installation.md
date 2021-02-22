@@ -46,7 +46,81 @@ $ sudo apt install -y google-chrome-stable
 
 오피스 프로그램은 Microsoft에서 만든 MS Office가 최고다. 하지만 MS Office는 Ubuntu 20.04에 설치하지 못한다. Wine을 사용해 .exe 버전을 설치하거나 LibreOffice같은 대체품을 쓰는 방법이 있긴 한데, Wine으로 설치하는 것은 속도와 안정성 문제가 있고, MS Office 대체품들은 MS Office에 비해 압도적으로 편리성/기능성이 낮다는 문제가 있다.~~돈받고 파는건데 그정도는 해 줘야지~~
 
-인터넷 조사 결과 Ubuntu 20.04에서 MS Office를 쓰는 가장 그럴듯한 방법은 Office 365를 구독하고 Chrome 확장 프로그램 [Office](https://chrome.google.com/webstore/detail/office/ndjpnladcallmjemlbaebfadecfhkepb)를 설치하는 것으로 보인다. 해당 확장 프로그램을 설치하고, 작업할 문서를 OneDrive에 업로드하면 웹 브라우저를 통해 MS Office를 쓸 수 있다.
+인터넷 조사 결과 Ubuntu 20.04에서 MS Office를 쓰는 가장 그럴듯한 방법은 Office 365를 이용해 웹 브라우저에서 MS Office를 사용하는 것이다. 이때 귀찮은게 매번 OneDrive에 읽고 수정할 MS Office 파일을 올리는 것인데, 이는 [OneDrive 클라이언트](#kramdown_onedrive-client-for-linux-onedrive-클라이언트)를 사용하면 조금 편해진다. OneDrive와 동기화되고 있는 디렉토리에 파일을 던져놓으면 OneDrive Client가 이를 OneDrive로 동기화시켜주고, 이를 웹 브라우저에서 Office 365를 이용해 읽고 편집할 수 있게 되는 식이다.
+
+# OneDrive Client for Linux (OneDrive 클라이언트)
+
+2021년 2월 현재 `apt`에 기본적으로 등록되어 있는 OneDrive는 버전이 너무 낮아 로그인이 되지 않는다. 다행히 한 개발자 분이 [OneDrive Client for Linux](https://abraunegg.github.io/)라는 Linux용 오픈소스 OneDrive 클라이언트를 배포했으므로 이를 설치하자. [Github Link](https://github.com/abraunegg/onedrive)
+
+{% highlight bash %}
+$ sudo add-apt-repository ppa:yann1ck/onedrive
+$ sudo apt update
+$ sudo apt install -y onedrive
+{% endhighlight %}
+
+OneDrive Client for Linux를 사용하려면 우선 Microsoft 계정으로 로그인해야 한다. OneDrive Client for Linux 설치 후 다음 명령어를 입력하면 로그인을 위한 URL이 뜬다.[^2]
+
+[^2]: 로그인에 성공했다면 뜨지 않는다.
+
+{% highlight bash %}
+$ onedrive
+{% endhighlight %}
+
+{: .code-result .code-result-example}
+{% highlight text %}
+Configuring Global Azure AD Endpoints
+Authorize this app visiting:
+
+https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=a123-b456-c789-d0&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.Read.All%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient
+
+Enter the response uri: 
+{% endhighlight %}
+
+`Authorize this app visiting:`의 URL을 복사해 웹 브라우저에서 접속하면 Microsoft 계정으로 로그인을 진행할 수 있다. 로그인 후 앱의 사용 권한을 허가해주면 빈 화면이 나오는데, 당황하지 말고 해당 빈 화면의 URL을 복사해 `Enter the response uri:`에 입력하면 로그인이 된다.
+
+이제 OneDrive Client for Linux를 설정값들을 조정해보자. 현재 OneDrive Client for Linux가 사용중인 설정값은 `--display-config` 옵션으로 읽을 수 있다.
+
+{% highlight bash %}
+$ onedrive --display-config
+{% endhighlight %}
+
+{: .code-result .code-result-example}
+{% highlight text %}
+onedrive version                       = vX.Y.Z-A-bcdefghi
+Config path                            = /home/alex/.config/onedrive
+Config file found in config path       = false
+Config option 'check_nosync'           = false
+Config option 'sync_dir'               = /home/alex/OneDrive
+Config option 'skip_dir'               = 
+Config option 'skip_file'              = ~*|.~*|*.tmp
+Config option 'skip_dotfiles'          = false
+Config option 'skip_symlinks'          = false
+Config option 'monitor_interval'       = 300
+Config option 'min_notify_changes'     = 5
+Config option 'log_dir'                = /var/log/onedrive/
+Config option 'classify_as_big_delete' = 1000
+Config option 'sync_root_files'        = false
+Selective sync configured              = false
+{% endhighlight %}
+
+아무런 조작도 하지 않을 경우 OneDrive Client for Linux는 기본값을 사용한다.[^3] 만약 특별한 설정을 하고 싶다면 `~/.config/onedrive/config` 파일에 해당 설정값을 저장하면 된다.[^4] 예를 들어 동기화되는 디렉토리를 `~/clouds/OneDrive/`로 변경하고 싶은 경우[^5], 다음 명령어를 입력하면 된다.
+
+[^3]: 기본값 목록은 [여기](https://raw.githubusercontent.com/abraunegg/onedrive/master/config)에서 볼 수 있다.
+[^4]: `~/.config/onedrive/config` 파일은 기본적으로 존재하지 않으므로 직접 만들어야 한다.
+[^5]: 기본값은 `~/OneDrive/`이다.
+
+{% highlight bash %}
+$ rm ~/.config/onedrive/config  # 기존 config 삭제
+$ touch ~/.config/onedrive/config  # config 새로 생성
+$ echo "sync_dir = \"~/clouds/OneDrive\"" >> ~/.config/onedrive/config  # sync_dir 설정 추가
+{% endhighlight %}
+
+이제부터 OneDrive와 동기화를 해 보자. OneDrive Client for Linux는 동기화를 위한 두 가지 옵션이 있다. 첫 번째는 `--synchronize` 옵션으로, 원격 OneDrive에서 로컬 OneDrive 디렉토리로 1회 동기화(다운로드)한다. 두 번째는 `--monitor` 옵션으로, 로컬 디렉토리가 변경되는 것을 감지하고 주기적으로 계속 동기화한다.
+
+{% highlight bash %}
+$ onedrive --synchronize
+$ onedrive --monitor
+{% endhighlight %}
 
 # 한컴오피스 한글 뷰어 (hwp 뷰어)
 
