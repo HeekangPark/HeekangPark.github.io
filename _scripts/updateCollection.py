@@ -1,6 +1,7 @@
 import os
 import copy
 import yaml
+import shutil
 from prompt_toolkit import prompt, Application, print_formatted_text
 from prompt_toolkit.formatted_text import FormattedText
 from prompt_toolkit.styles import Style
@@ -144,53 +145,54 @@ class ConfirmValidator(Validator):
         if result.lower() not in ["y", "n", ""]:
             raise ValidationError(message="Invalid input! Only \"\\n\"(yes), \"y\"(yes), \"n\"(no) are available.")
 
-def readCollections():
+def readConfig():
     with open(collections_config_file, "r", encoding="UTF-8") as f:
         collections = yaml.load(f, Loader=yaml.FullLoader)
-    return collections
+    
+    with open(others_config_file, "r", encoding="UTF-8") as f:
+        config = yaml.load(f, Loader=yaml.FullLoader)
 
-def writeConfig(collections):
-    try:
-        # write on _config/collections.yml
-        with open(collections_config_file, "w", encoding="UTF-8") as f:
-            yaml.dump(collections, f, allow_unicode=True)
+    return collections, config
 
-        # read _config/others.yml
-        with open(others_config_file, "r", encoding="UTF-8") as f:
-            config = yaml.load(f, Loader=yaml.FullLoader)
+def writeConfig(collections, config):
+    # merge config and collections
+    if "collections" in config.keys():
+        config["collections"].update(collections)
+    else:
+        config["collections"] = collections
+
+    # add defaults
+    if "defaults" not in config.keys():
+        config["defaults"] = []
+    
+    skip_defaults_labels = [item["scope"]["type"] for item in config["defaults"] if "scope" in item.keys() and "type" in item["scope"].keys()]
         
-        # merge _config/others.yml and collections
-        if "collections" in config.keys():
-            config["collections"].update(collections)
-        else:
-            config["collections"] = collections
+    config["defaults"].extend([{
+        "scope": {
+            "path": "",
+            "type": label
+        },
+        "values": {
+            "layout": "document"
+        }
+    } for label in collections.keys() if label not in skip_defaults_labels])
 
-        # add defaults
-        if "defaults" not in config.keys():
-            config["defaults"] = []
-            
-        config["defaults"].extend([{
-            "scope": {
-                "path": "",
-                "type": label
-            },
-            "values": {
-                "layout": "document"
-            }
-        } for label in collections.keys()])
+    # write on _config/collections.yml
+    with open(collections_config_file, "w", encoding="UTF-8") as f:
+        yaml.dump(collections, f, allow_unicode=True)
 
-        # write on _config.yml
-        with open(config_file, "w", encoding="UTF-8") as f:
-            yaml.dump(config, f, allow_unicode=True, sort_keys=False)
-    except:
-        raise
+    # write on _config.yml
+    with open(config_file, "w", encoding="UTF-8") as f:
+        yaml.dump(config, f, allow_unicode=True, sort_keys=False)
 
-def getUserInput_label(collections, label_hint=None):
+def getUserInput_label(collections, config, label_hint=None):
     class LabelValidator(Validator):
         def validate(self, document) -> None:
             label = document.text
             if len(label) == 0:
                 raise ValidationError(message="Label cannot be an empty string.")
+            elif label in config["collections"].keys():
+                raise ValidationError(message="Label already exists. Try another label.")
             elif label in collections.keys():
                 if label_hint is None:
                     raise ValidationError(message="Label already exists. Try another label.")
@@ -207,17 +209,23 @@ def getUserInput_label(collections, label_hint=None):
             ("class:question", "Collection label? ")
         ], style=style, default=label_hint, validator=LabelValidator())
 
-def getUserInput_name(name_hint=None):
+def getUserInput_name(collections, config, name_hint=None):
+    class NameValidator(Validator):
+        def validate(self, document) -> None:
+            name = document.text
+            if len(name) == 0:
+                raise ValidationError(message="Name cannot be an empty string.")
+
     if name_hint is None:
         return prompt([
             ("class:question", "Collection name? ")
-        ], style=style)
+        ], style=style, validator=NameValidator())
     else:
         return prompt([
             ("class:question", "Collection name? ")
-        ], style=style, default=name_hint)
+        ], style=style, default=name_hint, validator=NameValidator())
 
-def getUserInput_category(collections, category_hint=None):
+def getUserInput_category(collections, config, category_hint=None):
     categories = list(set([collection["category"] for collection in collections.values() if "category" in collection.keys()]))
     categories.append("직접 입력...")
 
@@ -233,7 +241,7 @@ def getUserInput_category(collections, category_hint=None):
 
     return category["value"]
 
-def getUserInput_tags(tags_hint=None):
+def getUserInput_tags(collections, config, tags_hint=None):
     if tags_hint is None:
         raw_input = prompt([
             ("class:question", "Category tags? ")
@@ -245,57 +253,60 @@ def getUserInput_tags(tags_hint=None):
 
     return sorted(list(filter(lambda x: len(x) != 0, set([x.strip() for x in raw_input.split(",")]))))
 
-def addCollection(collections):
-    collection_label = getUserInput_label(collections=collections)
-    collection_name = getUserInput_name(name_hint=collection_label)
-    collection_category = getUserInput_category(collections=collections)
-    collection_tags = getUserInput_tags()
+def addCollection(collections, config):
+    new_collection_label = getUserInput_label(collections=collections, config=config)
+    new_collection_name = getUserInput_name(collections=collections, config=config, name_hint=new_collection_label)
+    new_collection_category = getUserInput_category(collections=collections, config=config)
+    new_collection_tags = getUserInput_tags(collections=collections, config=config)
 
     confirm_result = prompt([
         ("class:question", "====================\n"),
         ("class:question", "Collection\n"),
-        ("", f"  label:    {collection_label}\n"),
-        ("", f"  name:     {collection_name}\n"),
-        ("", f"  category: {collection_category}\n"),
-        ("", f"  tags:     {collection_tags}\n"),
+        ("", f"  label:    {new_collection_label}\n"),
+        ("", f"  name:     {new_collection_name}\n"),
+        ("", f"  category: {new_collection_category}\n"),
+        ("", f"  tags:     {new_collection_tags}\n"),
         ("class:question", "will be added. Continue? (Y/n) ")
     ], style=style, validator=ConfirmValidator())
 
     if confirm_result.lower() in ["y", ""]:
-        collections[collection_label] = {
+        collections[new_collection_label] = {
             "output": True,
             "permalink": "/:collection/:name",
-            "name": collection_name,
-            "category": collection_category,
-            "tags": collection_tags
+            "name": new_collection_name,
+            "category": new_collection_category,
+            "tags": new_collection_tags
         }
 
-        # create directory under documents/
-        directory = f"documents/_{collection_label}"
+        # create directory
+        directory = f"documents/_{new_collection_label}"
         if not os.path.exists(directory):
             os.makedirs(directory)
+    
+    return collections, config
 
-    return collections
-
-def modifyCollection(collections):
+def modifyCollection(collections, config):
     collection_labels = list(collections.keys())
     selected = ChoicePromptControl(prompt="Collection to modify? (name [label])", choices=[f"{collections[label]['name']} [{label}]" for label in collection_labels]).run()
     
-    collection_label = collection_labels[selected["index"]]
-    collection = collections[collection_label]
+    old_collection_label = collection_labels[selected["index"]]
+    old_collection = collections[old_collection_label]
+    old_collection_name = old_collection["name"]
+    old_collection_category = old_collection["category"]
+    old_collection_tags = old_collection["tags"]
 
-    new_collection_label = getUserInput_label(collections=collections, label_hint=collection_label)
-    new_collection_name = getUserInput_name(name_hint=collection["name"])
-    new_collection_category = getUserInput_category(collections=collections, category_hint=collection["category"])
-    new_collection_tags = getUserInput_tags(tags_hint=collection["tags"])
+    new_collection_label = getUserInput_label(collections=collections, config=config, label_hint=old_collection_label)
+    new_collection_name = getUserInput_name(collections=collections, config=config, name_hint=old_collection_name)
+    new_collection_category = getUserInput_category(collections=collections, config=config, category_hint=old_collection_category)
+    new_collection_tags = getUserInput_tags(collections=collections, config=config, tags_hint=old_collection_tags)
 
     confirm_result = prompt([
         ("class:question", "====================\n"),
         ("class:question", "Collection\n"),
-        ("", f"  label:    {collection_label}\n"),
-        ("", f"  name:     {collection['name']}\n"),
-        ("", f"  category: {collection['category']}\n"),
-        ("", f"  tags:     {collection['tags']}\n"),
+        ("", f"  label:    {old_collection_label}\n"),
+        ("", f"  name:     {old_collection_name}\n"),
+        ("", f"  category: {old_collection_category}\n"),
+        ("", f"  tags:     {old_collection_tags}\n"),
         ("class:question", "will be modified to\n"),
         ("", f"  label:    {new_collection_label}\n"),
         ("", f"  name:     {new_collection_name}\n"),
@@ -305,8 +316,8 @@ def modifyCollection(collections):
     ], style=style, validator=ConfirmValidator())
 
     if confirm_result.lower() in ["y", ""]:
-        # delete old data
-        del collections[collection_label]
+        # delete old collection
+        del collections[old_collection_label]
 
         # add new data
         collections[new_collection_label] = {
@@ -317,52 +328,81 @@ def modifyCollection(collections):
             "tags": new_collection_tags
         }
 
-        # rename directory under documents/
-        old_directory = f"documents/_{collection_label}"
+        # rename directories
+        old_directory = f"documents/_{old_collection_label}"
         new_directory = f"documents/_{new_collection_label}"
         if os.path.exists(old_directory):
             os.rename(old_directory, new_directory)
 
-    return collections
+        old_directory = f"assets/img/{old_collection_label}"
+        new_directory = f"assets/img/{new_collection_label}"
+        if os.path.exists(old_directory):
+            os.rename(old_directory, new_directory)
 
-def deleteCollection(collections):
+        old_directory = f"assets/etc/{old_collection_label}"
+        new_directory = f"assets/etc/{new_collection_label}"
+        if os.path.exists(old_directory):
+            os.rename(old_directory, new_directory)
+
+    return collections, config
+
+def deleteCollection(collections, config):
+    def deleteDirectoryWithConfirmation(directory):
+        if os.path.exists(directory):
+            if len(os.listdir(directory)) == 0: # if directory is empty, delete without confirmation
+                os.rmdir(directory)
+            else:
+                confirm_result = prompt([
+                    ("class:question", f"Delete directory {directory}? Directory is not empty. (y/N) ")
+                ], style=style, validator=ConfirmValidator())
+
+                if confirm_result.lower() == "y":
+                    shutil.rmtree(directory)
+
     collection_labels = list(collections.keys())
     selected = ChoicePromptControl(prompt="Collection to delete? (name [label])", choices=[f"{collections[label]['name']} [{label}]" for label in collection_labels]).run()
     
-    collection_label = collection_labels[selected["index"]]
-    collection = collections[collection_label]
+    old_collection_label = collection_labels[selected["index"]]
+    old_collection = collections[old_collection_label]
+    old_collection_name = old_collection["name"]
+    old_collection_category = old_collection["category"]
+    old_collection_tags = old_collection["tags"]
 
     confirm_result = prompt([
         ("class:question", "====================\n"),
         ("class:question", "Collection\n"),
-        ("", f"  label:    {collection_label}\n"),
-        ("", f"  name:     {collection['name']}\n"),
-        ("", f"  category: {collection['category']}\n"),
-        ("", f"  tags:     {collection['tags']}\n"),
+        ("", f"  label:    {old_collection_label}\n"),
+        ("", f"  name:     {old_collection_name}\n"),
+        ("", f"  category: {old_collection_category}\n"),
+        ("", f"  tags:     {old_collection_tags}\n"),
         ("class:question", "will be deleted. Continue? (Y/n) ")
     ], style=style, validator=ConfirmValidator())
 
     if confirm_result.lower() in ["y", ""]:
-        del collections[collection_label]
+        del collections[old_collection_label]
 
-    return collections
+        deleteDirectoryWithConfirmation(f"documents/_{old_collection_label}")
+        deleteDirectoryWithConfirmation(f"assets/img/{old_collection_label}")
+        deleteDirectoryWithConfirmation(f"assets/etc/{old_collection_label}")
+
+    return collections, config
 
 if __name__ == "__main__":
-    collections = readCollections()
+    collections, config = readConfig()
     old_collections = copy.deepcopy(collections)
 
     try:
         menu = ChoicePromptControl(prompt="What to do?", choices=["Collection 추가하기", "Collection 변경하기", "Collection 삭제하기", "종료"]).run()
 
         if menu["index"] == 0:
-            collections = addCollection(collections)
+            collections, config = addCollection(collections=collections, config=config)
         elif menu["index"] == 1:
-            collections = modifyCollection(collections)
+            collections, config = modifyCollection(collections=collections, config=config)
         elif menu["index"] == 2:
-            collections = deleteCollection(collections)
+            collections, config = deleteCollection(collections=collections, config=config)
 
         if menu["index"] != 3: # don't need to write _config.yml if "종료" is selected
-            writeConfig(collections)
+            writeConfig(collections=collections, config=config)
     except KeyboardInterrupt:
         print_formatted_text(FormattedText([
             ("class:error", "Script aborted.")
