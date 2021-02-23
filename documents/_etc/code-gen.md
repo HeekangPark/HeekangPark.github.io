@@ -147,18 +147,17 @@ tags: ["machine_learning"]
 - 순수한 RNN의 문제점
   - 학습이 어려움
   - 다양한 시간 간격(scale)에 있는 과거의 정보를 유지하고 있기 힘듦
-- RNN 파생형
-  - Gated RNN
-    - ex. LSTM(Long Short-Term Memory), GRU(Gated Recurrent Unit)
-    - 시그모이드 함수(sigmoid function)을 이용해 기억(keeping)과 망각(forgetting) 메커니즘을 구현한 RNN
-      - 각 시그모이드 함수를 게이트(gate)라 한다.
-      - ex. LSTM은 입력(input), 출력(output), 망각(forgetting)을 조절하기 위한 3개의 게이트로 구성됨
-  - Recurrent Highway Network
-    - Highway Layer를 이용해 학습 과정(training gradient)을 안정화함
-  - gated feedback RNN
-    - 추가적인 게이트(gate)를 이용해 네트워크가 자신만의 clock rate를 학습할 수 있게 함
-  - Fast-Slow RNN
-    - 현재 SOTA RNN 언어 모델
+- Gated RNN
+  - ex. [LSTM(Long Short-Term Memory)](https://www.bioinf.jku.at/publications/older/2604.pdf), [GRU(Gated Recurrent Unit)](https://arxiv.org/abs/1412.3555)
+  - 시그모이드 함수(sigmoid function)을 이용해 기억(keeping)과 망각(forgetting) 메커니즘을 구현한 RNN
+    - 각 시그모이드 함수를 게이트(gate)라 한다.
+    - ex. LSTM은 입력(input), 출력(output), 망각(forgetting)을 조절하기 위한 3개의 게이트로 구성됨
+- [Recurrent Highway Network](https://arxiv.org/abs/1607.03474)
+  - Highway Layer를 이용해 학습 과정(training gradient)을 안정화함
+- [gated feedback RNN](https://arxiv.org/abs/1502.02367)
+  - 추가적인 게이트(gate)를 이용해 네트워크가 자신만의 clock rate를 학습할 수 있게 함
+- [Fast-Slow RNN](https://arxiv.org/abs/1705.08639)
+  - 현재 SOTA RNN 언어 모델
 
 ### 비 순환신경망 (Non-recurrent neural networks)
 
@@ -168,28 +167,38 @@ tags: ["machine_learning"]
 - recurrent unit과 convolutional unit을 합치는 것도 좋은 방법
 - CNN 파생형
   - 초기 모델
-    - Dynamic CNN
+    - [Kalchbrenner와 Blunsom의 모델](https://www.aclweb.org/anthology/D13-1176.pdf)
+      - 대화 생성(dialogue generation) 모델
+      - CNN을 인코더(encoder)로, RNN을 디코더(decoder)로 사용
+    - [Dynamic CNN](https://arxiv.org/abs/1404.2188)
       - 문장 의미 모델링(sentence semantic modeling)에 사용됨
       - max pooling 도입
       - 다양한 길이의 입출력 데이터에서 관계 탐색(relation discovery)에 성공
   - 최근 모델
-    - ConvS2S
+    - [Kalchbrenner의 모델](https://arxiv.org/abs/1610.10099)
+      - 기계 번역(neural machine translation) 모델
+      - masked covolution layer를 디코더(decoder)로 사용
+    - [ConvS2S](https://arxiv.org/abs/1705.03122)
       - 문장 모델링(sentence modeling)에 skip connection, 어텐션(attention) 도입
       - 당시 SOTA 번역(translation) 성능을 달성
-    - Transformer
+    - [He의 모델](https://arxiv.org/abs/1711.01577)
+      - RNN을 쌓은 것(stacked RNN)에 cross-layer convolution을 추가하여 입출력값 간 연관성(correlation)을 강화
+    - [Transformer](https://arxiv.org/abs/1706.03762)
       - 다중 헤드 어텐션(multi-head attention), 셀프 어텐션(self attention), 위치 정보 인코딩(position encoding) 도입
       - 디코더(decoder)가 멀리 있는 정보에도 주의를 기울일 수 있음
       - 품질 저하 없이 학습 시간을 비약적으로 단축
-    - BERT
+    - [BERT](https://arxiv.org/abs/1810.04805)
       - 심층 언어 표현 모델(deep language representation model)
       - Transformer에 양방향 학습(bidirectional training)을 도입
       - 11개의 NLP 과제(ex. 문장 분류(sentence classification), 문장 태깅(sentence tagging), 기계독해(question answering), 개체명 인식(named entity recognition))에 대해 SOTA 달성
       - 고정된 컨텍스트 길이(fixed-length context), 양방향성(bidirectional nature)에 대한 제약을 해결해 언어 모델링(language modeling), 언어 생성(language generation) 등에 확장 적용
 - 시퀸스 생성(sequence generation) 속도를 올리는 과제도 중요한 과제
   - 문제점 : 모든 자기회귀모델(autoregressive model)[^3]은 ancestral sampling[^4]을 사용하기 때문에 샘플들을 순차적으로만(sequentially) 생성할 수 있다. → 빠르고 병렬적인 샘플 생성 모델이 필요
-  - Inverse-Autoregressive Flows(IAFs)
+  - [Gu의 모델](https://arxiv.org/abs/1711.02281)
+    - 출생률(fertility)를 표현하는 숨어있는 변수(latent variable)을 샘플링해 비-자기회귀 학습(non-autoregressive learning)이 가능하게 함
+  - [Inverse-Autoregressive Flows(IAFs)](https://arxiv.org/abs/1606.04934)
     - 잠재 변수(latent variable)로부터 고차원의 샘플들을 병렬적으로 생성 가능
-  - parallel WaveNet
+  - [parallel WaveNet](https://arxiv.org/abs/1711.10433)
     - WaveNet과 IAF를 결합한 것
     - 높은 정확도(high fidelity)의 샘플 생성 가능
     - 음성 생성(audio generation) 분야에서 (기존 모델보다) 3000배 빠르게 동작
@@ -234,13 +243,60 @@ tags: ["machine_learning"]
 - 외부 메모리(external memory) 기법은 어텐션(attention)과 자주 함께 쓰임
   - 외부 메모리(external memory)는 내부 상태(internal state)로 사용됨
   - 어텐션 매커니즘(attention mechanism)은 외부 메모리(external memory)를 업데이트함 → 선택적 읽기 및 업데이트(selective reading and updating)
-- MemNN (Memory Network)
+- 메모리 네트워크(memory network)
+  - 일반적으로 다음을 입력값으로 받음
+    - 쿼리(query) $q$
+      - 범용 대화(general dialogue) 설정(setting)의 경우 : 화자가 마지막으로 말한 말(utterance)
+      - 질의응답(QA, Question Answer) 설정(setting)의 경우 : 질문(question)
+    - 메모리 벡터(memory vector) $\boldsymbol{m}$
+      - 모델이 가지고 있던 대화 기록(dialog history)
+      - 모델이 충분히 강력할 경우 이 지식(knowledge)은 전체 코드베이스(codebase) 혹은 문서(documentation) 크기만큼 클 수 있다.
+  - 일반적으로 다음 모듈(module)들을 가짐
+    - 인코더(encoder)
+      - $q$를 벡터(vector)로 변환
+      - RNN 또는 워드 임베딩(word embedding)으로 구현
+    - 메모리 모듈(memory module) $M$
+      - $\boldsymbol{m}$에서 $q$와 관련된 최고의 부분(best part)를 찾음
+      - 이 과정을 어드레싱 단계(addressing stage)라 함
+    - 컨트롤러 모듈(controller module) $C$
+      - $q$를 $M$으로 전송하고, 관련 메모리(relevant memory)를 다시 읽어들여 현재 상태(current state)에 추가
+      - 일반적으로는 이 과정이 계속 반복되게(cycle) 함으로서 복잡한 추리(reasoning)가 가능케 함
+    - 디코더(decoder)
+      - 마지막 단계에서, 출력값(output)을 생성
+- [MemNN(Memory Network)](https://arxiv.org/abs/1410.3916)
   - RAM을 흉내냄
-  - 소프트 어텐션(soft attention)은 어드레싱(addressing)의 미분 가능한 버전(differentiable version)으로 사용됨
-- memory network는 일반적으로 다음을 입력값으로 받음
-  - 쿼리(query) $q$
-    - 범용 대화(general dialogue) 설정(setting)에서, 화자가 마지막으로 말한 말(utterance). 또는 질의응답(QA, Question Answer) 설정(setting)에서, 질문(question).
-  - 메모리 벡터(memory vector) $\boldsymbol{m}$
-    - 모델이 가지고 있던 대화 기록(dialog history)
-    - 모델이 충분히 강력할 경우 이 지식(knowledge)은 전체 코드베이스(codebase) 혹은 문서(documentation) 크기만큼 클 수 있다.
-- 
+  - 어드레싱(addressing)에 소프트 어텐션(soft attention)을 사용
+  - 학습과정은 완전지도(fully supervised) 방식
+    - 메모리의 최고의 부분(best part)을 표시한 레이블이 메모리 어드레싱(memory addressing)의 모든 단계에 주어짐
+- [End-to-End Memory Network](https://arxiv.org/abs/1503.08895)
+  - 메모리 어드레싱(memory addressing)에 소프트 어텐션(soft attention)을 사용
+    - 역전파(backpropagation) 과정에서 어텐션(attention)을 학습할 수 있게 함
+  - 출력값(output)만 지도(supervision)하면 됨
+- [Millor의 모델](https://arxiv.org/abs/1606.03126)
+  - 쿼리(query)와 상태(state)를 모두 매치시키기 위해 하나의 메모리 유닛(memory unit)을 쓰는 것은 표현력(expressiveness)이 낮음 → 메모리(memory)를 키-값 쌍(key-value pair)으로 나눔
+    - 사전 지식(prior knowledge) 인코딩 성공
+- [Recurrent Entity Network](https://arxiv.org/abs/1612.03969)
+  - 에이전트(agent)가 진리(fact)를 찾을 수 있게 메모리(memory)에 읽고 쓰는 것을 학습하게 해 메모리 유닛(memory unit)의 성능을 올림
+- [Weston의 모델](https://arxiv.org/abs/1604.06045)
+  - Recurrent Entity Network에 정답(answer)과 에측 응답(predict reply)을 생성하는 새로운 계층을 추가하여 비지도학습(unsupervised learning)이 가능하도록 일반화
+  - 12개의 간단한 bAbI 추론(reasoning) 과제, 아동용 도서 읽기, 영화의 실제 대화 이해하기 등의 과제에 대해 평가됨(사용됨)
+- 최근 연구들은 SGD를 통한 모델 최적화가 가능해지도록 전동척인 메모리 패러다임(memory paradigm)이 미분 가능하게(differentiable) 만들려 하고 있음
+- end-to-end 학습이 가능한 모델은 알고리즘적 학습(algorithmic learning)을 조정하거나, 언어 이해(language understanding), 프로그램 생성(program induction) 등과 같은 추론 과제(reasoning task)에 사용됨
+
+### beam 탐색(beam search)
+
+- 문제점 : 높은 확률(probability)로 최고로 디코딩된 결과(best-decoded result)를 탐색하는 것은 계산적으로 어려움(computationally intractable)
+  - 한 가지 해법 : 디코딩(decoding) 과정에서 매 시간 간격(time step)마다 가장 높은 출력 확률(output probability)을 가진 단어(word)/토큰(token)을 선택
+    - 문제점 : 차선의 결과(sub-optimum result)밖에 못 찾을 확률이 큼
+- 따라서 기계번역(machine translation) 분야에서는 휴리스틱 탐색 기법으로 beam 탐색(beam search)를 많이 씀
+  - 기존 방법
+    - 다음 단어를 선택할 때, 가장 높은 확률(possibility)을 바로 선택
+  - beam 탐색
+    - 이전의 가장 그럴듯한 부분 번역(partial translation)들의 목록을 보관
+    - 현재 단계에서 선택된 단어(word)/토큰(token)을 위 목록 각각에 붙여 점수를 다시 계산(re-rank)
+    - beam 크기(beam size) : 각 시간 단계(time step)에서의 목록의 길이
+- beam 탐색을 쓰면 기계번역 성능이 높아짐
+- 기계번역 성능은 beam 크기(beam size)에 영향을 많이 받음
+
+## 딥러닝 모델을 이용한 입력값 임베딩(Input embedding of deep learning model)
+
