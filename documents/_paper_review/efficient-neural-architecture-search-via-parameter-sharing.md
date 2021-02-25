@@ -1,6 +1,5 @@
 ---
 title: "ENAS (Efficient Neural Architecture Search)"
-order: 2
 date: "2020-09-24"
 ---
 
@@ -8,7 +7,7 @@ ENAS(Efficient Neural Architecture Search)는 의 논문 \<Efficient Neural Arch
 
 # 논문 분석
 
-Hieu Pham, Melody Y. Guan, Barret Zoph, Quoc V. Le, Jeff Dean, \<Efficient Neural Architecture Search via Parameter Sharing\>, PMLR 80:4095-4104, 2018
+[Hieu Pham, Melody Y. Guan, Barret Zoph, Quoc V. Le, Jeff Dean, \<Efficient Neural Architecture Search via Parameter Sharing\>, PMLR 80:4095-4104, 2018](https://arxiv.org/abs/1802.03268)
 
 ## Introduction
 

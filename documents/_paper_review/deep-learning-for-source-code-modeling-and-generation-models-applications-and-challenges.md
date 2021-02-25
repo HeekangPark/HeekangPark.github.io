@@ -1,10 +1,10 @@
 ---
 title: "Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges"
 date: "2021-02-08"
-tags: ["machine_learning"]
+tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code_generation", "review_paper"]
 ---
 
-논문 Triet H. M. Le, Hao Chen, Muhammad Ali Babar, 2020, "Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges" 정리
+논문 [Triet H. M. Le, Hao Chen, Muhammad Ali Babar, 2020, "Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges"](https://arxiv.org/abs/2002.05442) 정리
 
 # 서론 (Introduction)
 
@@ -125,7 +125,7 @@ tags: ["machine_learning"]
 
 - 인코더-디코더 구조(encoder-decoder framework)
 
-{% include caption-img.html src="main-steps-of-encoder-decoder-framework.png" description="인코더-디코더 구조(encoder-decoder framework)의 핵심 단계들" %}
+{% include caption-img.html src="deep-learning-for-source-code-modeling-and-generation-models-applications-and-challenges_main-steps-of-encoder-decoder-framework.png" description="인코더-디코더 구조(encoder-decoder framework)의 핵심 단계들" %}
 
 - 순차적인 모델(sequential model)(ex. 각 단어별로(word-by-word) 모델링), 구조적인 모델(structural model)(ex. 문장(sentence) 또는 코드 조각(snippet)의 문법 구조(syntactic structure)를 탐색(exploiting)) 둘 다 순차 모델링(sequence modeling)에 사용될 수 있다.
 
@@ -300,3 +300,8 @@ tags: ["machine_learning"]
 
 ## 딥러닝 모델을 이용한 입력값 임베딩(Input embedding of deep learning model)
 
+- 코드 모델링(code modeling)에서 입력값 표현(input representation)은 아주 중요
+  - 코드에서, 함수(function), 클래스(class), 프로젝트(project)별로 키워드 표현(keyword representation)은 엄청 다를 수 있기 때문
+- 전통적인 표현법(ex. 원-핫 인코딩(one-hot encoding), $n$-gram 등)은 듬성듬성한(sparse) 임베딩 벡터(embedding vector)를 생성
+- 최근 딥러딩 모델에서는 입력 단어(input word)들이 분산 표현법(distributed representation)을 이용한 실수값 벡터(real-valued vector)로 표현됨
+  - 

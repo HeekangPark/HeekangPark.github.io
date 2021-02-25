@@ -70,6 +70,14 @@ numpy:
   - library
   - numpy
   - python
+paper_review:
+  category: 기타 (Etc)
+  name: 논문 리뷰
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - graduate_school
+  - snu
 python:
   category: 프로그래밍 언어 (Programming Language)
   name: 'Re : 제로부터 배우는 파이썬'

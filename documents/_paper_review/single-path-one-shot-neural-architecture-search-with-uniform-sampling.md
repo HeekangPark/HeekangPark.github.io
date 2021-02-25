@@ -1,12 +1,11 @@
 ---
 title: "SPOS(Single Path One Shot)"
-order: 4
 date: "2020-10-08"
 ---
 
 # 논문 분석
 
-Zichao Guo, Xiangyu Zhang, Haoyuan Mu, Wen Heng, Zechun Liu, Yichen Wei, Jian Sun, \<Single Path One-Shot Neural Architecture Search with Uniform Sampling\>, ICLR 2020
+[Zichao Guo, Xiangyu Zhang, Haoyuan Mu, Wen Heng, Zechun Liu, Yichen Wei, Jian Sun, \<Single Path One-Shot Neural Architecture Search with Uniform Sampling\>, ICLR 2020](https://arxiv.org/abs/1904.00420)
 
 ## Introduction
 

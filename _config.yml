@@ -151,6 +151,14 @@ collections:
     tags:
     - web
     - server
+  paper_review:
+    output: true
+    permalink: /:collection/:name
+    name: 논문 리뷰
+    category: 기타 (Etc)
+    tags:
+    - graduate_school
+    - snu
 defaults:
 - scope:
     path: ''
@@ -225,5 +233,10 @@ defaults:
 - scope:
     path: ''
     type: web_server
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: paper_review
   values:
     layout: document
