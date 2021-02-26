@@ -303,5 +303,49 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
 - 코드 모델링(code modeling)에서 입력값 표현(input representation)은 아주 중요
   - 코드에서, 함수(function), 클래스(class), 프로젝트(project)별로 키워드 표현(keyword representation)은 엄청 다를 수 있기 때문
 - 전통적인 표현법(ex. 원-핫 인코딩(one-hot encoding), $n$-gram 등)은 듬성듬성한(sparse) 임베딩 벡터(embedding vector)를 생성
-- 최근 딥러딩 모델에서는 입력 단어(input word)들이 분산 표현법(distributed representation)을 이용한 실수값 벡터(real-valued vector)로 표현됨
-  - 
+- 최근 딥러딩 모델에서는 분산 표현법(distributed representation)을 이용해 실수값 벡터(real-valued vector)로 표현하는 방법을 사용
+  - 임베딩 공간(embedded space) 안의 단어(word)들은 그 단어의 속성(property)을 나타냄
+  - ex. 각 단어 간 의미적 관계(semantic relationship)을 벡터 연산으로 표현 가능
+- 언어 모델(language model)에서, 디코딩(decoding) 중 Softmax Layer를 이용해 각 임베딩 가중치(embedding weight)를 공유하면 성능이 향상됨
+- NLP 과제에서는 대규모 말뭉치(large corpora)에 대해 일반적인 목적으로 사전학습된 단어 벡터(general-purpose pre-trained word vector)를 사용하는 경우가 많음
+  - ex. [word2vec](https://arxiv.org/abs/1310.4546), [GloVe](https://www.aclweb.org/anthology/D14-1162.pdf), [fastText](https://arxiv.org/abs/1607.04606)
+  - 특정 데이터 셋 또는 특정 과제에 맞게 파라미터를 최적화시킬 수도 있음
+    - ex. [CoVe](https://arxiv.org/abs/1708.00107)
+  - 사전학습된 단어 임베딩(word embedding)을 하고자 하는 과제에 대해 미세조정(fine-tune)해서 사용할 수도 있음
+- 문제점 : 소스 코드 모델링(source code modeling) 분야에서 사용하는 단어 집합(vocabulary)의 크기는 일반적인 NLP의 단어 집합의 크기보다 훨씬 큼
+  - 해결법 : 사전학습된 파라미터를 초기값으로 하여 단어 임베딩(word embedding)을 다시 학습시키는 방법을 사용할 수 있음
+- 단어 하위 수준(sub-word level)에서의 추론(ex. 코드 자동완성(code completion)[^5]) 역시 중요한 문제
+  - 글자 수준 정보(character-level information)을 다루기 위해서는 글자들을 단어 표현(word representation)에 포함시켜야 함
+  - ex. [C2W 모델](https://arxiv.org/abs/1508.02096)
+    - 양방향 LSTM(Bidirectional LSTM)을 사용하여 글자 시퀸스(character sequence)로부터 단어 임베딩(word embedding)을 구축
+  - [CNN을 사용하는 것도 좋은 방법](https://arxiv.org/abs/1509.01626)
+
+[^5]: 불완전한 함수, 변수명 등으로부터 완전한 이름을 추천해주는 시스템
+
+## 딥러닝 모델의 안정적인 학습(Stable training of deep learning model)
+
+- 시퀸스 모델링(sequence modeling)을 위한 순환 모델(recurrent model)(ex. RNN)은 학습시키기 어렵고 과적합(overfitting)에 취약함
+- RNN은 "시간에 대한 역전파(backpropagation through time)"으로 학습됨
+- 손실 함수(loss function) 최적화 기법
+  - 주로 SGD(Stochastic Gradient Descent),mini-batch gradient descent가 사용됨
+    - 계산 복잡도(computation)가 낮고 GPU에서의 병렬화(parallelization)가 용이하기 때문
+  - 언어 모델링(language modeling)에서, 비단조적으로(non-monotonically) 트리거되는 [Averaged SGD](https://arxiv.org/abs/1704.04289)를 사용하니 비약적으로 성능이 향상됨
+  - 최근에는 [RMSProp](http://www.cs.toronto.edu/~hinton/coursera/lecture6/lec6.pdf), [Adam](https://arxiv.org/abs/1412.6980)과 같은 SGD 개량형들이 주로 사용됨
+- 모델 규제화(regularization) 기법
+  - 규제화(regularization)를 하는 이유 : 일반화(generalization) 성능을 높이기 위해
+  - [드롭아웃(dropout)](https://jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf)
+    - 베르누이 분포(Bernoulli distribution)을 따라 무작위로 활성(activation)의 몇몇 부분을 끄는(turn off) 기법
+    - 문제점 : RNN에 드롭아웃을 쓰면 RNN의 장거리 의존성(long-term dependency)를 보존하는 능력을 방해함
+      - 해결법 1 : 은닉층(hidden state)의 드롭아웃 비율(dropout rate)를 이전 정보들을 잘 보존할 수 있도록 제한한다.
+        - [Zoneout](https://arxiv.org/abs/1606.01305) : 무작위로 활성(activation)의 몇몇 부분에서 이전 값을 그대로 복사해 사용한다.
+          - 기존 방법은 0으로 만들었다(zeroing out).
+        - [Semeniuta의 방법](https://arxiv.org/abs/1603.05118) : 입력 게이트(input gate)에만 드롭아웃을 적용, 메모리 손실을 방지함
+      - 해결법 2 : 고정된 드롭아웃(locked dropout)
+        - 순전파(forward pass)간 동일한 드롭아웃 마스크(dropout mask)를 사용
+        - 활성 놈(activation norm)을 보존할 수 있음
+          - 기존 방법은 점진적으로 정보를 버렸음
+        - [Gal의 방법](https://arxiv.org/abs/1512.05287) : 고정된 드롭아웃(locked dropout)과 베이즈 추론(Bayes inference)를 연결하여 임베딩(embedding)의 드롭아웃에 사용
+        - [locked DropConnect](http://proceedings.mlr.press/v28/wan13.pdf) : 은닉 가중치(hidden weight)에 대해 이 방법을 사용하니 성능이 향상됨
+  - 정규화(normalization)
+  - 활성 규제화(activation regularization)
+  - 구조적 규제화(structural regularization)
