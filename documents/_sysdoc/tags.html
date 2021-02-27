@@ -9,23 +9,25 @@ description: "태그별 보기"
 {% assign tags = "" %}
 
 {% for collection in site.collections %}
-    {% assign collection_tags = collection.tags | compact | uniq | join: delim | downcase %}
-    {% if collection_tags.size != 0 %}
-        {% if tags.size != 0 %}
-            {% assign tags = tags | append: delim %}
-        {% endif %}
-        {% assign tags = tags | append: collection_tags | split: delim | compact | uniq | join: delim %}
-    {% endif %}
-
-    {% for document in collection.docs %}
-        {% assign document_tags = document.tags | compact | uniq | join: delim | downcase %}
-        {% if document_tags.size != 0 %}
+    {% unless collection.docs.size == 0 %}
+        {% assign collection_tags = collection.tags | compact | uniq | join: delim | downcase %}
+        {% if collection_tags.size != 0 %}
             {% if tags.size != 0 %}
                 {% assign tags = tags | append: delim %}
             {% endif %}
-            {% assign tags = tags | append: document_tags | split: delim | compact | uniq | join: delim %}
+            {% assign tags = tags | append: collection_tags | split: delim | compact | uniq | join: delim %}
         {% endif %}
-    {% endfor %}
+
+        {% for document in collection.docs %}
+            {% assign document_tags = document.tags | compact | uniq | join: delim | downcase %}
+            {% if document_tags.size != 0 %}
+                {% if tags.size != 0 %}
+                    {% assign tags = tags | append: delim %}
+                {% endif %}
+                {% assign tags = tags | append: document_tags | split: delim | compact | uniq | join: delim %}
+            {% endif %}
+        {% endfor %}
+    {% endunless %}
 {% endfor %}
 
 {% assign tags = tags | split: delim | compact | uniq | sort %}

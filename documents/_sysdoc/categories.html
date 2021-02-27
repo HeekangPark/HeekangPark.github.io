@@ -18,7 +18,16 @@ description: "카테고리별 보기"
 {% for category in categories %}
     {% assign category_idx = forloop.index0 %}
     <div class="category folder" index="category-{{ category_idx }}">
-        {% assign collections = site.collections | where: "category", category | sort: "label" %}
+        {% assign collections = "" | split: delim %}
+        {% for collection in site.collections %}
+            {% if collection.category == category %}
+            {% assign documents = collection.docs %}
+                {% unless documents.size == 0 %}
+                    {% assign collections = collections | push: collection %}
+                {% endunless %}
+            {% endif %}
+        {% endfor %}
+        {% assign collections = collections | sort: "label" %}
         <p class="category-name folder-title" index="category-{{ category_idx }}-title"><i class="icon fas fa-folder"></i>{{ category }}<span class="collection-num num">{{ collections.size }}</span></p>
         <div class="category-contents folder-contents hidden" index="category-{{ category_idx }}-contents">
             {% for collection in collections %}
