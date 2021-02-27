@@ -340,12 +340,37 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
         - [Zoneout](https://arxiv.org/abs/1606.01305) : 무작위로 활성(activation)의 몇몇 부분에서 이전 값을 그대로 복사해 사용한다.
           - 기존 방법은 0으로 만들었다(zeroing out).
         - [Semeniuta의 방법](https://arxiv.org/abs/1603.05118) : 입력 게이트(input gate)에만 드롭아웃을 적용, 메모리 손실을 방지함
-      - 해결법 2 : 고정된 드롭아웃(locked dropout)
+      - 해결법 2 : locked dropout
         - 순전파(forward pass)간 동일한 드롭아웃 마스크(dropout mask)를 사용
-        - 활성 놈(activation norm)을 보존할 수 있음
+        - activation norm을 보존할 수 있음
           - 기존 방법은 점진적으로 정보를 버렸음
-        - [Gal의 방법](https://arxiv.org/abs/1512.05287) : 고정된 드롭아웃(locked dropout)과 베이즈 추론(Bayes inference)를 연결하여 임베딩(embedding)의 드롭아웃에 사용
+        - [Gal의 방법](https://arxiv.org/abs/1512.05287) : locked dropout과 베이즈 추론(Bayes inference)를 연결하여 임베딩(embedding)의 드롭아웃에 사용
         - [locked DropConnect](http://proceedings.mlr.press/v28/wan13.pdf) : 은닉 가중치(hidden weight)에 대해 이 방법을 사용하니 성능이 향상됨
   - 정규화(normalization)
-  - 활성 규제화(activation regularization)
+    - 각 시간 단계(time step)에서의 활성(activation)을 제한하여 안정적인 분포(distribution)를 가지게 하는 것
+    - 순환 구조(recurrent structure)를 위한 정규화 기법들
+      - [recurrent batch normalization](https://arxiv.org/abs/1603.09025)
+      - [가중치 정규화(weight normalization)](https://arxiv.org/abs/1602.07868)
+      - [layer normalization](https://arxiv.org/abs/1607.06450)
+      - 모두 [배치 정규화(batch normalization)](https://arxiv.org/abs/1502.03167)에서 영감을 받음
+    - 그라디언트 안정화(gradient stability)를 위한 정규화 기법
+      - [spectral normalization](https://arxiv.org/abs/1802.05957) : 활성(activation)이 립시츠 연속(Lipschitz continous)이 되도록 제한하여 그라디언트(gradient)를 유지
+  - DL 모델의 가중치(weight)와 활성(activation)을 규제
+    - weight decay : 가중치(weight)에 대한 L2 규제화(L2 regularization)
+    - activation regularization : 활성(activation)에 $\alpha L\_2 (m \cdot h\_t)$만큼 패널티를 부과
+      - $\alpha$ : regularization term
+      - $m$ : scaling factor
+      - $h\_t$ : 은닉층(hidden state)
+    - [temporal activation regularization](https://arxiv.org/abs/1708.01009) : $\beta L\_2 (h\_t - h\_{t-1})$로 은닉 상태(hidden state)의 큰 변화에 패널티를 부과
+      - $\beta$ : scaling factor
+      - $h\_t$ : 시간 t일 때의 은닉 상태(hidden state)
   - 구조적 규제화(structural regularization)
+    - 모델 구조를 제한하여 그라디언트 폭발(exploding) 또는 사라짐(vanishing)을 방지
+    - ex. recurrent matrix가 유니터리 행렬(unitary matrix)가 되도록 강제하기, 원소간 상호작용(element-wise interaction) 사용하기
+    - [Strongly-typed RNN](https://arxiv.org/abs/1602.02218) : recurrent unit에서 type-consistent 연산(operation)을 사용
+    - [Quasi-RNN](https://arxiv.org/abs/1611.01576), [Simple Recurrent Unit](https://arxiv.org/abs/1709.02755)
+
+# 소스 코드 모델링 및 생성을 위한 딥러닝 모델을 만드는 최근 시도들 (Recent Practice of Building Deep Learning Models for Source Code Modeling and Generation)
+
+## Deep encoder 모델
+
