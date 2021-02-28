@@ -374,3 +374,45 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
 
 ## Deep encoder 모델
 
+- Deep encoder 모델
+  - 입력으로 코드 조각(code snippet), 주석(comment), 설명(description) 등의 시퀸스(sequence)를 받음
+  - (이후 후속 처리를 위해) 딥러닝 모듈(deep module)을 이용해 의미(semantic), 문맥(context) 등을 파악
+  - RNN과 그 파생형들이 많이 사용됨
+    - 문제점
+      - 문법 정보(syntactic context)가 잘 표현되지 않음
+        - 프로그래밍 언어의 문법 규칙을 위반하는 경우가 많이 발생
+      - 소스 코드의 큰 단어 집합(vocabulary)은 "단어 집합에 없음(out-of-vocabulary)" 문제를 일으킬 가능성이 높음
+        - 일반화 가능성(generalizability)에 악영향
+      - 은닉 상태의 병목 현상(hidden state bottleneck) : 은닉 상태(hidden state)를 나타내는 벡터의 한정된 크기가 시간을 따라 전달되는 정보의 양을 제한함
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
