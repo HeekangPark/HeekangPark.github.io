@@ -26,7 +26,7 @@ layout: default
 
         {% assign documents = documents | sort: "date" | reverse %}
 
-        {% for document in documents limit:5 %}
+        {% for document in documents limit:site.home_recent_doc_num %}
             {% for collection in site.collections %}
                 {% if document.collection == collection.label %}
                     {% assign collection = collection.name %}

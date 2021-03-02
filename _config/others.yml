@@ -21,6 +21,8 @@ kramdown:
   auto_ids: true
   smart_quotes: ["apos", "apos", "quot", "quot"]
 
+home_recent_doc_num: 10
+
 collections:
   sysdoc:
     name: sysdoc
