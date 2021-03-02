@@ -119,3 +119,12 @@ web_server:
   tags:
   - web
   - server
+m3309.000200:
+  category: 기계학습 (Machine Learning)
+  name: 강화학습 (Reinforcement Learning)
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - machine_learning
+  - lecture
+  - snu

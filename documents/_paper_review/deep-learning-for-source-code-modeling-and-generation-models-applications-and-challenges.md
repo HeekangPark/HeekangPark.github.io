@@ -384,7 +384,20 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
       - 소스 코드의 큰 단어 집합(vocabulary)은 "단어 집합에 없음(out-of-vocabulary)" 문제를 일으킬 가능성이 높음
         - 일반화 가능성(generalizability)에 악영향
       - 은닉 상태의 병목 현상(hidden state bottleneck) : 은닉 상태(hidden state)를 나타내는 벡터의 한정된 크기가 시간을 따라 전달되는 정보의 양을 제한함
-      
+    - 해결법
+      - 구조 표현(structural representation)
+        - AST(Abstract Syntax Tree) : 프로그래밍 언어의 문법에 따라 터미널 노드(terminal node)와 논터미널 노드(non-terminal node)간 계층 관계를 표현한 것
+        - AST를 이용해 소스 코드의 문법적 구조를 파악
+          - DFS(Depth-First Search)를 이용, AST를 시퀸스(sequence)로 변환해 모델의 입력값으로 사용
+          - AST를 바로 모델(ex. [Recursive Neural Network](https://tufanomichele.com/publications/C5.pdf), [Tree-LSTM](https://www.ijcai.org/Proceedings/2017/0423.pdf), CNN 등)의 입력값으로 사용 
+        - [Zhang의 모델](http://xuwang.tech/paper/astnn_icse2019.pdf) : AST를 코드 선언문 서브트리(code-statement subtree)로 쪼개면 트리 기반 표현법(tree-based representation)의 성능을 높일 수 있음을 보임
+        - [code2vec](https://arxiv.org/abs/1803.09473), [code2seq](https://arxiv.org/abs/1808.01400) : AST의 경로(path)를 이용해 코드를 표현, 어텐션(attention) 기반 딥러닝 모델을 이용해 추출된 경로(path)를 취합
+        - [Gated Graph Neural Network](https://arxiv.org/abs/1511.05493) : 유향 그래프(directed graph)를 이용해 소스 코드를 표현
+        - 참고 : [https://arxiv.org/abs/1904.03061]
+      - 열린 단어 집합 모델(open vocabulary model)
+        - 소스 코드의 단어 집합(vocabulary)이 고정되어(fixed) 있지 않고 열려(open) 있음
+        - 열린 단어 집합 모델에서, 전체 단어 집합을 가지고 분류기를 학습시키는 것은 비효율적이므로 자주 등장하는 1,000개 또는 10,000개 정도의 단어(term)만 사용하고 나머지는 OoV(out of vocabulary) 토큰 혹은 unk(unknown) 토큰으로 대치
+          - 문제점 : 테스트 셋에 있는 OoV 토큰은 아예 예측(predict)이 안됨
 
 
 

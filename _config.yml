@@ -159,6 +159,15 @@ collections:
     tags:
     - graduate_school
     - snu
+  m3309.000200:
+    category: 기계학습 (Machine Learning)
+    name: 강화학습 (Reinforcement Learning)
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - machine_learning
+    - lecture
+    - snu
 defaults:
 - scope:
     path: ''
@@ -238,5 +247,10 @@ defaults:
 - scope:
     path: ''
     type: paper_review
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: m3309.000200
   values:
     layout: document
