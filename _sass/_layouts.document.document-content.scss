@@ -237,61 +237,9 @@
         }
     }
 
-    .table-wrapper {
-        overflow-x: auto;
-        overflow-y: auto;
-        max-height: $table-max-height;
-
-        &.no-max-height {
-            max-height: none;
-        }
-
-        table {
-            border-collapse: separate;
-            border-spacing: 0;
-            border: {
-                top: 1px solid $gray-line-color;
-            }
-            overflow-x: auto;
-            margin: {
-                top: 1em;
-                bottom: 1em;
-                left: auto;
-                right: auto;
-            }
-    
-            th {
-                background-color: $table-head-background-color;
-            }
-    
-            >tbody {
-                tr {
-                    &:nth-child(even) {
-                        td {
-                            background-color: $table-even-background-color;
-                        }
-                    }
-    
-                    &:nth-child(odd) {
-                        td {
-                            background-color: $table-odd-background-color;
-                        }
-                    }
-                }
-            }
-    
-            th,
-            td {
-                padding: {
-                    top: 0.5em;
-                    bottom: 0.5em;
-                    left: 1em;
-                    right: 1em;
-                }
-                border: {
-                    bottom: $gray-line-color;
-                }
-            }
+    table {
+        margin: {
+            bottom: 1em;
         }
     }
 

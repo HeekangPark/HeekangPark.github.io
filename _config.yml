@@ -39,6 +39,33 @@ collections:
     name: sysdoc
     output: true
     permalink: /:name
+  SKKU_swe3050:
+    category: 기계학습 (Machine Learning)
+    name: 기계학습원론
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - lecture
+    - machine_learning
+    - skku
+  SNU_m3309.000200:
+    category: 기계학습 (Machine Learning)
+    name: 강화학습 (Reinforcement Learning)
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - lecture
+    - machine_learning
+    - snu
+  Stanford_cs231n:
+    category: 기계학습 (Machine Learning)
+    name: Convolutional Neural Networks for Visual Recognition
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - lecture
+    - machine_learning
+    - stanford
   calculus:
     category: 수학 (Mathematics)
     name: 미적분학 (Calculus)
@@ -46,15 +73,6 @@ collections:
     permalink: /:collection/:name
     tags:
     - math
-  cs231n:
-    category: 기계학습 (Machine Learning)
-    name: Convolutional Neural Networks for Visual Recognition
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - machine_learning
-    - stanford
-    - lecture
   docker:
     category: 라이브러리 (Libraries)
     name: docker
@@ -111,6 +129,14 @@ collections:
     - library
     - numpy
     - python
+  paper_review:
+    category: 기타 (Etc)
+    name: 논문 리뷰
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - graduate_school
+    - snu
   python:
     category: 프로그래밍 언어 (Programming Language)
     name: 'Re : 제로부터 배우는 파이썬'
@@ -119,15 +145,6 @@ collections:
     tags:
     - programming_language
     - python
-  swe3050:
-    category: 기계학습 (Machine Learning)
-    name: 기계학습원론 (SKKU SWE3050)
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - machine_learning
-    - lecture
-    - skku
   virtualbox:
     category: 응용 프로그램 (Applications)
     name: Oracle VM VirtualBox
@@ -152,22 +169,14 @@ collections:
     tags:
     - web
     - server
-  paper_review:
+  SNU_493.613:
     output: true
     permalink: /:collection/:name
-    name: 논문 리뷰
-    category: 기타 (Etc)
+    name: 지능형시스템수학
+    category: 수학 (Mathematics)
     tags:
-    - graduate_school
-    - snu
-  m3309.000200:
-    category: 기계학습 (Machine Learning)
-    name: 강화학습 (Reinforcement Learning)
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - machine_learning
     - lecture
+    - linear_algebra
     - snu
 defaults:
 - scope:
@@ -177,12 +186,22 @@ defaults:
     layout: default
 - scope:
     path: ''
-    type: calculus
+    type: SKKU_swe3050
   values:
     layout: document
 - scope:
     path: ''
-    type: cs231n
+    type: SNU_m3309.000200
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: Stanford_cs231n
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: calculus
   values:
     layout: document
 - scope:
@@ -222,12 +241,12 @@ defaults:
     layout: document
 - scope:
     path: ''
-    type: python
+    type: paper_review
   values:
     layout: document
 - scope:
     path: ''
-    type: swe3050
+    type: python
   values:
     layout: document
 - scope:
@@ -247,11 +266,6 @@ defaults:
     layout: document
 - scope:
     path: ''
-    type: paper_review
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: m3309.000200
+    type: SNU_493.613
   values:
     layout: document

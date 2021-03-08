@@ -1,3 +1,39 @@
+SKKU_swe3050:
+  category: 기계학습 (Machine Learning)
+  name: 기계학습원론
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - lecture
+  - machine_learning
+  - skku
+SNU_493.613:
+  category: 수학 (Mathematics)
+  name: 지능형시스템수학
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - lecture
+  - linear_algebra
+  - snu
+SNU_m3309.000200:
+  category: 기계학습 (Machine Learning)
+  name: 강화학습 (Reinforcement Learning)
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - lecture
+  - machine_learning
+  - snu
+Stanford_cs231n:
+  category: 기계학습 (Machine Learning)
+  name: Convolutional Neural Networks for Visual Recognition
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - lecture
+  - machine_learning
+  - stanford
 calculus:
   category: 수학 (Mathematics)
   name: 미적분학 (Calculus)
@@ -5,15 +41,6 @@ calculus:
   permalink: /:collection/:name
   tags:
   - math
-cs231n:
-  category: 기계학습 (Machine Learning)
-  name: Convolutional Neural Networks for Visual Recognition
-  output: true
-  permalink: /:collection/:name
-  tags:
-  - machine_learning
-  - stanford
-  - lecture
 docker:
   category: 라이브러리 (Libraries)
   name: docker
@@ -86,15 +113,6 @@ python:
   tags:
   - programming_language
   - python
-swe3050:
-  category: 기계학습 (Machine Learning)
-  name: 기계학습원론 (SKKU SWE3050)
-  output: true
-  permalink: /:collection/:name
-  tags:
-  - machine_learning
-  - lecture
-  - skku
 virtualbox:
   category: 응용 프로그램 (Applications)
   name: Oracle VM VirtualBox
@@ -119,12 +137,3 @@ web_server:
   tags:
   - web
   - server
-m3309.000200:
-  category: 기계학습 (Machine Learning)
-  name: 강화학습 (Reinforcement Learning)
-  output: true
-  permalink: /:collection/:name
-  tags:
-  - machine_learning
-  - lecture
-  - snu

@@ -397,7 +397,20 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
       - 열린 단어 집합 모델(open vocabulary model)
         - 소스 코드의 단어 집합(vocabulary)이 고정되어(fixed) 있지 않고 열려(open) 있음
         - 열린 단어 집합 모델에서, 전체 단어 집합을 가지고 분류기를 학습시키는 것은 비효율적이므로 자주 등장하는 1,000개 또는 10,000개 정도의 단어(term)만 사용하고 나머지는 OoV(out of vocabulary) 토큰 혹은 unk(unknown) 토큰으로 대치
-          - 문제점 : 테스트 셋에 있는 OoV 토큰은 아예 예측(predict)이 안됨
+        - 문제점 : OoV 문제
+          - 테스트 셋에서 OoV 토큰이 나오면 아예 예측(predict)이 안됨
+        - 해결책
+          - [Karampatsis의 모델](https://arxiv.org/abs/1903.05734)
+            - [Byte pair encoding 알고리즘](https://www.derczynski.com/papers/archive/BPE_Gage.pdf)으로 생성한 하위-단어 유닛(sub-word unit)(코드 토큰들의 글자 서브시퀸스(character subsequence))들에 대해 [GRU(Gated Recurrent Unit)](https://arxiv.org/abs/1412.3555)를 이용해 신경망 기반 언어 모델(neural language model)을 구축
+            - SoTA $n$-gram 모델보다 더 높은 성능을 보임
+            - 다양한 프로그래밍 언어 또는 프로젝트에서의 OoV 문제에 강건함(robust)
+          - [Cvitkovic의 모델](https://arxiv.org/abs/1810.08305)
+            - 그래프 기반 코드 표현법(graph-based code representation)을 확장한 것
+            - 그래프 구조 캐시(graph-structured cache)를 사용
+              - 새로운 단어/토큰이 등장하면 기존 AST에 캐시 노드(cached node)로 추가됨
+      - 어텐션 메커니즘(attention mechanism)
+        - OoV 문제와 은닉 상태의 병목 현상(hidden state bottleneck) 해결 가능
+        - 
 
 
 
