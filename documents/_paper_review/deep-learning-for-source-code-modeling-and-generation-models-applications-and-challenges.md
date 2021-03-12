@@ -283,7 +283,7 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
 - 최근 연구들은 SGD를 통한 모델 최적화가 가능해지도록 전동척인 메모리 패러다임(memory paradigm)이 미분 가능하게(differentiable) 만들려 하고 있음
 - end-to-end 학습이 가능한 모델은 알고리즘적 학습(algorithmic learning)을 조정하거나, 언어 이해(language understanding), 프로그램 생성(program induction) 등과 같은 추론 과제(reasoning task)에 사용됨
 
-### beam 탐색(beam search)
+### beam 탐색 (beam search)
 
 - 문제점 : 높은 확률(probability)로 최고로 디코딩된 결과(best-decoded result)를 탐색하는 것은 계산적으로 어려움(computationally intractable)
   - 한 가지 해법 : 디코딩(decoding) 과정에서 매 시간 간격(time step)마다 가장 높은 출력 확률(output probability)을 가진 단어(word)/토큰(token)을 선택
@@ -298,7 +298,7 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
 - beam 탐색을 쓰면 기계번역 성능이 높아짐
 - 기계번역 성능은 beam 크기(beam size)에 영향을 많이 받음
 
-## 딥러닝 모델을 이용한 입력값 임베딩(Input embedding of deep learning model)
+## 딥러닝 모델을 이용한 입력값 임베딩 (Input embedding of deep learning model)
 
 - 코드 모델링(code modeling)에서 입력값 표현(input representation)은 아주 중요
   - 코드에서, 함수(function), 클래스(class), 프로젝트(project)별로 키워드 표현(keyword representation)은 엄청 다를 수 있기 때문
@@ -322,7 +322,7 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
 
 [^5]: 불완전한 함수, 변수명 등으로부터 완전한 이름을 추천해주는 시스템
 
-## 딥러닝 모델의 안정적인 학습(Stable training of deep learning model)
+## 딥러닝 모델의 안정적인 학습 (Stable training of deep learning model)
 
 - 시퀸스 모델링(sequence modeling)을 위한 순환 모델(recurrent model)(ex. RNN)은 학습시키기 어렵고 과적합(overfitting)에 취약함
 - RNN은 "시간에 대한 역전파(backpropagation through time)"으로 학습됨
@@ -374,48 +374,111 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
 
 ## Deep encoder 모델
 
-- Deep encoder 모델
-  - 입력으로 코드 조각(code snippet), 주석(comment), 설명(description) 등의 시퀸스(sequence)를 받음
-  - (이후 후속 처리를 위해) 딥러닝 모듈(deep module)을 이용해 의미(semantic), 문맥(context) 등을 파악
-  - RNN과 그 파생형들이 많이 사용됨
-    - 문제점
-      - 문법 정보(syntactic context)가 잘 표현되지 않음
-        - 프로그래밍 언어의 문법 규칙을 위반하는 경우가 많이 발생
-      - 소스 코드의 큰 단어 집합(vocabulary)은 "단어 집합에 없음(out-of-vocabulary)" 문제를 일으킬 가능성이 높음
-        - 일반화 가능성(generalizability)에 악영향
-      - 은닉 상태의 병목 현상(hidden state bottleneck) : 은닉 상태(hidden state)를 나타내는 벡터의 한정된 크기가 시간을 따라 전달되는 정보의 양을 제한함
-    - 해결법
-      - 구조 표현(structural representation)
-        - AST(Abstract Syntax Tree) : 프로그래밍 언어의 문법에 따라 터미널 노드(terminal node)와 논터미널 노드(non-terminal node)간 계층 관계를 표현한 것
-        - AST를 이용해 소스 코드의 문법적 구조를 파악
-          - DFS(Depth-First Search)를 이용, AST를 시퀸스(sequence)로 변환해 모델의 입력값으로 사용
-          - AST를 바로 모델(ex. [Recursive Neural Network](https://tufanomichele.com/publications/C5.pdf), [Tree-LSTM](https://www.ijcai.org/Proceedings/2017/0423.pdf), CNN 등)의 입력값으로 사용 
-        - [Zhang의 모델](http://xuwang.tech/paper/astnn_icse2019.pdf) : AST를 코드 선언문 서브트리(code-statement subtree)로 쪼개면 트리 기반 표현법(tree-based representation)의 성능을 높일 수 있음을 보임
-        - [code2vec](https://arxiv.org/abs/1803.09473), [code2seq](https://arxiv.org/abs/1808.01400) : AST의 경로(path)를 이용해 코드를 표현, 어텐션(attention) 기반 딥러닝 모델을 이용해 추출된 경로(path)를 취합
-        - [Gated Graph Neural Network](https://arxiv.org/abs/1511.05493) : 유향 그래프(directed graph)를 이용해 소스 코드를 표현
-        - 참고 : [https://arxiv.org/abs/1904.03061]
-      - 열린 단어 집합 모델(open vocabulary model)
-        - 소스 코드의 단어 집합(vocabulary)이 고정되어(fixed) 있지 않고 열려(open) 있음
-        - 열린 단어 집합 모델에서, 전체 단어 집합을 가지고 분류기를 학습시키는 것은 비효율적이므로 자주 등장하는 1,000개 또는 10,000개 정도의 단어(term)만 사용하고 나머지는 OoV(out of vocabulary) 토큰 혹은 unk(unknown) 토큰으로 대치
-        - 문제점 : OoV 문제
-          - 테스트 셋에서 OoV 토큰이 나오면 아예 예측(predict)이 안됨
-        - 해결책
-          - [Karampatsis의 모델](https://arxiv.org/abs/1903.05734)
-            - [Byte pair encoding 알고리즘](https://www.derczynski.com/papers/archive/BPE_Gage.pdf)으로 생성한 하위-단어 유닛(sub-word unit)(코드 토큰들의 글자 서브시퀸스(character subsequence))들에 대해 [GRU(Gated Recurrent Unit)](https://arxiv.org/abs/1412.3555)를 이용해 신경망 기반 언어 모델(neural language model)을 구축
-            - SoTA $n$-gram 모델보다 더 높은 성능을 보임
-            - 다양한 프로그래밍 언어 또는 프로젝트에서의 OoV 문제에 강건함(robust)
-          - [Cvitkovic의 모델](https://arxiv.org/abs/1810.08305)
-            - 그래프 기반 코드 표현법(graph-based code representation)을 확장한 것
-            - 그래프 구조 캐시(graph-structured cache)를 사용
-              - 새로운 단어/토큰이 등장하면 기존 AST에 캐시 노드(cached node)로 추가됨
-      - 어텐션 메커니즘(attention mechanism)
-        - OoV 문제와 은닉 상태의 병목 현상(hidden state bottleneck) 해결 가능
-        - 
+- 입력으로 코드 조각(code snippet), 주석(comment), 설명(description) 등의 시퀸스(sequence)를 받음
+- (이후 후속 처리를 위해) 딥러닝 모듈(deep module)을 이용해 의미(semantic), 문맥(context) 등을 파악
+- RNN과 그 파생형들이 많이 사용됨
+  - 문제점
+    - 문법 정보(syntactic context)가 잘 표현되지 않음
+      - 프로그래밍 언어의 문법 규칙을 위반하는 경우가 많이 발생
+    - 소스 코드의 큰 단어 집합(vocabulary)은 "단어 집합에 없음(out-of-vocabulary)" 문제를 일으킬 가능성이 높음
+      - 일반화 가능성(generalizability)에 악영향
+    - 은닉 상태의 병목 현상(hidden state bottleneck) : 은닉 상태(hidden state)를 나타내는 벡터의 한정된 크기가 시간을 따라 전달되는 정보의 양을 제한함
+  - 해결법
+    - 구조 표현(structural representation)
+      - AST(Abstract Syntax Tree) : 프로그래밍 언어의 문법에 따라 터미널 노드(terminal node)와 논터미널 노드(non-terminal node)간 계층 관계를 표현한 것
+      - AST를 이용해 소스 코드의 문법적 구조를 파악
+        - DFS(Depth-First Search)를 이용, AST를 시퀸스(sequence)로 변환해 모델의 입력값으로 사용
+        - AST를 바로 모델(ex. [Recursive Neural Network](https://tufanomichele.com/publications/C5.pdf), [Tree-LSTM](https://www.ijcai.org/Proceedings/2017/0423.pdf), CNN 등)의 입력값으로 사용 
+      - [Zhang의 모델](http://xuwang.tech/paper/astnn_icse2019.pdf) : AST를 코드 선언문 서브트리(code-statement subtree)로 쪼개면 트리 기반 표현법(tree-based representation)의 성능을 높일 수 있음을 보임
+      - [code2vec](https://arxiv.org/abs/1803.09473), [code2seq](https://arxiv.org/abs/1808.01400) : AST의 경로(path)를 이용해 코드를 표현, 어텐션(attention) 기반 딥러닝 모델을 이용해 추출된 경로(path)를 취합
+      - [Gated Graph Neural Network](https://arxiv.org/abs/1511.05493) : 유향 그래프(directed graph)를 이용해 소스 코드를 표현
+      - 참고 : [https://arxiv.org/abs/1904.03061]
+    - 열린 단어 집합 모델(open vocabulary model)
+      - 소스 코드의 단어 집합(vocabulary)이 고정되어(fixed) 있지 않고 열려(open) 있음
+      - 열린 단어 집합 모델에서, 전체 단어 집합을 가지고 분류기를 학습시키는 것은 비효율적이므로 자주 등장하는 1,000개 또는 10,000개 정도의 단어(term)만 사용하고 나머지는 OoV(out of vocabulary) 토큰 혹은 unk(unknown) 토큰으로 대치
+      - 문제점 : OoV 문제
+        - 테스트 셋에서 OoV 토큰이 나오면 아예 예측(predict)이 안됨
+      - 해결책
+        - [Karampatsis의 모델](https://arxiv.org/abs/1903.05734)
+          - [Byte pair encoding 알고리즘](https://www.derczynski.com/papers/archive/BPE_Gage.pdf)으로 생성한 하위-단어 유닛(sub-word unit)(코드 토큰들의 글자 서브시퀸스(character subsequence))들에 대해 [GRU(Gated Recurrent Unit)](https://arxiv.org/abs/1412.3555)를 이용해 신경망 기반 언어 모델(neural language model)을 구축
+          - SoTA $n$-gram 모델보다 더 높은 성능을 보임
+          - 다양한 프로그래밍 언어 또는 프로젝트에서의 OoV 문제에 강건함(robust)
+        - [Cvitkovic의 모델](https://arxiv.org/abs/1810.08305)
+          - 그래프 기반 코드 표현법(graph-based code representation)을 확장한 것
+          - 그래프 구조 캐시(graph-structured cache)를 사용
+            - 새로운 단어/토큰이 등장하면 기존 AST에 캐시 노드(cached node)로 추가됨
+    - 어텐션 메커니즘(attention mechanism)
+      - OoV 문제와 은닉 상태의 병목 현상(hidden state bottleneck) 해결 가능
+      - [Bhoopchand의 모델](https://arxiv.org/abs/1611.08307)
+        - 코드 자동완성(code completion) 분야에 사용
+        - 포인터 네트워크(pointer network)를 사용해 최근 과거에서 OoV 토큰을 복제
+          - 포인터 네트워크(pointer network) : 과거 입력 임베딩(input embedding)에 대한 소프트 어텐션(soft attention)
+        - 컨트롤러(controller)는 복제된 위치(copying position)에서 선택할 지 언어 모델 분포(language model distribution)에서 선택할 지를 결정하기 위한 스칼라 값 하나를 생성
+      - [Li의 모델](https://arxiv.org/abs/1711.09573)
+        - 이전 은닉 상태(hidden state)에 대한 어텐션을 사용
+        - 어텐션 출력값은 입력값에 합쳐짐(concatenate)
+        - multi-layer perceptron을 이용해 어텐션을 계산
+        - 단점 : 은닉 상태 캐시(hidden-state cache)를 바꾸는 것과 어텐션을 계산하는 것에 계산적 비용이 너무 많이 든다.
+      - 토큰 복사(token copying)을 추가하면 포인터 네트워크(pointer network)를 사용하지 않을때보다 토큰 예측에서 더 정확한 드랍(drop)이 가능해진다.
+      - 은닉 상태(hidden state)를 포인터 네트워크(pointer network)를 위한 부분과 컨텍스트 인코딩(context encoding)을 위한 부분으로 나누면 이 문제를 해결할 수 있다.
+      - [Das와 Shah의 모델](https://web.stanford.edu/~chshah/files/contextual-code-completion.pdf)
+        - 신경망 모델(feed-forward neural network)에서 단어 임베딩(word embedding)을 위해 gated unit을 사용
+        - 문맥을 고려한 자동 완성(contextual code completion) 분야에엇, 자주 등장하는 값의 타입(ex. 이터레이터(iterator) 변수명)을 표현하기 위해 사용됨
 
+## Deep decoder 모델
 
+- 인코더 모델(encoder model)이 생성한 임베딩 값(embedding feature)들을 입력값으로 받아, 디코더 모델(decoder model)은 목표 도메인에 맞는 출력값을 생성한다.
 
+(추후 작성 예정)
 
+## Deep controller 모델
 
+- DSL 없이도 입력-출력 예제(input-output example)로부터 바로 실행할 수 있도록 다음 명령어(instruction/operation)을 학습할 수 있는 심층신경망 모델
+- neural abstract machine이라고도 불림
+  
+(추후 작성 예정)
+
+# Big Code 응용분야에서의 딥러닝 (Deep Learning for Big Code Application)
+
+Big Code 응용분야(application)
+
+- 소스 코드 분석(sourcee code analysis) : 소스 코드/프로그램을 입력
+  - 코드 패턴(code pattern)을 출력
+    - 숙어 수집(idiom mining) : 프로젝트에서 자주 등장하는 코드 조각을 추출
+      - 관련 항목 : 문맥으로부터 클래스/메소드 이름 예측하기, 소스 코드 분류(source code classification)
+      - [Mou의 모델](https://arxiv.org/abs/1409.5718)
+        - 다이나믹 풀링(dynamic pooling)을 적용한 TBCNN(트리 기반 CNN(tree-based CNN))을 프로그램의 AST를 이용해 학습시킴
+        - TBCNN으로 학습된 프로그램 토큰들의 feature vector는 기능별로 묶을 수 있다.
+        - $n$-gram 방식보다 프로그래밍 과제(programming task) 및 버블 정렬(bubble sort) 패턴을 더 잘 식별함
+      - 이후 다양한 정보(ex. AST 경로(AST path), 데이터 흐름 정보(data-flow information), 컨트롤 흐름 정보(control-flow information))등을 활용한 모델이 등장. 더 높은 성능을 보임
+    - API 수집(API mining), 코드 복제 탐지(code clone detection)
+      - [DeepAPI](https://arxiv.org/abs/1605.08535)
+        - 사용자 쿼리(user query)와 연관된 API에 RNN seq2seq 모델을 이용해 분산 표현(distributed representation)을 학습
+        - bag-of-word 방법보다 더 높은 성능을 보임
+      - 이외에도 소스 코드의 AST를 모델링하는 다양한 딥러닝 연구들이 수행됨 : [RtNN](https://tufanomichele.com/publications/C5.pdf), [Tree-LSTM](https://www.ijcai.org/Proceedings/2017/0423.pdf), [ASTNN](http://xuwang.tech/paper/astnn_icse2019.pdf) 등...
+    - 코드 컨벤션 수집(code convention mining) : 특정 언어에서, 컴파일러에서 강제되진 않지만 권장되는 코딩 습관(ex. 들여쓰기(indentation), 이름 규칙(naming convention), 공백(white space))을 찾음
+      - [Allamanis의 모델](https://arxiv.org/abs/1402.4182)
+        - $n$-gram으로 추출한 특징(feature)과 SVM 모델을 사용
+      - 이 분야에서 딥러닝을 직접적으로 사용한 다른 연구는 아직 없음
+    - 정보 추출(information extraction) : 자연어, 이미지, 동영상 등에서 특정 코드 조각, 프로그램, 소프트웨어 관련 인공물(artifact)이 존재하는지를 식별
+      - [Ott의 모델 1](https://dl.acm.org/doi/pdf/10.1145/3196398.3196402), [Ott의 모델 2](https://ieeexplore.ieee.org/document/8973023)
+      - [Yin의 모델](https://arxiv.org/abs/1805.08949)
+        - Stack Overflow 포럼에서 소스 코드와 자연어를 분리
+    - 프로그램 검증(program verification) : 프로그램에서 버그 혹은 보안 문제가 있는지를 예측,<br/>버그 위치 탐색(bug localization) : 프로그램에서 특정 버그 혹은 보안 문제가 있는 위치를 식별
+      - [이전 방법](https://www.franktip.org/pubs/oopsla2017promises.pdf), [전통적인 ML 방법 1](http://chakkrit.com/assets/papers/tantithamthavorn2016icse-ds.pdf), [전통적인 ML 방법 2](https://core.ac.uk/download/pdf/35456467.pdf), [전통적인 ML 방법 3](https://arxiv.org/abs/1506.01159), [전통적인 ML 방법 4](https://ieeexplore.ieee.org/document/6976083)
+      - [DeepBugs](https://arxiv.org/abs/1805.11683)
+        - word2vec을 이용해 150,000개의 자바스크립트 소스 코드 파일을 표현, 딥러닝 모델(feed-forward neural network)을 이용해 버그가 있는 코드인지 아닌지를 구분
+        - 정확도 90%. 실시간으로 적용 가능함
+      - [Xiao의 모델](https://www.sciencedirect.com/science/article/pii/S0950584918301654)
+        - 워드 임베딩(word embedding) CNN 구조를 사용
+      - [VulDeePecker](https://arxiv.org/abs/1801.01681)
+        - 양방향 LSTM(bidirectional LSTM, bi-LSTM) 모델에 코드 가젯(code gadget)을 입력값으로 사용해 소스 코드의 취약점을 찾음
+      - [리뷰 논문](https://dl.acm.org/doi/pdf/10.1145/3092566)
+  - 자연어(natural language)를 출력
+    - 문서화(Documentation) : 
+    - 요약(Summarization) : 
+  - 코드 패턴(code pattern)을 출력
+- 프로그램 생성(program generation) : 소스 코드/프로그램을 출력
 
 
 
