@@ -22,6 +22,7 @@ kramdown:
   smart_quotes: ["apos", "apos", "quot", "quot"]
 
 home_recent_doc_num: 10
+decoration: "sakura"  # ["snowflakes", "sakura"]
 
 collections:
   sysdoc:

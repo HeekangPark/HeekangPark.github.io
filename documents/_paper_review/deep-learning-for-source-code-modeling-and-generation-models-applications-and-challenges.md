@@ -138,7 +138,7 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
   - 어텐션 메커니즘(attention mechanism)
   - 외부 메모리(external memory)
   - beam 탐색(beam search)
-- MLP(multi-layer perceptron)(fully-coonected neural network, feed-forward neural network라고도 불린다)는 시퀸스(sequence)로부터 의존성(dependency)과 순차적인 속성(sequential property)을 잘 잡아내지 못하기 때문에 순차 모델링(sequence modeling)엔 잘 사용되지 않음(위의 세 가지 기술과 조합해서는 가끔 사용됨)
+- MLP(multi-layer perceptron)(fully-connected neural network, feed-forward neural network라고도 불린다)는 시퀸스(sequence)로부터 의존성(dependency)과 순차적인 속성(sequential property)을 잘 잡아내지 못하기 때문에 순차 모델링(sequence modeling)엔 잘 사용되지 않음(위의 세 가지 기술과 조합해서는 가끔 사용됨)
 
 ### 순환신경망 (Recurrent Neural Network)
 
@@ -422,7 +422,7 @@ tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code
       - 토큰 복사(token copying)을 추가하면 포인터 네트워크(pointer network)를 사용하지 않을때보다 토큰 예측에서 더 정확한 드랍(drop)이 가능해진다.
       - 은닉 상태(hidden state)를 포인터 네트워크(pointer network)를 위한 부분과 컨텍스트 인코딩(context encoding)을 위한 부분으로 나누면 이 문제를 해결할 수 있다.
       - [Das와 Shah의 모델](https://web.stanford.edu/~chshah/files/contextual-code-completion.pdf)
-        - 신경망 모델(feed-forward neural network)에서 단어 임베딩(word embedding)을 위해 gated unit을 사용
+        - 피드 포워드 신경망(feed-forward neural network)에서 단어 임베딩(word embedding)을 위해 gated unit을 사용
         - 문맥을 고려한 자동 완성(contextual code completion) 분야에엇, 자주 등장하는 값의 타입(ex. 이터레이터(iterator) 변수명)을 표현하기 위해 사용됨
 
 ## Deep decoder 모델
@@ -467,7 +467,7 @@ Big Code 응용분야(application)
     - 프로그램 검증(program verification) : 프로그램에서 버그 혹은 보안 문제가 있는지를 예측,<br/>버그 위치 탐색(bug localization) : 프로그램에서 특정 버그 혹은 보안 문제가 있는 위치를 식별
       - [이전 방법](https://www.franktip.org/pubs/oopsla2017promises.pdf), [전통적인 ML 방법 1](http://chakkrit.com/assets/papers/tantithamthavorn2016icse-ds.pdf), [전통적인 ML 방법 2](https://core.ac.uk/download/pdf/35456467.pdf), [전통적인 ML 방법 3](https://arxiv.org/abs/1506.01159), [전통적인 ML 방법 4](https://ieeexplore.ieee.org/document/6976083)
       - [DeepBugs](https://arxiv.org/abs/1805.11683)
-        - word2vec을 이용해 150,000개의 자바스크립트 소스 코드 파일을 표현, 딥러닝 모델(feed-forward neural network)을 이용해 버그가 있는 코드인지 아닌지를 구분
+        - word2vec을 이용해 150,000개의 자바스크립트 소스 코드 파일을 표현, 피드 포워드 신경망(feed-forward neural network)을 이용해 버그가 있는 코드인지 아닌지를 구분
         - 정확도 90%. 실시간으로 적용 가능함
       - [Xiao의 모델](https://www.sciencedirect.com/science/article/pii/S0950584918301654)
         - 워드 임베딩(word embedding) CNN 구조를 사용
@@ -475,10 +475,40 @@ Big Code 응용분야(application)
         - 양방향 LSTM(bidirectional LSTM, bi-LSTM) 모델에 코드 가젯(code gadget)을 입력값으로 사용해 소스 코드의 취약점을 찾음
       - [리뷰 논문](https://dl.acm.org/doi/pdf/10.1145/3092566)
   - 자연어(natural language)를 출력
-    - 문서화(Documentation) : 
-    - 요약(Summarization) : 
-  - 코드 패턴(code pattern)을 출력
+    - 문서화(Documentation) : 요구사항(requirement), 소스 코드가 하는 일(operation), 사용법 등 소프트웨어를 유지보수하기 위한 주석 출력
+      - [Barone의 모델](https://arxiv.org/abs/1707.02275)
+        - 신경망 기반 기계번역 모델에서 영감을 받음
+      - [DeepCom](https://xin-xia.github.io/publication/icpc182.pdf)
+        - LSTM과 어텐션을 사용
+        - Java 코드에 대해 자동으로 문서를 생성
+      - [Code2Seq](https://arxiv.org/abs/1808.01400)
+        - AST에서 최적의 compositional path을 선택하기 위해 어텐션을 사용한 디코더(decoder)를 사용
+        - DeepCom보다 더 좋은 성능을 보임
+    - 요약(Summarization) : 문서화의 하위 과제. 소스 코드 또는 함수의 핵심 기능을 간단히 요약하여 출력
+      - [SUM-NN](https://arxiv.org/abs/1509.00685)
+        - 신경망 어텐션 모델(neural attention model)
+        - 기존 검색적 방법(retrieval method)(ex. 코드와 이에 상응하는 요약 간의 코사인 거리(cosine distance)를 최소화하기 등), [구 기반 방법(phrase-based method)](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.332.8432&rep=rep1&type=pdf)보다 좋은 성능을 보임
+        - 단점 : 너무 짧은 설명만을 출력하는 경향이 있음
+      - [CODE-NN](https://www.aclweb.org/anthology/P16-1195.pdf)
+        - seq2seq 모델에서 디코더(decoder)의 피드 포워드 신경망(feed-forward neural network)를 LSTM으로 교체
+      - [Chen의 모델](https://dl.acm.org/doi/pdf/10.1145/3238147.3240471)
+        - C#과 SQL을 위한 코드 복구(code retrieval) 및 요약(summarization)을 할 수 있도록 두 개의 Variational AutoEncoders를 사용한(자연어를 위한 것 하나, 소스 코드를 위한 것 하나) bimodal을 구축
+      - [Hu의 모델](https://www.ijcai.org/proceedings/2018/0314.pdf)
+        - API 요약 과제를 위해 seq2seq 모델에 어텐션을 사용
+        - 소스 코드를 요약하는데 필요한 API에 대한 지식(knowledge)을 줄이기 위해 연관된 API 요약 과제로부터 API 시퀸스(sequence)를 학습함
+    - 코드 리뷰(code review) : 소프트웨어 결함으로 이어질 수 있는 잘못된 코드를 식별해 내는데 도움을 줌
+      - [DeepCodeReviewer](https://www.kdd.org/kdd2018/files/deep-learning-day/DLDay18_paper_40.pdf)
+        - 코드 리뷰를 자동화
+        - 4개의 LSTM 모델과 word2vec 임베딩을 이용해 소스 코드와 리뷰들의 서로 다른 부분들을 학습
+        - 피드 포웨드 신경망(feed-forward neural network)를 이용해 4개의 결과를 합쳐, 현재 리뷰의 관련성(relevancy)을 확인
+      - 이 분야에서 딥러닝을 직접적으로 사용한 다른 연구는 아직 없음
 - 프로그램 생성(program generation) : 소스 코드/프로그램을 출력
+  - 조건 없는 프로그램 생성(unconditional program generation) : 코드 말뭉치(code corpus)만을 입력받아, 다음에 나올 가장 그럴듯한 토큰(token)을 생성하거나 현재 입력값과 유사한 예시(sample)을 생성
+    - 코드 자동완성(code completion)
+      - IDE에서 사용하는 자동완성 기능은 대체로 규칙 기반(rule-based) 모델임
+      - 학습 기반(learning-based) 모델
+  - 자연어(natural language)를 입력받음
+  - 입출력 예시(input/output example)를 입력받음
 
 
 

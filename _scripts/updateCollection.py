@@ -401,8 +401,7 @@ if __name__ == "__main__":
         elif menu["index"] == 2:
             collections, config = deleteCollection(collections=collections, config=config)
 
-        if menu["index"] != 3: # don't need to write _config.yml if "종료" is selected
-            writeConfig(collections=collections, config=config)
+        writeConfig(collections=collections, config=config)
     except KeyboardInterrupt:
         print_formatted_text(FormattedText([
             ("class:error", "Script aborted.")

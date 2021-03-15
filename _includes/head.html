@@ -74,6 +74,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="{{ site.baseurl }}{{ site.assets }}/js/jquery.magnific-popup.min.js"></script>
-    <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+    
+    <!--snowflakes-->
+    {% if site.decoration == "snowflakes" %}
+        <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+    {% endif %}
+
+    <!--sakura-->
+    {% if site.decoration == "sakura" %}
+        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/sakura.min.css">
+        <script src="{{ site.baseurl }}{{ site.assets }}/js/sakura.min.js"></script>
+    {% endif %}
+
     {% include mathjax.html %}
 </head>

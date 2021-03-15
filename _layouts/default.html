@@ -40,8 +40,14 @@
                 activateHorizontalScrollspy();
 
                 activatePageNavigator();
+                
+                {% if site.decoration == "snowflakes" %}
+                    let sf = new Snowflakes(); //snowflakes
+                {% endif %}
 
-                let sf = new Snowflakes(); // 눈 내리는 효과
+                {% if site.decoration == "sakura" %}
+                    let sakura = new Sakura("body"); //sakura
+                {% endif %}
             });
 
             function loadPageview() {
