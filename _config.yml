@@ -34,7 +34,7 @@ kramdown:
   - quot
   - quot
 home_recent_doc_num: 10
-decoration: sakura
+decoration: ''
 collections:
   sysdoc:
     name: sysdoc

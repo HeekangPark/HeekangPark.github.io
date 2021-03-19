@@ -12,6 +12,9 @@
 </div>
 
 <script>
+$(document).ready(function() {
+    foldFolder("{{ id }}");
+
     $.ajax({
         type: "GET",
         url: "{{ fullpath }}",
@@ -19,4 +22,59 @@
             $("div.folder#{{ id }} .target").text(data);
         }
     });
+});
+    
+function foldFolder(id) {
+    let target = $(`#${id}`);
+    let show_btn = target.find("p.folder-show-btn");
+    let hide_btn = target.find("p.folder-hide-btn");
+    let content = target.find("div.folder-target");
+
+    show_btn.show();
+    hide_btn.hide();
+    content.hide();
+
+    show_btn.click(function() {
+        content.show();
+        show_btn.hide();
+        hide_btn.show();
+    });
+
+    hide_btn.click(function() {
+        content.hide();
+        show_btn.show();
+        hide_btn.hide();
+    });
+}
 </script>
+
+<style>
+.folder {
+    margin-bottom: 1em;
+}
+
+.folder .folder-btn {
+    cursor: pointer;
+    color: #0275d8;
+    text-align: center;
+}
+
+.folder .folder-btn:hover {
+    text-decoration: underline;
+}
+
+.folder .folder-target {
+    border-radius: 5px;
+    background-color: #eeeeee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.folder .folder-target pre {
+    line-height: 1.2;
+}
+</style>

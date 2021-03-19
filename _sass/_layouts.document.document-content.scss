@@ -353,35 +353,6 @@
     @import "layouts.document.document-content.syntax-highlight";
     @import "includes.caption-img";
 
-    .folder {
-        margin: {
-            bottom: 1em;
-        }
-        .folder-btn {
-            cursor: pointer;
-            color: $hyperlink-unclicked;
-            text-align: center;
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-        .folder-target {
-            border-radius: 5px;
-            background-color: #eeeeee;
-            padding: {
-                top: 10px;
-                bottom: 10px;
-                left: 10px;
-                right: 10px;
-            }
-            max-height: 500px;
-            overflow: auto;
-            pre {
-                line-height: 1.2;
-            }
-        }
-    }
-
     .align-center {
         text-align: center;
     }

@@ -120,8 +120,6 @@ layout: default
 let openedFootnotePopup = null;
 
 $(document).ready(function() {
-    foldAllFolders();
-
     activateFootnotePopups();
 
     activateCodeToolbox();
@@ -212,32 +210,6 @@ function activateFootnotePopups() {
         .css("width", `${getFootnoteWidth()}px`)
         .css("left", `${getFootnoteLeft()}px`);
     })
-}
-
-function foldAllFolders() {
-    $("div.document-content div.folder p.folder-show-btn").show();
-    $("div.document-content div.folder p.folder-hide-btn").hide();
-    $("div.document-content div.folder div.folder-target").hide();
-
-    $("div.document-content div.folder p.folder-show-btn").click(function() {
-        var target = $(this).closest("div.folder").children("div.folder-target");
-        var show_btn = $(this);
-        var hide_btn = $(this).closest("div.folder").children("p.folder-hide-btn");
-
-        target.show();
-        show_btn.hide();
-        hide_btn.show();
-    });
-
-    $("div.document-content div.folder p.folder-hide-btn").click(function() {
-        var target = $(this).closest("div.folder").children("div.folder-target");
-        var show_btn = $(this).closest("div.folder").children("p.folder-show-btn");
-        var hide_btn = $(this);
-
-        target.hide();
-        show_btn.show();
-        hide_btn.hide();
-    });
 }
 
 function activateCodeToolbox() {

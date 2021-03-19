@@ -57,6 +57,9 @@ figure.highlight {
         table.rouge-table {
             width: 100%;
             line-height: $code-line-height;
+            margin: {
+                bottom: 0;
+            }
     
             tbody {
                 tr {
