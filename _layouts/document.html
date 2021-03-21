@@ -177,9 +177,13 @@ function activateFootnotePopups() {
         </div>`);
         $(this).append(close_btn);
         $(this).append(footnote_popup);
+        
+        let anchor = $(this).children("a.footnote");
+        footnote_popup.click(function() {
+            window.location.href = ancher.attr("href");
+        });
 
         if(isMobileBrowser() || $(window).width() < 800) {
-            let anchor = $(this).children("a.footnote");
             anchor.off("click").attr("href", "javascript: void(0);"); //disable anchor click event
 
             $(this).click(function() {
