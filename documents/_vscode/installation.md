@@ -18,7 +18,7 @@ User Installer 버전을 사용하면 복잡한 권한 문제, 충돌 문제 등
 [VSCode 공식 홈페이지](https://code.visualstudio.com/) 혹은 아래 링크를 이용해 Windows용 VSCode 설치파일(User Installer)을 다운로드한다.
 
 [Windows x64용 User Installer](https://aka.ms/win32-x64-user-stable)
-{: .align-center }
+{: .text-align-center }
 
 다운로드가 완료되면 설치파일을 실행한다.
 
