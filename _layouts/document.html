@@ -122,6 +122,8 @@ let openedFootnotePopup = null;
 $(document).ready(function() {
     activateFootnotePopups();
 
+    MathJax.typesetPromise();
+
     activateCodeToolbox();
 
     //image blackout popup
@@ -166,7 +168,6 @@ function activateFootnotePopups() {
 
     $(".main-panel .document .toc-content-container .document-content sup[role='doc-noteref']").each(function(index, item) {
         let anchor = $(this).children("a.footnote");
-        console.log(anchor.attr("href"));
         let footnote_id = anchor.attr("href").substring(1);
         let footnote_index = anchor.text();
         let footnote_content = $.trim($(`.main-panel .document .toc-content-container .document-content .footnotes[role='doc-endnotes'] ol li#${footnote_id.replace(":", "\\:")} p`).clone().children("a.reversefootnote").remove().end().text());
