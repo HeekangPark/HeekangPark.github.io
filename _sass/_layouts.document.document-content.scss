@@ -206,6 +206,14 @@
                 //height: calc(100% - 1.5em);
             }
         }
+
+        &.no-guide-line {
+            > li {
+                &::after {
+                    content: none;
+                }
+            }
+        }
     }
 
     blockquote {
@@ -301,6 +309,8 @@
             grid-gap: 0.5em;
             font-size: 0.9em;
             transition: transform .3s;
+            max-height: 30%;
+            overflow-y: auto;
 
             &.hidden {
                 transform: translateY(200%);
