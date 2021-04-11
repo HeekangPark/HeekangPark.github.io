@@ -392,6 +392,23 @@
         }
     }
 
+    .ad {
+        background-color: $site-panel-color;
+        box-shadow: 0.5em 0.5em 1.5em #cacaca, -0.5em -0.5em 1.5em $site-panel-color;
+        border-radius: 0.5em;
+
+        margin: {
+            top: 1em;
+        }
+
+        padding: {
+            top: 3em;
+            bottom: 3em;
+            left: 3em;
+            right: 3em;
+        }
+    }
+
     @media screen and (max-width: #{$left-panel-size + $media-phone + 4em}) {
         .left-panel-open-btn-container {
             display: initial;
