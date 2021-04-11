@@ -407,6 +407,11 @@
             left: 3em;
             right: 3em;
         }
+
+        .title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
     }
 
     @media screen and (max-width: #{$left-panel-size + $media-phone + 4em}) {
@@ -419,6 +424,24 @@
                 top: 5.5em;
                 left: 2em;
                 right: 2em;
+            }
+        }
+
+        .comments {
+            padding: {
+                top: 2em;
+                left: 2em;
+                right: 2em;
+                bottom: 2em;
+            }
+        }
+
+        .ad {
+            padding: {
+                top: 2em;
+                left: 2em;
+                right: 2em;
+                bottom: 2em;
             }
         }
     }
