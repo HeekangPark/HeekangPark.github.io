@@ -105,7 +105,7 @@ function onHashSet() {
     $(".main-panel .category").addClass("hidden");
     $(".main-panel .collection").addClass("hidden");
 
-    let collection_label = window.location.hash.substring(1);
+    let collection_label = window.location.hash.substring(1).replace(".", "\\.");
     let collection_object = $(`.main-panel #collection-${collection_label}`);
     let category_object = collection_object.closest(".category");
     let collection_name = collection_object.children(".collection-name").clone().children().remove().end().text();

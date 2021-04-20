@@ -208,7 +208,7 @@
         }
 
         &.no-guide-line {
-            > li {
+            li {
                 &::after {
                     content: none;
                 }
@@ -234,14 +234,20 @@
         box-sizing: border-box;
 
         p {
-            margin: {
-                bottom: 0;
+            &:last-child {
+                margin: {
+                    bottom: 0;
+                }
+            }
+
+            &.title {
+                font-size: 1.1em;
+                font-weight: bold;
             }
         }
-        div.mathjax-wrapper {
-            margin: {
-                bottom: -1em;
-            }
+
+        &.blockquote-info {
+            border-left-color: #7CDCFE;
         }
     }
 
@@ -255,6 +261,7 @@
         box-sizing: border-box;
         font-size: inherit;
         user-select: none;
+        word-break: keep-all;
 
         .footnote {
             &::before {
@@ -311,6 +318,8 @@
             transition: transform .3s;
             max-height: 30%;
             overflow-y: auto;
+            font-weight: initial;
+            font-style: initial;
 
             &.hidden {
                 transform: translateY(200%);
@@ -366,5 +375,23 @@
 
     .text-align-center {
         text-align: center;
+    }
+
+    .mb-0 {
+        margin: {
+            bottom: 0 !important;
+        }
+    }
+
+    .mb-1 {
+        margin: {
+            bottom: 1em !important;
+        }
+    }
+
+    .mt-1 {
+        margin: {
+            top: 1em !important;
+        }
     }
 }

@@ -243,10 +243,12 @@
                     }
                     border-radius: 0.5em;
 
-                    .icon {
+                    .name {
+                        font-size: 0.9em;
                         margin: {
-                            bottom: 0.25em;
+                            bottom: 0.5em;
                         }
+                        opacity: 0.8;
                     }
 
                     &:hover {
@@ -260,14 +262,14 @@
                     
                     &.prev-document-btn {
                         grid-column: 1/2;
-                        .icon, .title {
+                        .name, .title {
                             text-align: left;
                         }
                     }
 
                     &.next-document-btn {
                         grid-column: 2/3;
-                        .icon, .title {
+                        .name, .title {
                             text-align: right;
                         }
                     }
@@ -279,10 +281,6 @@
             .collection-documents {
                 .section-title {
                     font-size: 1.1em;
-
-                    margin: {
-                        bottom: 1em;
-                    }
                 }
 
                 .section-contents {
@@ -292,6 +290,9 @@
                     flex-wrap: nowrap;
                     margin: {
                         right: -1em;
+                    }
+                    padding: {
+                        top: 1em;
                     }
                     box-sizing: border-box;
 
@@ -324,7 +325,12 @@
                             .document-title {
                                 color: #000000;
                             }
-                        } 
+                        }
+
+                        &.current-document {
+                            background-color: #f1f1f1;
+                            pointer-events: none;
+                        }
                         
                         .document-title {
                             line-height: $line-height;

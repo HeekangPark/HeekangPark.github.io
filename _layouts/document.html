@@ -63,7 +63,7 @@ layout: default
                 <div class="prev-document-btn btn">
                     {% assign prev_idx = idx | minus: 1 %}
                     {% assign prev_document = documents[prev_idx] %}
-                    <p class="icon"><a href="{{ prev_document.url }}"><i class="fas fa-angle-double-left"></i></a></p>
+                    <p class="name"><a href="{{ prev_document.url }}">이전 문서</a></p>
                     <p class="title"><a href="{{ prev_document.url }}">{{ prev_document.title }}</a></p>
                 </div>
             {% endunless %}
@@ -71,7 +71,7 @@ layout: default
                 <div class="next-document-btn btn">
                     {% assign next_idx = idx | plus: 1 %}
                     {% assign next_document = documents[next_idx] %}
-                    <p class="icon"><a href="{{ next_document.url }}"><i class="fas fa-angle-double-right"></i></a></p>
+                    <p class="name"><a href="{{ next_document.url }}">다음 문서</a></p>
                     <p class="title"><a href="{{ next_document.url }}">{{ next_document.title }}</a></p>
                 </div>
             {% endunless %}
@@ -86,7 +86,12 @@ layout: default
             <p class="section-title">이 컬랙션의 다른 문서 보기</p>
             <div class="section-contents">
                 {% for document in documents %}
-                    <div class="collection-document">
+                    {% assign class = "" %}
+                    {% if document.title == page.title %}
+                        {% assign class = " current-document" %}
+                    {% endif %}
+
+                    <div class="collection-document{{ class }}">
                         <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
                         <div class="document-info">
                             <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ document.date | date: "%Y.%m.%d" }}</span></p>

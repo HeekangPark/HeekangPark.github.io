@@ -7,15 +7,6 @@ SKKU_swe3050:
   - lecture
   - machine_learning
   - skku
-SNU_493.613:
-  category: 수학 (Mathematics)
-  name: 지능형시스템수학
-  output: true
-  permalink: /:collection/:name
-  tags:
-  - lecture
-  - linear_algebra
-  - snu
 SNU_m3309.000200:
   category: 기계학습 (Machine Learning)
   name: 강화학습 (Reinforcement Learning)

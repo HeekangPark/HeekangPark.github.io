@@ -49,15 +49,6 @@ collections:
     - lecture
     - machine_learning
     - skku
-  SNU_493.613:
-    category: 수학 (Mathematics)
-    name: 지능형시스템수학
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - lecture
-    - linear_algebra
-    - snu
   SNU_m3309.000200:
     category: 기계학습 (Machine Learning)
     name: 강화학습 (Reinforcement Learning)
@@ -83,14 +74,6 @@ collections:
     permalink: /:collection/:name
     tags:
     - math
-  docker:
-    category: 라이브러리 (Libraries)
-    name: docker
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - docker
-    - server
   etc:
     category: 기타 (Etc)
     name: 기타 (Etc)
@@ -179,6 +162,14 @@ collections:
     tags:
     - web
     - server
+  docker:
+    output: true
+    permalink: /:collection/:name
+    name: docker
+    category: 라이브러리 (Libraries)
+    tags:
+    - docker
+    - server
 defaults:
 - scope:
     path: ''
@@ -188,11 +179,6 @@ defaults:
 - scope:
     path: ''
     type: SKKU_swe3050
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: SNU_493.613
   values:
     layout: document
 - scope:
@@ -208,11 +194,6 @@ defaults:
 - scope:
     path: ''
     type: calculus
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: docker
   values:
     layout: document
 - scope:
@@ -268,5 +249,10 @@ defaults:
 - scope:
     path: ''
     type: web_server
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: docker
   values:
     layout: document
