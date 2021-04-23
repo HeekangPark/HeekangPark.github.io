@@ -62,7 +62,7 @@ $ rm -r ~/템플릿
 
 ## VSCode (텍스트 편집기)
 
-VSCode를 설치하는 자세한 방법은 [해당 문서](/vscode/01-installation#kramdown_linuxubuntu에-vscode-설치하기)를 참고하자.
+VSCode를 설치하는 자세한 방법은 [해당 문서](/vscode/installation#kramdown_linuxubuntu에-vscode-설치하기)를 참고하자.
 
 여담으로, `snap`을 이용하면 VSCode를 아주 간편하게 설치할 수 있지만 한글이 입력되지 않는 치명적인 버그가 있다. 인터넷 조사 결과 이 문제는 VSCode 뿐만 아니라 `snap`으로 설치한 많은 패키지들에서 발견되는 문제로, `snap`으로 설치한 패키지와 Ubuntu의 IME(ex. IBus)가 충돌하는 것이 원인이라 한다. [관련 Github Issue](https://github.com/snapcrafters/vscode/issues/47), [Ubuntu 버그 리포트](https://bugs.launchpad.net/ubuntu/+source/snapd/+bug/1580463)
 
