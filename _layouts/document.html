@@ -32,6 +32,42 @@ layout: default
 
         <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ page.date | date: "%Y.%m.%d" }}</span></p>
         <p class="document-views with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="{{ page.url }}"></span></p>
+        
+        <div class="document-navigator-btns">
+            {% assign documents_with_order = collection.docs | where_exp: "item", "item.order" | sort: "order" %}
+            {% assign documents_without_order = collection.docs | where_exp: "item", "item.order == Nil" | sort %}
+            {% assign documents = documents_with_order | concat: documents_without_order %}
+        
+            {% for document in documents %}
+                {% if page.title == document.title %}
+                    {% assign idx = forloop.index | minus: 1 %}
+                    {% assign is_first = forloop.first %}
+                    {% assign is_last = forloop.last %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% unless is_first %}
+                <div class="document-navigator-btn prev-document-btn fas fa-chevron-left"></div>
+                {% assign prev_idx = idx | minus: 1 %}
+                {% assign prev_document = documents[prev_idx] %}
+                <script>
+                    $(".main-panel .document .document-head .document-navigator-btns .document-navigator-btn.prev-document-btn").click(function() {
+                        window.location.href = "{{ prev_document.url }}";
+                    });
+                </script>
+            {% endunless %}
+            {% unless is_last %}
+                <div class="document-navigator-btn next-document-btn fas fa-chevron-right"></div>
+                {% assign next_idx = idx | plus: 1 %}
+                {% assign next_document = documents[next_idx] %}
+                <script>
+                    $(".main-panel .document .document-head .document-navigator-btns .document-navigator-btn.next-document-btn").click(function() {
+                        window.location.href = "{{ next_document.url }}";
+                    });
+                </script>
+            {% endunless %}
+        </div>
     </div>
     
     <div class="toc-content-container scrollspy">
