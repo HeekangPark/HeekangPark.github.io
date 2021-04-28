@@ -24,6 +24,9 @@
     .recent-docs {
         .title {
             font-size: 1.2em;
+            margin: {
+                bottom: 1em;
+            }
         }
 
         @import "documents.document";

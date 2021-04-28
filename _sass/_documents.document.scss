@@ -1,9 +1,20 @@
 .documents {
     .document {
         cursor: pointer;
+
+        &:hover {
+            background-color: #fcfcfc;
+        }
+
         padding: {
             top: 1.5em;
             bottom: 1.5em;
+            left: 3em;
+            right: 3em;
+        }
+        margin: {
+            left: -3em;
+            right: -3em;
         }
         border: {
             bottom: 1px solid $gray-line-color;
