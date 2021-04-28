@@ -93,10 +93,10 @@ function onHashSet() {
     let tag = window.location.hash.substring(1);
     let tag_document_object = $(`.main-panel #tag-${tag}`);
 
-    $(".main-panel .page-description").text(`${tag}`);
+    $(".main-panel .page-description").text(`tag: ${tag}`);
 
     if(tag_list.includes(tag)) {
-        $(`.main-panel .tags .tag-${tag}`).addClass("selected");
+        $(`.main-panel .tag-list .tag-${tag}`).addClass("selected");
         updateVisibleDocuments();
     }
 }

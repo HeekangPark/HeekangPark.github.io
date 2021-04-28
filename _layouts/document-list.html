@@ -6,3 +6,11 @@ layout: default
 <p class="page-description">{{ page.description }}</p>
 
 {{ content }}
+
+
+<script>
+    $(".documents .document").click(function() {
+        let target = $(this).find(".document-title a").attr("href");
+        window.location.href = target;
+    });
+</script>

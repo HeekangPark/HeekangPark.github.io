@@ -52,5 +52,11 @@ layout: default
                 <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="{{ document.url }}"></span></p>
             </div>
         {% endfor %}
+        <script>
+            $(".documents .document").click(function() {
+                let target = $(this).find(".document-title a").attr("href");
+                window.location.href = target;
+            });
+        </script>
     </div>
 </div>
