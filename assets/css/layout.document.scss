@@ -132,11 +132,13 @@
                 height: 100%;
                 position: absolute;
                 align-items: center;
+                pointer-events: none;
                 
                 .document-navigator-btn {
                     opacity: 0;
                     font-size: 6em;
                     cursor: pointer;
+                    pointer-events: auto;
     
                     &:hover {
                         opacity: 0.3;
