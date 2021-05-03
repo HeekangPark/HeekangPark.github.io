@@ -56,8 +56,8 @@ function getDocumentHtml(document) {
     
     html += `        </div>
     </div>
-    <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">${document.date}</span></p>
-    <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="${document.url}"></span></p>
+    <p class="document-date-modified with-icon"><i class="icon fas fa-edit"></i><span class="date" path="${document.path}">${document.date}</span></p>
+    <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" url="${document.url}"></span></p>
 </div>`;
     
     return html;
@@ -88,6 +88,7 @@ function search(keywords_str) {
             }
 
             loadPageview();
+            loadDateModified();
         }
     });
 }

@@ -6,7 +6,7 @@ layout: default
     <div class="document-head">
         <p class="document-title">{{ page.title }}</p>
         <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ page.date | date: "%Y.%m.%d" }}</span></p>
-        <p class="document-views with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="{{ page.url }}"></span></p>
+        <p class="document-views with-icon"><i class="icon far fa-eye"></i><span class="pageview" url="{{ page.url }}"></span></p>
     </div>
 
     <div class="toc-content-container scrollspy">

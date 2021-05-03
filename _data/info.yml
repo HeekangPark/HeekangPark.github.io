@@ -5,6 +5,8 @@ stackoverflow: 10383616
 google-analytics: UA-167580013-1
 google-anlytics-superProxy-public-endpoint: "https://reinventing-the-wheel-20201128.du.r.appspot.com/query?id=aiB2fnJlaW52ZW50aW5nLXRoZS13aGVlbC0yMDIwMTEyOHIVCxIIQXBpUXVlcnkYgICAmJSmgwoM"
 utterances-repo: "HeekangPark/comments.heekangpark.github.io"
+blog-repo: "HeekangPark/HeekangPark.github.io"
+date-modified-github-oauth-token: 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
 
 favicon: icons/1.ico
 logo: logos/1.png

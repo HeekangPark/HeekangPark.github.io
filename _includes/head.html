@@ -44,33 +44,11 @@
         <link rel="apple-touch-icon-precomposed" href="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.favicon }}">
     {% endif %}
 
-    <!--css-->
-    <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.default.css" type="text/css">
-
-    {% assign delim = ";" %}
-    {% assign sysdocs = "" | split: delim %}
-
-    {% for sysdoc in site.sysdoc %}
-        {% assign sysdoc_title_downcase = sysdoc.title | downcase %}
-        {% assign sysdocs = sysdocs | push: sysdoc_title_downcase %}
-    {% endfor %}
-
-    {% assign page_title_downcase = page.title | downcase %}
-
-    {% if sysdocs contains page_title_downcase %}
-        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/sysdoc.{{ page_title_downcase }}.css" type="text/css">
-    {% elsif page.layout == "document" %}
-        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
-    {% elsif page.layout == "draft" %}
-        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
-    {% endif %}
-
     <script src="https://kit.fontawesome.com/0350ef153e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/magnific-popup.css" type="text/css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 
-    <!--js-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="{{ site.baseurl }}{{ site.assets }}/js/jquery.magnific-popup.min.js"></script>
@@ -88,5 +66,59 @@
 
     {% include mathjax.html %}
 
+    <!--google adsense-->
     <script data-ad-client="ca-pub-7509436363176620" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <!--collection css/js-->
+    <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.default.css" type="text/css">
+    {% for item in site.collections %}
+        {% if page.collection == item.label %}
+            {% assign collection = item %}
+        {% endif %}
+    {% endfor %}
+    {% if collection.label == "sysdoc" %}
+        {% assign page_title_downcase = page.title | downcase %}
+        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/sysdoc.{{ page_title_downcase }}.css" type="text/css">
+    {% else %}
+        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
+        {% if collection %}
+            {% assign css_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".css" %}
+            {% assign scss_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".scss" %}
+            {% assign js_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".js" %}
+
+            {% assign css_file_exist = false %}
+            {% assign js_file_exist = false %}
+            {% for static_file in site.static_files %}
+                {% if static_file.path == css_file_path %}
+                    {% assign css_file_exist = true %}
+                {% endif %}
+
+                {% if static_file.path == js_file_path %}
+                    {% assign js_file_exist = true %}
+                {% endif %}
+
+                {% if css_file_exist and js_file_exist %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% unless css_file_exist %}
+                {% for item in site.pages %}
+                    {% assign item_path = item.path | prepend: "/" %}
+                    {% if item_path == scss_file_path %}
+                        {% assign css_file_exist = true %}
+                        {% break %}
+                    {% endif %}
+                {% endfor %}
+            {% endunless %}
+
+            {% if css_file_exist %}
+                <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/collections/{{ collection.label }}.css" type="text/css">
+            {% endif %}
+
+            {% if js_file_exist %}
+                <script src="{{ site.baseurl }}{{ site.assets }}/collections/{{ collection.label }}.js"></script>
+            {% endif %}
+        {% endif %}
+    {% endif %}
 </head>

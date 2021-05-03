@@ -30,8 +30,27 @@ layout: default
     
         <p class="document-title">{{ page.title }}</p>
 
-        <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ page.date | date: "%Y.%m.%d" }}</span></p>
-        <p class="document-views with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="{{ page.url }}"></span></p>
+        <p class="document-date-created with-icon">
+            <i class="icon fas fa-plus"></i>
+            <span class="with-icon-content">
+                <span class="name">Date Created :</span>
+                <span class="date">{{ page.date | date: "%Y.%m.%d" }}</span>
+            </span>
+        </p>
+        <p class="document-date-modified with-icon">
+            <i class="icon fas fa-edit"></i>
+            <span class="with-icon-content">
+                <span class="name">Date Modified :</span>
+                <span class="date" path="{{ page.path }}">{{ page.date | date: "%Y.%m.%d" }}</span>
+            </span>
+        </p>
+        <p class="document-views with-icon">
+            <i class="icon far fa-eye"></i>
+            <span class="with-icon-content">
+                <span class="name">Page Viewed :</span>
+                <span class="pageview" url="{{ page.url }}"></span>
+            </span>
+        </p>
         
         <div class="document-navigator-btns">
             {% assign documents_with_order = collection.docs | where_exp: "item", "item.order" | sort: "order" %}
@@ -130,8 +149,18 @@ layout: default
                     <div class="collection-document{{ class }}">
                         <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
                         <div class="document-info">
-                            <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ document.date | date: "%Y.%m.%d" }}</span></p>
-                            <p class="document-views with-icon"><i class="icon far fa-eye"></i><span class="pageview" id="{{ document.url }}"></span></p>
+                            <!--p class="document-date-created with-icon">
+                                <i class="icon fas fa-plus"></i>
+                                <span class="with-icon-content"><span class="date">{{ document.date | date: "%Y.%m.%d" }}</span></span>
+                            </p-->
+                            <p class="document-date-modified with-icon">
+                                <i class="icon fas fa-edit"></i>
+                                <span class="with-icon-content"><span class="date" path="{{ document.path }}">{{ document.date | date: "%Y.%m.%d" }}</span></span>
+                            </p>
+                            <p class="document-views with-icon">
+                                <i class="icon far fa-eye"></i>
+                                <span class="with-icon-content"><span class="pageview" url="{{ document.url }}"></span></span>
+                            </p>
                         </div>
                     </div>
                 {% endfor %}
