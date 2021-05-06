@@ -1,6 +1,7 @@
 ---
 title: "SPOS(Single Path One Shot)"
-date: "2020-10-08"
+date_created: "2020-10-08"
+date_modified: "2020-10-08"
 ---
 
 # 논문 분석

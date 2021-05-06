@@ -1,7 +1,8 @@
 ---
 title: "Git Cheat Sheet"
 order: 1
-date: "2021-01-08"
+date_created: "2021-01-08"
+date_modified: "2021-01-08"
 ---
 
 Git 명령어 Cheat Sheet

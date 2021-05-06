@@ -1,7 +1,8 @@
 ---
 title: "Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges"
-date: "2021-02-08"
 tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code_generation", "review_paper"]
+date_created: "2021-02-08"
+date_modified: "2021-02-08"
 ---
 
 논문 [Triet H. M. Le, Hao Chen, Muhammad Ali Babar, 2020, "Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges"](https://arxiv.org/abs/2002.05442) 정리

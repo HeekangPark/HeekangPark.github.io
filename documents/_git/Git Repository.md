@@ -1,7 +1,8 @@
 ---
 title: "Git 저장소 (Git Repository)"
 order: 3
-date: "2021-01-08"
+date_created: "2021-01-08"
+date_modified: "2021-01-08"
 ---
 
 Git 저장소(Repository)는 Git이 버전 관리를 하고 있는 폴더를 의미한다. Git에는 로컬 저장소(Local Repository)와 원격 저장소(Remote Repository), 이렇게 두 가지 종류의 저장소가 있다.

@@ -36,7 +36,6 @@
         <script>
             $(document).ready(function() {
                 loadPageview();
-                loadDateModified();
 
                 activateHorizontalScrollspy();
 
@@ -77,42 +76,6 @@
                             console.log("Failed to load Pageviews");
                         }
                     });
-                }
-            }
-
-            function loadDateModified() {
-                let targets = $(".document-date-modified .date")
-                if(targets.length > 0) {
-                    targets.each(function(index, item) {
-                        let path = $(this).attr("path");
-                        let target = $(this);
-
-                        let cookie_key = `date-modified-${path}`;
-                        let cookie = $.cookie(cookie_key);
-                        if(cookie == undefined) {
-                            $.ajax({
-                                url: `https://api.github.com/repos/{{ site.data.info.blog-repo }}/commits?path=documents/${ path }`,
-                                beforeSend: function(xhr) {
-                                    xhr.setRequestHeader("Authorization", "{{ site.data.info.date-modified-github-oauth-token }}")
-                                },
-                                success: function(data) {
-                                    if(data.length > 0) {
-                                        let modified_date = new Date(data[0]["commit"]["committer"]["date"]);
-                                        let year = modified_date.getFullYear();
-                                        let month = modified_date.getMonth() + 1;
-                                        let date = modified_date.getDate();
-                                        
-                                        let modified_date_str = `${year}.${month < 10 ? "0" + month : month}.${date < 10 ? "0" + date : date}`;
-                                        
-                                        target.text(modified_date_str);
-                                        $.cookie(cookie_key, modified_date_str, {expires: 0.5, path: '/'});
-                                    }
-                                }
-                            })
-                        } else {
-                            target.text(cookie);
-                        }
-                    })
                 }
             }
 

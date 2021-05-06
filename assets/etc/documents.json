@@ -39,7 +39,8 @@
                         ],
                         "url": "{{ document.url }}",
                         "path": "{{ document.path }}",
-                        "date": "{{ document.date | date: '%Y.%m.%d' }}",
+                        "date_created": "{{ document.date_created | date: '%Y.%m.%d' }}",
+                        "date_modified": "{{ document.date_modified | date: '%Y.%m.%d' }}",
                         "preview": "{{ document.content | strip_html | strip_newlines | truncate: 300 | replace: '\', '\\\\' | replace: '"', '\"' }}",
                         "contents": "{{ document.content | strip_html | strip_newlines | append: category | append: collection.name | append: document.title | downcase | replace: '\', '\\\\' | replace: '"', '\"' }}"
                     }

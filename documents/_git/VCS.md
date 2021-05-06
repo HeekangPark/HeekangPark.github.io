@@ -1,7 +1,8 @@
 ---
 title: "버전 관리 시스템 (Version Control System)"
 order: 2
-date: "2021-01-08"
+date_created: "2021-01-08"
+date_modified: "2021-01-08"
 ---
 
 # 버전 관리 시스템 (VCS, Version Control System)

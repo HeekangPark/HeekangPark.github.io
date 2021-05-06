@@ -1,7 +1,11 @@
 #!/bin/bash
 
+eval "$(conda shell.bash hook)"
+conda activate jekyll
+
 # create requirements.txt
-./createRequirements
+pip freeze > requirements.txt
+echo -e "\033[32mrequirements.txt successfully created.\033[0m"
 
 # Hide Draft
 draft_dir="draft"
@@ -24,19 +28,6 @@ unset draft_dir
 unset draft_sysdoc_hidden
 unset draft_sysdoc_exposed
 
-# Git add, commit, push
-git config user.name "Heekang Park"
-git config user.email "park.heekang33@gmail.com"
-
-git add .
-
-time=`date '+%F %H:%M'`
-commit_msg="commit from laptop, $time"
-
-if [ -n "$1" ]; then
-    commit_msg=$1
-fi
-
-git commit -m "$commit_msg"
+python _scripts/commit.py
 
 git push origin master

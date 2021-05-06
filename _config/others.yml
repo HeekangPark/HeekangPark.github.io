@@ -5,7 +5,7 @@ timezone: Asia/Seoul
 plugins:
   - jekyll-sitemap
   - jekyll-feed
-exclude: ["run", "commit", "updateCollection", "createTIL", "createRequirements", "README.md", "Gemfile", "Gemfile.lock", "_scripts", "_config", "requirements.txt"]
+exclude: ["run", "commit", "updateCollection", "createTIL", "README.md", "Gemfile", "Gemfile.lock", "_scripts", "_config", "requirements.txt"]
 
 assets: /assets
 layouts_dir: _layouts

@@ -32,24 +32,15 @@ layout: default
 
         <p class="document-date-created with-icon">
             <i class="icon fas fa-plus"></i>
-            <span class="with-icon-content">
-                <span class="name">Date Created :</span>
-                <span class="date">{{ page.date | date: "%Y.%m.%d" }}</span>
-            </span>
+            <span class="date">{{ page.date_created | date: "%Y.%m.%d" }}</span>
         </p>
         <p class="document-date-modified with-icon">
             <i class="icon fas fa-edit"></i>
-            <span class="with-icon-content">
-                <span class="name">Date Modified :</span>
-                <span class="date" path="{{ page.path }}">{{ page.date | date: "%Y.%m.%d" }}</span>
-            </span>
+            <span class="date" path="{{ page.path }}">{{ page.date_modified | date: "%Y.%m.%d" }}</span>
         </p>
         <p class="document-views with-icon">
             <i class="icon far fa-eye"></i>
-            <span class="with-icon-content">
-                <span class="name">Page Viewed :</span>
-                <span class="pageview" url="{{ page.url }}"></span>
-            </span>
+            <span class="pageview" url="{{ page.url }}"></span>
         </p>
         
         <div class="document-navigator-btns">
@@ -151,15 +142,15 @@ layout: default
                         <div class="document-info">
                             <!--p class="document-date-created with-icon">
                                 <i class="icon fas fa-plus"></i>
-                                <span class="with-icon-content"><span class="date">{{ document.date | date: "%Y.%m.%d" }}</span></span>
+                                <span class="date">{{ document.date_created | date: "%Y.%m.%d" }}</span>
                             </p-->
                             <p class="document-date-modified with-icon">
                                 <i class="icon fas fa-edit"></i>
-                                <span class="with-icon-content"><span class="date" path="{{ document.path }}">{{ document.date | date: "%Y.%m.%d" }}</span></span>
+                                <span class="date" path="{{ document.path }}">{{ document.date_modified | date: "%Y.%m.%d" }}</span>
                             </p>
                             <p class="document-views with-icon">
                                 <i class="icon far fa-eye"></i>
-                                <span class="with-icon-content"><span class="pageview" url="{{ document.url }}"></span></span>
+                                <span class="pageview" url="{{ document.url }}"></span>
                             </p>
                         </div>
                     </div>

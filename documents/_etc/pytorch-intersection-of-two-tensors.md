@@ -1,7 +1,8 @@
 ---
 title: "[PyTorch] 두 텐서 간 교집합(Intersection) 구하기"
 tags: ["pytorch"]
-date: "2020-08-21"
+date_created: "2020-08-21"
+date_modified: "2020-08-21"
 ---
 
 다음과 같이 1차원 텐서 `a`, `b`가 주어졌다고 해 보자.

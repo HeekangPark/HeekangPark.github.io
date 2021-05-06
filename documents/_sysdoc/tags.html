@@ -153,7 +153,6 @@ function updateVisibleDocuments() {
     }
 
     loadPageview();
-    loadDateModified();
 }
 
 function getDocumentHtml(document) {
@@ -173,7 +172,10 @@ function getDocumentHtml(document) {
     
     html += `        </div>
     </div>
-    <p class="document-date-modified with-icon"><i class="icon fas fa-edit"></i><span class="date" path="${document.path}">${document.date}</span></p>
+    <p class="document-date-modified with-icon">
+        <i class="icon fas fa-edit"></i>
+        <span class="date" path="${document.path}">${document.date_modified}</span>
+    </p>
     <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" url="${document.url}"></span></p>
 </div>`;
     

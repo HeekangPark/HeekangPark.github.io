@@ -1,7 +1,8 @@
 ---
 title: "Git 설정하기 : git config"
 order: 5
-date: "2021-01-08"
+date_created: "2021-01-08"
+date_modified: "2021-01-08"
 ---
 
 Git은 다음과 같이 세 종류의 config 파일을 사용한다.

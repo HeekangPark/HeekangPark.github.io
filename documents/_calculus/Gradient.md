@@ -1,6 +1,7 @@
 ---
 title: "그라디언트(Gradient)"
-date: "2020-05-01"
+date_created: "2020-05-01"
+date_modified: "2020-05-01"
 ---
 
 # 그라디언트(Gradient)

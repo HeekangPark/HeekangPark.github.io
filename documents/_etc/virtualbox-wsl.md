@@ -1,7 +1,8 @@
 ---
 title: "[VirtualBox] WSL2로 인한 VirtualBox VM 실행 불가 문제 해결"
 tags: ["virtualbox", "wsl"]
-date: "2020-09-02"
+date_created: "2020-09-02"
+date_modified: "2020-09-02"
 ---
 
 WSL2는 Hyper-V 기술을 사용한다. Oracle VM VirtualBox는 Hyper-V와 함께 사용할 수 없기에, WSL2가 설치된 컴퓨터에서 VirtualBox는 정상적으로 작동하지 않는다.[^1]

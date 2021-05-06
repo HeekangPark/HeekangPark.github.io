@@ -80,11 +80,33 @@
                         top: 0.1em;
                     }
                 }
-            }
 
-            .document-date-created {
-                margin: {
-                    bottom: 0.5em !important;
+                &.document-date-created {
+                    margin: {
+                        bottom: 0.5em !important;
+                    }
+    
+                    .date {
+                        &::before {
+                            content: "Date Created : ";
+                        }
+                    }
+                }
+    
+                &.document-date-modified {
+                    .date {
+                        &::before {
+                            content: "Date Modified : ";
+                        }
+                    }
+                }
+
+                &.document-views {
+                    .pageview {
+                        &::before {
+                            content: "Page Viewed : ";
+                        }
+                    }
                 }
             }
 
@@ -141,7 +163,7 @@
                 pointer-events: none;
                 
                 .document-navigator-btn {
-                    opacity: 0;
+                    opacity: 0.01;
                     font-size: 6em;
                     cursor: pointer;
                     pointer-events: auto;

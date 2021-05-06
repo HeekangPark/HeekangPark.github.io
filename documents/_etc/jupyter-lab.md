@@ -1,7 +1,8 @@
 ---
 title: "주피터 랩(Jupyter Lab) 설치하기"
 tags: ["jupyterlab", "python", "framework"]
-date: "2020-08-31"
+date_created: "2020-08-31"
+date_modified: "2020-08-31"
 ---
 
 # 주피터 랩(Jupyter Lab)이란?

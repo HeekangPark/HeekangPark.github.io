@@ -29,8 +29,8 @@ description: "Draft"
                 </div>
             </div>
             {% endif %}
-            {% if document.date %}
-                <p class="document-date with-icon"><i class="icon far fa-clock"></i><span class="date">{{ document.date | date: "%Y.%m.%d" }}</span></p>
+            {% if document.date_created %}
+                <p class="document-date-created with-icon"><i class="icon far fa-clock"></i><span class="date">{{ document.date_created | date: "%Y.%m.%d" }}</span></p>
             {% endif %}
         </div>
     {% endfor %}

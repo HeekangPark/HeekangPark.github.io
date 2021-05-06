@@ -24,7 +24,7 @@ layout: default
             {% endunless %}
         {% endfor %}
 
-        {% assign documents = documents | sort: "date" | reverse %}
+        {% assign documents = documents | sort: "date_modified" | reverse %}
 
         {% for document in documents limit:site.home_recent_doc_num %}
             {% for collection in site.collections %}
@@ -48,7 +48,10 @@ layout: default
                         {%- endfor -%}
                     </div>
                 </div>
-                <p class="document-date-modified with-icon"><i class="icon fas fa-edit"></i><span class="date" path="{{ document.path }}">{{ document.date | date: "%Y.%m.%d" }}</span></p>
+                <p class="document-date-modified with-icon">
+                    <i class="icon fas fa-edit"></i>
+                    <span class="date" path="{{ document.path }}">{{ document.date_modified | date: "%Y.%m.%d" }}</span>
+                </p>
                 <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" url="{{ document.url }}"></span></p>
             </div>
         {% endfor %}

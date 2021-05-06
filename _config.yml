@@ -10,7 +10,6 @@ exclude:
 - commit
 - updateCollection
 - createTIL
-- createRequirements
 - README.md
 - Gemfile
 - Gemfile.lock
