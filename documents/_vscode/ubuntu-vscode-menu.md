@@ -2,7 +2,7 @@
 title: "우분투에서 Visual Studio Code 메뉴 바 색 바꾸기"
 tags: ["ubuntu", "ubuntu20.04"]
 date_created: "2021-02-20"
-date_modified: "2021-02-20"
+date_modified: "2021-02-19"
 ---
 
 Ubuntu 20.04에 VSCode를 설치하면 다음과 같이 된다.

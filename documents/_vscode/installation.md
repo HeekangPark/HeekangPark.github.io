@@ -2,7 +2,7 @@
 title: "VSCode 설치하기"
 order: 1
 date_created: "2021-02-18"
-date_modified: "2021-02-18"
+date_modified: "2021-03-22"
 ---
 
 # Windows에 VSCode 설치하기

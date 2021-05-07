@@ -1,7 +1,7 @@
 ---
 title: "DARTS (Differentiable Architecture Search)"
 date_created: "2020-10-05"
-date_modified: "2020-10-05"
+date_modified: "2021-02-25"
 ---
 
 # 논문 분석

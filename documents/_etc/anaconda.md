@@ -2,7 +2,7 @@
 title: "아나콘다(Anaconda) 리눅스(Ubuntu)에 설치하기"
 tags: ["anaconda", "python", "framework", "linux", "ubuntu"]
 date_created: "2020-08-31"
-date_modified: "2020-08-31"
+date_modified: "2021-02-18"
 ---
 
 # 파이썬 가상환경 (Python Virtual Environment)

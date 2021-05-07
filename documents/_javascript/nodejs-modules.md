@@ -2,7 +2,7 @@
 title: "[Node.js] 모듈 시스템"
 tags: ["node-js", "common-js", "es6", "ecmascript2015"]
 date_created: "2021-01-16"
-date_modified: "2021-01-16"
+date_modified: "2021-01-28"
 ---
 
 Node.js의 모듈 시스템에 대해 알아보자.
