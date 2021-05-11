@@ -28,6 +28,17 @@ unset draft_dir
 unset draft_sysdoc_hidden
 unset draft_sysdoc_exposed
 
-python _scripts/commit.py
+python _scripts/updateDateModified.py
+
+git add .
+
+time=`date '+%F %H:%M'`
+commit_msg="commit from laptop, $time"
+
+if [ -n "$1" ]; then
+    commit_msg=$1
+fi
+
+git commit -m "$commit_msg"
 
 git push origin master

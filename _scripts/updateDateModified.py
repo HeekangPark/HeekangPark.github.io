@@ -5,20 +5,11 @@ from datetime import datetime
 repo_dir = "./"
 repo = Repo(repo_dir)
 
-try:
-    name = repo.config_reader().get_value("user", "name")
-except:
-    repo.config_writer().set_value("user", "name", "Heekang Park").release()
-
-try:
-    email = repo.config_reader().get_value("user", "email")
-except:
-    repo.config_writer().set_value("user", "email", "park.heekang33@gmail.com").release()
-
 modified_files = [x.a_path for x in repo.index.diff("HEAD")] + [x.a_path for x in repo.index.diff(None)] + repo.untracked_files
 
 today = datetime.today()
 
+updated_files = []
 for file in modified_files:
     file = os.path.join(repo_dir, file)
     if os.path.exists(file) and file.endswith(".md"):
@@ -43,10 +34,16 @@ for file in modified_files:
                 meta[key] = value
         
         meta["date_modified"] = today.strftime("\"%Y-%m-%d\"")
+        updated_files.append(file)
         
         with open(file, "w") as f:
             f.write("".join(["---\n"] + [f"{key}: {meta[key]}\n" for key in meta.keys()] + ["---\n"] + lines[meta_end_idx + 1:]))
-        
-repo.git.add(all=True)
-x = repo.git.commit("-m", f"commit from laptop, {today.strftime('%Y-%m-%d %H:%M')}")
-print(x)
+
+if len(updated_files) > 0:
+    print("\033[32mDate Modified successfully updated.\033[0m")
+    for file in updated_files:
+        print(f"    \033[36m{file}\033[0m")
+else:
+    print("\033[33mNothing has been modified.\033[0m")
+
+print()

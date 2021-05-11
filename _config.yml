@@ -73,6 +73,14 @@ collections:
     permalink: /:collection/:name
     tags:
     - math
+  docker:
+    category: 라이브러리 (Libraries)
+    name: docker
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - docker
+    - server
   etc:
     category: 기타 (Etc)
     name: 기타 (Etc)
@@ -161,14 +169,6 @@ collections:
     tags:
     - web
     - server
-  docker:
-    output: true
-    permalink: /:collection/:name
-    name: docker
-    category: 라이브러리 (Libraries)
-    tags:
-    - docker
-    - server
 defaults:
 - scope:
     path: ''
@@ -193,6 +193,11 @@ defaults:
 - scope:
     path: ''
     type: calculus
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: docker
   values:
     layout: document
 - scope:
@@ -248,10 +253,5 @@ defaults:
 - scope:
     path: ''
     type: web_server
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: docker
   values:
     layout: document
