@@ -19,13 +19,13 @@ draft_sysdoc_exposed="documents/_sysdoc/draft.html"
 if [ -d ".$draft_dir" ]
 then 
     mv ".$draft_dir" "$draft_dir"
-    echo -e "\033[32mdraft directory activated\033[0m"
+    echo -e "\033[32mDraft : directory activated\033[0m"
 fi
 
 if [ -f "$draft_sysdoc_hidden" ]
 then 
     mv "$draft_sysdoc_hidden" "$draft_sysdoc_exposed"
-    echo -e "\033[32mdocuments/_sysdoc/draft.html activated\033[0m"
+    echo -e "\033[32mDraft : sysdoc activated\033[0m"
 fi
 
 unset draft_dir

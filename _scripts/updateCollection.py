@@ -414,10 +414,10 @@ if __name__ == "__main__":
     # checks if collections is changed
     if collections == old_collections:
         print_formatted_text(FormattedText([
-            ("class:warning", f"Nothing has been modified")
+            ("class:warning", f"UpdateCollection : Nothing has been modified")
         ]), style=style)
     else:
         print_formatted_text(FormattedText([
-            ("class:success", f"{collections_config_file} successfully modified.\n"),
-            ("class:success", f"{config_file} successfully modified.")
+            ("class:success", f"UpdateCollection : {collections_config_file} successfully modified.\n"),
+            ("class:success", f"                 : {config_file} successfully modified.")
         ]), style=style)

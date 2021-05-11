@@ -5,7 +5,7 @@ conda activate jekyll
 
 # create requirements.txt
 pip freeze > requirements.txt
-echo -e "\033[32mrequirements.txt successfully created.\033[0m"
+echo -e "\033[32mrequirements.txt : successfully created.\033[0m"
 
 # Hide Draft
 draft_dir="draft"
@@ -15,13 +15,13 @@ draft_sysdoc_exposed="documents/_sysdoc/draft.html"
 if [ -d "$draft_dir" ]
 then 
     mv "$draft_dir" ".$draft_dir"
-    echo -e "\033[32mdraft directory deactivated\033[0m"
+    echo -e "\033[32mDraft : directory deactivated\033[0m"
 fi
 
 if [ -f "$draft_sysdoc_exposed" ]
 then 
     mv "$draft_sysdoc_exposed" "$draft_sysdoc_hidden"
-    echo -e "\033[32mdraft sysdoc deactivated\033[0m"
+    echo -e "\033[32mDraft : sysdoc deactivated\033[0m"
 fi
 
 unset draft_dir
