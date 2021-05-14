@@ -2,7 +2,7 @@
 title: "bpytop"
 tags: ["bpytop", "ubuntu", "snap"]
 date_created: "2021-02-01"
-date_modified: "2021-01-31"
+date_modified: "2021-02-01"
 ---
 
 Windows의 경우 작업 관리자를 이용하면 시스템 상태를 빠르게 확인할 수 있다. 작업 관리자는 현재 실행중인 프로세스, CPU 점유율, 메모리 사용량, HDD/SSD 읽기/쓰기 속도 등을 GUI로 보여주어 시스템의 현재 상태를 빠르게 파악할 수 있게 해 준다.
