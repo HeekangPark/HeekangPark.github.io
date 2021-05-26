@@ -25,6 +25,30 @@
             right: 3em;
         }
 
+        .with-icon {
+            display: grid;
+            grid-template-columns: 1.2em 1fr;
+            column-gap: 0.3em;
+            align-items: start;
+            justify-items: start;
+            margin: {
+                bottom: 1em;
+            }
+
+            &:last-child {
+                margin: {
+                    bottom: 0;
+                }
+            }
+
+            .icon {
+                color: $gray-text-color;
+                margin: {
+                    top: 0.1em;
+                }
+            }
+        }
+
         .document-head {
             display: flex;
             flex-direction: column;
@@ -58,89 +82,30 @@
                 }
             }
 
-            .with-icon {
-                display: grid;
-                grid-template-columns: 1.2em 1fr;
-                column-gap: 0.3em;
-                align-items: start;
-                justify-items: start;
+            .document-date-created {
                 margin: {
-                    bottom: 1em;
+                    bottom: 0.5em !important;
                 }
 
-                &:last-child {
-                    margin: {
-                        bottom: 0;
+                .date {
+                    &::before {
+                        content: "Date Created : ";
                     }
                 }
-
-                .icon {
-                    color: $gray-text-color;
-                    margin: {
-                        top: 0.1em;
-                    }
-                }
-
-                &.document-date-created {
-                    margin: {
-                        bottom: 0.5em !important;
-                    }
+            }
     
-                    .date {
-                        &::before {
-                            content: "Date Created : ";
-                        }
-                    }
-                }
-    
-                &.document-date-modified {
-                    .date {
-                        &::before {
-                            content: "Date Modified : ";
-                        }
-                    }
-                }
-
-                &.document-views {
-                    .pageview {
-                        &::before {
-                            content: "Page Viewed : ";
-                        }
+            .document-date-modified {
+                .date {
+                    &::before {
+                        content: "Date Modified : ";
                     }
                 }
             }
 
-            .document-tags {
-                .icon {
-                    margin: {
-                        top: 0.3em !important;
-                    }
-                }
-
-                .tags {
-                    display: flex;
-                    flex-wrap: wrap;
-                    //gap: 0.5em;
-                    margin: {
-                        right: -0.5em;
-                        bottom: -0.5em;
-                    }
-
-                    .tag {
-                        display: block;
-                        padding: {
-                            top: 0.2em;
-                            bottom: 0.2em;
-                            left: 0.5em;
-                            right: 0.5em;
-                        }
-                        margin: {
-                            right: 0.5em;
-                            bottom: 0.5em;
-                        }
-                        background-color: $tag-background-color;
-                        color: $tag-color;
-                        border-radius: 0.2em;
+            .document-views {
+                .pageview {
+                    &::before {
+                        content: "Page Viewed : ";
                     }
                 }
             }
@@ -153,7 +118,7 @@
                 text-align: center;
             }
 
-            .document-navigator-btns {
+            .head-document-navigator-btns {
                 display: grid;
                 grid-template-columns: 4em 1fr 4em;
                 width: 100%;
@@ -165,7 +130,6 @@
                 .document-navigator-btn {
                     opacity: 0.01;
                     font-size: 6em;
-                    cursor: pointer;
                     pointer-events: auto;
     
                     &:hover {
@@ -276,11 +240,46 @@
             }
 
             @import "layouts.document.document-content";
+
+            .document-tags {
+                .icon {
+                    margin: {
+                        top: 0.3em !important;
+                    }
+                }
+
+                .tags {
+                    display: flex;
+                    flex-wrap: wrap;
+                    //gap: 0.5em;
+                    margin: {
+                        right: -0.5em;
+                        bottom: -0.5em;
+                    }
+
+                    .tag {
+                        display: block;
+                        padding: {
+                            top: 0.2em;
+                            bottom: 0.2em;
+                            left: 0.5em;
+                            right: 0.5em;
+                        }
+                        margin: {
+                            right: 0.5em;
+                            bottom: 0.5em;
+                        }
+                        background-color: $tag-background-color;
+                        color: $tag-color;
+                        border-radius: 0.2em;
+                    }
+                }
+            }
         }
 
-        .document-navigator {
+        .foot-document-navigator {
             margin: {
-                top: 5em;
+                top: 3em;
             }
 
             .adjacent-documents {
@@ -295,21 +294,24 @@
                     border: 1px solid $gray-line-color;
                     color: $gray-text-color;
                     box-sizing: border-box;
-                    cursor: pointer;
-                    padding: {
-                        top: 1em;
-                        bottom: 1em;
-                        left: 1em;
-                        right: 1em;
-                    }
                     border-radius: 0.5em;
 
-                    .name {
-                        font-size: 0.9em;
-                        margin: {
-                            bottom: 0.5em;
+                    a {
+                        display: block;
+                        padding: {
+                            top: 1em;
+                            bottom: 1em;
+                            left: 1em;
+                            right: 1em;
                         }
-                        opacity: 0.8;
+
+                        .name {
+                            font-size: 0.9em;
+                            margin: {
+                                bottom: 0.5em;
+                            }
+                            opacity: 0.8;
+                        }
                     }
 
                     &:hover {
@@ -335,8 +337,6 @@
                         }
                     }
                 }
-
-
             }
 
             .collection-documents {
@@ -359,25 +359,63 @@
 
                     .collection-document {
                         border: 1px solid $gray-line-color;
-                        flex: 0 0 auto;
-                        width: 10em;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
                         box-sizing: border-box;
-                        padding: {
-                            top: 1em;
-                            bottom: 1em;
-                            left: 1em;
-                            right: 1em;
-                        }
+                        flex: 0 0 auto;
+                        display: flex;
+
+                        width: 10em;
                         margin: {
                             right: 1em;
                             bottom: 1em;
                         }
                         color: $gray-text-color;
                         border-radius: 0.5em;
-                        cursor: pointer;
+
+                        a {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            padding: {
+                                top: 1em;
+                                bottom: 1em;
+                                left: 1em;
+                                right: 1em;
+                            }
+
+                            .document-title {
+                                line-height: $line-height;
+                                font-weight: bold;
+                                margin: {
+                                    bottom: 0.5em;
+                                }
+                            }
+    
+                            .document-info {
+                                .with-icon {
+                                    display: grid;
+                                    grid-template-columns: 1.2em 1fr;
+                                    column-gap: 0.3em;
+                                    align-items: start;
+                                    justify-items: start;
+                                    margin: {
+                                        bottom: 0.5em;
+                                    }
+                    
+                                    &:last-child {
+                                        margin: {
+                                            bottom: 0;
+                                        }
+                                    }
+                    
+                                    .icon {
+                                        color: $gray-text-color;
+                                        margin: {
+                                            top: 0.1em;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         
                         &:hover{
                             box-shadow: 0.25em 0.25em 0.75em #d8d8d8, -0.25em -0.25em 0.75em $site-panel-color;
@@ -391,40 +429,6 @@
                         &.current-document {
                             background-color: #f1f1f1;
                             pointer-events: none;
-                        }
-                        
-                        .document-title {
-                            line-height: $line-height;
-                            font-weight: bold;
-                            margin: {
-                                bottom: 0.5em;
-                            }
-                        }
-
-                        .document-info {
-                            .with-icon {
-                                display: grid;
-                                grid-template-columns: 1.2em 1fr;
-                                column-gap: 0.3em;
-                                align-items: start;
-                                justify-items: start;
-                                margin: {
-                                    bottom: 0.5em;
-                                }
-                
-                                &:last-child {
-                                    margin: {
-                                        bottom: 0;
-                                    }
-                                }
-                
-                                .icon {
-                                    color: $gray-text-color;
-                                    margin: {
-                                        top: 0.1em;
-                                    }
-                                }
-                            }
                         }
                     }
                 }
@@ -522,4 +526,32 @@
             }
         }
     }
+}
+
+//MathJax css
+mjx-container {
+    width: 100%;
+    overflow-x: auto;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.mathjax-mb-0 mjx-container {
+    margin-bottom: 0 !important;
+}
+
+.mathjax-mt-0 mjx-container {
+    margin-top: 0 !important;
+}
+
+.mathjax-m-0 mjx-container {
+    margin: 0 !important;
+}
+
+.mathjax-align-left mjx-container {
+    text-align: left !important;
+}
+
+.mathjax-align-right mjx-container {
+    text-align: right !important;
 }

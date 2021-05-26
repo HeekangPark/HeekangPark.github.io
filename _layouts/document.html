@@ -2,32 +2,41 @@
 layout: default
 ---
 
+{% for item in site.collections %}
+    {% if page.collection == item.label %}
+        {% assign collection = item %}
+    {% endif %}
+{% endfor %}
+
+{% assign documents_with_order = collection.docs | where_exp: "item", "item.order" | sort: "order" %}
+{% assign documents_without_order = collection.docs | where_exp: "item", "item.order == Nil" | sort: "date_modified" %}
+{% assign documents = documents_with_order | concat: documents_without_order %}
+
+{% for document in documents %}
+    {% if page.title == document.title %}
+        {% assign idx = forloop.index | minus: 1 %}
+        {% assign is_first = forloop.first %}
+        {% assign is_last = forloop.last %}
+        {% break %}
+    {% endif %}
+{% endfor %}
+
+{% unless is_first %}
+    {% assign prev_idx = idx | minus: 1 %}
+    {% assign prev_document = documents[prev_idx] %}
+{% endunless %}
+
+{% unless is_last %}
+    {% assign next_idx = idx | plus: 1 %}
+    {% assign next_document = documents[next_idx] %}
+{% endunless %}
+
 <div class="document">
     <div class="document-head">
-        {% for item in site.collections %}
-            {% if page.collection == item.label %}
-                {% assign collection = item %}
-            {% endif %}
-        {% endfor %}
-
         {% if collection %}
             <p class="document-collection"><a href="/categories#{{ collection.label }}">{{ collection.category }}<i class="fas fa-angle-right"></i>{{ collection.name }}</a></p>
         {% endif %}
 
-        {% assign delim=";" %}
-        {% assign collection_tags = collection.tags | join: delim | downcase | split: delim %}
-        {% assign document_tags = page.tags | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort %}
-        {% if document_tags %}
-            <div class="document-tags with-icon">
-                <i class="fas fa-tag icon"></i>
-                <div class="tags">
-                    {%- for tag in document_tags -%}
-                        <p class="tag"><a href="/tags#{{ tag }}">{{ tag }}</a></p>
-                    {%- endfor -%}
-                </div>
-            </div>
-        {% endif %}
-    
         <p class="document-title">{{ page.title }}</p>
 
         <p class="document-date-created with-icon">
@@ -43,39 +52,16 @@ layout: default
             <span class="pageview" url="{{ page.url }}"></span>
         </p>
         
-        <div class="document-navigator-btns">
-            {% assign documents_with_order = collection.docs | where_exp: "item", "item.order" | sort: "order" %}
-            {% assign documents_without_order = collection.docs | where_exp: "item", "item.order == Nil" | sort %}
-            {% assign documents = documents_with_order | concat: documents_without_order %}
-        
-            {% for document in documents %}
-                {% if page.title == document.title %}
-                    {% assign idx = forloop.index | minus: 1 %}
-                    {% assign is_first = forloop.first %}
-                    {% assign is_last = forloop.last %}
-                    {% break %}
-                {% endif %}
-            {% endfor %}
-
+        <div class="head-document-navigator-btns">
             {% unless is_first %}
-                <div class="document-navigator-btn prev-document-btn fas fa-chevron-left" title="이전 문서로"></div>
-                {% assign prev_idx = idx | minus: 1 %}
-                {% assign prev_document = documents[prev_idx] %}
-                <script>
-                    $(".main-panel .document .document-head .document-navigator-btns .document-navigator-btn.prev-document-btn").click(function() {
-                        window.location.href = "{{ prev_document.url }}";
-                    });
-                </script>
+                <div class="document-navigator-btn prev-document-btn" title="이전 문서로 : {{ prev_document.title }}">
+                    <a href="{{ prev_document.url }}"><i class="fas fa-chevron-left"></i></a>
+                </div>
             {% endunless %}
             {% unless is_last %}
-                <div class="document-navigator-btn next-document-btn fas fa-chevron-right" title="다음 문서로"></div>
-                {% assign next_idx = idx | plus: 1 %}
-                {% assign next_document = documents[next_idx] %}
-                <script>
-                    $(".main-panel .document .document-head .document-navigator-btns .document-navigator-btn.next-document-btn").click(function() {
-                        window.location.href = "{{ next_document.url }}";
-                    });
-                </script>
+                <div class="document-navigator-btn next-document-btn" title="다음 문서로 : {{ next_document.title }}">
+                    <a href="{{ next_document.url }}"><i class="fas fa-chevron-right"></i></a>
+                </div>
             {% endunless %}
         </div>
     </div>
@@ -88,44 +74,38 @@ layout: default
         <div class="document-content">
             {{ content }}
         </div>
+
+        {% assign delim=";" %}
+        {% assign collection_tags = collection.tags | join: delim | downcase | split: delim %}
+        {% assign document_tags = page.tags | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort %}
+        <div class="document-tags with-icon">
+            <i class="fas fa-tag icon"></i>
+            <div class="tags">
+                {%- for tag in document_tags -%}
+                    <p class="tag"><a href="/tags#{{ tag }}">{{ tag }}</a></p>
+                {%- endfor -%}
+            </div>
+        </div>
     </div>
     
-    <div class="document-navigator">
-        {% assign documents_with_order = collection.docs | where_exp: "item", "item.order" | sort: "order" %}
-        {% assign documents_without_order = collection.docs | where_exp: "item", "item.order == Nil" | sort %}
-        {% assign documents = documents_with_order | concat: documents_without_order %}
-    
+    <div class="foot-document-navigator">
         <div class="adjacent-documents">
-            {% for document in documents %}
-                {% if page.title == document.title %}
-                    {% assign idx = forloop.index | minus: 1 %}
-                    {% assign is_first = forloop.first %}
-                    {% assign is_last = forloop.last %}
-                    {% break %}
-                {% endif %}
-            {% endfor %}
-
             {% unless is_first %}
                 <div class="prev-document-btn btn">
-                    {% assign prev_idx = idx | minus: 1 %}
-                    {% assign prev_document = documents[prev_idx] %}
-                    <p class="name"><a href="{{ prev_document.url }}">이전 문서</a></p>
-                    <p class="title"><a href="{{ prev_document.url }}">{{ prev_document.title }}</a></p>
+                    <a href="{{ prev_document.url }}">
+                        <p class="name">이전 문서</p>
+                        <p class="title">{{ prev_document.title }}</p>
+                    </a>
                 </div>
             {% endunless %}
             {% unless is_last %}
                 <div class="next-document-btn btn">
-                    {% assign next_idx = idx | plus: 1 %}
-                    {% assign next_document = documents[next_idx] %}
-                    <p class="name"><a href="{{ next_document.url }}">다음 문서</a></p>
-                    <p class="title"><a href="{{ next_document.url }}">{{ next_document.title }}</a></p>
+                    <a href="{{ next_document.url }}">
+                        <p class="name">다음 문서</p>
+                        <p class="title">{{ next_document.title }}</p>
+                    </a>
                 </div>
             {% endunless %}
-            <script>
-                $(".main-panel .document .adjacent-documents .btn").click(function() {
-                    window.location.href = $(this).find(".name a").attr("href");
-                });
-            </script>
         </div>
                 
         <div class="collection-documents section">
@@ -134,33 +114,26 @@ layout: default
                 {% for document in documents %}
                     {% assign class = "" %}
                     {% if document.title == page.title %}
-                        {% assign class = " current-document" %}
+                        {% assign class = "current-document" %}
                     {% endif %}
 
-                    <div class="collection-document{{ class }}">
-                        <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
-                        <div class="document-info">
-                            <!--p class="document-date-created with-icon">
-                                <i class="icon fas fa-plus"></i>
-                                <span class="date">{{ document.date_created | date: "%Y.%m.%d" }}</span>
-                            </p-->
-                            <p class="document-date-modified with-icon">
-                                <i class="icon fas fa-edit"></i>
-                                <span class="date" path="{{ document.path }}">{{ document.date_modified | date: "%Y.%m.%d" }}</span>
-                            </p>
-                            <p class="document-views with-icon">
-                                <i class="icon far fa-eye"></i>
-                                <span class="pageview" url="{{ document.url }}"></span>
-                            </p>
-                        </div>
+                    <div class="collection-document {{ class }}">
+                        <a href="{{ document.url }}">
+                            <p class="document-title">{{ document.title }}</p>
+                            <div class="document-info">
+                                <p class="document-date-modified with-icon">
+                                    <i class="icon fas fa-edit"></i>
+                                    <span class="date" path="{{ document.path }}">{{ document.date_modified | date: "%Y.%m.%d" }}</span>
+                                </p>
+                                <p class="document-views with-icon">
+                                    <i class="icon far fa-eye"></i>
+                                    <span class="pageview" url="{{ document.url }}"></span>
+                                </p>
+                            </div>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
-            <script>
-                $(".main-panel .document .collection-documents .collection-document").click(function() {
-                    window.location.href = $(this).find(".document-title a").attr("href");
-                });
-            </script>
         </div>
     </div>
 </div>
@@ -192,14 +165,13 @@ layout: default
     </script>
 </div>
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
 <script>
 let openedFootnotePopup = null;
 
 $(document).ready(function() {
-    activateFootnotePopups();
-
-    MathJax.typesetPromise();
-
     activateCodeToolbox();
 
     //image blackout popup
@@ -207,6 +179,28 @@ $(document).ready(function() {
         delegate: "a",
         type: "image"
     });
+
+    //MathJax config
+    MathJax = {
+        tex: {
+            inlineMath: [ ['$','$'], ['\\(', '\\)'] ], 
+            displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+            processEscapes: true,
+        },
+        chtml: {
+            scale: 1,
+            matchFontHeight: true,
+        },
+        options: {
+            ignoreHtmlClass: "ignore-mathjax",
+        },
+        startup: {
+            ready: function() {
+                activateFootnotePopups();
+                MathJax.startup.defaultReady();
+            }
+        }
+    }
 });
 
 function activateFootnotePopups() {
@@ -246,10 +240,8 @@ function activateFootnotePopups() {
         let anchor = $(this).children("a.footnote");
         let footnote_id = anchor.attr("href").substring(1);
         let footnote_index = anchor.text();
-        //let footnote_content = $.trim($(`.main-panel .document .toc-content-container .document-content .footnotes[role='doc-endnotes'] ol li#${footnote_id.replace(":", "\\:")} p`).clone().children("a.reversefootnote").remove().end().text());
         let footnote_content = $.trim($(`.main-panel .document .toc-content-container .document-content .footnotes[role='doc-endnotes'] ol li#${footnote_id.replace(":", "\\:")} p`).clone().children("a.reversefootnote").remove().end().html());
 
-        //<div class="footnote-content">${footnote_content.replace(/[g<>]/g, (tag) => (html_escape[tag] || tag))}</div>
         //add popup
         let close_btn = $(`<p class="footnote-popup-close-btn hidden">×</p>`);
         let footnote_popup = $(`<div class="footnote-popup hidden" style="width: ${getFootnoteWidth()}px; left: ${getFootnoteLeft()}px;" onclick="window.location.href='${anchor.attr("href")}'">
@@ -320,7 +312,7 @@ function activateCodeToolbox() {
                 content = code.find(".rouge-table .code").text();
             }
             
-            // remove prompt($) in bash code
+            //remove prompt($) in bash code
             if(code.find("code").attr("data-lang") == "bash") {
                 content = content.split("\n").map((line) => {
                     line = $.trim(line);
@@ -348,7 +340,7 @@ function activateCodeToolbox() {
     }
 
     function addToggleCodeResultBtn(code, toolbox) {
-        if(code.next().hasClass("highlight") && code.next().hasClass("code-result")) { // if code_result exists
+        if(code.next().hasClass("highlight") && code.next().hasClass("code-result")) { //if code_result exists
             let code_result = code.next();
             code_result.addClass("hidden");
 

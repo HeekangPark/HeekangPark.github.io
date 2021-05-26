@@ -34,11 +34,10 @@ description: "카테고리별 보기"
             {% assign collection_tags = collection.tags | compact | uniq | sort | join: delim | downcase | split: delim %}
                 {% assign collection_idx = forloop.index0 %}
                 <div class="collection folder" id="collection-{{ collection.label }}" index="category-{{ category_idx }}-collection-{{ collection_idx }}">
-                    {% assign documents = collection.docs | sort: "order" %}
                     <p class="collection-name folder-title" index="category-{{ category_idx }}-collection-{{ collection_idx }}-title"><i class="icon fas fa-folder"></i>{{ collection.name }}<span class="document-num num">{{ documents.size }}</span></p>
                     <div class="collection-contents documents folder-contents hidden" index="category-{{ category_idx }}-collection-{{ collection_idx }}-contents">
                         {% assign documents_with_order = collection.docs | where_exp: "item", "item.order" | sort: "order" %}
-                        {% assign documents_without_order = collection.docs | where_exp: "item", "item.order == Nil" | sort %}
+                        {% assign documents_without_order = collection.docs | where_exp: "item", "item.order == Nil" | sort: "date_modified" %}
                         {% assign documents = documents_with_order | concat: documents_without_order %}
                         {% for document in documents %}
                             <div class="document">

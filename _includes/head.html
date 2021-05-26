@@ -64,8 +64,6 @@
         <script src="{{ site.baseurl }}{{ site.assets }}/js/sakura.min.js"></script>
     {% endif %}
 
-    {% include mathjax.html %}
-
     <!--google adsense-->
     <script data-ad-client="ca-pub-7509436363176620" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -80,8 +78,9 @@
         {% assign page_title_downcase = page.title | downcase %}
         <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/sysdoc.{{ page_title_downcase }}.css" type="text/css">
     {% else %}
-        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
         {% if collection %}
+            <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
+            
             {% assign css_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".css" %}
             {% assign scss_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".scss" %}
             {% assign js_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".js" %}

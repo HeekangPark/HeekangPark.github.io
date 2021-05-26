@@ -9,38 +9,55 @@ description: "검색 결과"
     <input class="input" type="text">
 </div>
 
+<div class="spinner-container">
+    <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
 <div class="documents"></div>
 
 <script>
-$(document).ready(function() {
-    let keywords_str = decodeURI(window.location.hash.substring(1));
-    $(".main-panel .searchbar .input").val(keywords_str);
+    $(document).ready(function () {
+        let keywords_str = decodeURI(window.location.hash.substring(1));
+        $(".main-panel .searchbar .input").val(keywords_str);
 
-    if(keywords_str.length != 0) {
-        search(keywords_str);
-    }
-});
-
-$(window).on('hashchange',function(){ 
-    window.location.reload(true); 
-});
-
-$(".main-panel .searchbar input").keydown(function(key) {
-    if(key.keyCode == 13) {
-        let query = $(this).val().toLowerCase();
-        let anchor = decodeURI(window.location.hash.substring(1));
-        let pathname = $(location).attr("pathname");
-
-        if(pathname == "/search" && anchor == query) {
-            window.location.reload(true);
-        } else {
-            window.location.href = `/search#${query}`;
+        if (keywords_str.length != 0) {
+            search(keywords_str);
         }
-    }
-});
+    });
 
-function getDocumentHtml(document) {
-    let html = `<div class="document">
+    $(window).on('hashchange', function () {
+        window.location.reload(true);
+    });
+
+    $(".main-panel .searchbar input").keydown(function (key) {
+        if (key.keyCode == 13) {
+            let query = $(this).val().toLowerCase();
+            let anchor = decodeURI(window.location.hash.substring(1));
+            let pathname = $(location).attr("pathname");
+
+            if (pathname == "/search" && anchor == query) {
+                window.location.reload(true);
+            } else {
+                window.location.href = `/search#${query}`;
+            }
+        }
+    });
+
+    function getDocumentHtml(document) {
+        let html = `<div class="document">
     <p class="document-collection"><a href="/categories#${document.collection_label}">${document.category}<i class="fas fa-angle-right"></i>${document.collection_name}</a></p>
     <p class="document-title"><a href="${document.url}">${document.title}</a></p>
     <p class="document-preview ignore-mathjax"><a href="${document.url}">${document.preview.replace('\"', '"').replace("\\\\", "\\")}</a></p>
@@ -48,13 +65,13 @@ function getDocumentHtml(document) {
         <i class="icon fas fa-tag"></i>
         <div class="tags">
 `;
-    
-    for(let tag of document.tags) {
-        html += `            <p class="tag"><a href="/tags#${tag}">${tag}</a></p>
+
+        for (let tag of document.tags) {
+            html += `            <p class="tag"><a href="/tags#${tag}">${tag}</a></p>
 `;
-    }
-    
-    html += `        </div>
+        }
+
+        html += `        </div>
     </div>
     <p class="document-date-modified with-icon">
         <i class="icon fas fa-edit"></i>
@@ -62,37 +79,44 @@ function getDocumentHtml(document) {
     </p>
     <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" url="${document.url}"></span></p>
 </div>`;
+
+        return html;
+    }
     
-    return html;
-}
+    function search(keywords_str) {
+        $.ajax({
+            type: "GET",
+            url: "{{ site.baseurl }}{{ site.assets }}/etc/documents.json",
+            success: function (data) {
+                let spinner = $(".spinner-container");
+                spinner.addClass("hidden");
+                
+                let all_documents = data.documents;
+                let result_documents = [];
 
-function search(keywords_str) {
-    $.ajax({
-        type: "GET",
-        url: "{{ site.baseurl }}{{ site.assets }}/etc/documents.json",
-        success: function(data) {
-            let all_documents = data.documents;
-            let result_documents = [];
+                let keywords = keywords_str.split(" ");
 
-            let keywords = keywords_str.split(" ");
-
-            for(let document of all_documents) {
-                for(let keyword of keywords) {
-                    if(document.contents.includes(keyword)) {
-                        result_documents.push(document);
-                        break;
+                for (let document of all_documents) {
+                    for (let keyword of keywords) {
+                        if (document.contents.includes(keyword)) {
+                            result_documents.push(document);
+                            break;
+                        }
                     }
                 }
-            }
 
-            let target = $(".main-panel .documents");
-            for(let document of result_documents) {
-                target.append(getDocumentHtml(document));
+                let target = $(".main-panel .documents");
+                if(result_documents.length == 0) {
+                    target.append(`<p class="no-result">No Result</p>`);
+                } else {
+                    for (let document of result_documents) {
+                        target.append(getDocumentHtml(document));
+                    }
+                    
+                    loadPageview();
+                }
             }
-
-            loadPageview();
-        }
-    });
-}
+        });
+    }
 
 </script>
