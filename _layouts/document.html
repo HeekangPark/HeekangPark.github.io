@@ -173,6 +173,7 @@ let openedFootnotePopup = null;
 
 $(document).ready(function() {
     activateCodeToolbox();
+    activateFootnotePopups();
 
     //image blackout popup
     $(".main-panel .document .toc-content-container .document-content .caption-img").magnificPopup({
@@ -195,13 +196,13 @@ $(document).ready(function() {
             ignoreHtmlClass: "ignore-mathjax",
         },
         startup: {
-            ready: function() {
-                console.log("asdf");
-                activateFootnotePopups();
-                MathJax.startup.defaultReady();
-            }
+            typeset: false
         }
     }
+
+    $("#MathJax-script").on("load", function() {
+        MathJax.typesetPromise();
+    })
 });
 
 function activateFootnotePopups() {
