@@ -24,7 +24,7 @@ layout: default
             {% endunless %}
         {% endfor %}
 
-        {% assign documents = documents | sort: "date_modified" | reverse %}
+        {% assign documents = documents | sort: "order" | sort: "date_modified" | reverse %}
 
         {% for document in documents limit:site.home_recent_doc_num %}
             {% for collection in site.collections %}

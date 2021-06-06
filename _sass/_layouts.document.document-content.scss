@@ -1,3 +1,6 @@
+$bottom-margin: 1.5em;
+$line-height: 1.8;
+
 .document-content {
     $h1-font-size: 1.6em;
     $h2-font-size: 1.5em;
@@ -135,7 +138,7 @@
 
     p {
         margin: {
-            bottom: 1em;
+            bottom: $bottom-margin;
         }
         //line-height: $line-height;
     }
@@ -143,7 +146,7 @@
     ul,
     ol {
         margin: {
-            bottom: 1em;
+            bottom: $bottom-margin;
         }
         display: table;
         word-break: break-all;
@@ -160,7 +163,7 @@
                 text-align: right;
                 word-break: keep-all;
                 padding: {
-                    right: 0.3em;
+                    right: 0.5em;
                 }
                 z-index: 3;
             }
@@ -195,16 +198,24 @@
             &::after {
                 content: "";
                 position: absolute;
-                top: 0.8em;
-                bottom: 0.8em;
-                left: 0.47em;
+                top: 1em;
+                bottom: -1em;
+                left: 0.18em; // Noto Sans KR
                 z-index: 1;
-
-                border: {
-                    left: 1px dashed #aaaaaa;
-                }
-                //height: calc(100% - 1.5em);
+                width: 1px;
+                background: repeating-linear-gradient(
+                    to bottom,
+                    #dddddd,
+                    #dddddd 2px,
+                    transparent 2px,
+                    transparent 4px
+                )
             }
+
+            &:last-of-type::after {
+                bottom: 0.75em;
+            }
+
         }
 
         &.no-guide-line {
@@ -224,8 +235,8 @@
             bottom: 1em;
         }
         margin: {
-            top: 1em;
-            bottom: 1em;
+            top: $bottom-margin;
+            bottom: $bottom-margin;
         }
         background-color: #f5f5f5;
         border: {
@@ -249,11 +260,19 @@
         &.blockquote-info {
             border-left-color: #7CDCFE;
         }
+
+        ul, ol {
+            &:last-child {
+                margin: {
+                    bottom: 0;
+                }
+            }
+        }
     }
 
     table {
         margin: {
-            bottom: 1em;
+            bottom: $bottom-margin;
         }
     }
 
@@ -289,6 +308,9 @@
             cursor: pointer;
             display: inline-block;
             line-height: 1;
+            margin: {
+                bottom: 0;
+            }
 
             &.hidden {
                 display: none;

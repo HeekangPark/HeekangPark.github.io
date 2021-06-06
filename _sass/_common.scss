@@ -1,5 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Ubuntu+Mono&display=swap');
-//@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR&family=Fira+Code&family=Inconsolata&display=swap');
+@font-face {
+	font-family: "NotoSansKR";
+	src: local("Noto Sans KR Light"), local("NotoSansKR-Light"),
+		 url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.woff2") format("woff2"),;
+		 //url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.otf") format("opentype");
+	font-display: swap;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "NotoSansKR";
+	src: local("Noto Sans KR Medium"), local("NotoSansKR-Medium"),
+		 url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Medium.woff2") format("woff2"),;
+		 //url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Medium.otf") format("opentype");
+	font-display: swap;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: "UbuntuMono";
+	src: local("Ubuntu Mono Regular"), local("UbuntuMono-Regular"),
+		 url("../fonts/monospace/Ubuntu Mono/UbuntuMono-Regular.woff2") format("woff2"),;
+		 //url("../fonts/monospace/Ubuntu Mono/UbuntuMono-Regular.ttf") format("truetype");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "NanumGothicCoding";
+	src: local("Nanum Gothic Coding Regular"), local("NanumGothicCoding-Regular"),
+		 url("../fonts/monospace/Nanum Gothic Coding/NanumGothicCoding-Regular.woff2") format("woff2"),;
+		 //url("../fonts/monospace/Nanum Gothic Coding/NanumGothicCoding-Regular.ttf") format("truetype");
+	font-display: swap;
+}
+
 
 html, body, div, span, p, nav,
 h1, h2, h3, h4, h5, h6, strong, small, b, u, i,
@@ -19,13 +51,11 @@ a {
 
 html {
 	font-family: $normal-font;
-	word-break: break-all;
+	word-break: break-all;	
 }
 
 pre, code {
 	font-family: $code-font;
-	//font-size: 95%;
-	//font-weight: 400;
 }
 
 body {
