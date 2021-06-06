@@ -202,11 +202,9 @@ $(document).ready(function() {
     });
 
     if(typeof MathJax.typesetPromise !== "undefined") {
-        console.log("loaded from cache");
         MathJax.typesetPromise();
     } else {
         $("#MathJax-script").on("load", function() {
-            console.log("loaded");
             MathJax.typesetPromise();
         })
     }
