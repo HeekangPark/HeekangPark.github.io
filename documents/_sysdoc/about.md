@@ -3,7 +3,7 @@ nav-order: 4
 icon: "fas fa-id-card"
 layout: about
 date_created: "2021-05-01"
-date_modified: "2021-05-03"
+date_modified: "2021-06-12"
 ---
 
 # About Me
@@ -14,24 +14,17 @@ date_modified: "2021-05-03"
 
 아직 학생이기에 다양한 분야를 경험해보려 하고 있습니다.
 
-- C/C++/Java/Python/C#
+- Programming Languages : C/C++/Java/Python/C#
 - 웹
-    - 프론트엔드
-        - html
-        - css/scss
-        - JavaScript
-    - 백엔드
-        - Node.js
-- 서버관리
-    - Ubuntu Server
-    - Docker
-- 앱
-    - Android
+  - 프론트엔드 : html, css/scss, JavaScript
+  - 백엔드 : Node.js
+- 서버 : Ubuntu Server, Docker
+- 앱 : Android
 - 기계학습
-    - 기계학습 이론
-    - 딥러닝
-        - 딥러닝 프레임워크
-            - PyTorch
+  - 강화학습
+  - NLP
+  - 비전
+  - 딥러닝 프레임워크 : PyTorch
 
 # About Blog
 
@@ -68,3 +61,7 @@ date_modified: "2021-05-03"
 ## 라이선스
 
 블로그의 모든 글은 자유롭게 퍼 가셔도 됩니다. 다만, 퍼 가실 때 댓글과 링크를 남겨주세요.
+
+블로그의 대부분의 이미지들은 직접 그린 것들입니다. 마찬가지로 자유롭게 퍼 가셔도 좋습니다만, 퍼 가실 때 댓글과 링크를 남겨주세요.
+
+블로그 탬플릿 역시 자유롭게 쓰셔도 됩니다. 다만, 방명록 또는 Github Issue를 남겨주면 감사하겠습니다.
