@@ -387,14 +387,18 @@ function activateImagePopup() {
 
     function openImagePopup(src) {       
         let image_popup = $(`<div class="image-popup">
-            <p class="close-btn">×</p>
+            <p class="close-btn" title="닫기">×</p>
             <img src="${src}">
         </div>`);
 
         image_popup.prependTo(body);
         body.addClass("on-image-popup");
-        image_popup.find(".close-btn").click(function() {
+
+        image_popup.click(function() {
             closeImagePopup();
+        });
+        image_popup.find("img").click(function(e) {
+            e.stopPropagation();
         });
     }
     function closeImagePopup() {
@@ -412,7 +416,6 @@ function activateImagePopup() {
         openImagePopup(src);
     });
 
-    
     $(document).keyup(function(e) {
         if(event.keyCode == 27 || event.which == 27) {
             closeImagePopup();

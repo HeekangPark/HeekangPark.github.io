@@ -24,6 +24,7 @@
             right: $padding-size;
         }
         box-sizing: border-box;
+        cursor: zoom-out;
 
         .close-btn {
             $size: 2em;
@@ -38,10 +39,10 @@
             color: #ffffff;
             font-weight: bold;
             z-index: 21;
-            cursor: pointer;
             box-sizing: border-box;
             border-radius: 50%;
             background-color: $background-color;
+            cursor: pointer;
         }
 
         img {
@@ -54,6 +55,7 @@
             opacity: 1;
             background-color: #ffffff;
             padding: 1em;
+            cursor: auto;
         }
     }
 }
