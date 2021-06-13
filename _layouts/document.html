@@ -194,12 +194,13 @@ let openedFootnotePopup = null;
 $(document).ready(function() {
     activateCodeToolbox();
     activateFootnotePopups();
-
+    activateImagePopup();
+    
     //image blackout popup
-    $(".main-panel .document .toc-content-container .document-content .caption-img").magnificPopup({
+    /*$(".main-panel .document .toc-content-container .document-content .caption-img").magnificPopup({
         delegate: "a",
         type: "image"
-    });
+    });*/
 
     if(typeof MathJax.typesetPromise !== "undefined") {
         MathJax.typesetPromise();
@@ -378,6 +379,44 @@ function activateCodeToolbox() {
         if(code.hasClass("code-result")) return;  //if code-result, skip
 
         addToolBox(code);
+    });
+}
+
+function activateImagePopup() {
+    let body = $("body");
+
+    function openImagePopup(src) {       
+        let image_popup = $(`<div class="image-popup">
+            <p class="close-btn">×</p>
+            <img src="${src}">
+        </div>`);
+
+        image_popup.prependTo(body);
+        body.addClass("on-image-popup");
+        image_popup.find(".close-btn").click(function() {
+            closeImagePopup();
+        });
+    }
+    function closeImagePopup() {
+        let target = body.find(".image-popup");
+        if (target.length > 0) {
+            target.remove();
+            body.removeClass("on-image-popup");
+        }
+    }
+
+    $(".main-panel .document .toc-content-container .document-content .caption-img a").click(function(e) {
+        e.preventDefault();
+
+        let src = $(this).attr("href");
+        openImagePopup(src);
+    });
+
+    
+    $(document).keyup(function(e) {
+        if(event.keyCode == 27 || event.which == 27) {
+            closeImagePopup();
+        }
     });
 }
 </script>
