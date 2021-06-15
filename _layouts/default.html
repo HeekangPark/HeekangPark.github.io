@@ -43,9 +43,11 @@
                 activatePageNavigator();
                 
                 {% if site.decoration %}
-                    sf = new Snowflakes({
-                        zIndex: 100
-                    });
+                    if($.cookie("option.turn-off-decoration") === undefined) {
+                        sf = new Snowflakes({
+                            zIndex: 100
+                        });    
+                    }
                 {% endif %}
             });
 

@@ -81,13 +81,19 @@ $(".left-panel .search .searchbar input").keydown(function(key) {
     }
 })
 
+if($.cookie("option.turn-off-decoration")) {
+    $("#falling-checkbox").attr("checked", false);
+}
+
 $("#falling-checkbox").change(function() {
     if(this.checked) {
         sf = new Snowflakes({
             zIndex: 100
         });
+        $.removeCookie("option.turn-off-decoration", {path: "/"});
     } else {
         sf.destroy();
+        $.cookie("option.turn-off-decoration", true, {expires: 1, path: '/'})
     }
 })
 </script>
