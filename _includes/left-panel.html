@@ -87,9 +87,7 @@ if($.cookie("option.turn-off-decoration")) {
 
 $("#falling-checkbox").change(function() {
     if(this.checked) {
-        sf = new Snowflakes({
-            zIndex: 100
-        });
+        sf = getDecorationInstance();
         $.removeCookie("option.turn-off-decoration", {path: "/"});
     } else {
         sf.destroy();
