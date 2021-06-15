@@ -51,15 +51,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     
-    <!--snowflakes-->
-    {% if site.decoration == "snowflakes" %}
+    <!--decoration-->
+    {% if site.decoration %}
         <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
-    {% endif %}
-
-    <!--sakura-->
-    {% if site.decoration == "sakura" %}
-        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/sakura.min.css">
-        <script src="{{ site.baseurl }}{{ site.assets }}/js/sakura.min.js"></script>
+        {% unless site.decoration == "snowflakes" %}
+            {% if site.decoration == "leaf" %}
+                <style>
+                    .snowflakes .snowflake__inner_type_0::before,
+                    .snowflakes .snowflake__inner_type_2::before,
+                    .snowflakes .snowflake__inner_type_4::before {
+                        background-image: url("{{ site.baseurl }}{{ site.assets }}/etc/decoration/leaf1.png") !important;
+                    }
+                    .snowflakes .snowflake__inner_type_1::before,
+                    .snowflakes .snowflake__inner_type_3::before,
+                    .snowflakes .snowflake__inner_type_5::before {
+                        background-image: url("{{ site.baseurl }}{{ site.assets }}/etc/decoration/leaf2.png") !important;
+                    }
+                </style>
+            {% else %}
+                <style>
+                    .snowflakes .snowflake__inner::before {
+                        background-image: url("{{ site.baseurl }}{{ site.assets }}/etc/decoration/{{ site.decoration }}.png") !important;
+                    }
+                </style>
+            {% endif %}
+        {% endunless %}
     {% endif %}
 
     <!--google adsense-->

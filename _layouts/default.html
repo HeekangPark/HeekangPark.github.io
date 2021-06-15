@@ -34,6 +34,7 @@
         </div>
 
         <script>
+            let sf = undefined;
             $(document).ready(function() {
                 loadPageview();
 
@@ -41,12 +42,10 @@
 
                 activatePageNavigator();
                 
-                {% if site.decoration == "snowflakes" %}
-                    let sf = new Snowflakes(); //snowflakes
-                {% endif %}
-
-                {% if site.decoration == "sakura" %}
-                    let sakura = new Sakura("html"); //sakura
+                {% if site.decoration %}
+                    sf = new Snowflakes({
+                        zIndex: 100
+                    });
                 {% endif %}
             });
 

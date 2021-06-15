@@ -47,13 +47,23 @@
             <input class="input" type="text">
         </div>
     </div>
+    
+    <div class="section options">
+        <div class="option falling-option">
+            <label class="switch">
+                <input type="checkbox" id="falling-checkbox" checked>
+                <span class="slider"></span>
+            </label>
+            <label for="falling-checkbox" class="name">데코레이션 켜기/끄기</label>
+        </div>
+    </div>
 
     <div class="section contact">
         <div class="contact-links">
             <p class="contact-link-item email"><a href="mailto://{{ site.data.info.email }}"><i class="far fa-envelope"></i></a></p>
             <p class="contact-link-item github"><a href="https://github.com/{{ site.data.info.github }}"><i class="fab fa-github"></i></a></p>
         </div>
-    </div> 
+    </div>
 </div>
 
 <script>
@@ -68,6 +78,16 @@ $(".left-panel .search .searchbar input").keydown(function(key) {
         } else {
             window.location.href = `/search#${query}`;
         }
+    }
+})
+
+$("#falling-checkbox").change(function() {
+    if(this.checked) {
+        sf = new Snowflakes({
+            zIndex: 100
+        });
+    } else {
+        sf.destroy();
     }
 })
 </script>
