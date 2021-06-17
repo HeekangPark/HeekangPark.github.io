@@ -10,8 +10,7 @@
 @font-face {
 	font-family: "NotoSansKR";
 	src: local("Noto Sans KR Medium"), local("NotoSansKR-Medium"),
-		 url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Medium.woff2") format("woff2"),;
-		 //url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Medium.otf") format("opentype");
+		 url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Medium.woff2") format("woff2");
 	font-display: swap;
 	font-weight: bold;
 }
@@ -19,18 +18,24 @@
 @font-face {
 	font-family: "UbuntuMono";
 	src: local("Ubuntu Mono Regular"), local("UbuntuMono-Regular"),
-		 url("../fonts/monospace/Ubuntu Mono/UbuntuMono-Regular.woff2") format("woff2"),;
-		 //url("../fonts/monospace/Ubuntu Mono/UbuntuMono-Regular.ttf") format("truetype");
+		 url("../fonts/monospace/Ubuntu Mono/UbuntuMono-Regular.woff2") format("woff2");
 	font-display: swap;
 }
 
 @font-face {
 	font-family: "NanumGothicCoding";
 	src: local("Nanum Gothic Coding Regular"), local("NanumGothicCoding-Regular"),
-		 url("../fonts/monospace/Nanum Gothic Coding/NanumGothicCoding-Regular.woff2") format("woff2"),;
-		 //url("../fonts/monospace/Nanum Gothic Coding/NanumGothicCoding-Regular.ttf") format("truetype");
+		 url("../fonts/monospace/Nanum Gothic Coding/NanumGothicCoding-Regular.woff2") format("woff2");
 	font-display: swap;
 }
+
+/*
+@font-face {
+	font-family: "CascadiaMono";
+	src: local("Cascadia Mono Light"), local("CascadiaMono-Light"),
+		 url("../fonts/monospace/Cascadia Code/CascadiaMono-Light.woff2") format("woff2");
+	font-display: swap;
+}*/
 
 
 html, body, div, span, p, nav,

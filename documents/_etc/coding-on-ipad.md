@@ -2,7 +2,7 @@
 title: "iPad에서 개발환경 구축하기"
 tags: ["ipad", "code-server", "termius"]
 date_created: "2021-03-27"
-date_modified: "2021-04-01"
+date_modified: "2021-06-18"
 ---
 
 iPad를 구매한지 어연 3년이 되어간다. iPad 구매 전에는 어딜 가도 항상 무거운 노트북을 들고 다녀야 했지만, iPad 구매 후에는 노트북으로 하던 상당히 많은 일을 iPad로 대체하게 되어 노트북을 들고 다니지 않는 경우가 많아졌다. 그러나 코딩을 할 땐 어쩔 수 없이 노트북을 써야 했다. 만약 iPad에서 코딩마저 가능하다면 무거운 노트북을 안 들고 다녀도 될 거란 기대에, 필자는 iPad에서 코딩을 할 수 있는 방법을 정말 다각도로 연구해 보았다.
@@ -56,6 +56,16 @@ PC 또는 서버에서 작업하던 코드를 GitHub 등에 올린 후, Git Clie
 # SSH Text Editor
 
 사실 필자가 최고로 치는 방법은 VSCode의 "Remote SSH"와 같은 방법이다. VSCode의 Remote SSH는 SSH 연결을 통해 안전하게 원격 서버에 접속해 마치 네이티브 환경에서 코딩하는 것처럼 코딩을 할 수 있게 해 준다. 이 방법은 Git처럼 중간 과정을 거칠 필요도 없고(내가 작업하던 코드에 바로 접근 가능하다), 충돌이 날 염려도 없고, 가볍고, 보안성도 좋고, 빠르다. 그러나 2021년 3월 현재 아무리 찾아도 SSH로 원격 접속해 사용할 수 있는 텍스트 에디터는 앱스토어에 없다. 딱 하나 [Buffer Editor](https://apps.apple.com/us/app/buffer-editor-code-editor/id502633252)라는 앱이 있긴 한데, 개인적으로 사용성이 많이 아쉬웠다. 코드 하이라이팅도 제대로 안되고, 글씨도 너무 작아 보기 불편했다. 일단 필자의 iPad에 이 앱이 설치되어있긴 하지만, 거의 한 번도 안 썼다.
+
+{:.mb-0}
+[+ 21.06.17]
+
+[Koder](https://koderapp.com/)라는 앱도 SSH Text Editing 기능을 지원한다! 이 앱은 Buffer Editor보다 사용성도 좋아서, 현재 가장 주력으로 쓰고 있는 SSH Text Editor이다. 다만 이 앱에도 약간의 단점이 있다.
+
+{:.no-guide-line}
+- SSH Public Key/Private Key를 통한 로그인이 안 된다(Password를 이용한 로그인은 잘 된다). 공식 Documentation에서 시키는 대로 했음에도, Private Key를 이용해 원격 서버에 로그인 시도를 하면 어떤 이유에서인지 Authentication Error가 뜬다.
+- 내장 SSH Shell에서 한글이 깨진다.
+- 가끔 SSH 연결이 끊어져 편집한 내용을 업로드할 수 없을 때가 있다.
 
 # 웹 기반 Editor
 
@@ -148,3 +158,12 @@ Code-Server는 VSCode와 거의 동일한 환경이므로 텍스트 편집, 환�
 ### 문제점
 
 이렇게 완벽해 보이는 Code-Server도 한 가지 문제점이 있다. 현재 한글을 입력하면 더듬더듬 입력되는 현상이 관찰되었다(예를 들어 "사랑"을 입력하면 "ㅅ사라랑랑" 이런 식으로 입력된다). Github Issues에 의하면 이 문제는 Code-Server의 문제가 아닌, VSCode가 가지고 있는 문제라 한다. 이것이 패치되려면 최소 다음 VSCode 패치가 나올 때까지 기다려야 할 것 같다. 즉 현재는 영어로만 코딩해야 한다.
+
+# 결론
+
+21.06.17. 현재 필자가 찾은 최고의 방법은 다음과 같다.
+
+{:.no-guide-line}
+- 본격적인 코딩을 해야 할 때는 Chrome Remote Desktop을 이용한 원격 접속을 사용한다.
+- 간단한 터미널 작업이 필요할 때는 (원격 서버를 만들어 놓고) Termius를 사용한다.
+- 간단한 코드 편집이 필요할 때는 (원격 서버를 만들어 놓고) Koder를 사용한다.
