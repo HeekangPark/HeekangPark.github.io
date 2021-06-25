@@ -1,0 +1,86 @@
+{
+	"Front Matter": {
+		"scope": "markdown",
+		"prefix": "front matter",
+		"body": [
+			"---",
+			"title: \"${1:title}\"",
+			"order: ${2:1}",
+			"date_created: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\"",
+			"date_modified: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\"",
+			"---",
+			""
+		],
+		"description": "Insert Front Matter"
+	},
+	"Pseudo Code": {
+		"scope": "markdown",
+		"prefix": "pseudo code",
+		"body": [
+			"{:.pseudo-code-header}",
+			"${1:title}",
+			"",
+			"<div class=\"pseudo-code\" markdown=\"block\">",
+			"",
+			"$0",
+			"",
+			"</div>"
+		],
+		"description": "Insert Pseudo Code Block"
+	},
+	"Code": {
+		"scope": "markdown",
+		"prefix": "code",
+		"body": [
+			"{:.code-header}",
+			"${1:title}",
+			"",
+			"{% highlight ${2:lang} linenos %}",
+			"$0",
+			"{% endhighlight %}"
+		],
+		"description": "Insert Code Block"
+	},
+	"Code Folder": {
+		"scope": "markdown",
+		"prefix": "code folder",
+		"body": [
+			"<div class=\"code-folder\" markdown=\"block\">",
+			"",
+			"{:.code-header}",
+			"${1:title}",
+			"",
+			"{% highlight ${2:lang} linenos %}",
+			"$0",
+			"{% endhighlight %}",
+			"",
+			"- ",
+			"</div>"
+		],
+		"description": "Insert Code Folder Block"
+	},
+	"Image": {
+		"scope": "markdown",
+		"prefix": "image",
+		"body": [
+			"{% include caption-img.html src=\"${1:path}\" title=\"${2:title}\" description=\"${3:description}\" %}"
+		],
+		"description": "Insert Image"
+	},
+	"Inline Mathjax": {
+		"scope": "markdown",
+		"prefix": "inline mathjax",
+		"body": [
+			"\\$$0\\$"
+		],
+		"description": "Insert Inline Mathjax"
+	},
+	"Block Mathjax": {
+		"scope": "markdown",
+		"prefix": "block mathjax",
+		"body": [
+			"\\$\\$$0\\$\\$"
+		],
+		"description": "Insert Inline Mathjax"
+	}	
+}

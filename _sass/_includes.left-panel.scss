@@ -190,6 +190,7 @@
 
             .switch {
                 $unit: 1.2em;
+                $epsilon: 0.1em;
     
                 position: relative;
                 width: 2 * $unit;
@@ -201,10 +202,10 @@
     
                     &:checked + .slider {
                         background-color: #2196F3;
-                    }
-    
-                    &:checked + .slider:before {
-                        transform: translateX(1.5em);
+
+                        &:before {
+                            transform: translateX(($unit + 2 * $epsilon));
+                        }
                     }
                 }
     
@@ -225,9 +226,9 @@
                         content: "";
                         height: $unit;
                         width: $unit;
-                        left: 0;
+                        left: (-$epsilon);
                         top: 0;
-                        background-color: #ffffff;
+                        background: #ffffff;
                         transition: .4s;
                         border-radius: 50%;
                     }

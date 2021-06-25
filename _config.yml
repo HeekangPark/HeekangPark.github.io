@@ -6,6 +6,8 @@ plugins:
 - jekyll-sitemap
 - jekyll-feed
 exclude:
+- .vscode
+- .gitignore
 - run
 - commit
 - updateCollection
