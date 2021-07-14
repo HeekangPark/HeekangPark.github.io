@@ -1,5 +1,5 @@
 SKKU_swe3050:
-  category: 기계학습 (Machine Learning)
+  category: Machine Learning
   name: 기계학습원론
   output: true
   permalink: /:collection/:name
@@ -8,7 +8,7 @@ SKKU_swe3050:
   - machine_learning
   - skku
 SNU_m3309.000200:
-  category: 기계학습 (Machine Learning)
+  category: Machine Learning
   name: 강화학습 (Reinforcement Learning)
   output: true
   permalink: /:collection/:name
@@ -17,7 +17,7 @@ SNU_m3309.000200:
   - machine_learning
   - snu
 Stanford_cs231n:
-  category: 기계학습 (Machine Learning)
+  category: Machine Learning
   name: Convolutional Neural Networks for Visual Recognition
   output: true
   permalink: /:collection/:name
@@ -26,15 +26,15 @@ Stanford_cs231n:
   - machine_learning
   - stanford
 calculus:
-  category: 수학 (Mathematics)
+  category: Math
   name: 미적분학 (Calculus)
   output: true
   permalink: /:collection/:name
   tags:
   - math
 docker:
-  category: 라이브러리 (Libraries)
-  name: docker
+  category: Applications / Frameworks / Libraries
+  name: 도커 (Docker)
   output: true
   permalink: /:collection/:name
   tags:
@@ -47,14 +47,14 @@ etc:
   permalink: /:collection/:name
   tags: []
 git:
-  category: Git
+  category: Applications / Frameworks / Libraries
   name: Git
   output: true
   permalink: /:collection/:name
   tags:
   - git
 javascript:
-  category: 프로그래밍 언어 (Programming Language)
+  category: Programming Languages
   name: Javascript
   output: true
   permalink: /:collection/:name
@@ -63,15 +63,22 @@ javascript:
   - javascript
   - js
 jekyll:
-  category: 웹 (Web)
+  category: Applications / Frameworks / Libraries
   name: 지킬 (Jekyll)
   output: true
   permalink: /:collection/:name
   tags:
-  - web
   - blog
+  - web
+linux_command:
+  category: Applications / Frameworks / Libraries
+  name: 리눅스 명령어
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - linux
 nas_ml:
-  category: 기계학습 (Machine Learning)
+  category: Machine Learning
   name: NAS
   output: true
   permalink: /:collection/:name
@@ -80,7 +87,7 @@ nas_ml:
   - numpy
   - python
 numpy:
-  category: 라이브러리 (Libraries)
+  category: Applications / Frameworks / Libraries
   name: Numpy
   output: true
   permalink: /:collection/:name
@@ -97,7 +104,7 @@ paper_review:
   - graduate_school
   - snu
 python:
-  category: 프로그래밍 언어 (Programming Language)
+  category: Programming Languages
   name: 'Re : 제로부터 배우는 파이썬'
   output: true
   permalink: /:collection/:name
@@ -105,26 +112,26 @@ python:
   - programming_language
   - python
 virtualbox:
-  category: 응용 프로그램 (Applications)
+  category: Applications / Frameworks / Libraries
   name: Oracle VM VirtualBox
   output: true
   permalink: /:collection/:name
   tags:
   - application
-  - virtualbox
   - virtual_application
+  - virtualbox
 vscode:
-  category: 응용 프로그램 (Applications)
+  category: Applications / Frameworks / Libraries
   name: VSCode
   output: true
   permalink: /:collection/:name
   tags:
   - vscode
 web_server:
-  category: 웹 (Web)
+  category: 기타 (Etc)
   name: 웹 서버 (Web Server)
   output: true
   permalink: /:collection/:name
   tags:
-  - web
   - server
+  - web

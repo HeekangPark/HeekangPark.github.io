@@ -20,6 +20,15 @@ kramdown:
   auto_id_prefix: "kramdown_"
   auto_ids: true
   smart_quotes: ["apos", "apos", "quot", "quot"]
+  typographic_symbols:
+    ndash: "--"
+    mdash: "---"
+    hellip: "..."
+    laquo: "<<"
+    raquo: ">>"
+    laquo_space: ">> "
+    raquo_space: " >>"
+
 
 home_recent_doc_num: 10
 decoration: "watermelon"  # ["sakura", "watermelon", "leaf", "snowflakes"]
