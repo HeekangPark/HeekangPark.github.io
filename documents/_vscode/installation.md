@@ -2,7 +2,7 @@
 title: "VSCode 설치하기"
 order: 1
 date_created: "2021-02-18"
-date_modified: "2021-03-22"
+date_modified: "2021-07-15"
 ---
 
 # Windows에 VSCode 설치하기
@@ -66,19 +66,19 @@ VSCode가 설치될 위치를 설정하는 창이 나온다. 만약 특정 디�
 Ubuntu에 VSCode를 설치하는 다양한 방법이 있지만, 가장 단순한 방법은 `snap`을 이용하는 것이다. 웬만한 Ubuntu 배포판에는 `snap`이 기본적을 깔려있을 테지만, 만약 설치되어 있지 않다면 다음 명령어를 이용해 `snap`을 설치할 수 있다.
 
 {% highlight bash %}
-$ sudo apt install -y snapd
+sudo apt install -y snapd
 {% endhighlight %}
 
 이제 다음 명령어를 입력해 VSCode를 설치한다.
 
 {% highlight bash %}
-$ sudo snap install code --classic
+sudo snap install code --classic
 {% endhighlight %}
 
 설치가 완료되었다면 이제 프로그램 목록에서 "Visual Studio Code"를 찾아 실행하거나, 터미널에 다음을 입력하면 VSCode를 실행할 수 있다.
 
 {% highlight bash %}
-$ code
+code
 {% endhighlight %}
 
 ## apt 이용하기
@@ -86,19 +86,19 @@ $ code
 다음 명령어를 입력해 VSCode 설치에 필요한 의존성 패키지들을 설치한다.
 
 {% highlight bash %}
-$ sudo apt update
-$ sudo apt install -y software-properties-common apt-transport-https wget
+sudo apt update
+sudo apt install -y software-properties-common apt-transport-https wget
 {% endhighlight %}
 
 다음 명령어를 입력해 Microsoft GPG 키와 Visual Studio Code 저장소를 시스템에 추가한다.
 
 {% highlight bash %}
-$ wget -q -O- "https://packages.microsoft.com/keys/microsoft.asc" | sudo apt-key add -
-$ sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+wget -q -O- "https://packages.microsoft.com/keys/microsoft.asc" | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 {% endhighlight %}
 
 이제 다음 명령어를 입력해 VSCode를 설치하자.
 
 {% highlight bash %}
-$ sudo apt install -y code
+sudo apt install -y code
 {% endhighlight %}

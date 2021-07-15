@@ -2,7 +2,7 @@
 title: "Git 설정하기 : git config"
 order: 5
 date_created: "2021-01-08"
-date_modified: "2021-01-08"
+date_modified: "2021-07-15"
 ---
 
 Git은 다음과 같이 세 종류의 config 파일을 사용한다.
@@ -22,8 +22,8 @@ config 파일에 설정값을 저장하기 위해서는 `git config` 명령어�
 사용자 정보는 다음과 같이 등록할 수 있다.
 
 {% highlight bash %}
-$ git config user.name "<user_name>"
-$ git config user.email "<user_email>"
+git config user.name "<user_name>"
+git config user.email "<user_email>"
 {% endhighlight %}
 
 - `<user_name>` : 사용자 이름
@@ -32,17 +32,17 @@ $ git config user.email "<user_email>"
 ex)
 
 {% highlight bash %}
-$ git config user.name "Heekang Park"                              # .git/config에 저장됨
-$ git config user.email "park.heekang33@gmail.com"                 # .git/config에 저장됨
+git config user.name "Heekang Park"                              # .git/config에 저장됨
+git config user.email "park.heekang33@gmail.com"                 # .git/config에 저장됨
 
-$ git config --local user.name "Heekang Park"                      # .git/config에 저장됨
-$ git config --local user.email "park.heekang33@gmail.com"         # .git/config에 저장됨
+git config --local user.name "Heekang Park"                      # .git/config에 저장됨
+git config --local user.email "park.heekang33@gmail.com"         # .git/config에 저장됨
 
-$ git config --global user.name "Heekang Park"                     # ~/.gitconfig에 저장됨
-$ git config --global user.email "park.heekang33@gmail.com"        # ~/.gitconfig에 저장됨
+git config --global user.name "Heekang Park"                     # ~/.gitconfig에 저장됨
+git config --global user.email "park.heekang33@gmail.com"        # ~/.gitconfig에 저장됨
 
-$ sudo git config --system user.name "Heekang Park"                # /etc/gitconfig에 저장됨
-$ sudo git config --system user.email "park.heekang33@gmail.com"   # /etc/gitconfig에 저장됨
+sudo git config --system user.name "Heekang Park"                # /etc/gitconfig에 저장됨
+sudo git config --system user.email "park.heekang33@gmail.com"   # /etc/gitconfig에 저장됨
 {% endhighlight %}
 
 # 기본 텍스트 편집기 설정하기
@@ -52,7 +52,7 @@ Git에서는 커밋, 병합 등에서 텍스트 편집기를 사용한다. 기�
 [^2]: 우분투의 경우 nano가 시스템 기본 편집기이다. 
 
 {% highlight bash %}
-$ git config core.editor "<editor_name>"
+git config core.editor "<editor_name>"
 {% endhighlight %}
 
 - `<editor_name>` : 에디터 이름 
@@ -60,7 +60,7 @@ $ git config core.editor "<editor_name>"
 예를 들어, 다음과 같이 하면 vim을 기본 에디터로 설정할 수 있다.
 
 {% highlight bash %}
-$ git config --global core.editor vim
+git config --global core.editor vim
 {% endhighlight %}
 
 # 설정값 읽기
@@ -68,7 +68,7 @@ $ git config --global core.editor vim
 다음 명령어는 모든 설정값을 읽는 명령어이다.
 
 {% highlight bash %}
-$ git config --list
+git config --list
 {% endhighlight %}
 
 `.git/config`, `~/.gitconfig`, `/etc/gitconfig`에 동일한 설정값이 있다면 실제 적용되는 설정값(가장 우선순위가 높은 설정값)이 출력된다.
@@ -76,7 +76,7 @@ $ git config --list
 다음 명령어는 특정 설정값을 읽는 명령어이다.
 
 {% highlight bash %}
-$ git config "<key>"
+git config "<key>"
 {% endhighlight %}
 
 - `<key>` : 옵션 이름 (ex. `user.name`, `user.email`, `core.editor`, etc.)
@@ -84,5 +84,5 @@ $ git config "<key>"
 이 명령어 역시 `.git/config`, `~/.gitconfig`, `/etc/gitconfig`에 동일한 설정값이 있다면 실제 적용되는 설정값(가장 우선순위가 높은 설정값)이 출력된다. 다음과 같이 `--show-origin` 옵션을 주면 여러 config 파일 중 어디서 설정값을 읽어 왔는지(실제 어떤 설정값이 적용되고 있는지)를 보여준다.
 
 {% highlight bash %}
-$ git config --show-origin "<key>"
+git config --show-origin "<key>"
 {% endhighlight %}

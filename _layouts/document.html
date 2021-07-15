@@ -196,12 +196,6 @@ $(document).ready(function() {
     activateFootnotePopups();
     activateImagePopup();
     
-    //image blackout popup
-    /*$(".main-panel .document .toc-content-container .document-content .caption-img").magnificPopup({
-        delegate: "a",
-        type: "image"
-    });*/
-
     if(typeof MathJax.typesetPromise !== "undefined") {
         MathJax.typesetPromise();
     } else {
@@ -209,6 +203,8 @@ $(document).ready(function() {
             MathJax.typesetPromise();
         })
     }
+
+    prependPromptOnBashCodeBlock();
 });
 
 function activateFootnotePopups() {
@@ -421,5 +417,50 @@ function activateImagePopup() {
             closeImagePopup();
         }
     });
+}
+
+function prependPromptOnBashCodeBlock() {
+    function isExist(elem) {
+        if(elem.length > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function getProperPrompts(content, prompt) {
+        let splits = content.split("\n");
+
+        let result = [];
+        for(let i = 0; i < splits.length; i++) {
+            let line = splits[i].trim().replace(/<\/?[^>]+(>|$)/g, "");
+            console.log(line);
+            if(line.length == 0 || line.startsWith("#")) {
+                result.push(" ");
+            } else {
+                result.push(prompt);
+            }
+        }
+
+        return result.join("\n");
+    }
+
+    $("figure.highlight").each(function(idx, elem) {
+        let figure = $(this);
+        let code = figure.find("code.language-bash");
+        if(isExist(code) && !figure.hasClass("no-prompt")) {
+            let prompt = figure.hasClass("show-admin-prompt") ? "#" : "$";
+
+            let linenos = code.children("table.rouge-table");
+            if(isExist(linenos)) {
+                let content = linenos.find("td.code pre").html().trim();
+                linenos.find("td.gutter").after(`<td class="prompts"><pre>${getProperPrompts(content, prompt)}</pre></td>`);
+
+            } else {
+                let content = code.html().trim();
+                code.empty().append(`<table class="rouge-table"><tbody><tr><td class="prompts"><pre>${getProperPrompts(content, prompt)}</pre></td><td class="code"><pre>${content}</pre></td></tr></tbody></table>`);
+            }
+        }
+    })
 }
 </script>

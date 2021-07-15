@@ -2,7 +2,7 @@
 title: "하둡 생태계"
 tags: ["hadoop"]
 date_created: "2021-06-17"
-date_modified: "2021-06-25"
+date_modified: "2021-07-15"
 ---
 
 하둡 생태계(Hadoop Environment)에 대해 알아보자.
@@ -136,7 +136,7 @@ date_modified: "2021-06-25"
 fsck 명령어 : 파일시스템에 있는 각 파일을 구성하는 블록의 목록 출력
 
 {% highlight bash linenos %}
-$ hdfs fsck / -files -blocks
+hdfs fsck / -files -blocks
 {% endhighlight %}
 
 ### 네임노드와 데이터노드

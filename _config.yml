@@ -121,13 +121,6 @@ collections:
     tags:
     - blog
     - web
-  linux_command:
-    category: Applications / Frameworks / Libraries
-    name: 리눅스 명령어
-    output: true
-    permalink: /:collection/:name
-    tags:
-    - linux
   nas_ml:
     category: Machine Learning
     name: NAS
@@ -186,6 +179,13 @@ collections:
     tags:
     - server
     - web
+  linux:
+    output: true
+    permalink: /:collection/:name
+    name: 리눅스
+    category: OS
+    tags:
+    - linux
 defaults:
 - scope:
     path: ''
@@ -239,11 +239,6 @@ defaults:
     layout: document
 - scope:
     path: ''
-    type: linux_command
-  values:
-    layout: document
-- scope:
-    path: ''
     type: nas_ml
   values:
     layout: document
@@ -275,5 +270,10 @@ defaults:
 - scope:
     path: ''
     type: web_server
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: linux
   values:
     layout: document

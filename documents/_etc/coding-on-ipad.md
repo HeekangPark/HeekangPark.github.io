@@ -2,7 +2,7 @@
 title: "iPad에서 개발환경 구축하기"
 tags: ["ipad", "code-server", "termius"]
 date_created: "2021-03-27"
-date_modified: "2021-06-18"
+date_modified: "2021-07-15"
 ---
 
 iPad를 구매한지 어연 3년이 되어간다. iPad 구매 전에는 어딜 가도 항상 무거운 노트북을 들고 다녀야 했지만, iPad 구매 후에는 노트북으로 하던 상당히 많은 일을 iPad로 대체하게 되어 노트북을 들고 다니지 않는 경우가 많아졌다. 그러나 코딩을 할 땐 어쩔 수 없이 노트북을 써야 했다. 만약 iPad에서 코딩마저 가능하다면 무거운 노트북을 안 들고 다녀도 될 거란 기대에, 필자는 iPad에서 코딩을 할 수 있는 방법을 정말 다각도로 연구해 보았다.
@@ -99,13 +99,13 @@ Code-Server는 시스템에 바로 설치할 수도 있지만 Docker를 이용�
 Docker가 설치되어 있지 않다면 우선 Docker를 설치한다.
 
 {% highlight bash %}
-$ sudo apt update
-$ sudo apt -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt update
+sudo apt -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-$ sudo apt update
-$ sudo apt install -y docker-ce docker-ce-cli containerd.io
-$ sudo usermod -aG docker $USER
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+sudo usermod -aG docker $USER
 {% endhighlight %}
 
 원하는 곳에서 바로 Code-Server를 실행할 수 있도록 적당한 디렉토리(필자는 `~/scripts` 디렉토리에 만들었다)에 다음과 같이 Code-Server 이미지를 실행하는 `run-code-server` 스크립트를 만들었다.
@@ -131,18 +131,18 @@ codercom/code-server:latest
 이 스크립트에 실행 권한을 주고, 스크립트가 들어 있는 디렉토리(`~/scripts`)를 `PATH`에 추가하고(이렇게 하면 어디서든 `run-code-server`만 입력해도 위 스크립트를 바로 실행할 수 있다), Code-Server의 설정이 담길 디렉토리를 만든다(이 디렉토리가 있어야 Docker Container가 실행 시 변경한 설정 파일을 보존할 수 있다).
 
 {% highlight bash %}
-$ chmod +x run-code-server
-$ echo "export PATH=\$HOME/scripts:\$PATH" >> ~/.bashrc
-$ mkdir -p ~/.code-server
-$ mkdir -p ~/.code-server/code-server-config
-$ mkdir -p ~/.code-server/vscode-config
+chmod +x run-code-server
+echo "export PATH=\$HOME/scripts:\$PATH" >> ~/.bashrc
+mkdir -p ~/.code-server
+mkdir -p ~/.code-server/code-server-config
+mkdir -p ~/.code-server/vscode-config
 {% endhighlight %}
 ### 사용법
 
 iPad에서, SSH Shell(ex. Termius)을 이용해 작업하고자 하는 디렉토리에 가서 위에서 만든 스크립트를 실행한다.
 
 {% highlight bash %}
-$ run-code-server
+run-code-server
 {% endhighlight %}
 
 이제 다음 URL에 접속하면 웹 상에서 VSCode 환경을 띄우고 그 안에서 코딩을 할 수 있다.

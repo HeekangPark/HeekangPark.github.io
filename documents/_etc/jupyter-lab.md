@@ -2,7 +2,7 @@
 title: "주피터 랩(Jupyter Lab) 설치하기"
 tags: ["jupyterlab", "python", "framework"]
 date_created: "2020-08-31"
-date_modified: "2021-02-18"
+date_modified: "2021-07-15"
 ---
 
 # 주피터 랩(Jupyter Lab)이란?
@@ -69,19 +69,19 @@ date_modified: "2021-02-18"
 [^10]: 이름은 맘대로 정해도 된다.
 
 {% highlight bash %}
-$ conda create -n jupyter python=3.8
+conda create -n jupyter python=3.8
 {% endhighlight %}
 
 생성한 가상환경을 활성화한다.
 
 {% highlight bash %}
-$ conda activate jupyter
+conda activate jupyter
 {% endhighlight %}
 
 pip을 이용해 가상환경에 주피터 랩을 설치한다.
 
 {% highlight bash %}
-$ pip install jupyterlab
+pip install jupyterlab
 {% endhighlight %}
 
 ## 주피터 랩 실행하기
@@ -89,7 +89,7 @@ $ pip install jupyterlab
 설치가 정상적으로 완료되었으면 다음 명령어로 주피터 랩을 실행할 수 있다.
 
 {% highlight bash %}
-$ jupyter lab
+jupyter lab
 {% endhighlight %}
 
 위 명령어를 실행하면 주피터 랩 서버가 실행되고 자동으로 브라우저가 실행되면서 주피터 랩이 열린다.
@@ -105,7 +105,7 @@ $ jupyter lab
 주피터 랩을 실행하면 디폴트로 브라우저가 열린다. `--no-browser` 옵션을 주면 브라우저가 자동으로 열리지 않는다(주피터 랩 서버만 실행된다).
 
 {% highlight bash %}
-$ jupyter lab --no-browser
+jupyter lab --no-browser
 {% endhighlight %}
 
 `--no-browser` 옵션으로 주피터 랩을 실행한 경우, 혹은 실수로 주피터 랩이 실행 중인 브라우저를 닫아버린 경우 콘솔 창에서 주피터 랩에 접속할 수 있는 URL을 확인할 수 있다.[^12]
@@ -117,7 +117,7 @@ $ jupyter lab --no-browser
 주피터 랩은 디폴트로 `http://127.0.0.1:8888/`에서 열린다. 만약 다른 IP 주소나 포트 번호를 사용하고 싶다면 각각 `--ip` 옵션과 `--port` 옵션을 사용하면 된다.
 
 {% highlight bash %}
-$ jupyter lab --ip=<ip_addr> --port=<port>
+jupyter lab --ip=<ip_addr> --port=<port>
 {% endhighlight %}
 
 - `<ip_addr>` : IP 주소. "0.0.0.0"을 입력하면 컴퓨터에 연결된 모든 IP 주소를 listen한다.[^13]
@@ -127,9 +127,9 @@ $ jupyter lab --ip=<ip_addr> --port=<port>
 
 ex)
 {% highlight bash %}
-$ jupyter lab --ip=192.168.0.1 --port=8000
-$ jupyter lab --ip=0.0.0.0
-$ jupyter lab --port=9999
+jupyter lab --ip=192.168.0.1 --port=8000
+jupyter lab --ip=0.0.0.0
+jupyter lab --port=9999
 {% endhighlight %}
 
 이외에도 다양한 옵션들이 있다.
@@ -141,7 +141,7 @@ $ jupyter lab --port=9999
 config 파일은 다음 명령어로 생성할 수 있다.
 
 {% highlight bash %}
-$ jupyter lab --generate-config
+jupyter lab --generate-config
 {% endhighlight %}
 
 이 명령어는 `~/.jupyter/` 디렉토리에 `jupyter_notebook_config.py` 파일을 생성한다.[^14] 주피터 랩은 실행될 때 자동으로 `~/.jupyter/` 디렉토리에 `jupyter_notebook_config.py` 파일이 존재하는지 확인해, 만약 파일이 존재한다면 파일을 읽어 옵션값을 적용한다.
@@ -151,7 +151,7 @@ $ jupyter lab --generate-config
 만약 다른 경로에 있는 config을 사용하고 싶으면 다음과 같이 주피터 랩 실행 시 `--config` 옵션을 줄 수 있다.
 
 {% highlight bash %}
-$ jupyter lab --config=<config_path>
+jupyter lab --config=<config_path>
 {% endhighlight %}
 
 - `<config_path>` : config 파일 경로. 파일명만 작성하게 되면 현재 디렉토리 혹은 `~/.jupyter/` 디렉토리에서 해당 파일을 찾는다.[^15] 만약 명시된 경로에서 config 파일을 읽을 수 없는 경우 주피터 랩은 디폴트 설정으로 열린다.
@@ -160,8 +160,8 @@ $ jupyter lab --config=<config_path>
 
 ex)
 {% highlight bash %}
-$ jupyter lab --config=my_config.py  # 현재 디렉토리 혹은 ~/.jupyter/ 디렉토리 밑에서 my_config.py 파일을 찾는다.
-$ jupyter lab --config=~/config_dir/my_config.py
+jupyter lab --config=my_config.py  # 현재 디렉토리 혹은 ~/.jupyter/ 디렉토리 밑에서 my_config.py 파일을 찾는다.
+jupyter lab --config=~/config_dir/my_config.py
 {% endhighlight %}
 
 config 파일에서 설정 가능한 모든 옵션들을 다 나열하면 글이 너무 길어지기에, 필자가 현재 사용하고 있는 옵션들만 설명하도록 하겠다. 다른 옵션들은 [공식 문서](https://jupyter-notebook.readthedocs.io/en/stable/config.html)에서 확인 가능하다.
@@ -230,27 +230,27 @@ c.NotebookApp.password = 'argon2:$argon2id$v=19$m=10240,t=10,p=8$eXDpKZIvIil1ygB
 [^20]: 주피터 랩이 설치된 기존 가상환경을 사용해도 된다.
 
 {% highlight bash %}
-$ conda create -n jupyter-server python=3.8  # 가상환경 생성
-$ conda activate jupyter-server  # 가상환경 활성화
-$ pip install jupyterlab  # 주피터 랩 설치
+conda create -n jupyter-server python=3.8  # 가상환경 생성
+conda activate jupyter-server  # 가상환경 활성화
+pip install jupyterlab  # 주피터 랩 설치
 {% endhighlight %}
 
 그리고 `~/.jupyter/` 디렉토리 밑에 주피터 랩 서버가 사용할 config 파일 `jupyter_server_config.py`을 생성하고, 적당한 옵션값을 입력한다.
 
 {% highlight bash %}
-$ vim ~/.jupyter/jupyter_server_config.py  # config 파일 생성. 적당한 옵션값을 입력한다.
+vim ~/.jupyter/jupyter_server_config.py  # config 파일 생성. 적당한 옵션값을 입력한다.
 {% endhighlight %}
 
 그리고 주피터 랩이 사용할 디렉토리 `~/jupyter-server-workspace/`를 생성한다.
 
 {% highlight bash %}
-$ mkdir ~/jupyter-server-workspace
+mkdir ~/jupyter-server-workspace
 {% endhighlight %}
 
 우분투 20.04 기준 터미널에 다음 명령어를 실행해 `jupyter` 서비스를 생성한다.
 
 {% highlight bash %}
-$ sudo vim /etc/systemd/system/jupyter.service
+sudo vim /etc/systemd/system/jupyter.service
 {% endhighlight %}
 
 그리고 다음 내용을 입력한다.
@@ -311,15 +311,15 @@ WantedBy=multi-user.target
 서비스 생성이 완료되었으면 서비스를 등록해야 한다. 다음 명령어를 수행하면 서비스를 등록할 수 있다.
 
 {% highlight bash %}
-$ sudo systemctl daemon-reload  # 데몬 리로드
-$ sudo systemctl enable jupyter.service  # jupyter.service 등록
-$ sudo systemctl start jupyter.service  # jupyter.service 시작
+sudo systemctl daemon-reload  # 데몬 리로드
+sudo systemctl enable jupyter.service  # jupyter.service 등록
+sudo systemctl start jupyter.service  # jupyter.service 시작
 {% endhighlight %}
 
 `jupyter.service` 서비스의 상태를 확인하려면 다음 명령어를 입력한다.
 
 {% highlight bash %}
-$ sudo systemctl status jupyter.service
+sudo systemctl status jupyter.service
 {% endhighlight %}
 
 초록색 불이 들어와 있으면 정상적으로 주피터 랩 서비스가 실행(Running)되고 있는 것이다.

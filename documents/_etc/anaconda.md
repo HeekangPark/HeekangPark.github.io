@@ -2,7 +2,7 @@
 title: "아나콘다(Anaconda) 리눅스(Ubuntu)에 설치하기"
 tags: ["anaconda", "python", "framework", "linux", "ubuntu"]
 date_created: "2020-08-31"
-date_modified: "2021-02-18"
+date_modified: "2021-07-15"
 ---
 
 # 파이썬 가상환경 (Python Virtual Environment)
@@ -34,15 +34,15 @@ date_modified: "2021-02-18"
 [^3]: 구버전의 아나콘다는 <https://repo.anaconda.com/archive/>에서 받을 수 있다.
 
 {% highlight bash %}
-$ curl -O https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
-$ if [[ "$(md5sum Anaconda3-2020.07-Linux-x86_64.sh | cut -d' ' -f1)" == "1046c40a314ab2531e4c099741530ada" ]]; then echo "OK"; else echo "No"; fi  # 무결성 검사 : OK가 나와야 함
+curl -O https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
+if [[ "$(md5sum Anaconda3-2020.07-Linux-x86_64.sh | cut -d' ' -f1)" == "1046c40a314ab2531e4c099741530ada" ]]; then echo "OK"; else echo "No"; fi  # 무결성 검사 : OK가 나와야 함
 {% endhighlight %}
 
 다운로드한 `Anaconda3-2020.07-Linux-x86_64.sh` 파일에 다음과 같이 실행권한을 부여한 후 실행하면 설치가 시작된다.
 
 {% highlight bash %}
-$ chmod +x Anaconda3-2020.07-Linux-x86_64.sh  # 실행 권한 부여
-$ ./Anaconda3-2020.07-Linux-x86_64.sh
+chmod +x Anaconda3-2020.07-Linux-x86_64.sh  # 실행 권한 부여
+./Anaconda3-2020.07-Linux-x86_64.sh
 {% endhighlight %}
 
 이후 안내에 따라 설치를 진행하면 된다.
@@ -993,7 +993,7 @@ $("div.collapsable > p.collapsable-btn").click(function() {
 [^4]: 리눅스 기준, 설치 시 별다른 옵션을 지정하지 않았다면 `$HOME`
 
 {% highlight bash %}
-$ rm -rf anaconda3
+rm -rf anaconda3
 {% endhighlight %}
 
 이후 `.bash_profile`, `.bashrc` 등의 파일에서 아나콘다 관련 코드(ex. `export PATH="$HOME/anaconda3/bin:$PATH"`)를 모두 원래 상태로 만든다.
@@ -1003,13 +1003,13 @@ $ rm -rf anaconda3
 `base` 가상환경을 활성화한다. 이후 다음 명령어로 Anaconda-Clean 패키지를 설치한다.
 
 {% highlight bash %}
-$ conda install anaconda-clean
+conda install anaconda-clean
 {% endhighlight %}
 
 설치가 완료되면 Anaconda-Clean을 실행한다. 뒤의 `--yes` 옵션을 붙이지 않으면 삭제하는 파일마다 삭제 확인(confirmation)을 받는다.
 
 {% highlight bash %}
-$ anaconda-clean --yes
+anaconda-clean --yes
 {% endhighlight %}
 
 Anaconda-Clean의 실행이 완료되면 [Optiona A 삭제](#kramdown_option-a-삭제)를 진행한다.
@@ -1022,7 +1022,7 @@ Anaconda-Clean의 실행이 완료되면 [Optiona A 삭제](#kramdown_option-a-�
 아나콘다에서 가상환경은 다음과 같이 생성할 수 있다.
 
 {% highlight bash %}
-$ conda create -n <venv_name> python=<python_ver>
+conda create -n <venv_name> python=<python_ver>
 {% endhighlight %}
 
 - `<venv_name>` : 가상환경의 이름. 가상환경의 이름은 고유해야 한다.[^5] 가상환경의 이름으로 '/', ' ', ':', '#' 문자를 사용할 수 없다.
@@ -1034,8 +1034,8 @@ $ conda create -n <venv_name> python=<python_ver>
 
 ex)
 {% highlight bash %}
-$ conda create -n test1 python=3.7
-$ conda create -n test2 python=3.8
+conda create -n test1 python=3.7
+conda create -n test2 python=3.8
 {% endhighlight %}
 
 ## 가상환경 확인하기
@@ -1043,8 +1043,8 @@ $ conda create -n test2 python=3.8
 생성한 가상환경의 목록은 다음 명령어 중 하나로 확인할 수 있다(어떤 걸 사용해도 결과는 같다).
 
 {% highlight bash %}
-$ conda env list
-$ conda info --envs
+conda env list
+conda info --envs
 {% endhighlight %}
 
 가상환경을 생성하면 아나콘다가 설치된 디렉토리[^8] 밑의 `envs/` 디렉토리에 가상환경 폴더가 생성되므로, 이 디렉토리의 폴더 목록을 확인해도 생성된 가상환경들의 목록을 볼 수 있다.
@@ -1056,8 +1056,8 @@ $ conda info --envs
 생성한 가상환경은 다음 명령어 중 하나로 삭제할 수 있다(어떤 걸 사용해도 결과는 같다).
 
 {% highlight bash %}
-$ conda env remove -n <venv_name>
-$ conda remove -n <venv_name> --all
+conda env remove -n <venv_name>
+conda remove -n <venv_name> --all
 {% endhighlight %}
 
 - `<venv_name>` : 가상환경의 이름. 존재하지 않는 가상환경의 이름을 입력하면 아무런 일도 발생하지 않는다(아무런 가상환경도 삭제되지 않는다). 현재 활성화되어있는 가상환경을 지우면 오류 메시지가 출력되고 가상환경이 삭제되지 않는다.[^9]
@@ -1066,8 +1066,8 @@ $ conda remove -n <venv_name> --all
 
 ex)
 {% highlight bash %}
-$ conda env remove -n test1
-$ conda remove -n test2 --all
+conda env remove -n test1
+conda remove -n test2 --all
 {% endhighlight %}
 
 ## 가상환경 활성화하기
@@ -1075,15 +1075,15 @@ $ conda remove -n test2 --all
 가상환경은 다음 명령어로 활성화(activate)할 수 있다.
 
 {% highlight bash %}
-$ conda activate <venv_name>
+conda activate <venv_name>
 {% endhighlight %}
 
 - `<venv_name>` : 가상환경의 이름. 존재하지 않는 가상환경의 이름을 입력하면 오류 메시지를 출력한다.
 
 ex)
 {% highlight bash %}
-$ conda activate test1
-$ conda activate test2
+conda activate test1
+conda activate test2
 {% endhighlight %}
 
 가상환경이 활성화되면 쉘 프롬프트 앞에 괄호(`()`)로 현재 활성화되어 있는 가상환경이 나타난다.
@@ -1096,7 +1096,7 @@ ex)
 이 상태에서 `which` 명령어로 파이썬 인터프리터의 경로를 출력해 보면 시스템에 설치된 파이썬 인터프리터의 경로가 아닌, 가상환경 디렉토리 밑에 있는 파이썬 인터프리터 경로로 덮어씌워져(override) 있는 것을 확인할 수 있다.
 
 {% highlight bash %}
-$ which python
+which python
 {% endhighlight %}
 
 다음 코드는 파이썬 쉘(REPL)에서 현재 파이썬 인터프리터의 위치와 site-packages 디렉토리의 위치를 확인하는 코드이다. 이 방법을 통해서도 가상환경이 활성화되면 파이썬 인터프리터와 site-packages가 가상환경의 것으로 덮어씌워져 있음을 확인할 수 있다.
@@ -1111,7 +1111,7 @@ $ which python
 다음 명령어로 현재 활성화되어 있는 가상환경을 비활성화(deactivate)할 수 있다. 아무런 가상환경도 활성화되어 있지 않다면 아무 일도 일어나지 않는다.
 
 {% highlight bash %}
-$ conda deactivate
+conda deactivate
 {% endhighlight %}
 
 활성화할 때는 `<venv_name>`을 요구했지만, 비활성화할 때는 요구하지 않는다.
@@ -1121,15 +1121,15 @@ $ conda deactivate
 아나콘다는 pip과 같은 패키지 관리자(Package Manager)이기도 하다. 가상환경이 활성화되어 있는 상태에서 다음 명령어를 입력하면 해당 가상환경에 패키지를 설치할 수 있다.
 
 {% highlight bash %}
-$ conda install <package_name>
+conda install <package_name>
 {% endhighlight %}
 
 - `<package_name>` : 패키지명
 
 ex)
 {% highlight bash %}
-$ conda install numpy
-$ conda install matplotlib
+conda install numpy
+conda install matplotlib
 {% endhighlight %}
 
 아나콘다와 pip은 거의 동일한 역할을 한다. 다만 경우에 따라 아나콘다로 설치했을 땐 이상하게 작동하는 패키지가 pip으로 설치했을 때는 잘 작동하거나, 그 반대의 경우도 일어난다. 만약 한 패키지 관리자로 설치했을 때 오류가 발생한다면 다른 패키지 관리자를 사용해 보자.
@@ -1139,7 +1139,7 @@ $ conda install matplotlib
 가상환경이 활성화되어 있는 상태에서 다음 명령어를 입력하면 현재 가상환경에 설치된 (아나콘다가 인식 가능한) 모든 패키지들을 확인할 수 있다.
 
 {% highlight bash %}
-$ conda list
+conda list
 {% endhighlight %}
 
 만약 어떤 패키지가 pip과 아나콘다 둘 다 배포되어(deploy) 있으면, 해당 패키지는 아나콘다로 설치했어도 pip에서 확인할 수도 있고(`pip list`), 반대로 pip에서 설치했어도 아나콘다에서 확인할 수 있다.
@@ -1149,13 +1149,13 @@ $ conda list
 가상환경이 활성화되어 있는 상태에서 다음 명령어를 입력하면 설치된 패키지를 제거할 수 있다. 만약 설치되어 있지 않은 패키지를 삭제하려 하면 오류 메시지가 출력된다.
 
 {% highlight bash %}
-$ conda remove <package_name>
+conda remove <package_name>
 {% endhighlight %}
 
 - `<package_name>` : 패키지명
 
 ex)
 {% highlight bash %}
-$ conda remove numpy
-$ conda remove matplotlib
+conda remove numpy
+conda remove matplotlib
 {% endhighlight %}

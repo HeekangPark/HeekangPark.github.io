@@ -2,7 +2,7 @@
 title: "Git 저장소 (Git Repository)"
 order: 3
 date_created: "2021-01-08"
-date_modified: "2021-01-08"
+date_modified: "2021-07-15"
 ---
 
 Git 저장소(Repository)는 Git이 버전 관리를 하고 있는 폴더를 의미한다. Git에는 로컬 저장소(Local Repository)와 원격 저장소(Remote Repository), 이렇게 두 가지 종류의 저장소가 있다.
@@ -21,7 +21,7 @@ Git 저장소(Repository)는 Git이 버전 관리를 하고 있는 폴더를 의
 특정 디렉토리를 로컬 저장소로 만들고 싶다면 해당 디렉토리로 이동한 후 다음 명령어를 입력하면 된다.
 
 {% highlight bash %}
-$ git init
+git init
 {% endhighlight %}
 
 이렇게 되면 해당 디렉토리는 로컬 저장소가 되고, 파일들의 버전을 관리할 준비가 된 것이다.
@@ -29,7 +29,7 @@ $ git init
 `git init`을 입력하면 디렉토리 밑에 `.git` 폴더를 만든다. Git은 이 폴더 안에 변경 이력 등 버전 관리를 위한 파일들을 모두 저장한다. 이 디렉토리를 지우면 Git은 더이상 버전 관리를 할 수가 없다. 만약 로컬 저장소를 더이상 로컬 저장소로 사용하고 싶지 않다면(버전 관리를 하고 싶지 않다면), 그냥 단순히 `.git` 디렉토리를 삭제하면 된다.
 
 {% highlight bash %}
-$ rm -rf .git
+rm -rf .git
 {% endhighlight %}
 
 ## 원격 저장소 복제하기 : git clone
@@ -37,7 +37,7 @@ $ rm -rf .git
 `git clone` 명령어를 이용하면 원격 저장소를 로컬로 복제할 수 있다.
 
 {% highlight bash %}
-$ git clone <url> <dir_name>
+git clone <url> <dir_name>
 {% endhighlight %}
 
 - `<url>` : [필수] 원격 저장소 url
@@ -46,13 +46,13 @@ $ git clone <url> <dir_name>
 예를 들어 VSCode의 원격 저장소 url은 `https://github.com/microsoft/vscode.git`이다. 다음 명령어를 입력하면 로컬에 `~/vscode/` 디렉토리가 생성되고 이 밑에 VSCode의 Git 로컬 저장소가 원격 저장소로부터 복제되어 생성된다.
 
 {% highlight bash %}
-$ git clone https://github.com/microsoft/vscode.git
+git clone https://github.com/microsoft/vscode.git
 {% endhighlight %}
 
 다음과 같이 하면 `~/happy/` 디렉토리 밑에 로컬 저장소를 복제, 생성할 수 있다.
 
 {% highlight bash %}
-$ git clone https://github.com/microsoft/vscode.git happy
+git clone https://github.com/microsoft/vscode.git happy
 {% endhighlight %}
 
 # 원격 저장소 (Remote Repository)

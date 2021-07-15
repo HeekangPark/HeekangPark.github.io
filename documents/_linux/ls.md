@@ -2,6 +2,7 @@
 title: "ls"
 date_created: "2021-07-14"
 date_modified: "2021-07-15"
+tags: ["command"]
 ---
 
 # 이름
@@ -17,16 +18,38 @@ ls - list directory contents
 # 명령어 형식
 
 {% highlight bash %}
-$ ls [OPTION]... [FILE]...
+ls [OPTION]... [FILE]...
 {% endhighlight %}
 
 # Quick Start
 
-{:.no-guide-line}
-- `ls -alF --group-directories-first` : 디렉토리 알파벳순으로 먼저 출력, 이후 파일 알파벳순으로 출력
-- `ls -alFh` : 사람이 이해하기 쉬운 형태로 파일/디렉토리 크기 출력
-- `ls -AlFhSr` : 파일 크기 역순 정렬 (프롬프트 바로 위가 가장 큰 파일/디렉토리)
-- `ls -alFtr` : 마지막 편집시간 역순 정렬 (프롬프트 바로 위가 가장 최근에 편집된 파일/디렉토리)
+{:.code-header}
+디렉토리 알파벳순으로 먼저 출력, 이후 파일 알파벳순으로 출력
+
+{% highlight bash %}
+ls -alF --group-directories-first
+{% endhighlight %}
+
+{:.code-header}
+사람이 이해하기 쉬운 형태로 파일/디렉토리 크기 출력
+
+{% highlight bash %}
+ls -alFh
+{% endhighlight %}
+
+{:.code-header}
+파일 크기 역순 정렬 (프롬프트 바로 위가 가장 큰 파일/디렉토리)
+
+{% highlight bash %}
+ls -AlFhSr
+{% endhighlight %}
+
+{:.code-header}
+마지막 편집시간 역순 정렬 (프롬프트 바로 위가 가장 최근에 편집된 파일/디렉토리)
+
+{% highlight bash %}
+ls -alFtr
+{% endhighlight %}
 
 # 설명
 

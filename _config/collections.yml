@@ -70,9 +70,9 @@ jekyll:
   tags:
   - blog
   - web
-linux_command:
-  category: Applications / Frameworks / Libraries
-  name: 리눅스 명령어
+linux:
+  category: OS
+  name: 리눅스
   output: true
   permalink: /:collection/:name
   tags:

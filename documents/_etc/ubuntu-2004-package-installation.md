@@ -2,7 +2,7 @@
 title: "Ubuntu 20.04 사용기 - 패키지 설치"
 tags: ["ubuntu", "ubuntu20.04", "vscode", "mailspring", "chrome", "google_chrome", "크롬", "구글_크롬", "한컴오피스_한글_뷰어", "한글_뷰어", "아래아한글_뷰어", "hancomeoffice_hwp_viewer", "hwp_viewer", "virbualbox"]
 date_created: "2021-02-19"
-date_modified: "2021-04-23"
+date_modified: "2021-07-15"
 ---
 
 이번에 데스크탑에 Ubuntu 20.04를 설치하게 되었다. 필자는 주로 Windows를 사용했기에 Ubuntu에서 프로그램을 설치하는 것이 많이 낯설었다. 특히 2021년 2월 현재 많은 프로그램들이 아직 Ubuntu 20.04를 위한 공식 버전을 내놓지 않은 경우가 많아 이들을 설치하기 위해 꽤 골머리를 썩혔다.~~정보 : Ubuntu 20.04는 2020년 4월 릴리즈되었다. 출시된지 10개월이 다 됐는데도 아직까지 20.04를 공식적으로 지원하지 않는 프로그램들이 이렇게 많은 것을 보면 안습한 Ubuntu 환경에 눈물이 앞을 가린다ㅠ~~ 본 문서는 필자가 Ubuntu 20.04 환경에서 패키지들을 설치한 경험을 정리한 것이다. 필자와 유사한 상황의 사용자가 있다면 부디 이 문서가 도움이 되길 바란다.
@@ -35,10 +35,10 @@ deb http://security.ubuntu.com/ubuntu focal-security multiverse
 이를 `sed` 명령어를 이용해 카카오 서버(`http://mirror.kakao.com/ubuntu/`)로 바꾸도록 하자.
 
 {% highlight bash %}
-$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.old  # /etc/apt/sources.list 백업
-$ sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-$ sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-$ sudo sed -i 's/extras.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.old  # /etc/apt/sources.list 백업
+sudo sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+sudo sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+sudo sed -i 's/extras.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 {% endhighlight %}
 
 ## 한글 디렉토리 제거
@@ -48,15 +48,15 @@ Ubuntu를 한국어로 설치한 경우 바탕화면 디렉토리의 경로는 `
 필자는 바탕화면 디렉토리, 문서 디렉토리, 사진 디렉토리 등 Ubuntu 데스크탑이 사용하는 모든 디렉토리를 홈 디렉토리(`~`)로 설정했다. 이를 위해서는 다음 명령어를 입력하면 된다.
 
 {% highlight bash %}
-$ sed -i 's/\"$HOME\/.*\"/\"$HOME\"/g' ~/.config/user-dirs.dirs
-$ rm -r ~/공개
-$ rm -r ~/다운로드
-$ rm -r ~/문서
-$ rm -r ~/바탕화면
-$ rm -r ~/비디오
-$ rm -r ~/사진
-$ rm -r ~/음악
-$ rm -r ~/템플릿
+sed -i 's/\"$HOME\/.*\"/\"$HOME\"/g' ~/.config/user-dirs.dirs
+rm -r ~/공개
+rm -r ~/다운로드
+rm -r ~/문서
+rm -r ~/바탕화면
+rm -r ~/비디오
+rm -r ~/사진
+rm -r ~/음악
+rm -r ~/템플릿
 {% endhighlight %}
 
 # 패키지 설치
@@ -76,14 +76,14 @@ Ubuntu에서는 사용하기 좋은 메일 클라이언트로 [Mailspring](https
 [^1]: 위의 VSCode 설치를 설명한 [문단](#kramdown_vscode-텍스트-편집기)에서 `snap`으로 설치된 많은 패키지들에 한글 입력 문제가 발생한다고 서술했는데, 다행히 Mailspring는 `snap`으로 설치해도 정상적으로 한글 입력이 되는 것을 확인하였다.
 
 {% highlight bash %}
-$ sudo apt update
-$ sudo apt install snapd
+sudo apt update
+sudo apt install snapd
 {% endhighlight %}
 
 이후 snap을 이용해 Mailspring을 설치한다.
 
 {% highlight bash %}
-$ sudo snap install mailspring
+sudo snap install mailspring
 {% endhighlight %}
 
 ## Google Chrome (웹 브라우저)
@@ -91,10 +91,10 @@ $ sudo snap install mailspring
 Ubuntu는 Firefox를 기본 브라우저로 밀고 있지만, 개인적으로 Chrome이 더 익숙하기에 Chrome을 설치했다. Chrome은 다음 명령어로 설치할 수 있다.
 
 {% highlight bash %}
-$ wget -q -O- "https://dl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
-$ sudo add-apt-repository "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
-$ sudo apt update
-$ sudo apt install -y google-chrome-stable
+wget -q -O- "https://dl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+sudo apt update
+sudo apt install -y google-chrome-stable
 {% endhighlight %}
 
 ## MS Office (오피스 프로그램)
@@ -108,9 +108,9 @@ $ sudo apt install -y google-chrome-stable
 2021년 2월 현재 `apt`에 기본적으로 등록되어 있는 OneDrive는 버전이 너무 낮아 로그인이 되지 않는다. 다행히 한 개발자 분이 [OneDrive Client for Linux](https://abraunegg.github.io/)라는 Linux용 오픈소스 OneDrive 클라이언트를 배포했으므로 이를 설치하자. [Github Link](https://github.com/abraunegg/onedrive)
 
 {% highlight bash %}
-$ sudo add-apt-repository ppa:yann1ck/onedrive
-$ sudo apt update
-$ sudo apt install -y onedrive
+sudo add-apt-repository ppa:yann1ck/onedrive
+sudo apt update
+sudo apt install -y onedrive
 {% endhighlight %}
 
 OneDrive Client for Linux를 사용하려면 우선 Microsoft 계정으로 로그인해야 한다. OneDrive Client for Linux 설치 후 다음 명령어를 입력하면 로그인을 위한 URL이 뜬다.[^2]
@@ -118,7 +118,7 @@ OneDrive Client for Linux를 사용하려면 우선 Microsoft 계정으로 로�
 [^2]: 로그인에 성공했다면 뜨지 않는다.
 
 {% highlight bash %}
-$ onedrive
+onedrive
 {% endhighlight %}
 
 {: .code-result .code-result-example}
@@ -136,7 +136,7 @@ Enter the response uri:
 이제 OneDrive Client for Linux를 설정값들을 조정해보자. 현재 OneDrive Client for Linux가 사용중인 설정값은 `--display-config` 옵션으로 읽을 수 있다.
 
 {% highlight bash %}
-$ onedrive --display-config
+onedrive --display-config
 {% endhighlight %}
 
 {: .code-result .code-result-example}
@@ -165,16 +165,16 @@ Selective sync configured              = false
 [^5]: 기본값은 `~/OneDrive/`이다.
 
 {% highlight bash %}
-$ rm ~/.config/onedrive/config  # 기존 config 삭제
-$ touch ~/.config/onedrive/config  # config 새로 생성
-$ echo "sync_dir = \"~/clouds/OneDrive\"" >> ~/.config/onedrive/config  # sync_dir 설정 추가
+rm ~/.config/onedrive/config  # 기존 config 삭제
+touch ~/.config/onedrive/config  # config 새로 생성
+echo "sync_dir = \"~/clouds/OneDrive\"" >> ~/.config/onedrive/config  # sync_dir 설정 추가
 {% endhighlight %}
 
 이제부터 OneDrive와 동기화를 해 보자. OneDrive Client for Linux는 동기화를 위한 두 가지 옵션이 있다. 첫 번째는 `--synchronize` 옵션으로, 원격 OneDrive에서 로컬 OneDrive 디렉토리로 1회 동기화(다운로드)한다. 두 번째는 `--monitor` 옵션으로, 로컬 디렉토리가 변경되는 것을 감지하고 주기적으로 계속 동기화한다.
 
 {% highlight bash %}
-$ onedrive --synchronize
-$ onedrive --monitor
+onedrive --synchronize
+onedrive --monitor
 {% endhighlight %}
 
 ## 한컴오피스 한글 뷰어 (hwp 뷰어)
@@ -188,10 +188,10 @@ $ onedrive --monitor
 그리고 다음 명령어를 이용해 설치를 진행한다.
 
 {% highlight bash %}
-$ wget -q "http://archive.ubuntu.com/ubuntu/pool/main/i/icu/libicu60_60.2-3ubuntu3.1_amd64.deb" "http://archive.ubuntu.com/ubuntu/pool/universe/w/webkitgtk/libjavascriptcoregtk-3.0-0_2.4.11-3ubuntu3_amd64.deb" "http://archive.ubuntu.com/ubuntu/pool/universe/w/webkitgtk/libwebkitgtk-3.0-0_2.4.11-3ubuntu3_amd64.deb"
-$ sudo dpkg -i libicu60_60.2-3ubuntu3.1_amd64.deb libjavascriptcoregtk-3.0-0_2.4.11-3ubuntu3_amd64.deb libwebkitgtk-3.0-0_2.4.11-3ubuntu3_amd64.deb hancomoffice-hwpviewer-Ubuntu-amd64.deb
-$ sudo apt install -fy
-$ sudo rm libicu60_60.2-3ubuntu3.1_amd64.deb libjavascriptcoregtk-3.0-0_2.4.11-3ubuntu3_amd64.deb libwebkitgtk-3.0-0_2.4.11-3ubuntu3_amd64.deb hancomoffice-hwpviewer-Ubuntu-amd64.deb
+wget -q "http://archive.ubuntu.com/ubuntu/pool/main/i/icu/libicu60_60.2-3ubuntu3.1_amd64.deb" "http://archive.ubuntu.com/ubuntu/pool/universe/w/webkitgtk/libjavascriptcoregtk-3.0-0_2.4.11-3ubuntu3_amd64.deb" "http://archive.ubuntu.com/ubuntu/pool/universe/w/webkitgtk/libwebkitgtk-3.0-0_2.4.11-3ubuntu3_amd64.deb"
+sudo dpkg -i libicu60_60.2-3ubuntu3.1_amd64.deb libjavascriptcoregtk-3.0-0_2.4.11-3ubuntu3_amd64.deb libwebkitgtk-3.0-0_2.4.11-3ubuntu3_amd64.deb hancomoffice-hwpviewer-Ubuntu-amd64.deb
+sudo apt install -fy
+sudo rm libicu60_60.2-3ubuntu3.1_amd64.deb libjavascriptcoregtk-3.0-0_2.4.11-3ubuntu3_amd64.deb libwebkitgtk-3.0-0_2.4.11-3ubuntu3_amd64.deb hancomoffice-hwpviewer-Ubuntu-amd64.deb
 {% endhighlight %}
 
 `dpkg` 명령어로 .deb 파일을 설치하는 중 아마 의존성 문제로 설치에 실패할 것이다. 하지만 `sudo apt install -f` 명령어로 모든 의존성 문제를 해결할 것이므로 걱정하지 말고 진행하자.
@@ -201,15 +201,15 @@ $ sudo rm libicu60_60.2-3ubuntu3.1_amd64.deb libjavascriptcoregtk-3.0-0_2.4.11-3
 다음 명령어를 입력하면 VirtualBox를 설치할 수 있다.
 
 {% highlight bash %}
-$ sudo apt update
-$ sudo apt install -y virtualbox virtualbox-ext-pack
+sudo apt update
+sudo apt install -y virtualbox virtualbox-ext-pack
 {% endhighlight %}
 
 2021년 2월 현재 `apt`로 VirtualBox를 설치하면 v6.1.16이 설치된다. 참고로 `virbualbox-ext-pack`은 설치 시 라이선스에 동의하는지를 묻는 창이 나온다. `<확인>`-`<예>`을 선택하면 된다.
 
 {% highlight bash %}
-$ sudo apt update
-$ sudo apt install -y virtualbox virtualbox-ext-pack
+sudo apt update
+sudo apt install -y virtualbox virtualbox-ext-pack
 {% endhighlight %}
 
 ## 카카오톡 (메신저 프로그램)
@@ -219,14 +219,14 @@ $ sudo apt install -y virtualbox virtualbox-ext-pack
 우선 다음 명령어를 입력해 32비트 환경을 활성화한다.
 
 {% highlight bash %}
-$ sudo dpkg --add-architecture i386
+sudo dpkg --add-architecture i386
 {% endhighlight %}
 
 그리고 다음 명령어를 입력해 Wine과 PlayOnLinux를 설치하고 카카오톡 설치 파일(`KakaoTalk_Setup.exe`)을 다운로드한다.
 
 {% highlight bash %}
-$ sudo apt install -y wine playonlinux
-$ wget -q https://app-pc.kakaocdn.net/talk/win32/KakaoTalk_Setup.exe
+sudo apt install -y wine playonlinux
+wget -q https://app-pc.kakaocdn.net/talk/win32/KakaoTalk_Setup.exe
 {% endhighlight %}
 
 설치 및 다운로드가 완료되었으면 앱 목록에서 PlayOnLinux를 클릭하여 PlayOnLinux를 실행한다.
@@ -308,8 +308,8 @@ Wine에서 카카오톡을 사용하는 것은 당연히 Windows에서 네이티
 PlayOnLinux에서 "KakaoTalk"을 선택하고 왼쪽 "Action" 탭에서 "Open the directory"를 선택하면 카카오톡이 설치된 가상 Windows 디렉토리를 열어볼 수 있다(필자의 경우 `~/.PlayOnLinux/wineprefix/KakaoTalk/drive_c/Program Files/Kakao/KakaoTalk`였다). 이제 이 가상 드라이브에서 host 파일을 변조하면 카카오톡의 광고를 제거할 수 있다. 실행 중인 카카오톡을 완전히 종료한 후(PlayOnLinux에서 "종료" 메뉴 버튼(정지 아이콘)을 클릭) 터미널을 열고 다음 명령어를 입력한다.
 
 {% highlight bash %}
-$ mkdir -p ~/.PlayOnLinux/wineprefix/KakaoTalk/drive_c/windows/system32/drivers/etc
-$ echo "127.0.0.1 display.ad.daum.net" >> ~/.PlayOnLinux/wineprefix/KakaoTalk/drive_c/windows/system32/drivers/etc/hosts
+mkdir -p ~/.PlayOnLinux/wineprefix/KakaoTalk/drive_c/windows/system32/drivers/etc
+echo "127.0.0.1 display.ad.daum.net" >> ~/.PlayOnLinux/wineprefix/KakaoTalk/drive_c/windows/system32/drivers/etc/hosts
 {% endhighlight %}
 
 한동안은 캐시된 광고가 조금 나오겠지만, 얼마 지나지 않으면 광고가 하나로만(카카오톡 기본 광고) 고정된 것을 확인할 수 있다.
@@ -325,13 +325,13 @@ PlayOnLinux로 카카오톡을 실행하면 다음과 같이 Windows의 시스�
 터미널을 열고 다음 명령어를 입력해 Gnome 환경을 커스터마이징할 수 있는 Gnome Tweaks와 확장 "Topicons plus"를 설치한다.
 
 {% highlight bash %}
-$ sudo apt install -y gnome-shell-extension-top-icons-plus
+sudo apt install -y gnome-shell-extension-top-icons-plus
 {% endhighlight %}
 
 설치가 완료되면 시스템을 재부팅한 후, 터미널을 열어 다음을 입력한다.
 
 {% highlight bash %}
-$ gnome-tweaks
+gnome-tweaks
 {% endhighlight %}
 
 그러면 Gnome 환경을 커스터마이징할 수 있는 기능 개선 대화창이 열린다.
