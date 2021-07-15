@@ -119,6 +119,11 @@
                         options.maxOpacity = 0.6;
                         options.minOpacity = 0.2;
                         options.maxSize = 20;
+                    {% elsif site.decoration == "raindrops" %}
+                        options.speed = 3;
+                        options.rotation = false;
+                        options.maxOpacity = 0.5;
+                        options.maxSize = 20;
                     {% endif %}
 
                     return new Snowflakes(options);

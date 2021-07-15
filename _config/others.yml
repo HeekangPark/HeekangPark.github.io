@@ -31,7 +31,7 @@ kramdown:
 
 
 home_recent_doc_num: 10
-decoration: "watermelon"  # ["sakura", "watermelon", "leaf", "snowflakes"]
+decoration: "raindrops"  # ["sakura", "watermelon", "leaf", "snowflakes", "raindrops"]
 
 collections:
   sysdoc:
