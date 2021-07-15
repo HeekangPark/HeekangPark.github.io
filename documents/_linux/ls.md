@@ -1,7 +1,7 @@
 ---
 title: "ls"
 date_created: "2021-07-14"
-date_modified: "2021-07-15"
+date_modified: "2021-07-16"
 tags: ["command"]
 ---
 
@@ -89,7 +89,7 @@ ls -alFtr
 
 [^3]: mtime은 파일의 내용(content)가 편집된 시간을 의미한다. 반면 ctime은 파일의 inode가 수정된(ex. 이름 바꾸기, 파일의 권한 바꾸기, Hard Link 개수 바꾸기 등) 시간을 의미한다.
 
-## --color[=never/always/auto]
+## --color=[never/always/auto]
 
 {:.no-guide-line}
 - `never` : `ls` 명령어는 파일 타입의 구분을 위해 색을 쓰지 않는다. (기본값)
@@ -132,7 +132,7 @@ ls -alFtr
 
 파일 용량을 바이트 단위가 아닌, 사람이 읽기 쉬운 형태(ex. 3GB, 2.5KB 등)로 출력한다. 반드시 `-l` 옵션과 함께 써야 한다.
 
-## --hide, -I, --ignore[=PATTERN]
+## --hide=[PATTERN], -I [PATTERN], --ignore=[PATTERN]
 
 `[PATTERN]`과 일치하는 항목은 출력하지 않는다.
 
@@ -235,6 +235,10 @@ Symbolic Link들에 대해, Symbolic Link 파일 그 자체의 정보가 아닌,
 ## --help
 
 설명서 보기
+
+## --version
+
+버전 보기
 
 # 기타
 
