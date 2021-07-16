@@ -250,6 +250,7 @@ MODE 2로 전환
 
 만약 `/usr/local/sbin/adduser.local` 파일이 존재하면, `adduser` 명령이 모두 실행되고 난 뒤에 실행된다. 이 파일을 이용하면 사용자 계정이 처음 만들어졌을 때 공통적으로 실행되어야 할 작업들을 실행할 수 있다. 참고로 `adduser`는 `/usr/local/sbin/adduser.local`에 다음 인자들을 넘긴다.
 
+{:.no-guide-line}
 - 사용자 명 (`username`)
 - uid (`uid`)
 - gid (`gid`)
@@ -257,8 +258,14 @@ MODE 2로 전환
 
 `adduser`는 또한 `VERBOSE`라는 환경변수 역시 넘긴다. `VERBOSE`는 다음 기준에 따라 설정된다.
 
+{:.no-guide-line}
 - 0 : `--quiet` 옵션이 설정된 경우
 - 1 : `--quiet`, `--debug` 옵션이 아무 것도 설정되지 않은 경우
 - 2 : `--debug` 옵션이 설정된 경우
 
+## /etc/passwd, /etc/group, /etc/shadow
 
+{:.no-guide-line}
+- 사용자 정보는 `/etc/passwd` 파일에서 확인할 수 있다.
+- 그룹 정보는 `/etc/group` 파일에서 확인할 수 있다.
+- 사용자의 암호는 `/etc/shadow` 파일에 저장된다.

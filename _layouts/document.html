@@ -434,7 +434,6 @@ function prependPromptOnBashCodeBlock() {
         let result = [];
         for(let i = 0; i < splits.length; i++) {
             let line = splits[i].trim().replace(/<\/?[^>]+(>|$)/g, "");
-            console.log(line);
             if(line.length == 0 || line.startsWith("#")) {
                 result.push(" ");
             } else {
