@@ -23,6 +23,22 @@ apt update
 apt -y full-upgrade
 {% endhighlight %}
 
+{:.code-header}
+gcc, vim 설치
+
+{:.show-admin-prompt}
+{% highlight bash %}
+apt -y install gcc vim
+{% endhighlight %}
+
+{:.code-header}
+gcc 완전삭제
+
+{:.show-admin-prompt}
+{% highlight bash %}
+apt -y purge gcc
+{% endhighlight %}
+
 # 이름
 
 apt
@@ -31,12 +47,6 @@ apt
 
 {:.no-guide-line}
 - `/usr/bin/apt`
-
-# 명령어 형식
-
-{% highlight bash %}
-apt [-h] [-o=config_string] [-c=config_file] [-t=target_release] [-a=architecture] {list | search | show | update | install pkg [{=pkg_version_number | /target_release}]... | remove pkg... | upgrade | full-upgrade | edit-sources | {-v | --version} | {-h | --help}}
-{% endhighlight %}
 
 # 설명
 
