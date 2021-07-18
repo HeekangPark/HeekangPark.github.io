@@ -55,7 +55,7 @@
     {% if site.decoration %}
         <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
         {% unless site.decoration == "snowflakes" %}
-            {% if site.decoration == "leaf" %}
+            {% if site.decoration == "leaves" %}
                 <style>
                     .snowflakes .snowflake__inner_type_0::before,
                     .snowflakes .snowflake__inner_type_2::before,
@@ -68,12 +68,25 @@
                         background-image: url("{{ site.baseurl }}{{ site.assets }}/etc/decoration/leaf2.png") !important;
                     }
                 </style>
-            {% else %}
+            {% elsif site.decoration == "sakuras" %}
                 <style>
                     .snowflakes .snowflake__inner::before {
-                        background-image: url("{{ site.baseurl }}{{ site.assets }}/etc/decoration/{{ site.decoration }}.png") !important;
+                        background-image: url("{{ site.baseurl }}{{ site.assets }}/etc/decoration/sakura.png") !important;
                     }
                 </style>
+            {% elsif site.decoration == "raindrops" %}
+                <style>
+                    .snowflakes .snowflake__inner::before {
+                        background-image: url("{{ site.baseurl }}{{ site.assets }}/etc/decoration/raindrop.png") !important;
+                    }
+                </style>
+            {% elsif site.decoration == "watermelons" %}
+                <style>
+                    .snowflakes .snowflake__inner::before {
+                        background-image: url("{{ site.baseurl }}{{ site.assets }}/etc/decoration/watermelon.png") !important;
+                    }
+                </style>
+            
             {% endif %}
         {% endunless %}
     {% endif %}

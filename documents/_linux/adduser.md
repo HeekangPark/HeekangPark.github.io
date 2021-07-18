@@ -1,9 +1,37 @@
 ---
 title: "adduser"
 date_created: "2021-07-14"
-date_modified: "2021-07-16"
+date_modified: "2021-07-18"
 tags: ["command"]
 ---
+
+# Quick Start
+
+**주의 : 다음 명령어들은 모두 관리자 권한으로 실행되어야 한다.**
+
+{:.code-header}
+(일반(normal)) 사용자 "asdf" 추가
+
+{:.show-admin-prompt}
+{% highlight bash %}
+adduser "asdf"
+{% endhighlight %}
+
+{:.code-header}
+(일반(normal)) 사용자 "asdf" 추가, 사용자 정보(GECOS Information) 생략
+
+{:.show-admin-prompt}
+{% highlight bash %}
+adduser --gecos "" "asdf"
+{% endhighlight %}
+
+{:.code-header}
+(이미 존재하는) 사용자 "asdf"를 (이미 존재하는) 그룹 "good"에 넣기
+
+{:.show-admin-prompt}
+{% highlight bash %}
+adduser --group "good" "asdf"
+{% endhighlight %}
 
 # 이름
 
@@ -65,33 +93,6 @@ MODE 3에서 쓸 수 있는 옵션의 종류는 다음과 같다.
 - `--help` 또는 `-h`
 - `--conf FILE`
 
-# Quick Start
-
-**주의 : 다음 명령어들은 모두 관리자 권한으로 실행되어야 한다.**
-
-{:.code-header}
-(일반(normal)) 사용자 "asdf" 추가
-
-{:.show-admin-prompt}
-{% highlight bash %}
-adduser "asdf"
-{% endhighlight %}
-
-{:.code-header}
-(일반(normal)) 사용자 "asdf" 추가, 사용자 정보(GECOS Information) 생략
-
-{:.show-admin-prompt}
-{% highlight bash %}
-adduser --gecos "" "asdf"
-{% endhighlight %}
-
-{:.code-header}
-(이미 존재하는) 사용자 "asdf"를 (이미 존재하는) 그룹 "good"에 넣기
-
-{:.show-admin-prompt}
-{% highlight bash %}
-adduser --group "good" "asdf"
-{% endhighlight %}
 
 # 설명
 

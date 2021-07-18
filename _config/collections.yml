@@ -72,7 +72,7 @@ jekyll:
   - web
 linux:
   category: OS
-  name: 리눅스
+  name: Linux
   output: true
   permalink: /:collection/:name
   tags:

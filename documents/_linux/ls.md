@@ -1,25 +1,9 @@
 ---
 title: "ls"
 date_created: "2021-07-14"
-date_modified: "2021-07-16"
+date_modified: "2021-07-18"
 tags: ["command"]
 ---
-
-# 이름
-
-ls - list directory contents
-
-# 위치
-
-{:.no-guide-line}
-- `/usr/bin/ls`
-- `/bin/ls`
-
-# 명령어 형식
-
-{% highlight bash %}
-ls [OPTION]... [FILE]...
-{% endhighlight %}
 
 # Quick Start
 
@@ -49,6 +33,22 @@ ls -AlFhSr
 
 {% highlight bash %}
 ls -alFtr
+{% endhighlight %}
+
+# 이름
+
+ls - list directory contents
+
+# 위치
+
+{:.no-guide-line}
+- `/usr/bin/ls`
+- `/bin/ls`
+
+# 명령어 형식
+
+{% highlight bash %}
+ls [OPTION]... [FILE]...
 {% endhighlight %}
 
 # 설명

@@ -1,9 +1,21 @@
 ---
 title: "addgroup"
 date_created: "2021-07-16"
-date_modified: "2021-07-16"
+date_modified: "2021-07-18"
 tags: ["command"]
 ---
+
+# Quick Start
+
+**주의 : 다음 명령어들은 모두 관리자 권한으로 실행되어야 한다.**
+
+{:.code-header}
+사용자 그룹(user group) "asdf" 추가
+
+{:.show-admin-prompt}
+{% highlight bash %}
+addgroup "asdf"
+{% endhighlight %}
 
 # 이름
 
@@ -30,18 +42,6 @@ addgroup --system [OPTION]... [*GROUP] # MODE 2
 - `--help` 또는 `-h`
 - `--conf FILE`
 - `--gid ID`
-
-# Quick Start
-
-**주의 : 다음 명령어들은 모두 관리자 권한으로 실행되어야 한다.**
-
-{:.code-header}
-사용자 그룹(user group) "asdf" 추가
-
-{:.show-admin-prompt}
-{% highlight bash %}
-addgroup "asdf"
-{% endhighlight %}
 
 # 설명
 
