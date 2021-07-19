@@ -1,7 +1,7 @@
 ---
 title: "addgroup"
 date_created: "2021-07-16"
-date_modified: "2021-07-18"
+date_modified: "2021-07-19"
 tags: ["command"]
 ---
 
@@ -87,7 +87,7 @@ MODE 2로 전환
 
 ## -h, --help
 
-설명서 보기
+도움말 보기
 
 ## --version
 

@@ -346,12 +346,14 @@ function activateCodeToolbox() {
     function addToggleCodeResultBtn(code, toolbox) {
         if(code.next().hasClass("highlight") && code.next().hasClass("code-result")) { //if code_result exists
             let code_result = code.next();
-            code_result.addClass("hidden");
+            if(!code_result.hasClass("default-open")) {
+                code_result.addClass("hidden");
+            }
 
             let opened_icon = "fas fa-caret-square-down";
             let closed_icon = "far fa-caret-square-down";
 
-            let toggle_code_result_btn = $(`<p class="code-toolbox-item toggle-code-result-btn closed" title="코드 실행결과 보기/닫기"><i class="${closed_icon}"></i></p>`);
+            let toggle_code_result_btn = $(`<p class="code-toolbox-item toggle-code-result-btn ${code_result.hasClass("default-open") ? "" : "closed"}" title="코드 실행결과 보기/닫기"><i class="${code_result.hasClass("default-open") ? opened_icon : closed_icon}"></i></p>`);
             toggle_code_result_btn.appendTo(toolbox);
 
             toggle_code_result_btn.click(function() {

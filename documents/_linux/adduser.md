@@ -1,7 +1,7 @@
 ---
 title: "adduser"
 date_created: "2021-07-14"
-date_modified: "2021-07-18"
+date_modified: "2021-07-19"
 tags: ["command"]
 ---
 
@@ -169,7 +169,7 @@ MODE 2로 전환
 
 > MODE 1, MODE 2, MODE 3에서 사용 가능
 
-설명서 보기
+도움말 보기
 
 ## --version
 

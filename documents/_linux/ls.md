@@ -1,7 +1,7 @@
 ---
 title: "ls"
 date_created: "2021-07-14"
-date_modified: "2021-07-18"
+date_modified: "2021-07-19"
 tags: ["command"]
 ---
 
@@ -234,7 +234,7 @@ Symbolic Link들에 대해, Symbolic Link 파일 그 자체의 정보가 아닌,
 
 ## --help
 
-설명서 보기
+도움말 보기
 
 ## --version
 

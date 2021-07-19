@@ -1,8 +1,8 @@
 ---
 title: "cd"
 date_created: "2021-07-18"
-date_modified: "2021-07-18"
-tags: ["command"]
+date_modified: "2021-07-19"
+tags: ["command", "shell-builtin"]
 ---
 
 # Quick Start
