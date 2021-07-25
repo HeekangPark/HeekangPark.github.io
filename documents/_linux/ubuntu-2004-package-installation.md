@@ -2,7 +2,7 @@
 title: "Ubuntu 20.04 사용기 - 패키지 설치"
 tags: ["ubuntu", "ubuntu20.04", "vscode", "mailspring", "chrome", "google_chrome", "크롬", "구글_크롬", "한컴오피스_한글_뷰어", "한글_뷰어", "아래아한글_뷰어", "hancomeoffice_hwp_viewer", "hwp_viewer", "virbualbox"]
 date_created: "2021-02-19"
-date_modified: "2021-07-15"
+date_modified: "2021-07-25"
 ---
 
 이번에 데스크탑에 Ubuntu 20.04를 설치하게 되었다. 필자는 주로 Windows를 사용했기에 Ubuntu에서 프로그램을 설치하는 것이 많이 낯설었다. 특히 2021년 2월 현재 많은 프로그램들이 아직 Ubuntu 20.04를 위한 공식 버전을 내놓지 않은 경우가 많아 이들을 설치하기 위해 꽤 골머리를 썩혔다.~~정보 : Ubuntu 20.04는 2020년 4월 릴리즈되었다. 출시된지 10개월이 다 됐는데도 아직까지 20.04를 공식적으로 지원하지 않는 프로그램들이 이렇게 많은 것을 보면 안습한 Ubuntu 환경에 눈물이 앞을 가린다ㅠ~~ 본 문서는 필자가 Ubuntu 20.04 환경에서 패키지들을 설치한 경험을 정리한 것이다. 필자와 유사한 상황의 사용자가 있다면 부디 이 문서가 도움이 되길 바란다.
@@ -18,7 +18,7 @@ date_modified: "2021-07-15"
 {:.code-header}
 /etc/apt/sources.list  (주석은 생략함)
 
-{% highlight bash %}
+{% highlight text %}
 deb http://kr.archive.ubuntu.com/ubuntu/ focal main restricted
 deb http://kr.archive.ubuntu.com/ubuntu/ focal-updates main restricted
 deb http://kr.archive.ubuntu.com/ubuntu/ focal universe
@@ -26,7 +26,6 @@ deb http://kr.archive.ubuntu.com/ubuntu/ focal-updates universe
 deb http://kr.archive.ubuntu.com/ubuntu/ focal multiverse
 deb http://kr.archive.ubuntu.com/ubuntu/ focal-updates multiverse
 deb http://kr.archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse
-
 deb http://security.ubuntu.com/ubuntu focal-security main restricted
 deb http://security.ubuntu.com/ubuntu focal-security universe
 deb http://security.ubuntu.com/ubuntu focal-security multiverse
@@ -205,13 +204,7 @@ sudo apt update
 sudo apt install -y virtualbox virtualbox-ext-pack
 {% endhighlight %}
 
-2021년 2월 현재 `apt`로 VirtualBox를 설치하면 v6.1.16이 설치된다. 참고로 `virbualbox-ext-pack`은 설치 시 라이선스에 동의하는지를 묻는 창이 나온다. `<확인>`-`<예>`을 선택하면 된다.
-
-{% highlight bash %}
-sudo apt update
-sudo apt install -y virtualbox virtualbox-ext-pack
-{% endhighlight %}
-
+2021년 2월 현재 `apt`로 Virtu
 ## 카카오톡 (메신저 프로그램)
 
 일단 공식적으로 카카오톡은 Ubuntu를 지원하지 않는다. Ubuntu 20.04에서 카카오톡을 사용하려면 Wine을 이용하는 방법밖에 없다.

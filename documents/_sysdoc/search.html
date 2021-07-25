@@ -9,6 +9,8 @@ description: "검색 결과"
     <input class="input" type="text">
 </div>
 
+<div class="documents"></div>
+
 <div class="spinner-container">
     <div class="lds-spinner">
         <div></div>
@@ -25,8 +27,6 @@ description: "검색 결과"
         <div></div>
     </div>
 </div>
-
-<div class="documents"></div>
 
 <script>
     $(document).ready(function () {
@@ -84,39 +84,53 @@ description: "검색 결과"
     }
     
     function search(keywords_str) {
-        $.ajax({
-            type: "GET",
-            url: "{{ site.baseurl }}{{ site.assets }}/etc/documents.json",
-            success: function (data) {
-                let spinner = $(".spinner-container");
-                spinner.addClass("hidden");
-                
-                let all_documents = data.documents;
-                let result_documents = [];
+        let keywords = keywords_str.split(" ");
+        let target = $(".main-panel .documents");
+        let spinner = $(".spinner-container");
 
-                let keywords = keywords_str.split(" ");
-
-                for (let document of all_documents) {
-                    for (let keyword of keywords) {
-                        if (document.contents.includes(keyword)) {
-                            result_documents.push(document);
-                            break;
+        let files = [...Array({{ site.files_for_search_num }}).keys()].map(i => `documents${i + 1}.json`);
+        Promise.allSettled(files.map(function(file) {
+            return new Promise(function(resolve, reject) {
+                $.ajax({
+                    type: "GET",
+                    url: `{{ site.baseurl }}{{ site.assets }}/etc/search/${file}`,
+                    success: function(data) {
+                        let all_documents = data.documents;
+                        let result_documents = [];
+                        for (let document of all_documents) {
+                            for (let keyword of keywords) {
+                                if (document.contents.includes(keyword)) {
+                                    result_documents.push(document);
+                                    break;
+                                }
+                            }
                         }
-                    }
-                }
 
-                let target = $(".main-panel .documents");
-                if(result_documents.length == 0) {
-                    target.append(`<p class="no-result">No Result</p>`);
-                } else {
-                    for (let document of result_documents) {
-                        target.append(getDocumentHtml(document));
+                        for (let document of result_documents) {
+                            target.append(getDocumentHtml(document));
+                        }
+
+                        resolve(result_documents.length);
+                    },
+                    error: function() {
+                        reject();
                     }
-                    
-                    loadPageview();
-                }
+                })
+            })
+        })).then(function(data) {
+            let count = data.filter(function(item) {
+                if(item.status == "fulfilled") return true;
+                else return false;
+            }).reduce((acc, cur_val) => acc + cur_val);
+
+            if (count == 0) {
+                target.append(`<p class="no-result">No Result</p>`);
+            } else {
+                loadPageview();
             }
-        });
+
+            spinner.addClass("hidden");
+        })
     }
 
 </script>

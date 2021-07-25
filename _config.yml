@@ -42,6 +42,7 @@ kramdown:
     raquo: '>>'
     laquo_space: '>> '
     raquo_space: ' >>'
+files_for_search_num: 6
 home_recent_doc_num: 10
 decoration: raindrops
 collections:
@@ -121,6 +122,13 @@ collections:
     tags:
     - blog
     - web
+  linux:
+    category: OS
+    name: Linux
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - linux
   nas_ml:
     category: Machine Learning
     name: NAS
@@ -179,13 +187,6 @@ collections:
     tags:
     - server
     - web
-  linux:
-    output: true
-    permalink: /:collection/:name
-    name: Linux
-    category: OS
-    tags:
-    - linux
 defaults:
 - scope:
     path: ''
@@ -239,6 +240,11 @@ defaults:
     layout: document
 - scope:
     path: ''
+    type: linux
+  values:
+    layout: document
+- scope:
+    path: ''
     type: nas_ml
   values:
     layout: document
@@ -270,10 +276,5 @@ defaults:
 - scope:
     path: ''
     type: web_server
-  values:
-    layout: document
-- scope:
-    path: ''
-    type: linux
   values:
     layout: document

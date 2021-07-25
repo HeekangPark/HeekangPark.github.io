@@ -32,7 +32,7 @@ description: "태그별 보기"
 
 {% assign tags = tags | split: delim | compact | uniq | sort %}
 
-<div class="tag-list">
+<div class="tag-list hidden">
     {% for tag in tags %}
         {% assign documents = "" | split: delim %}
         {% for collection in site.collections %}
@@ -56,7 +56,7 @@ description: "태그별 보기"
     {% endfor %}      
 </div>
 
-<div class="controller">
+<div class="controller hidden">
     <div class="mode">
         <div class="mode-item">
             <input type="radio" id="radio-mode-or" name="mode" value="or" checked>
@@ -73,6 +73,23 @@ description: "태그별 보기"
 
 <div class="documents"></div>
 
+<div class="spinner-container">
+    <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
 {% assign tag_list = "" %}
 {% for tag in tags %}
     {% unless forloop.first %}
@@ -84,12 +101,10 @@ description: "태그별 보기"
 
 <script>
 let tag_list = [{{ tag_list }}];
-let documents = null;
+let documents = [];
+let spinner = $(".spinner-container");
 
 function onHashSet() {
-    $(".main-panel .tag-list").addClass("hidden");
-    $(".main-panel .controller").addClass("hidden");
-
     let tag = window.location.hash.substring(1);
     let tag_document_object = $(`.main-panel #tag-${tag}`);
 
@@ -99,43 +114,66 @@ function onHashSet() {
         $(`.main-panel .tag-list .tag-${tag}`).addClass("selected");
         updateVisibleDocuments();
     }
+
+    spinner.addClass("hidden");
 }
 
 $(window).on('hashchange',function(){ 
     window.location.reload(true); 
 });
 
-$(document).ready(function() {
-    $.ajax({
-        type: "GET",
-        url: "{{ site.baseurl }}{{ site.assets }}/etc/documents.json",
-        success: function(data) {
-            documents = data.documents;
-
-            if(window.location.hash.length != 0) {
-                onHashSet();
-            } else {
-                $(".main-panel .tag-list .tag").click(function() {
-                    $(this).toggleClass("selected");
-                    updateVisibleDocuments();
-                });
-
-                $(".main-panel .controller .reset-tag-btn").click(function() {
-                    $(".main-panel .tag-list .tag").removeClass("selected");
-                    updateVisibleDocuments();
-                });
-
-                $(".main-panel .controller .mode .mode-item input:radio[name='mode']").change(function() {
-                    updateVisibleDocuments();
-                });
-
-                updateVisibleDocuments();
+$(document).ready(async function() {
+    documents = await Promise.allSettled([...Array({{ site.files_for_search_num }}).keys()].map(i => `documents${i + 1}.json`).map(function(file) {
+        return new Promise(function(resolve, reject) {
+            $.ajax({
+                type: "GET",
+                url: `{{ site.baseurl }}{{ site.assets }}/etc/search/${file}`,
+                success: function(data) {
+                    resolve(data.documents);
+                },
+                error: function(req, status, error) {
+                    reject();
+                }
+            })
+        })
+    })).then(function(result) {
+        let documents = []
+        for(let item of result) {
+            if(item.status == "fulfilled") {
+                documents.push(...item.value);
             }
         }
+
+        return documents;
     })
+
+    if(window.location.hash.length != 0) {
+        onHashSet();
+    } else {
+        $(".main-panel .tag-list").removeClass("hidden");
+        $(".main-panel .controller").removeClass("hidden");
+
+        $(".main-panel .tag-list .tag").click(function() {
+            $(this).toggleClass("selected");
+            updateVisibleDocuments();
+        });
+
+        $(".main-panel .controller .reset-tag-btn").click(function() {
+            $(".main-panel .tag-list .tag").removeClass("selected");
+            updateVisibleDocuments();
+        });
+
+        $(".main-panel .controller .mode .mode-item input:radio[name='mode']").change(function() {
+            updateVisibleDocuments();
+        });
+
+        updateVisibleDocuments();
+    }
 });
 
 function updateVisibleDocuments() {
+    spinner.removeClass("hidden");
+
     let target = $(".main-panel .documents");
     target.empty();
     
@@ -153,6 +191,8 @@ function updateVisibleDocuments() {
     }
 
     loadPageview();
+
+    spinner.addClass("hidden");
 }
 
 function getDocumentHtml(document) {

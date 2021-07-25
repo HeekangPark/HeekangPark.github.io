@@ -2,7 +2,7 @@
 title: "VSCode 설치하기"
 order: 1
 date_created: "2021-02-18"
-date_modified: "2021-07-15"
+date_modified: "2021-07-25"
 ---
 
 # Windows에 VSCode 설치하기
@@ -100,5 +100,6 @@ sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/v
 이제 다음 명령어를 입력해 VSCode를 설치하자.
 
 {% highlight bash %}
+sudo apt update
 sudo apt install -y code
 {% endhighlight %}

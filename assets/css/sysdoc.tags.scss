@@ -43,9 +43,12 @@
             user-select: none;
             -moz-user-select: none;
             -webkit-user-select: none;
+            box-sizing: border-box;
+            border: 2px solid $tag-background-color;
 
             &.selected {
                 background-color: #cccccc;
+                border-color: #000000;
             }
 
             .tag-document-num {
@@ -113,6 +116,8 @@
             }
         }
     }
+
+    @import "sysdoc.spinner";
 
     @import "documents.document";
 }

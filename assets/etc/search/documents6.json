@@ -1,0 +1,67 @@
+---
+---
+
+{%- assign delim = ";" -%}
+
+{%- assign index = page.name | remove: "documents" | remove: ".json" | minus: 1 -%}
+{%- assign index_plus_1 = index | plus: 1 -%}
+
+{%- assign documents_num = 0 -%}
+{%- for collection in site.collections -%}
+    {%- assign documents_num = documents_num | plus: collection.docs.size -%}
+{%- endfor -%}
+
+{%- assign start_index = documents_num | divided_by: site.files_for_search_num | times: index | plus: 1 -%}
+{%- assign end_index = documents_num | divided_by: site.files_for_search_num | times: index_plus_1  -%}
+
+{%- assign documents_count = 0 -%}
+{%- assign is_first_document = true -%}
+{
+    "documents": [
+        {%- for collection in site.collections -%}
+            {%- unless collection.label == "sysdoc" -%}
+                {%- assign category = collection.category -%}
+                {%- assign collection_tags = collection.tags | compact | uniq | sort | join: delim | downcase | split: delim -%}
+
+                {%- assign documents_with_order = collection.docs | where_exp: "item", "item.order" | sort: "order" -%}
+                {%- assign documents_without_order = collection.docs | where_exp: "item", "item.order == Nil" | sort: "date_modified" -%}
+                {%- assign documents = documents_with_order | concat: documents_without_order -%}
+
+                {%- for document in documents -%}
+                    {%- assign documents_count = documents_count | plus: 1 -%}
+                    {%- if documents_count >= start_index and documents_count <= end_index -%}
+                        {%- assign document_tags = document.tags | compact | uniq | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort -%}
+
+                        {%- if is_first_document -%}
+                            {%- assign is_first_document = false -%}
+                        {%- else -%}
+                            ,
+                        {%- endif -%}
+
+                        {
+                            "title": "{{ document.title }}",
+                            "collection_name": "{{ collection.name }}",
+                            "collection_label": "{{ collection.label }}",
+                            "category": "{{ category }}",
+                            "tags": [
+                                {%- for tag in document_tags -%}
+                                    {%- unless forloop.first -%}
+                                        ,
+                                    {%- endunless -%}
+                                    "{{ tag }}"
+                                {%- endfor -%}
+                            ],
+                            "url": "{{ document.url }}",
+                            "path": "{{ document.path }}",
+                            "date_created": "{{ document.date_created | date: '%Y.%m.%d' }}",
+                            "date_modified": "{{ document.date_modified | date: '%Y.%m.%d' }}",
+                            "preview": "{{ document.content | strip_html | strip_newlines | truncate: 300 | replace: '\', '\\\\' | replace: '"', '\"' | replace: '	', '\t' }}",
+                            "contents": "{{ document.content | strip_html | strip_newlines | append: category | append: collection.name | append: document.title | downcase | replace: '\', '\\\\' | replace: '"', '\"' | replace: '	', '\t' }}"
+                        }
+
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- endunless -%}
+        {%- endfor -%}
+    ]
+}
