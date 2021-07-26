@@ -36,6 +36,7 @@ eval "$(conda shell.bash hook)"
 conda activate jekyll
 
 python _scripts/updateDateModified.py
+python _scripts/mergeConfig.py
 
 # Run Server
 bundle exec jekyll serve --host 172.26.0.1 --port 4000

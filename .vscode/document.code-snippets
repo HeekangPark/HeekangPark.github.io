@@ -37,7 +37,12 @@
 			"",
 			"{% highlight ${2:lang} linenos %}",
 			"$0",
-			"{% endhighlight %}"
+			"{% endhighlight %}",
+			"",
+			"{:.code-result}",
+			"{% highlight text %}",
+			"",
+			"{% endhighlight %}",
 		],
 		"description": "Insert Code Block"
 	},

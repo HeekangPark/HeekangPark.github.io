@@ -33,7 +33,7 @@ kramdown:
 files_for_search_num: 6
 
 home_recent_doc_num: 10
-decoration: "raindrops"  # ["sakuras", "watermelons", "leaves", "snowflakes", "raindrops"]
+decoration: "watermelons"  # ["sakuras", "watermelons", "leaves", "snowflakes", "raindrops"]
 
 collections:
   sysdoc:

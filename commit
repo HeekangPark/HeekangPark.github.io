@@ -29,6 +29,7 @@ unset draft_sysdoc_hidden
 unset draft_sysdoc_exposed
 
 python _scripts/updateDateModified.py
+python _scripts/mergeConfig.py
 
 git add .
 
