@@ -105,6 +105,13 @@ collections:
     permalink: /:collection/:name
     tags:
     - git
+  hadoop:
+    category: Applications / Frameworks / Libraries
+    name: Hadoop
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - hadoop
   javascript:
     category: Programming Languages
     name: Javascript
@@ -226,6 +233,11 @@ defaults:
 - scope:
     path: ''
     type: git
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: hadoop
   values:
     layout: document
 - scope:

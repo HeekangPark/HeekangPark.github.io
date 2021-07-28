@@ -53,6 +53,13 @@ git:
   permalink: /:collection/:name
   tags:
   - git
+hadoop:
+  category: Applications / Frameworks / Libraries
+  name: Hadoop
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - hadoop
 javascript:
   category: Programming Languages
   name: Javascript

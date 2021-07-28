@@ -1,7 +1,7 @@
 ---
 title: "adduser"
 date_created: "2021-07-14"
-date_modified: "2021-07-19"
+date_modified: "2021-07-28"
 tags: ["command"]
 ---
 
@@ -26,11 +26,11 @@ adduser --gecos "" "asdf"
 {% endhighlight %}
 
 {:.code-header}
-(이미 존재하는) 사용자 "asdf"를 (이미 존재하는) 그룹 "good"에 넣기
+(이미 존재하는) 사용자 "user-asdf"를 (이미 존재하는) 그룹 "group-good"에 넣기
 
 {:.show-admin-prompt}
 {% highlight bash %}
-adduser --group "good" "asdf"
+adduser "user-asdf" "group-good"
 {% endhighlight %}
 
 # 이름
