@@ -110,7 +110,7 @@
                         zIndex: 100
                     };
 
-                    {% if site.decoration == "watermelon" %}
+                    {% if site.decoration == "watermelons" %}
                         options.minSize = 20;
                         options.count = 15;
                         options.maxOpacity = 0.6;
@@ -124,6 +124,11 @@
                         options.rotation = false;
                         options.maxOpacity = 0.5;
                         options.maxSize = 20;
+                    {% elsif site.decoration == "suns" %}
+                        options.minSize = 20;
+                        options.count = 15;
+                        options.maxOpacity = 0.6;
+                        options.minOpacity = 0.2;
                     {% endif %}
 
                     return new Snowflakes(options);

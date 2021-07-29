@@ -176,6 +176,7 @@ def writeConfig(collections, config):
             "layout": "document"
         }
     } for label in collections.keys() if label not in skip_defaults_labels])
+    config["defaults"].sort(key=lambda x:x["scope"]["type"])
 
     # write on _config/collections.yml
     with open(collections_config_file, "w", encoding="UTF-8") as f:

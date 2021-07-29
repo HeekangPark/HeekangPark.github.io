@@ -86,7 +86,12 @@
                         background-image: url("{{ site.baseurl }}{{ site.assets }}/etc/decoration/watermelon.png") !important;
                     }
                 </style>
-            
+            {% elsif site.decoration == "suns" %}
+                <style>
+                    .snowflakes .snowflake__inner::before {
+                        background-image: url("{{ site.baseurl }}{{ site.assets }}/etc/decoration/sun.png") !important;
+                    }
+                </style>
             {% endif %}
         {% endunless %}
     {% endif %}
