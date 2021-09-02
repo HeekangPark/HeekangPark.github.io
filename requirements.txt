@@ -1,4 +1,6 @@
+Brotli==1.0.9
 certifi==2020.12.5
+fonttools==4.26.1
 gitdb==4.0.7
 GitPython==3.1.14
 prompt-toolkit==3.0.8

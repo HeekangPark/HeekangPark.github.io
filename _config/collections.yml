@@ -110,6 +110,13 @@ paper_review:
   tags:
   - graduate_school
   - snu
+pomodoro:
+  category: Project
+  name: Pomodoro
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - vue
 python:
   category: Programming Languages
   name: 'Re : 제로부터 배우는 파이썬'

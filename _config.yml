@@ -12,6 +12,7 @@ exclude:
 - commit
 - updateCollection
 - createTIL
+- convertFont
 - README.md
 - Gemfile
 - Gemfile.lock
@@ -162,6 +163,13 @@ collections:
     tags:
     - graduate_school
     - snu
+  pomodoro:
+    category: Project
+    name: Pomodoro
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - vue
   python:
     category: Programming Languages
     name: 'Re : 제로부터 배우는 파이썬'
@@ -263,6 +271,11 @@ defaults:
 - scope:
     path: ''
     type: paper_review
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: pomodoro
   values:
     layout: document
 - scope:

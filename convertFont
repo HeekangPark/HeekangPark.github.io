@@ -6,4 +6,4 @@ cd $dir_name
 eval "$(conda shell.bash hook)"
 conda activate jekyll
 
-python _scripts/createTIL.py
+python _scripts/convertFont.py "$@"

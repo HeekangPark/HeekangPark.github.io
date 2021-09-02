@@ -1,0 +1,63 @@
+---
+---
+
+h1.collapsable,
+h2.collapsable,
+h3.collapsable,
+h4.collapsable,
+h5.collapsable,
+h6.collapsable {
+  cursor: pointer;
+
+  &.collapsed {
+    color: #aaa;
+  }
+}
+
+.collapsable-content.hide {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+
+  caption {
+    padding-top: 0.5em;
+    caption-side: bottom;
+    font-weight: bold;
+  }
+
+  thead {
+    border-bottom: 1px solid black;
+
+    tr {
+      border-bottom: 1px solid black;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  tfoot {
+    border-top: 1px solid black;
+  }
+
+  th,
+  td {
+    padding: 0.25em 0.5em;
+    font-weight: normal;
+  }
+
+  td {
+    text-align: right;
+  }
+}
+
+li p {
+  margin-bottom: 0 !important;
+}

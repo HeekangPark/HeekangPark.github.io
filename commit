@@ -1,5 +1,8 @@
 #!/bin/bash
 
+dir_name=$( dirname $0 )
+cd $dir_name
+
 eval "$(conda shell.bash hook)"
 conda activate jekyll
 

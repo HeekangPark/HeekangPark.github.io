@@ -1,5 +1,8 @@
 #!/bin/bash
 
+dir_name=$( dirname $0 )
+cd $dir_name
+
 # kill previously running test server
 pid=$(netstat -tnlp 2>/dev/null | grep ":4000" | awk -F'LISTEN *|/' '/^(tcp|udp)/{print $2}')
 
