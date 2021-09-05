@@ -45,7 +45,7 @@ kramdown:
     raquo_space: ' >>'
 files_for_search_num: 6
 home_recent_doc_num: 10
-decoration: suns
+decoration: leaves
 collections:
   sysdoc:
     name: sysdoc
