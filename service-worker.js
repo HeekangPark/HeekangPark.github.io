@@ -1,4 +1,4 @@
-const VERSION = "0.0.1"
+const VERSION = "0.0.2"
 
 self.addEventListener('install', event => {
     event.waitUntil(
@@ -46,12 +46,15 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-    console.log("Fetching somthing!!", event.request.url);
-
     event.respondWith(
         caches.match(event.request).then(res => {
-            if (res) return res;
-            else return fetch(event.request);
+            if (res) {
+                console.log("from cache", event.request.url);
+                return res;
+            } else {
+                console.log("fetching", event.request.url);
+                return fetch(event.request);
+            } 
         })
     );
 });
