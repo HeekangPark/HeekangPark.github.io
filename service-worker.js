@@ -1,4 +1,4 @@
-const VERSION = "0.0.3";
+const VERSION = "0.0.4";
 
 self.addEventListener('install', event => {
     event.waitUntil(
@@ -36,10 +36,6 @@ self.addEventListener('install', event => {
                 '/assets/css/sysdoc.home.css',
                 '/assets/css/sysdoc.search.css',
                 '/assets/css/sysdoc.tags.css',
-                'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js',
-                'https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js',
-                'https://unpkg.com/magic-snowflakes@4.2.0/dist/snowflakes.min.js',
             ]);
         })
     )
