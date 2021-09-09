@@ -42,4 +42,4 @@ python _scripts/updateDateModified.py
 python _scripts/mergeConfig.py
 
 # Run Server
-bundle exec jekyll serve --host 172.26.0.1 --port 4000
+bundle exec jekyll serve --host 172.26.0.1 --port 4000 --incremental

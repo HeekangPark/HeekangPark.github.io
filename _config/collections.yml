@@ -16,6 +16,14 @@ SNU_m3309.000200:
   - lecture
   - machine_learning
   - snu
+SNU_m3309.001300:
+  category: Math
+  name: 정보융합 통계분석
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - lecture
+  - snu
 Stanford_cs231n:
   category: Machine Learning
   name: Convolutional Neural Networks for Visual Recognition
