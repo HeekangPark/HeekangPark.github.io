@@ -4,15 +4,17 @@ nav-order: 1
 icon: "fas fa-home"
 layout: default
 ---
+{% assign delim = ";" %}
 
 <div class="welcome-title">
     {{ site.title }}
 </div>
 
+{% assign shown_document_urls = "" | split: delim %}
+
 <div class="recent-docs">
     <p class="title">최근 추가된 문서</p>
     <div class="documents">
-        {% assign delim = ";" %}
         {% assign documents = "" | split: delim %}
         
         {% for collection in site.collections %}
@@ -24,9 +26,9 @@ layout: default
             {% endunless %}
         {% endfor %}
 
-        {% assign documents = documents | sort: "order" | sort: "date_modified" | reverse %}
+        {% assign documents = documents | sort: "order" | sort: "date_created" | reverse %}
 
-        {% for document in documents limit:site.home_recent_doc_num %}
+        {% for document in documents limit:site.home_recently_created_doc_num %}
             {% for collection in site.collections %}
                 {% if document.collection == collection.label %}
                     {% assign collection = collection.name %}
@@ -35,6 +37,9 @@ layout: default
                     {% break %}
                 {% endif %}
             {% endfor %}
+            
+            {% assign shown_document_urls = shown_document_urls | push: document.url %}
+
             <div class="document">
                 <p class="document-collection"><a href="/categories#{{ document.collection }}">{{ category }}<i class="fas fa-angle-right"></i>{{ collection }}</a></p>
                 <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
@@ -55,11 +60,76 @@ layout: default
                 <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" url="{{ document.url }}"></span></p>
             </div>
         {% endfor %}
-        <script>
-            $(".documents .document").click(function() {
-                let target = $(this).find(".document-title a").attr("href");
-                window.location.href = target;
-            });
-        </script>
+    </div>
+    <div class="more">
+        <a href="/rcds">더 보기</a>
     </div>
 </div>
+
+<div class="recent-docs">
+    <p class="title">최근 수정된 문서</p>
+    <div class="documents">
+        {% assign documents = "" | split: delim %}
+        
+        {% for collection in site.collections %}
+            {% assign exclude_labels = "sysdoc,til" | split: "," %}
+            {% unless exclude_labels contains collection.label %}
+                {% for document in collection.docs %}
+                    {% assign documents = documents | push: document %}
+                {% endfor %}
+            {% endunless %}
+        {% endfor %}
+
+        {% assign documents = documents | sort: "order" | sort: "date_modified" | reverse %}
+        
+        {% assign document_count = 0 %}
+
+        {% for document in documents %}
+            {% for collection in site.collections %}
+                {% if document.collection == collection.label %}
+                    {% assign collection = collection.name %}
+                    {% assign category = collection.category %}
+                    {% assign collection_tags = collection.tags | compact | uniq | sort | join: delim | downcase | split: delim %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+            
+            {% unless shown_document_urls contains document.url %}
+                {% assign document_count = document_count | plus: 1 %}
+                <div class="document">
+                    <p class="document-collection"><a href="/categories#{{ document.collection }}">{{ category }}<i class="fas fa-angle-right"></i>{{ collection }}</a></p>
+                    <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
+                    <p class="document-preview ignore-mathjax"><a href="{{ document.url }}">{{ document.content | strip_html | truncate: 300 }}</a></p>
+                    <div class="document-tags with-icon">
+                        <i class="icon fas fa-tag"></i>
+                        <div class="tags">
+                            {%- assign document_tags = document.tags | compact | uniq | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort -%}
+                            {%- for tag in document_tags -%}
+                                <p class="tag"><a href="/tags#{{ tag }}">{{ tag }}</a></p>
+                            {%- endfor -%}
+                        </div>
+                    </div>
+                    <p class="document-date-modified with-icon">
+                        <i class="icon fas fa-edit"></i>
+                        <span class="date" path="{{ document.path }}">{{ document.date_modified | date: "%Y.%m.%d" }}</span>
+                    </p>
+                    <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" url="{{ document.url }}"></span></p>
+                </div>
+            {% endunless %}
+
+            {% if document_count >= site.home_recently_modified_doc_num %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="more">
+        <a href="/rmds">더 보기</a>
+    </div>
+</div>
+
+<script>
+    $(".documents .document").click(function() {
+        let target = $(this).find(".document-title a").attr("href");
+        window.location.href = target;
+    });
+</script>

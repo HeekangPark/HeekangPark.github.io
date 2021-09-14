@@ -143,8 +143,7 @@ description: "검색 결과"
             return [include_keywords, exclude_keywords];
         }
         let [include_keywords, exclude_keywords] = parseKeywords(keywords_str);
-        console.log("include_keywords", include_keywords);
-        console.log("exclude_keywords", exclude_keywords);
+        
         let target = $(".main-panel .documents");
         let spinner = $(".spinner-container");
 
@@ -195,6 +194,10 @@ description: "검색 결과"
         if (count == 0) {
             target.append(`<p class="no-result">No Result</p>`);
         } else {
+            $(".documents .document").click(function() {
+                let target = $(this).find(".document-title a").attr("href");
+                window.location.href = target;
+            });
             loadPageview();
         }
 

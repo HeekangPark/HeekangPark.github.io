@@ -1,0 +1,13 @@
+---
+---
+
+@charset "utf-8";
+
+@import "variables";
+@import "common";
+
+@import "layouts.document-list";
+
+.main-panel {
+    @import "documents.document";
+}

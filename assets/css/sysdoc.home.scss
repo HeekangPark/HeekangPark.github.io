@@ -20,12 +20,34 @@
         }
     }
 
-
     .recent-docs {
+        margin: {
+            bottom: 5em;
+        }
+
+        &:last-of-type {
+            margin: {
+                bottom: 0;
+            }
+        }
+
         .title {
             font-size: 1.2em;
             margin: {
                 bottom: 1em;
+            }
+        }
+
+        .more {
+            display: flex;
+            justify-content: flex-end;
+
+            a {
+                color: $hyperlink-unclicked;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
 

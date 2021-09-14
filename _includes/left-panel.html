@@ -20,11 +20,11 @@
     <div class="section nav">
         {% assign delim = ";" %}
         {% assign sysdocs = "" | split: "" %}
-        {% assign except = "search" | split: "," %}
+        {% assign except = "search,rcds,rmds" | split: "," %}
 
         {% for sysdoc in site.sysdoc %}
-            {% assign sysdoc_title_lowercase = sysdoc.title | downcase %}
-            {% unless except contains sysdoc_title_lowercase %}
+            {% assign sysdoc_url_lowercase = sysdoc.url | remove: "/" | downcase %}
+            {% unless except contains sysdoc_url_lowercase %}
                 {% assign sysdocs = sysdocs | push: sysdoc %}
             {% endunless %}
         {% endfor %}

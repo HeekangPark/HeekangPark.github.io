@@ -193,6 +193,11 @@ function updateVisibleDocuments() {
     loadPageview();
 
     spinner.addClass("hidden");
+
+    $(".documents .document").click(function() {
+        let target = $(this).find(".document-title a").attr("href");
+        window.location.href = target;
+    });
 }
 
 function getDocumentHtml(document) {

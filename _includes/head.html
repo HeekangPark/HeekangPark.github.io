@@ -107,8 +107,11 @@
         {% endif %}
     {% endfor %}
     {% if collection.label == "sysdoc" %}
-        {% assign page_title_downcase = page.title | downcase %}
-        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/sysdoc.{{ page_title_downcase }}.css" type="text/css">
+        {% assign page_url_downcase = page.url | remove: "/" | downcase %}
+        {% if page_url_downcase.size == 0 %}
+            {% assign page_url_downcase = "home" %}
+        {% endif %}
+        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/sysdoc.{{ page_url_downcase }}.css" type="text/css">
     {% else %}
         {% if collection %}
             <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
