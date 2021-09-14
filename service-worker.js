@@ -1,4 +1,4 @@
-const VERSION = "commit from laptop, 2021-09-15 01:27";
+const VERSION = "commit from laptop, 2021-09-15 01:35";
 
 const STATIC_CACHE_NAME = "ReinventingTheWheel"
 const DYNAMIC_CACHE_NAME = `${STATIC_CACHE_NAME}-${VERSION}`
@@ -74,10 +74,14 @@ self.addEventListener('fetch', event => {
             } else {
                 console.log("fetching", event.request.url);
                 return fetch(event.request).then(r => {
-                    return caches.open(DYNAMIC_CACHE_NAME).then(cache => {
-                        cache.put(event.request.url, r.clone());
+                    if(event.request.url.startsWith("https://heekangpark.github.io/")) {
+                        return caches.open(DYNAMIC_CACHE_NAME).then(cache => {
+                            cache.put(event.request.url, r.clone());
+                            return r;
+                        })
+                    } else {
                         return r;
-                    })
+                    }
                 });
             } 
         })
