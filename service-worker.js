@@ -1,7 +1,8 @@
-const VERSION = "commit from laptop, 2021-09-15 02:39";
+const COMMIT_TIME = "2021-09-15 02:51";
 
-const STATIC_CACHE_STORAGE_NAME = "ReinventingTheWheel"
-const DYNAMIC_CACHE_STORAGE_NAME = `${STATIC_CACHE_STORAGE_NAME}-${VERSION}`
+const CACHE_STORAGE_NAME = "Reinventing The Wheel"
+const STATIC_CACHE_STORAGE_NAME = `${CACHE_STORAGE_NAME} - static`
+const DYNAMIC_CACHE_STORAGE_NAME = `${CACHE_STORAGE_NAME} - dynamic - ${COMMIT_TIME}`
 
 const URL_THAT_NEED_TO_BE_CACHED_STATICALLY = [
     '/assets/fonts/sans-serif/Noto%20Sans%20KR/NotoSansKR-Light.woff2',
@@ -64,11 +65,11 @@ self.addEventListener('install', event => {
 
 self.addEventListener("activate", event => {
     event.waitUntil(
-        caches.keys().then(keyList => {
-            return Promise.all(keyList.map(key => {
-                if(key !== STATIC_CACHE_STORAGE_NAME && key !== DYNAMIC_CACHE_STORAGE_NAME) {
-                    console.log("Removing old cache", key);
-                    return caches.delete(key);
+        caches.keys().then(storages => {
+            return Promise.all(storages.map(storage => {
+                if(storage !== STATIC_CACHE_STORAGE_NAME && storage !== DYNAMIC_CACHE_STORAGE_NAME) {
+                    console.log("Removing old cache storage", storage);
+                    return caches.delete(storage);
                 }
             }))
         })
