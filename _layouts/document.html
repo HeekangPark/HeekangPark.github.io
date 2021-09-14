@@ -210,15 +210,11 @@ $(document).ready(function() {
 function activateFootnotePopups() {
     function openFootnotePopup(footnote) {
         if(openedFootnotePopup) closeFootnotePopup(openedFootnotePopup);
-        footnote.children("a.footnote").addClass("hidden");
-        footnote.children(".footnote-popup-close-btn").removeClass("hidden");
         footnote.children(".footnote-popup").removeClass("hidden");
         openedFootnotePopup = footnote;
     }
 
     function closeFootnotePopup(footnote) {
-        footnote.children("a.footnote").removeClass("hidden");
-        footnote.children(".footnote-popup-close-btn").addClass("hidden");
         footnote.children(".footnote-popup").addClass("hidden");
         openedFootnotePopup = null;
     }
@@ -247,12 +243,10 @@ function activateFootnotePopups() {
         let footnote_content = $.trim($(`.main-panel .document .toc-content-container .document-content .footnotes[role='doc-endnotes'] ol li#${footnote_id.replace(":", "\\:")} p`).clone().children("a.reversefootnote").remove().end().html());
 
         //add popup
-        let close_btn = $(`<p class="footnote-popup-close-btn hidden">×</p>`);
         let footnote_popup = $(`<div class="footnote-popup hidden" style="width: ${getFootnoteWidth()}px; left: ${getFootnoteLeft()}px;" onclick="window.location.href='${anchor.attr("href")}'">
             <div class="footnote-number">${footnote_index}.</div>
             <div class="footnote-content">${footnote_content}</div>
         </div>`);
-        $(this).append(close_btn);
         $(this).append(footnote_popup);
 
         if(isMobileBrowser() || $(window).width() < 800) {

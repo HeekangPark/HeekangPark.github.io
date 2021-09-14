@@ -41,5 +41,10 @@ conda activate jekyll
 python _scripts/updateDateModified.py
 python _scripts/mergeConfig.py
 
+if [ -f ".jekyll-metadata" ]
+then 
+    rm ".jekyll-metadata"
+fi
+
 # Run Server
 bundle exec jekyll serve --host 172.26.0.1 --port 4000 --incremental

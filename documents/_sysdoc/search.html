@@ -82,55 +82,124 @@ description: "검색 결과"
 
         return html;
     }
-    
+
     function search(keywords_str) {
-        let keywords = keywords_str.split(" ");
+        function parseKeywords(keywords_str) {
+            let splits = keywords_str.split(" ");
+            let include_keywords = [];
+            let exclude_keywords = [];
+
+            for (let i = 0; i < splits.length; i++) {
+                if (splits[i].startsWith("-")) {
+                    splits[i] = splits[i].substring(1);
+
+                    if (splits[i].startsWith('"') || splits[i].startsWith("'")) {
+                        let quote_mark = splits[i][0];
+                        splits[i] = splits[i].substring(1);
+
+                        let end_idx = -1;
+                        for (let j = i; j < splits.length; j++) {
+                            if (splits[j].endsWith(quote_mark)) {
+                                splits[j] = splits[j].slice(0, -1);
+                                end_idx = j;
+                                break;
+                            }
+                        }
+
+                        if (end_idx == -1) { //fail to find end idx
+                            exclude_keywords.push(quote_mark + splits[i])
+                        } else {
+                            exclude_keywords.push(splits.slice(i, end_idx + 1).join(" "))
+                            i = end_idx;
+                        }
+
+                    } else {
+                        exclude_keywords.push(splits[i]);
+                    }
+                } else if (splits[i].startsWith('"') || splits[i].startsWith("'")) {
+                    let quote_mark = splits[i][0];
+                    splits[i] = splits[i].substring(1);
+
+                    let end_idx = -1;
+                    for (let j = i; j < splits.length; j++) {
+                        if (splits[j].endsWith(quote_mark)) {
+                            splits[j] = splits[j].slice(0, -1);
+                            end_idx = j;
+                            break;
+                        }
+                    }
+
+                    if (end_idx == -1) { //fail to find end idx
+                        include_keywords.push(quote_mark + splits[i])
+                    } else {
+                        include_keywords.push(splits.slice(i, end_idx + 1).join(" "))
+                        i = end_idx;
+                    }
+                } else {
+                    include_keywords.push(splits[i]);
+                }
+            }
+
+            return [include_keywords, exclude_keywords];
+        }
+        let [include_keywords, exclude_keywords] = parseKeywords(keywords_str);
+        console.log("include_keywords", include_keywords);
+        console.log("exclude_keywords", exclude_keywords);
         let target = $(".main-panel .documents");
         let spinner = $(".spinner-container");
 
         let files = [...Array({{ site.files_for_search_num }}).keys()].map(i => `documents${i + 1}.json`);
-        Promise.allSettled(files.map(function(file) {
-            return new Promise(function(resolve, reject) {
-                $.ajax({
-                    type: "GET",
-                    url: `{{ site.baseurl }}{{ site.assets }}/etc/search/${file}`,
-                    success: function(data) {
-                        let all_documents = data.documents;
-                        let result_documents = [];
-                        for (let document of all_documents) {
-                            for (let keyword of keywords) {
-                                if (document.contents.includes(keyword)) {
-                                    result_documents.push(document);
-                                    break;
-                                }
+    Promise.allSettled(files.map(function (file) {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                type: "GET",
+                url: `{{ site.baseurl }}{{ site.assets }}/etc/search/${file}`,
+                success: function (data) {
+                    let all_documents = data.documents;
+                    let result_documents = [];
+                    for (let document of all_documents) {
+                        let is_exclude = false;
+                        for (let keyword of exclude_keywords) {
+                            if (document.contents.includes(keyword)) {
+                                is_exclude = true;
+                                break;
                             }
                         }
+                        if (is_exclude) continue;
 
-                        for (let document of result_documents) {
-                            target.append(getDocumentHtml(document));
+                        for (let keyword of include_keywords) {
+                            if (document.contents.includes(keyword)) {
+                                result_documents.push(document);
+                                break;
+                            }
                         }
-
-                        resolve(result_documents.length);
-                    },
-                    error: function() {
-                        reject();
                     }
-                })
+
+                    for (let document of result_documents) {
+                        target.append(getDocumentHtml(document));
+                    }
+
+                    resolve(result_documents.length);
+                },
+                error: function () {
+                    reject();
+                }
             })
-        })).then(function(data) {
-            let count = data.filter(function(item) {
-                if(item.status == "fulfilled") return true;
-                else return false;
-            }).reduce((acc, cur_val) => acc + cur_val);
-
-            if (count == 0) {
-                target.append(`<p class="no-result">No Result</p>`);
-            } else {
-                loadPageview();
-            }
-
-            spinner.addClass("hidden");
         })
+    })).then(function (data) {
+        let count = data.filter(function (item) {
+            if (item.status == "fulfilled") return true;
+            else return false;
+        }).reduce((acc, cur_val) => acc + cur_val);
+
+        if (count == 0) {
+            target.append(`<p class="no-result">No Result</p>`);
+        } else {
+            loadPageview();
+        }
+
+        spinner.addClass("hidden");
+    })
     }
 
 </script>

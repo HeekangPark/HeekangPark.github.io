@@ -309,27 +309,6 @@ $line-height: 1.8;
             }
         }
 
-        .footnote-popup-close-btn {
-            &::before {
-                content: "[";
-            }
-            &::after {
-                content: "]";
-            }
-            font-size: 0.75em;
-            color: $hyperlink-unclicked;
-            cursor: pointer;
-            display: inline-block;
-            line-height: 1;
-            margin: {
-                bottom: 0;
-            }
-
-            &.hidden {
-                display: none;
-            }
-        }
-
         .footnote-popup {
             z-index: 5;
             border: {
@@ -358,6 +337,7 @@ $line-height: 1.8;
 
             &.hidden {
                 transform: translateY(200%);
+                visibility: hidden;
             }
         }
     }

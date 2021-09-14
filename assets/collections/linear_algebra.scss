@@ -1,0 +1,45 @@
+---
+---
+
+ul {
+    width: 100%;
+    table-layout: fixed;
+
+    > li {
+        &::before {
+            width: 0.5em;
+        }
+
+        padding: {
+            bottom: 1.5em !important;
+        }
+
+        > div {
+            margin: {
+                bottom: 1.5em;
+            }
+
+            ol,
+            ul {
+                margin: {
+                    top: 0.5em !important;
+                    bottom: 0.5em !important;
+                }
+            }
+
+            p {
+                margin: {
+                    bottom: 0.5em !important;
+                }
+            }
+        }
+
+        &:last-child {
+            div {
+                margin: {
+                    bottom: 0;
+                }
+            }
+        }
+    }
+}

@@ -85,6 +85,13 @@ jekyll:
   tags:
   - blog
   - web
+linear_algebra:
+  category: Math
+  name: 선형대수학 (Linear Algebra)
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - math
 linux:
   category: OS
   name: Linux

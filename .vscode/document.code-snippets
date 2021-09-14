@@ -87,5 +87,17 @@
 			"\\$\\$$0\\$\\$"
 		],
 		"description": "Insert Inline Mathjax"
-	}	
+	},
+	"li-div": {
+		"scope": "markdown",
+		"prefix": "li-div",
+		"body": [
+			"<li><div markdown=\"block\">",
+			"",
+			"$0",
+			"",
+			"</div></li>"
+		],
+		"description": "Insert li-div"
+	}
 }

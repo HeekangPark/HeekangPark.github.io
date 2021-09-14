@@ -138,6 +138,13 @@ collections:
     tags:
     - blog
     - web
+  linear_algebra:
+    category: Math
+    name: 선형대수학 (Linear Algebra)
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - math
   linux:
     category: OS
     name: Linux
@@ -264,6 +271,11 @@ defaults:
 - scope:
     path: ''
     type: jekyll
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: linear_algebra
   values:
     layout: document
 - scope:
