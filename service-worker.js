@@ -1,7 +1,17 @@
-const VERSION = "commit from laptop, 2021-09-15 01:35";
+const VERSION = "commit from laptop, 2021-09-15 01:44";
 
 const STATIC_CACHE_NAME = "ReinventingTheWheel"
 const DYNAMIC_CACHE_NAME = `${STATIC_CACHE_NAME}-${VERSION}`
+
+const DYNAMIC_CACHE_URLS = [
+    "https://heekangpark.github.io/",
+    "https://cdn.jsdelivr.net/npm/mathjax@3/",
+    "https://utteranc.es/",
+    "https://ka-f.fontawesome.com/releases/",
+    "https://ajax.googleapis.com/ajax/libs/jquery/",
+    'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/',
+    'https://unpkg.com/magic-snowflakes',
+]
 
 self.addEventListener('install', event => {
     self.skipWaiting();
@@ -41,10 +51,6 @@ self.addEventListener('install', event => {
                 '/assets/css/sysdoc.tags.css',
                 '/assets/css/sysdoc.rcds.css',
                 '/assets/css/sysdoc.rmds.css',
-                'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js',
-                'https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js',
-                'https://unpkg.com/magic-snowflakes@4.2.0/dist/snowflakes.min.js',
             ]);
         })
     )
@@ -74,7 +80,14 @@ self.addEventListener('fetch', event => {
             } else {
                 console.log("fetching", event.request.url);
                 return fetch(event.request).then(r => {
-                    if(event.request.url.startsWith("https://heekangpark.github.io/")) {
+                    function checkURL(url) {
+                        for(let ok_url of DYNAMIC_CACHE_URLS) {
+                            if(url.startsWith(ok_url)) return true;
+                            else return false;
+                        }
+                    }
+
+                    if(checkURL(event.request.url)) {
                         return caches.open(DYNAMIC_CACHE_NAME).then(cache => {
                             cache.put(event.request.url, r.clone());
                             return r;
