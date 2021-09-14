@@ -31,13 +31,14 @@ unset draft_dir
 unset draft_sysdoc_hidden
 unset draft_sysdoc_exposed
 
-python _scripts/updateDateModified.py
-python _scripts/mergeConfig.py
-
-git add .
-
 time=`date '+%F %H:%M'`
 commit_msg="commit from laptop, $time"
+
+python _scripts/updateDateModified.py
+python _scripts/mergeConfig.py
+python _scripts/updateServiceWorkerVersion.py "$commit_msg"
+
+git add .
 
 if [ -n "$1" ]; then
     commit_msg=$1

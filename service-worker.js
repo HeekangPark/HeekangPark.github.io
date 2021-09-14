@@ -1,8 +1,12 @@
-const VERSION = "1.0.0";
+const VERSION = "commit from laptop, 2021-09-15 01:27";
+
+const STATIC_CACHE_NAME = "ReinventingTheWheel"
+const DYNAMIC_CACHE_NAME = `${STATIC_CACHE_NAME}-${VERSION}`
 
 self.addEventListener('install', event => {
+    self.skipWaiting();
     event.waitUntil(
-        caches.open("ReinventingTheWheel").then(cache => {
+        caches.open(STATIC_CACHE_NAME).then(cache => {
             cache.addAll([
                 '/assets/fonts/sans-serif/Noto%20Sans%20KR/NotoSansKR-Light.woff2',
                 '/assets/fonts/sans-serif/Noto%20Sans%20KR/NotoSansKR-Medium.woff2',
@@ -35,6 +39,8 @@ self.addEventListener('install', event => {
                 '/assets/css/sysdoc.home.css',
                 '/assets/css/sysdoc.search.css',
                 '/assets/css/sysdoc.tags.css',
+                '/assets/css/sysdoc.rcds.css',
+                '/assets/css/sysdoc.rmds.css',
                 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
                 'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js',
                 'https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js',
@@ -44,6 +50,21 @@ self.addEventListener('install', event => {
     )
 });
 
+self.addEventListener("activate", event => {
+    event.waitUntil(
+        caches.keys().then(keyList => {
+            return Promise.all(keyList.map(key => {
+                if(key !== STATIC_CACHE_NAME && key !== DYNAMIC_CACHE_NAME) {
+                    console.log("Removing old cache", key);
+                    return caches.delete(key);
+                }
+            }))
+        })
+    )
+
+    return self.clients.claim();
+})
+
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request).then(res => {
@@ -52,7 +73,12 @@ self.addEventListener('fetch', event => {
                 return res;
             } else {
                 console.log("fetching", event.request.url);
-                return fetch(event.request);
+                return fetch(event.request).then(r => {
+                    return caches.open(DYNAMIC_CACHE_NAME).then(cache => {
+                        cache.put(event.request.url, r.clone());
+                        return r;
+                    })
+                });
             } 
         })
     );
