@@ -1,4 +1,4 @@
-const COMMIT_TIME = "2021-09-15 02:51";
+const COMMIT_TIME = "2021-09-15 02:54";
 
 const CACHE_STORAGE_NAME = "Reinventing The Wheel"
 const STATIC_CACHE_STORAGE_NAME = `${CACHE_STORAGE_NAME} - static`
@@ -100,15 +100,15 @@ self.addEventListener('fetch', event => {
                     return fetch(event.request).then(r => {
                         return caches.open(DYNAMIC_CACHE_STORAGE_NAME).then(cache => {
                             cache.put(event.request.url, r.clone());
-                            console.log("fetched - added to cache", event.request.url);
+                            console.log("fetched", event.request.url);
                             return r;
                         })
                     }).catch(() => {
-                        console.log("from cache", event.request.url);
+                        //console.log("from cache", event.request.url);
                         return res;
                     });
                 } else {
-                    console.log("from cache", event.request.url);
+                    //console.log("from cache", event.request.url);
                     return res;
                 }
             } else {
@@ -116,7 +116,7 @@ self.addEventListener('fetch', event => {
                     if(check_if_URL_needed_to_be_cached_dynamically(event.request.url)) {
                         return caches.open(DYNAMIC_CACHE_STORAGE_NAME).then(cache => {
                             cache.put(event.request.url, r.clone());
-                            console.log("fetched - added to cache", event.request.url);
+                            console.log("fetched", event.request.url);
                             return r;
                         })
                     } else {
