@@ -1,4 +1,4 @@
-const VERSION = "commit from laptop, 2021-09-15 02:28";
+const VERSION = "commit from laptop, 2021-09-15 02:39";
 
 const STATIC_CACHE_STORAGE_NAME = "ReinventingTheWheel"
 const DYNAMIC_CACHE_STORAGE_NAME = `${STATIC_CACHE_STORAGE_NAME}-${VERSION}`
@@ -47,12 +47,10 @@ const URL_PREFIXES_THAT_NEED_TO_BE_CACHED_DYNAMICALLY = [
     "https://kit.fontawesome.com/",
     "https://ajax.googleapis.com/ajax/libs/jquery/",
     "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/",
-    "https://unpkg.com/magic-snowflakes",
-    "https://reinventing-the-wheel-20201128.du.r.appspot.com/"
+    "https://unpkg.com/magic-snowflakes"
 ]
 
 const URL_PREFIXS_THAT_NEED_TO_BE_ALWAYS_REFRESHED = [
-    "https://reinventing-the-wheel-20201128.du.r.appspot.com/"
 ]
 
 self.addEventListener('install', event => {
