@@ -1,8 +1,8 @@
 ---
-title: "벡터, 행렬"
+title: "벡터와 행렬"
 order: 1
 date_created: "2021-09-13"
-date_modified: "2021-09-14"
+date_modified: "2021-09-17"
 ---
 
 # 벡터(vector)란?
@@ -28,6 +28,12 @@ x_n
 <li><div markdown="block">
 
 모든 $n$-벡터들의 집합을 $\mathbb{R}^n$이라 표기한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+두 벡터가 같다(equal)는 것은 같은 위치에 있는 성분들이 각각 모두 같다는 뜻이다.
 
 </div></li>
 
@@ -66,6 +72,12 @@ a_{m1} & a_{m2} & \cdots & a_{mn} \\
 <li><div markdown="block">
 
 모든 $m \times n$ 행렬들의 집합을 $\mathbb{R}^{m \times n}$이라 표기한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+두 행렬이 같다(equal)는 것은 같은 위치에 있는 성분들이 각각 모두 같다는 뜻이다.
 
 </div></li>
 
@@ -365,7 +377,7 @@ C = AB
 - 결합법칙이 성립한다 : $(AB)C = A(BC)$
 - 분배법칙이 성립한다 : $A(B + C) = AB + AC$, $(A + B)C = AC + BC$
 - 교환법칙은 성립하지 **않는다** : $AB \neq BA$
-- 단위 행렬과의 곱 연산은 교환법칙이 성립한다 : $AI = IA$
+- 단위 행렬과의 곱 연산은 교환법칙이 성립한다 : $A \in \mathbb{R}^{n \times n}$, $I \in \mathbb{R}^{n \times n}$에 대해, $AI = IA$
 
 </div></li>
 
@@ -377,7 +389,7 @@ C = AB
 
 <li><div markdown="block">
 
-행렬 $A$가 주어졌다고 할 때,
+행렬 $A \in \mathbb{R}^{m \times n}$가 주어졌다고 할 때,
 
 $$A =
 \begin{bmatrix}
@@ -387,7 +399,7 @@ a_{21} & a_{22} & \cdots & a_{2n} \\
 a_{m1} & a_{m2} & \cdots & a_{mn} \\
 \end{bmatrix}$$
 
-행렬 $A$의 전치 $A^\intercal$은 다음과 같이 계산된다.
+행렬 $A$의 전치(transpose) $A^\intercal$은 다음과 같이 계산된다.
 
 $$A^\intercal = \begin{bmatrix}
 a_{11} & a_{21} & \cdots & a_{m1} \\
@@ -418,9 +430,58 @@ $$(A^\intercal)_{ij} = A_{ji}$$
 
 {:.no-guide-line}
 - $(A^\intercal)^\intercal = A$
-- $(A + B)^\intercal = A^\intercal + B^\intercal$
-- $(AB)^\intercal = B^\intercal A^\intercal$
-- $(A^{-1})^\intercal = (A^\intercal)^{-1}$
+- $A \in \mathbb{R}^{m \times n}$, $B \in \mathbb{R}^{m \times n}$에 대해, $(A + B)^\intercal = A^\intercal + B^\intercal$
+- $A \in \mathbb{R}^{m \times p}$, $B \in \mathbb{R}^{p \times n}$에 대해, $(AB)^\intercal = B^\intercal A^\intercal$
+- 역행렬이 존재하는 행렬 $A$에 대해, $(A^{-1})^\intercal = (A^\intercal)^{-1}$
+
+</div></li>
+
+</ul>
+
+## 행렬의 대각합(trace)
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+정사각행렬 $A \in \mathbb{R}^{n \times n}$가 주어졌다고 할 때,
+
+$$A =
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn} \\
+\end{bmatrix}$$
+
+행렬 $A$의 대각합(trace) $tr(A)$는 다음과 같이 계산된다.
+
+$$tr(A) = \sum_{i=1} ^n a_{ii} = a_{11} + a_{22} + \cdots + a_{nn}$$
+
+</div></li>
+
+<li><div markdown="block">
+
+행렬의 주대각선의 성분들의 합을 구한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+계산 결과 $tr(A)$는 스칼라가 된다.
+
+</div></li>
+
+<li><div markdown="block">
+
+행렬의 대각합은 다음과 같은 성질이 있다.
+
+{:.no-guide-line}
+- $A \in \mathbb{R}^{n \times n}$에 대해, $tr(A) = tr(A^\intercal)$
+- $A \in \mathbb{R}^{n \times n}$, $B \in \mathbb{R}^{n \times n}$에 대해, $tr(A + B) = tr(A) + tr(B)$
+- $A \in \mathbb{R}^{n \times n}$, 실수 $\alpha \in \mathbb{R}$에 대해, $tr(\alpha A) = \alpha tr(A)$
+- $A \in \mathbb{R}^{n \times p}$, $B \in \mathbb{R}^{p \times n}$에 대해, $tr(AB) = tr(BA)$
+- $A \in \mathbb{R}^{n \times p}$, $B \in \mathbb{R}^{p \times q}$, $C \in \mathbb{R}^{q \times n}$에 대해, $tr(ABC) = tr(BCA) = tr(CAB)$
 
 </div></li>
 
@@ -465,46 +526,68 @@ y_{n}\\
 
 <li><div markdown="block">
 
+계산 결과 $\boldsymbol{x} \cdot \boldsymbol{y}$는 스칼라가 된다.
+
+</div></li>
+
+<li><div markdown="block">
+
 벡터의 내적은 다음과 같은 성질이 있다.
 
 {:.no-guide-line}
-- $(\alpha \boldsymbol{x})^\intercal \boldsymbol{y} = \alpha (\boldsymbol{x}^\intercal \boldsymbol{y})$
-- $(\boldsymbol{x} + \boldsymbol{y})^\intercal \boldsymbol{z} = \boldsymbol{x}^\intercal \boldsymbol{z}  + \boldsymbol{y}^\intercal \boldsymbol{z}$
-- $\boldsymbol{x}^\intercal \boldsymbol{y} = \boldsymbol{y}^\intercal \boldsymbol{x}$
+- $\boldsymbol{x} \in \mathbb{R}^{n}$, $\boldsymbol{y} \in \mathbb{R}^{n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha \boldsymbol{x})^\intercal \boldsymbol{y} = \alpha (\boldsymbol{x}^\intercal \boldsymbol{y})$
+- $\boldsymbol{x} \in \mathbb{R}^{n}$, $\boldsymbol{y} \in \mathbb{R}^{n}$, $\boldsymbol{z} \in \mathbb{R}^{n}$에 대해, $(\boldsymbol{x} + \boldsymbol{y})^\intercal \boldsymbol{z} = \boldsymbol{x}^\intercal \boldsymbol{z}  + \boldsymbol{y}^\intercal \boldsymbol{z}$
+- $\boldsymbol{x} \in \mathbb{R}^{n}$, $\boldsymbol{y} \in \mathbb{R}^{n}$에 대해, $\boldsymbol{x}^\intercal \boldsymbol{y} = \boldsymbol{y}^\intercal \boldsymbol{x}$
 
 </div></li>
 
 </ul>
 
-# Symmetric Matrix
+## 벡터의 Norm
 
 <ul class="no-guide-line">
 
 <li><div markdown="block">
 
-$A = A^\intercal$인 행렬 $A$를 **symmetric**하다고 한다.
+벡터 $\boldsymbol{x} \in \mathbb{R}^{n}$이 주어졌을 때,
 
-$A = -A^\intercal$인 행렬 $A$를 **anti-symmetric**하다고 한다.
+$$\boldsymbol{x} =
+\begin{bmatrix}
+x_{1}\\
+x_{2}\\
+\vdots\\
+x_{n}\\
+\end{bmatrix}$$
+
+벡터의 Norm $\lVert \boldsymbol{x} \rVert \_{p}$는 다음과 같이 계산된다.
+
+$$\lVert \boldsymbol{x} \rVert _{p} = \sqrt[p] {\sum_{i=1} ^n | x_i | ^p}$$
 
 </div></li>
 
 <li><div markdown="block">
 
-모든 $n \times n$ symmetric matrix들의 집합을 $\mathbb{S}^n$이라 표기한다.
+Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계산 결과 $\lVert \boldsymbol{x} \rVert \_{p}$는 스칼라가 된다.
 
 </div></li>
 
 <li><div markdown="block">
 
-임의의 정사각행렬 $A \in \mathbb{R}^{n \times n}$가 있을 때,
+다음 Norm들이 자주 사용된다.
 
 {:.no-guide-line}
-- $A + A^\intercal$은 항상 symmetric하다.
-- $A - A^\intercal$은 항상 anti-symmetric하다.
+- $l\_1$ Norm : $\lVert \boldsymbol{x} \rVert \_{1} = \displaystyle\sum_{i=1} ^n \| x\_i \| $
+- $l\_2$ Norm : $\lVert \boldsymbol{x} \rVert \_{2} = \displaystyle\sum_{i=1} ^n x\_i ^2 $
+- $l\_\infty$ Norm : $\lVert \boldsymbol{x} \rVert \_{\infty} = \max \| x\_i \|$
 
-다시 말해, 임의의 정사각행렬은 항상 symmetric한 행렬과 anti-symmetric한 행렬의 합으로 분해할 수 있다.
+</div></li>
 
-$$A = \frac{1}{2} (A + A^\intercal) + \frac{1}{2} (A - A^\intercal)$$
+<li><div markdown="block">
+
+$l\_2$ Norm은 다음과 같은 성질이 있다.
+
+{:.no-guide-line}
+- $\lVert \boldsymbol{x} \rVert \_{2} ^2 = \boldsymbol{x}^\intercal \boldsymbol{x}$
 
 </div></li>
 

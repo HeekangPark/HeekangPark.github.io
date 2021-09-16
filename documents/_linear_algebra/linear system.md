@@ -1,0 +1,101 @@
+---
+title: "선형연립방정식 (Linear System)"
+date_created: "2021-09-16"
+date_modified: "2021-09-17"
+---
+
+# 선형연립방정식(Linear System)이란?
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+변수 $x\_1$, $x\_2$, ..., $x\_n$에 대해 다음과 같은 형태로 기술되는 식을 **선형방정식(linear equation)**이라 부른다.
+
+$$a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = b$$
+
+이때 $a\_1$, $a\_2$, ..., $a\_n$을 **계수(coefficient)**라 부른다.
+
+</div></li>
+
+<li><div markdown="block">
+
+같은 변수를 공유하는 하나 이상의 선형방정식들의 모임을 **선형연립방정식(system of linear equation, linear system)**이라 부른다.
+
+</div></li>
+
+<li><div markdown="block">
+
+선형연립방정식의 변수 $x\_1$, $x\_2$, ..., $x\_n$에 각각 대입했을 때 선형연립방정식의 모든 방정식들을 참으로 만드는 수들의 쌍 $(s\_1,\,s\_2,\,\cdots,\,s\_n)$을 선형연립방적식의 **해(solution)**라 부른다.
+
+선형연립방정식의 해는 여러 개일 수 있다. 선형연립방정식의 모든 해들의 집합을 **해 집합(solution set)**이라 부른다.
+
+두 선형연립방정식이 동일한 해 집합을 가지는 경우, 두 선형연립방정식은 **동등하다(equivalent)**고 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+선형연립방정식은 다음 세 가지 중 하나로 분류할 수 있다.
+
+1. 해가 존재하지 않는다(불능).
+2. 단 하나의 해가 존재한다.
+3. 무수히 많은 해가 존재한다(부정).
+
+해가 존재하는 선형연립방정식(2, 3)을 **consistent**하다고 한다. 해가 존재하지 않는 선형연립방정식(1)을 **inconsistent**하다고 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+선형연립방정식은 행렬을 이용해 쉽게 표현할 수 있다.
+
+예를 들어, 다음과 같은 연립방정식이 주어졌다고 하자.
+
+$$\begin{array} {r c r c r c r}
+ x_1 & {}-{} & 2x_2 & {}+{} &  x_3 & = & 0  \\[0.5em]
+     &       & 2x_2 & {}-{} & 8x_3 & = & 8  \\[0.5em]
+5x_1 &       &      & {}-{} & 5x_3 & = & 10 \\[0.5em]
+\end{array}$$
+
+이는 다음과 같이 행렬과 벡터의 곱 형태로 표현할 수 있다.
+
+$$\begin{bmatrix}
+1 & -2 &  1\\[0.5em]
+0 &  0 & -8\\[0.5em]
+5 &  0 & -5\\[0.5em]
+\end{bmatrix} \begin{bmatrix}
+x_{1}\\[0.5em]
+x_{2}\\[0.5em]
+x_{3}\\[0.5em]
+\end{bmatrix} = \begin{bmatrix}
+0\\[0.5em]
+8\\[0.5em]
+10\\[0.5em]
+\end{bmatrix}$$
+
+이때, 행렬
+
+$$\begin{bmatrix}
+1 & -2 &  1\\[0.5em]
+0 &  0 & -8\\[0.5em]
+5 &  0 & -5\\[0.5em]
+\end{bmatrix}$$
+
+처럼 선형연립방정식의 계수를 모아 만든 행렬을 **coefficient matrix**(혹은 **matrix of coefficient**)라 부른다.
+
+한편 등호 너머이 있는 방정식의 값까지 모두 모으면 다음과 같은 행렬을 얻을 수 있다. 이처럼 coefficient matrix에 방정식의 값까지 모두 모아 만든 행렬을 **augmented matrix**라 부른다.
+
+$$\begin{bmatrix}
+1 & -2 &  1 &  0\\[0.5em]
+0 &  0 & -8 &  8\\[0.5em]
+5 &  0 & -5 & 10\\[0.5em]
+\end{bmatrix}$$
+
+</div></li>
+
+</ul>
+
+# 선형연립방정식 풀기
+
+선형연립방정식의 해 집합을 구하는 다양한 방법을 알아보자.
