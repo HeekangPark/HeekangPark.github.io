@@ -91,6 +91,7 @@ linear_algebra:
   output: true
   permalink: /:collection/:name
   tags:
+  - linear_algebra
   - math
 linux:
   category: OS

@@ -1,8 +1,7 @@
 ---
 title: "벡터와 행렬"
-order: 1
 date_created: "2021-09-13"
-date_modified: "2021-09-17"
+date_modified: "2021-09-20"
 ---
 
 # 벡터(vector)란?
@@ -260,17 +259,17 @@ b_{p1} & b_{p2} & \cdots & b_{pn} \\
 두 행렬의 곱 $C$는 다음과 같이 계산된다.
 
 $$C = AB = \begin{bmatrix}
-\bbox[#FAE19C]{a_{11}} & \bbox[#FAE19C]{a_{12}} & \cdots & \bbox[#FAE19C]{a_{1p}} \\
+\rowcolor{#FAE19C} a_{11} & a_{12} & \cdots & a_{1p} \\
 a_{21} & a_{22} & \cdots & a_{2p} \\
 \vdots & \vdots & \ddots & \vdots \\
 a_{m1} & a_{m2} & \cdots & a_{mp} \\
 \end{bmatrix} \begin{bmatrix}
-b_{11} & \bbox[#FAE19C]{b_{12}} & \cdots & b_{1n} \\
-b_{21} & \bbox[#FAE19C]{b_{22}} & \cdots & b_{2n} \\
+b_{11} & b_{12} \columncolor{#FAE19C} & \cdots & b_{1n} \\
+b_{21} & b_{22} & \cdots & b_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
-b_{p1} & \bbox[#FAE19C]{b_{p2}} & \cdots & b_{pn} \\
+b_{p1} & b_{p2} & \cdots & b_{pn} \\
 \end{bmatrix} = \begin{bmatrix}
-\displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{k1} & \bbox[#FAE19C]{\displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{k2}} & \cdots & \displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{kn} \\
+\displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{k1} & \cellcolor{#FAE19C} \displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{k2} & \cdots & \displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{kn} \\
 \displaystyle\sum_{k=1} ^p a_{2k} \cdot b_{k1} & \displaystyle\sum_{k=1} ^p a_{2k} \cdot b_{k2} & \cdots & \displaystyle\sum_{k=1} ^p a_{2k} \cdot b_{kn} \\
 \vdots & \vdots & \ddots & \vdots \\
 \displaystyle\sum_{k=1} ^p a_{mk} \cdot b_{k1} & \displaystyle\sum_{k=1} ^p a_{mk} \cdot b_{k2} & \cdots & \displaystyle\sum_{k=1} ^p a_{mk} \cdot b_{kn} \\

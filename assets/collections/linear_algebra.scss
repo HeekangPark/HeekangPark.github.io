@@ -32,6 +32,14 @@ ul {
                     bottom: 0.5em !important;
                 }
             }
+
+            ol {
+                > li {
+                    &::before {
+                        width: 0.5em;
+                    }
+                }
+            }
         }
 
         &:last-child {

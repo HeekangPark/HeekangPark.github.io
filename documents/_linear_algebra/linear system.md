@@ -1,7 +1,7 @@
 ---
 title: "선형연립방정식 (Linear System)"
 date_created: "2021-09-16"
-date_modified: "2021-09-17"
+date_modified: "2021-09-20"
 ---
 
 # 선형연립방정식(Linear System)이란?
@@ -62,7 +62,7 @@ $$\begin{array} {r c r c r c r}
 
 $$\begin{bmatrix}
 1 & -2 &  1\\[0.5em]
-0 &  0 & -8\\[0.5em]
+0 &  2 & -8\\[0.5em]
 5 &  0 & -5\\[0.5em]
 \end{bmatrix} \begin{bmatrix}
 x_{1}\\[0.5em]
@@ -78,7 +78,7 @@ x_{3}\\[0.5em]
 
 $$\begin{bmatrix}
 1 & -2 &  1\\[0.5em]
-0 &  0 & -8\\[0.5em]
+0 &  2 & -8\\[0.5em]
 5 &  0 & -5\\[0.5em]
 \end{bmatrix}$$
 
@@ -88,7 +88,7 @@ $$\begin{bmatrix}
 
 $$\begin{bmatrix}
 1 & -2 &  1 &  0\\[0.5em]
-0 &  0 & -8 &  8\\[0.5em]
+0 &  2 & -8 &  8\\[0.5em]
 5 &  0 & -5 & 10\\[0.5em]
 \end{bmatrix}$$
 
@@ -99,3 +99,165 @@ $$\begin{bmatrix}
 # 선형연립방정식 풀기
 
 선형연립방정식의 해 집합을 구하는 다양한 방법을 알아보자.
+
+## Reduced Echelon Form을 이용한 방법
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+주어진 선형연립방정식의 augmented matrix을 [reduced echelon form](/linear_algebra/echelon-form)으로 변형하면 선형연립방정식의 해를 알 수 있다.
+
+</div></li>
+
+<li><div markdown="block">
+
+예제 : 단 하나의 해가 존재하는 경우
+
+다음 선형연립방정식을 풀어보자.
+
+$$\begin{array} {r c r c r c r}
+ x_1 & {}-{} & 2x_2 & {}+{} &  x_3 & = & 0  \\[0.5em]
+     &       & 2x_2 & {}-{} & 8x_3 & = & 8  \\[0.5em]
+5x_1 &       &      & {}-{} & 5x_3 & = & 10 \\[0.5em]
+\end{array}$$
+
+우선 augmented matrix를 만든다.
+
+$$\begin{bmatrix}
+1 & -2 &  1 &  0\\[0.5em]
+0 &  2 & -8 &  8\\[0.5em]
+5 &  0 & -5 & 10\\[0.5em]
+\end{bmatrix}$$
+
+이를 reduced echelon form으로 바꾸면 다음과 같이 된다.
+
+$$\begin{bmatrix}
+1 & 0 & 0 &  1\\[0.5em]
+\rowcolor{#FAE19C} 0 & 1 & 0 &  0\\[0.5em]
+0 & 0 & 1 & -1\\[0.5em]
+\end{bmatrix}$$
+
+이 행렬을 다시 선형연립방정식으로 바꾸면 다음과 같이 된다.
+
+$$\begin{array} {r c r c r c r}
+ x_1 &  &     &  &     & = &  1 \\[0.5em]
+     &  & x_2 &  &     & = &  0 \\[0.5em]
+     &  &     &  & x_3 & = & -1 \\[0.5em]
+\end{array}$$
+
+이 선형연립방정식은 원래 주어졌던 선형연립방정식과 동등하다(equivalent). 따라서 주어진 선형연립방정식의 해는 $(x\_1,\,x\_2,\,x\_3) = (1,\,0,\,-1)$가 된다.
+
+</div></li>
+
+<li><div markdown="block">
+
+예제 : 해가 존지하지 않는 경우
+
+다음 선형연립방정식을 풀어보자.
+
+$$\begin{array} {r c r c r c r}
+     &       &  x_2 & {}-{} &  4x_3 & = & 8 \\[0.5em]
+2x_1 & {}-{} & 3x_2 & {}+{} &  2x_3 & = & 1 \\[0.5em]
+4x_1 & {}-{} & 8x_2 & {}+{} & 12x_3 & = & 1 \\[0.5em]
+\end{array}$$
+
+우선 augmented matrix를 만든다.
+
+$$\begin{bmatrix}
+0 &  1 & -4 &  8\\[0.5em]
+2 & -3 &  2 &  1\\[0.5em]
+4 & -8 & 12 &  1\\[0.5em]
+\end{bmatrix}$$
+
+이를 reduced echelon form으로 바꾸면 다음과 같이 된다.
+
+$$\begin{bmatrix}
+1 &  0 & -5 & 25/2\\[0.5em]
+0 &  1 & -4 &    8\\[0.5em]
+0 &  0 &  0 &   15\\[0.5em]
+\end{bmatrix}$$
+
+이 행렬을 다시 선형연립방정식으로 바꾸면 다음과 같이 된다.
+
+$$\begin{array} {r c r c r c r}
+ x_1 &  &     & {}-{} & 5x_3 & = &  25/2 \\[0.5em]
+     &  & x_2 & {}-{} & 4x_3 & = &  8 \\[0.5em]
+     &  &     &       &    0 & = & 15 \\[0.5em]
+\end{array}$$
+
+이때 세 번째 식은 항상 거짓(모순)이므로, 위 세 선형방정식을 동시에 만족시키는 $x\_1$, $x\_2$, $x\_3$는 존재하지 않는다. 따라서 주어진 원래의 선형연립방정식은 해가 존재하지 않는다(inconsistent).
+
+</div></li>
+
+<li><div markdown="block">
+
+예제 : 무수히 많은 해가 존재하는 경우
+
+다음 선형연립방정식을 풀어보자.
+
+$$\begin{array} {r c r c r c r}
+ x_1 & {}+{} & 2x_2 & {}+{} & 3x_3 & = & 4 \\[0.5em]
+ x_1 &       &      & {}+{} &  x_3 & = & 2 \\[0.5em]
+3x_1 & {}-{} &  x_2 & {}+{} & 2x_3 & = & 5 \\[0.5em]
+\end{array}$$
+
+우선 augmented matrix를 만든다.
+
+$$\begin{bmatrix}
+1 &  2 & 3 & 4\\[0.5em]
+1 &  0 & 1 & 2\\[0.5em]
+3 & -1 & 2 & 5\\[0.5em]
+\end{bmatrix}$$
+
+이를 reduced echelon form으로 바꾸면 다음과 같이 된다.
+
+$$\begin{bmatrix}
+1 & 0 & 1 & 2\\[0.5em]
+0 & 1 & 1 & 1\\[0.5em]
+0 & 0 & 0 & 0\\[0.5em]
+\end{bmatrix}$$
+
+이 행렬을 다시 선형연립방정식으로 바꾸면 다음과 같이 된다.
+
+$$\begin{array} {r c r c r c r}
+ x_1 &  &     & {}+{} & x_3 & = & 2 \\[0.5em]
+     &  & x_2 & {}+{} & x_3 & = & 1 \\[0.5em]
+     &  &     &       &   0 & = & 0 \\[0.5em]
+\end{array}$$
+
+$(x\_1,\,x\_2,\,x\_3 ) = (-t + 2,\,-t + 1,\,t)$ 꼴의 $(x\_1,\,x\_2,\,x\_3 )$ 쌍은 위 선형연립방정식을 항상 만족시킨다. 따라서 주어진 원래의 선형연립방정식은 해가 무수히 많다.
+
+</div></li>
+
+</ul>
+
+# 선형연립방정식의 해의 존재성 및 유일성 분석
+
+선형연립방정식의 해의 존재성(existence) 및 유일성(uniqueness)을 분석하는 다양한 방법을 알아보자.
+
+사실 위 문단에서 소개한 방법을 이용해 선형연립방정식의 해를 직접 구해 보면 해의 존재성 및 유일성을 분석할 수 있다. 하지만 아래 방법들을 사용하면 해를 직접 구하는 것보다 훨씬 빠르고 간단하게 해의 존재성 및 유일성을 분석할 수 있다.
+
+## Echelon Form을 이용한 방법
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+선형연립방정식의 augmented matrix의 가장 오른쪽 열이 pivot column이 아니면 주어진 선형연립방정식은 consistent하다(= 해가 존재한다). 역으로, consistent한 선형연립방정식의 augmented matrix의 가장 오른쪽 열은 pivot column이 아니다.
+
+</div></li>
+
+<li><div markdown="block">
+
+따라서, echelon form까지만 구해도 선형연립방정식의 해의 존재성(존재하는지(consistent) 혹은 존재하지 않는지(inconsistent))을 판단할 수 있다.
+
+</div></li>
+
+<li><div markdown="block">
+
+하지만 이 방법으로는 해의 유일성(해가 무수히 많은지(부정) 혹은 단 하나만 존재하는지)은 판단할 수 없다. 이를 판단하려면 reduced echelon form까지 구해야 한다.
+
+</div></li>
+
+</ul>

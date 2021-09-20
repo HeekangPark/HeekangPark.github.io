@@ -172,6 +172,10 @@ MathJax = {
         inlineMath: [ ['$','$'], ['\\(', '\\)'] ], 
         displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
         processEscapes: true,
+        packages: {
+            '[-]': ['base'],
+            '[+]': ['my-color-table', 'base']
+        }
     },
     chtml: {
         scale: 1,
@@ -181,7 +185,62 @@ MathJax = {
         ignoreHtmlClass: "ignore-mathjax",
     },
     startup: {
-        typeset: false
+        typeset: false,
+        ready() {
+            const {ArrayItem} = MathJax._.input.tex.base.BaseItems;
+            const {Configuration} = MathJax._.input.tex.Configuration;
+            const {CommandMap} = MathJax._.input.tex.SymbolMap;
+
+            class MyArrayItem extends ArrayItem {
+                color = {
+                cell: '',
+                row: '',
+                col: []
+                };
+                
+                EndEntry() {
+                    super.EndEntry();
+                    const cell = this.row[this.row.length - 1];
+                    const color = this.color.cell || this.color.row || this.color.col[this.row.length - 1];
+                    if (color) {
+                        cell.attributes.set('mathbackground', color);
+                        this.color.cell = '';
+                    }
+                }
+                
+                EndRow() {
+                    super.EndRow();
+                    this.color.row = '';
+                }
+            }
+
+            new CommandMap('my-color-macros', {
+                cellcolor: ['TableColor', 'cell'],
+                rowcolor:  ['TableColor', 'row'],
+                columncolor: ['TableColor', 'col']
+            }, {
+                TableColor(parser, name, type) {
+                    const top = parser.stack.Top();
+                    const color = parser.GetArgument(parser.currentCS);
+                    if (top instanceof ArrayItem) {
+                        if (type === 'col') {
+                            top.color.col[top.row.length] = color;
+                        } else {
+                            top.color[type] = color;
+                        }
+                    } else {
+                        throw new TexError('UnsupportedTableColor', 'Unsupported use of %1', parser.currentCS);
+                    }
+                }
+            });
+            
+            Configuration.create('my-color-table', {
+                handler: {macro: ['my-color-macros']},
+                items: {'array': MyArrayItem}
+            });
+
+            MathJax.startup.defaultReady();
+        }
     }
 }
 </script>
