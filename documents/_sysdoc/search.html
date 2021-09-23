@@ -56,8 +56,13 @@ description: "검색 결과"
         }
     });
 
-    function getDocumentHtml(document) {
-        let html = `<div class="document">
+    function getHtml(documents) {
+        let html = `<p class="result-num">총 ${documents.length}개의 문서가 검색되었습니다.</p>`;
+        if(documents.length == 0) {
+            html += `<p class="no-result">검색 결과가 없습니다.</p>`;
+        } else {
+            for (let document of documents) {
+                html += `<div class="document">
     <p class="document-collection"><a href="/categories#${document.collection_label}">${document.category}<i class="fas fa-angle-right"></i>${document.collection_name}</a></p>
     <p class="document-title"><a href="${document.url}">${document.title}</a></p>
     <p class="document-preview ignore-mathjax"><a href="${document.url}">${document.preview.replace('\"', '"').replace("\\\\", "\\")}</a></p>
@@ -66,12 +71,12 @@ description: "검색 결과"
         <div class="tags">
 `;
 
-        for (let tag of document.tags) {
-            html += `            <p class="tag"><a href="/tags#${tag}">${tag}</a></p>
+                for (let tag of document.tags) {
+                    html += `            <p class="tag"><a href="/tags#${tag}">${tag}</a></p>
 `;
-        }
+                }
 
-        html += `        </div>
+                html += `        </div>
     </div>
     <p class="document-date-modified with-icon">
         <i class="icon fas fa-edit"></i>
@@ -79,6 +84,8 @@ description: "검색 결과"
     </p>
     <p class="document-pageview with-icon"><i class="icon far fa-eye"></i><span class="pageview" url="${document.url}"></span></p>
 </div>`;
+            }
+        }
 
         return html;
     }
@@ -148,61 +155,56 @@ description: "검색 결과"
         let spinner = $(".spinner-container");
 
         let files = [...Array({{ site.files_for_search_num }}).keys()].map(i => `documents${i + 1}.json`);
-    Promise.allSettled(files.map(function (file) {
-        return new Promise(function (resolve, reject) {
-            $.ajax({
-                type: "GET",
-                url: `{{ site.baseurl }}{{ site.assets }}/etc/search/${file}`,
-                success: function (data) {
-                    let all_documents = data.documents;
-                    let result_documents = [];
-                    for (let document of all_documents) {
-                        let is_exclude = false;
-                        for (let keyword of exclude_keywords) {
-                            if (document.contents.includes(keyword)) {
-                                is_exclude = true;
-                                break;
+        Promise.allSettled(files.map(function (file) {
+            return new Promise(function (resolve, reject) {
+                $.ajax({
+                    type: "GET",
+                    url: `{{ site.baseurl }}{{ site.assets }}/etc/search/${file}`,
+                    success: function (data) {
+                        let all_documents = data.documents;
+                        let result_documents = [];
+                        for (let document of all_documents) {
+                            let is_exclude = false;
+                            for (let keyword of exclude_keywords) {
+                                if (document.contents.includes(keyword)) {
+                                    is_exclude = true;
+                                    break;
+                                }
+                            }
+                            if (is_exclude) continue;
+
+                            for (let keyword of include_keywords) {
+                                if (document.contents.includes(keyword)) {
+                                    result_documents.push(document);
+                                    break;
+                                }
                             }
                         }
-                        if (is_exclude) continue;
 
-                        for (let keyword of include_keywords) {
-                            if (document.contents.includes(keyword)) {
-                                result_documents.push(document);
-                                break;
-                            }
-                        }
+                        resolve(result_documents);
+                    },
+                    error: function () {
+                        reject();
                     }
-
-                    for (let document of result_documents) {
-                        target.append(getDocumentHtml(document));
-                    }
-
-                    resolve(result_documents.length);
-                },
-                error: function () {
-                    reject();
-                }
+                })
             })
+        })).then(function (data) {
+            spinner.addClass("hidden");
+
+            let documents = data.filter(function (item) {
+                if (item.status == "fulfilled") return true;
+                else return false;
+            }).reduce((acc, cur) => acc = [...acc, ...cur.value], []);
+
+            target.append(getHtml(documents));
+            if(documents.length > 0) {
+                $(".documents .document").click(function() {
+                    let target = $(this).find(".document-title a").attr("href");
+                    window.location.href = target;
+                });
+                loadPageview();
+            }
         })
-    })).then(function (data) {
-        let count = data.filter(function (item) {
-            if (item.status == "fulfilled") return true;
-            else return false;
-        }).reduce((acc, cur_val) => acc + cur_val);
-
-        if (count == 0) {
-            target.append(`<p class="no-result">No Result</p>`);
-        } else {
-            $(".documents .document").click(function() {
-                let target = $(this).find(".document-title a").attr("href");
-                window.location.href = target;
-            });
-            loadPageview();
-        }
-
-        spinner.addClass("hidden");
-    })
     }
 
 </script>

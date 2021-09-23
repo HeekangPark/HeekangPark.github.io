@@ -1,10 +1,10 @@
 ---
 title: "Echelon Form"
 date_created: "2021-09-20"
-date_modified: "2021-09-20"
+date_modified: "2021-09-24"
 ---
 
-# Elementary Row Operation이란?
+# elementary row operation
 
 <ul class="no-guide-line">
 
@@ -39,7 +39,7 @@ elementary row operation은 "되돌릴" 수 있다(= 역연산이 가능하다).
 
 </ul>
 
-# Echelon Form이란?
+# echelon form
 
 <ul class="no-guide-line">
 
@@ -130,7 +130,7 @@ $$\begin{bmatrix}
 
 </ul>
 
-# Row Reduction Algorithm
+# row reduction algorithm
 
 <ul class="no-guide-line">
 
@@ -169,7 +169,7 @@ $$\begin{bmatrix}
 
 <li><div markdown="block">
 
-다음 일련의 절차대로 elementary row operation을 적용하면  임의의 행렬을 항상 reduced echelon form으로 만들 수 있다. 이를 **Row Reduction Algorithm**이라 한다. Row Reduction Algorithm은 다음과 같이 작동한다.
+다음 일련의 절차대로 elementary row operation을 적용하면  임의의 행렬을 항상 reduced echelon form으로 만들 수 있다. 이를 **row reduction algorithm**이라 한다. row reduction algorithm은 다음과 같이 작동한다.
 
 1. 가장 왼쪽에 있는 nonzero 열부터 시작한다. 이 열은 pivot column이 된다. 이 열의 가장 위는 pivot position이 된다.
 2. 이 열의 nonzero 성분 중 하나를 선택해, (필요하다면) interchange 연산을 통해 선택된 성분이 있는 행을 가장 위로 올린다. 선택된 nonzero 성분은 pivot이 된다.
@@ -184,7 +184,7 @@ $$\begin{bmatrix}
 
 <li><div markdown="block">
 
-예를 들어, Row Reduction Algorithm을 적용해 다음 행렬을 reduced echelon form으로 바꿔보자.
+예를 들어, row reduction algorithm을 적용해 다음 행렬을 reduced echelon form으로 바꿔보자.
 
 $$\begin{bmatrix}
 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]

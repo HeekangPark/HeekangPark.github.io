@@ -1,7 +1,7 @@
 ---
 title: "벡터와 행렬"
 date_created: "2021-09-13"
-date_modified: "2021-09-20"
+date_modified: "2021-09-24"
 ---
 
 # 벡터(vector)란?
@@ -18,7 +18,11 @@ x_1 \\
 x_2 \\
 \vdots \\
 x_n
-\end{bmatrix} = (x_1,\,x_2,\,\cdots,\,x_n)$$
+\end{bmatrix}$$
+
+벡터는 일반적으로 위와 같이 세로 형태로 표현하지만, 표기의 편의를 위해 다음과 같이 가로 형태로 쓰기도 한다(가로로 작성되어 있어도 위와 같은 형태로 작성되어 있는 것이라 이해해야 한다).
+
+$$\boldsymbol{x} = (x_1,\,x_2,\,\cdots,\,x_n)$$
 
 이때 $x\_i$ ($i = 1,\,2,\,\cdots,\,n$)을 벡터의 $i$번째 **요소(element)**, **성분(component)**, 혹은 **항목(entry)**이라 한다.
 
@@ -32,7 +36,7 @@ x_n
 
 <li><div markdown="block">
 
-두 벡터가 같다(equal)는 것은 같은 위치에 있는 성분들이 각각 모두 같다는 뜻이다.
+두 벡터가 **같다(equal)**는 것은 같은 위치에 있는 성분들이 각각 모두 같다는 뜻이다.
 
 </div></li>
 
@@ -76,7 +80,7 @@ a_{m1} & a_{m2} & \cdots & a_{mn} \\
 
 <li><div markdown="block">
 
-두 행렬이 같다(equal)는 것은 같은 위치에 있는 성분들이 각각 모두 같다는 뜻이다.
+두 행렬이 **같다(equal)**는 것은 같은 위치에 있는 성분들이 각각 모두 같다는 뜻이다.
 
 </div></li>
 
@@ -135,7 +139,7 @@ A = \begin{bmatrix}
 - $D_{n \times n}$ (대각 행렬, diagonal matrix) : 주대각선 성분을 제외한 나머지 성분은 모두 0인 정사각행렬. $a\_{ik} = 0$ ($k \neq i$)
 - $E_{n \times n}$, $I_{n \times n}$ (단위 행렬, unit matrix) : 주대각선 성분만 1이고 나머지 성분은 모두 0인 정사각행렬. 즉 단위행렬은 대각행렬의 일종이다. $a\_{ii} = 1$, $a\_{ik} = 0$ ($k \neq i$).
 
-많은 경우 아래첨자는 생략하고 $O$, $D$, $E$, $I$ 등으로 쓰곤 한다.
+대부분의 경우 행렬의 크기는 명시적으로 표시할 필요가 없을 정도로 명백하므로, $O$, $D$, $E$, $I$ 등과 같이 아래첨자는 생략해 쓴다.
 
 </div></li>
 
@@ -189,6 +193,17 @@ a_{m1} \pm b_{m1} & a_{m2} \pm b_{m2} & \cdots & a_{mn} \pm b_{mn} \\
 
 </div></li>
 
+<li><div markdown="block">
+
+행렬의 합과 차는 다음과 같은 성질이 있다.
+
+{:.no-guide-line}
+- 교환법칙은 성립한다 : $A \pm B = B \pm A$
+- 결합법칙이 성립한다 : $(A \pm B) \pm C = A \pm (B \pm C)$
+- 영행렬은 합 연산의 항등원이다 : $A + O = O + A = A$
+
+</div></li>
+
 </ul>
 
 ## 행렬의 곱
@@ -228,6 +243,17 @@ $$\alpha A = \begin{bmatrix}
 <li><div markdown="block">
 
 계산 결과 $\alpha A$는 $m \times n$ 행렬이 된다($A$와 크기가 같다).
+
+</div></li>
+
+<li><div markdown="block">
+
+행렬과 스칼라의 곱은 다음과 같은 성질이 있다.
+
+{:.no-guide-line}
+- $\alpha (A \pm B) = \alpha A \pm \alpha B$
+- $(\alpha + \beta) A = \alpha A + \beta A$
+- $(\alpha \beta)A = \alpha (\beta A)$
 
 </div></li>
 
@@ -376,7 +402,27 @@ C = AB
 - 결합법칙이 성립한다 : $(AB)C = A(BC)$
 - 분배법칙이 성립한다 : $A(B + C) = AB + AC$, $(A + B)C = AC + BC$
 - 교환법칙은 성립하지 **않는다** : $AB \neq BA$
-- 단위 행렬과의 곱 연산은 교환법칙이 성립한다 : $A \in \mathbb{R}^{n \times n}$, $I \in \mathbb{R}^{n \times n}$에 대해, $AI = IA$
+- 단위 행렬은 행렬곱 연산의 항등원이다 : $A \in \mathbb{R}^{n \times n}$, $I \in \mathbb{R}^{n \times n}$에 대해, $AI = IA = A$
+
+</div></li>
+
+</ul>
+
+### 행렬의 거듭제곱
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+행렬 $A \in \mathbb{R}^{m \times n}$, 양의 정수 $k \in \mathbb{N}$에 대해, $A^k$는 다음과 같이 $A$를 $k$번 곱한 것이다.
+
+$$A^k = \underbrace {A A \cdots A}_k$$
+
+</div></li>
+
+<li><div markdown="block">
+
+정사각 행렬 $A \in \mathbb{R}^{n \times n}$에 대해, $A^0$은 단위 행렬 $I\_{n \times n}$이라 정의한다.
 
 </div></li>
 
@@ -431,6 +477,7 @@ $$(A^\intercal)_{ij} = A_{ji}$$
 - $(A^\intercal)^\intercal = A$
 - $A \in \mathbb{R}^{m \times n}$, $B \in \mathbb{R}^{m \times n}$에 대해, $(A + B)^\intercal = A^\intercal + B^\intercal$
 - $A \in \mathbb{R}^{m \times p}$, $B \in \mathbb{R}^{p \times n}$에 대해, $(AB)^\intercal = B^\intercal A^\intercal$
+- $A \in \mathbb{R}^{m \times n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha A)^\intercal = \alpha A^\intercal$
 - 역행렬이 존재하는 행렬 $A$에 대해, $(A^{-1})^\intercal = (A^\intercal)^{-1}$
 
 </div></li>
@@ -572,7 +619,7 @@ Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계�
 
 <li><div markdown="block">
 
-다음 Norm들이 자주 사용된다.
+자주 사용되는 Norm으로는 다음이 있다.
 
 {:.no-guide-line}
 - $l\_1$ Norm : $\lVert \boldsymbol{x} \rVert \_{1} = \displaystyle\sum_{i=1} ^n \| x\_i \| $

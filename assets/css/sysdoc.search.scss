@@ -50,6 +50,14 @@
 
     @import "sysdoc.spinner";
 
+    .result-num {
+        text-align: left;
+        font-size: 1.1em;
+        color: #999999;
+        margin: {
+            bottom: 1em;
+        }
+    }
     .no-result {
         text-align: center;
         font-size: 1.3em;
