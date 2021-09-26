@@ -1,0 +1,191 @@
+---
+title: "역행렬 (Inverse)"
+date_created: "2021-09-26"
+date_modified: "2021-09-27"
+---
+
+# 역행렬(inverse)이란?
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+정사각행렬 $A \in \mathbb{R}^{n \times n}$에 대해 다음을 만족하는 정사각행렬 $C \in \mathbb{R}^{n \times n}$가 존재한다면,
+
+$$CA = AC = I$$
+
+행렬 $A$는 **역행렬이 존재한다(invertible)**고 한다. 그리고 행렬 $C$를 행렬 $A$의 **역행렬(inverse)**이라 하고 기호로 다음과 같이 나타낸다.
+
+$$C = A^{-1}$$
+
+</div></li>
+
+<li><div markdown="block">
+
+역행렬이 존재하지 **않는** 행렬을 **singular matrix**, 역행렬이 존재하는 행렬을 **nonsingular matrix**라 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+행렬의 역행렬이 존재한다면, 그 역행렬은 유일하다.
+
+<div class="proof-folder" markdown="block">
+
+(귀류법) invertible한 행렬 $A \in \mathbb{R}^{n \times n}$의 역행렬이 유일하지 않아, $A$의 역행렬이 $B$, $C$(단, $B \neq C$), 이렇게 두 개 있다고 해 보자.
+
+그럼 다음 식이 성립해야 한다.
+
+$$B = BI = B(AC) = (BA)C = IC = C$$
+
+이는 전제 $B \neq C$에 모순이므로, 귀류법에 의해 invertible한 행렬의 역행렬은 유일하다는 것을 알 수 있다.
+
+</div>
+
+</div></li>
+
+<li><div markdown="block">
+
+역행렬은 다음과 같은 성질이 있다.
+
+{:.no-guide-line}
+- 행렬 $A$의 역행렬이 존재하면, 행렬 $A^{-1}$의 역행렬도 존재하며, 다음과 같이 계산된다 : $(A^{-1})^{-1} = A$
+- 역행렬이 존재하는 행렬 $A \in \mathbb{R}^{n \times n}$, $B \in \mathbb{R}^{n \times n}$에 대해, $AB$, $BA$도 역행렬이 존재하며, 각각 다음과 같이 계산된다 : $(AB)^{-1} = B^{-1} A^{-1}$, $(BA)^{-1} = A^{-1} B^{-1}$
+- 행렬 $A$의 역행렬이 존재하면, 행렬 $A^{\intercal}$의 역행렬도 존재하며, 다음과 같이 계산된다 : $(A^{\intercal})^{-1} = (A^{-1})^{\intercal}$
+- 행렬 $A$, $B$에 대해, 만약 $AB = I$라면 $A$와 $B$는 모두 역행렬이 존재하며, 각각 다음과 같이 계산된다 : $A^{-1} = B$, $B^{-1} = A$
+
+</div></li>
+
+<li><div markdown="block">
+
+정사각행렬 $A \in \mathbb{R}^{n \times n}$에 대해, 다음은 모두 동치이다.
+
+{:.no-guide-line}
+- $A$의 역행렬이 존재한다(invertible).
+- $CA = I$를 만족시키는 $C \in \mathbb{R}^{n \times n}$가 존재한다.
+- $AD = I$를 만족시키는 $D \in \mathbb{R}^{n \times n}$가 존재한다.
+- $A$는 $I\_n$과 row equivalent하다.
+- $A$는 $n$개의 pivot position을 가진다.
+- $A \boldsymbol{x} = \boldsymbol{0}$은 오직 trivial solution만을 가진다.
+- $A$의 열들은 linearly independent한 집합을 이룬다.
+- 선형변환 $\boldsymbol{x} \mapsto A\boldsymbol{x}$은 일대일(one-to-one)이다.
+- 모든 $\boldsymbol{b} \in \mathbb{R}^n$에 대해, $A \boldsymbol{x} = \boldsymbol{b}$는 consistent하다(= 최소 한 개의 해를 가진다).
+- $A$의 열들은 $\mathbb{R}^n$을 span한다.
+- 선형변환 $\boldsymbol{x} \mapsto A\boldsymbol{x}$은 $\mathbb{R}^n$을 $\mathbb{R}^n$로 매핑한다.
+- $A^\intercal$의 역행렬이 존재한다.
+
+</div></li>
+
+</ul>
+
+# 역행렬 계산하기
+
+## 2 × 2 행렬
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+$2 \times 2$ 행렬의 역행렬은 쉽게 찾을 수 있다.
+
+$A = \displaystyle \begin{bmatrix} a & b \\\\[0.5em] c & d \end{bmatrix}$에 대해, $ad-bc \neq 0$이면 역행렬 $A^{-1}$는 다음과 같이 계산된다.
+
+$$A^{-1} = \frac {1}{ad-bc} \begin{bmatrix}
+d & -b \\[0.5em]
+-c & a \\[0.5em]
+\end{bmatrix}$$
+
+$ad-bc = 0$이면 역행렬이 존재하지 않는다.
+
+</div></li>
+
+<li><div markdown="block">
+
+이때 $ad-bc$를 $2 \times 2$ 행렬 $A$의 **판별식(determinant)**이라 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$2 \times 2$ 행렬은 판별식이 0이 아닐 때만 역행렬이 존재하고, 역으로 역행렬이 존재하면 항상 판별식이 0이 아니다.
+
+</div></li>
+
+</ul>
+
+## elementary row operation을 이용한 방법
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+정사각행렬 $A \in \mathbb{R}^{n \times n}$는 $I\_n$과 [row equivalent](/linear_algebra/echelon-form)한 경우에만 역행렬이 존재한다. 역으로, 역행렬이 존재하면 정사각행렬 $A \in \mathbb{R}^{n \times n}$은 $I\_n$과 row equivalent하다.
+
+</div></li>
+
+<li><div markdown="block">
+
+이때, (역행렬이 존재하는) $A \in \mathbb{R}^{n \times n}$를 $I\_n$으로 바꾸는 [elementary row operation](/linear_algebra/echelon-form)은 $I\_n$을 $A^{-1}$로 바꾸는 elementary row operation과 동일하다.
+
+다시 말해, augmented matrix $[\,A \quad I\_n\,]$을 row reduce하면 $[\,I\_n \quad A^{-1}\,]$이 된다.
+
+</div></li>
+
+<li><div markdown="block">
+
+예제
+
+$$A = \begin{bmatrix}
+0 & 1 & 2\\[0.5em]
+1 & 0 & 3\\[0.5em]
+4 & -3 & 8\\[0.5em]
+\end{bmatrix}$$
+
+의 역행렬을 구해보자.
+
+$$\begin{align}
+[\,A \quad I_n\,]
+&= \begin{bmatrix}
+0 & 1 & 2 & 1 & 0 & 0\\[0.5em]
+1 & 0 & 3 & 0 & 1 & 0\\[0.5em]
+4 & -3 & 8 & 0 & 0 & 1\\[0.5em]
+\end{bmatrix}
+\sim \begin{bmatrix}
+1 & 0 & 3 & 0 & 1 & 0\\[0.5em]
+0 & 1 & 2 & 1 & 0 & 0\\[0.5em]
+4 & -3 & 8 & 0 & 0 & 1\\[0.5em]
+\end{bmatrix}\\[0.5em]
+&\sim \begin{bmatrix}
+1 & 0 & 3 & 0 & 1 & 0\\[0.5em]
+0 & 1 & 2 & 1 & 0 & 0\\[0.5em]
+0 & -3 & -4 & 0 & -4 & 1\\[0.5em]
+\end{bmatrix}
+\sim \begin{bmatrix}
+1 & 0 & 3 & 0 & 1 & 0\\[0.5em]
+0 & 1 & 2 & 1 & 0 & 0\\[0.5em]
+0 & 0 & 2 & 3 & -4 & 1\\[0.5em]
+\end{bmatrix}\\[0.5em]
+&\sim \begin{bmatrix}
+1 & 0 & 3 & 0 & 1 & 0\\[0.5em]
+0 & 1 & 2 & 1 & 0 & 0\\[0.5em]
+0 & 0 & 1 & 3/2 & -2 & 1/2\\[0.5em]
+\end{bmatrix}
+\sim \begin{bmatrix}
+1 & 0 & 0 & -9/2 & 7 & -3/2\\[0.5em]
+0 & 1 & 0 & -2 & 4 & -1\\[0.5em]
+0 & 0 & 1 & 3/2 & -2 & 1/2\\[0.5em]
+\end{bmatrix}
+= [\,I_n \quad A^{-1}\,]
+\end{align}$$
+
+따라서 $A^{-1}$은 다음과 같이 된다.
+
+$$A^{-1} = \begin{bmatrix}
+-9/2 & 7 & -3/2\\[0.5em]
+-2 & 4 & -1\\[0.5em]
+3/2 & -2 & 1/2\\[0.5em]
+\end{bmatrix}$$
+
+</div></li>
+
+</ul>

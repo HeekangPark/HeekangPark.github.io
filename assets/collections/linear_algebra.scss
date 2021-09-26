@@ -1,6 +1,56 @@
 ---
 ---
 
+.folder-wrapper {
+    text-align: center;
+
+    .hidden {
+        display: none !important;
+    }
+
+    .folder-btn {
+        color: #0275d8;
+        cursor: pointer;
+        display: inline-block;
+        padding: {
+            top: 0.1em;
+            bottom: 0.1em;
+            left: 0.75em;
+            right: 0.75em;
+        }
+        background-color: #eeeeee;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .folder-content {
+        text-align: initial;
+        &.proof-folder {
+            border: 1px solid #eeeeee;
+            padding: 1em;
+            margin: {
+                bottom: 1em;
+            }
+            border-radius: 0.5em;
+            
+            .proof-mark {
+                padding: {
+                    top: 0.1em;
+                    bottom: 0.1em;
+                    left: 0.75em;
+                    right: 0.75em;
+                }
+                display: inline-block;
+                font-weight: bold;
+                color: #333333;
+                background-color: #aaaaaa;
+            }
+        }
+    }
+}
+
 ul {
     width: 100%;
     table-layout: fixed;

@@ -1,7 +1,7 @@
 ---
 title: "선형연립방정식 (Linear System)"
 date_created: "2021-09-16"
-date_modified: "2021-09-24"
+date_modified: "2021-09-27"
 ---
 
 # 선형연립방정식(linear system)이란?
@@ -390,6 +390,20 @@ t\\[0.5em]
 
 </ul>
 
+## 역행렬을 이용한 방법
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+정사각행렬의 coefficient matrix $A \in \mathbb{R}^{n \times n}$를 가지는 선형연립방정식 $A\boldsymbol{x} = \boldsymbol{b}$에 대해, 만약 $A$의 [역행렬](/linear_algebra/inverse)이 존재하면(invertible) 선형연립방정식의 해는 유일하며 다음과 같이 계산할 수 있다.
+
+$$\boldsymbol{x} = A^{-1} \boldsymbol{b}$$
+
+</div></li>
+
+</ul>
+
 # 선형연립방정식의 해의 존재성 및 유일성 분석
 
 선형연립방정식의 해의 존재성(existence) 및 유일성(uniqueness)을 분석하는 다양한 방법을 알아보자.
@@ -415,6 +429,18 @@ t\\[0.5em]
 <li><div markdown="block">
 
 하지만 이 방법으로는 해의 유일성(해가 무수히 많은지(부정) 혹은 단 하나만 존재하는지)은 판단할 수 없다. 이를 판단하려면 reduced echelon form까지 구해야 한다.
+
+</div></li>
+
+</ul>
+
+## 역행렬을 이용한 방법
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+정사각행렬의 coefficient matrix $A \in \mathbb{R}^{n \times n}$를 가지는 선형연립방정식 $A\boldsymbol{x} = \boldsymbol{b}$에 대해, 만약 $A$의 [역행렬](/linear_algebra/inverse)이 존재하면(invertible) 선형연립방정식의 해는 유일하다(unique).
 
 </div></li>
 

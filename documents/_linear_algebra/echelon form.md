@@ -1,7 +1,7 @@
 ---
 title: "Echelon Form"
 date_created: "2021-09-20"
-date_modified: "2021-09-24"
+date_modified: "2021-09-27"
 ---
 
 # elementary row operation
@@ -27,7 +27,9 @@ elementary row operation은 "되돌릴" 수 있다(= 역연산이 가능하다).
 
 <li><div markdown="block">
 
-일련의 elementary row operation을 통해 행렬 $A$를 행렬 $B$로 바꿀 수 있다면, 행렬 $A$, $B$는 **행 동등하다(row equivalent)**고 한다.
+일련의 elementary row operation을 통해 행렬 $A$를 행렬 $B$로 바꿀 수 있다면, 행렬 $A$, $B$는 **행 동등하다(row equivalent)**고 한다. 이를 기호로 다음과 같이 나타낸다.
+
+$$A \sim B$$
 
 </div></li>
 

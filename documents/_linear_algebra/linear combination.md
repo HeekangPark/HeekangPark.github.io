@@ -1,7 +1,7 @@
 ---
 title: "Linear Combination"
 date_created: "2021-09-20"
-date_modified: "2021-09-24"
+date_modified: "2021-09-27"
 ---
 
 # linear combination
@@ -62,7 +62,7 @@ $$\text{Span}\{\boldsymbol{x}_1,\,\boldsymbol{x}_2,\,\cdots,\,\boldsymbol{x}_p\}
 가 성립한다면, 즉 벡터 $\boldsymbol{x}\_i \in \mathbb{R}^m$들의 linear combination으로 $\mathbb{R}^m$ 안의 모든 벡터들을 다 만들어낼 수 있다면, 이를
 
 {:.text-align-center .mb-0}
-"벡터 $\\{\boldsymbol{x}\_1,\,\boldsymbol{x}\_2,\,\cdots,\,\boldsymbol{x}\_p\\}$들이 $\mathbb{R}^m$을 span한다"
+"벡터 $\\{\boldsymbol{x}\_1,\,\boldsymbol{x}\_2,\,\cdots,\,\boldsymbol{x}\_p\\}$들은 $\mathbb{R}^m$을 span한다"
 
 {:.text-align-center}
 A set of vectors $\\{\boldsymbol{x}\_1,\,\boldsymbol{x}\_2,\,\cdots,\,\boldsymbol{x}\_p\\}$ spans(generates) $\mathbb{R}^m$
