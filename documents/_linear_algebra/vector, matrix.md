@@ -1,7 +1,7 @@
 ---
 title: "벡터와 행렬"
 date_created: "2021-09-13"
-date_modified: "2021-09-24"
+date_modified: "2021-09-27"
 ---
 
 # 벡터(vector)란?
@@ -86,6 +86,14 @@ a_{m1} & a_{m2} & \cdots & a_{mn} \\
 
 <li><div markdown="block">
 
+**정사각행렬(square matrix)**은 행렬의 가로와 세로의 크기가 같은 행렬을 의미한다.
+
+**triangular matrix**는 정사각행렬 중 대각선 아래 또는 위가 모두 0인 행렬을 의미한다. **lower triangular matrix**는 대각선 위가 모두 0인 정사각행렬을, **upper triangular matrix**는 대각선 아래가 모두 0인 정사각행렬을 의미한다.
+
+</div></li>
+
+<li><div markdown="block">
+
 $n$-벡터는 $n \times 1$ 행렬이라 이해할 수 있다. 이를 강조하기 위해 벡터를 **열 백터(column vector)**라 표현하기도 한다.
 
 $$\boldsymbol{x} =
@@ -140,6 +148,60 @@ A = \begin{bmatrix}
 - $E_{n \times n}$, $I_{n \times n}$ (단위 행렬, unit matrix) : 주대각선 성분만 1이고 나머지 성분은 모두 0인 정사각행렬. 즉 단위행렬은 대각행렬의 일종이다. $a\_{ii} = 1$, $a\_{ik} = 0$ ($k \neq i$).
 
 대부분의 경우 행렬의 크기는 명시적으로 표시할 필요가 없을 정도로 명백하므로, $O$, $D$, $E$, $I$ 등과 같이 아래첨자는 생략해 쓴다.
+
+</div></li>
+
+<li><div markdown="block">
+
+행렬은 여러 개의 작은 행렬들이 모여 구성된 것으로 이해할 수 있다.
+
+예를 들어, 다음과 같은 3 × 6 행렬은
+
+$$A = \left[ \begin{array}
+3 & 0 & -1 & 5 & 9 & -2\\[0.5em]
+-5 & 2 & 4 & 0 & -3 & 1\\[0.5em]
+-8 & -6 & 3 & 1 & 7 & -4\\[0.5em]
+\end{array} \right]$$
+
+다음과 같이 작은 행렬들이 모여 만들어진 2 × 3 행렬이라 이해할 수 있다.
+
+$$A = \left[ \begin{array} {rrr|rr|r}
+3 & 0 & -1 & 5 & 9 & -2\\[0.5em]
+-5 & 2 & 4 & 0 & -3 & 1\\[0.5em]
+\hline
+-8 & -6 & 3 & 1 & 7 & -4\\[0.5em]
+\end{array} \right] = \begin{bmatrix}
+A_{11} & A_{12} & A_{13}\\[0.5em]
+A_{21} & A_{22} & A_{23}\\[0.5em]
+\end{bmatrix}$$
+
+$$\begin{array}{c c c c c c c c c}
+A_{11} & {}={} & \begin{bmatrix}
+3 & 0 & -1\\[0.5em]
+-5 & 2 & 4\\[0.5em]
+\end{bmatrix},\,
+&A_{12} & {}={} & \begin{bmatrix}
+5 & 9\\[0.5em]
+0 & -3\\[0.5em]
+\end{bmatrix},\,
+&A_{13} & {}={} & \begin{bmatrix}
+-2\\[0.5em]
+1\\[0.5em]
+\end{bmatrix}\\[0.5em]
+A_{21} & {}={} & \begin{bmatrix}
+-8 & -6 & 3\\[0.5em]
+\end{bmatrix},\,
+&A_{22} & {}={} & \begin{bmatrix}
+1 & 7\\[0.5em]
+\end{bmatrix},\,
+&A_{23} & {}={} & \begin{bmatrix}
+-4\\[0.5em]
+\end{bmatrix}\\[0.5em]
+\end{array}$$
+
+이때 작은 행렬들을 **partitioned matrix** 또는 **block matrix**라 부른다.
+
+행렬의 합, 차는 같은 위치에 있는 partitioned matrix끼리 수행하면 된다. 행렬과 스칼라의 곱 역시 각 partitioned matrix에 스칼라를 곱하면 된다. 행렬과 행렬의 곱도 우리가 아는 행렬곱 연산 방식 그대로 각 partitioned matrix에 대해 수행하면 된다.
 
 </div></li>
 
