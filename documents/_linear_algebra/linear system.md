@@ -1,7 +1,8 @@
 ---
 title: "선형연립방정식 (Linear System)"
+order: 2
 date_created: "2021-09-16"
-date_modified: "2021-09-27"
+date_modified: "2021-10-09"
 ---
 
 # 선형연립방정식(linear system)이란?
@@ -104,13 +105,13 @@ a_{21} & a_{22} & \cdots & a_{2n}\\[0.5em]
 \vdots & \vdots & \ddots & \vdots\\[0.5em]
 a_{m1} & a_{m2} & \cdots & a_{mn}\\[0.5em]
 \end{bmatrix},\,
-\boldsymbol{x} = \begin{bmatrix}
+\mathbf{x} = \begin{bmatrix}
 x_{1}\\[0.5em]
 x_{2}\\[0.5em]
 \vdots\\[0.5em]
 x_{n}\\[0.5em]
 \end{bmatrix},\,
-\boldsymbol{b} = \begin{bmatrix}
+\mathbf{b} = \begin{bmatrix}
 b_{1}\\[0.5em]
 b_{2}\\[0.5em]
 \vdots\\[0.5em]
@@ -119,7 +120,7 @@ b_{m}\\[0.5em]
 
 라 하면, 주어진 선형연립방정식은
 
-$$A\boldsymbol{x} = \boldsymbol{b}$$
+$$A\mathbf{x} = \mathbf{b}$$
 
 이라 표현할 수 있다.
 
@@ -296,17 +297,17 @@ t\\[0.5em]
 
 <li><div markdown="block">
 
-선형연립방정식 $A\boldsymbol{x} = \boldsymbol{b}$에 대해, $\boldsymbol{b}$가 영벡터인 경우, 즉 $A\boldsymbol{x} = \boldsymbol{0}$인 경우 이를 **homogeneous linear system**이라 한다.
+선형연립방정식 $A\mathbf{x} = \mathbf{b}$에 대해, $\mathbf{b}$가 영벡터인 경우, 즉 $A\mathbf{x} = \mathbf{0}$인 경우 이를 **homogeneous linear system**이라 한다.
 
-반면 $\boldsymbol{b}$가 영벡터가 아닌 경우, 이를 **nonhomogeneous linear system**이라 한다.
+반면 $\mathbf{b}$가 영벡터가 아닌 경우, 이를 **nonhomogeneous linear system**이라 한다.
 
 </div></li>
 
 <li><div markdown="block">
 
-homogeneous linear system은 $A$에 상관없이 항상 **trivial solution**라 부르는, $\boldsymbol{x} = \boldsymbol{0}$을 해로 갖는다. 다시말해, homogeneous linear system은 항상 하나 이상의 해를 가진다(= consistent하다).
+homogeneous linear system은 $A$에 상관없이 항상 **trivial solution**라 부르는, $\mathbf{x} = \mathbf{0}$을 해로 갖는다. 다시말해, homogeneous linear system은 항상 하나 이상의 해를 가진다(= consistent하다).
 
-한편 homogeneous linear system에서 $\boldsymbol{x} = \boldsymbol{0}$ 이외의 해는 **nontrivial solution**이라 부른다.
+한편 homogeneous linear system에서 $\mathbf{x} = \mathbf{0}$ 이외의 해는 **nontrivial solution**이라 부른다.
 
 </div></li>
 
@@ -314,9 +315,9 @@ homogeneous linear system은 $A$에 상관없이 항상 **trivial solution**라 
 
 homogeneous linear system의 일반해와 nonhomogeneous linear system의 특성해를 하나 알고 있다면 nonhomogeneous linear system의 일반해를 쉽게 구할 수 있다.
 
-구체적으로, homogeneous linear system $A \boldsymbol{x} = \boldsymbol{0}$의 일반해 $\boldsymbol{v}\_h$와 nonhomogeneous linear system $A \boldsymbol{x} = \boldsymbol{b}$의 특성해 $\boldsymbol{p}$를 안다면, nonhomogeneous linear system $A \boldsymbol{x} = \boldsymbol{b}$의 일반해는 다음과 같은 형태가 된다.
+구체적으로, homogeneous linear system $A \mathbf{x} = \mathbf{0}$의 일반해 $\mathbf{v}\_h$와 nonhomogeneous linear system $A \mathbf{x} = \mathbf{b}$의 특성해 $\mathbf{p}$를 안다면, nonhomogeneous linear system $A \mathbf{x} = \mathbf{b}$의 일반해는 다음과 같은 형태가 된다.
 
-$$\boldsymbol{w} = \boldsymbol{p} + \boldsymbol{v}_h $$
+$$\mathbf{w} = \mathbf{p} + \mathbf{v}_h $$
 
 </div></li>
 
@@ -340,7 +341,7 @@ x_3\\[0.5em]
 
 우리가 이미 위 nonhomogeneous linear system의 특성해 
 
-$$\boldsymbol{p} = \begin{bmatrix}
+$$\mathbf{p} = \begin{bmatrix}
 2\\[0.5em]
 1\\[0.5em]
 0\\[0.5em]
@@ -364,15 +365,15 @@ x_3\\[0.5em]
 
 의 일반해
 
-$$\boldsymbol{v}_h = \begin{bmatrix}
+$$\mathbf{v}_h = \begin{bmatrix}
 -1\\[0.5em]
 -1\\[0.5em]
 1\\[0.5em]
 \end{bmatrix}t$$
 
-를 알고 있다면, 주어진 nonhomogeneous linear system의 일반해 $\boldsymbol{w}$는 다음과 같이 쉽게 구할 수 있다.
+를 알고 있다면, 주어진 nonhomogeneous linear system의 일반해 $\mathbf{w}$는 다음과 같이 쉽게 구할 수 있다.
 
-$$\boldsymbol{w} = \boldsymbol{p} + \boldsymbol{v}_h = \begin{bmatrix}
+$$\mathbf{w} = \mathbf{p} + \mathbf{v}_h = \begin{bmatrix}
 2\\[0.5em]
 1\\[0.5em]
 0\\[0.5em]
@@ -396,9 +397,9 @@ t\\[0.5em]
 
 <li><div markdown="block">
 
-정사각행렬의 coefficient matrix $A \in \mathbb{R}^{n \times n}$를 가지는 선형연립방정식 $A\boldsymbol{x} = \boldsymbol{b}$에 대해, 만약 $A$의 [역행렬](/linear_algebra/inverse)이 존재하면(invertible) 선형연립방정식의 해는 유일하며 다음과 같이 계산할 수 있다.
+정사각행렬의 coefficient matrix $A \in \mathbb{R}^{n \times n}$를 가지는 선형연립방정식 $A\mathbf{x} = \mathbf{b}$에 대해, 만약 $A$의 [역행렬](/linear_algebra/inverse)이 존재하면(invertible) 선형연립방정식의 해는 유일하며 다음과 같이 계산할 수 있다.
 
-$$\boldsymbol{x} = A^{-1} \boldsymbol{b}$$
+$$\mathbf{x} = A^{-1} \mathbf{b}$$
 
 </div></li>
 
@@ -417,6 +418,12 @@ $$\boldsymbol{x} = A^{-1} \boldsymbol{b}$$
 <li><div markdown="block">
 
 선형연립방정식의 augmented matrix의 가장 오른쪽 열이 pivot column이 아니면 주어진 선형연립방정식은 consistent하다(= 해가 존재한다). 역으로, consistent한 선형연립방정식의 augmented matrix의 가장 오른쪽 열은 pivot column이 아니다.
+
+즉, 주어진 선형연립방정식에 대해,
+
+{:.equivalent}
+- 선형연립방정식의 augmented matrix의 가장 오른쪽 열은 pivot column이 아니다.
+- 선형연립방정식은 consistent하다.
 
 </div></li>
 
@@ -440,7 +447,7 @@ $$\boldsymbol{x} = A^{-1} \boldsymbol{b}$$
 
 <li><div markdown="block">
 
-정사각행렬의 coefficient matrix $A \in \mathbb{R}^{n \times n}$를 가지는 선형연립방정식 $A\boldsymbol{x} = \boldsymbol{b}$에 대해, 만약 $A$의 [역행렬](/linear_algebra/inverse)이 존재하면(invertible) 선형연립방정식의 해는 유일하다(unique).
+정사각행렬의 coefficient matrix $A \in \mathbb{R}^{n \times n}$를 가지는 선형연립방정식 $A\mathbf{x} = \mathbf{b}$에 대해, 만약 $A$의 [역행렬](/linear_algebra/inverse)이 존재하면(invertible) 선형연립방정식의 해는 존재하고(exist) 유일하다(unique).
 
 </div></li>
 
@@ -455,30 +462,30 @@ $$\boldsymbol{x} = A^{-1} \boldsymbol{b}$$
 
 선형연립방정식
 
-$$A \boldsymbol{x} = \begin{bmatrix}
-\boldsymbol{a}_1 & \boldsymbol{a}_2 & \cdots & \boldsymbol{a}_n \\[0.5em]
+$$A \mathbf{x} = \begin{bmatrix}
+\mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \\[0.5em]
 \end{bmatrix} \begin{bmatrix}
 x_1 \\[0.5em]
 x_2 \\[0.5em]
 \vdots \\[0.5em]
 x_n \\[0.5em]
 \end{bmatrix} 
-= \boldsymbol{b}$$
+= \mathbf{b}$$
 
-은 다음과 같이 $A$의 열 벡터 $\boldsymbol{a}_i$($i = 1,\,2\,\cdots,\,n$)들의 [linear combination](/linear_algebra/linear-combination)으로 이해할 수 있다.
+은 다음과 같이 $A$의 열 벡터 $\mathbf{a}_i$($i = 1,\,2\,\cdots,\,n$)들의 [linear combination](/linear_algebra/linear-combination)으로 이해할 수 있다.
 
-$$x_1 \boldsymbol{a}_1 + x_2 \boldsymbol{a}_2 + \cdots + x_n \boldsymbol{a}_n = \boldsymbol{b}$$
+$$x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n = \mathbf{b}$$
 
 </div></li>
 
 <li><div markdown="block">
 
-행렬 $A \in \mathbb{R}^{m \times n}$, 벡터 $\boldsymbol{x} \in \mathbb{R}^n$, $\boldsymbol{b} \in \mathbb{R}^m$에 대해, 다음 명제들은 모두 동치이다.
+행렬 $A \in \mathbb{R}^{m \times n}$, 벡터 $\mathbf{x} \in \mathbb{R}^n$, $\mathbf{b} \in \mathbb{R}^m$에 대해, 다음 명제들은 모두 동치이다.
 
 {:.no-guide-line}
-- 선형연립방정식 $A \boldsymbol{x} = \boldsymbol{b}$의 해가 존재한다(consistent).
-- 벡터 $\boldsymbol{b}$는 $A$의 열 벡터 $\boldsymbol{a}_i$($i = 1,\,2\,\cdots,\,n$)들의 linear combination이다.
-- $\text{Span}\\{\boldsymbol{x}\_1,\,\boldsymbol{x}\_2,\,\cdots,\,\boldsymbol{x}\_p\\} = \mathbb{R}^m$ (The columns of $A$ spans $\mathbb{R}^m$)
+- 선형연립방정식 $A \mathbf{x} = \mathbf{b}$의 해가 존재한다(consistent).
+- 벡터 $\mathbf{b}$는 $A$의 열 벡터 $\mathbf{a}_i$($i = 1,\,2\,\cdots,\,n$)들의 linear combination이다.
+- $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\} = \mathbb{R}^m$ (The columns of $A$ spans $\mathbb{R}^m$)
 - $A$의 매 행에 pivot position이 존재한다.
 
 </div></li>

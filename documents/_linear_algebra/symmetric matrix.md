@@ -1,7 +1,7 @@
 ---
 title: "Symmetric Matrix"
 date_created: "2021-09-15"
-date_modified: "2021-09-17"
+date_modified: "2021-10-09"
 ---
 
 <ul class="no-guide-line">
@@ -16,7 +16,7 @@ $A = -A^\intercal$인 행렬 $A$를 **anti-symmetric**하다고 한다.
 
 <li><div markdown="block">
 
-모든 $n \times n$ symmetric matrix들의 집합을 $\mathbb{S}^n$이라 표기한다.
+모든 $n \times n$ symmetric matrix들의 집합을 $\mathbf{S}^n$이라 표기한다.
 
 </div></li>
 

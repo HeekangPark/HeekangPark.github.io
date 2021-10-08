@@ -34,7 +34,7 @@
                 bottom: 1em;
             }
             border-radius: 0.5em;
-            
+
             .proof-mark {
                 padding: {
                     top: 0.1em;
@@ -51,29 +51,58 @@
     }
 }
 
-ul {
-    width: 100%;
-    table-layout: fixed;
-
+.document-content > ul {
     > li {
-        &::before {
-            width: 0.5em;
-        }
-
-        padding: {
+        margin: {
             bottom: 1.5em !important;
         }
 
         > div {
-            margin: {
-                bottom: 1.5em;
-            }
-
             ol,
             ul {
+                padding: {
+                    top: 1em;
+                    bottom: 1em;
+                    left: 1em;
+                    right: 1em;
+                }
                 margin: {
-                    top: 0.5em !important;
-                    bottom: 0.5em !important;
+                    left: 0 !important;
+                    bottom: 1em !important;
+                }
+                background-color: #eeeeee;
+                border-radius: 1em;
+                overflow-x: auto;
+
+                > li {
+                    margin: {
+                        left: 2em;
+                    }
+                }
+
+                &.equivalent {
+                    list-style: none outside;
+
+                    &.text-align-center {
+                        text-align: center;
+                    }
+
+                    > li {
+                        &::marker {
+                            content: "⇔　";
+                            font-weight: normal;
+                        }
+
+                        &:first-of-type {
+                            &::marker {
+                                content: "　　";
+                            }
+                        }
+
+                        &::after {
+                            content: none;
+                        }
+                    }
                 }
             }
 
@@ -97,6 +126,106 @@ ul {
                 margin: {
                     bottom: 0;
                 }
+            }
+        }
+    }
+}
+
+table {
+    border-collapse: collapse;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+
+    &.table-align-center {
+        margin: {
+            left: auto;
+            right: auto;
+        }
+    }
+
+    &.null-space-column-space-table {
+        & {
+            width: 100%;
+            table-layout: fixed;
+
+            td {
+                vertical-align: top;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding: {
+                    top: 0.5em;
+                    bottom: 0.5em;
+                }
+            }
+
+            th {
+                padding: {
+                    top: 0.5em;
+                    bottom: 0.5em;
+                }
+            }
+
+            th:nth-child(1),
+            td:nth-child(1) {
+                padding: {
+                    left: 0.5em;
+                    right: 0.5em;
+                }
+                width: 150px;
+            }
+
+            th:nth-child(2),
+            td:nth-child(2) {
+                padding: {
+                    left: 0.5em;
+                    right: 2em;
+                }
+                width: 50%;
+            }
+
+            th:nth-child(3),
+            td:nth-child(3) {
+                padding: {
+                    left: 2em;
+                    right: 0.5em;
+                }
+                width: 50%;
+            }
+        }
+    }
+
+    thead {
+        border: {
+            bottom: 1px solid black;
+        }
+
+        &:last-child {
+            border: {
+                bottom: none;
+            }
+        }
+    }
+
+    tbody {
+        border: {
+            bottom: 1px solid black;
+        }
+    }
+
+    tr {
+        th,
+        td {
+            font-weight: normal;
+            text-align: right;
+
+            p {
+                margin: {
+                    bottom: 0 !important;
+                }
+            }
+
+            &:nth-child(1) {
+                text-align: center;
             }
         }
     }

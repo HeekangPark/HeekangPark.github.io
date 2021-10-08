@@ -1,7 +1,8 @@
 ---
 title: "벡터와 행렬"
+order: 1
 date_created: "2021-09-13"
-date_modified: "2021-09-27"
+date_modified: "2021-10-09"
 ---
 
 # 벡터(vector)란?
@@ -10,9 +11,9 @@ date_modified: "2021-09-27"
 
 <li><div markdown="block">
 
-여러 개의 값(또는 수식)을 하나의 덩어리로 묶어놓은 것. $n$-tuple 벡터, 혹은 그냥 줄여서 $n$-벡터라 하면 다음처럼 $n$개의 값들을 묶어놓은 벡터를 의미한다.
+여러 개의 값(또는 수식)을 하나의 순서 있는 덩어리(ordered list)로 묶어놓은 것. $n$-tuple 벡터, 혹은 그냥 줄여서 $n$-벡터라 하면 다음처럼 $n$개의 값들을 묶어놓은 벡터를 의미한다.
 
-$$\boldsymbol{x} =
+$$\mathbf{x} =
 \begin{bmatrix}
 x_1 \\
 x_2 \\
@@ -22,7 +23,7 @@ x_n
 
 벡터는 일반적으로 위와 같이 세로 형태로 표현하지만, 표기의 편의를 위해 다음과 같이 가로 형태로 쓰기도 한다(가로로 작성되어 있어도 위와 같은 형태로 작성되어 있는 것이라 이해해야 한다).
 
-$$\boldsymbol{x} = (x_1,\,x_2,\,\cdots,\,x_n)$$
+$$\mathbf{x} = (x_1,\,x_2,\,\cdots,\,x_n)$$
 
 이때 $x\_i$ ($i = 1,\,2,\,\cdots,\,n$)을 벡터의 $i$번째 **요소(element)**, **성분(component)**, 혹은 **항목(entry)**이라 한다.
 
@@ -45,8 +46,8 @@ $$\boldsymbol{x} = (x_1,\,x_2,\,\cdots,\,x_n)$$
 특수한 벡터
 
 {:.no-guide-line}
-- $\boldsymbol{0}$ (영벡터, zero vector) : 모든 성분이 0인 벡터. $x\_i = 0$ ($i = 1,\,2,\,\cdots,\,n$)
-- $\boldsymbol{e}\_i$ ($i$번째 단위 벡터, $i$<sup>th</sup> unit vector, $i$<sup>th</sup> basis vector) : $x\_i = 1$, $x\_k = 0$ ($i \neq k$)
+- $\mathbf{0}$ (영벡터, zero vector) : 모든 성분이 0인 벡터. $x\_i = 0$ ($i = 1,\,2,\,\cdots,\,n$)
+- $\mathbf{e}\_i$ ($i$번째 단위 벡터, $i$<sup>th</sup> unit vector, $i$<sup>th</sup> basis vector) : $x\_i = 1$, $x\_k = 0$ ($i \neq k$)
 
 </div></li>
 
@@ -96,7 +97,7 @@ a_{m1} & a_{m2} & \cdots & a_{mn} \\
 
 $n$-벡터는 $n \times 1$ 행렬이라 이해할 수 있다. 이를 강조하기 위해 벡터를 **열 백터(column vector)**라 표현하기도 한다.
 
-$$\boldsymbol{x} =
+$$\mathbf{x} =
 \begin{bmatrix}
 x_1 \\
 x_2 \\
@@ -106,7 +107,7 @@ x_n
 
 비슷하게, $1 \times n$ 행렬은 **행 벡터(row vector)**라 부르고, 일반적인 벡터(열 벡터)가 전치(transpose)되어 있는 것이라 이해한다.
 
-$$\boldsymbol{x}^\intercal =
+$$\mathbf{x}^\intercal =
 \begin{bmatrix}
 x_1 & x_2 & \cdots & x_n
 \end{bmatrix}$$
@@ -115,25 +116,25 @@ x_1 & x_2 & \cdots & x_n
 
 <li><div markdown="block">
 
-$m \times n$ 행렬은 $m \times 1$ 열 벡터 $\boldsymbol{c}\_i$들이 $n$개 있는 것이라 이해할 수 있다($i = 1,\,2,\,\cdots,\,n$).
+$m \times n$ 행렬은 $m \times 1$ 열 벡터 $\mathbf{c}\_i$들이 $n$개 있는 것이라 이해할 수 있다($i = 1,\,2,\,\cdots,\,n$).
 
 $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 
 A = \begin{bmatrix}
 \vertbar & \vertbar & {} & \vertbar \\
-\boldsymbol{c}_{1} & \boldsymbol{c}_{2} & \cdots & \boldsymbol{c}_{n} \\
+\mathbf{c}_{1} & \mathbf{c}_{2} & \cdots & \mathbf{c}_{n} \\
 \vertbar & \vertbar & {} & \vertbar \\
 \end{bmatrix}$$
 
-또는 $1 \times n$ 행 벡터 $\boldsymbol{r}\_j^\intercal$들이 $m$개 있는 것이라 이해할 수 있다($j = 1,\,2,\,\cdots,\,m$).
+또는 $1 \times n$ 행 벡터 $\mathbf{r}\_j^\intercal$들이 $m$개 있는 것이라 이해할 수 있다($j = 1,\,2,\,\cdots,\,m$).
 
 $$\newcommand{\horzbar}{\rule[.5ex]{4ex}{0.5pt}}
 
 A = \begin{bmatrix}
-\horzbar & \boldsymbol{r}_{1}^\intercal & \horzbar \\
-\horzbar & \boldsymbol{r}_{2}^\intercal & \horzbar \\
+\horzbar & \mathbf{r}_{1}^\intercal & \horzbar \\
+\horzbar & \mathbf{r}_{2}^\intercal & \horzbar \\
 {} & \vdots & {} \\
-\horzbar & \boldsymbol{r}_{m}^\intercal & \horzbar \\
+\horzbar & \mathbf{r}_{m}^\intercal & \horzbar \\
 \end{bmatrix}$$
 
 </div></li>
@@ -157,7 +158,7 @@ A = \begin{bmatrix}
 
 예를 들어, 다음과 같은 3 × 6 행렬은
 
-$$A = \left[ \begin{array}
+$$A = \left[ \begin{array} {cccccc}
 3 & 0 & -1 & 5 & 9 & -2\\[0.5em]
 -5 & 2 & 4 & 0 & -3 & 1\\[0.5em]
 -8 & -6 & 3 & 1 & 7 & -4\\[0.5em]
@@ -165,7 +166,7 @@ $$A = \left[ \begin{array}
 
 다음과 같이 작은 행렬들이 모여 만들어진 2 × 3 행렬이라 이해할 수 있다.
 
-$$A = \left[ \begin{array} {rrr|rr|r}
+$$A = \left[ \begin{array} {ccc|cc|c}
 3 & 0 & -1 & 5 & 9 & -2\\[0.5em]
 -5 & 2 & 4 & 0 & -3 & 1\\[0.5em]
 \hline
@@ -387,14 +388,14 @@ $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 \newcommand{\horzbar}{\rule[.5ex]{4ex}{0.5pt}}
 
 A = \begin{bmatrix}
-\horzbar & \boldsymbol{a}_{1}^\intercal & \horzbar \\
-\horzbar & \boldsymbol{a}_{2}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{1}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{2}^\intercal & \horzbar \\
 {} & \vdots & {} \\
-\horzbar & \boldsymbol{a}_{m}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{m}^\intercal & \horzbar \\
 \end{bmatrix},\,
 B = \begin{bmatrix}
 \vertbar & \vertbar & {} & \vertbar \\
-\boldsymbol{b}_{1} & \boldsymbol{b}_{2} & \cdots & \boldsymbol{b}_{n} \\
+\mathbf{b}_{1} & \mathbf{b}_{2} & \cdots & \mathbf{b}_{n} \\
 \vertbar & \vertbar & {} & \vertbar \\
 \end{bmatrix}$$
 
@@ -405,12 +406,12 @@ $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 
 C = AB = A \begin{bmatrix}
 \vertbar & \vertbar & {} & \vertbar \\
-\boldsymbol{b}_{1} & \boldsymbol{b}_{2} & \cdots & \boldsymbol{b}_{n} \\
+\mathbf{b}_{1} & \mathbf{b}_{2} & \cdots & \mathbf{b}_{n} \\
 \vertbar & \vertbar & {} & \vertbar \\
 \end{bmatrix}
 = \begin{bmatrix}
 \vertbar & \vertbar & {} & \vertbar \\
-A \boldsymbol{b}_{1} & A \boldsymbol{b}_{2} & \cdots & A \boldsymbol{b}_{n} \\
+A \mathbf{b}_{1} & A \mathbf{b}_{2} & \cdots & A \mathbf{b}_{n} \\
 \vertbar & \vertbar & {} & \vertbar \\
 \end{bmatrix}$$
 
@@ -418,16 +419,16 @@ $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 \newcommand{\horzbar}{\rule[.5ex]{4ex}{0.5pt}}
 
 C = AB = \begin{bmatrix}
-\horzbar & \boldsymbol{a}_{1}^\intercal & \horzbar \\
-\horzbar & \boldsymbol{a}_{2}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{1}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{2}^\intercal & \horzbar \\
 {} & \vdots & {} \\
-\horzbar & \boldsymbol{a}_{m}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{m}^\intercal & \horzbar \\
 \end{bmatrix} B
 = \begin{bmatrix}
-\horzbar & \boldsymbol{a}_{1}^\intercal B & \horzbar \\
-\horzbar & \boldsymbol{a}_{2}^\intercal B & \horzbar \\
+\horzbar & \mathbf{a}_{1}^\intercal B & \horzbar \\
+\horzbar & \mathbf{a}_{2}^\intercal B & \horzbar \\
 {} & \vdots & {} \\
-\horzbar & \boldsymbol{a}_{m}^\intercal B & \horzbar \\
+\horzbar & \mathbf{a}_{m}^\intercal B & \horzbar \\
 \end{bmatrix}$$
 
 또한 다음과 같이 벡터의 내적으로 이해할 수도 있다.
@@ -437,21 +438,21 @@ $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 
 C = AB
 = \begin{bmatrix}
-\horzbar & \boldsymbol{a}_{1}^\intercal & \horzbar \\
-\horzbar & \boldsymbol{a}_{2}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{1}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{2}^\intercal & \horzbar \\
 {} & \vdots & {} \\
-\horzbar & \boldsymbol{a}_{m}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{m}^\intercal & \horzbar \\
 \end{bmatrix}
 \begin{bmatrix}
 \vertbar & \vertbar & {} & \vertbar \\
-\boldsymbol{b}_{1} & \boldsymbol{b}_{2} & \cdots & \boldsymbol{b}_{n} \\
+\mathbf{b}_{1} & \mathbf{b}_{2} & \cdots & \mathbf{b}_{n} \\
 \vertbar & \vertbar & {} & \vertbar \\
 \end{bmatrix}
 = \begin{bmatrix}
-\boldsymbol{a}_{1}^\intercal \boldsymbol{b}_{1} & \boldsymbol{a}_{1}^\intercal \boldsymbol{b}_{2} & \cdots & \boldsymbol{a}_{1}^\intercal \boldsymbol{b}_{n} \\
-\boldsymbol{a}_{2}^\intercal \boldsymbol{b}_{1} & \boldsymbol{a}_{2}^\intercal \boldsymbol{b}_{2} & \cdots & \boldsymbol{a}_{2}^\intercal \boldsymbol{b}_{n} \\
+\mathbf{a}_{1}^\intercal \mathbf{b}_{1} & \mathbf{a}_{1}^\intercal \mathbf{b}_{2} & \cdots & \mathbf{a}_{1}^\intercal \mathbf{b}_{n} \\
+\mathbf{a}_{2}^\intercal \mathbf{b}_{1} & \mathbf{a}_{2}^\intercal \mathbf{b}_{2} & \cdots & \mathbf{a}_{2}^\intercal \mathbf{b}_{n} \\
 \vdots & \vdots & \ddots & \vdots \\
-\boldsymbol{a}_{m}^\intercal \boldsymbol{b}_{1} & \boldsymbol{a}_{m}^\intercal \boldsymbol{b}_{2} & \cdots & \boldsymbol{a}_{m}^\intercal \boldsymbol{b}_{n} \\
+\mathbf{a}_{m}^\intercal \mathbf{b}_{1} & \mathbf{a}_{m}^\intercal \mathbf{b}_{2} & \cdots & \mathbf{a}_{m}^\intercal \mathbf{b}_{n} \\
 \end{bmatrix}$$
 
 </div></li>
@@ -476,7 +477,7 @@ C = AB
 
 <li><div markdown="block">
 
-행렬 $A \in \mathbb{R}^{m \times n}$, 양의 정수 $k \in \mathbb{N}$에 대해, $A^k$는 다음과 같이 $A$를 $k$번 곱한 것이다.
+행렬 $A \in \mathbb{R}^{m \times n}$, 양의 정수 $k \in \mathbf{N}$에 대해, $A^k$는 다음과 같이 $A$를 $k$번 곱한 것이다.
 
 $$A^k = \underbrace {A A \cdots A}_k$$
 
@@ -601,16 +602,16 @@ $$tr(A) = \sum_{i=1} ^n a_{ii} = a_{11} + a_{22} + \cdots + a_{nn}$$
 
 <li><div markdown="block">
 
-벡터 $\boldsymbol{x} \in \mathbb{R}^{n}$, $\boldsymbol{y} \in \mathbb{R}^{n}$가 주어졌을 때,
+벡터 $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$가 주어졌을 때,
 
-$$\boldsymbol{x} =
+$$\mathbf{x} =
 \begin{bmatrix}
 x_{1}\\
 x_{2}\\
 \vdots\\
 x_{n}\\
 \end{bmatrix},\,
-\boldsymbol{y} =
+\mathbf{y} =
 \begin{bmatrix}
 y_{1}\\
 y_{2}\\
@@ -618,9 +619,9 @@ y_{2}\\
 y_{n}\\
 \end{bmatrix}$$
 
-두 벡터의 내적 $\boldsymbol{x} \cdot \boldsymbol{y}$는 다음과 같이 계산된다.
+두 벡터의 **내적(inner product, dot product)** $\mathbf{x} \cdot \mathbf{y}$는 다음과 같이 계산된다.
 
-$$\boldsymbol{x} \cdot \boldsymbol{y} = \boldsymbol{x}^\intercal \boldsymbol{y} = \begin{bmatrix}
+$$\mathbf{x} \cdot \mathbf{y} = \mathbf{x}^\intercal \mathbf{y} = \begin{bmatrix}
 x_{1} & x_{2} & \cdots & x_{n}
 \end{bmatrix} \begin{bmatrix}
 y_{1}\\
@@ -634,7 +635,7 @@ y_{n}\\
 
 <li><div markdown="block">
 
-계산 결과 $\boldsymbol{x} \cdot \boldsymbol{y}$는 스칼라가 된다.
+계산 결과 $\mathbf{x} \cdot \mathbf{y}$는 스칼라가 된다.
 
 </div></li>
 
@@ -643,9 +644,9 @@ y_{n}\\
 벡터의 내적은 다음과 같은 성질이 있다.
 
 {:.no-guide-line}
-- $\boldsymbol{x} \in \mathbb{R}^{n}$, $\boldsymbol{y} \in \mathbb{R}^{n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha \boldsymbol{x})^\intercal \boldsymbol{y} = \alpha (\boldsymbol{x}^\intercal \boldsymbol{y})$
-- $\boldsymbol{x} \in \mathbb{R}^{n}$, $\boldsymbol{y} \in \mathbb{R}^{n}$, $\boldsymbol{z} \in \mathbb{R}^{n}$에 대해, $(\boldsymbol{x} + \boldsymbol{y})^\intercal \boldsymbol{z} = \boldsymbol{x}^\intercal \boldsymbol{z}  + \boldsymbol{y}^\intercal \boldsymbol{z}$
-- $\boldsymbol{x} \in \mathbb{R}^{n}$, $\boldsymbol{y} \in \mathbb{R}^{n}$에 대해, $\boldsymbol{x}^\intercal \boldsymbol{y} = \boldsymbol{y}^\intercal \boldsymbol{x}$
+- $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha \mathbf{x})^\intercal \mathbf{y} = \alpha (\mathbf{x}^\intercal \mathbf{y})$
+- $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\mathbf{z} \in \mathbb{R}^{n}$에 대해, $(\mathbf{x} + \mathbf{y})^\intercal \mathbf{z} = \mathbf{x}^\intercal \mathbf{z}  + \mathbf{y}^\intercal \mathbf{z}$
+- $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$에 대해, $\mathbf{x}^\intercal \mathbf{y} = \mathbf{y}^\intercal \mathbf{x}$
 
 </div></li>
 
@@ -657,9 +658,9 @@ y_{n}\\
 
 <li><div markdown="block">
 
-벡터 $\boldsymbol{x} \in \mathbb{R}^{n}$이 주어졌을 때,
+벡터 $\mathbf{x} \in \mathbb{R}^{n}$이 주어졌을 때,
 
-$$\boldsymbol{x} =
+$$\mathbf{x} =
 \begin{bmatrix}
 x_{1}\\
 x_{2}\\
@@ -667,15 +668,15 @@ x_{2}\\
 x_{n}\\
 \end{bmatrix}$$
 
-벡터의 Norm $\lVert \boldsymbol{x} \rVert \_{p}$는 다음과 같이 계산된다.
+벡터의 Norm $\lVert \mathbf{x} \rVert \_{p}$는 다음과 같이 계산된다.
 
-$$\lVert \boldsymbol{x} \rVert _{p} = \sqrt[p] {\sum_{i=1} ^n | x_i | ^p}$$
+$$\lVert \mathbf{x} \rVert _{p} = \sqrt[p] {\sum_{i=1} ^n | x_i | ^p}$$
 
 </div></li>
 
 <li><div markdown="block">
 
-Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계산 결과 $\lVert \boldsymbol{x} \rVert \_{p}$는 스칼라가 된다.
+Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계산 결과 $\lVert \mathbf{x} \rVert \_{p}$는 스칼라가 된다.
 
 </div></li>
 
@@ -684,9 +685,9 @@ Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계�
 자주 사용되는 Norm으로는 다음이 있다.
 
 {:.no-guide-line}
-- $l\_1$ Norm : $\lVert \boldsymbol{x} \rVert \_{1} = \displaystyle\sum_{i=1} ^n \| x\_i \| $
-- $l\_2$ Norm : $\lVert \boldsymbol{x} \rVert \_{2} = \displaystyle\sum_{i=1} ^n x\_i ^2 $
-- $l\_\infty$ Norm : $\lVert \boldsymbol{x} \rVert \_{\infty} = \max \| x\_i \|$
+- $l\_1$ Norm : $\lVert \mathbf{x} \rVert \_{1} = \displaystyle\sum_{i=1} ^n \| x\_i \| $
+- $l\_2$ Norm : $\lVert \mathbf{x} \rVert \_{2} = \displaystyle\sum_{i=1} ^n x\_i ^2 $
+- $l\_\infty$ Norm : $\lVert \mathbf{x} \rVert \_{\infty} = \max \| x\_i \|$
 
 </div></li>
 
@@ -695,7 +696,7 @@ Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계�
 $l\_2$ Norm은 다음과 같은 성질이 있다.
 
 {:.no-guide-line}
-- $\lVert \boldsymbol{x} \rVert \_{2} ^2 = \boldsymbol{x}^\intercal \boldsymbol{x}$
+- $\lVert \mathbf{x} \rVert \_{2} ^2 = \mathbf{x}^\intercal \mathbf{x}$
 
 </div></li>
 

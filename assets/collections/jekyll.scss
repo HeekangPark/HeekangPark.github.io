@@ -1,0 +1,50 @@
+---
+---
+
+table.mathjax-table {
+    border-collapse: collapse;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+
+    thead {
+        border: {
+            bottom: 1px solid black;
+        }
+
+        &:last-child {
+            border: {
+                bottom: none;
+            }
+        }
+    }
+
+    tbody {
+        border: {
+            bottom: 1px solid black;
+        }
+
+        &:hover td[rowspan],
+        tr:hover td {
+            background-color: #dddddd;
+        }
+    }
+
+    tr {
+        th,
+        td {
+            padding: 0.25em 0.5em;
+            font-weight: normal;
+            text-align: right;
+
+            p {
+                margin: {
+                    bottom: 0 !important;
+                }
+            }
+
+            &:nth-child(1) {
+                text-align: center;
+            }
+        }
+    }
+}

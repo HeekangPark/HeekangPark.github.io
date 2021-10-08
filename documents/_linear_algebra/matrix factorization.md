@@ -1,7 +1,8 @@
 ---
 title: "Matrix Factorization"
+order: 7
 date_created: "2021-09-27"
-date_modified: "2021-09-27"
+date_modified: "2021-10-09"
 ---
 
 # matrix factorization이란?

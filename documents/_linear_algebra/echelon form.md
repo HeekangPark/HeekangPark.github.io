@@ -1,7 +1,8 @@
 ---
 title: "Echelon Form"
+order: 3
 date_created: "2021-09-20"
-date_modified: "2021-09-27"
+date_modified: "2021-10-09"
 ---
 
 # elementary row operation

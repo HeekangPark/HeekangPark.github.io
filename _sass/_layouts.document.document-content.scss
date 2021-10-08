@@ -43,7 +43,7 @@ $line-height: 1.8;
             //content: counter(h1counter, decimal) ". ";
             counter-increment: h1counter;
         }
-        +h2 {
+        + h2 {
             margin: {
                 top: $h2-font-size;
             }
@@ -66,7 +66,7 @@ $line-height: 1.8;
             //content: counter(h1counter, decimal) "." counter(h2counter, decimal) ". ";
             counter-increment: h2counter;
         }
-        +h3 {
+        + h3 {
             margin: {
                 top: $h3-font-size;
             }
@@ -83,7 +83,7 @@ $line-height: 1.8;
             //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) ". ";
             counter-increment: h3counter;
         }
-        +h4 {
+        + h4 {
             margin: {
                 top: $h4-font-size;
             }
@@ -100,7 +100,7 @@ $line-height: 1.8;
             //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) ". ";
             counter-increment: h4counter;
         }
-        +h5 {
+        + h5 {
             margin: {
                 top: $h5-font-size;
             }
@@ -117,7 +117,7 @@ $line-height: 1.8;
             //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) ". ";
             counter-increment: h5counter;
         }
-        +h6 {
+        + h6 {
             margin: {
                 top: $h6-font-size;
             }
@@ -143,14 +143,21 @@ $line-height: 1.8;
         //line-height: $line-height;
     }
 
-    ul,
     ol {
+        counter-reset: listcounter 0;
         margin: {
             bottom: $bottom-margin;
         }
         display: table;
         word-break: break-all;
         position: relative;
+
+        > li {
+            &::before {
+                content: counter(listcounter) ".";
+                counter-increment: listcounter;
+            }
+        }
 
         li {
             list-style: none;
@@ -168,7 +175,8 @@ $line-height: 1.8;
                 z-index: 3;
             }
 
-            ol, ul {
+            ol,
+            ul {
                 margin: {
                     bottom: 0;
                     left: 1em;
@@ -186,49 +194,49 @@ $line-height: 1.8;
                     }
                 }
             }
-            
-        }
-    }
-
-    ol {
-        counter-reset: listcounter 0;
-
-        >li {
-            &::before {
-                content: counter(listcounter) ".";
-                counter-increment: listcounter;
-            }
         }
     }
 
     ul {
-        >li {
-            &::before {
-                content: "\2022";
-                font-weight: bold;
+        list-style-position: outside;
+        margin: {
+            left: 2em;
+            bottom: $bottom-margin;
+        }
+
+        > li {
+            z-index: 2;
+            position: relative;
+            margin: {
+                bottom: 0.5em;
             }
 
             &::after {
                 content: "";
                 position: absolute;
-                top: 1em;
-                bottom: -1em;
-                left: 0.18em; // Noto Sans KR
+                height: calc(100% + 0.15em);
+                top: 1.2em;
+                left: -1.05em; // Noto Sans KR
                 z-index: 1;
                 width: 1px;
                 background: repeating-linear-gradient(
                     to bottom,
-                    #dddddd,
-                    #dddddd 2px,
+                    #00000033,
+                    #00000033 2px,
                     transparent 2px,
                     transparent 4px
-                )
+                );
             }
 
-            &:last-of-type::after {
-                bottom: 0.75em;
+            &:last-of-type {
+                margin: {
+                    bottom: 0;
+                }
+                
+                &::after {
+                    content: none;
+                }
             }
-
         }
 
         &.no-guide-line {
@@ -271,10 +279,11 @@ $line-height: 1.8;
         }
 
         &.blockquote-info {
-            border-left-color: #7CDCFE;
+            border-left-color: #7cdcfe;
         }
 
-        ul, ol {
+        ul,
+        ol {
             &:last-child {
                 margin: {
                     bottom: 0;
@@ -329,7 +338,7 @@ $line-height: 1.8;
             grid-template-columns: auto 1fr;
             grid-gap: 0.5em;
             font-size: 0.9em;
-            transition: transform .3s;
+            transition: transform 0.3s;
             max-height: 30%;
             overflow-y: auto;
             font-weight: initial;
@@ -369,7 +378,7 @@ $line-height: 1.8;
         border: {
             top: 1px solid $gray-line-color;
         }
-        
+
         .reversefootnote {
             font-size: 0.8em;
         }
@@ -380,7 +389,7 @@ $line-height: 1.8;
             }
         }
 
-        ol>li {
+        ol > li {
             line-height: 2;
         }
     }

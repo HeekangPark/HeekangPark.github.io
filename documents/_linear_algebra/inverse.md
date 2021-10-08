@@ -1,7 +1,8 @@
 ---
 title: "역행렬 (Inverse)"
+order: 6
 date_created: "2021-09-26"
-date_modified: "2021-09-27"
+date_modified: "2021-10-09"
 ---
 
 # 역행렬(inverse)이란?
@@ -60,18 +61,18 @@ $$B = BI = B(AC) = (BA)C = IC = C$$
 
 정사각행렬 $A \in \mathbb{R}^{n \times n}$에 대해, 다음은 모두 동치이다.
 
-{:.no-guide-line}
+{:.equivalent}
 - $A$의 역행렬이 존재한다(invertible).
 - $CA = I$를 만족시키는 $C \in \mathbb{R}^{n \times n}$가 존재한다.
 - $AD = I$를 만족시키는 $D \in \mathbb{R}^{n \times n}$가 존재한다.
-- $A$는 $I\_n$과 row equivalent하다.
-- $A$는 $n$개의 pivot position을 가진다.
-- $A \boldsymbol{x} = \boldsymbol{0}$은 오직 trivial solution만을 가진다.
-- $A$의 열들은 linearly independent한 집합을 이룬다.
-- 선형변환 $\boldsymbol{x} \mapsto A\boldsymbol{x}$은 일대일(one-to-one)이다.
-- 모든 $\boldsymbol{b} \in \mathbb{R}^n$에 대해, $A \boldsymbol{x} = \boldsymbol{b}$는 consistent하다(= 최소 한 개의 해를 가진다).
-- $A$의 열들은 $\mathbb{R}^n$을 span한다.
-- 선형변환 $\boldsymbol{x} \mapsto A\boldsymbol{x}$은 $\mathbb{R}^n$을 $\mathbb{R}^n$로 매핑한다.
+- $A$는 $I\_n$과 [row equivalent](/linear_algebra/echelon-form)하다.
+- $A$는 $n$개의 [pivot position](/linear_algebra/echelon-form)을 가진다.
+- $A \mathbf{x} = \mathbf{0}$은 오직 [trivial solution](/linear_algebra/linear-system)만을 가진다.
+- $A$의 열들은 [linearly independent](/linear_algebra/linear-combination)한 집합을 이룬다.
+- $A$의 열들은 $\mathbb{R}^n$을 [span](/linear_algebra/linear-combination)한다.
+- 모든 $\mathbf{b} \in \mathbb{R}^n$에 대해, $A \mathbf{x} = \mathbf{b}$는 [consistent](/linear_algebra/linear-system)하다.
+- 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$은 $\mathbb{R}^n$을 $\mathbb{R}^n$로 [매핑(mapping)](/linear_algebra/linear-transformation)한다.
+- 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$은 [일대일(one-to-one)](/linear_algebra/linear-transformation)이다.
 - $A^\intercal$의 역행렬이 존재한다.
 
 </div></li>
@@ -107,7 +108,13 @@ $ad-bc = 0$이면 역행렬이 존재하지 않는다.
 
 <li><div markdown="block">
 
-$2 \times 2$ 행렬은 판별식이 0이 아닐 때만 역행렬이 존재하고, 역으로 역행렬이 존재하면 항상 판별식이 0이 아니다.
+$2 \times 2$ 행렬의 판별식이 0이 아니면, 역행렬이 존재한다(invertible). 역으로, $2 \times 2$ 행렬의 역행렬이 존재하면, 판별식이 0이 아니다.
+
+즉, $2 \times 2$ 행렬 $A$에 대해, 다음은 모두 동치이다.
+
+{:.equivalent}
+- $A$의 판별식이 0이 아니다.
+- $A$의 역행렬이 존재한다.
 
 </div></li>
 
@@ -120,6 +127,12 @@ $2 \times 2$ 행렬은 판별식이 0이 아닐 때만 역행렬이 존재하고
 <li><div markdown="block">
 
 정사각행렬 $A \in \mathbb{R}^{n \times n}$는 $I\_n$과 [row equivalent](/linear_algebra/echelon-form)한 경우에만 역행렬이 존재한다. 역으로, 역행렬이 존재하면 정사각행렬 $A \in \mathbb{R}^{n \times n}$은 $I\_n$과 row equivalent하다.
+
+즉, 정사각행렬 $A \in \mathbb{R}^{n \times n}$에 대해, 다음은 모두 동치이다.
+
+{:.equivalent}
+- $A$는 $I\_n$과 row equivalent하다.
+- $A$의 역행렬이 존재한다.
 
 </div></li>
 
