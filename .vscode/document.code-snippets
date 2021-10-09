@@ -88,6 +88,22 @@
 		],
 		"description": "Insert Inline Mathjax"
 	},
+	"ul": {
+		"scope": "markdown",
+		"prefix": "ul",
+		"body": [
+			"<ul class=\"no-guide-line\">",
+			"",
+			"<li><div markdown=\"block\">",
+			"",
+			"$0",
+			"",
+			"</div></li>",
+			"",
+			"</ul>"
+		],
+		"description": "Insert ul"
+	},
 	"li-div": {
 		"scope": "markdown",
 		"prefix": "li-div",

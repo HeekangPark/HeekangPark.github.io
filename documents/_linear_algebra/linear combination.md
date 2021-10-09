@@ -2,7 +2,7 @@
 title: "Linear Combination"
 order: 4
 date_created: "2021-09-20"
-date_modified: "2021-10-09"
+date_modified: "2021-10-10"
 ---
 
 # linear combination
@@ -42,12 +42,10 @@ span은 다음과 같은 성질이 있다.
 
   $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$는 항상 $\mathbb{R}^n$의 부분집합이 된다.
 
-{:.mt-1}
 - $c \mathbf{x}_i \in \text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$ ($i = 1,\,2,\,\cdots,\,p$)
 
   $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$는 항상 각 벡터의 모든 스칼라 배 벡터들을 원소로 가진다.
 
-{:.mt-1}
 - $\mathbf{0} \in \text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$
 
   영벡터 $\mathbf{0}$는 $\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p$의 종류에 상관없이 언제나 $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$의 원소가 된다.
@@ -137,6 +135,18 @@ $\mathbb{R}^n$ 안의 벡터 집합 $\\{ \mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,
 <li><div markdown="block">
 
 영벡터를 원소로 가지고 있는 벡터 집합은 항상 linearly dependent하다.
+
+</div></li>
+
+<li><div markdown="block">
+
+벡터 집합 $\\{\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_p\\}$가 주어졌다고 해 보자(단, $p \ge 2$, $\mathbf{v}\_1 \neq \mathbf{0}$). 이 벡터 집합이 linearly dependent하다면, 이전 벡터들 $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_{j-1}$의 linear combination으로 나타낼 수 있는 어떤 벡터 $\mathbf{v}\_j$가 존재한다(단, $j>1$). 역으로, 벡터 집합의 적당한 한 벡터 $\mathbf{v}\_j$를 이전 벡터들 $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_{j-1}$의 linear combination으로 나타낼 수 있다면(단, $j>1$), 이 벡터 집합은 linearly dependent하다.
+
+즉, 벡터 집합 $\\{\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_p\\}$에 대해, 다음은 모두 동치이다(단, $p \ge 2$, $\mathbf{v}\_1 \neq \mathbf{0}$).
+
+{:.equivalent}
+- 주어진 벡터 집합은 linearly independent하다.
+- 주어진 벡터 집합의 적당한 한 벡터 $\mathbf{v}\_j$를 이전 벡터들 $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_{j-1}$의 linear combination으로 나타낼 수 있다(단, $j>1$).
 
 </div></li>
 

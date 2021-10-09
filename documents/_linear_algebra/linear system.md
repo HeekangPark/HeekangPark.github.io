@@ -2,7 +2,7 @@
 title: "선형연립방정식 (Linear System)"
 order: 2
 date_created: "2021-09-16"
-date_modified: "2021-10-09"
+date_modified: "2021-10-10"
 ---
 
 # 선형연립방정식(linear system)이란?
@@ -285,7 +285,25 @@ x_3\\[0.5em]
 t\\[0.5em]
 \end{bmatrix}$$
 
-따라서 주어진 원래의 선형연립방정식은 해가 무수히 많다.
+따라서 주어진 원래의 선형연립방정식은 해가 무수히 많고, 그 일반형은 위와 같다.
+
+참고로 위 해는 다음과 같이 쓸 수도 있다.
+
+$$\begin{bmatrix}
+x_1\\[0.5em]
+x_2\\[0.5em]
+x_3\\[0.5em]
+\end{bmatrix} = \begin{bmatrix}
+-1\\[0.5em]
+-1\\[0.5em]
+1\\[0.5em]
+\end{bmatrix} t + \begin{bmatrix}
+2\\[0.5em]
+1\\[0.5em]
+0\\[0.5em]
+\end{bmatrix}$$
+
+이때 $t$는 아무런 제약 없이 움직이면서 수많은 해를 만들어낸다. 이처럼 선형연립방정식의 해에서 아무런 제약 없이 자유롭게 움직일 수 있는 변수를 **free variable**이라 한다. 해가 단 하나만 존재하는 경우는 free variable이 하나도 없는 경우라 이해할 수 있다.
 
 </div></li>
 
@@ -419,7 +437,7 @@ $$\mathbf{x} = A^{-1} \mathbf{b}$$
 
 선형연립방정식의 augmented matrix의 가장 오른쪽 열이 pivot column이 아니면 주어진 선형연립방정식은 consistent하다(= 해가 존재한다). 역으로, consistent한 선형연립방정식의 augmented matrix의 가장 오른쪽 열은 pivot column이 아니다.
 
-즉, 주어진 선형연립방정식에 대해,
+즉, 주어진 선형연립방정식에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
 - 선형연립방정식의 augmented matrix의 가장 오른쪽 열은 pivot column이 아니다.

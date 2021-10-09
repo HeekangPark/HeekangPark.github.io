@@ -2,7 +2,7 @@
 title: "선형변환 (Linear Transformation)"
 order: 5
 date_created: "2021-09-26"
-date_modified: "2021-10-09"
+date_modified: "2021-10-10"
 ---
 
 # 변환(transformation)이란?
@@ -113,7 +113,7 @@ $$A = [\,T(\mathbf{e}_1) \quad T(\mathbf{e}_2) \quad \cdots \quad T(\mathbf{e}_n
 
 ($T$ is one-to-one if and only if the columns of $A$ are linearly independent.)
 
-즉, 선형변환 $T\,:\,\mathbb{R}^n \rightarrow \mathbb{R}^m$와 그 standard matrix $A$에 대해,
+즉, 선형변환 $T\,:\,\mathbb{R}^n \rightarrow \mathbb{R}^m$와 그 standard matrix $A$에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
 - $A \mathbf{x} = \mathbf{0}$의 해는 오직 trivial solution밖에 없다.
@@ -128,7 +128,7 @@ $$A = [\,T(\mathbf{e}_1) \quad T(\mathbf{e}_2) \quad \cdots \quad T(\mathbf{e}_n
 
 ($T$ maps $\mathbb{R}^n$ onto $\mathbb{R}^m$ if and only if the columns of $A$ spans $\mathbb{R}^m$.)
 
-즉, 선형변환 $T\,:\,\mathbb{R}^n \rightarrow \mathbb{R}^m$와 그 standard matrix $A$에 대해,
+즉, 선형변환 $T\,:\,\mathbb{R}^n \rightarrow \mathbb{R}^m$와 그 standard matrix $A$에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
 - $A$의 각 열이 $\mathbb{R}^m$을 span한다.
@@ -158,7 +158,7 @@ $$S = T^{-1}$$
 
 선형변환 $T\,:\,\mathbb{R}^n \rightarrow \mathbb{R}^m$와 그 standard matrix $A$에 대해, 만약 $T$의 역변환이 존재한다면 $A$의 역행렬이 존재한다. 역으로, $A$의 역행렬이 존재하면 $T$의 역변환이 존재한다.
 
-즉, 선형변환 $T\,:\,\mathbb{R}^n \rightarrow \mathbb{R}^m$와 그 standard matrix $A$에 대해,
+즉, 선형변환 $T\,:\,\mathbb{R}^n \rightarrow \mathbb{R}^m$와 그 standard matrix $A$에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
 - $T$의 역변환이 존재한다.
