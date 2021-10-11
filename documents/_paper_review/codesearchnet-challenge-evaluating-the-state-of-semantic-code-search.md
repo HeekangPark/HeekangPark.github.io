@@ -1,11 +1,11 @@
 ---
 title: "CodeSearchNet : Evaluating the state of Semantic Code Search"
 date_created: "2021-09-02"
-date_modified: "2021-09-03"
+date_modified: "2021-10-12"
 tags: ["nlp", "nlp-for-source-code"]
 ---
 
-{:.no-guide-line}
+{:.info}
 - 논문 링크 : <https://arxiv.org/pdf/1909.09436.pdf>
 - 데이터셋 링크 : <https://github.com/github/CodeSearchNet>
 

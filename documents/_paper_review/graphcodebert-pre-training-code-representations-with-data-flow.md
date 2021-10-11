@@ -1,10 +1,10 @@
 ---
 title: "GraphCodeBERT : Pre-Training Code Representations with Data Flow"
 date_created: "2021-09-03"
-date_modified: "2021-09-03"
+date_modified: "2021-10-12"
 ---
 
-{:.no-guide-line}
+{:.info}
 - 논문 링크 : <https://arxiv.org/pdf/2009.08366.pdf>
 - 코드/데이터셋 링크 : <https://github.com/microsoft/CodeBERT/tree/master/GraphCodeBERT>
 

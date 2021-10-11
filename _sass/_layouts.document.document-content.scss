@@ -153,13 +153,6 @@ $line-height: 1.8;
         position: relative;
 
         > li {
-            &::before {
-                content: counter(listcounter) ".";
-                counter-increment: listcounter;
-            }
-        }
-
-        li {
             list-style: none;
             display: table-row;
             position: relative;
@@ -173,26 +166,8 @@ $line-height: 1.8;
                     right: 0.5em;
                 }
                 z-index: 3;
-            }
-
-            ol,
-            ul {
-                margin: {
-                    bottom: 0;
-                    left: 1em;
-                }
-            }
-
-            p {
-                margin: {
-                    bottom: 0;
-                }
-
-                &:last-child {
-                    margin: {
-                        bottom: 1em;
-                    }
-                }
+                content: counter(listcounter) ".";
+                counter-increment: listcounter;
             }
         }
     }
@@ -235,6 +210,12 @@ $line-height: 1.8;
                 
                 &::after {
                     content: none;
+                }
+            }
+
+            p {
+                margin: {
+                    bottom: 0.5em;
                 }
             }
         }
