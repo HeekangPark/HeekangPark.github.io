@@ -101,7 +101,7 @@ $$H = \text{Span}\{\mathbf{v}_1,\,\mathbf{v}_2,\,\cdots,\,\mathbf{v}_p\} \subset
 
 </ul>
 
-# null space, column space
+# null space, column space, row space
 
 ## null space
 
@@ -109,7 +109,7 @@ $$H = \text{Span}\{\mathbf{v}_1,\,\mathbf{v}_2,\,\cdots,\,\mathbf{v}_p\} \subset
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$에 대해, $A$의 **null space** $\text{Nul}\,A$는 [homogeneous equation](/linear_algebra/linear-system) $A\mathbf{x} = \mathbf{0}$의 해 집합을 의미한다. 즉,
+$m \times n$ 행렬 $A$에 대해, [homogeneous equation](/linear_algebra/linear-system) $A\mathbf{x} = \mathbf{0}$의 해 집합을 $A$의 **null space**라 하고, 기호로 $\text{Nul}\,A$라 쓴다. 즉,
 
 $$\text{Nul}\,A = \{\mathbf{x} \,|\, \mathbf{x} \in \mathbb{R}^{n},\,A\mathbf{x} = \mathbf{0}\}$$
 
@@ -245,7 +245,7 @@ $$\text{Nul}\,A = \text{Span} \left \{ \begin{bmatrix}
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$에 대해, $A$의 **column space** $\text{Col}\,A$는 $A$의 열(column)들로 만들 수 있는 모든 linear combination들의 집합을 의미한다. 즉, $A = [\,\mathbf{a}_1\quad\mathbf{a}_2\quad\cdots\quad\mathbf{a}_n\,]$이라 하면,
+$m \times n$ 행렬 $A$에 대해, $A$의 열(column)들로 만들 수 있는 모든 linear combination들의 집합을 $A$의 **column space**라 하고, 기호로 $\text{Col}\,A$라 쓴다. 즉, $A = [\,\mathbf{a}_1\quad\mathbf{a}_2\quad\cdots\quad\mathbf{a}_n\,]$이라 하면,
 
 $$\text{Col}\,A = \text{Span}\{ \mathbf{a}_1,\,\mathbf{a}_2,\,\cdots,\,\mathbf{a}_n \}$$
 
@@ -317,6 +317,48 @@ $$\text{Col}\,A = \text{Span} \left \{ \begin{bmatrix}
 -1\\[0.5em]
 -4\\[0.5em]
 \end{bmatrix} \right \}$$
+
+</div></li>
+
+</ul>
+
+## row space
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+$m \times n$ 행렬 $A$에 대해, $A$의 행(row)들로 만들 수 있는 모든 linear combination들의 집합을 $A$의 **row space**라 하고, 기호로 $\text{Row}\,A$라 쓴다. 즉, $A = \begin{bmatrix}\mathbf{r}_1\\\\\mathbf{r}_2\\\\\vdots\\\\\mathbf{r}_n\end{bmatrix}$이라 하면,
+
+$$\text{Row}\,A = \text{Span}\{ \mathbf{r}_1,\,\mathbf{r}_2,\,\cdots,\,\mathbf{r}_n \}$$
+
+이다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$A$의 행들은 $A^\intercal$의 열이므로, 다음이 성립한다.
+
+$$\text{Row}\,A = \text{Col}\,A^\intercal$$
+
+</div></li>
+
+<li><div markdown="block">
+
+$m \times n$ 행렬 $A$의 row space $\text{Row}\,A$는 $\mathbb{R}^n$의 subspace이다.
+
+</div></li>
+
+<li><div markdown="block">
+
+행렬 $A$, $B$가 [행 동등하다면(row equivalent)](/linear_algebra/echelon-form) $\text{Row}\,A = \text{Row}\,B$이다.
+
+</div></li>
+
+<li><div markdown="block">
+
+행렬 $A$가 echelon form이면, $A$의 [nonzero 행](/linear_algebra/echelon-form)들의 집합은 $\text{Row}\,A$의 basis가 된다.
 
 </div></li>
 
@@ -473,3 +515,45 @@ c_n\\[0.5em]
 
 </ul>
 
+# rank
+
+<ul class="no-guide-line">
+
+<li><div markdown="block">
+
+행렬 $A$의 column space $\text{Col}\,A$의 차원을 **rank**라 하고, 기호로 $\text{Rank}(A)$라 쓴다.
+
+$$\text{Rank}(A) = \text{dim}(\text{Col}\,A)$$
+
+</div></li>
+
+<li><div markdown="block">
+
+$\text{Nul}\,A$의 차원을 $A$의 **nullity**라 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$m \times n$ 행렬 $A$에 대해, 다음 값들은 모두 같다.
+
+{:.text-align-center .overflow-x}
+$\text{Rank}(A) = \text{dim}(\text{Col}\,A) = \text{dim}(\text{Row}\,A) = \text{Rank}(A^\intercal) = A$의 pivot position의 개수
+
+</div></li>
+
+<li><div markdown="block">
+
+$m \times n$ 행렬 $A$에 대해, 다음이 성립한다.
+
+$$\text{Rank}(A) + \text{dim}(\text{Nul}\,A) = n$$
+
+다시말해,
+
+$$\text{dim}(\text{Col}\,A) + \text{dim}(\text{Nul}\,A) = n$$
+
+이다.
+
+</div></li>
+
+</ul>
