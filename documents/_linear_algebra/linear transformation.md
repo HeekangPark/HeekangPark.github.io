@@ -2,12 +2,12 @@
 title: "선형변환 (Linear Transformation)"
 order: 5
 date_created: "2021-09-26"
-date_modified: "2021-10-10"
+date_modified: "2021-10-14"
 ---
 
 # 변환(transformation)이란?
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -67,7 +67,7 @@ $$\mathbf{x} \mapsto T(\mathbf{x}) $$
 
 # 선형변환(linear transformation)이란?
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -85,7 +85,6 @@ $$T(c\mathbf{u}) = cT(\mathbf{u})$$
 
 선형변환 $T$는 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - $T(\mathbf{0}) = \mathbf{0}$
 - $T(c\_1 \mathbf{v}\_1 + c\_2 \mathbf{v}\_2 + \cdots + c\_p \mathbf{v}\_p) = c\_1 T(\mathbf{v}\_1 ) + c\_2 T(\mathbf{v}\_2 ) + \cdots + c\_p T(\mathbf{v}\_p )$
 
@@ -172,7 +171,6 @@ $$S = T^{-1}$$
 
 2차원 상에서의 유명한 선형변환들의 standard matrix
 
-{:.no-guide-line}
 - 대칭(reflection)
   - $x$축 대칭 : $\displaystyle \begin{bmatrix}1 & 0\\\\0 & -1\end{bmatrix}$
   - $y$축 대칭 : $\displaystyle \begin{bmatrix}-1 & 0\\\\0 & 1\end{bmatrix}$

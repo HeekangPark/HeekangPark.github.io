@@ -2,18 +2,17 @@
 title: "Echelon Form"
 order: 3
 date_created: "2021-09-20"
-date_modified: "2021-10-09"
+date_modified: "2021-10-14"
 ---
 
 # elementary row operation
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
 행렬에 대한 다음 세 가지 조작을 **elementary row operation**이라 한다.
 
-{:.no-guide-line}
 - **replacement** : 특정 행을 자기 자신과 다른 행의 배수 배를 합한 것으로 교체한다.
 - **interchange** : 두 행의 위치를 바꾼다.
 - **scaling** : 특정 행에 0이 아닌 상수를 곱한다.
@@ -44,13 +43,12 @@ $$A \sim B$$
 
 # echelon form
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
 어떤 행렬이 다음 조건을 만족하면, 해당 행렬은 **echelon form** 또는 **row echelon form(REF)**에 있다고 한다.
 
-{:.no-guide-line}
 - 모든 nonzero 행은 zero 행 위에 있다.
 - 각 nonzero 행의 leading entry는 윗 (nonzero) 행의 leading entry보다 오른쪽에 있다.
 - 각 열에서 leading entry 아래의 항목들은 모두 0이다.
@@ -65,7 +63,6 @@ echelon form에 있는 행렬을 **echelon matrix** 라 한다.
 
 echelon form에서 다음 조건들이 추가로 만족되면 해당 행렬은 **reduced echelon form** 또는 **reduced row echelon form(RREF)**에 있다고 한다.
 
-{:.no-guide-line}
 - 모든 leading entry는 1이다.
 - 각 열에서 leading entry 1를 제외하고 나머지 항목은 모두 0이다.
 
@@ -135,7 +132,7 @@ $$\begin{bmatrix}
 
 # row reduction algorithm
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 

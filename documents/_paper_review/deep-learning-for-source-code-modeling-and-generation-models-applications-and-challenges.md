@@ -2,13 +2,14 @@
 title: "Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges"
 tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code_generation", "review_paper"]
 date_created: "2021-02-08"
-date_modified: "2021-03-15"
+date_modified: "2021-10-14"
 ---
 
 논문 [Triet H. M. Le, Hao Chen, Muhammad Ali Babar, 2020, "Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges"](https://arxiv.org/abs/2002.05442) 정리
 
 # 서론 (Introduction)
 
+{:.guide-line}
 - 컴퓨터 비전 분야와 자연어 처리 분야에서 기계 학습(ML, Machine Learning), 특히 딥러닝(DL, Deep Learning)은 아주 강력한 성능을 보이고 있음
 - 소스 코드는 프로그래머들에 의해 작성된 특별한 타입의 구조화된 자연어(structured natural language)이므로, DL 모델로 분석 가능
 - 만약 컴퓨터가 복잡한 구조의 소프트웨어를 이해하고 만들 수 있다면 소프트웨어 공학(SE, Software Engineering) 분야에서 아주 다양하게 응용이 가능함
@@ -21,6 +22,7 @@ date_modified: "2021-03-15"
 
 ## Domain-specific language guided models
 
+{:.guide-line}
 - DSL(Domain-specific Language)
 - Program Induction에서 DSL은 후보 프로그램들의 공간(프로그램 템플릿)을 정의한다.
   - 입력-출력 예제들은 사양(Specification)이라 불린다.
@@ -40,6 +42,7 @@ date_modified: "2021-03-15"
   
 ## Probabilistic grammars
 
+{:.guide-line}
 - 프로그래밍 언어의 구조는 일반적으로 CFG(Context-Free Grammar)로 정의됨. CFG로 작성된 형식 언어(formal language)는 AST(Abstract Syntax Tree)로 변환할 수 있다.
 - PCFG(Probabilistic Context Free Grammar)
   - CFG의 확장형
@@ -58,6 +61,7 @@ date_modified: "2021-03-15"
 
 ## $n$-gram language models
 
+{:.guide-line}
 - 통계적 언어 모델(statistic language model)
   - 가정 : 각 단어/토큰들은 이전 $n-1$개의 단어/토큰들에 대해 조건부 종속(conditionally dependent)이라 가정 : $P(\boldsymbol{w}) = \Pi \_t P(w\_t \| w\_{t-(n-1),\,...,\,(t-1)})$
     - $P(w\_t \| w\_{t-(n-1),\,...,\,(t-1)})$는 학습 셋(training set)에서 $n$-gram의 등장 빈도를 세는 것으로 계산 가능
@@ -82,6 +86,7 @@ date_modified: "2021-03-15"
   
 ## Simple neural program models
 
+{:.guide-line}
 - Distributed Word Representation
   - 하나의 은닉층(hidden layer)을 가진 신경망 임베딩 모델(Neural Network Embedding Model)을 이용, one-hot encoding으로 표현되어 있는 단어들을 단어장(vocabulary) 크기보다 훨씬 작은 중간 워드 임베딩 벡터(intermediate word-embedding vector)로 변환한다.
   - 은닉층에서의 계산 비용이 너무 비싸다는 문제가 있음
@@ -101,6 +106,7 @@ date_modified: "2021-03-15"
 
 ## 전통적인 접근법에 비해 DL 모델이 가지는 장점 (Advantages of deep learning models over traditional approaches)
 
+{:.guide-line}
 - DL 모델의 인코더-디코더 구조(encoder-decoder framework)는 입력 시퀸스(input sequence)의 의존성(dependency)과 순차적인 속성(sequential property)을 잘 잡아냄
 - DL 모델의 장점
   - 자동 특성 생성(automatic feature generation)을 잘한다.
@@ -124,14 +130,27 @@ date_modified: "2021-03-15"
 
 # 인코더-디코더 구조를 이용한 Deep Sequence 모델링 (Deep Sequence Modeling with Encoder-Decoder Framework)
 
-- 인코더-디코더 구조(encoder-decoder framework)
+<ul class="guide-line">
+
+<li markdown="block">
+
+인코더-디코더 구조(encoder-decoder framework)
 
 {% include caption-img.html src="deep-learning-for-source-code-modeling-and-generation-models-applications-and-challenges_main-steps-of-encoder-decoder-framework.png" description="인코더-디코더 구조(encoder-decoder framework)의 핵심 단계들" %}
 
-- 순차적인 모델(sequential model)(ex. 각 단어별로(word-by-word) 모델링), 구조적인 모델(structural model)(ex. 문장(sentence) 또는 코드 조각(snippet)의 문법 구조(syntactic structure)를 탐색(exploiting)) 둘 다 순차 모델링(sequence modeling)에 사용될 수 있다.
+</li>
+
+<li markdown="block">
+
+순차적인 모델(sequential model)(ex. 각 단어별로(word-by-word) 모델링), 구조적인 모델(structural model)(ex. 문장(sentence) 또는 코드 조각(snippet)의 문법 구조(syntactic structure)를 탐색(exploiting)) 둘 다 순차 모델링(sequence modeling)에 사용될 수 있다.
+
+</li>
+
+</ul>
 
 ## 순차 모델링을 위한 DL 모델 (Deep learning models for sequence modeling)
 
+{:.guide-line}
 - 순차 모델링(sequence modeling)을 위한 DL 모델은 크게 두 종류로 분류할 수 있다.
   - 순환신경망(RNN, recurrent neural network)
   - 비 순환신경망(non-recurrent neural network)
@@ -143,6 +162,7 @@ date_modified: "2021-03-15"
 
 ### 순환신경망 (Recurrent Neural Network)
 
+{:.guide-line}
 - RNN(recurrent neural network)의 파라미터 블럭(block of parameters)은 한 시퀸스(sequence)의 각 부분에 대해 여러 번 공유되어 적용되면서 심층 계산 그래프(deep computational graph)를 형성
   - 이러한 구조는 RNN이 (기존의 MLP는 하지 못했던) 다양한 길이의 입출력 데이터들로부터 학습할 수 있게 해 줌
 - 순수한 RNN의 문제점
@@ -162,6 +182,7 @@ date_modified: "2021-03-15"
 
 ### 비 순환신경망 (Non-recurrent neural networks)
 
+{:.guide-line}
 - temporal convolution, 시간에 대한 1차원(one-dimensional) convolution을 이용하면 계층적인 구조(hierarchical architecture)에서 장거리 관계(long-term relation)를 잡아낼 수 있다.
   - 감정 분석(sentiment analysis), 문장 분류(sentence classification), 기계번역(machine translation), 메타 학습(meta learning) 등에 사용됨
 - 초기 CNN 모델들은 LSTM의 성능을 따라가는데 실패했지만, 오늘날의 CNN 모델들은 RNN 모델들과 비슷한 성능을 내고, 심지어 계산하기 더 빠름
@@ -209,6 +230,7 @@ date_modified: "2021-03-15"
 
 ### 어텐션 메커니즘 (Attention mechanism)
 
+{:.guide-line}
 - 기존 인코더-디코더 모델(encoder-decoder framework)의 문제점 : 디코더(decoder)는 오직 하나의 컨텍스트 벡터(context vector)에만 접근할 수 있다.
 - 어텐션 매커니즘 (attention mechanism)
   - 텍스트를 읽을 때 사람은 시퀸스의 여러 부분에 주의를 기울이며 텍스트를 이해함 → 이를 흉내낸 매커니즘
@@ -221,15 +243,15 @@ date_modified: "2021-03-15"
   - 생성 방법
     1. 컨텐츠 기반 점수 함수(content-based scoring function)을 이용, 현재 단계(step)의 어텐션 에너지(attention energy)를 계산 : $\boldsymbol{u}\_t = \textrm{score}(F,\,\boldsymbol{h}\_{t-1})$
     2. input source vector $c\_t$ 계산 : $c\_t = F \textrm{softmax}(\boldsymbol{u}\_t)$
-      - $F$ : 인코딩된 (전체) 시퀸스(encoded sequence)
-      - $\boldsymbol{h}\_{t-1}$ : 이전 단계(step)의 은닉 상태값(hidden state)
-      - $\boldsymbol{u}\_t$ : 어텐션 에너지(attention energy)
-      - $\textrm{score}()$ : 컨텐츠 기반 점수 함수(content-based scoring function)
-        - ex. dot-product : $\textrm{score}(F,\,\boldsymbol{h}\_{t-1}) = F^{\intercal}\boldsymbol{h}\_{t-1}$
-          - 가장 간단한 점수 함수(scoring function)
-        - ex. MLP(Multi-Layer Perceptron) : $\textrm{score}(F,\,\boldsymbol{h}\_{t-1}) = \boldsymbol{v}^{\intercal} \tanh(WF + V\boldsymbol{h}\_{t-1})$
-          - 어텐션 논문에서 사용한 점수 함수(scoring function)
-          - $V$ : expected input embedding
+         - $F$ : 인코딩된 (전체) 시퀸스(encoded sequence)
+         - $\boldsymbol{h}\_{t-1}$ : 이전 단계(step)의 은닉 상태값(hidden state)
+         - $\boldsymbol{u}\_t$ : 어텐션 에너지(attention energy)
+         - $\textrm{score}()$ : 컨텐츠 기반 점수 함수(content-based scoring function)
+           - ex. dot-product : $\textrm{score}(F,\,\boldsymbol{h}\_{t-1}) = F^{\intercal}\boldsymbol{h}\_{t-1}$
+             - 가장 간단한 점수 함수(scoring function)
+           - ex. MLP(Multi-Layer Perceptron) : $\textrm{score}(F,\,\boldsymbol{h}\_{t-1}) = \boldsymbol{v}^{\intercal} \tanh(WF + V\boldsymbol{h}\_{t-1})$
+             - 어텐션 논문에서 사용한 점수 함수(scoring function)
+             - $V$ : expected input embedding
 - 컨텐츠 기반 어텐션 에너지(content-based attention energy)로는 다른 위치(location)에서 비슷한 내용(content)를 가지고 있는 요소(element)들을 구별하는 것이 힘들다.
   - 컨텐츠 기반 어텐션 에너지는 각 요소(element)들에 대해 각각 점수를 계산하기 때문
   - 해결법 : 위치에 민감한 어텐션(location sensitive attention)을 사용
@@ -241,6 +263,7 @@ date_modified: "2021-03-15"
 
 ### Memory-augmented neural networks
 
+{:.guide-line}
 - 외부 메모리(external memory) 기법은 어텐션(attention)과 자주 함께 쓰임
   - 외부 메모리(external memory)는 내부 상태(internal state)로 사용됨
   - 어텐션 매커니즘(attention mechanism)은 외부 메모리(external memory)를 업데이트함 → 선택적 읽기 및 업데이트(selective reading and updating)
@@ -286,6 +309,7 @@ date_modified: "2021-03-15"
 
 ### beam 탐색 (beam search)
 
+{:.guide-line}
 - 문제점 : 높은 확률(probability)로 최고로 디코딩된 결과(best-decoded result)를 탐색하는 것은 계산적으로 어려움(computationally intractable)
   - 한 가지 해법 : 디코딩(decoding) 과정에서 매 시간 간격(time step)마다 가장 높은 출력 확률(output probability)을 가진 단어(word)/토큰(token)을 선택
     - 문제점 : 차선의 결과(sub-optimum result)밖에 못 찾을 확률이 큼
@@ -301,6 +325,7 @@ date_modified: "2021-03-15"
 
 ## 딥러닝 모델을 이용한 입력값 임베딩 (Input embedding of deep learning model)
 
+{:.guide-line}
 - 코드 모델링(code modeling)에서 입력값 표현(input representation)은 아주 중요
   - 코드에서, 함수(function), 클래스(class), 프로젝트(project)별로 키워드 표현(keyword representation)은 엄청 다를 수 있기 때문
 - 전통적인 표현법(ex. 원-핫 인코딩(one-hot encoding), $n$-gram 등)은 듬성듬성한(sparse) 임베딩 벡터(embedding vector)를 생성
@@ -325,6 +350,7 @@ date_modified: "2021-03-15"
 
 ## 딥러닝 모델의 안정적인 학습 (Stable training of deep learning model)
 
+{:.guide-line}
 - 시퀸스 모델링(sequence modeling)을 위한 순환 모델(recurrent model)(ex. RNN)은 학습시키기 어렵고 과적합(overfitting)에 취약함
 - RNN은 "시간에 대한 역전파(backpropagation through time)"으로 학습됨
 - 손실 함수(loss function) 최적화 기법
@@ -375,6 +401,7 @@ date_modified: "2021-03-15"
 
 ## Deep encoder 모델
 
+{:.guide-line}
 - 입력으로 코드 조각(code snippet), 주석(comment), 설명(description) 등의 시퀸스(sequence)를 받음
 - (이후 후속 처리를 위해) 딥러닝 모듈(deep module)을 이용해 의미(semantic), 문맥(context) 등을 파악
 - RNN과 그 파생형들이 많이 사용됨
@@ -428,12 +455,14 @@ date_modified: "2021-03-15"
 
 ## Deep decoder 모델
 
+{:.guide-line}
 - 인코더 모델(encoder model)이 생성한 임베딩 값(embedding feature)들을 입력값으로 받아, 디코더 모델(decoder model)은 목표 도메인에 맞는 출력값을 생성한다.
 
 (추후 작성 예정)
 
 ## Deep controller 모델
 
+{:.guide-line}
 - DSL 없이도 입력-출력 예제(input-output example)로부터 바로 실행할 수 있도록 다음 명령어(instruction/operation)을 학습할 수 있는 심층신경망 모델
 - neural abstract machine이라고도 불림
   
@@ -443,6 +472,7 @@ date_modified: "2021-03-15"
 
 Big Code 응용분야(application)
 
+{:.guide-line}
 - 소스 코드 분석(sourcee code analysis) : 소스 코드/프로그램을 입력
   - 코드 패턴(code pattern)을 출력
     - 숙어 수집(idiom mining) : 프로젝트에서 자주 등장하는 코드 조각을 추출

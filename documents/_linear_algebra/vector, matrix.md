@@ -2,12 +2,12 @@
 title: "벡터와 행렬"
 order: 1
 date_created: "2021-09-13"
-date_modified: "2021-10-09"
+date_modified: "2021-10-14"
 ---
 
 # 벡터(vector)란?
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -45,7 +45,6 @@ $$\mathbf{x} = (x_1,\,x_2,\,\cdots,\,x_n)$$
 
 특수한 벡터
 
-{:.no-guide-line}
 - $\mathbf{0}$ (영벡터, zero vector) : 모든 성분이 0인 벡터. $x\_i = 0$ ($i = 1,\,2,\,\cdots,\,n$)
 - $\mathbf{e}\_i$ ($i$번째 단위 벡터, $i$<sup>th</sup> unit vector, $i$<sup>th</sup> basis vector) : $x\_i = 1$, $x\_k = 0$ ($i \neq k$)
 
@@ -55,7 +54,7 @@ $$\mathbf{x} = (x_1,\,x_2,\,\cdots,\,x_n)$$
 
 # 행렬(matrix)이란?
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -143,7 +142,6 @@ A = \begin{bmatrix}
 
 특수한 행렬
 
-{:.no-guide-line}
 - $O_{m \times n}$ (영행렬, zero matrix) : 모든 성분이 0인 행렬. $a\_{ij} = 0$ ($i = 1,\,2,\,\cdots,\,m$, $j = 1,\,2,\,\cdots,\,n$)
 - $D_{n \times n}$ (대각 행렬, diagonal matrix) : 주대각선 성분을 제외한 나머지 성분은 모두 0인 정사각행렬. $a\_{ik} = 0$ ($k \neq i$)
 - $E_{n \times n}$, $I_{n \times n}$ (단위 행렬, unit matrix) : 주대각선 성분만 1이고 나머지 성분은 모두 0인 정사각행렬. 즉 단위행렬은 대각행렬의 일종이다. $a\_{ii} = 1$, $a\_{ik} = 0$ ($k \neq i$).
@@ -212,7 +210,7 @@ A_{21} & {}={} & \begin{bmatrix}
 
 ## 행렬의 합과 차
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -260,7 +258,6 @@ a_{m1} \pm b_{m1} & a_{m2} \pm b_{m2} & \cdots & a_{mn} \pm b_{mn} \\
 
 행렬의 합과 차는 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - 교환법칙은 성립한다 : $A \pm B = B \pm A$
 - 결합법칙이 성립한다 : $(A \pm B) \pm C = A \pm (B \pm C)$
 - 영행렬은 합 연산의 항등원이다 : $A + O = O + A = A$
@@ -273,7 +270,7 @@ a_{m1} \pm b_{m1} & a_{m2} \pm b_{m2} & \cdots & a_{mn} \pm b_{mn} \\
 
 ### 행렬과 스칼라의 곱
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -313,7 +310,6 @@ $$\alpha A = \begin{bmatrix}
 
 행렬과 스칼라의 곱은 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - $\alpha (A \pm B) = \alpha A \pm \alpha B$
 - $(\alpha + \beta) A = \alpha A + \beta A$
 - $(\alpha \beta)A = \alpha (\beta A)$
@@ -324,7 +320,7 @@ $$\alpha A = \begin{bmatrix}
 
 ### 행렬과 행렬의 곱 
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -461,7 +457,6 @@ C = AB
 
 행렬과 행렬의 곱은 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - 결합법칙이 성립한다 : $(AB)C = A(BC)$
 - 분배법칙이 성립한다 : $A(B + C) = AB + AC$, $(A + B)C = AC + BC$
 - 교환법칙은 성립하지 **않는다** : $AB \neq BA$
@@ -473,7 +468,7 @@ C = AB
 
 ### 행렬의 거듭제곱
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -493,7 +488,7 @@ $$A^k = \underbrace {A A \cdots A}_k$$
 
 ## 행렬의 전치(transpose)
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -536,7 +531,6 @@ $$(A^\intercal)_{ij} = A_{ji}$$
 
 행렬의 전치는 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - $(A^\intercal)^\intercal = A$
 - $A \in \mathbb{R}^{m \times n}$, $B \in \mathbb{R}^{m \times n}$에 대해, $(A + B)^\intercal = A^\intercal + B^\intercal$
 - $A \in \mathbb{R}^{m \times p}$, $B \in \mathbb{R}^{p \times n}$에 대해, $(AB)^\intercal = B^\intercal A^\intercal$
@@ -549,7 +543,7 @@ $$(A^\intercal)_{ij} = A_{ji}$$
 
 ## 행렬의 대각합(trace)
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -585,7 +579,6 @@ $$tr(A) = \sum_{i=1} ^n a_{ii} = a_{11} + a_{22} + \cdots + a_{nn}$$
 
 행렬의 대각합은 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - $A \in \mathbb{R}^{n \times n}$에 대해, $tr(A) = tr(A^\intercal)$
 - $A \in \mathbb{R}^{n \times n}$, $B \in \mathbb{R}^{n \times n}$에 대해, $tr(A + B) = tr(A) + tr(B)$
 - $A \in \mathbb{R}^{n \times n}$, 실수 $\alpha \in \mathbb{R}$에 대해, $tr(\alpha A) = \alpha tr(A)$
@@ -598,7 +591,7 @@ $$tr(A) = \sum_{i=1} ^n a_{ii} = a_{11} + a_{22} + \cdots + a_{nn}$$
 
 ## 벡터의 내적(inner product, dot product)
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -643,7 +636,6 @@ y_{n}\\
 
 벡터의 내적은 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha \mathbf{x})^\intercal \mathbf{y} = \alpha (\mathbf{x}^\intercal \mathbf{y})$
 - $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\mathbf{z} \in \mathbb{R}^{n}$에 대해, $(\mathbf{x} + \mathbf{y})^\intercal \mathbf{z} = \mathbf{x}^\intercal \mathbf{z}  + \mathbf{y}^\intercal \mathbf{z}$
 - $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$에 대해, $\mathbf{x}^\intercal \mathbf{y} = \mathbf{y}^\intercal \mathbf{x}$
@@ -654,7 +646,7 @@ y_{n}\\
 
 ## 벡터의 Norm
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -684,7 +676,6 @@ Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계�
 
 자주 사용되는 Norm으로는 다음이 있다.
 
-{:.no-guide-line}
 - $l\_1$ Norm : $\lVert \mathbf{x} \rVert \_{1} = \displaystyle\sum_{i=1} ^n \| x\_i \| $
 - $l\_2$ Norm : $\lVert \mathbf{x} \rVert \_{2} = \displaystyle\sum_{i=1} ^n x\_i ^2 $
 - $l\_\infty$ Norm : $\lVert \mathbf{x} \rVert \_{\infty} = \max \| x\_i \|$
@@ -695,7 +686,6 @@ Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계�
 
 $l\_2$ Norm은 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - $\lVert \mathbf{x} \rVert \_{2} ^2 = \mathbf{x}^\intercal \mathbf{x}$
 
 </div></li>

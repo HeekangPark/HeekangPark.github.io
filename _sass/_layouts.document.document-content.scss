@@ -143,56 +143,43 @@ $line-height: 1.8;
         //line-height: $line-height;
     }
 
+    ul,
     ol {
-        counter-reset: listcounter 0;
-        margin: {
-            bottom: $bottom-margin;
-        }
-        display: table;
-        word-break: break-all;
-        position: relative;
-
-        > li {
-            list-style: none;
-            display: table-row;
-            position: relative;
-
-            &::before {
-                display: table-cell;
-                position: relative;
-                text-align: right;
-                word-break: keep-all;
-                padding: {
-                    right: 0.5em;
-                }
-                z-index: 3;
-                content: counter(listcounter) ".";
-                counter-increment: listcounter;
-            }
-        }
-    }
-
-    ul {
         list-style-position: outside;
         margin: {
             left: 2em;
+            top: 0.25em;
             bottom: $bottom-margin;
         }
 
         > li {
-            z-index: 2;
             position: relative;
             margin: {
                 bottom: 0.5em;
             }
 
+            &:last-of-type {
+                margin: {
+                    bottom: 0;
+                }
+            }
+
+            p {
+                margin: {
+                    bottom: 0.5em;
+                }
+            }
+        }
+    }
+
+    ul.guide-line {
+        li {
             &::after {
                 content: "";
                 position: absolute;
                 height: calc(100% + 0.15em);
                 top: 1.2em;
                 left: -1.05em; // Noto Sans KR
-                z-index: 1;
                 width: 1px;
                 background: repeating-linear-gradient(
                     to bottom,
@@ -204,27 +191,22 @@ $line-height: 1.8;
             }
 
             &:last-of-type {
-                margin: {
-                    bottom: 0;
-                }
-                
                 &::after {
                     content: none;
-                }
-            }
-
-            p {
-                margin: {
-                    bottom: 0.5em;
                 }
             }
         }
 
-        &.no-guide-line {
-            li {
-                &::after {
-                    content: none;
-                }
+        ol {
+            > li::after {
+                content: none;
+            }
+        }
+
+        ul,
+        ol {
+            margin: {
+                bottom: 0;
             }
         }
     }

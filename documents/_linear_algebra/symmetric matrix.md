@@ -1,10 +1,10 @@
 ---
 title: "Symmetric Matrix"
 date_created: "2021-09-15"
-date_modified: "2021-10-09"
+date_modified: "2021-10-14"
 ---
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -24,7 +24,6 @@ $A = -A^\intercal$인 행렬 $A$를 **anti-symmetric**하다고 한다.
 
 임의의 정사각행렬 $A \in \mathbb{R}^{n \times n}$가 있을 때,
 
-{:.no-guide-line}
 - $A + A^\intercal$은 항상 symmetric하다.
 - $A - A^\intercal$은 항상 anti-symmetric하다.
 

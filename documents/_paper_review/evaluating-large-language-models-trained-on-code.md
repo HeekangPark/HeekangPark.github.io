@@ -1,7 +1,7 @@
 ---
 title: "Evaluating Large Language Models Trained on Code"
 date_created: "2021-10-10"
-date_modified: "2021-10-12"
+date_modified: "2021-10-14"
 ---
 
 {:.info}
@@ -10,6 +10,7 @@ date_modified: "2021-10-12"
 
 # 요약
 
+{:.guide-line}
 - Idea
   - [이전 연구](https://arxiv.org/pdf/2005.14165.pdf)에서 GPT-3를 이용하면 Python docstring에서부터 간단한 프로그램을 만들어 낼 수 있음을 확인
   - GPT-3는 코드 생성(code generation)을 위해 학습되지 않았음에도 불구하고 작동함
@@ -48,6 +49,7 @@ date_modified: "2021-10-12"
 
 # 상세
 
+{:.guide-line}
 - Evaluation Framework
   - functional correctness
     - 코드 생성 모델(generative model for code)은 일반적으로 match 기반 방법으로 평가되었음

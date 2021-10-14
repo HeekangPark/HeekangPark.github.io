@@ -1,7 +1,7 @@
 ---
 title: "cat"
 date_created: "2021-07-18"
-date_modified: "2021-07-19"
+date_modified: "2021-10-14"
 tags: ["command"]
 ---
 
@@ -34,7 +34,6 @@ cat - concatenate files and print on the standard output
 
 # 위치
 
-{:.no-guide-line}
 - `/usr/bin/cat`
 
 # 명령어 형식

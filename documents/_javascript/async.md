@@ -2,7 +2,7 @@
 title: "자바스크립트 비동기"
 tags: ["callback", "promise"]
 date_created: "2020-09-28"
-date_modified: "2021-05-28"
+date_modified: "2021-10-14"
 ---
 
 # 자바스크립트와 비동기
@@ -244,7 +244,6 @@ Something goes wrong...
 
 이 때문에 Node.js와 같은 많은 비동기 자바스크립트 라이브러리에서는 예외처리를 구현하기 위해 다음과 같은 규칙(convention)을 만들어 사용하고 있다.
 
-{:.no-guide-line}
 - 예외가 발생한 경우 해당 예외를 콜백 함수로 전달한다. 즉, 예외처리의 책임을 함수를 호출한 함수(caller)가 아닌 콜백 함수가 지게 하는 것이다. 일반적으로 콜백 함수로 전달되는 첫 번째 인자(argument)는 예외를 전달하기 위해 사용한다.[^9]
 - 콜백 함수에서 (`try...catch` 구문이 아닌) `if...else` 구문으로 예외처리를 진행한다.
 
@@ -285,7 +284,6 @@ new Promise(function(resolve, reject) { //이 함수를 실행 함수(executor)�
 
 Promise 객체는 다음 3가지 상태 중 하나를 갖는다.
 
-{:.no-guide-line}
 - 대기(pending) : 실행 함수가 아직 실행 완료되지 않음
 - 성공(resolved, fulfilled) : 실행 함수가 성공적으로 실행 완료됨
 - 실패(rejected) : 실행 함수 실행 중 오류가 발생함(실행 완료되긴 함)
@@ -296,7 +294,6 @@ Promise 객체는 다음 3가지 상태 중 하나를 갖는다.
 2. 실행 함수 실행 중 `resolve()` 또는 `reject()` 함수 호출을 만난다.
     - `resolve()` 함수는 **실행 함수가 성공적으로 잘 실행되었음을 알리는 역할을 한다.** 실행 함수 실행 중 `resolve()` 함수 호출을 만나게 되면, Promise 객체는 성공 상태로 변하고, `resolve()` 함수의 인자로 주어진 값은 Promise 객체에 저장된다.
     - `reject()` 함수는 **실행 함수 실행 중 오류가 발생했음을 알리는 역할을 한다.** 실행 함수 실행 중 `reject()` 함수 호출을 만나게 되면, Promise 객체는 실패 상태로 변하고, `reject()` 함수의 인자로 주어진 값[^10]은 Promise 객체에 저장된다.
-    {:.no-guide-line}
 
 [^10]: `reject()` 객체는 저장하는 값의 종류를 특별히 가리진 않지만, 일반적으로 `Error` 객체를 저장한다.
 
@@ -429,7 +426,6 @@ Finally Executed
 
 사실 `.then()` 메소드와 `.catch()` 메소드는 생각보다 더 강력하다. `.then()` 메소드와 `.catch()` 메소드는 항상 Promise를 반환한다. 구체적으로 다음 세 가지 경우가 있다.
 
-{:.no-guide-line}
 - `return value`를 하는 경우 : `value`가 저장된, 성공 상태의 Promise를 반환한다.[^18]
 - `throw new Error()`를 하는 경우 : `Error`가 저장된, 실패 상태의 Promise를 반환한다.
 - `return new Promise()`를 하는 경우 : 해당 Promise 객체를 반환한다.
@@ -653,7 +649,6 @@ then : 123,456
 
 `Promise.allSettled()`는 `Promise.all()`과 동일하게 Promise들의 배열을 인자로 받는다. 모든 Promise들이 완료 상태(성공 또는 실패 상태)가 되면, `Promise.allSettled()`는 각 Promise들의 상태와 저장된 값을 담은 하나의 배열을 반환한다. 구체적으로, 배열의 각 원소는 다음과 같이 된다.
 
-{:.no-guide-line}
 - Promise가 성공 상태가 된 경우 : `{status: "fullfiled", value: (저장된 값)}`
 - Promise가 실패 상태가 된 경우 : `{status: "rejected", reason: (저장된 값)}`
 
@@ -759,7 +754,6 @@ Promise 1 : end
 
 `Promise.resolve()`는 다음과 같이 동작한다. 
 
-{:.no-guide-line}
 - `Promise.resolve(value)` : 성공 상태의, `value`가 저장된 Promise 객체를 반환한다.
 - `Promise.resolve(new Promise())` : 인자로 주어진 Promise 객체를 그대로 반환한다. 즉, 만약 해당 Promise 객체가 실패 상태가 된다면 실패 상태의 Promise가 반환된다.
 

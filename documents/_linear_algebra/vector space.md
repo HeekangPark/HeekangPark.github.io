@@ -2,18 +2,17 @@
 title: "벡터공간 (Vector Space)"
 order: 8
 date_created: "2021-09-28"
-date_modified: "2021-10-12"
+date_modified: "2021-10-14"
 ---
 
 # 벡터공간(vector space)
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
 **벡터공간(vector space)** $V$란 집합의 임의의 원소 $\mathbf{u} ,\, \mathbf{v} ,\, \mathbf{w} \in V$과 임의의 실수 $c ,\, d \in \mathbb{R}$에 대해 다음 10가지 공리(axiom)를 만족하는 집합을 말한다.
 
-{:.no-guide-line}
 - 덧셈(addition)에 대해 닫혀있다. 즉, 임의의 두 원소 $\mathbf{u} ,\, \mathbf{v} \in V$에 대해, 두 원소의 덧셈 $\mathbf{u} + \mathbf{v}$도 $V$의 원소이다.
 - $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$
 - $\mathbf{u} + (\mathbf{v} + \mathbf{w}) = (\mathbf{u} + \mathbf{v}) + \mathbf{w}$
@@ -31,7 +30,6 @@ date_modified: "2021-10-12"
 
 벡터공간 $V$는 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - 임의의 원소 $\mathbf{u} \in V$에 대해, $0\mathbf{u} = \mathbf{0}$
 - 임의의 원소 $\mathbf{u} \in V$, 스칼라 $c \in \mathbb{R}$에 대해, $c\mathbf{0} = \mathbf{0}$
 - 임의의 원소 $\mathbf{u} \in V$에 대해, $-\mathbf{u} = (-1)\mathbf{u}$
@@ -50,7 +48,6 @@ date_modified: "2021-10-12"
 
 벡터공간의 예
 
-{:.no-guide-line}
 - 모든 [$n$-벡터](/linear_algebra/vector-matrix)들의 집합 : $\mathbb{R}^n$
 - 모든 [$m \times n$ 행렬](/linear_algebra/vector-matrix)들의 집합 : $\mathbb{R}^{m \times n}$
 - 모든 $n$차 다항식들의 집합 : $\mathbb{P}\_n$
@@ -61,13 +58,12 @@ date_modified: "2021-10-12"
 
 # subspace
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
 벡터공간(vector space) $V$의 **subspace** $H$란 다음 3가지 조건을 만족하는 $V$의 부분집합을 의미한다.
 
-{:.no-guide-line}
 - $\mathbf{0} \in H$
 - $H$는 덧셈(addition)에 대해 닫혀있다. 즉, 임의의 두 원소 $\mathbf{u} ,\, \mathbf{v} \in H$에 대해, 두 원소의 덧셈 $\mathbf{u} + \mathbf{v}$도 $H$의 원소이다.
 - $H$는 스칼라곱(scalar multiplication)에 대해 닫혀있다. 즉, 임의의 원소 $\mathbf{u} \in H$와 임의의 스칼라(실수) $c$에 대해, $\mathbf{u}$의 스칼라곱 $c\mathbf{u}$도 $H$의 원소이다.
@@ -84,7 +80,6 @@ subspace는 그 자체로 벡터공간이다.
 
 특수한 subspace
 
-{:.no-guide-line}
 - zero subspace $\\{\mathbf{0}\\}$ : 영벡터만을 원소로 가지는 subspace
 
 </div></li>
@@ -105,7 +100,7 @@ $$H = \text{Span}\{\mathbf{v}_1,\,\mathbf{v}_2,\,\cdots,\,\mathbf{v}_p\} \subset
 
 ## null space
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -241,7 +236,7 @@ $$\text{Nul}\,A = \text{Span} \left \{ \begin{bmatrix}
 
 ## column space
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -324,7 +319,7 @@ $$\text{Col}\,A = \text{Span} \left \{ \begin{bmatrix}
 
 ## row space
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -379,13 +374,12 @@ $m \times n$ 행렬 $A$의 row space $\text{Row}\,A$는 $\mathbb{R}^n$의 subspa
 
 # basis
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
 벡터공간 $V$의 한 subspace $H$에 대해, 다음 조건을 만족하는 벡터들의 집합 $\mathcal{B} = \\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_p\\} \subset V$를 $H$의 **basis**라 한다.
 
-{:.no-guide-line}
 - $\mathcal{B}$는 [linearly independent](/linear_algebra/linear-combination)한 집합이다.
 - $\\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_p\\}$는 $H$의 spanning set이다. 즉, $H = \text{Span}\\{\mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_p\\}$
 
@@ -397,7 +391,6 @@ $m \times n$ 행렬 $A$의 row space $\text{Row}\,A$는 $\mathbb{R}^n$의 subspa
 
 벡터공간 $V$의 부분집합 $S = \\{\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_p\\}$에 대해, $H = \text{Span}\,\\{\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_p\\}$라 하자. 이때, 다음이 성립한다.
 
-{:.no-guide-line}
 - 만약 $\mathbf{v}\_k \in S$가 $S$의 나머지 원소들의 linear combination이라면, $S$에서 $\mathbf{v}\_k$를 제거한 집합 $S' = S - \\{\mathbf{v}\_k\\}$은 여전히 $H$를 [span](/linear_algebra/linear-combination)한다. 즉,
   
   $$H = \text{Span}\,S'$$
@@ -428,7 +421,6 @@ $$\text{dim}(\{\mathbf{0}\}) = 0$$
 
 finite-dimensional한 벡터공간 $V$의 차원은 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - 벡터공간 $V$의 차원보다 더 많은 벡터로 구성된 $V$의 부분집합은 항상 linearly dependent하다.
 - linearly independent한 $V$의 부분집합의 원소의 개수는 항상 $\text{dim}(V)$보다 작거나 같다.
 - $\text{dim}(V)$개의 원소로 이루어진 linearly independent한 $V$의 부분집합은 항상 $V$의 basis이다.
@@ -472,7 +464,6 @@ $$\mathbf{e}_1 = \begin{bmatrix}
 
 행렬 $A$의 null space, column space와 basis 간에는 다음과 같은 관계가 있다. 
 
-{:.no-guide-line}
 - $\text{dim}(\text{Nul}\,A )$는 homogeneous linear system $A\mathbf{x} = \mathbf{0}$의 [free variable](/linear_algebra/linear-system)의 수와 같다.
 - $A$의 [pivot column](/linear_algebra/echelon-form)들의 집합은 $\text{Col}\,A$의 basis이다. 즉, $\text{dim}(\text{Col}\,A )$는 $A$의 pivot column의 수이다.
 
@@ -480,44 +471,10 @@ $$\mathbf{e}_1 = \begin{bmatrix}
 
 </ul>
 
-# 좌표(coordniate)
-
-<ul class="no-guide-line">
-
-<li><div markdown="block">
-
-벡터공간 $V$의 basis $\mathcal{B} = \\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_n\\}$에 대해, $V$의 모든 원소 $\mathbf{x}$는
-
-$$\mathbf{x} = c_1 \mathbf{b}_1 + c_2 \mathbf{b}_2 + \cdots + c_n \mathbf{b}_n$$
-
-을 만족시키는 스칼라 가중치 $c\_i$들의 집합 $\\{c\_1,\,c\_2,\,\cdots,\,c\_n\\}$을 각각 항상 유일하게 가진다. 이 $c\_i$들을 **$\mathbf{x}$의 basis $\mathcal{B}$ 하에서의 좌표(coordinates of $\mathbf{x}$ relative to the basis $\mathcal{B}$)**, 혹은 단순히 **$\mathbf{x}$의 $\mathcal{B}$-좌표($\mathcal{B}$-coordinate of $\mathbf{x}$)**라 한다.
-
-</div></li>
-
-<li><div markdown="block">
-
-$c\_i$들을 다음과 같이 벡터 형태로 나타낸 것을 **(basis $\mathcal{B}$ 하에서의) $\mathbf{x}$의 좌표 벡터(coordinate vector of $\mathbf{x}$ relative to $\mathcal{B}$)** 또는 **$\mathbf{x}$의 $\mathcal{B}$-좌표 벡터($\mathcal{B}$-coordinate vector of $\mathbf{x}$)**라 한다.
-
-$$\left [ \mathbf{x} \right ]_{\mathcal{B}} = \begin{bmatrix}
-c_1\\[0.5em]
-c_2\\[0.5em]
-\vdots\\[0.5em]
-c_n\\[0.5em]
-\end{bmatrix}$$
-
-</div></li>
-
-<li><div markdown="block">
-
-벡터공간 $V$의 basis $\mathcal{B} = \\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_n\\}$에 대해, 변환 $\mathbf{x} \mapsto \left [ \mathbf{x} \right ]\_{\mathcal{B}}$은 $V$에서 $\mathbb{R}^n$으로의 [one-to-one 선형 변환](/linear_algebra/linear-transformation)이다. 이 변환을 **($\mathcal{B}$로의) 좌표 변환(coordinate mapping determined by $\mathcal{B}$)**이라 부른다.
-
-</div></li>
-
-</ul>
 
 # rank
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -553,6 +510,59 @@ $$\text{Rank}(A) + \text{dim}(\text{Nul}\,A) = n$$
 $$\text{dim}(\text{Col}\,A) + \text{dim}(\text{Nul}\,A) = n$$
 
 이다.
+
+</div></li>
+
+</ul>
+
+# 좌표(coordniate)
+
+<ul>
+
+<li><div markdown="block">
+
+벡터공간 $V$의 basis $\mathcal{B} = \\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_n\\}$에 대해, $V$의 모든 원소 $\mathbf{x}$는
+
+$$\mathbf{x} = c_1 \mathbf{b}_1 + c_2 \mathbf{b}_2 + \cdots + c_n \mathbf{b}_n$$
+
+을 만족시키는 스칼라 가중치 $c\_i$들의 집합 $\\{c\_1,\,c\_2,\,\cdots,\,c\_n\\}$을 각각 항상 유일하게 가진다. 이 $c\_i$들을 **$\mathbf{x}$의 basis $\mathcal{B}$ 하에서의 좌표(coordinates of $\mathbf{x}$ relative to the basis $\mathcal{B}$)**, 혹은 단순히 **$\mathbf{x}$의 $\mathcal{B}$-좌표($\mathcal{B}$-coordinate of $\mathbf{x}$)**라 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$c\_i$들을 다음과 같이 벡터 형태로 나타낸 것을 **(basis $\mathcal{B}$ 하에서의) $\mathbf{x}$의 좌표 벡터(coordinate vector of $\mathbf{x}$ relative to $\mathcal{B}$)** 또는 **$\mathbf{x}$의 $\mathcal{B}$-좌표 벡터($\mathcal{B}$-coordinate vector of $\mathbf{x}$)**라 한다.
+
+$$\left [ \mathbf{x} \right ]_{\mathcal{B}} = \begin{bmatrix}
+c_1\\[0.5em]
+c_2\\[0.5em]
+\vdots\\[0.5em]
+c_n\\[0.5em]
+\end{bmatrix}$$
+
+</div></li>
+
+<li><div markdown="block">
+
+벡터공간 $V$의 basis $\mathcal{B} = \\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_n\\}$에 대해, 변환 $\mathbf{x} \mapsto \left [ \mathbf{x} \right ]\_{\mathcal{B}}$은 $V$에서 $\mathbb{R}^n$으로의 [one-to-one 선형 변환](/linear_algebra/linear-transformation)이다. 이 변환을 **($\mathcal{B}$로의) 좌표 변환(coordinate mapping determined by $\mathcal{B}$)**이라 부른다.
+
+</div></li>
+
+<li><div markdown="block">
+
+벡터공간 $V$의 basis $\mathcal{B} = \\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_n\\}$, $\mathcal{C} = \\{ \mathbf{c}\_1,\,\mathbf{c}\_2,\,\cdots,\,\mathbf{c}\_n\\}$에 대해, 다음을 만족시키는 $n \times n$ 행렬 $\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$는 유일하게 존재한다.
+
+$$\left [ \mathbf{x} \right ] _{\mathcal{C}} = \underset{\mathcal{C} \leftarrow \mathcal{B}}{P} \left [ \mathbf{x} \right ] _{\mathcal{B}}$$
+
+즉, 행렬 $\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$을 이용하면 $\mathcal{B}$-좌표를 $\mathcal{C}$-좌표로 변환할 수 있는 것이다. 이때 행렬 $\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$을 **$\mathcal{B}$에서 $\mathcal{C}$로의 좌표변환행렬(change-of-coordinates matrix from $\mathcal{B}$ to $\mathcal{C}$)**라 부른다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$의 각 열은 basis $\mathcal{B}$의 각 벡터들의 $\mathcal{C}$-좌표 벡터이다.
+
+$$\underset{\mathcal{C} \leftarrow \mathcal{B}}{P} = \left[\, \left[\mathbf{b}_1 \right]_{\mathcal{C}} \quad \left[\mathbf{b}_2 \right]_{\mathcal{C}} \quad \cdots \quad \left[\mathbf{b}_n \right]_{\mathcal{C}} \, \right]$$
 
 </div></li>
 

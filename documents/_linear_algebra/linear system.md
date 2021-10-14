@@ -2,12 +2,12 @@
 title: "선형연립방정식 (Linear System)"
 order: 2
 date_created: "2021-09-16"
-date_modified: "2021-10-10"
+date_modified: "2021-10-14"
 ---
 
 # 선형연립방정식(linear system)이란?
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -149,7 +149,7 @@ a_{m1} & a_{m2} & \cdots & a_{mn} & b_{m}\\[0.5em]
 
 ## reduced echelon form을 이용한 방법
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -311,7 +311,7 @@ x_3\\[0.5em]
 
 ## homogeneous-nonhomogeneous linear system간의 관계를 이용한 방법
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -411,7 +411,7 @@ t\\[0.5em]
 
 ## 역행렬을 이용한 방법
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -431,7 +431,7 @@ $$\mathbf{x} = A^{-1} \mathbf{b}$$
 
 ## echelon form을 이용한 방법
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -461,7 +461,7 @@ $$\mathbf{x} = A^{-1} \mathbf{b}$$
 
 ## 역행렬을 이용한 방법
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -474,7 +474,7 @@ $$\mathbf{x} = A^{-1} \mathbf{b}$$
 {% comment %}
 ## linear combination을 이용한 방법
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -500,7 +500,6 @@ $$x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n = \mathbf{b}$$
 
 행렬 $A \in \mathbb{R}^{m \times n}$, 벡터 $\mathbf{x} \in \mathbb{R}^n$, $\mathbf{b} \in \mathbb{R}^m$에 대해, 다음 명제들은 모두 동치이다.
 
-{:.no-guide-line}
 - 선형연립방정식 $A \mathbf{x} = \mathbf{b}$의 해가 존재한다(consistent).
 - 벡터 $\mathbf{b}$는 $A$의 열 벡터 $\mathbf{a}_i$($i = 1,\,2\,\cdots,\,n$)들의 linear combination이다.
 - $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\} = \mathbb{R}^m$ (The columns of $A$ spans $\mathbb{R}^m$)

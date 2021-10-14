@@ -2,12 +2,12 @@
 title: "Matrix Factorization"
 order: 7
 date_created: "2021-09-27"
-date_modified: "2021-10-09"
+date_modified: "2021-10-14"
 ---
 
 # matrix factorization이란?
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -31,7 +31,7 @@ matrix factorization과 행렬곱(matrix multiplication)의 관계는 인수분�
 
 ## LU factorization
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -39,7 +39,6 @@ $m \times n$ 행렬 $A$를 다음과 같이 나누는 것을 **LU factorization*
 
 $$A = LU$$
 
-{:.no-guide-line}
 - $L$ : (크기 $m \times m$) unit lower triangular matrix (대각 성분이 모두 1이고 대각선 위는 모두 0인 정사각행렬)
 - $U$ : (크기 $m \times n$) $A$의 [echelon form](/linear_algebra/echelon-form)
 

@@ -1,7 +1,7 @@
 ---
 title: "WSL - Windows Subsystem for Linux"
 date_created: "2021-07-26"
-date_modified: "2021-08-01"
+date_modified: "2021-10-14"
 tags: ["wsl"]
 ---
 
@@ -115,7 +115,6 @@ wsl --set-default-version 2
 
 [Microsoft Store](https://aka.ms/wslstore)에서 원하는 리눅스 배포판을 다운받자. 2021년 08월 현재 사용 가능한 리눅스 배포판의 종류는 다음과 같다.
 
-{:.no-guide-line}
 - [Ubuntu 18.04 LTS](https://www.microsoft.com/store/apps/9N9TNGVNDL3Q)
 - [Ubuntu 20.04 LTS](https://www.microsoft.com/store/apps/9n6svws3rx71)
 - [openSUSE Leap 15.1](https://www.microsoft.com/store/apps/9NJFZK00FGKV)
@@ -213,7 +212,6 @@ wsl --list <OPTION>
 
 다음 옵션들을 사용할 수 있다.
 
-{:.no-guide-line}
 - `--all` : 현재 실행 또는 제거 중인 배포판들을 포함한 모든 배포판들을 나열한다.
 - `--running` : 현재 실행 중(running)인 배포판만 나열한다.
 - `--quiet`, `-q` : 배포판들의 이름만 나열한다.

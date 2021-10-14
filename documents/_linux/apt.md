@@ -1,7 +1,7 @@
 ---
 title: "apt"
 date_created: "2021-07-17"
-date_modified: "2021-07-18"
+date_modified: "2021-10-14"
 tags: ["command"]
 ---
 
@@ -45,7 +45,6 @@ apt
 
 # 위치
 
-{:.no-guide-line}
 - `/usr/bin/apt`
 
 # 설명

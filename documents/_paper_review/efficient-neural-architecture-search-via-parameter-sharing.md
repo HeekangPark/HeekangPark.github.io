@@ -1,7 +1,7 @@
 ---
 title: "ENAS (Efficient Neural Architecture Search)"
 date_created: "2020-09-24"
-date_modified: "2021-02-25"
+date_modified: "2021-10-14"
 ---
 
 ENAS(Efficient Neural Architecture Search)는 의 논문 \<Efficient Neural Architecture Search via Parameter Sharing\>에 등장한 NAS 기술이다.
@@ -12,6 +12,7 @@ ENAS(Efficient Neural Architecture Search)는 의 논문 \<Efficient Neural Arch
 
 ## Introduction
 
+{:.guide-line}
 - NAS(Neural Architecture Search)는 이미지 분류(Image Classification)와 언어 모델(Language Model)을 위한 모델 구조 설계에 성공적으로 적용되어옴
 
 - NAS의 "RNN Controller"는 다음을 반복하는 반복문 안에서 학습됨
@@ -42,6 +43,7 @@ ENAS(Efficient Neural Architecture Search)는 의 논문 \<Efficient Neural Arch
 
 ## Methods
 
+{:.guide-line}
 - ENAS의 핵심 아이디어 : NAS가 반복하는 모든 그래프들은 Larger Graph의 Sub-Graph로 볼 수 있다.
   - 다시말해, NAS의 탐색공간(Search Space)을 *하나의* Directed Acyclic Graph(DAG, 유향 비순환 그래프)로 나타낼 수 있다. => 이를 ENAS DAG라 한다.
 - ENAS DAG는 NAS의 탐색공간 내에 있는 모든 가능한 Child Model들의 중첩(Superposition)
@@ -51,6 +53,7 @@ ENAS(Efficient Neural Architecture Search)는 의 논문 \<Efficient Neural Arch
 
 ### Designing Recurrent Cells
 
+{:.guide-line}
 - Objective : 주어진 task를 수행하기 위한 최적의 RNN 모델(Child Model)의 Recurrent Cell 만들기
 - 이를 위해 저자들은 N개의 node를 가진 DAG를 사용
   - 각 node는 Local Computation을 의미, 각 edge는 데이터의 흐름을 의미
@@ -90,6 +93,7 @@ ENAS(Efficient Neural Architecture Search)는 의 논문 \<Efficient Neural Arch
 
 ### Training ENAS and Deriving Architectures
 
+{:.guide-line}
 - Controller는 100개의 hidden unit을 가진 LSTM으로 만들어짐
   - Softmax Classifier를 이용하여 autoregressive하게 decision을 뽑음
     - 이전 단계의 decision(출력)은 다음 단계의 입력(input embedding)으로 들어감
@@ -126,6 +130,7 @@ ENAS(Efficient Neural Architecture Search)는 의 논문 \<Efficient Neural Arch
 
 ### Designing Convolutional Networks
 
+{:.guide-line}
 - Objective : 주어진 task를 수행하기 위한 최적의 CNN 모델(Child Model) 만들기
 - Controller는 각 decision block에서 다음 사항을 결정함
   - 연결할 이전 node(들)
@@ -146,6 +151,7 @@ ENAS(Efficient Neural Architecture Search)는 의 논문 \<Efficient Neural Arch
 
 ### Designing Convolutional Cells
 
+{:.guide-line}
 - 전체 CNN을 제작하지 않고, 작은 모듈(Cell)을 여러 개 제작해 하나의 네트워크를 만들도록 연결할 수도 있음
   - ex. Convolutional Cell, Reduction Cell (NAS에 나오는 개념)
 

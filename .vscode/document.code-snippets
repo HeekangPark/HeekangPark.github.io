@@ -92,7 +92,7 @@
 		"scope": "markdown",
 		"prefix": "ul",
 		"body": [
-			"<ul class=\"no-guide-line\">",
+			"<ul>",
 			"",
 			"<li><div markdown=\"block\">",
 			"",

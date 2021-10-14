@@ -2,12 +2,12 @@
 title: "역행렬 (Inverse)"
 order: 6
 date_created: "2021-09-26"
-date_modified: "2021-10-12"
+date_modified: "2021-10-14"
 ---
 
 # 역행렬(inverse)이란?
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -49,7 +49,6 @@ $$B = BI = B(AC) = (BA)C = IC = C$$
 
 역행렬은 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - 행렬 $A$의 역행렬이 존재하면, 행렬 $A^{-1}$의 역행렬도 존재하며, 다음과 같이 계산된다 : $(A^{-1})^{-1} = A$
 - 역행렬이 존재하는 행렬 $A \in \mathbb{R}^{n \times n}$, $B \in \mathbb{R}^{n \times n}$에 대해, $AB$, $BA$도 역행렬이 존재하며, 각각 다음과 같이 계산된다 : $(AB)^{-1} = B^{-1} A^{-1}$, $(BA)^{-1} = A^{-1} B^{-1}$
 - 행렬 $A$의 역행렬이 존재하면, 행렬 $A^{\intercal}$의 역행렬도 존재하며, 다음과 같이 계산된다 : $(A^{\intercal})^{-1} = (A^{-1})^{\intercal}$
@@ -89,7 +88,7 @@ $$B = BI = B(AC) = (BA)C = IC = C$$
 
 ## 2 × 2 행렬
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -128,7 +127,7 @@ $2 \times 2$ 행렬의 판별식이 0이 아니면, 역행렬이 존재한다(in
 
 ## elementary row operation을 이용한 방법
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 

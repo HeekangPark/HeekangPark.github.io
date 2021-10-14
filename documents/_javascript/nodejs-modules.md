@@ -2,7 +2,7 @@
 title: "[Node.js] 모듈 시스템"
 tags: ["node-js", "common-js", "es6", "ecmascript2015"]
 date_created: "2021-01-16"
-date_modified: "2021-09-05"
+date_modified: "2021-10-14"
 ---
 
 Node.js의 모듈 시스템에 대해 알아보자.
@@ -110,6 +110,7 @@ console.log(__filename);
 
 [^7]: 아래 설명에는 몇몇 생략된 부분이 있다. 정확한 알고리즘은 Node.js 공식 문서에서 확인하자: <https://nodejs.org/docs/latest-v14.x/api/modules.html#modules_all_together>
 
+{:.guide-line}
 - 만약 X가 코어 모듈이라면 해당 코어 모듈을 로드한다.[^8][^9]
 - 만약 X가 "/"으로 시작한다면 절대 경로라 판단하고, 다음을 수행한다.
   - 해당 경로에 가서 `X` 파일을 찾는다. 만약 `X` 파일이 존재한다면 해당 모듈을 로드한다.

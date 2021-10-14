@@ -2,12 +2,12 @@
 title: "Linear Combination"
 order: 4
 date_created: "2021-09-20"
-date_modified: "2021-10-10"
+date_modified: "2021-10-14"
 ---
 
 # linear combination
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -23,7 +23,7 @@ $$\mathbf{y} = c_1 \mathbf{x}_1 + c_2 \mathbf{x}_2 + \cdots + c_p \mathbf{x}_p =
 
 # span
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 
@@ -37,7 +37,6 @@ $$\text{Span}\{\mathbf{x}_1,\,\mathbf{x}_2,\,\cdots,\,\mathbf{x}_p\} = \{c_1 \ma
 
 span은 다음과 같은 성질이 있다.
 
-{:.no-guide-line}
 - $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\} \subset \mathbb{R}^n$
 
   $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$는 항상 $\mathbb{R}^n$의 부분집합이 된다.
@@ -74,7 +73,7 @@ A set of vectors $\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$ 
 
 # linear independence
 
-<ul class="no-guide-line">
+<ul>
 
 <li><div markdown="block">
 

@@ -1,7 +1,7 @@
 ---
 title: "SPOS(Single Path One Shot)"
 date_created: "2020-10-08"
-date_modified: "2021-02-25"
+date_modified: "2021-10-14"
 ---
 
 # 논문 분석
@@ -10,6 +10,7 @@ date_modified: "2021-02-25"
 
 ## Introduction
 
+{:.guide-line}
 - NAS는 feature engineering, weight optimization problem, architecture design 문제를 풀어 architecture engineering을 자동화하는 기술
 - 초창기 NAS는 다수의 architecture가 sample되어 바닥부터 학습해야 해, 데이터셋의 크기가 크면 비용이 너무 비싸다는 문제점이 있음
 - 최근 접근법에서는 연산량을 줄이기 위해 weight sharing 전략이 사용됨
@@ -45,6 +46,7 @@ date_modified: "2021-02-25"
 
 ## Review of NAS Approach
 
+{:.guide-line}
 - $\mathcal{A}$ : architecture의 탐색 공간. DAG(Directed Acyclic Graph)
 - $\mathcal{N}(a, w)$ : 탐색의 결과 얻는 최종 모델 
   - $a$ : $\mathcal{A}$의 부분 그래프(subgraph)($a \in \mathcal{A}$). 모델의 architecture
@@ -97,6 +99,7 @@ date_modified: "2021-02-25"
 
 ## Our Single Path One-Shot Approach
 
+{:.guide-line}
 - one-shot 접근법 : supernet을 학습하는 과정과 Architecture를 탐색하는 과정을 분리하여 순차적인 과정으로 만듦
   - 절차
     - supernet의 weight를 최적화 : $W\_{\mathcal{A}} = \textrm{argmin} \_{W} \mathcal{L}\_{train} (\mathcal{N}(\mathcal{A}, W))$  [식 6]
@@ -121,6 +124,7 @@ date_modified: "2021-02-25"
 
 ### Single Path Supernet and Uniform Sampling
 
+{:.guide-line}
 - weight sharing의 핵심 이론 : (추가적인 Fine-tuning 없이) $W\_{\mathcal{A}}(a)$로부터 상속받은 가중치를 사용하는 아무 architecture $a$의 validation set에 대한 정확도는, 완벽히 학습된(fully-trained) $a$의 (validation set에 대한) 정확도를 잘 예측한다.
   - 사실 $W\_{\mathcal{A}}(a)$가 [식 1]의 $w\_a$를 잘 근사할 때만 성립하는 이론
   - training loss $\mathcal{L} \_{train} (\mathcal{N}(a, W\_{\mathcal{A}}(a)))$가 얼마나 잘 최소화되었는지에 따라 근사(approximation)의 품질이 달라짐
@@ -157,6 +161,7 @@ date_modified: "2021-02-25"
 
 ### Supernet Architecture and Novel Choice Block Design
 
+{:.guide-line}
 - Choice Block : 다양한 architecture 선택지들로 구성됨. Stochastic architecture를 만들기 위해 사용
 - Single path supernet에서, 각 choice block은 한 시점에 하나의 선택지만 선택 가능
 - Path는 모든 choice block을 샘플링하여 얻을 수 있음
@@ -165,18 +170,21 @@ date_modified: "2021-02-25"
 
 #### Channel Number Search
 
+{:.guide-line}
 - weight sharing에 기반한 새로운 choice block을 제안
 - main idea : 사전에 최대 채널 크기의 weight tensor를 할당해 놓고, 시스템은 무작위로 채널 수를 선택하여 상응하는 subtensor를 잘라내어 convolution을 수행
 - 저자들의 실험 결과, supernet이 빠르게 수렴함
 
 #### Mixed-Precision Quantization Search
 
+{:.guide-line}
 - weight와 feature map의 bit width를 탐색하는 새로운 choice block을 제안
 - supernet 학습 과정에서 각 choice block의 feature bit width와 weight bit width는 무작위로 샘플링됨
 - 위에서 얘기한 Channel Search Space와 결합할 수 있음
 
 #### Evolutionary Architecture Search
 
+{:.guide-line}
 - [식 7]에서의 architecture 탐색을 위해, 기존 one-shot 관련 논문들은 무작위 탐색을 사용함
   - 하지만, 큰 탐색 공간에서는 비효율적
 - 저자들은 Evolutionary Algorithm을 사용
@@ -199,5 +207,6 @@ date_modified: "2021-02-25"
   
 #### Summary
 
+{:.guide-line}
 - 저자들은 single path supernet, uniform sampling training 전략, evolutionary architecture 탐색, 다양한 탐색 공간을 조합하여 사용 → 간단하고 효율적이며 유연한 방법
 - 저자들의 방법이 학습하기 가장 쉽고, 가장 적은 메모리를 사용하고, 제약조건을 가장 잘 만족시키며, 대규모 데이터 셋을 쉽게 지원함

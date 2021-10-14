@@ -1,7 +1,7 @@
 ---
 title: "ls"
 date_created: "2021-07-14"
-date_modified: "2021-07-19"
+date_modified: "2021-10-14"
 tags: ["command"]
 ---
 
@@ -41,7 +41,6 @@ ls - list directory contents
 
 # 위치
 
-{:.no-guide-line}
 - `/usr/bin/ls`
 - `/bin/ls`
 
@@ -83,7 +82,6 @@ ls [OPTION]... [FILE]...
 
 파일/디렉토리가 마지막으로 수정된 시간(ctime, change time)[^3] 순으로 정렬한다. 최근 순으로 정렬된다.
 
-{:.no-guide-line}
 - `-l` 옵션과 함께 쓸 경우 : 파일/디렉토리가 마지막으로 편집된 시간(mtime, modify time)이 아닌, ctime이 출력된다. 정렬은 기본값(이름 알파벳 순)으로 된다.
 - `-lt` 옵션과 함께 쓸 경우 : 파일/디렉토리의 mtime이 아닌 ctime이 출력되고, ctime 순으로 정렬된다.
 
@@ -91,7 +89,6 @@ ls [OPTION]... [FILE]...
 
 ## --color=[never/always/auto]
 
-{:.no-guide-line}
 - `never` : `ls` 명령어는 파일 타입의 구분을 위해 색을 쓰지 않는다. (기본값)
 - `always` : `ls` 명령어는 파일 타입의 구분을 위해 (항상) 색을 사용한다.
 - `auto` : `ls` 명령어는 표준 출력이 터미널에 연결되어 있을 때만 파일 타입의 구분을 위해 색을 사용한다.[^4]
@@ -104,7 +101,6 @@ ls [OPTION]... [FILE]...
 
 `ls` 명령어는 파일 타입의 구분을 위해 기호를 사용한다. 각 기호의 의미는 다음과 같다.
 
-{:.no-guide-line}
 - `*` : 실행 가능(executable)[^5]
 - `/` : 디렉토리
 - `=` : 소켓
@@ -146,7 +142,6 @@ ls [OPTION]... [FILE]...
 
 ex) `-rwxr-xr-x 1 root root 142144 9월 5 2019 ls*`
 
-{:.no-guide-line}
 - `-rwxr-xr-x` : 파일의 유형 및 권한
 - `1` : 하드링크의 개수[^8]
 - `root` : 소유자(owner)
@@ -203,7 +198,6 @@ Symbolic Link들에 대해, Symbolic Link 파일 그 자체의 정보가 아닌,
 
 `-l` 옵션과 함께 사용해, 출력되는 시간의 형태를 조정한다. 사용할 수 있는 옵션은 다음과 같다.
 
-{:.no-guide-line}
 - `full-iso` : `2021-07-05 14:08:49.122804434 +0900`과 같은 형식
 - `long-iso` : `2021-07-05 14:08`과 같은 형식
 - `iso` : `07-05 14:08`과 같은 형식
@@ -216,7 +210,6 @@ Symbolic Link들에 대해, Symbolic Link 파일 그 자체의 정보가 아닌,
 
 다음과 같이 추가적인 옵션을 주면 다른 종류의 시간에 대해 정렬할 수 있다.
 
-{:.no-guide-line}
 - `-tu` : 마지막으로 접근된 시간(atime, access time) 순서대로 정렬
 - `-tc` : 마지막으로 수정된 시간(ctime, change time) 순서대로 정렬
 
@@ -224,7 +217,6 @@ Symbolic Link들에 대해, Symbolic Link 파일 그 자체의 정보가 아닌,
 
 파일/디렉토리가 마지막으로 접근된 시간(atime, access time) 순으로 정렬한다. 최근 순으로 정렬된다.
 
-{:.no-guide-line}
 - `-l` 옵션과 함께 쓸 경우 : 파일/디렉토리가 마지막으로 편집된 시간(mtime, modify time)이 아닌, atime이 출력된다. 정렬은 기본값(이름 알파벳 순)으로 된다.
 - `-lt` 옵션과 함께 쓸 경우 : 파일/디렉토리의 mtime이 아닌 atime이 출력되고, atime 순으로 정렬된다.
 
@@ -242,7 +234,6 @@ Symbolic Link들에 대해, Symbolic Link 파일 그 자체의 정보가 아닌,
 
 # 기타
 
-{:.no-guide-line}
 - Ubuntu의 경우 `ls -alF`의 별칭(alias)으로 `ll`을 사용할 수 있다.[^10]
 
 [^10]: `~/.bashrc` 파일에 `alias ll='ls-alF'`가 설정되어 있다.

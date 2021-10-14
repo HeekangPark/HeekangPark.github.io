@@ -1,7 +1,7 @@
 ---
 title: "addgroup"
 date_created: "2021-07-16"
-date_modified: "2021-07-19"
+date_modified: "2021-10-14"
 tags: ["command"]
 ---
 
@@ -23,7 +23,6 @@ addgroup
 
 # 위치
 
-{:.no-guide-line}
 - `/usr/sbin/addgroup`
 
 # 명령어 형식
@@ -36,7 +35,6 @@ addgroup --system [OPTION]... [*GROUP] # MODE 2
 
 사용할 수 있는 옵션의 종류는 다음과 같다.
 
-{:.no-guide-line}
 - `--quiet`
 - `--debug`
 - `--help` 또는 `-h`
@@ -51,7 +49,6 @@ addgroup --system [OPTION]... [*GROUP] # MODE 2
 
 첫 번째 모드는 사용자 그룹(user group)을 시스템에 추가하는 명령어이다.
 
-{:.no-guide-line}
 - 그룹 명 : `[GROUP]`
 - GID : 사용자 그룹이 사용 가능한 GID[^1] 중 가장 작은 값
 
@@ -61,7 +58,6 @@ addgroup --system [OPTION]... [*GROUP] # MODE 2
 
 두 번째 모드는 시스템 그룹(system group)을 시스템에 추가하는 명령어이다.
 
-{:.no-guide-line}
 - 그룹 명 : `[GROUP]`
 - GID : 시스템 그룹이 사용 가능한 GID[^2] 중 가장 작은 값
 
@@ -99,6 +95,5 @@ MODE 2로 전환
 
 # 기타
 
-{:.no-guide-line}
 - 만들어진 그룹은 `/etc/group` 파일에서 확인할 수 있다.
 - 만들어진 그룹에 사용자를 추가하려면 [`adduser`](/linux/adduser) 명령어를 사용하면 된다.

@@ -1,7 +1,7 @@
 ---
 title: "GraphCodeBERT : Pre-Training Code Representations with Data Flow"
 date_created: "2021-09-03"
-date_modified: "2021-10-12"
+date_modified: "2021-10-14"
 ---
 
 {:.info}
@@ -41,13 +41,13 @@ date_modified: "2021-10-12"
     - 변수들에 대해서는 특별한 position embedding을 사용해 변수들이 Data Flow의 node임을 나타냄
   
   4. $N$개의 Transformer layer를 사용해 입력 벡터를 contextual representation $H^N$으로 변환 : $H^n = transformer\_n (H^{n-1})$ ($n \in [1,\,N]$)
-    - Transformer layer는 동일한 구조의 multi-headed self-attention operation을 수행하는 transformer와, 뒤이은 Feed Forward Layer로 구성됨
-    - $G^n = LN(\,MultiAttn(H^{n-1}) + H^{n-1}$
-    - $H^n = LN(\,FFN(G^n) + G^n\,)$
-      
-      - $MultiAttn()$ : Multi-headed self-attention 매커니즘
-      - $FFN()$ : 2층의 Feed Forward Network
-      - $LN()$ : Layer Normalization 연산
+       - Transformer layer는 동일한 구조의 multi-headed self-attention operation을 수행하는 transformer와, 뒤이은 Feed Forward Layer로 구성됨
+       - $G^n = LN(\,MultiAttn(H^{n-1}) + H^{n-1}$
+       - $H^n = LN(\,FFN(G^n) + G^n\,)$
+         
+         - $MultiAttn()$ : Multi-headed self-attention 매커니즘
+         - $FFN()$ : 2층의 Feed Forward Network
+         - $LN()$ : Layer Normalization 연산
   
   5. Graph-guided masked attention function을 이용해 관련없는 신호들을 쳐냄
 

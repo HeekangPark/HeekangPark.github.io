@@ -2,7 +2,7 @@
 title: "하둡 생태계"
 tags: ["hadoop"]
 date_created: "2021-06-17"
-date_modified: "2021-07-15"
+date_modified: "2021-10-14"
 ---
 
 하둡 생태계(Hadoop Environment)에 대해 알아보자.
@@ -11,6 +11,7 @@ date_modified: "2021-07-15"
 
 # 하둡 기초
 
+{:.guide-line}
 - 목표 : 빅데이터 분석
 - 문제점 : 디스크 용량은 매우 커졌지만, 데이터를 읽고 쓰는 시간은 매우 오래 걸림
   - 디스크 하나의 용량은 TB급까지 올라왔지만, 데이터 전송 속도는 100MB/s 수준
@@ -25,6 +26,7 @@ date_modified: "2021-07-15"
 
 # 맵리듀스(MapReduce)
 
+{:.guide-line}
 - 하둡에서 데이터를 처리하기 위해서는 처리 작업을 맵리듀스(MapReduce) 형태로 바꿔줘야 한다.
 - 맵리듀스는 **맵(Map) 단계**와 **리듀스(Reduce) 단계**로 구분된다.
 - 맵 단계와 리듀스 단계는 입력과 출력으로 키-값 쌍(key-value pair)을 가진다.
@@ -81,10 +83,12 @@ date_modified: "2021-07-15"
 
 # 하둡 분산 파일시스템(HDFS, Hadoop Distributed FileSystem)
 
+{:.guide-line}
 - 분산 파일시스템(Distributed Filesystem) : 네트워크로 연결된 여러 머신의 스토리지를 관리하는 파일시스템
 
 ## HDFS 설계
 
+{:.guide-line}
 - HDFS의 설계 특성
   - 매우 큰 파일
     - HDFS는 수백 기가바이트, 수백 테라바이트, 심지어 페타바이트 급의 파일도 잘 다룰 수 있다.
@@ -111,6 +115,7 @@ date_modified: "2021-07-15"
 
 ### HDFS 블록
 
+{:.guide-line}
 - 기본적으로 128MB
   - 디스크 블록의 크기(기본적으로 512B)보다 큼
   - 탐색 비용을 최소화하기 위함
@@ -141,6 +146,7 @@ hdfs fsck / -files -blocks
 
 ### 네임노드와 데이터노드
 
+{:.guide-line}
 - HDFS 클러스터는 마스터-워크 패턴(master-worker pattern)으로 동작하는, 마스터인 하나의 **네임노드(namenode)**와 워커인 여러 개의 **데이터노드(datanode)**로 구성되어 있다.
 - 네임노드
   - HDFS의 네임스페이스를 관리

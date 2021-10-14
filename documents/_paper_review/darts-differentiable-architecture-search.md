@@ -1,7 +1,7 @@
 ---
 title: "DARTS (Differentiable Architecture Search)"
 date_created: "2020-10-05"
-date_modified: "2021-02-25"
+date_modified: "2021-10-14"
 ---
 
 # 논문 분석
@@ -10,6 +10,7 @@ date_modified: "2021-02-25"
 
 ## Introduction
 
+{:.guide-line}
 - Automatically Searched Architecture(NAS)는 Image Classification과 Object Detection에서 높은 성능을 보임
 - 하지만 NAS는 연산 비용이 너무 큼 → 이를 보완할 수 있는 다양한 방법이 제안됨
   - 그러나 본질적인 확장성(scalability) 문제가 남아있음
@@ -35,6 +36,7 @@ date_modified: "2021-02-25"
 
 ### Search Space
 
+{:.guide-line}
 - Objective : Computation Cell 찾기
   - 최종 Architecture의 Building Block
   - Computation Cell은 여러 층 쌓여서(stack) Convolutional Network를 구성하거나, 재귀적으로 연결되어(Recursively connected) Recurrent Network를 구성
@@ -52,6 +54,7 @@ date_modified: "2021-02-25"
 
 ### Continuous Relaxation and Optimization
 
+{:.guide-line}
 - Continuous Relaxation : 탐색 공간을 연속적으로 만들기 위해, (한 edge에서) 가능한 모든 연산에 대해 단정적으로 선택하지 않고 softmax를 적용함
   - Terminology
     - $\mathcal{O}$ : (한 edge에서 가능한 모든) 후보 연산(ex. convolution, max pooling, zero 등)들의 집합
@@ -74,6 +77,7 @@ date_modified: "2021-02-25"
 
 ### Approximate Architecture Gradient
 
+{:.guide-line}
 - inner optimization이 너무 비쌈 → architecture의 정확한 그라디언트를 구하는 것은 어려움
 - 따라서 저자들은 다음 근사법을 제안함
   - $\nabla \_{\alpha} \mathcal{L}\_{val} (w^{\*}, \alpha) \approx \nabla \_{\alpha} \mathcal{L}\_{val} (w - \xi \nabla \_{w} \mathcal{L}\_{train}(w, \alpha), \alpha)$
@@ -101,6 +105,7 @@ date_modified: "2021-02-25"
 
 ### Deriving Discrete Architectures
 
+{:.guide-line}
 - 각 node에서 모든 non-zero operation 중 상위 $k$개의 강한 operation을 선택
   - operation의 강함은 $\sum \_{o \in \mathcal{O}} \frac{\exp (\alpha\_o ^{(i, j)})}{\sum\_{o' \in \mathcal{O}} \exp (\alpha\_{o'} ^{(i, j)}) } o(x)$으로 정의
 - Convolutional Cell을 만들기 위해서 $k=2$를, Recurrent Cell을 만들기 위해서 $k=1$을 사용
@@ -110,6 +115,7 @@ date_modified: "2021-02-25"
 
 ## Experiments and Results
 
+{:.guide-line}
 - 실험은 두 Stage로 진행
   - Stage 1 : DARTS를 사용한 Architecture Search. Validation Performance를 바탕으로 최고의 Cell을 찾음.
   - Stage 2 : Stage 1에서 찾은 Cell을 이용해 큰 모델 제작. 만들어진 모델을 바닥부터 학습시켜 성능 확인.
@@ -120,6 +126,7 @@ date_modified: "2021-02-25"
 
 #### Searching for Convolutional Cells on CIFAR-10
 
+{:.guide-line}
 - $\mathcal{O}$ = { 3×3 Separable Convolution, 5×5 Separable Convolution, 3×3 Dilated Separable Convolution, 5×5 Dilated Separable Convolution, 3×3 Max Pooling, 3×3 Average Pooling, Identity, Zero }
   - 모든 연산은 stride=1, 원래의 이미지 크기가 유지될 수 있도록 적당한 padding 사용
 - ReLU-Conv-BN 순으로 연산 적용
@@ -135,6 +142,7 @@ date_modified: "2021-02-25"
 
 #### Searching for Recurrent Cells on Penn Treebank
 
+{:.guide-line}
 - $\mathcal{O}$ = { tanh, ReLU, sigmoid, identity, zero }
 - Linear Transformation 이후 $\mathcal{O}$의 한 원소 연산을 실행
 
@@ -148,6 +156,7 @@ date_modified: "2021-02-25"
 
 ### Architecture Evaluation
 
+{:.guide-line}
 - 최종 성능 평가를 위해, 저자들은 DARTS를 다른 random seed에 대해 4회 돌린 후, validation performance가 가장 높은 최고의 cell을 선정
   - CIFAR-10에 대해서는 100 epoch 학습, PTB에 대해서는 300 epoch 학습
 - Architecture Search 중 학습된 weight는 버리고, weight를 random하게 초기화한 후 다시 처음부터 학습하여 test set에 대한 performance를 측정
@@ -156,9 +165,11 @@ date_modified: "2021-02-25"
 
 ### Result Analysis
 
+{:.guide-line}
 - DARTS는 기존 SOTA에 비해 1/3 정도의 연산력만 사용하면서 비슷한 성능을 냄
 - 약간 더 오래 탐색하면 ENAS보다 성능이 좋아짐
 
 ## Concolusion
 
+{:.guide-line}
 - DARTS를 사용하면 기존 SOTA와 성능은 비슷하거나 더 좋은데, 연산력은 오히려 적게 사용함
