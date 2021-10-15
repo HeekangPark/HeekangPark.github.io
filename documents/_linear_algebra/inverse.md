@@ -2,7 +2,7 @@
 title: "역행렬 (Inverse)"
 order: 6
 date_created: "2021-09-26"
-date_modified: "2021-10-14"
+date_modified: "2021-10-15"
 ---
 
 # 역행렬(inverse)이란?
@@ -79,6 +79,7 @@ $$B = BI = B(AC) = (BA)C = IC = C$$
 - $\text{Rank}(A) = n$
 - $\text{Nul}\,A = \\{\mathbf{0}\\}$
 - $\text{dim}(\text{Nul}\,A) = 0$
+- $\text{det}\,A \neq 0$
 
 </div></li>
 
@@ -107,7 +108,7 @@ $ad-bc = 0$이면 역행렬이 존재하지 않는다.
 
 <li><div markdown="block">
 
-이때 $ad-bc$를 $2 \times 2$ 행렬 $A$의 **판별식(determinant)**이라 한다.
+이때 $ad-bc$를 $2 \times 2$ 행렬 $A$의 **판별식(determinant)**이라 한다. 판별식에 관한 자세한 내용은 [해당 문서](/linear_algebra/determinant)를 참조하기 바란다.
 
 </div></li>
 
@@ -202,6 +203,107 @@ $$A^{-1} = \begin{bmatrix}
 -9/2 & 7 & -3/2\\[0.5em]
 -2 & 4 & -1\\[0.5em]
 3/2 & -2 & 1/2\\[0.5em]
+\end{bmatrix}$$
+
+</div></li>
+
+</ul>
+
+## Cramer's rule을 이용한 방법
+
+<ul>
+
+<li><div markdown="block">
+
+$n \times n$ 정사각행렬 $A$에 대해, 다음과 같은 [($i$-$j$)-cofactor](/linear_algebra/determinant)들의 행렬을 $A$의 **adjugate** 혹은 $A$의 **classical adjoint**라 하고, 기호로 $\text{adj}\,A$라 쓴다.
+
+$$\text{adj}\,A = \begin{bmatrix}
+C_{11} & C_{21} & \cdots & C_{n1}\\[0.5em]
+C_{12} & C_{22} & \cdots & C_{n2}\\[0.5em]
+\vdots & \vdots & \ddots & \vdots\\[0.5em]
+C_{1n} & C_{2n} & \cdots & C_{nn}\\[0.5em]
+\end{bmatrix}$$
+
+**$C_{ij}$가 $i$열 $j$행에 있음에 유의하자!**
+
+</div></li>
+
+<li><div markdown="block">
+
+역행렬이 존재하는 행렬 $A$의 역행렬 $A^{-1}$은 다음과 같이 구할 수 있다.
+
+$$A^{-1} = \frac{1}{\text{det}\,A} \text{adj}\,A$$
+
+</div></li>
+
+<li><div markdown="block">
+
+예제
+
+$$A = \begin{bmatrix}
+2 & 1 & 3\\[0.5em]
+1 & -1 & 1\\[0.5em]
+1 & 4 & -2\\[0.5em]
+\end{bmatrix}$$
+
+의 역행렬을 구해보자.
+
+우선 9개의 cofactor를 구해야 한다.
+
+$$\begin{array}{r l r l r l}
+C_{11} &= +\begin{vmatrix}
+-1 & 1\\[0.5em]
+4 & -2\\[0.5em]
+\end{vmatrix} = -2,\quad
+&C_{12} &= -\begin{vmatrix}
+1 & 1\\[0.5em]
+1 & -2\\[0.5em]
+\end{vmatrix} = 3,\quad
+&C_{13} &= +\begin{vmatrix}
+1 & -1\\[0.5em]
+1 & 4\\[0.5em]
+\end{vmatrix} = 5\\[0.5em]
+C_{21} &= -\begin{vmatrix}
+1 & 3\\[0.5em]
+4 & -2\\[0.5em]
+\end{vmatrix} = 14,\quad
+&C_{22} &= +\begin{vmatrix}
+2 & 3\\[0.5em]
+1 & -2\\[0.5em]
+\end{vmatrix} = -7,\quad
+&C_{23} &= -\begin{vmatrix}
+2 & 1\\[0.5em]
+1 & 4\\[0.5em]
+\end{vmatrix} = -7\\[0.5em]
+C_{31} &= +\begin{vmatrix}
+1 & 3\\[0.5em]
+-1 & 1\\[0.5em]
+\end{vmatrix} = 4,\quad
+&C_{32} &= -\begin{vmatrix}
+2 & 3\\[0.5em]
+1 & 1\\[0.5em]
+\end{vmatrix} = 1,\quad
+&C_{33} &= +\begin{vmatrix}
+2 & 1\\[0.5em]
+1 & -1\\[0.5em]
+\end{vmatrix} = -3\\[0.5em]
+\end{array}$$
+
+$$\begin{array}{cc}
+\Rightarrow &\text{det}\,A = a_{11}C_{11} + a_{12}C_{12} + a_{13}C_{13} = 14,\\[0.5em]
+{} &\text{adj}\,A = \begin{bmatrix}
+-2 & 14 & 4\\[0.5em]
+3 & -7 & 1\\[0.5em]
+5 & -7 & -3\\[0.5em]
+\end{bmatrix}\\[0.5em]
+\end{array}$$
+
+따라서, $A^{-1}$은 다음과 같이 계산된다.
+
+$$A^{-1} = \frac{1}{\text{det}\,A} \text{adj}\,A = \frac{1}{14}\begin{bmatrix}
+-2 & 14 & 4\\[0.5em]
+3 & -7 & 1\\[0.5em]
+5 & -7 & -3\\[0.5em]
 \end{bmatrix}$$
 
 </div></li>

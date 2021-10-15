@@ -2,7 +2,7 @@
 title: "선형연립방정식 (Linear System)"
 order: 2
 date_created: "2021-09-16"
-date_modified: "2021-10-14"
+date_modified: "2021-10-15"
 ---
 
 # 선형연립방정식(linear system)이란?
@@ -415,13 +415,33 @@ t\\[0.5em]
 
 <li><div markdown="block">
 
-정사각행렬의 coefficient matrix $A \in \mathbb{R}^{n \times n}$를 가지는 선형연립방정식 $A\mathbf{x} = \mathbf{b}$에 대해, 만약 $A$의 [역행렬](/linear_algebra/inverse)이 존재하면(invertible) 선형연립방정식의 해는 유일하며 다음과 같이 계산할 수 있다.
+[역행렬](/linear_algebra/inverse)이 존재하는 정사각행렬 $A \in \mathbb{R}^{n \times n}$에 대해, 선형연립방정식 $A \mathbf{x} = \mathbf{b}$의 해는 유일하며 다음과 같이 계산할 수 있다.
 
 $$\mathbf{x} = A^{-1} \mathbf{b}$$
 
 </div></li>
 
 </ul>
+
+## Cramer's rule을 이용한 방법
+
+<ul>
+
+<li><div markdown="block">
+
+[역행렬](/linear_algebra/inverse)이 존재하는 정사각행렬 $A \in \mathbb{R}^{n \times n}$에 대해, 선형연립방정식 $A \mathbf{x} = \mathbf{b}$의 해는 유일하며 [Cramer's rule](/linear_algebra/determinant)을 이용해 다음과 같이 계산할 수 있다.
+
+$$\mathbf{x} = \begin{bmatrix}
+\displaystyle\frac{\text{det}\,A_1 (\mathbf{b})}{\text{det}\,A}\\[0.5em]
+\displaystyle\frac{\text{det}\,A_2 (\mathbf{b})}{\text{det}\,A}\\[0.5em]
+\vdots\\[0.5em]
+\displaystyle\frac{\text{det}\,A_n (\mathbf{b})}{\text{det}\,A}\\[0.5em]
+\end{bmatrix}$$
+
+</div></li>
+
+</ul>
+
 
 # 선형연립방정식의 해의 존재성 및 유일성 분석
 

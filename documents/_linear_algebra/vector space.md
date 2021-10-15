@@ -2,7 +2,7 @@
 title: "벡터공간 (Vector Space)"
 order: 8
 date_created: "2021-09-28"
-date_modified: "2021-10-14"
+date_modified: "2021-10-15"
 ---
 
 # 벡터공간(vector space)
@@ -494,7 +494,7 @@ $\text{Nul}\,A$의 차원을 $A$의 **nullity**라 한다.
 
 $m \times n$ 행렬 $A$에 대해, 다음 값들은 모두 같다.
 
-{:.text-align-center .overflow-x}
+{:.text-align-center .overflow-x .mt-1 .mb-1}
 $\text{Rank}(A) = \text{dim}(\text{Col}\,A) = \text{dim}(\text{Row}\,A) = \text{Rank}(A^\intercal) = A$의 pivot position의 개수
 
 </div></li>
@@ -550,19 +550,35 @@ c_n\\[0.5em]
 
 <li><div markdown="block">
 
-벡터공간 $V$의 basis $\mathcal{B} = \\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_n\\}$, $\mathcal{C} = \\{ \mathbf{c}\_1,\,\mathbf{c}\_2,\,\cdots,\,\mathbf{c}\_n\\}$에 대해, 다음을 만족시키는 $n \times n$ 행렬 $\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$는 유일하게 존재한다.
+벡터공간 $V$의 basis $\mathcal{B} = \\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_n\\}$, $\mathcal{C} = \\{ \mathbf{c}\_1,\,\mathbf{c}\_2,\,\cdots,\,\mathbf{c}\_n\\}$에 대해, 다음과 같이 $\mathcal{B}$-좌표를 $\mathcal{C}$-좌표로 변환하는 $n \times n$ 행렬 $\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$는 항상 존재하고 또 유일하다.
 
 $$\left [ \mathbf{x} \right ] _{\mathcal{C}} = \underset{\mathcal{C} \leftarrow \mathcal{B}}{P} \left [ \mathbf{x} \right ] _{\mathcal{B}}$$
 
-즉, 행렬 $\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$을 이용하면 $\mathcal{B}$-좌표를 $\mathcal{C}$-좌표로 변환할 수 있는 것이다. 이때 행렬 $\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$을 **$\mathcal{B}$에서 $\mathcal{C}$로의 좌표변환행렬(change-of-coordinates matrix from $\mathcal{B}$ to $\mathcal{C}$)**라 부른다.
+이때 행렬 $\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$을 **$\mathcal{B}$에서 $\mathcal{C}$로의 좌표 변환 행렬(change-of-coordinates matrix from $\mathcal{B}$ to $\mathcal{C}$)**라 부른다.
 
 </div></li>
 
 <li><div markdown="block">
 
-$\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$의 각 열은 basis $\mathcal{B}$의 각 벡터들의 $\mathcal{C}$-좌표 벡터이다.
+$\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$는 $\mathcal{B}$의 각 벡터들의 $\mathcal{C}$-좌표 벡터로 구성된다.
 
 $$\underset{\mathcal{C} \leftarrow \mathcal{B}}{P} = \left[\, \left[\mathbf{b}_1 \right]_{\mathcal{C}} \quad \left[\mathbf{b}_2 \right]_{\mathcal{C}} \quad \cdots \quad \left[\mathbf{b}_n \right]_{\mathcal{C}} \, \right]$$
+
+</div></li>
+
+<li><div markdown="block">
+
+$\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$의 열들은 항상 [linearly independent](/linear_algebra/linear-combination)하고, $\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$은 항상 [역행렬이 존재한다(invertible)](/linear_algebra/inverse). 또한 변환 $\left [ \mathbf{x} \right ] \_{\mathcal{B}} \mapsto \left [ \mathbf{x} \right ] \_{\mathcal{C}}$는 $V$에서 $V$로의 [one-to-one 선형 변환](/linear_algebra/linear-transformation)이다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}$의 역행렬 $\left(\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}\right)^{-1}$는 $\mathcal{C}$에서 $\mathcal{B}$로의 좌표 변환 행렬 $\underset{\mathcal{B} \leftarrow \mathcal{C}}{P}$과 같다. 즉,
+
+$$\left(\underset{\mathcal{C} \leftarrow \mathcal{B}}{P}\right)^{-1} = \underset{\mathcal{B} \leftarrow \mathcal{C}}{P}$$
+
+이다.
 
 </div></li>
 

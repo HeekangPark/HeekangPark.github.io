@@ -2,7 +2,7 @@
 title: "Echelon Form"
 order: 3
 date_created: "2021-09-20"
-date_modified: "2021-10-14"
+date_modified: "2021-10-15"
 ---
 
 # elementary row operation
@@ -53,7 +53,7 @@ $$A \sim B$$
 - 각 nonzero 행의 leading entry는 윗 (nonzero) 행의 leading entry보다 오른쪽에 있다.
 - 각 열에서 leading entry 아래의 항목들은 모두 0이다.
 
-여기서 **nonzero 행(row)**은 0이 아닌 성분(nonzero entry)을 하나 이상 가지고 있는 행을 의미하고, **zero 행(row)**은 모든 성분이 0인 행을 의미한다. (비슷하게, **nonzero 열(column)**은 0이 아닌 성분(nonzero entry)을 하나 이상 가지고 있는 열을, **zero 열(column)**은 모든 성분이 0인 열을 의미한다.) 그리고 nonzero 행에서, **leading entry**는 가장 왼쪽에 있는 0이 아닌 성분(nonzero entry)을 의미한다.
+여기서 **nonzero 행(nonzero row)**은 0이 아닌 성분(nonzero entry)을 하나 이상 가지고 있는 행을 의미하고, **zero 행(zero row)**은 모든 성분이 0인 행을 의미한다. (비슷하게, **nonzero 열(nonzero column)**은 0이 아닌 성분(nonzero entry)을 하나 이상 가지고 있는 열을, **zero 열(zero column)**은 모든 성분이 0인 열을 의미한다.) 그리고 nonzero 행에서, **leading entry**는 가장 왼쪽에 있는 0이 아닌 성분(nonzero entry)을 의미한다.
 
 echelon form에 있는 행렬을 **echelon matrix** 라 한다.
 
@@ -122,7 +122,7 @@ $$\begin{bmatrix}
 
 <li><div markdown="block">
 
-**한 행렬의 echelon form은 다양하다**. 즉 elementary row operation을 적용하는 순서를 바꾸면 다양한 echelon form을 얻을 수 있다.
+**한 행렬의 echelon form은 다양하다**. elementary row operation을 적용하는 순서를 바꾸면 다양한 echelon form을 얻을 수 있다.
 
 하지만 **한 행렬의 reduced echelon form은 유일하다**. 즉 어떠한 순서로 elementary row operation을 적용하든 동일한 reduced echelon form을 얻을 수 있다.
 
@@ -159,7 +159,7 @@ $$\begin{bmatrix}
 따라서 pivot은 0, -2, 3이 되고, pivot position, pivot column은 각각 다음과 같다.
 
 $$\begin{bmatrix}
-\columncolor{#FAE19C} \cellcolor{#FFF29F} 0 & \columncolor{#FAE19C}-3 &  -6 & \columncolor{#FAE19C}4 & 9\\[0.5em]
+\columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 0 & \columncolor{{{ site.data.color.mathjaxHighlight }}}-3 &  -6 & \columncolor{{{ site.data.color.mathjaxHighlight }}}4 & 9\\[0.5em]
 -1 & \cellcolor{#FFF29F}-2 & -1 & 3 & 1\\[0.5em]
 -2 & -3 &  0 & \cellcolor{#FFF29F} 3 & -1\\[0.5em]
 1 & 4 &  5 & -9 & -7\\[0.5em]
@@ -195,7 +195,7 @@ $$\begin{bmatrix}
 (1번 과정) 1열이 pivot column이 되고, 1행 1열이 pivot position이 된다.
 
 $$\begin{bmatrix}
-\columncolor{#FAE19C} \cellcolor{#FFF29F} 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]
+\columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]
 3 & -7 & 8 & -5 & 8 & 9\\[0.5em]
 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
 \end{bmatrix}$$
@@ -203,7 +203,7 @@ $$\begin{bmatrix}
 (2번 과정) interchange 연산을 통해 3행과 1행을 바꾼다(2행과 1행을 바꿔도 된다). 그 결과 3이 pivot이 되었다.
 
 $$\begin{bmatrix}
-\columncolor{#FAE19C} \cellcolor{#FFF29F} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
+\columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
 3 & -7 & 8 & -5 & 8 & 9\\[0.5em]
 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]
 \end{bmatrix}$$
@@ -211,7 +211,7 @@ $$\begin{bmatrix}
 (3번 과정) 2행에 1행과의 replacement 연산을 적용해 2행 1열의 값을 0으로 만든다. 3행 1열은 이미 0이므로 추가적인 연산을 수행할 필요가 없다.
 
 $$\begin{bmatrix}
-\columncolor{#FAE19C} \cellcolor{#FFF29F} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
+\columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
 0 & 2 & -4 & 4 & 2 & -6\\[0.5em]
 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]
 \end{bmatrix}$$
@@ -228,7 +228,7 @@ $$\begin{bmatrix}
 
 $$\begin{bmatrix}
 \rowcolor{#dddddd} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
-0 & \columncolor{#FAE19C} \cellcolor{#FFF29F} 2 & -4 & 4 & 2 & -6\\[0.5em]
+0 & \columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 2 & -4 & 4 & 2 & -6\\[0.5em]
 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]
 \end{bmatrix}$$
 
@@ -236,7 +236,7 @@ $$\begin{bmatrix}
 
 $$\begin{bmatrix}
 \rowcolor{#dddddd} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
-0 & \columncolor{#FAE19C} \cellcolor{#FFF29F} 2 & -4 & 4 & 2 & -6\\[0.5em]
+0 & \columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 2 & -4 & 4 & 2 & -6\\[0.5em]
 0 & 0 & 0 & 0 & 1 & 4\\[0.5em]
 \end{bmatrix}$$
 
@@ -269,7 +269,7 @@ $$\begin{bmatrix}
 (5번 과정) 5열에서부터 시작한다. replacement 연산을 적용하여 1행 5열, 2행 5열의 값을 모두 0으로 만든다.
 
 $$\begin{bmatrix}
-3 & -9 & 12 & -9 & \columncolor{#FAE19C} 0 & -9\\[0.5em]
+3 & -9 & 12 & -9 & \columncolor{{{ site.data.color.mathjaxHighlight }}} 0 & -9\\[0.5em]
 0 &  2 & -4 & 4 & 0 & -14\\[0.5em]
 0 & 0 & 0 & 0 & \cellcolor{#FFF29F} 1 & 4\\[0.5em]
 \end{bmatrix}$$
@@ -277,7 +277,7 @@ $$\begin{bmatrix}
 2행에 scaling 연산을 적용하여 pivot을 1로 만든다.
 
 $$\begin{bmatrix}
-3 & \columncolor{#FAE19C} -9 & 12 & -9 & 0 & -9\\[0.5em]
+3 & \columncolor{{{ site.data.color.mathjaxHighlight }}} -9 & 12 & -9 & 0 & -9\\[0.5em]
 0 & \cellcolor{#FFF29F} 1 & -2 & 2 & 0 & -7\\[0.5em]
 0 & 0 & 0 & 0 & 1 & 4\\[0.5em]
 \end{bmatrix}$$
@@ -285,7 +285,7 @@ $$\begin{bmatrix}
 replacement 연산을 적용하여 1행 2열의 값을 모두 0으로 만든다.
 
 $$\begin{bmatrix}
-3 & \columncolor{#FAE19C} 0 & -6 & 9 & 0 & -72\\[0.5em]
+3 & \columncolor{{{ site.data.color.mathjaxHighlight }}} 0 & -6 & 9 & 0 & -72\\[0.5em]
 0 & \cellcolor{#FFF29F} 1 & -2 & 2 & 0 & -7\\[0.5em]
 0 & 0 & 0 & 0 & 1 & 4\\[0.5em]
 \end{bmatrix}$$
@@ -293,7 +293,7 @@ $$\begin{bmatrix}
 1행에 scaling 연산을 적용하여 pivot을 1로 만든다.
 
 $$\begin{bmatrix}
-\columncolor{#FAE19C} \cellcolor{#FFF29F} 1 & 0 & -2 & 3 & 0 & -24\\[0.5em]
+\columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 1 & 0 & -2 & 3 & 0 & -24\\[0.5em]
 0 & 1 & -2 & 2 & 0 & -7\\[0.5em]
 0 & 0 & 0 & 0 & 1 & 4\\[0.5em]
 \end{bmatrix}$$
