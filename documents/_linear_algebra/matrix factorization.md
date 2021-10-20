@@ -2,7 +2,7 @@
 title: "Matrix Factorization"
 order: 7
 date_created: "2021-09-27"
-date_modified: "2021-10-15"
+date_modified: "2021-10-20"
 ---
 
 # matrix factorization이란?
@@ -70,7 +70,7 @@ $$A = \begin{bmatrix}
 
 
 $$A = \begin{bmatrix}
-\columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 2 & 4 & -1 & 5 & -2\\[0.5em]
+\columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 2 & 4 & -1 & 5 & -2\\[0.5em]
 -4 & -5 & 3 & -8 & 1\\[0.5em]
 2 & -5 & -4 & 1 & 8\\[0.5em]
 -6 & 0 & 7 & -3 & 1\\[0.5em]
@@ -78,7 +78,7 @@ $$A = \begin{bmatrix}
 \sim
 \begin{bmatrix}
 2 & 4 & -1 & 5 & -2\\[0.5em]
-0 & \columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 3 & 1 & 2 & -3\\[0.5em]
+0 & \columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 3 & 1 & 2 & -3\\[0.5em]
 0 & -9 & -3 & -4 & 10\\[0.5em]
 0 & 12 & 4 & 12 & -5\\[0.5em]
 \end{bmatrix}
@@ -86,7 +86,7 @@ $$A = \begin{bmatrix}
 \begin{bmatrix}
 2 & 4 & -1 & 5 & -2\\[0.5em]
 0 & 3 & 1 & 2 & -3\\[0.5em]
-0 & 0 & 0 & \columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 2 & 1\\[0.5em]
+0 & 0 & 0 & \columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 2 & 1\\[0.5em]
 0 & 0 & 0 & 4 & 7\\[0.5em]
 \end{bmatrix}
 \sim
@@ -94,13 +94,13 @@ $$A = \begin{bmatrix}
 2 & 4 & -1 & 5 & -2\\[0.5em]
 0 & 3 & 1 & 2 & -3\\[0.5em]
 0 & 0 & 0 & 2 & 1\\[0.5em]
-0 & 0 & 0 & 0 & \columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 5\\[0.5em]
+0 & 0 & 0 & 0 & \columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 5\\[0.5em]
 \end{bmatrix} = U$$
 
 이제 위에서 적용한 row replacement operation을 $I\_m$에 역순으로 적용하면 $L$를 얻을 수 있다. 이때 이를 간단히 하는 방법이 있다. row replacement operation의 매 단계에서 pivot column(색칠한 열)들을 모으면 다음과 같다.
 
 $$\begin{bmatrix}
-\columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 2\\[0.5em]
+\columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 2\\[0.5em]
 -4\\[0.5em]
 2\\[0.5em]
 6\\[0.5em]
@@ -109,7 +109,7 @@ $$\begin{bmatrix}
 \begin{array}
 \vphantom{ }\\[0.5em]
 \begin{bmatrix}
-\columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 3\\[0.5em]
+\columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 3\\[0.5em]
 -9\\[0.5em]
 12\\[0.5em]
 \end{bmatrix}
@@ -119,7 +119,7 @@ $$\begin{bmatrix}
 \vphantom{ }\\[0.5em]
 \vphantom{ }\\[0.5em]
 \begin{bmatrix}
-\columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 2\\[0.5em]
+\columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 2\\[0.5em]
 4\\[0.5em]
 \end{bmatrix}
 \end{array}
@@ -129,7 +129,7 @@ $$\begin{bmatrix}
 \vphantom{ }\\[0.5em]
 \vphantom{ }\\[0.5em]
 \begin{bmatrix}
-\columncolor{{{ site.data.color.mathjaxHighlight }}} \cellcolor{#FFF29F} 5\\[0.5em]
+\columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 5\\[0.5em]
 \end{bmatrix}
 \end{array}$$
 
