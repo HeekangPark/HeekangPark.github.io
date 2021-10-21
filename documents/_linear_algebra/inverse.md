@@ -2,7 +2,7 @@
 title: "역행렬 (Inverse)"
 order: 6
 date_created: "2021-09-26"
-date_modified: "2021-10-15"
+date_modified: "2021-10-22"
 ---
 
 # 역행렬(inverse)이란?
@@ -74,12 +74,13 @@ $$B = BI = B(AC) = (BA)C = IC = C$$
 - 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$은 [일대일(one-to-one)](/linear_algebra/linear-transformation)이다.
 - $A^\intercal$의 역행렬이 존재한다.
 - $A$의 열들의 집합은 $\mathbb{R}^n$의 [basis](/linear_algebra/vector-space)이다.
-- $\text{Col}\,A = \mathbb{R}^n$
-- $\text{dim}(\text{Col}\,A) = n$
-- $\text{Rank}(A) = n$
-- $\text{Nul}\,A = \\{\mathbf{0}\\}$
-- $\text{dim}(\text{Nul}\,A) = 0$
-- $\text{det}\,A \neq 0$
+- [$\text{Col}\,A = \mathbb{R}^n$](/linear_algebra/vector-space)
+- [$\text{dim}(\text{Col}\,A) = n$](/linear_algebra/vector-space)
+- [$\text{Rank}(A) = n$](/linear_algebra/vector-space)
+- [$\text{Nul}\,A = \\{\mathbf{0}\\}$](/linear_algebra/vector-space)
+- [$\text{dim}(\text{Nul}\,A) = 0$](/linear_algebra/vector-space)
+- [$\text{det}\,A \neq 0$](/linear_algebra/determinant)
+- 0은 $A$의 [eigenvalue](/linear_algebra/eigenvector-eigenvalue)가 아니다.
 
 </div></li>
 

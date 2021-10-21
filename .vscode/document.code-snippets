@@ -90,7 +90,7 @@
 	},
 	"ul": {
 		"scope": "markdown",
-		"prefix": "ul",
+		"prefix": ["ㅕㅣ", "ul"],
 		"body": [
 			"<ul>",
 			"",
@@ -106,7 +106,7 @@
 	},
 	"li-div": {
 		"scope": "markdown",
-		"prefix": "li-div",
+		"prefix": ["ㅣㅑ-얖", "li-div"],
 		"body": [
 			"<li><div markdown=\"block\">",
 			"",

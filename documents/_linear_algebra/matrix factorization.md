@@ -2,7 +2,7 @@
 title: "Matrix Factorization"
 order: 7
 date_created: "2021-09-27"
-date_modified: "2021-10-20"
+date_modified: "2021-10-22"
 ---
 
 # matrix factorization이란?
@@ -153,6 +153,61 @@ $$∴\,A = LU = \begin{bmatrix}
 0 & 3 & 1 & 2 & -3\\[0.5em]
 0 & 0 & 0 & 2 & 1\\[0.5em]
 0 & 0 & 0 & 0 & 5\\[0.5em]
+\end{bmatrix}$$
+
+</div></li>
+
+</ul>
+
+## diagonalization
+
+<ul>
+
+<li><div markdown="block">
+
+[diagonalizable](/linear_algebra/eigenvector-eigenvalue)한 $n \times n$ 정사각행렬 $A$의 [eigenvalue](/linear_algebra/eigenvector-eigenvalue) $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_n$과 이에 상응하는 [eigenvector](/linear_algebra/eigenvector-eigenvalue) $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_n$가 주어졌다고 하자(즉, $A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$). 이때 $A$를 다음과 같이 나누는 것을 **diagonalization**이라 한다.
+
+$$A = PDP^{-1}$$
+
+- $P$ : (크기 $n \times n$) $A$의 eigenvector들로 이루어진 행렬
+
+    $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
+
+    \begin{bmatrix}
+    \vertbar & \vertbar & {} & \vertbar \\
+    \mathbf{v_1} & \mathbf{v_2} & \cdots & \mathbf{v_n}\\
+    \vertbar & \vertbar & {} & \vertbar \\
+    \end{bmatrix}$$
+
+- $D$ : (크기 $n \times n$) $A$의 eigenvalue들로 이루어진 대각 행렬
+
+    $$\begin{bmatrix}
+    \lambda_1 & 0 & \cdots & 0\\[0.5em]
+    0 & \lambda_2 & \cdots & 0\\[0.5em]
+    \vdots & \vdots & \ddots & \vdots\\[0.5em]
+    0 & 0 & \cdots & \lambda_n\\[0.5em]
+    \end{bmatrix}$$
+
+</div></li>
+
+<li><div markdown="block">
+
+diagonalizable한 행렬 $A$의 거듭제곱 $A^k$는 다음과 같이 쉽게 구할 수 있다.
+
+$$A^k = (PDP^{-1})^n = PD^k P^{-1}$$
+
+참고로 대각 행렬 $D$의 거듭제곱 $D^k$은 다음과 같이 대각 성분의 $k$제곱으로 쉽게 구할 수 있다.
+
+$$D^k = \begin{bmatrix}
+\lambda_1 & 0 & \cdots & 0\\[0.5em]
+0 & \lambda_2 & \cdots & 0\\[0.5em]
+\vdots & \vdots & \ddots & \vdots\\[0.5em]
+0 & 0 & \cdots & \lambda_n\\[0.5em]
+\end{bmatrix}^k = \begin{bmatrix}
+\lambda_1^k & 0 & \cdots & 0\\[0.5em]
+0 & \lambda_2^k & \cdots & 0\\[0.5em]
+\vdots & \vdots & \ddots & \vdots\\[0.5em]
+0 & 0 & \cdots & \lambda_n^k\\[0.5em]
 \end{bmatrix}$$
 
 </div></li>

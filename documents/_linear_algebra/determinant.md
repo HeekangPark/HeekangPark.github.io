@@ -1,7 +1,7 @@
 ---
 title: "판별식 (Determinant)"
 date_created: "2021-10-14"
-date_modified: "2021-10-15"
+date_modified: "2021-10-22"
 ---
 
 # 판별식(determinant)이란?
@@ -19,11 +19,11 @@ a_{21} & a_{22} & \cdots & a_{2n}\\[0.5em]
 a_{n1} & a_{n2} & \cdots & a_{nn}\\[0.5em]
 \end{bmatrix}$$
 
-이때, $A\_{ij}$를 $A$에서 $i$행과 $j$열을 제거하고 만들어지는 $(n-1) \times (n-1)$ 행렬이라 하자. 그리고
+이때, $A\_{ij}$를 $A$에서 $i$행과 $j$열을 제거하고 만들어지는 $(n-1) \times (n-1)$ 행렬이라 하자.
+
+그리고 $A$의 **($i$, $j$)-cofactor** $C\_{ij}$를 다음과 같이 정의하자.
 
 $$C_{ij} = (-1)^{i + j} \text{det}\,A_{ij}$$
-
-이라 하자(참고로 이를 $A$의 **($i$, $j$)-cofactor**라 한다).
 
 </div></li>
 
@@ -36,7 +36,7 @@ $$\begin{align}
 &= a_{1j}\text{det}\,A_{1j} + a_{2j}\text{det}\,A_{2j} + \cdots + a_{nj}\text{det}\,A_{nj} = \sum_{i = 1} ^n a_{ij} \text{det}\,A_{ij}\\[0.5em]
 \end{align}$$
 
-$n = 1$일 때, 행렬 $A = [\,a\_{11}\,]$의 판별식 $\text{det}\,A$는 다음과 같이 정의된다.
+$n = 1$일 때(= 원소가 하나만 있을 때), 행렬 $A = [\,a\_{11}\,]$의 판별식 $\text{det}\,A$은 그 유일한 원소의 값으로 정의된다.
 
 $$\text{det}\,A = a_{11}$$
 
