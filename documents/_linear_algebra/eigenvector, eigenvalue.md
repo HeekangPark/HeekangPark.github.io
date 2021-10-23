@@ -1,7 +1,7 @@
 ---
 title: "Eigenvector, Eigenvalue"
 date_created: "2021-10-20"
-date_modified: "2021-10-22"
+date_modified: "2021-10-23"
 ---
 
 # eigenvector, eigenvalue
@@ -14,7 +14,7 @@ $n \times n$ 행렬 $A$에 대해, 선형연립방정식
 
 $$A \mathbf{x} = \lambda \mathbf{x}$$
 
-이 [nontrivial solution](/linear_algebra/linear-system)을 갖게 만드는 스칼라 $\lambda \in \mathbb{R}$를 $A$의 **eigenvalue**라 한다. 그리고 그 때의 nontrivial solution $\mathbf{x}$를 $\lambda$에 대한 $A$의 **eigenvector**(eigenvector of $A$ corresponding to $\lambda$)라 한다. 
+이 [nontrivial solution](/linear_algebra/linear-system)을 갖게 만드는 스칼라 $\lambda \in \mathbb{R}$를 $A$의 **eigenvalue**라 한다. 그리고 그 때의 nontrivial solution $\mathbf{x}$를 $\lambda$와 상응하는 $A$의 **eigenvector**(eigenvector of $A$ corresponding to $\lambda$)라 한다. 
 
 </div></li>
 
@@ -30,13 +30,13 @@ $\lambda$가 정사각행렬 행렬 $A$의 eigenvalue라면, 식
 
 $$(A - \lambda I)\mathbf{x} = \mathbf{0}$$
 
-은 항상 nontrivial solution을 가진다. 역으로, 위 식이 nontrivial solution을 가진다면, $\lambda$는 행렬 $A$의 eigenvalue이다.
+은 항상 nontrivial solution을 가진다(그리고 그 nontrivial solution은 $\lambda$와 상응하는 $A$의 eigenvector이다). 역으로, 위 식이 nontrivial solution을 가진다면, $\lambda$는 행렬 $A$의 eigenvalue이다.
 
 즉, 정사각행렬 $A$에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
 - $\lambda$는 $A$의 eigenvalue이다.
-- 식 $(A - \lambda I)\mathbf{x} = \mathbf{0}$은 nontrivial solution을 가진다.
+- 식 $(A - \lambda I)\mathbf{x} = \mathbf{0}$은 nontrivial solution을 가진다(그리고 그 nontrivial solution은 $\lambda$와 상응하는 $A$의 eigenvector이다).
 
 이 성질을 이용하면 주어진 $\lambda$가 eigenvalue가 맞는지를 검증할 수 있다. 만약 주어진 $\lambda$에 대해 식 $(A - \lambda I)\mathbf{x} = \mathbf{0}$가 nontrivial solution을 가진다면, $\lambda$는 eigenvalue가 맞다.
 
@@ -44,19 +44,21 @@ $$(A - \lambda I)\mathbf{x} = \mathbf{0}$$
 
 <li><div markdown="block">
 
-정사각행렬 $A$의 eigenvalue $\lambda$에 대해, 식
+한 eigenvalue는 여러 개의 상응하는 eigenvector를 가질 수 있다. 이때, 정사각행렬 $A$의 eigenvalue $\lambda$와 상응하는 모든 eigenvector들의 집합을 $\lambda$에 상응하는 $A$의 **eigenspace**(eigenspace of $A$ corresponding to $\lambda$)라 한다. 다시말해, $\lambda$에 상응하는 $A$의 eigenspace는 다음 식의 nontrivial solution들의 집합이다.
 
 $$(A - \lambda I)\mathbf{x} = \mathbf{0}$$
-
-의 해들의 집합을 $\lambda$에 대한 $A$의 **eigenspace**(eigenspace of $A$ corresponding to $\lambda$)라 한다.
-
-즉, $\lambda$에 대한 $A$의 eigenspace는 행렬 $(A - \lambda I)$의 [null space](/linear_algebra/vector-space)이다.
 
 </div></li>
 
 <li><div markdown="block">
 
-정사각행렬 $A$의 서로 다른(distinct) eigenvalue $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_r$와, 이에 상응하는 eigenvector $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_r$에 대해(즉, $A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$), eigenvector들의 집합 $\\{\,\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_r\,\\}$은 [linearly independent](/linear_algebra/linear-combination)하다.
+$\lambda$에 상응하는 $A$의 eigenspace는 행렬 $(A - \lambda I)$의 [null space](/linear_algebra/vector-space)이다.
+
+</div></li>
+
+<li><div markdown="block">
+
+정사각행렬 $A$의 서로 다른(distinct) eigenvalue $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_r$와 이에 상응하는 eigenvector $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_r$에 대해(즉, $A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$), eigenvector들의 집합 $\\{\,\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_r\,\\}$은 [linearly independent](/linear_algebra/linear-combination)하다.
 
 </div></li>
 
@@ -86,13 +88,11 @@ $$(A - \lambda I)\mathbf{x} = \mathbf{0}$$
 
 <li><div markdown="block">
 
-**characteristic equation**
-
 정사각행렬 $A$에 대해, 스칼라 $\lambda \in \mathbb{R}$가 다음 식을 만족시키면 $\lambda$는 $A$의 eigenvalue이다.
 
 $$\text{det}(A-\lambda I) = 0$$
 
-위 식을 **characteristic equation**라 한다. 역으로, $\lambda$가 $A$의 eigenvalue이면 characteristic equation은 항상 성립한다.
+역으로, $\lambda$가 $A$의 eigenvalue이면 위 식은 항상 성립한다.
 
 즉, 정사각행렬 $A$와 스칼라 $\lambda$에 대해, 다음은 모두 동치이다.
 
@@ -100,9 +100,172 @@ $$\text{det}(A-\lambda I) = 0$$
 - $\text{det}(A-\lambda I) = 0$ (characteristic equation)
 - $\lambda$는 $A$의 eigenvalue이다.
 
-이때 $n \times n$ 정사각행렬 $A$에 대해 식 $\text{det}(A-\lambda I) = 0$은 $\lambda$에 대한 $n$차 다항식이 되므로, characteristic equation을 **characteristic polynomial**이라고도 부른다.
+이때 식 $\text{det}(A-\lambda I) = 0$을 **characteristic equation**이라 한다. 또한 $n \times n$ 정사각행렬 $A$에 대해, characteristic equation의 좌변 $\text{det}(A-\lambda I)$은 $\lambda$에 대한 $n$차 다항식이므로, $\text{det}(A-\lambda I)$을 **characteristic polynomial**이라 한다.
 
-이 성질을 이용하면 주어진 행렬 $A$의 eigenvalue를 구할 수 있다. $\text{det}(A-\lambda I) = 0$의 해 $\lambda$는 $A$의 eigenvalue가 된다.
+</div></li>
+
+<li><div markdown="block">
+
+예제
+
+다음 행렬의 eigenvalue, eigenvector를 구해보자.
+
+$$A = \begin{bmatrix}
+5 & -2 & 6 & -1\\[0.5em]
+0 & 3 & -8 & 0\\[0.5em]
+0 & 0 & 5 & 4\\[0.5em]
+0 & 0 & 0 & 1\\[0.5em]
+\end{bmatrix}$$
+
+우선 eigenvalue를 구해 보자. eigenvalue를 구하려면 characteristic equation을 이용하면 된다. $A$는 triangular matrix이므로, $A$의 characteristic equation은 다음과 같이 된다(triangular matrix의 [determinant](/linear_algebra/determinant)는 대각 성분의 곱이다).
+
+$$\begin{align}
+\text{det}\,(A - \lambda I) &= \begin{vmatrix}
+5 - \lambda & -2 & 6 & -1\\[0.5em]
+0 & 3 - \lambda & -8 & 0\\[0.5em]
+0 & 0 & 5 - \lambda & 4\\[0.5em]
+0 & 0 & 0 & 1 - \lambda\\[0.5em]
+\end{vmatrix}\\[0.5em]
+& = (5 - \lambda)(3 - \lambda)(5 - \lambda)(1- \lambda)\\[0.5em]
+& = (\lambda - 5)^2 (\lambda - 3) (\lambda - 1) = 0
+\end{align}$$
+
+따라서 $A$의 eigenvalue는 5, 3, 1이다. 이때 $\lambda = 5$의 경우 characteristic polynomial에서 2번 등장했다(= 차수가 2이다). 이를 "eigenvalue $\lambda = 5$의 **(algebraic) multiplicity**는 2이다"라 표현한다. 나머지 $\lambda = 1$, $\lambda = 3$의 multiplicity는 1이다.
+
+이제 eigenvector를 구해보자. eigenvector를 구하려면 각 $\lambda$를 $(A - \lambda I)\mathbf{x} = 0$에 대입한 후, 그때의 nontrivial solution을 구하면 된다.
+
+{:.no-background}
+- $\lambda = 5$일 때:
+
+    $$(A - 5I)\mathbf{x} = \begin{bmatrix}
+    0 & -2 & 6 & -1\\[0.5em]
+    0 & -2 & -8 & 0\\[0.5em]
+    0 & 0 & 0 & 4\\[0.5em]
+    0 & 0 & 0 & -4\\[0.5em]
+    \end{bmatrix}\mathbf{x} = \mathbf{0}$$
+
+    이므로, augmented matrix를 만들어 nontrivial solution을 구하면 $\lambda = 5$에 상응하는 $A$의 eigenvector를 구할 수 있다.
+
+    $$\begin{bmatrix}
+    0 & -2 & 6 & -1 & 0\\[0.5em]
+    0 & -2 & -8 & 0 & 0\\[0.5em]
+    0 & 0 & 0 & 4 & 0\\[0.5em]
+    0 & 0 & 0 & -4 & 0\\[0.5em]
+    \end{bmatrix} \sim \begin{bmatrix}
+    0 & 1 & 0 & 0 & 0\\[0.5em]
+    0 & 0 & 1 & 0 & 0\\[0.5em]
+    0 & 0 & 0 & 1 & 0\\[0.5em]
+    0 & 0 & 0 & 0 & 0\\[0.5em]
+    \end{bmatrix} \Rightarrow \mathbf{x} = \begin{bmatrix}
+    1\\[0.5em]
+    0\\[0.5em]
+    0\\[0.5em]
+    0\\[0.5em]
+    \end{bmatrix} x_1$$
+
+- $\lambda = 3$일 때:
+
+    $$(A - 3I)\mathbf{x} = \begin{bmatrix}
+    2 & -2 & 6 & -1\\[0.5em]
+    0 & 0 & -8 & 0\\[0.5em]
+    0 & 0 & 2 & 4\\[0.5em]
+    0 & 0 & 0 & -2\\[0.5em]
+    \end{bmatrix}\mathbf{x} = \mathbf{0}$$
+
+    이므로, augmented matrix를 만들어 nontrivial solution을 구하면 $\lambda = 3$에 상응하는 $A$의 eigenvector를 구할 수 있다.
+
+    $$\begin{bmatrix}
+    2 & -2 & 6 & -1 & 0\\[0.5em]
+    0 & 0 & -8 & 0 & 0\\[0.5em]
+    0 & 0 & 2 & 4 & 0\\[0.5em]
+    0 & 0 & 0 & -2 & 0\\[0.5em]
+    \end{bmatrix} \sim \begin{bmatrix}
+    1 & -1 & 0 & 0 & 0\\[0.5em]
+    0 & 0 & 1 & 0 & 0\\[0.5em]
+    0 & 0 & 0 & 1 & 0\\[0.5em]
+    0 & 0 & 0 & 0 & 0\\[0.5em]
+    \end{bmatrix} \Rightarrow \mathbf{x} = \begin{bmatrix}
+    1\\[0.5em]
+    1\\[0.5em]
+    0\\[0.5em]
+    0\\[0.5em]
+    \end{bmatrix} x_1$$
+
+- $\lambda = 1$일 때:
+
+    $$(A - I)\mathbf{x} = \begin{bmatrix}
+    4 & -2 & 6 & -1\\[0.5em]
+    0 & 2 & -8 & 0\\[0.5em]
+    0 & 0 & 4 & 4\\[0.5em]
+    0 & 0 & 0 & 0\\[0.5em]
+    \end{bmatrix}\mathbf{x} = \mathbf{0}$$
+
+    이므로, augmented matrix를 만들어 nontrivial solution을 구하면 $\lambda = 1$에 상응하는 $A$의 eigenvector를 구할 수 있다.
+
+    $$\begin{bmatrix}
+    4 & -2 & 6 & -1 & 0\\[0.5em]
+    0 & 2 & -8 & 0 & 0\\[0.5em]
+    0 & 0 & 4 & 4 & 0\\[0.5em]
+    0 & 0 & 0 & 0 & 0\\[0.5em]
+    \end{bmatrix} \sim \begin{bmatrix}
+    1 & 0 & 0 & 1/4 & 0\\[0.5em]
+    0 & 1 & 0 & 4 & 0\\[0.5em]
+    0 & 0 & 1 & 1 & 0\\[0.5em]
+    0 & 0 & 0 & 0 & 0\\[0.5em]
+    \end{bmatrix} \Rightarrow \mathbf{x} = \begin{bmatrix}
+    1\\[0.5em]
+    16\\[0.5em]
+    4\\[0.5em]
+    -4\\[0.5em]
+    \end{bmatrix} x_4$$
+
+따라서, $A$의 eigenvector는 $\begin{bmatrix}1\\\\0\\\\0\\\\0\\\\\end{bmatrix} x_1$ ($\lambda = 5$일 때), $\begin{bmatrix}1\\\\1\\\\0\\\\0\\\\\end{bmatrix} x_1$ ($\lambda = 3$일 때), $\begin{bmatrix}1\\\\16\\\\4\\\\-4\\\\\end{bmatrix} x_1$ ($\lambda = 1$일 때)가 된다.
+
+</div></li>
+
+<li><div markdown="block">
+
+multiplicity가 $k$인 eigenvalue의 eigenspace을 $\mathcal{B}$라 할 때, $\mathcal{B}$의 [차원](/linear_algebra/vector-space) $\text{dim}(\mathcal{B})$은 다음과 같은 성질이 있다.
+
+$$1 \le \text{dim}(\mathcal{B}) \le k$$
+
+예를 들어, 위 예제에서 eigenvalue $\lambda = 5$의 eigenspace의 차원은 1로, $\lambda = 5$의 multiplicity 2보다 작거나 같다. 또 eigenvalue $\lambda = 3$의 eigenspace의 차원은 1로, $\lambda = 3$의 multiplicity 1보다 작거나 같다.
+
+</div></li>
+
+</ul>
+
+# similarity
+
+<ul>
+
+<li><div markdown="block">
+
+$n\times n$ 행렬 $A$와 $B$에 대해, 역행렬이 존재하는 적당한 $n \times n$ 행렬 $P$가 있어 다음이 성립한다면,
+
+$$A = PBP^{-1}$$
+
+$A$는 $B$와 **similar**하다($A$ is similar to $B$)고 한다. 이때 $Q = P^{-1}$이라 하면 $B = (P^{-1})A(P^{-1})^{-1} = QAQ^{-1}$가 되므로, $A$가 $B$와 similar하면 $B$도 $A$와 similar하다. 따라서 이를 그냥 $A$와 $B$는 similar하다($A$ and $B$ are similar)고 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+행렬 $B$에 역행렬이 존재하는 행렬 $P$를 이용해 $B$와 similar한 행렬 $A = PBP^{-1}$를 만드는 과정을 **similar transformation**이라 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$n\times n$ 행렬 $A$와 $B$가 similar하다면, 두 행렬은 같은 characteristic equation을 가진다. 다시말해, 두 행렬은 같은 eigenvalue를 가진다.
+
+단, 역은 성립하지 않는다. 즉 두 행렬이 같은 characteristic equation을 가져도 similar하지 않을 수 있다.
+
+</div></li>
+
+<li><div markdown="block">
+
+similar하다는 것과 [row equivalent](/linear_algebra/echelon-form)하다는 것은 전혀 관계없는 이야기이다. 일반적으로 elementary row operation은 행렬의 eigenvalue를 바꾼다.
 
 </div></li>
 
@@ -114,58 +277,47 @@ $$\text{det}(A-\lambda I) = 0$$
 
 <li><div markdown="block">
 
-$n\times n$ 행렬 $A$와 $B$에 대해, 역행렬이 존재하는 적당한 $n \times n$ 행렬 $P$가 있어 다음이 성립한다면,
-
-$$A = PBP^{-1}$$
-
-$A$는 $B$와 **similar**하다($A$ is similar to $B$)고 한다. 이때 $Q = P^{-1}$이라 하면
-
-$$B = (P^{-1})A(P^{-1})^{-1} = QAQ^{-1}$$
-
-가 되므로, $A$가 $B$와 similar하면 $B$도 $A$와 similar하다. 따라서 이를 그냥 $A$와 $B$는 similar하다($A$ and $B$ are similar)고 한다.
-
-</div></li>
-
-<li><div markdown="block">
-
-$n\times n$ 행렬 $A$와 $B$가 similar하다면, 두 행렬은 같은 characteristic equation을 가진다. 다시말해, 두 행렬은 같은 eigenvalue를 가진다.
-
-단 역은 성립하지 않는다. 즉 두 행렬이 같은 characteristic equation을 가져도 similar하지 않을 수 있다.
-
-</div></li>
-
-<li><div markdown="block">
-
-참고로 similar하다는 것과 [row equivalent](/linear_algebra/echelon-form)하다는 것은 전혀 관계없는 이야기이다. 일반적으로 elementary row operation은 행렬의 eigenvalue를 바꾼다.
-
-</div></li>
-
-<li><div markdown="block">
-
 $n \times n$ 정사각행렬 $A$와 $n \times n$ [대각 행렬](/linear_algebra/vector-matrix) $D$가 similar한 경우, 행렬 $A$는 **diagonalizable**하다고 한다. 다시말해, diagonalizable한 $n \times n$ 정사각행렬 $A$는 적당한 $n \times n$ 대각 행렬 $D$와 역행렬이 존재하는 $n \times n$ 행렬 $P$를 이용해 다음과 같이 나타낼 수 있다.
 
 $$A = PDP^{-1}$$
 
+diagonalizable한 행렬 $A$를 위와 같이 나누는 것을 **diagonalization** 또는 **eigenvalue decomposition**이라 한다.
+
 </div></li>
 
 <li><div markdown="block">
 
-$n \times n$ 정사각행렬 $A$는 $n$개의 linearly independent한 eigenvector를 가질 때만 diagonalizable하다. 역으로, diagonalizable한 정사각행렬 $A$는 $n$개의 eigenvector를 가진다.
+모든 정사각행렬이 diagonalizable하진 않다. 어떤 행렬이 diagonalizable한지를 따지려면 다음 두 가지 방법을 사용할 수 있다.
+
+{:.no-background}
+- eigenvalue를 이용한 방법
+
+    $n \times n$ 정사각행렬 $A$는 $n$개의 linearly independent한 eigenvector를 가질 때만 diagonalizable하다. 역으로, diagonalizable한 정사각행렬 $A$는 $n$개의 eigenvector를 가진다.
+
+    [이때 $n$개의 linearly independent한 eigenvector들의 집합은 $\mathbb{R}^n$의 basis가 되는데,](/linear_algebra/vector-space) 이렇게 만들어진 $\mathbb{R}^n$의 basis를 **eigenvector basis**라 한다.
+
+- eigenvector를 이용한 방법
+
+    $A$는 $A$의 모든 eigenvalue들의 eigenspace의 [차원](/linear_algebra/vector-space)의 총합이 $n$일 때만 diagonalizable하다. 역으로, diagonalizable한 정사각행렬 $A$의 모든 eigenvalue들의 eigenspace의 차원의 총합은 $n$이다. 이때, eigenspace들의 차원의 총합이 $n$이라는 말은 characteristic polynomial이 일차식들로만 완전히 인수분해되고, 동시에 각 eigenvalue들의 eigenspace의 차원이 eigenvalue들의 multiplicity와 같다는 말이다.
 
 즉, $n \times n$ 정사각행렬 $A$에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
 - $A$는 diagonalizable하다.
 - $A$는 $n$개의 linearly independent한 eigenvector를 가진다.
-- $A$의 eigenvector들의 집합은 $\mathbb{R}^n$의 basis가 된다.
-
-참고로 이렇게 행렬의 eigenvector들로 만들어지는 $\mathbb{R}^n$의 basis를 **eigenvector basis**라 한다.
+- $A$의 모든 eigenvalue들의 eigenspace의 차원의 총합은 $n$이다.
+- characteristic polynomial은 일차식들로만 완전히 인수분해되고, 동시에 각 eigenvalue들의 eigenspace의 차원은 eigenvalue들의 multiplicity와 같다.
 
 </div></li>
 
 <li><div markdown="block">
 
-diagonalizable한 행렬 $A = PDP^{-1}$에서, $P$의 각 열들은 $A$의 eigenvector들이다. 그리고 $D$의 대각 성분들은 $P$의 각 열들을 이루고 있는 $A$의 eigenvector와 상응하는 eigenvalue들이다. 즉, diagonalizable한 행렬 $A$의 eigenvalue $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_n$과 이에 상응하는 eigenvector $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_n$에 대해(즉, $A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$), 다음과 같이 된다.
+diagonalizable한 $n \times n$ 정사각행렬 $A = PDP^{-1}$의 $P$와 $D$는 다음과 같이 아주 쉽게 구할 수 있다.
+
+- $P$ : 모든 eigenvalue의 eigenspace의 basis의 합집합의 원소들이 각 열을 구성하는, $n \times n$ 크기의 정사각행렬
+- $D$ : $P$의 각 열에 있는 eigenvector들과 상응하는 eigenvalue들을 순서대로 대각 성분으로 가지는, $n \times n$ 크기의 대각 행렬
+
+다시말해, diagonalizable한 행렬 $A$의 eigenvalue $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_n$과 이에 상응하는 eigenvector $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_n$에 대해, 다음과 같이 된다. ($\lambda\_i$와 $\lambda\_j$는 같을 수도 있다. $A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$)
 
 $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 
@@ -183,6 +335,48 @@ A = PDP^{-1} = \begin{bmatrix}
 \mathbf{v_1} & \mathbf{v_2} & \cdots & \mathbf{v_n}\\
 \vertbar & \vertbar & {} & \vertbar \\
 \end{bmatrix} \right)^{-1}$$
+
+</div></li>
+
+<li><div markdown="block">
+
+예제
+
+다음 행렬을 diagonalize해보자.
+
+$$A = \begin{bmatrix}
+5 & 0 & 0 & 0\\[0.5em]
+0 & 5 & 0 & 0\\[0.5em]
+1 & 4 & -3 & 0\\[0.5em]
+-1 & -2 & 0 & -3\\[0.5em]
+\end{bmatrix}$$
+
+이 행렬의 eigenvalue $\lambda$와 eigenspace $\mathcal{B}$를 구하면 다음과 같이 된다.
+
+{:.no-background}
+- $\lambda = 5$ : $\mathcal{B}\_{\lambda = 5} = \text{Span}\, \left \\{ \begin{bmatrix}-8\\\\4\\\\1\\\\0\\\\\end{bmatrix},\,\begin{bmatrix}-16\\\\4\\\\0\\\\1\\\\ \end{bmatrix} \right \\}$
+- $\lambda = -3$ : $\mathcal{B}\_{\lambda = -3} = \text{Span}\, \left \\{ \begin{bmatrix}0\\\\0\\\\1\\\\0\\\\\end{bmatrix},\,\begin{bmatrix}0\\\\0\\\\0\\\\1\\\\ \end{bmatrix} \right \\}$
+
+$A$는 4개의 linearly independent한 eigenvector를 가지므로 diagonalizable하다. (또는 $\lambda = 5$의 eigenspace의 차원(2)과 $\lambda = -3$의 eigenspace의 차원(2)의 총합이 4이므로 diagonalizable하다고 검증할 수도 있다).
+
+따라서 $A$는 다음과 같이 diagonalize된다.
+
+$$A = PDP^{-1} = \begin{bmatrix}
+-8 & -16 & 0 & 0\\[0.5em]
+4 & 4 & 0 & 0\\[0.5em]
+1 & 0 & 1 & 0\\[0.5em]
+0 & 1 & 0 & 1\\[0.5em]
+\end{bmatrix} \begin{bmatrix}
+5 & 0 & 0 & 0\\[0.5em]
+0 & 5 & 0 & 0\\[0.5em]
+0 & 0 & -3 & 0\\[0.5em]
+0 & 0 & 0 & -3\\[0.5em]
+\end{bmatrix} \left( \begin{bmatrix}
+-8 & -16 & 0 & 0\\[0.5em]
+4 & 4 & 0 & 0\\[0.5em]
+1 & 0 & 1 & 0\\[0.5em]
+0 & 1 & 0 & 1\\[0.5em]
+\end{bmatrix} \right )^{-1}$$
 
 </div></li>
 

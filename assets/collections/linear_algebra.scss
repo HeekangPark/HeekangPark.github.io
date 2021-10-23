@@ -88,6 +88,13 @@
                     }
                 }
             }
+
+            ul.no-background {
+                padding: 0;
+                background: none;
+                border-radius: 0;
+                overflow-x: auto;
+            }
         }
 
         &:last-child {

@@ -2,7 +2,7 @@
 title: "Matrix Factorization"
 order: 7
 date_created: "2021-09-27"
-date_modified: "2021-10-22"
+date_modified: "2021-10-23"
 ---
 
 # matrix factorization이란?
@@ -11,7 +11,7 @@ date_modified: "2021-10-22"
 
 <li><div markdown="block">
 
-주어진 행렬을 둘 이상의 행렬의 곱으로 나타내는 것을 **matrix factorization**이라 한다.
+주어진 행렬을 둘 이상의 행렬의 곱으로 나타내는 것을 **matrix factorization** 혹은 **matrix decomposition**이라 한다.
 
 쉽게 생각해, (대수학에서의) 인수분해의 선형대수 버전이 matrix factorization이라 생각하면 된다.
 
@@ -159,13 +159,13 @@ $$∴\,A = LU = \begin{bmatrix}
 
 </ul>
 
-## diagonalization
+## diagonalization (eigenvalue decomposition)
 
 <ul>
 
 <li><div markdown="block">
 
-[diagonalizable](/linear_algebra/eigenvector-eigenvalue)한 $n \times n$ 정사각행렬 $A$의 [eigenvalue](/linear_algebra/eigenvector-eigenvalue) $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_n$과 이에 상응하는 [eigenvector](/linear_algebra/eigenvector-eigenvalue) $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_n$가 주어졌다고 하자(즉, $A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$). 이때 $A$를 다음과 같이 나누는 것을 **diagonalization**이라 한다.
+[diagonalizable](/linear_algebra/eigenvector-eigenvalue)한 $n \times n$ 정사각행렬 $A$의 [eigenvalue](/linear_algebra/eigenvector-eigenvalue) $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_n$과 이에 상응하는 [eigenvector](/linear_algebra/eigenvector-eigenvalue) $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_n$가 주어졌다고 하자($\lambda\_i$와 $\lambda\_j$는 같을 수도 있다. $A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$). 이때 $A$를 다음과 같이 나누는 것을 **diagonalization** 또는 **eigenvalue decomposition**이라 한다.
 
 $$A = PDP^{-1}$$
 
@@ -187,6 +187,8 @@ $$A = PDP^{-1}$$
     \vdots & \vdots & \ddots & \vdots\\[0.5em]
     0 & 0 & \cdots & \lambda_n\\[0.5em]
     \end{bmatrix}$$
+
+좀더 자세한 얘기는 [해당 문서](/linear_algebra/eigenvector-eigenvalue)를 참고하자.
 
 </div></li>
 
