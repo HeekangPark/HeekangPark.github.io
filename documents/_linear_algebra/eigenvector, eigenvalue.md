@@ -1,7 +1,7 @@
 ---
 title: "Eigenvector, Eigenvalue"
 date_created: "2021-10-20"
-date_modified: "2021-10-23"
+date_modified: "2021-10-24"
 ---
 
 # eigenvector, eigenvalue
@@ -290,13 +290,13 @@ diagonalizable한 행렬 $A$를 위와 같이 나누는 것을 **diagonalization
 모든 정사각행렬이 diagonalizable하진 않다. 어떤 행렬이 diagonalizable한지를 따지려면 다음 두 가지 방법을 사용할 수 있다.
 
 {:.no-background}
-- eigenvalue를 이용한 방법
+- eigenvector를 이용한 방법
 
     $n \times n$ 정사각행렬 $A$는 $n$개의 linearly independent한 eigenvector를 가질 때만 diagonalizable하다. 역으로, diagonalizable한 정사각행렬 $A$는 $n$개의 eigenvector를 가진다.
 
     [이때 $n$개의 linearly independent한 eigenvector들의 집합은 $\mathbb{R}^n$의 basis가 되는데,](/linear_algebra/vector-space) 이렇게 만들어진 $\mathbb{R}^n$의 basis를 **eigenvector basis**라 한다.
 
-- eigenvector를 이용한 방법
+- eigenvalue를 이용한 방법
 
     $A$는 $A$의 모든 eigenvalue들의 eigenspace의 [차원](/linear_algebra/vector-space)의 총합이 $n$일 때만 diagonalizable하다. 역으로, diagonalizable한 정사각행렬 $A$의 모든 eigenvalue들의 eigenspace의 차원의 총합은 $n$이다. 이때, eigenspace들의 차원의 총합이 $n$이라는 말은 characteristic polynomial이 일차식들로만 완전히 인수분해되고, 동시에 각 eigenvalue들의 eigenspace의 차원이 eigenvalue들의 multiplicity와 같다는 말이다.
 
@@ -314,10 +314,10 @@ diagonalizable한 행렬 $A$를 위와 같이 나누는 것을 **diagonalization
 
 diagonalizable한 $n \times n$ 정사각행렬 $A = PDP^{-1}$의 $P$와 $D$는 다음과 같이 아주 쉽게 구할 수 있다.
 
-- $P$ : 모든 eigenvalue의 eigenspace의 basis의 합집합의 원소들이 각 열을 구성하는, $n \times n$ 크기의 정사각행렬
+- $P$ : 모든 eigenvalue의 eigenspace의 basis의 합집합의 원소(eigenvector)들이 각 열을 구성하는, $n \times n$ 크기의 정사각행렬
 - $D$ : $P$의 각 열에 있는 eigenvector들과 상응하는 eigenvalue들을 순서대로 대각 성분으로 가지는, $n \times n$ 크기의 대각 행렬
 
-다시말해, diagonalizable한 행렬 $A$의 eigenvalue $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_n$과 이에 상응하는 eigenvector $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_n$에 대해, 다음과 같이 된다. ($\lambda\_i$와 $\lambda\_j$는 같을 수도 있다. $A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$)
+다시말해, diagonalizable한 행렬 $A$에 대해, $A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$를 만족시키는 $n$개의 eigenvalue와 eigenvalue의 eigenspace의 basis의 각 원소(eigenvector)들의 쌍 $(\lambda\_1,\,\mathbf{v}\_1)$, $(\lambda\_2,\,\mathbf{v}\_2)$, …, $(\lambda\_n,\,\mathbf{v}\_n)$에 대해, 다음과 같이 된다. (즉, $\lambda\_i$와 $\lambda\_j$는 같을 수도 있다. $\mathbf{v}\_i$는 서로 linearly independent하다.)
 
 $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 

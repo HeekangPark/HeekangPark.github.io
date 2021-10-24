@@ -133,6 +133,12 @@ python:
   tags:
   - programming_language
   - python
+statistics:
+  category: Math
+  name: 통계학 (Statistics)
+  output: true
+  permalink: /:collection/:name
+  tags: []
 virtualbox:
   category: Applications / Frameworks / Libraries
   name: Oracle VM VirtualBox

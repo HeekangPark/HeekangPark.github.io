@@ -1,0 +1,100 @@
+---
+---
+
+.document-content > ul {
+    > li {
+        margin: {
+            bottom: 1.5em !important;
+        }
+
+        > div {
+            ol,
+            ul {
+                margin: {
+                    left: 0 !important;
+                    bottom: 1em !important;
+                }
+
+                > li {
+                    margin: {
+                        left: 2em;
+                    }
+                }
+            }
+
+            ol {
+                > li {
+                    &::before {
+                        width: 0.5em;
+                    }
+                }
+            }
+
+            ul.no-background {
+                padding: 0;
+                background: none;
+                border-radius: 0;
+                overflow-x: auto;
+            }
+        }
+
+        &:last-child {
+            div {
+                margin: {
+                    bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+table {
+    border-collapse: collapse;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin: {
+        top: 1em;
+        left: auto;
+        right: auto;
+        bottom: 1em;
+    }
+
+    thead {
+        border: {
+            bottom: 1px solid black;
+        }
+        font-weight: bold;
+
+        &:last-child {
+            border: {
+                bottom: none;
+            }
+        }
+    }
+
+    tbody {
+        border: {
+            bottom: 1px solid black;
+        }
+        font-weight: normal;
+    }
+
+    tr {
+        th,
+        td {
+            text-align: center;
+            padding: {
+                left: 0.75em;
+                right: 0.75em;
+                top: 0.5em;
+                bottom: 0.5em;
+            }
+
+            p {
+                margin: {
+                    bottom: 0 !important;
+                }
+            }
+        }
+    }
+}
