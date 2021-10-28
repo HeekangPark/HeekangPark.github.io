@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="bright">
 {% include head.html %}
 
 <body>
@@ -10,7 +10,7 @@
     <div class="container">
         {% include left-panel.html %}
 
-        <div class="main-panel">
+        <div class="main-panel panel right-panel">
             <div class="left-panel-open-btn-container">
                 <div class="left-panel-open-btn">
                     <span class="bar top"></span>
@@ -26,6 +26,65 @@
 
             {{ content }}
         </div>
+
+        {% assign show_comment = false %}
+        {% if layout.show_comment %}
+            {% assign show_comment = layout.show_comment %}
+        {% endif %}
+        {% if page.show_comment == false %}
+            {% assign show_comment = false %}
+        {% endif %}
+        {% if show_comment %}
+            <div class="comments panel right-panel bright-utterances">
+                <p class="title">Comments</p>
+                <script src="https://utteranc.es/client.js"
+                    repo="{{ site.data.info.utterances-repo }}"
+                    issue-term="pathname"
+                    label="comment"
+                    theme="github-light"
+                    crossorigin="anonymous"
+                    id="utterances-script"
+                    async>
+                </script>
+            </div>
+
+            <div class="comments panel right-panel dark-utterances">
+                <p class="title">Comments</p>
+                <script src="https://utteranc.es/client.js"
+                    repo="{{ site.data.info.utterances-repo }}"
+                    issue-term="pathname"
+                    label="comment"
+                    theme="github-dark"
+                    crossorigin="anonymous"
+                    id="utterances-script"
+                    async>
+                </script>
+            </div>
+        {% endif %}
+        
+        {% assign show_ad = false %}
+        {% if layout.show_ad %}
+            {% assign show_ad = layout.show_ad %}
+        {% endif %}
+        {% if page.show_ad == false %}
+            {% assign show_ad = false %}
+        {% endif %}
+        {% if show_ad %}
+            <div class="ad panel right-panel">
+                <p class="title">Advertisement</p>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- horizontal bottom ad -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-7509436363176620"
+                    data-ad-slot="7405859258"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        {% endif %}
     </div>
 
     <div class="page-navigator">

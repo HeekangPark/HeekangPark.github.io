@@ -1,6 +1,19 @@
 ---
 ---
 
+@at-root html[data-theme="bright"] {
+  --table-border: #000000;
+  --table-selected-cell-background: #dddddd;
+  --ul-info-background: #E4F5FF;
+}
+
+@at-root html[data-theme="dark"] {
+  --table-border: #888888;
+  --table-selected-cell-background: #333333;
+  --ul-info-background: #333333;
+}
+
+
 h1.collapsable,
 h2.collapsable,
 h3.collapsable,
@@ -22,8 +35,8 @@ table {
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
+  border-top: 2px solid var(--table-border);
+  border-bottom: 2px solid var(--table-border);
 
   caption {
     padding-top: 0.5em;
@@ -32,10 +45,10 @@ table {
   }
 
   thead {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--table-border);
 
     tr {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid var(--table-border);
 
       &:last-child {
         border-bottom: none;
@@ -44,7 +57,7 @@ table {
   }
 
   tfoot {
-    border-top: 1px solid black;
+    border-top: 1px solid var(--table-border);
   }
 
   th,
@@ -69,7 +82,7 @@ ul.info {
     left: 2em !important;
     right: 1em !important;
   }
-  background-color: #E4F5FF;
+  background-color: var(--ul-info-background);
   border-radius: 1em;
 
   > li {

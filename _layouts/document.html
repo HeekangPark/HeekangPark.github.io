@@ -1,5 +1,7 @@
 ---
 layout: default
+show_comment: true
+show_ad: true
 ---
 
 {% for item in site.collections %}
@@ -33,25 +35,34 @@ layout: default
 
 <div class="document">
     <div class="document-head">
+        {% unless page.no_collection %}
         {% if collection %}
             <p class="document-collection"><a href="/categories#{{ collection.label }}">{{ collection.category }}<i class="fas fa-angle-right"></i>{{ collection.name }}</a></p>
         {% endif %}
+        {% endunless %}
 
         <p class="document-title">{{ page.title }}</p>
 
+        {% if page.date_created %}
         <p class="document-date-created with-icon">
             <i class="icon fas fa-plus"></i>
             <span class="date">{{ page.date_created | date: "%Y.%m.%d" }}</span>
         </p>
+        {% endif %}
+        {% if page.date_modified %}
         <p class="document-date-modified with-icon">
             <i class="icon fas fa-edit"></i>
             <span class="date" path="{{ page.path }}">{{ page.date_modified | date: "%Y.%m.%d" }}</span>
         </p>
+        {% endif %}
+        {% unless page.no_pageview %}
         <p class="document-views with-icon">
             <i class="icon far fa-eye"></i>
             <span class="pageview" url="{{ page.url }}"></span>
         </p>
+        {% endunless %}
         
+        {% unless page.no_head_document_navigator %}
         <div class="head-document-navigator-btns">
             {% unless is_first %}
                 <div class="document-navigator-btn prev-document-btn" title="이전 문서로 : {{ prev_document.title }}">
@@ -64,10 +75,11 @@ layout: default
                 </div>
             {% endunless %}
         </div>
+        {% endunless %}
     </div>
     
     <div class="toc-content-container scrollspy">
-        {% unless page.no-toc %}
+        {% unless page.no_toc %}
             {% include toc.html html = content %}
         {% endunless %}
 
@@ -75,9 +87,11 @@ layout: default
             {{ content }}
         </div>
 
+        {% unless page.no_tags %}
         {% assign delim=";" %}
         {% assign collection_tags = collection.tags | join: delim | downcase | split: delim %}
         {% assign document_tags = page.tags | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort %}
+        {% if document_tags.size > 0 %}
         <div class="document-tags with-icon">
             <i class="fas fa-tag icon"></i>
             <div class="tags">
@@ -86,8 +100,11 @@ layout: default
                 {%- endfor -%}
             </div>
         </div>
+        {% endif %}
+        {% endunless %}
     </div>
     
+    {% unless page.no_foot_document_navigator %}
     <div class="foot-document-navigator">
         <div class="adjacent-documents">
             {% unless is_first %}
@@ -136,33 +153,7 @@ layout: default
             </div>
         </div>
     </div>
-</div>
-
-<div class="comments">
-    <p class="title">Comments</p>
-    <script src="https://utteranc.es/client.js"
-        repo="{{ site.data.info.utterances-repo }}"
-        issue-term="pathname"
-        label="comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-    </script>
-</div>
-
-<div class="ad">
-    <p class="title">Advertisement</p>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- horizontal bottom ad -->
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-7509436363176620"
-        data-ad-slot="7405859258"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    {% endunless %}
 </div>
 
 <script>

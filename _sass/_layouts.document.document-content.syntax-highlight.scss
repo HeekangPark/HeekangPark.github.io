@@ -1,13 +1,37 @@
-$background-color: #282a36;
-$text-color: #f8f8f2;
+@at-root html {
+    --syntax-highlight-block-background: #282a36;
+    --syntax-highlight-block-text: #f8f8f2;
+    --syntax-highlight-block-toolbox: #ffffff;
+    --syntax-highlight-block-lineno: #888888;
+    --syntax-highlight-block-border: #aaaaaa;
+    --syntax-highlight-code-header-background: #181a26;
+    --syntax-highlight-code-header-text: #f8f8f2;
+
+}
+@at-root html[data-theme="bright"] {
+    --syntax-highlight-code-result-background: #eeeeee;
+    --syntax-highlight-code-result-text: #000000;
+    --syntax-highlight-inline-background: #eeeeee;
+    --syntax-highlight-inline-text: #000000;
+    --syntax-highlight-code-header-border: #f8f8f2;
+}
+
+@at-root html[data-theme="dark"] {
+    --syntax-highlight-code-result-background: #333333;
+    --syntax-highlight-code-result-text: #d5d5d5;
+    --syntax-highlight-inline-background: #444444;
+    --syntax-highlight-inline-text: #d5d5d5;
+    --syntax-highlight-code-header-border: #888888;
+}
+
 $code-line-height: 1.6;
 
 figure.highlight {
     width: 100%;
     box-sizing: border-box;
     overflow-x: auto;
-    background-color: $background-color;
-    color: $text-color;
+    background-color: var(--syntax-highlight-block-background);
+    color: var(--syntax-highlight-block-text);
     padding: {
         top: 1em;
         bottom: 1em;
@@ -27,7 +51,7 @@ figure.highlight {
         position: absolute;
         bottom: 1em;
         right: 1em;
-        color: #ffffff;
+        color: var(--syntax-highlight-block-toolbox);
         margin: {
             right: -0.5em;
         };
@@ -69,7 +93,7 @@ figure.highlight {
                             white-space: nowrap;
                             user-select: none;
                             border: {
-                                right: 3px solid #aaaaaa;
+                                right: 3px solid var(--syntax-highlight-block-border);
                             }
     
                             padding: {
@@ -78,7 +102,7 @@ figure.highlight {
                             
                             pre.lineno {
                                 text-align: right;
-                                color: #888888;
+                                color: var(--syntax-highlight-block-lineno);
                             }
                         }
 
@@ -188,8 +212,8 @@ figure.highlight {
 }
 
 figure.highlight.code-result {
-    background-color: #eeeeee;
-    color: #000000;
+    background-color: var(--syntax-highlight-code-result-background);
+    color: var(--syntax-highlight-code-result-text);
 
     &.hidden {
         display: none;
@@ -227,16 +251,16 @@ code.highlighter-rouge {
         left: 0.3em;
         right: 0.3em;
     }
-    background-color: #eeeeee;
-    color: #000000;
+    background-color: var(--syntax-highlight-inline-background);
+    color: var(--syntax-highlight-inline-text);
     border-radius: 0.3em;
     white-space: normal;
 }
 
 p.code-header {
     font-family: $code-font;
-    background-color: #181a26;
-    color: #f8f8f2;
+    background-color: var(--syntax-highlight-code-header-background);
+    color: var(--syntax-highlight-code-header-text);
     padding: {
         top: 0.5em;
         bottom: 0.5em;
@@ -249,7 +273,7 @@ p.code-header {
         bottom: 0;
     }
     border: {
-        bottom: 1px solid #f8f8f2;
+        bottom: 1px solid var(--syntax-highlight-code-header-border);
     }
 
     & + figure.highlight {

@@ -15,7 +15,7 @@
 
     .tag-list {
         border-radius: 1em;
-        border: solid $gray-line-color 1px;
+        border: solid var(--site-border) 1px;
         padding: {
             top: 1em;
             //bottom: 0.5em;
@@ -36,7 +36,8 @@
                 bottom: 0.75em;
                 right: 0.75em;
             }
-            background-color: $tag-background-color;
+            background-color: var(--tag-background);
+            color: var(--site-text);
             border-radius: 0.2em;
             position: relative;
             cursor: pointer;
@@ -44,11 +45,16 @@
             -moz-user-select: none;
             -webkit-user-select: none;
             box-sizing: border-box;
-            border: 2px solid $tag-background-color;
+            border: 2px solid var(--tag-background);
+
+            &:hover {
+                background-color: var(--tag-hover-background);
+                border-color: var(--tag-hover-background);
+            }
 
             &.selected {
-                background-color: #cccccc;
-                border-color: #000000;
+                background-color: var(--tag-selected-background);
+                border-color: var(--tag-selected-border);
             }
 
             .tag-document-num {
@@ -56,8 +62,8 @@
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                background-color:  $tag-badge-color;
-                color: #000000;
+                background-color:  var(--tag-badge-background);
+                color: var(--tag-badge-text);
                 border-radius: 50%;
                 position: absolute;
                 width: 2em;
@@ -98,7 +104,8 @@
                 left: 0.75em;
                 right: 0.75em;
             }
-            background-color: $tag-background-color;
+            color: var(--site-text);
+            background-color: var(--tag-background);
             border-radius: 0.2em;
             border: none;
             cursor: pointer;
@@ -108,11 +115,11 @@
             }
 
             &:hover {
-                background-color: #dddddd;
+                background-color: var(--tag-hover-background);
             }
 
             &:active {
-                background-color: #cccccc;
+                background-color: var(--tag-selected-background);
             }
         }
     }

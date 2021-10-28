@@ -100,7 +100,11 @@
     <script data-ad-client="ca-pub-7509436363176620" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <!--css/js-->
+    <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/colors.css" type="text/css">
     <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.default.css" type="text/css">
+    {% if page.layout == "document" %}
+        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
+    {% endif %}
     {% for item in site.collections %}
         {% if page.collection == item.label %}
             {% assign collection = item %}
@@ -111,48 +115,69 @@
         {% if page_url_downcase.size == 0 %}
             {% assign page_url_downcase = "home" %}
         {% endif %}
-        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/sysdoc.{{ page_url_downcase }}.css" type="text/css">
-    {% else %}
-        {% if collection %}
-            <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
-            
-            {% assign css_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".css" %}
-            {% assign scss_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".scss" %}
-            {% assign js_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".js" %}
+        
+        {% assign css_file_path = site.baseurl | append: site.assets | append: "/css/sysdoc." | append: page_url_downcase | append: ".css" %}
+        {% assign scss_file_path = site.baseurl | append: site.assets | append: "/css/sysdoc." | append: page_url_downcase | append: ".scss" %}
 
-            {% assign css_file_exist = false %}
-            {% assign js_file_exist = false %}
-            {% for static_file in site.static_files %}
-                {% if static_file.path == css_file_path %}
+        {% assign css_file_exist = false %}
+        {% for static_file in site.static_files %}
+            {% if static_file.path == css_file_path %}
+                {% assign css_file_exist = true %}
+            {% endif %}
+        {% endfor %}
+
+        {% unless css_file_exist %}
+            {% for item in site.pages %}
+                {% assign item_path = item.path | prepend: "/" %}
+                {% if item_path == scss_file_path %}
                     {% assign css_file_exist = true %}
-                {% endif %}
-
-                {% if static_file.path == js_file_path %}
-                    {% assign js_file_exist = true %}
-                {% endif %}
-
-                {% if css_file_exist and js_file_exist %}
                     {% break %}
                 {% endif %}
             {% endfor %}
+        {% endunless %}
 
-            {% unless css_file_exist %}
-                {% for item in site.pages %}
-                    {% assign item_path = item.path | prepend: "/" %}
-                    {% if item_path == scss_file_path %}
-                        {% assign css_file_exist = true %}
-                        {% break %}
-                    {% endif %}
-                {% endfor %}
-            {% endunless %}
+        {% if css_file_exist %}
+            <link rel="stylesheet" href="{{ css_file_path }}" type="text/css">
+        {% endif %}
+    {% else %}
+        <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/css/layout.document.css" type="text/css">
+        
+        {% assign css_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".css" %}
+        {% assign scss_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".scss" %}
+        {% assign js_file_path = site.baseurl | append: site.assets | append: "/collections/" | append: collection.label | append: ".js" %}
 
-            {% if css_file_exist %}
-                <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/collections/{{ collection.label }}.css" type="text/css">
+        {% assign css_file_exist = false %}
+        {% assign js_file_exist = false %}
+        {% for static_file in site.static_files %}
+            {% if static_file.path == css_file_path %}
+                {% assign css_file_exist = true %}
             {% endif %}
 
-            {% if js_file_exist %}
-                <script src="{{ site.baseurl }}{{ site.assets }}/collections/{{ collection.label }}.js"></script>
+            {% if static_file.path == js_file_path %}
+                {% assign js_file_exist = true %}
             {% endif %}
+
+            {% if css_file_exist and js_file_exist %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+
+        {% unless css_file_exist %}
+            {% for item in site.pages %}
+                {% assign item_path = item.path | prepend: "/" %}
+                {% if item_path == scss_file_path %}
+                    {% assign css_file_exist = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+        {% endunless %}
+
+        {% if css_file_exist %}
+            <link rel="stylesheet" href="{{ site.baseurl }}{{ site.assets }}/collections/{{ collection.label }}.css" type="text/css">
+        {% endif %}
+
+        {% if js_file_exist %}
+            <script src="{{ site.baseurl }}{{ site.assets }}/collections/{{ collection.label }}.js"></script>
         {% endif %}
     {% endif %}
 </head>

@@ -17,7 +17,7 @@
                 margin: {
                     right: 0.4em;
                 }
-                color: $gray-text-color;
+                color: var(--site-unselected-text);
             }
         
             .num {

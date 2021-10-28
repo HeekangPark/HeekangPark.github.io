@@ -2,7 +2,7 @@
 title: "Echelon Form"
 order: 3
 date_created: "2021-09-20"
-date_modified: "2021-10-20"
+date_modified: "2021-10-29"
 ---
 
 # elementary row operation
@@ -159,7 +159,7 @@ $$\begin{bmatrix}
 따라서 pivot은 0, -2, 3이 되고, pivot position, pivot column은 각각 다음과 같다.
 
 $$\begin{bmatrix}
-\columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 0 & \columncolor{ {{ site.data.color.mathjaxHighlight }} }-3 &  -6 & \columncolor{ {{ site.data.color.mathjaxHighlight }} }4 & 9\\[0.5em]
+\columncolor{ {{ site.data.mathjax.highlightColor1 }} } \cellcolor{#FFF29F} 0 & \columncolor{ {{ site.data.mathjax.highlightColor1 }} }-3 &  -6 & \columncolor{ {{ site.data.mathjax.highlightColor1 }} }4 & 9\\[0.5em]
 -1 & \cellcolor{#FFF29F}-2 & -1 & 3 & 1\\[0.5em]
 -2 & -3 &  0 & \cellcolor{#FFF29F} 3 & -1\\[0.5em]
 1 & 4 &  5 & -9 & -7\\[0.5em]
@@ -195,7 +195,7 @@ $$\begin{bmatrix}
 (1번 과정) 1열이 pivot column이 되고, 1행 1열이 pivot position이 된다.
 
 $$\begin{bmatrix}
-\columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]
+\columncolor{ {{ site.data.mathjax.highlightColor1 }} } \cellcolor{#FFF29F} 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]
 3 & -7 & 8 & -5 & 8 & 9\\[0.5em]
 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
 \end{bmatrix}$$
@@ -203,7 +203,7 @@ $$\begin{bmatrix}
 (2번 과정) interchange 연산을 통해 3행과 1행을 바꾼다(2행과 1행을 바꿔도 된다). 그 결과 3이 pivot이 되었다.
 
 $$\begin{bmatrix}
-\columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
+\columncolor{ {{ site.data.mathjax.highlightColor1 }} } \cellcolor{#FFF29F} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
 3 & -7 & 8 & -5 & 8 & 9\\[0.5em]
 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]
 \end{bmatrix}$$
@@ -211,7 +211,7 @@ $$\begin{bmatrix}
 (3번 과정) 2행에 1행과의 replacement 연산을 적용해 2행 1열의 값을 0으로 만든다. 3행 1열은 이미 0이므로 추가적인 연산을 수행할 필요가 없다.
 
 $$\begin{bmatrix}
-\columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
+\columncolor{ {{ site.data.mathjax.highlightColor1 }} } \cellcolor{#FFF29F} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
 0 & 2 & -4 & 4 & 2 & -6\\[0.5em]
 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]
 \end{bmatrix}$$
@@ -228,7 +228,7 @@ $$\begin{bmatrix}
 
 $$\begin{bmatrix}
 \rowcolor{#dddddd} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
-0 & \columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 2 & -4 & 4 & 2 & -6\\[0.5em]
+0 & \columncolor{ {{ site.data.mathjax.highlightColor1 }} } \cellcolor{#FFF29F} 2 & -4 & 4 & 2 & -6\\[0.5em]
 0 & 3 & -6 & 6 & 4 & -5\\[0.5em]
 \end{bmatrix}$$
 
@@ -236,7 +236,7 @@ $$\begin{bmatrix}
 
 $$\begin{bmatrix}
 \rowcolor{#dddddd} 3 & -9 & 12 & -9 & 6 &  15\\[0.5em]
-0 & \columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 2 & -4 & 4 & 2 & -6\\[0.5em]
+0 & \columncolor{ {{ site.data.mathjax.highlightColor1 }} } \cellcolor{#FFF29F} 2 & -4 & 4 & 2 & -6\\[0.5em]
 0 & 0 & 0 & 0 & 1 & 4\\[0.5em]
 \end{bmatrix}$$
 
@@ -269,7 +269,7 @@ $$\begin{bmatrix}
 (5번 과정) 5열에서부터 시작한다. replacement 연산을 적용하여 1행 5열, 2행 5열의 값을 모두 0으로 만든다.
 
 $$\begin{bmatrix}
-3 & -9 & 12 & -9 & \columncolor{ {{ site.data.color.mathjaxHighlight }} } 0 & -9\\[0.5em]
+3 & -9 & 12 & -9 & \columncolor{ {{ site.data.mathjax.highlightColor1 }} } 0 & -9\\[0.5em]
 0 &  2 & -4 & 4 & 0 & -14\\[0.5em]
 0 & 0 & 0 & 0 & \cellcolor{#FFF29F} 1 & 4\\[0.5em]
 \end{bmatrix}$$
@@ -277,7 +277,7 @@ $$\begin{bmatrix}
 2행에 scaling 연산을 적용하여 pivot을 1로 만든다.
 
 $$\begin{bmatrix}
-3 & \columncolor{ {{ site.data.color.mathjaxHighlight }} } -9 & 12 & -9 & 0 & -9\\[0.5em]
+3 & \columncolor{ {{ site.data.mathjax.highlightColor1 }} } -9 & 12 & -9 & 0 & -9\\[0.5em]
 0 & \cellcolor{#FFF29F} 1 & -2 & 2 & 0 & -7\\[0.5em]
 0 & 0 & 0 & 0 & 1 & 4\\[0.5em]
 \end{bmatrix}$$
@@ -285,7 +285,7 @@ $$\begin{bmatrix}
 replacement 연산을 적용하여 1행 2열의 값을 모두 0으로 만든다.
 
 $$\begin{bmatrix}
-3 & \columncolor{ {{ site.data.color.mathjaxHighlight }} } 0 & -6 & 9 & 0 & -72\\[0.5em]
+3 & \columncolor{ {{ site.data.mathjax.highlightColor1 }} } 0 & -6 & 9 & 0 & -72\\[0.5em]
 0 & \cellcolor{#FFF29F} 1 & -2 & 2 & 0 & -7\\[0.5em]
 0 & 0 & 0 & 0 & 1 & 4\\[0.5em]
 \end{bmatrix}$$
@@ -293,7 +293,7 @@ $$\begin{bmatrix}
 1행에 scaling 연산을 적용하여 pivot을 1로 만든다.
 
 $$\begin{bmatrix}
-\columncolor{ {{ site.data.color.mathjaxHighlight }} } \cellcolor{#FFF29F} 1 & 0 & -2 & 3 & 0 & -24\\[0.5em]
+\columncolor{ {{ site.data.mathjax.highlightColor1 }} } \cellcolor{#FFF29F} 1 & 0 & -2 & 3 & 0 & -24\\[0.5em]
 0 & 1 & -2 & 2 & 0 & -7\\[0.5em]
 0 & 0 & 0 & 0 & 1 & 4\\[0.5em]
 \end{bmatrix}$$

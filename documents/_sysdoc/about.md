@@ -1,9 +1,14 @@
 ---
 nav-order: 4
 icon: "fas fa-id-card"
-layout: about
-date_created: "2021-05-01"
-date_modified: "2021-06-12"
+layout: document
+date_modified: "2021-10-29"
+no_collection: true
+no_head_document_navigator: true
+no_tags: true
+no_foot_document_navigator: true
+show_comment: false
+show_ad: false
 ---
 
 # About Me

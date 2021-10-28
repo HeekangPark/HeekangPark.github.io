@@ -43,7 +43,7 @@
             justify-content: flex-end;
 
             a {
-                color: $hyperlink-unclicked;
+                color: var(--site-hyperlink-unclicked);
 
                 &:hover {
                     text-decoration: underline;

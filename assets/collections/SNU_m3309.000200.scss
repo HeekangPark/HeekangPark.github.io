@@ -1,5 +1,31 @@
 ---
 ---
+@at-root html {
+    --syntax-highlight-keyword: #ff79c6;
+    --syntax-highlight-comment: #47BC82;
+}
+
+@at-root html[data-theme="bright"] {
+    --table-border: #000000;
+    --table-selected-cell-background: #dddddd;
+    --folder-btn-text: #0275d8;
+    --folder-btn-background: #eeeeee;
+    --folder-border: #eeeeee;
+    --folder-proof-mark-text: #333333;
+    --folder-proof-mark-background: #aaaaaa;
+    --ul-ul-background: #eeeeee;
+}
+
+@at-root html[data-theme="dark"] {
+    --table-border: #888888;
+    --table-selected-cell-background: #333333;
+    --folder-btn-text: #9cc1df;
+    --folder-btn-background: #555555;
+    --folder-border: #888888;
+    --folder-proof-mark-text: #cccccc;
+    --folder-proof-mark-background: #555555;
+    --ul-ul-background: #333333;
+}
 
 .folder-wrapper {
     text-align: center;
@@ -9,7 +35,7 @@
     }
 
     .folder-btn {
-        color: #0275d8;
+        color: var(--folder-btn-text);
         cursor: pointer;
         display: inline-block;
         padding: {
@@ -18,7 +44,7 @@
             left: 0.75em;
             right: 0.75em;
         }
-        background-color: #eeeeee;
+        background-color: var(--folder-btn-background);
 
         &:hover {
             text-decoration: underline;
@@ -28,7 +54,7 @@
     .folder-content {
         text-align: initial;
         &.proof-folder {
-            border: 1px solid #eeeeee;
+            border: 1px solid var(--folder-border);
             padding: 1em;
             margin: {
                 bottom: 1em;
@@ -44,8 +70,8 @@
                 }
                 display: inline-block;
                 font-weight: bold;
-                color: #333333;
-                background-color: #aaaaaa;
+                color: var(--folder-proof-mark-text);
+                background-color: var(--folder-proof-mark-background);
             }
         }
     }
@@ -76,8 +102,8 @@
 }
 
 .pseudo-code-header {
-    background-color: #181a26;
-    color: #f8f8f2;
+    background-color: var(--syntax-highlight-code-header-background);
+    color: var(--syntax-highlight-code-header-text);
     padding: {
         top: 0.5em;
         bottom: 0.5em;
@@ -90,7 +116,7 @@
         bottom: 0 !important;
     }
     border: {
-        bottom: 1px solid #f8f8f2;
+        bottom: 1px solid var(--syntax-highlight-code-header-border);
     }
 
     & + .pseudo-code {
@@ -103,8 +129,8 @@
     width: 100%;
     box-sizing: border-box;
     overflow-x: auto;
-    background-color: #282a36;
-    color: #f8f8f2;
+    background-color: var(--syntax-highlight-block-background);
+    color: var(--syntax-highlight-block-text);
     padding: {
         top: 1em;
         bottom: 1em;
@@ -141,10 +167,10 @@
     }
 
     .keyword-highlight {
-        color: #ff79c6;
+        color: var(--syntax-highlight-keyword);
     }
 
     .comment-highlight {
-        color: #47BC82;
+        color: var(--syntax-highlight-comment);
     }
 }

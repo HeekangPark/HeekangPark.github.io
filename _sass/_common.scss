@@ -1,8 +1,8 @@
 @font-face {
 	font-family: "NotoSansKR";
 	src: local("Noto Sans KR Light"), local("NotoSansKR-Light"),
-		 url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.woff2") format("woff2"),;
-		 //url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.otf") format("opentype");
+		url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.woff2") format("woff2");
+	//url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.otf") format("opentype");
 	font-display: block;
 	font-weight: normal;
 }
@@ -10,7 +10,7 @@
 @font-face {
 	font-family: "NotoSansKR";
 	src: local("Noto Sans KR Medium"), local("NotoSansKR-Medium"),
-		 url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Medium.woff2") format("woff2");
+		url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Medium.woff2") format("woff2");
 	font-display: block;
 	font-weight: bold;
 }
@@ -18,14 +18,14 @@
 @font-face {
 	font-family: "UbuntuMono";
 	src: local("Ubuntu Mono Regular"), local("UbuntuMono-Regular"),
-		 url("../fonts/monospace/Ubuntu Mono/UbuntuMono-Regular.woff2") format("woff2");
+		url("../fonts/monospace/Ubuntu Mono/UbuntuMono-Regular.woff2") format("woff2");
 	font-display: block;
 }
 
 @font-face {
 	font-family: "NanumGothicCoding";
 	src: local("Nanum Gothic Coding Regular"), local("NanumGothicCoding-Regular"),
-		 url("../fonts/monospace/Nanum Gothic Coding/NanumGothicCoding-Regular.woff2") format("woff2");
+		url("../fonts/monospace/Nanum Gothic Coding/NanumGothicCoding-Regular.woff2") format("woff2");
 	font-display: block;
 }
 
@@ -37,33 +37,78 @@
 	font-display: swap;
 }*/
 
-
-html, body, div, span, p, nav,
-h1, h2, h3, h4, h5, h6, strong, small, b, u, i,
-ul, ol, li, a, img, figure,
-table, thead, tbody, tfoot, th, tr, td,
-pre, blockquote, input {
+html,
+body,
+div,
+span,
+p,
+nav,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+small,
+b,
+u,
+i,
+ul,
+ol,
+li,
+a,
+img,
+figure,
+table,
+thead,
+tbody,
+tfoot,
+th,
+tr,
+td,
+pre,
+blockquote,
+input {
 	margin: 0;
 	padding: 0;
 	border: none;
 	min-width: 0;
 }
 
-a {
-	text-decoration: inherit;
-	color: inherit;
-}
-
-html {
-	font-family: $normal-font;
-	word-break: break-all;	
-}
-
-pre, code {
-	font-family: $code-font;
-}
-
 body {
-    background-color: $site-background-color;
-    font-size: 1em;
+	background-color: var(--site-background);
+	font-size: 1em;
+	overflow-y: scroll;
+	color: var(--site-text);
+	font-family: $normal-font;
+	word-break: break-all;
+
+	a {
+		text-decoration: inherit;
+		color: inherit;
+	}
+
+	pre,
+	code {
+		font-family: $code-font;
+	}
+}
+
+* {
+	&::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		background-color: var(--scrollbar-thumb)
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: var(--scrollbar-background);
+	}
+
+
 }

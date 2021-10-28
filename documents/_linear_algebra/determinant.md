@@ -1,7 +1,7 @@
 ---
 title: "판별식 (Determinant)"
 date_created: "2021-10-14"
-date_modified: "2021-10-22"
+date_modified: "2021-10-29"
 ---
 
 # 판별식(determinant)이란?
@@ -136,7 +136,7 @@ $$\text{det}\,AB = (\text{det}\,A)(\text{det}\,B)$$
 
 $n \times n$ 행렬 $A = [\, \mathbf{a}\_1 \quad \mathbf{a}\_2 \quad \cdots \quad \mathbf{a}\_n \,]$과 벡터 $\mathbf{b} \in \mathbb{R}^n$에 대해, $A$의 $i$번째 열 $\mathbf{a}_i$를 $\mathbf{b}$로 교체한 행렬을 $A\_i (\mathbf{b})$라 하자.
 
-$$A_{i}(\mathbf{b}) = [\,\mathbf{a}_1 \quad \cdots \quad \mathbf{a}_{i-1} \,\,\, \bbox[{{ site.data.color.mathjaxHighlight }}]{\,\,\mathbf{b}\,\,} \,\,\, \mathbf{a}_{i+1} \quad \cdots \quad \mathbf{a}_n \,]$$
+$$A_{i}(\mathbf{b}) = [\,\mathbf{a}_1 \quad \cdots \quad \mathbf{a}_{i-1} \,\,\, \bbox[{{ site.data.mathjax.highlightColor1 }}, {{ site.data.mathjax.highlightPadding }}]{\,\,\mathbf{b}\,\,} \,\,\, \mathbf{a}_{i+1} \quad \cdots \quad \mathbf{a}_n \,]$$
 
 </div></li>
 

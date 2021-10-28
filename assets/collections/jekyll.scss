@@ -1,14 +1,24 @@
 ---
 ---
 
+@at-root html[data-theme="bright"] {
+    --table-border: #000000;
+    --table-selected-cell-background: #dddddd;
+}
+
+@at-root html[data-theme="dark"] {
+    --table-border: #888888;
+    --table-selected-cell-background: #333333;
+}
+
 table.mathjax-table {
     border-collapse: collapse;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 2px solid var(--table-border);
+    border-bottom: 2px solid var(--table-border);
 
     thead {
         border: {
-            bottom: 1px solid black;
+            bottom: 1px solid var(--table-border);
         }
 
         &:last-child {
@@ -20,12 +30,12 @@ table.mathjax-table {
 
     tbody {
         border: {
-            bottom: 1px solid black;
+            bottom: 1px solid var(--table-border);
         }
 
         &:hover td[rowspan],
         tr:hover td {
-            background-color: #dddddd;
+            background-color: var(--table-selected-cell-background);
         }
     }
 
