@@ -2,7 +2,7 @@
 title: "벡터와 행렬"
 order: 1
 date_created: "2021-09-13"
-date_modified: "2021-10-29"
+date_modified: "2021-10-31"
 ---
 
 # 벡터(vector)란?
@@ -26,6 +26,8 @@ x_n
 $$\mathbf{x} = (x_1,\,x_2,\,\cdots,\,x_n)$$
 
 이때 $x\_i$ ($i = 1,\,2,\,\cdots,\,n$)을 벡터의 $i$번째 **요소(element)**, **성분(component)**, 혹은 **항목(entry)**이라 한다.
+
+(벡터에 대한 보다 정확한 정의는 [해당 문서](/linear_algebra/vector-space)를 참고하기 바란다.)
 
 </div></li>
 
@@ -612,7 +614,7 @@ y_{2}\\
 y_{n}\\
 \end{bmatrix}$$
 
-두 벡터의 **내적(inner product, dot product)** $\mathbf{x} \cdot \mathbf{y}$는 다음과 같이 계산된다.
+두 벡터의 **내적(inner product, dot product)** $\mathbf{x} \cdot \mathbf{y}$는 다음과 같이 정의된다.
 
 $$\mathbf{x} \cdot \mathbf{y} = \mathbf{x}^\intercal \mathbf{y} = \begin{bmatrix}
 x_{1} & x_{2} & \cdots & x_{n}
@@ -628,7 +630,7 @@ y_{n}\\
 
 <li><div markdown="block">
 
-계산 결과 $\mathbf{x} \cdot \mathbf{y}$는 스칼라가 된다.
+즉, 크기가 같은 두 벡터의 내적은 상응하는 위치에 있는 원소들 간의 곱의 합이다. 따라서 계산 결과 $\mathbf{x} \cdot \mathbf{y}$는 스칼라가 된다.
 
 </div></li>
 
@@ -636,9 +638,11 @@ y_{n}\\
 
 벡터의 내적은 다음과 같은 성질이 있다.
 
-- $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha \mathbf{x})^\intercal \mathbf{y} = \alpha (\mathbf{x}^\intercal \mathbf{y})$
-- $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\mathbf{z} \in \mathbb{R}^{n}$에 대해, $(\mathbf{x} + \mathbf{y})^\intercal \mathbf{z} = \mathbf{x}^\intercal \mathbf{z}  + \mathbf{y}^\intercal \mathbf{z}$
-- $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$에 대해, $\mathbf{x}^\intercal \mathbf{y} = \mathbf{y}^\intercal \mathbf{x}$
+- $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$에 대해, $\mathbf{x} \cdot \mathbf{y} = \mathbf{y} \cdot \mathbf{x}$
+- $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\mathbf{z} \in \mathbb{R}^{n}$에 대해, $(\mathbf{x} + \mathbf{y}) \cdot \mathbf{z} = \mathbf{x} \cdot \mathbf{z}  + \mathbf{y} \cdot \mathbf{z}$
+- $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha \mathbf{x}) \cdot \mathbf{y} = \alpha (\mathbf{x} \cdot \mathbf{y})$
+- $\mathbf{x} \in \mathbb{R}^{n}$에 대해, $\mathbf{x} \cdot \mathbf{x} \ge 0$
+- $\mathbf{x} \in \mathbb{R}^{n}$에 대해, $\mathbf{x} \cdot \mathbf{x} = 0$이면 $\mathbf{x} = \mathbf{0}$이다. 역도 성립한다(즉, $\mathbf{x} = \mathbf{0}$이면 $\mathbf{x} \cdot \mathbf{x} = 0$이다).
 
 </div></li>
 
@@ -680,13 +684,16 @@ Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계�
 - $l\_2$ Norm : $\lVert \mathbf{x} \rVert \_{2} = \displaystyle\sum_{i=1} ^n x\_i ^2 $
 - $l\_\infty$ Norm : $\lVert \mathbf{x} \rVert \_{\infty} = \max \| x\_i \|$
 
+이 중 $l\_2$ Norm은 아래 첨자를 생략하고 $\lVert \mathbf{x} \rVert$로 사용하는 경우가 많다.
+
 </div></li>
 
 <li><div markdown="block">
 
 $l\_2$ Norm은 다음과 같은 성질이 있다.
 
-- $\lVert \mathbf{x} \rVert \_{2} ^2 = \mathbf{x}^\intercal \mathbf{x}$
+- $\lVert \mathbf{x} \rVert ^2 = \lVert \mathbf{x} \rVert \_{2} ^2 = \mathbf{x} \cdot \mathbf{x} = \mathbf{x}^\intercal \mathbf{x}$
+- 스칼라 $c \in \mathbb{R}$에 대해, $\lVert c\mathbf{x} \rVert = \lvert c \rvert \lVert \mathbf{x} \rVert$
 
 </div></li>
 
