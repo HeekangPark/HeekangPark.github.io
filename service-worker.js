@@ -1,4 +1,4 @@
-const COMMIT_TIME = "2021-11-01 18:12";
+const COMMIT_TIME = "2021-11-01 18:19";
 
 const CACHE_STORAGE_NAME = "Reinventing The Wheel"
 const STATIC_CACHE_STORAGE_NAME = `${CACHE_STORAGE_NAME} - static`
@@ -27,17 +27,17 @@ const URL_THAT_NEED_TO_BE_CACHED_STATICALLY = [
     '/assets/icons/4.ico',
     '/assets/icons/5.ico',
     '/assets/icons/6.ico',
+    '/assets/css/colors.css',
     '/assets/css/layout.default.css',
-    '/assets/css/layout.document.css',
-    '/assets/css/sysdoc.about.css',
     '/assets/css/sysdoc.categories.css',
+    '/assets/css/sysdoc.debug.css',
     '/assets/css/sysdoc.draft.css',
     '/assets/css/sysdoc.guestbook.css',
     '/assets/css/sysdoc.home.css',
-    '/assets/css/sysdoc.search.css',
-    '/assets/css/sysdoc.tags.css',
     '/assets/css/sysdoc.rcds.css',
     '/assets/css/sysdoc.rmds.css',
+    '/assets/css/sysdoc.search.css',
+    '/assets/css/sysdoc.tags.css'
 ]
 
 const URL_PREFIXES_THAT_NEED_TO_BE_CACHED_DYNAMICALLY = [
