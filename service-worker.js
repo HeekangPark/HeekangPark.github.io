@@ -1,4 +1,4 @@
-const COMMIT_TIME = "2021-10-31 06:58";
+const COMMIT_TIME = "2021-11-01 18:12";
 
 const CACHE_STORAGE_NAME = "Reinventing The Wheel"
 const STATIC_CACHE_STORAGE_NAME = `${CACHE_STORAGE_NAME} - static`
@@ -41,7 +41,6 @@ const URL_THAT_NEED_TO_BE_CACHED_STATICALLY = [
 ]
 
 const URL_PREFIXES_THAT_NEED_TO_BE_CACHED_DYNAMICALLY = [
-    "https://heekangpark.github.io/",
     "https://cdn.jsdelivr.net/npm/mathjax@3/",
     "https://utteranc.es/",
     "https://ka-f.fontawesome.com/releases/",
