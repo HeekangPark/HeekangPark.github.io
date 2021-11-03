@@ -2,7 +2,7 @@
 title: "벡터와 행렬"
 order: 1
 date_created: "2021-09-13"
-date_modified: "2021-10-31"
+date_modified: "2021-11-04"
 ---
 
 # 벡터(vector)란?
@@ -108,7 +108,7 @@ x_n
 
 비슷하게, $1 \times n$ 행렬은 **행 벡터(row vector)**라 부르고, 일반적인 벡터(열 벡터)가 전치(transpose)되어 있는 것이라 이해한다.
 
-$$\mathbf{x}^\intercal =
+$$\mathbf{x}^T =
 \begin{bmatrix}
 x_1 & x_2 & \cdots & x_n
 \end{bmatrix}$$
@@ -127,15 +127,15 @@ A = \begin{bmatrix}
 \vertbar & \vertbar & {} & \vertbar \\
 \end{bmatrix}$$
 
-또는 $1 \times n$ 행 벡터 $\mathbf{r}\_j^\intercal$들이 $m$개 있는 것이라 이해할 수 있다($j = 1,\,2,\,\cdots,\,m$).
+또는 $1 \times n$ 행 벡터 $\mathbf{r}\_j^T$들이 $m$개 있는 것이라 이해할 수 있다($j = 1,\,2,\,\cdots,\,m$).
 
 $$\newcommand{\horzbar}{\rule[.5ex]{4ex}{0.5pt}}
 
 A = \begin{bmatrix}
-\horzbar & \mathbf{r}_{1}^\intercal & \horzbar \\
-\horzbar & \mathbf{r}_{2}^\intercal & \horzbar \\
+\horzbar & \mathbf{r}_{1}^T & \horzbar \\
+\horzbar & \mathbf{r}_{2}^T & \horzbar \\
 {} & \vdots & {} \\
-\horzbar & \mathbf{r}_{m}^\intercal & \horzbar \\
+\horzbar & \mathbf{r}_{m}^T & \horzbar \\
 \end{bmatrix}$$
 
 </div></li>
@@ -386,10 +386,10 @@ $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 \newcommand{\horzbar}{\rule[.5ex]{4ex}{0.5pt}}
 
 A = \begin{bmatrix}
-\horzbar & \mathbf{a}_{1}^\intercal & \horzbar \\
-\horzbar & \mathbf{a}_{2}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{1}^T & \horzbar \\
+\horzbar & \mathbf{a}_{2}^T & \horzbar \\
 {} & \vdots & {} \\
-\horzbar & \mathbf{a}_{m}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{m}^T & \horzbar \\
 \end{bmatrix},\,
 B = \begin{bmatrix}
 \vertbar & \vertbar & {} & \vertbar \\
@@ -417,16 +417,16 @@ $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 \newcommand{\horzbar}{\rule[.5ex]{4ex}{0.5pt}}
 
 C = AB = \begin{bmatrix}
-\horzbar & \mathbf{a}_{1}^\intercal & \horzbar \\
-\horzbar & \mathbf{a}_{2}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{1}^T & \horzbar \\
+\horzbar & \mathbf{a}_{2}^T & \horzbar \\
 {} & \vdots & {} \\
-\horzbar & \mathbf{a}_{m}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{m}^T & \horzbar \\
 \end{bmatrix} B
 = \begin{bmatrix}
-\horzbar & \mathbf{a}_{1}^\intercal B & \horzbar \\
-\horzbar & \mathbf{a}_{2}^\intercal B & \horzbar \\
+\horzbar & \mathbf{a}_{1}^T B & \horzbar \\
+\horzbar & \mathbf{a}_{2}^T B & \horzbar \\
 {} & \vdots & {} \\
-\horzbar & \mathbf{a}_{m}^\intercal B & \horzbar \\
+\horzbar & \mathbf{a}_{m}^T B & \horzbar \\
 \end{bmatrix}$$
 
 또한 다음과 같이 벡터의 내적으로 이해할 수도 있다.
@@ -436,10 +436,10 @@ $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 
 C = AB
 = \begin{bmatrix}
-\horzbar & \mathbf{a}_{1}^\intercal & \horzbar \\
-\horzbar & \mathbf{a}_{2}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{1}^T & \horzbar \\
+\horzbar & \mathbf{a}_{2}^T & \horzbar \\
 {} & \vdots & {} \\
-\horzbar & \mathbf{a}_{m}^\intercal & \horzbar \\
+\horzbar & \mathbf{a}_{m}^T & \horzbar \\
 \end{bmatrix}
 \begin{bmatrix}
 \vertbar & \vertbar & {} & \vertbar \\
@@ -447,10 +447,10 @@ C = AB
 \vertbar & \vertbar & {} & \vertbar \\
 \end{bmatrix}
 = \begin{bmatrix}
-\mathbf{a}_{1}^\intercal \mathbf{b}_{1} & \mathbf{a}_{1}^\intercal \mathbf{b}_{2} & \cdots & \mathbf{a}_{1}^\intercal \mathbf{b}_{n} \\
-\mathbf{a}_{2}^\intercal \mathbf{b}_{1} & \mathbf{a}_{2}^\intercal \mathbf{b}_{2} & \cdots & \mathbf{a}_{2}^\intercal \mathbf{b}_{n} \\
+\mathbf{a}_{1}^T \mathbf{b}_{1} & \mathbf{a}_{1}^T \mathbf{b}_{2} & \cdots & \mathbf{a}_{1}^T \mathbf{b}_{n} \\
+\mathbf{a}_{2}^T \mathbf{b}_{1} & \mathbf{a}_{2}^T \mathbf{b}_{2} & \cdots & \mathbf{a}_{2}^T \mathbf{b}_{n} \\
 \vdots & \vdots & \ddots & \vdots \\
-\mathbf{a}_{m}^\intercal \mathbf{b}_{1} & \mathbf{a}_{m}^\intercal \mathbf{b}_{2} & \cdots & \mathbf{a}_{m}^\intercal \mathbf{b}_{n} \\
+\mathbf{a}_{m}^T \mathbf{b}_{1} & \mathbf{a}_{m}^T \mathbf{b}_{2} & \cdots & \mathbf{a}_{m}^T \mathbf{b}_{n} \\
 \end{bmatrix}$$
 
 </div></li>
@@ -504,9 +504,9 @@ a_{21} & a_{22} & \cdots & a_{2n} \\
 a_{m1} & a_{m2} & \cdots & a_{mn} \\
 \end{bmatrix}$$
 
-행렬 $A$의 전치(transpose) $A^\intercal$은 다음과 같이 계산된다.
+행렬 $A$의 전치(transpose) $A^T$은 다음과 같이 계산된다.
 
-$$A^\intercal = \begin{bmatrix}
+$$A^T = \begin{bmatrix}
 a_{11} & a_{21} & \cdots & a_{m1} \\
 a_{12} & a_{22} & \cdots & a_{m2} \\
 \vdots & \vdots & \ddots & \vdots \\
@@ -519,13 +519,13 @@ a_{1n} & a_{2n} & \cdots & a_{mn} \\
 
 행렬의 행과 열을 바꾼다.
 
-$$(A^\intercal)_{ij} = A_{ji}$$
+$$(A^T)_{ij} = A_{ji}$$
 
 </div></li>
 
 <li><div markdown="block">
 
-계산 결과 $A^\intercal$는 $n \times m$ 행렬이 된다($A$의 행과 열의 크기가 바뀐다).
+계산 결과 $A^T$는 $n \times m$ 행렬이 된다($A$의 행과 열의 크기가 바뀐다).
 
 </div></li>
 
@@ -533,11 +533,11 @@ $$(A^\intercal)_{ij} = A_{ji}$$
 
 행렬의 전치는 다음과 같은 성질이 있다.
 
-- $(A^\intercal)^\intercal = A$
-- $A \in \mathbb{R}^{m \times n}$, $B \in \mathbb{R}^{m \times n}$에 대해, $(A + B)^\intercal = A^\intercal + B^\intercal$
-- $A \in \mathbb{R}^{m \times p}$, $B \in \mathbb{R}^{p \times n}$에 대해, $(AB)^\intercal = B^\intercal A^\intercal$
-- $A \in \mathbb{R}^{m \times n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha A)^\intercal = \alpha A^\intercal$
-- 역행렬이 존재하는 행렬 $A$에 대해, $(A^{-1})^\intercal = (A^\intercal)^{-1}$
+- $(A^T)^T = A$
+- $A \in \mathbb{R}^{m \times n}$, $B \in \mathbb{R}^{m \times n}$에 대해, $(A + B)^T = A^T + B^T$
+- $A \in \mathbb{R}^{m \times p}$, $B \in \mathbb{R}^{p \times n}$에 대해, $(AB)^T = B^T A^T$
+- $A \in \mathbb{R}^{m \times n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha A)^T = \alpha A^T$
+- 역행렬이 존재하는 행렬 $A$에 대해, $(A^{-1})^T = (A^T)^{-1}$
 
 </div></li>
 
@@ -581,7 +581,7 @@ $$tr(A) = \sum_{i=1} ^n a_{ii} = a_{11} + a_{22} + \cdots + a_{nn}$$
 
 행렬의 대각합은 다음과 같은 성질이 있다.
 
-- $A \in \mathbb{R}^{n \times n}$에 대해, $tr(A) = tr(A^\intercal)$
+- $A \in \mathbb{R}^{n \times n}$에 대해, $tr(A) = tr(A^T)$
 - $A \in \mathbb{R}^{n \times n}$, $B \in \mathbb{R}^{n \times n}$에 대해, $tr(A + B) = tr(A) + tr(B)$
 - $A \in \mathbb{R}^{n \times n}$, 실수 $\alpha \in \mathbb{R}$에 대해, $tr(\alpha A) = \alpha tr(A)$
 - $A \in \mathbb{R}^{n \times p}$, $B \in \mathbb{R}^{p \times n}$에 대해, $tr(AB) = tr(BA)$
@@ -616,7 +616,7 @@ y_{n}\\
 
 두 벡터의 **내적(inner product, dot product)** $\mathbf{x} \cdot \mathbf{y}$는 다음과 같이 정의된다.
 
-$$\mathbf{x} \cdot \mathbf{y} = \mathbf{x}^\intercal \mathbf{y} = \begin{bmatrix}
+$$\mathbf{x} \cdot \mathbf{y} = \mathbf{x}^T \mathbf{y} = \begin{bmatrix}
 x_{1} & x_{2} & \cdots & x_{n}
 \end{bmatrix} \begin{bmatrix}
 y_{1}\\
@@ -680,11 +680,21 @@ Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계�
 
 자주 사용되는 Norm으로는 다음이 있다.
 
-- $l\_1$ Norm : $\lVert \mathbf{x} \rVert \_{1} = \displaystyle\sum_{i=1} ^n \| x\_i \| $
-- $l\_2$ Norm : $\lVert \mathbf{x} \rVert \_{2} = \displaystyle\sum_{i=1} ^n x\_i ^2 $
-- $l\_\infty$ Norm : $\lVert \mathbf{x} \rVert \_{\infty} = \max \| x\_i \|$
+- **$l\_0$ Norm** : 벡터의 요소의 수를 의미한다.
 
-이 중 $l\_2$ Norm은 아래 첨자를 생략하고 $\lVert \mathbf{x} \rVert$로 사용하는 경우가 많다.
+    $$\lVert \mathbf{x} \rVert _{0} = n$$
+
+- **$l\_1$ Norm** : 벡터의 각 요소의 절대값의 합을 의미한다. 맨하탄 거리(Manhattan distance), 시가지 거리(taxicab distance)라고도 한다.
+
+    $$\lVert \mathbf{x} \rVert _{1} = \displaystyle\sum_{i=1} ^n \lvert x_i \rvert $$
+
+- **$l\_2$ Norm** : 유클리드 거리(Euclidean distance), 피타고라스 거리(Pythagorean distance)라고도 한다. 벡터의 크기를 나타낼 때 가장 일반적으로 쓰는 Norm이다. 아래 첨자를 생략하고 $\lVert \mathbf{x} \rVert$로 사용하는 경우가 많다.
+    
+    $$\lVert \mathbf{x} \rVert _{2} = \sqrt {\displaystyle\sum_{i=1} ^n x_i ^2 }$$
+
+- **$l\_\infty$ Norm** : 벡터의 각 요소의 절대값 중 최대값을 의미한다. 상한 거리(supremum distance), 체비쇼프 거리(Chebyshev distance, Tchebychev distance), 체스판 거리(chessboard distance)라고도 한다.
+
+    $$\lVert \mathbf{x} \rVert _{\infty} = \max \lvert x_i \rvert$$ 
 
 </div></li>
 
@@ -692,8 +702,14 @@ Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계�
 
 $l\_2$ Norm은 다음과 같은 성질이 있다.
 
-- $\lVert \mathbf{x} \rVert ^2 = \lVert \mathbf{x} \rVert \_{2} ^2 = \mathbf{x} \cdot \mathbf{x} = \mathbf{x}^\intercal \mathbf{x}$
+- $\lVert \mathbf{x} \rVert ^2 = \lVert \mathbf{x} \rVert \_{2} ^2 = \mathbf{x} \cdot \mathbf{x} = \mathbf{x}^T \mathbf{x}$
 - 스칼라 $c \in \mathbb{R}$에 대해, $\lVert c\mathbf{x} \rVert = \lvert c \rvert \lVert \mathbf{x} \rVert$
+
+</div></li>
+
+<li><div markdown="block">
+
+$\lVert \mathbf{x} \rVert = 1$인 벡터를 **단위벡터(unit vector)**라 한다.
 
 </div></li>
 

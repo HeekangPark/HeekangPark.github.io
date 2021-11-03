@@ -2,7 +2,7 @@
 title: "벡터공간 (Vector Space)"
 order: 8
 date_created: "2021-09-28"
-date_modified: "2021-10-15"
+date_modified: "2021-11-04"
 ---
 
 # 벡터공간(vector space)
@@ -333,9 +333,9 @@ $$\text{Row}\,A = \text{Span}\{ \mathbf{r}_1,\,\mathbf{r}_2,\,\cdots,\,\mathbf{r
 
 <li><div markdown="block">
 
-$A$의 행들은 $A^\intercal$의 열이므로, 다음이 성립한다.
+$A$의 행들은 $A^T$의 열이므로, 다음이 성립한다.
 
-$$\text{Row}\,A = \text{Col}\,A^\intercal$$
+$$\text{Row}\,A = \text{Col}\,A^T$$
 
 </div></li>
 
@@ -495,7 +495,7 @@ $\text{Nul}\,A$의 차원을 $A$의 **nullity**라 한다.
 $m \times n$ 행렬 $A$에 대해, 다음 값들은 모두 같다.
 
 {:.text-align-center .overflow-x .mt-1 .mb-1}
-$\text{Rank}(A) = \text{dim}(\text{Col}\,A) = \text{dim}(\text{Row}\,A) = \text{Rank}(A^\intercal) = A$의 pivot position의 개수
+$\text{Rank}(A) = \text{dim}(\text{Col}\,A) = \text{dim}(\text{Row}\,A) = \text{Rank}(A^T) = A$의 pivot position의 개수
 
 </div></li>
 

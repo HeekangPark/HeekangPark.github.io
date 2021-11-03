@@ -2,7 +2,7 @@
 title: "역행렬 (Inverse)"
 order: 6
 date_created: "2021-09-26"
-date_modified: "2021-10-22"
+date_modified: "2021-11-04"
 ---
 
 # 역행렬(inverse)이란?
@@ -51,7 +51,7 @@ $$B = BI = B(AC) = (BA)C = IC = C$$
 
 - 행렬 $A$의 역행렬이 존재하면, 행렬 $A^{-1}$의 역행렬도 존재하며, 다음과 같이 계산된다 : $(A^{-1})^{-1} = A$
 - 역행렬이 존재하는 행렬 $A \in \mathbb{R}^{n \times n}$, $B \in \mathbb{R}^{n \times n}$에 대해, $AB$, $BA$도 역행렬이 존재하며, 각각 다음과 같이 계산된다 : $(AB)^{-1} = B^{-1} A^{-1}$, $(BA)^{-1} = A^{-1} B^{-1}$
-- 행렬 $A$의 역행렬이 존재하면, 행렬 $A^{\intercal}$의 역행렬도 존재하며, 다음과 같이 계산된다 : $(A^{\intercal})^{-1} = (A^{-1})^{\intercal}$
+- 행렬 $A$의 역행렬이 존재하면, 행렬 $A^{T}$의 역행렬도 존재하며, 다음과 같이 계산된다 : $(A^{T})^{-1} = (A^{-1})^{T}$
 - 행렬 $A$, $B$에 대해, 만약 $AB = I$라면 $A$와 $B$는 모두 역행렬이 존재하며, 각각 다음과 같이 계산된다 : $A^{-1} = B$, $B^{-1} = A$
 
 </div></li>
@@ -72,7 +72,7 @@ $$B = BI = B(AC) = (BA)C = IC = C$$
 - 모든 $\mathbf{b} \in \mathbb{R}^n$에 대해, $A \mathbf{x} = \mathbf{b}$는 [consistent](/linear_algebra/linear-system)하다.
 - 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$은 $\mathbb{R}^n$을 $\mathbb{R}^n$로 [매핑(mapping)](/linear_algebra/linear-transformation)한다.
 - 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$은 [일대일(one-to-one)](/linear_algebra/linear-transformation)이다.
-- $A^\intercal$의 역행렬이 존재한다.
+- $A^T$의 역행렬이 존재한다.
 - $A$의 열들의 집합은 $\mathbb{R}^n$의 [basis](/linear_algebra/vector-space)이다.
 - [$\text{Col}\,A = \mathbb{R}^n$](/linear_algebra/vector-space)
 - [$\text{dim}(\text{Col}\,A) = n$](/linear_algebra/vector-space)

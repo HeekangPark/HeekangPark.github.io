@@ -1,7 +1,7 @@
 ---
 title: "판별식 (Determinant)"
 date_created: "2021-10-14"
-date_modified: "2021-10-29"
+date_modified: "2021-11-04"
 ---
 
 # 판별식(determinant)이란?
@@ -112,7 +112,7 @@ $\text{det}\,A \neq 0$이면 $A$의 역행렬이 존재한다(invertible). 역�
 
 <li><div markdown="block">
 
-$\text{det}\,A^\intercal = \text{det}\,A$
+$\text{det}\,A^T = \text{det}\,A$
 
 </div></li>
 

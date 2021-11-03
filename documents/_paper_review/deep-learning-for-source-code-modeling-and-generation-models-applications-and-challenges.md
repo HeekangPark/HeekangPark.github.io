@@ -2,7 +2,7 @@
 title: "Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges"
 tags: ["machine_learning", "deep_learning", "source_code_modeling", "source_code_generation", "review_paper"]
 date_created: "2021-02-08"
-date_modified: "2021-10-14"
+date_modified: "2021-11-04"
 ---
 
 논문 [Triet H. M. Le, Hao Chen, Muhammad Ali Babar, 2020, "Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges"](https://arxiv.org/abs/2002.05442) 정리
@@ -247,9 +247,9 @@ date_modified: "2021-10-14"
          - $\boldsymbol{h}\_{t-1}$ : 이전 단계(step)의 은닉 상태값(hidden state)
          - $\boldsymbol{u}\_t$ : 어텐션 에너지(attention energy)
          - $\textrm{score}()$ : 컨텐츠 기반 점수 함수(content-based scoring function)
-           - ex. dot-product : $\textrm{score}(F,\,\boldsymbol{h}\_{t-1}) = F^{\intercal}\boldsymbol{h}\_{t-1}$
+           - ex. dot-product : $\textrm{score}(F,\,\boldsymbol{h}\_{t-1}) = F^{T}\boldsymbol{h}\_{t-1}$
              - 가장 간단한 점수 함수(scoring function)
-           - ex. MLP(Multi-Layer Perceptron) : $\textrm{score}(F,\,\boldsymbol{h}\_{t-1}) = \boldsymbol{v}^{\intercal} \tanh(WF + V\boldsymbol{h}\_{t-1})$
+           - ex. MLP(Multi-Layer Perceptron) : $\textrm{score}(F,\,\boldsymbol{h}\_{t-1}) = \boldsymbol{v}^{T} \tanh(WF + V\boldsymbol{h}\_{t-1})$
              - 어텐션 논문에서 사용한 점수 함수(scoring function)
              - $V$ : expected input embedding
 - 컨텐츠 기반 어텐션 에너지(content-based attention energy)로는 다른 위치(location)에서 비슷한 내용(content)를 가지고 있는 요소(element)들을 구별하는 것이 힘들다.
