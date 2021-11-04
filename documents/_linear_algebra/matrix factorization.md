@@ -2,7 +2,7 @@
 title: "Matrix Factorization"
 order: 7
 date_created: "2021-09-27"
-date_modified: "2021-10-29"
+date_modified: "2021-11-04"
 ---
 
 # matrix factorization이란?
@@ -211,6 +211,31 @@ $$D^k = \begin{bmatrix}
 \vdots & \vdots & \ddots & \vdots\\[0.5em]
 0 & 0 & \cdots & \lambda_n^k\\[0.5em]
 \end{bmatrix}$$
+
+</div></li>
+
+</ul>
+
+## QR factorization
+
+<ul>
+
+<li><div markdown="block">
+
+linearly independent한 열들을 가진 $m \times n$ 행렬 $A$를 다음과 같이 나누는 것을 **QR factorization**이라 한다.
+
+$$A = QR$$
+
+- $Q$ : (크기 $m \times n$) $\text{Col}\,A$의 [orthonormal basis](/linear_algebra/orthogonality)의 원소들로 이루어진 행렬
+- $R$ : (크기 $n \times n$) 대각 성분이 모두 양수인 [upper triangular matrix](/linear_algebra/vector-matrix)
+
+</div></li>
+
+<li><div markdown="block">
+
+$Q$는 [Gram-Schmidt process](/linear_algebra/orthogonality) 등의 방법을 이용해 구할 수 있다. 그리고 $R$은 다음 식을 이용해 구한다.
+
+$$R = Q^T A$$
 
 </div></li>
 

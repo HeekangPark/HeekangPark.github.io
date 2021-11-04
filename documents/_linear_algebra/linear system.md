@@ -2,7 +2,7 @@
 title: "선형연립방정식 (Linear System)"
 order: 2
 date_created: "2021-09-16"
-date_modified: "2021-10-15"
+date_modified: "2021-11-04"
 ---
 
 # 선형연립방정식(linear system)이란?
@@ -442,7 +442,6 @@ $$\mathbf{x} = \begin{bmatrix}
 
 </ul>
 
-
 # 선형연립방정식의 해의 존재성 및 유일성 분석
 
 선형연립방정식의 해의 존재성(existence) 및 유일성(uniqueness)을 분석하는 다양한 방법을 알아보자.
@@ -491,41 +490,34 @@ $$\mathbf{x} = \begin{bmatrix}
 
 </ul>
 
-{% comment %}
-## linear combination을 이용한 방법
+# least-squares problem
 
 <ul>
 
 <li><div markdown="block">
 
-선형연립방정식
+때때로 선형연립방정식 $A\mathbf{x} = \mathbf{b}$이 inconsistent한데도 해를 구해야 하는 경우가 있다(ex. linear regression). 이 경우 선형연립방정식 $A\mathbf{x} = \mathbf{b}$를 푸는 문제를 $\mathbf{b}$와 최대한 가까운 $A\mathbf{x}$를 찾는 문제로 생각하면 inconsistent한 선형연립방정식이어도 '해'를 구할 수 있다(이렇게 얻어진 해는 근사해가 된다).
 
-$$A \mathbf{x} = \begin{bmatrix}
-\mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \\[0.5em]
-\end{bmatrix} \begin{bmatrix}
-x_1 \\[0.5em]
-x_2 \\[0.5em]
-\vdots \\[0.5em]
-x_n \\[0.5em]
-\end{bmatrix} 
-= \mathbf{b}$$
-
-은 다음과 같이 $A$의 열 벡터 $\mathbf{a}_i$($i = 1,\,2\,\cdots,\,n$)들의 [linear combination](/linear_algebra/linear-combination)으로 이해할 수 있다.
-
-$$x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n = \mathbf{b}$$
+구체적으로, $m \times n$ 행렬 $A$와 벡터 $\mathbf{b} \in \mathbb{R}^m$에 대해, $\lVert \mathbf{b} - A\mathbf{x} \rVert$의 값이 최소가 되게 하는 $\mathbf{x}$를 찾는 문제를 **least-squares problem**이라 한다. 그리고 이렇게 찾은 해 $\hat{\mathbf{x}}$를 선형연립방정식 $A\mathbf{x} = \mathbf{b}$의 **least-squares solution**이라 한다.
 
 </div></li>
 
 <li><div markdown="block">
 
-행렬 $A \in \mathbb{R}^{m \times n}$, 벡터 $\mathbf{x} \in \mathbb{R}^n$, $\mathbf{b} \in \mathbb{R}^m$에 대해, 다음 명제들은 모두 동치이다.
+만약 $m \times n$ 행렬 $A$의 열들의 집합이 [linearly independent](/linear_algebra/linear-combination)하다면, 선형연립방정식 $A\mathbf{x} = \mathbf{b}$의 least-square solution은 다음과 같이 구할 수 있다.
 
-- 선형연립방정식 $A \mathbf{x} = \mathbf{b}$의 해가 존재한다(consistent).
-- 벡터 $\mathbf{b}$는 $A$의 열 벡터 $\mathbf{a}_i$($i = 1,\,2\,\cdots,\,n$)들의 linear combination이다.
-- $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\} = \mathbb{R}^m$ (The columns of $A$ spans $\mathbb{R}^m$)
-- $A$의 매 행에 pivot position이 존재한다.
+$$\hat{\mathbf{x}} = (A^T A)^{-1} A^T \mathbf{b}$$
+
+행렬 $A$가 $A = QR$로 [QR factorization](/linear_algebra/matrix-factorization)된다면, 선형연립방정식 $A\mathbf{x} = \mathbf{b}$의 least-square solution은 다음과 같이 구할 수 있다.
+    
+$$\hat{\mathbf{x}} = R^{-1}Q^T \mathbf{b}$$
+
+</div></li>
+
+<li><div markdown="block">
+
+더 자세한 내용은 [해당 문서](/linear_algebra/orthogonality)를 참조하자.
 
 </div></li>
 
 </ul>
-{% endcomment %}

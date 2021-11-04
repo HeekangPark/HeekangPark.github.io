@@ -225,7 +225,7 @@ C_{12} & C_{22} & \cdots & C_{n2}\\[0.5em]
 C_{1n} & C_{2n} & \cdots & C_{nn}\\[0.5em]
 \end{bmatrix}$$
 
-**$C_{ij}$가 $i$열 $j$행에 있음에 유의하자!**
+*주의 : $C_{ij}$가 $i$열 $j$행에 있음에 유의하자!*
 
 </div></li>
 
@@ -306,6 +306,20 @@ $$A^{-1} = \frac{1}{\text{det}\,A} \text{adj}\,A = \frac{1}{14}\begin{bmatrix}
 3 & -7 & 1\\[0.5em]
 5 & -7 & -3\\[0.5em]
 \end{bmatrix}$$
+
+</div></li>
+
+</ul>
+
+## orthonormal column들을 가지는 행렬
+
+<ul>
+
+<li><div markdown="block">
+
+[orthonormal column](/linear_algebra/orthogonality)들을 가지는 $n \times n$ 정사각행렬 $U$의 역행렬 $U^{-1}$는 $U^T$와 같다.
+
+$$U^{-1} = U^T$$
 
 </div></li>
 
