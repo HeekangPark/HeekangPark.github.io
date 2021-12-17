@@ -1,8 +1,8 @@
 ---
-title: "SSH Advanced"
-order: 5
-date_created: "2020-07-31"
-date_modified: "2021-04-20"
+title: "기타"
+order: 1000
+date_created: "2021-12-16"
+date_modified: "2021-12-18"
 ---
 
 SSH를 이용하면 여러 가지 재미있는 일들을 할 수 있다.
@@ -88,7 +88,3 @@ VS Code 마켓플레이스에서 `Remote - SSH` 확장을 검색해 설치하자
 
 - 당연하지만 가상머신을 종료하면 SSH 연결이 끊기기에 호스트 운영체제에서 더 이상 게스트 운영체제에 접속할 수 없다.
 - 만약 접속이 되지 않는다면 호스트 운영체에 또는 게스트 운영체제에 방화벽 설정이 되어 있는지 확인해 보자.
-
-# SSH 터널링 (SSH Tunneling)
-
-작성 예정

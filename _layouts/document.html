@@ -490,9 +490,11 @@ function prependPromptOnBashCodeBlock() {
         return result.join("\n");
     }
 
+    // shell code block에 prompt 추가하기
+    const shell_classes = ["code.language-bash", "code.language-powershell"];
     $("figure.highlight").each(function(idx, elem) {
         let figure = $(this);
-        let code = figure.find("code.language-bash");
+        let code = figure.find(shell_classes.join(", "));
         if(isExist(code) && !figure.hasClass("no-prompt")) {
             let prompt = figure.hasClass("show-admin-prompt") ? "#" : "$";
 

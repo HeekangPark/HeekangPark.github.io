@@ -1,8 +1,8 @@
 ---
 title: "Windows Terminal에서 WSL2 터미널을 열 때 홈 디렉토리가 윈도우 홈 디렉토리로 표시되는 문제 해결"
 date_created: "2021-07-25"
-date_modified: "2021-07-25"
-tags: ["wsl", "Windows_Terminal", "WT"]
+date_modified: "2021-12-18"
+tags: ["windows_terminal", "wt"]
 ---
 
 # 문제상황

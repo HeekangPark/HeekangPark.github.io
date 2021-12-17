@@ -450,19 +450,19 @@ body {
 }
 
 :root[data-theme="bright"] {
-    .bright-utterances {
+    .bright-comments {
         display: block;
     }
-    .dark-utterances {
+    .dark-comments {
         display: none;
     }
 }
 
 :root[data-theme="dark"] {
-    .bright-utterances {
+    .bright-comments {
         display: none;
     }
-    .dark-utterances {
+    .dark-comments {
         display: block;
     }
 }

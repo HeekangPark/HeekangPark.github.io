@@ -1,8 +1,9 @@
 ---
 title: "WSL - Windows Subsystem for Linux"
+order: 1
 date_created: "2021-07-26"
-date_modified: "2021-10-14"
-tags: ["wsl"]
+date_modified: "2021-12-18"
+tags: []
 ---
 
 # WSL이란?

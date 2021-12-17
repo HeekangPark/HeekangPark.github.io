@@ -1,7 +1,7 @@
 ---
 title: "GraphCodeBERT : Pre-Training Code Representations with Data Flow"
 date_created: "2021-09-03"
-date_modified: "2021-10-14"
+date_modified: "2021-12-18"
 ---
 
 {:.info}
@@ -10,13 +10,13 @@ date_modified: "2021-10-14"
 
 {:.guide-line}
 - ELMo, GPT, BERT 등의 사전학습 모델(pre-trained model)의 성공은 프로그래밍 언어에 대한 사전학습 모델의 발전을 촉진함
-- 그러나 프로그래밍 언어에 대한 기존 사전학습 모델들(ex. CodeBERT)은 소스 코드의 sementic-level structure에 대한 고려 없이, 소스 코드를 그저 token들의 시퀸스로 대함
+- 그러나 프로그래밍 언어에 대한 기존 사전학습 모델들(ex. CodeBERT)은 소스 코드의 semantic-level structure에 대한 고려 없이, 소스 코드를 그저 token들의 시퀸스로 대함
   - 예를 들어 코드 `v = max_value - min_value`에서, 기존 사전학습 모델들은 "max", "value", "min", "value" (sub)token들로부터 이 코드가 최대값과 최소값의 차를 구하는 코드임을 이해함
-  - 만약 프로그래머가 `max_value`, `min_value`와 같은 이름을 사용하지 않는다면, 기존 사전학습 모델들은 이 코드가 어떤 의미(sementic)를 가지는지 이해하지 못함
+  - 만약 프로그래머가 변수명으로 `max_value`, `min_value`와 같은 이름을 사용하지 않는다면, 기존 사전학습 모델들은 이 코드가 어떤 의미(semantic)를 가지는지 이해하지 못함
 
 - GraphCodeBERT는 Data Flow를 이용해 코드의 고유 구조(inherent structure)를 고려한다는 점에서 기존 사전학습 모델(ex. CodeBERT)과 다름
-  - GraphCodeBERT는 syntactic-level의 정보를 담고 있는 AST(Abstract Syntax Tree)가 아닌 sementic-level의 정보를 담고 있는 Data Flow를 사용
-  - Data Flow는 소스 코드의 sementic-level 정보를 담고 있는 그래프
+  - GraphCodeBERT는 syntactic-level의 정보를 담고 있는 AST(Abstract Syntax Tree)가 아닌 semantic-level의 정보를 담고 있는 Data Flow를 사용
+  - Data Flow는 소스 코드의 semantic-level 정보를 담고 있는 그래프
     - node는 각 변수를 나타냄
     - edge는 변수(node)들 사이에서 값이 어떻게 움직이는지("where-the-value-comes-from")를 나태냄
   - AST와 다르게, 다른 추상 문법(abstract grammar)으로 작성된 동일한 소스 코드의 Data Flow는 같음

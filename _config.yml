@@ -19,6 +19,7 @@ exclude:
 - _scripts
 - _config
 - requirements.txt
+- sources.md
 assets: /assets
 layouts_dir: _layouts
 data_dir: _data
@@ -46,7 +47,7 @@ kramdown:
 files_for_search_num: 6
 home_recently_modified_doc_num: 3
 home_recently_created_doc_num: 3
-decoration: leaves
+decoration: snowflakes
 collections:
   sysdoc:
     name: sysdoc
@@ -86,14 +87,16 @@ collections:
     permalink: /:collection/:name
     tags:
     - math
+    - calculus
   docker:
     category: Applications / Frameworks / Libraries
-    name: 도커 (Docker)
+    name: Docker
     output: true
     permalink: /:collection/:name
     tags:
-    - docker
     - server
+    - docker
+    - linux
   etc:
     category: 기타 (Etc)
     name: 기타 (Etc)
@@ -106,7 +109,9 @@ collections:
     output: true
     permalink: /:collection/:name
     tags:
+    - server
     - git
+    - linux
   hadoop:
     category: Applications / Frameworks / Libraries
     name: Hadoop
@@ -114,6 +119,8 @@ collections:
     permalink: /:collection/:name
     tags:
     - hadoop
+    - server
+    - linux
   javascript:
     category: Programming Languages
     name: Javascript
@@ -131,6 +138,7 @@ collections:
     tags:
     - blog
     - web
+    - jekyll
   linear_algebra:
     category: Math
     name: 선형대수학 (Linear Algebra)
@@ -141,27 +149,27 @@ collections:
     - math
   linux:
     category: OS
-    name: Linux
+    name: Linux 가지고 놀기
     output: true
     permalink: /:collection/:name
     tags:
     - linux
-  nas_ml:
-    category: Machine Learning
-    name: NAS
+  node.js:
+    category: Applications / Frameworks / Libraries
+    name: node.js
     output: true
     permalink: /:collection/:name
     tags:
-    - library
-    - numpy
-    - python
+    - server
+    - javascript
+    - js
+    - node.js
   numpy:
     category: Applications / Frameworks / Libraries
     name: Numpy
     output: true
     permalink: /:collection/:name
     tags:
-    - library
     - numpy
     - python
   paper_review:
@@ -179,6 +187,8 @@ collections:
     permalink: /:collection/:name
     tags:
     - vue
+    - project
+    - pomodoro
   python:
     category: Programming Languages
     name: 'Re : 제로부터 배우는 파이썬'
@@ -187,19 +197,21 @@ collections:
     tags:
     - programming_language
     - python
-  statistics:
-    category: Math
-    name: 통계학 (Statistics)
+  ssh:
+    category: Applications / Frameworks / Libraries
+    name: ssh
     output: true
     permalink: /:collection/:name
-    tags: []
+    tags:
+    - server
+    - linux
+    - ssh
   virtualbox:
     category: Applications / Frameworks / Libraries
     name: Oracle VM VirtualBox
     output: true
     permalink: /:collection/:name
     tags:
-    - application
     - virtual_application
     - virtualbox
   vscode:
@@ -209,14 +221,15 @@ collections:
     permalink: /:collection/:name
     tags:
     - vscode
-  web_server:
-    category: 기타 (Etc)
-    name: 웹 서버 (Web Server)
+  wsl:
+    category: Applications / Frameworks / Libraries
+    name: WSL
     output: true
     permalink: /:collection/:name
     tags:
-    - server
-    - web
+    - wsl
+    - linux
+    - windows
 defaults:
 - scope:
     path: ''
@@ -280,7 +293,7 @@ defaults:
     layout: document
 - scope:
     path: ''
-    type: nas_ml
+    type: node.js
   values:
     layout: document
 - scope:
@@ -305,7 +318,7 @@ defaults:
     layout: document
 - scope:
     path: ''
-    type: statistics
+    type: ssh
   values:
     layout: document
 - scope:
@@ -325,6 +338,6 @@ defaults:
     layout: document
 - scope:
     path: ''
-    type: web_server
+    type: wsl
   values:
     layout: document

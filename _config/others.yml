@@ -5,7 +5,7 @@ timezone: Asia/Seoul
 plugins:
   - jekyll-sitemap
   - jekyll-feed
-exclude: [".vscode", ".gitignore", "run", "commit", "updateCollection", "createTIL", "convertFont", "README.md", "Gemfile", "Gemfile.lock", "_scripts", "_config", "requirements.txt"]
+exclude: [".vscode", ".gitignore", "run", "commit", "updateCollection", "createTIL", "convertFont", "README.md", "Gemfile", "Gemfile.lock", "_scripts", "_config", "requirements.txt", "sources.md"]
 
 assets: /assets
 layouts_dir: _layouts
@@ -34,7 +34,7 @@ files_for_search_num: 6
 
 home_recently_modified_doc_num: 3
 home_recently_created_doc_num: 3
-decoration: "leaves"  # ["sakuras", "watermelons", "leaves", "snowflakes", "raindrops", "suns"]
+decoration: "snowflakes"  # ["sakuras", "watermelons", "leaves", "snowflakes", "raindrops", "suns"]
 
 collections:
   sysdoc:

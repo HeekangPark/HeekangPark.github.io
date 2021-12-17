@@ -1,8 +1,8 @@
 ---
 title: "WSL2로 인한 VirtualBox VM 실행 불가 문제 해결"
-tags: ["virtualbox", "wsl"]
+tags: ["virtualbox"]
 date_created: "2020-09-02"
-date_modified: "2021-07-25"
+date_modified: "2021-12-18"
 ---
 
 # 문제상황
