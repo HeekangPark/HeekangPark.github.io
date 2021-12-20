@@ -1,16 +1,18 @@
 ---
 title: "Symmetric Matrix"
 date_created: "2021-09-15"
-date_modified: "2021-11-04"
+date_modified: "2021-12-20"
 ---
+
+# symmetric matrix
 
 <ul>
 
 <li><div markdown="block">
 
-$A = A^T$인 행렬 $A$를 **symmetric**하다고 한다.
+$A = A^T$인 정사각행렬 $A$를 **symmetric**하다고 한다.
 
-$A = -A^T$인 행렬 $A$를 **anti-symmetric**하다고 한다.
+$A = -A^T$인 정사각행렬 $A$를 **anti-symmetric**하다고 한다.
 
 </div></li>
 
@@ -30,6 +32,117 @@ $A = -A^T$인 행렬 $A$를 **anti-symmetric**하다고 한다.
 다시 말해, 임의의 정사각행렬은 항상 symmetric한 행렬과 anti-symmetric한 행렬의 합으로 분해할 수 있다.
 
 $$A = \frac{1}{2} (A + A^T) + \frac{1}{2} (A - A^T)$$
+
+</div></li>
+
+</ul>
+
+# orthogonal diagonalization
+
+<ul>
+
+<li><div markdown="block">
+
+symmetric힌 정사각행렬 $A$의 서로 다른 [eigenvalue](/linear_algebra/eigenvector-eigenvalue)와 상응하는 [eigenvector](/linear_algebra/eigenvector-eigenvalue)들은 서로 [orthogonal](/linear_algebra/orthogonality)하다.
+
+<div class="proof-folder" markdown="block">
+
+symmetric한 정사각행렬 $A$의 서로 다른 eigenvalue $\lambda\_1$, $\lambda\_2$와($\lambda\_1 \neq \lambda\_2$) 이에 각각 상응하는 $\mathbf{v}\_1$, $\mathbf{v}\_2$에 대해, 다음이 성립한다.
+
+$$\begin{align}
+\lambda_1 \mathbf{v}_1 \cdot \mathbf{v}_2
+&= (\lambda_1 \mathbf{v}_1)^T \mathbf{v}_2 = (A \mathbf{v}_1)^T \mathbf{v}_2\\[0.5em]
+&= (\mathbf{v}_1^T A^T) \mathbf{v}_2 = \mathbf{v}_1^T A \mathbf{v}_2\\[0.5em]
+&= \mathbf{v}_1^T (A \mathbf{v}_2) = \mathbf{v}_1^T (\lambda_2 \mathbf{v}_2 )\\[0.5em]
+&= \lambda_2 \mathbf{v}_1^T \mathbf{v}_2\\[0.5em]
+&= \lambda_2 \mathbf{v}_1 \cdot \mathbf{v}_2\\[0.5em]
+\end{align}$$
+
+따라서,
+
+$$(\lambda_1 - \lambda_2 ) \mathbf{v}_1 \cdot \mathbf{v}_2 = 0$$
+
+이 성립한다.
+
+이때, $\lambda\_1 \neq \lambda\_2$이므로
+
+$$\mathbf{v}_1 \cdot \mathbf{v}_2 = 0$$
+
+이다.
+
+∴ $\mathbf{v}\_1$와 $\mathbf{v}\_2$는 서로 orthogonal하다.
+
+</div>
+
+</div></li>
+
+<li><div markdown="block">
+
+$n \times n$ 정사각행렬 $A$에 대해, $A$를 $n \times n$ [orthonormal matrix](/linear_algebra/orthogonality) $P$와 $n \times n$ 대각 행렬 $D$로 다음과 같이 나타내는 것을 **orthogonal diagonalization**이라 한다.
+
+$$A = PDP^T = PDP^{-1}$$
+
+orthogonal diagonalization이 가능한 행렬 $A$를 **orthogonally diagonalizable**하다고 한다.
+
+눈치챘겠지만, orthogonal diagonalization은 [(eigenvalue) diagonalization](/linear_algebra/eigenvector-eigenvalue)의 특별한 경우(부분집합)이다. diagonalization에서는 역행렬을 구하는 연산을 수행해야 했지만, orthogonal diagonalization에서는 훨씬 간단한 전치(transpose) 연산만으로 diagonalization 할 수 있어 계산 난이도가 급감한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+symmetric한 정사각행렬 $A$는 orthogonally diagonalizable하다. 역으로, 정사각행렬 $A$가 orthogonally diagonalizable하다면 $A$는 symmetric하다.
+
+즉, 정사각행렬 $A$에 대해, 다음은 모두 동치이다.
+
+{:.equivalent}
+- $A$는 symmetric하다.
+- $A$는 orthogonally diagonalizable하다.
+  
+$n \times n$ 정사각행렬 $A$가 [diagonalizable](/linear_algebra/eigenvector-eigenvalue)한지 아닌지 판별하기 꽤 복잡하다($n$개의 linearly independent한 eigenvector를 가지는지를 확인해야 한다). 하지만 $A$가 symmetric하다면 (복잡한 것들을 생각할 필요 없이) 바로 (orthogonally) diagonalizable함을 알 수 있다.
+
+</div></li>
+
+<li><div markdown="block">
+
+symmetric한 $n \times n$ 정사각행렬 $A$에 대해, 다음 성질이 성립한다. 이를 **Spectral Theorem**이라 한다.
+
+- $A$는 (multiplicity를 모두 세었을 때) $n$개의 [eigenvalue](/linear_algebra/eigenvector-eigenvalue)를 가진다.
+- $A$의 모든 eigenvalue $\lambda$의 eigenspace의 차원은 $\lambda$의 multiplicity와 같고, 각 eigenvalue들은 [characteristic equation](/linear_algebra/eigenvector-eigenvalue)의 해이다.
+- $A$의 eigenspace들은 서로 [orthogonal](/linear_algebra/orthogonality)하다. 즉, 다른 eigenspace로부터의 eigenvector들은 서로 orthogonal하다.
+- $A$는 orthogonally diagonalizable하다.
+
+</div></li>
+
+<li><div markdown="block">
+
+symmetric matrix $A$를 다음과 같이 orthogonal diagonalization한 후, 다음과 같이 정리할 수 있다.
+
+$$\begin{align}
+A &= PDP^T = \begin{bmatrix}
+\mathbf{u}_1  & \cdots & \mathbf{u}_n
+\end{bmatrix} \begin{bmatrix}
+\lambda _1 & {} & 0\\
+{} & \ddots & {}\\
+0 & {} & \lambda_n\\
+\end{bmatrix} \begin{bmatrix}
+\mathbf{u}_1^T \\
+\vdots\\
+\mathbf{u}_n^T\\
+\end{bmatrix}\\[0.5em]
+&= \begin{bmatrix}
+\lambda_1 \mathbf{u}_1 & \cdots & \lambda_n \mathbf{u}_n
+\end{bmatrix} \begin{bmatrix}
+\mathbf{u}_1^T \\
+\vdots\\
+\mathbf{u}_n^T\\
+\end{bmatrix}\\[0.5em]
+&= \lambda_1 \mathbf{u}_1\mathbf{u}_1^T + \lambda_2 \mathbf{u}_2\mathbf{u}_2^T + \cdots + \lambda_n \mathbf{u}_n\mathbf{u}_n^T
+\end{align}$$
+
+이렇게 $A$를 $n \times n$ 행렬 $\lambda\_i \mathbf{u}\_i \mathbf{u}\_i^T$들의 합으로 표현하는 것을 **spectral decomposition**이라 한다. 참고로 행렬 $\lambda\_i \mathbf{u}\_i \mathbf{u}\_i^T$은 다음과 같은 성질이 있다.
+
+- [$\textrm{Rank}(\lambda\_i \mathbf{u}\_i \mathbf{u}\_i^T) = 1$](/linear_algebra/vector-space)
+- 임의의 벡터 $\mathbf{x} \in \mathbb{R}^n$에 대해, $(\mathbf{u}\_i \mathbf{u}\_i^T) \mathbf{x}$는 $\textrm{Span}\\{ \mathbf{u}\_i \\}$ 위로의 $\mathbf{x}$의 [orthogonal projection](/linear_algebra/orthogonality)이다.
 
 </div></li>
 

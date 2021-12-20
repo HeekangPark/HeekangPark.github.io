@@ -1,7 +1,7 @@
 ---
 title: "Orthogonality"
 date_created: "2021-10-31"
-date_modified: "2021-11-04"
+date_modified: "2021-12-20"
 ---
 
 # orthogonality
@@ -119,7 +119,7 @@ $$c_i = \frac{\mathbf{y} \cdot \mathbf{u}_i}{\lVert \mathbf{u}_i \rVert ^2} = \f
 
 <li><div markdown="block">
 
-orthonormal set은 orthogonal set과 마찬가지로 linearly independent하다. 즉, orthonormal set은 해당 집합으로 [span](/linear_algebra/linear-combination)된 [subspace](/linear_algebra/vector-space)의 [basis](/linear_algebra/vector-space)가 된다. 이렇게 basis가 된 orthonormal set을 **orthonormal basis**라 한다.
+(orthogonal set과 마찬가지로) orthonormal set은 linearly independent하다. 즉, orthonormal set은 해당 집합으로 [span](/linear_algebra/linear-combination)된 [subspace](/linear_algebra/vector-space)의 [basis](/linear_algebra/vector-space)가 된다. 이렇게 basis가 된 orthonormal set을 **orthonormal basis**라 한다.
 
 </div></li>
 
@@ -149,28 +149,39 @@ $$\left\{ \frac{1}{\lVert \mathbf{v}_1 \rVert}\mathbf{v}_1,\,\frac{1}{\lVert \ma
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $U$에 대해, 만약 $U$의 열들의 집합 $C = \\{\mathbf{c}\_1,\,\mathbf{c}\_2,\,\cdots,\,\mathbf{c}\_n\\}$가 orthornormal set이라면, "$U$는 **orthonormal column**들을 가진다($U$ has orthonormal columns)"고 한다.
+$m \times n$ 행렬 $U$에 대해, 만약 $U$의 열들의 집합 $C = \\{\mathbf{c}\_1,\,\mathbf{c}\_2,\,\cdots,\,\mathbf{c}\_n\\}$가 orthornormal set이라면 다음과 같이 말한다(모두 같은 말이다).
 
-마찬가지로, $U$의 행들의 집합 $R = \\{\mathbf{r}\_1,\,\mathbf{r}\_2,\,\cdots,\,\mathbf{r}\_m\\}$이 orthonormal set이라면, "$U$는 **orthonormal row**들을 가진다($U$ has orthonormal rows)"고 한다.
+- 행렬 $U$는 **orthonormal column**들을 가진다($U$ has orthonormal columns).
+- 행렬 $U$는 orthogonal하다($U$ is orthogonal).
+- 행렬 $U$는 orthonormal하다($U$ is orthonormal).
+- 행렬 $U$는 **orthogonal matrix**이다.
+- 행렬 $U$는 **orthonormal matrix**이다.
+
+orthogonal matrix가 열들의 집합이 orthogonal set인 행렬을 의미하는 것이 아님에 주의하자! orthogonal matrix는 열들의 집합의 orthonormal set인 행렬을 의미하는 말로, orthonormal matrix와 동의어이다!
 
 </div></li>
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $U$에 대해, $U^T U = I$라면, $U$는 orthonormal column들을 가진다. 역으로, $U$가 orthornormal column들을 가진다면, $U^T U = I$가 성립한다.
+$m \times n$ 행렬 $U$에 대해, 만약 $U$의 행들의 집합 $R = \\{\mathbf{r}\_1,\,\mathbf{r}\_2,\,\cdots,\,\mathbf{r}\_m\\}$이 orthonormal set이라면, "$U$는 **orthonormal row**들을 가진다($U$ has orthonormal rows)"고 한다.
 
-즉, $m \times n$ 행렬 $U$과, $U$의 열들의 집합 $C = \\{\mathbf{c}\_1,\,\mathbf{c}\_2,\,\cdots,\,\mathbf{c}\_n\\}$에 대해, 다음은 모두 동치이다.
+</div></li>
+
+<li><div markdown="block">
+
+행렬 $U$에 대해, $U^T U = I$라면 $U$는 orthonormal matrix이다. 역으로, $U$가 orthonormal matrix이면 $U^T U = I$가 성립한다.
+
+즉, orthonormal matrix $U$에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
 - $U^T U = I$
-- $C$는 orthonormal set이다.
-- $U$는 orthonormal column들을 가진다.
+- $U$는 orthonormal matrix이다.
 
 </div></li>
 
 <li><div markdown="block">
 
-orthonormal column들을 가지는 $n \times n$ 정사각행렬 $U$의 [역행렬](/linear_algebra/inverse) $U^{-1}$는 $U^T$와 같다.
+$n \times n$ 정사각행렬 $U$가 orthonormal matrix라면, $U$는 항상 [역행렬](/linear_algebra/inverse)을 가지고, 항상 다음이 성립한다.
 
 $$U^{-1} = U^T$$
 
@@ -178,11 +189,11 @@ $$U^{-1} = U^T$$
 
 <li><div markdown="block">
 
-orthonormal column들을 가지는 $m \times n$ 행렬 $U$와, 벡터 $\mathbf{x} \in \mathbb{R}^n$, $\mathbf{y} \in \mathbb{R}^n$에 대해, 다음이 성립한다.
+$m \times n$ orthonormal matrix $U$와, 벡터 $\mathbf{x} \in \mathbb{R}^n$, $\mathbf{y} \in \mathbb{R}^n$에 대해, 다음이 성립한다.
 
-- orthonormal column들을 가지는 행렬에 벡터를 곱해도 벡터의 크기는 변하지 않는다.
+- orthonormal matrix에 임의의 벡터를 곱해도 벡터의 크기는 변하지 않는다.
 
-    $$\lVert U \mathbf{x} \rVert = \lVert x \rVert$$
+    $$\lVert U \mathbf{x} \rVert = \lVert \mathbf{x} \rVert$$
 
 - $(U \mathbf{x}) \cdot (U \mathbf{y}) = \mathbf{x} \cdot \mathbf{y}$
 
@@ -214,7 +225,7 @@ $$\begin{align}
 
 $$\mathbf{z} = \mathbf{y} - \hat{\mathbf{y}}$$
 
-이런 식으로 $\mathbf{y}$를 orthogonal한 두 개의 벡터 $\hat{\mathbf{y}}$와 $\mathbf{z}$의 합으로 나타내는 것을 **orthogonal decomposition**이라 한다. 또한, $\hat{\mathbf{y}}$를 $W$ 위로의 $\mathbf{y}$의 **orthogonal projection**이라 하고(orthogonal projection of $\mathbf{y}$ onto $W$), $\text{proj}\_{ {}\_W} \mathbf{y}$라 쓴다.
+이런 식으로 벡터 $\mathbf{y}$를 orthogonal한 두 개의 벡터 $\hat{\mathbf{y}}$와 $\mathbf{z}$의 합으로 나타내는 것을 **orthogonal decomposition**이라 한다. 또한, $\hat{\mathbf{y}}$를 $W$ 위로의 $\mathbf{y}$의 **orthogonal projection**이라 하고(orthogonal projection of $\mathbf{y}$ onto $W$), $\text{proj}\_{ {}\_W} \mathbf{y}$라 쓴다.
 
 </div></li>
 
@@ -369,7 +380,7 @@ $m \times n$ 행렬 $A$에 대해, 다음은 모두 동치이다.
 
 <li><div markdown="block">
 
-참고로, 행렬 $A$가 $A = QR$로 QR factorization될 때, 만약 선형연립방정식 $A\mathbf{x} = \mathbf{b}$가 consistent하다면, 위 방법을 사용하려 $R^{-1}$을 계산하는 것보다 식 $R \mathbf{x} = Q^T \mathbf{b}$를 직접 푸는게 더 빨리 해를 구할 수 있다.
+선형연립방정식 $A\mathbf{x} = \mathbf{b}$가 consistent하고 행렬 $A$가 $A = QR$로 QR factorization된다면, 위 방법을 사용하려 $R^{-1}$을 계산하는 것보다 식 $R \mathbf{x} = Q^T \mathbf{b}$를 직접 푸는게 더 빨리 해를 구할 수 있다.
 
 </div></li>
 

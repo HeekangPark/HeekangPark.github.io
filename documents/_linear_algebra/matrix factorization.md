@@ -2,7 +2,7 @@
 title: "Matrix Factorization"
 order: 7
 date_created: "2021-09-27"
-date_modified: "2021-11-04"
+date_modified: "2021-12-20"
 ---
 
 # matrix factorization이란?
@@ -165,7 +165,7 @@ $$∴\,A = LU = \begin{bmatrix}
 
 <li><div markdown="block">
 
-[diagonalizable](/linear_algebra/eigenvector-eigenvalue)한 $n \times n$ 정사각행렬 $A$의 [eigenvalue](/linear_algebra/eigenvector-eigenvalue) $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_n$과 이에 상응하는 [eigenvector](/linear_algebra/eigenvector-eigenvalue) $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_n$가 주어졌다고 하자($\lambda\_i$와 $\lambda\_j$는 같을 수도 있다. $A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$). 이때 $A$를 다음과 같이 나누는 것을 **diagonalization** 또는 **eigenvalue decomposition**이라 한다.
+[diagonalizable](/linear_algebra/eigenvector-eigenvalue)한 $n \times n$ 정사각행렬 $A$의 [eigenvalue](/linear_algebra/eigenvector-eigenvalue) $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_n$ ($\lambda\_i$와 $\lambda\_j$는 같을 수도 있다)과 이에 상응하는 [eigenvector](/linear_algebra/eigenvector-eigenvalue) $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_n$ ($A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$)가 주어졌다고 하자. 이때 $A$를 다음과 같이 나누는 것을 **diagonalization** 또는 **eigenvalue decomposition**이라 한다.
 
 $$A = PDP^{-1}$$
 
@@ -188,7 +188,7 @@ $$A = PDP^{-1}$$
     0 & 0 & \cdots & \lambda_n\\[0.5em]
     \end{bmatrix}$$
 
-좀더 자세한 얘기는 [해당 문서](/linear_algebra/eigenvector-eigenvalue)를 참고하자.
+안타깝게도 모든 행렬 $A$를 diagonalization할 수 있는 것은 아니다. diagonalization할 수 있는 행렬을 **diagonalizable**하다고 한다(좀더 자세한 얘기는 [해당 문서](/linear_algebra/eigenvector-eigenvalue)를 참고하자).
 
 </div></li>
 
@@ -211,6 +211,35 @@ $$D^k = \begin{bmatrix}
 \vdots & \vdots & \ddots & \vdots\\[0.5em]
 0 & 0 & \cdots & \lambda_n^k\\[0.5em]
 \end{bmatrix}$$
+
+</div></li>
+
+<li><div markdown="block">
+
+만약 $A$가 [symmetric](/linear_algebra/symmetric-matrix)하다면 $A$는 **항상** diagonalizable하고, 그 형태는 다음과 같다.
+
+$$A = PDP^{-1} = PDP^T$$
+
+- $P$ : (크기 $n \times n$) $A$의 eigenvector들로 이루어진 [orthogonal matrix](/linear_algebra/orthogonality)
+
+    $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
+
+    \begin{bmatrix}
+    \vertbar & \vertbar & {} & \vertbar \\
+    \mathbf{v_1} & \mathbf{v_2} & \cdots & \mathbf{v_n}\\
+    \vertbar & \vertbar & {} & \vertbar \\
+    \end{bmatrix}$$
+
+- $D$ : (크기 $n \times n$) $A$의 eigenvalue들로 이루어진 대각 행렬
+
+    $$\begin{bmatrix}
+    \lambda_1 & 0 & \cdots & 0\\[0.5em]
+    0 & \lambda_2 & \cdots & 0\\[0.5em]
+    \vdots & \vdots & \ddots & \vdots\\[0.5em]
+    0 & 0 & \cdots & \lambda_n\\[0.5em]
+    \end{bmatrix}$$
+
+symmetric한 행렬 $A$는 diagonalization할 때 역행렬을 구하는 연산을 할 필요가 없기에 계산 복잡도가 급감한다.
 
 </div></li>
 

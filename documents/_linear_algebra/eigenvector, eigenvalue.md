@@ -1,7 +1,7 @@
 ---
 title: "Eigenvector, Eigenvalue"
 date_created: "2021-10-20"
-date_modified: "2021-10-24"
+date_modified: "2021-12-20"
 ---
 
 # eigenvector, eigenvalue
@@ -21,6 +21,12 @@ $$A \mathbf{x} = \lambda \mathbf{x}$$
 <li><div markdown="block">
 
 [선형변환](/linear_algebra/linear-transformation) $\mathbf{x} \mapsto A\mathbf{x}$에 대해, eigenvector는 변환해도 그 크기만 $\lambda$배 변할 뿐($\lambda \mathbf{x}$) 방향은 전혀 바뀌지 않는 특수한 벡터들을 의미한다. eigenvector, eigenvalue라는 이름은 여기서 나왔다(독일어로 "eigen"은 "고유한", "특징적인"이라는 뜻이다).
+
+</div></li>
+
+<li><div markdown="block">
+
+행렬 $A$의 eigenvalue들의 집합을 $A$의 **spectrum**이라 한다.
 
 </div></li>
 
