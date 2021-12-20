@@ -1,7 +1,7 @@
 ---
 title: "Symmetric Matrix"
 date_created: "2021-09-15"
-date_modified: "2021-12-20"
+date_modified: "2021-12-21"
 ---
 
 # symmetric matrix
@@ -143,6 +143,50 @@ A &= PDP^T = \begin{bmatrix}
 
 - [$\textrm{Rank}(\lambda\_i \mathbf{u}\_i \mathbf{u}\_i^T) = 1$](/linear_algebra/vector-space)
 - 임의의 벡터 $\mathbf{x} \in \mathbb{R}^n$에 대해, $(\mathbf{u}\_i \mathbf{u}\_i^T) \mathbf{x}$는 $\textrm{Span}\\{ \mathbf{u}\_i \\}$ 위로의 $\mathbf{x}$의 [orthogonal projection](/linear_algebra/orthogonality)이다.
+
+</div></li>
+
+</ul>
+
+# quadratic forms
+
+<ul>
+
+<li><div markdown="block">
+
+$\mathbf{x} \in \mathbb{R}^n$와 적절한 $n \times n$ symmetric matrix $A$에 대해,
+
+$$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$$
+
+형태로 정의되어 실수값을 반환하는, $\mathbf{R}^n$ 안의 함수 $Q$를 **quadratic form**이라 한다. 그리고 이때의 $A$를 **quadratic form의 행렬(matrix of the quadratic form)**이라 한다.
+
+ex) $Q(\mathbf{x}) = \mathbf{x}^T I \mathbf{x} = \lVert \mathbf{x} \rVert^2$
+
+</div></li>
+
+<li><div markdown="block">
+
+$\mathbb{R}^n$ 안의 벡터 $\mathbf{x} = \begin{bmatrix} x\_1 \\\\ x\_2 \\\\ \vdots \\\\ x\_n \end{bmatrix}$, $n \times n$ symmetric matrix $A = \begin{bmatrix}a\_{11} & a\_{12} & \cdots & a\_{1n} \\\\ a\_{12} & a\_{22} & \cdots & a\_{2n} \\\\ \vdots & \vdots & \ddots & \vdots \\\\ a\_{1n} & a\_{2n} & \cdots & a\_{nn} \end{bmatrix}$이라 할 때, quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$은 다음과 같이 정리할 수 있다.
+
+$$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = \sum_{i=1} ^n a_{ii} x_i^2 + 2 \sum _{i < j} a_{ij}x_i x_j$$
+
+이때 $\displaystyle\sum\_{i=1} ^n a\_{ii} x\_i^2$ 부분을 **(perfect) square term**, $\displaystyle\sum \_{i < j} a\_{ij}x\_i x\_j$ 부분을 **cross-product term**이라 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$와, 역행렬이 존재하는 행렬 $P$에 대해 $\mathbf{x} = P \mathbf{y}$라 하면, 다음과 같이 쓸 수 있다.
+
+$$\begin{align}
+Q(\mathbf{x})
+&= \mathbf{x}^T A \mathbf{x}\\[0.5em]
+&= (P \mathbf{y})^T A (P \mathbf{y})\\[0.5em]
+&= \mathbf{y}^T P^T A P \mathbf{y}\\[0.5em]
+&= \mathbf{y}^T (P^T A P) \mathbf{y}\\[0.5em]
+\end{align}$$
+
+이때 $A$는 symmetric matrix이므로 $P^T A P$도 symmetric matrix이다(orthogonally diagonalizable하므로). 따라서 위 과정을 거쳐 나온 $\mathbf{y}^T (P^T A P) \mathbf{y}$ 역시 quadratic form이다.
 
 </div></li>
 
