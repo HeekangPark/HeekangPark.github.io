@@ -158,7 +158,7 @@ $\mathbf{x} \in \mathbb{R}^n$와 적절한 $n \times n$ symmetric matrix $A$에 
 
 $$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$$
 
-형태로 정의되어 실수값을 반환하는, $\mathbf{R}^n$ 안의 함수 $Q$를 **quadratic form**이라 한다. 그리고 이때의 $A$를 **quadratic form의 행렬(matrix of the quadratic form)**이라 한다.
+형태로 정의되어 실수값을 반환하는, $\mathbf{R}^n$를 정의역으로 가지는 함수 $Q$를 **quadratic form**이라 한다. 그리고 이때의 $A$를 **quadratic form의 행렬(matrix of the quadratic form)**이라 한다.
 
 ex) $Q(\mathbf{x}) = \mathbf{x}^T I \mathbf{x} = \lVert \mathbf{x} \rVert^2$
 
@@ -166,7 +166,7 @@ ex) $Q(\mathbf{x}) = \mathbf{x}^T I \mathbf{x} = \lVert \mathbf{x} \rVert^2$
 
 <li><div markdown="block">
 
-$\mathbb{R}^n$ 안의 벡터 $\mathbf{x} = \begin{bmatrix} x\_1 \\\\ x\_2 \\\\ \vdots \\\\ x\_n \end{bmatrix}$, $n \times n$ symmetric matrix $A = \begin{bmatrix}a\_{11} & a\_{12} & \cdots & a\_{1n} \\\\ a\_{12} & a\_{22} & \cdots & a\_{2n} \\\\ \vdots & \vdots & \ddots & \vdots \\\\ a\_{1n} & a\_{2n} & \cdots & a\_{nn} \end{bmatrix}$이라 할 때, quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$은 다음과 같이 정리할 수 있다.
+벡터 $\mathbf{x} = \begin{bmatrix} x\_1 \\\\ x\_2 \\\\ \vdots \\\\ x\_n \end{bmatrix} \in \mathbb{R}^n$, $n \times n$ symmetric matrix $A = \begin{bmatrix}a\_{11} & a\_{12} & \cdots & a\_{1n} \\\\ a\_{12} & a\_{22} & \cdots & a\_{2n} \\\\ \vdots & \vdots & \ddots & \vdots \\\\ a\_{1n} & a\_{2n} & \cdots & a\_{nn} \end{bmatrix}$이라 할 때, quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$은 다음과 같이 정리할 수 있다.
 
 $$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = \sum_{i=1} ^n a_{ii} x_i^2 + 2 \sum _{i < j} a_{ij}x_i x_j$$
 
@@ -176,17 +176,55 @@ $$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = \sum_{i=1} ^n a_{ii} x_i^2 + 2 \su
 
 <li><div markdown="block">
 
-quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$와, 역행렬이 존재하는 행렬 $P$에 대해 $\mathbf{x} = P \mathbf{y}$라 하면, 다음과 같이 쓸 수 있다.
+벡터 $\mathbf{x},\,\mathbf{y} \in \mathbb{R}^n$과, [역행렬](/linear_algebra/inverse)이 존재하는 $n \times n$ 행렬 $P$에 대해,
+
+$$\mathbf{x} = P \mathbf{y},\qquad\qquad\mathbf{y} = P^{-1} \mathbf{x}$$
+
+라 하면, quadratic form $\mathbf{x}^T A \mathbf{x}$는 다음과 같이 변환할 수 있다.
 
 $$\begin{align}
-Q(\mathbf{x})
-&= \mathbf{x}^T A \mathbf{x}\\[0.5em]
+\mathbf{x}^T A \mathbf{x}
 &= (P \mathbf{y})^T A (P \mathbf{y})\\[0.5em]
 &= \mathbf{y}^T P^T A P \mathbf{y}\\[0.5em]
 &= \mathbf{y}^T (P^T A P) \mathbf{y}\\[0.5em]
+&= \mathbf{y}^T D \mathbf{y} \qquad (D = P^T A P)\\[0.5em]
 \end{align}$$
 
-이때 $A$는 symmetric matrix이므로 $P^T A P$도 symmetric matrix이다(orthogonally diagonalizable하므로). 따라서 위 과정을 거쳐 나온 $\mathbf{y}^T (P^T A P) \mathbf{y}$ 역시 quadratic form이다.
+이때, $A$는 symmetric matrix이므로, $D = P^T A P$ 역시 symmetric matrix이다(orthogonally diagonalizable하므로). 즉, 위 과정을 거치면 ($\mathbf{x}$에 대한) quadratic form을 ($\mathbf{y}$에 대한) quadratic form으로 바꿀 수 있다. 이렇게 주어진 quadratic form을 다른 변수에 대한 quadratic form으로 바꾸는 과정을 **change of variable**이라 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+주축정리(The Principle Axes Theorem)
+
+$n \times n$ symmetric matrix $A$에 대해, quadratric form $\mathbf{x}^T A \mathbf{x}$를 cross-product term이 존재하지 않는 quadratic form $\mathbf{y}^T D \mathbf{y}$으로 바꾸는 적절한 change of variable $\mathbf{x} = P \mathbf{y}$가 존재한다.
+
+이때 행렬 $P$의 열들을 quadratic form $\mathbf{x}^T A \mathbf{x}$의 **주축(principle axes)**이라 한다. 주축은 $\mathbb{R}^n$의 [orthonormal basis](/linear_algebra/orthogonality)이다(= $P$는 [orthonormal matrix](/linear_algebra/orthogonality)이다). 벡터 $\mathbf{y}$는 ($\mathbb{R}^n$의 orthonormal basis인) 주축 하에서의 $\mathbf{x}$의 [좌표 벡터(coordinate vector)](/linear_algebra/vector-space)이다. $D$는 
+
+</div></li>
+
+<li><div markdown="block">
+
+quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$는 다음과 같이 분류할 수 있다.
+
+- **positive definite** : 모든 $\mathbf{x} \neq 0$에 대해, $Q(\mathbf{x}) > 0$. 이때의 $A$를 **positive definite matrix**라 한다.
+- **negative definite** : 모든 $\mathbf{x} \neq 0$에 대해, $Q(\mathbf{x}) < 0$. 이때의 $A$를 **negative definite matrix**라 한다.
+- **positive semidefinite** : 모든 $\mathbf{x}$에 대해, $Q(\mathbf{x}) \ge 0$. 이때의 $A$를 **positive semidefinite matrix**라 한다.
+- **negative semidefinite** : 모든 $\mathbf{x}$에 대해, $Q(\mathbf{x}) \le 0$. 이때의 $A$를 **negative semidefinite matrix**라 한다.
+- **indefinite** : $Q(\mathbf{x})$는 양수도 음수도 모두 가질 수 있다. 이때의 $A$를 **indefinite matrix**라 한다.
+
+모든 positive definite quadratic form은 positive semidefinite quadratic form이다. 또 모든 negative definite quadratic form은 negative semidefinite quadratic form이다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$n \times n$ symmetric matrix $A$에 대해, quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$는 다음과 같은 성질이 있다.
+
+- $Q$가 positive definite라면 $A$의 모든 [eigenvalue](/linear_algebra/eigenvector-eigenvalue)는 양수이다. 역으로, $A$의 모든 eigenvalue가 양수이면 $Q$는 positive definite이다.
+- $Q$가 negative definite라면 $A$의 모든 eigenvalue는 음수이다. 역으로, $A$의 모든 eigenvalue가 음수이면 $Q$는 negative definite이다.
+- $Q$가 indefinite라면 $A$는 양수 eigenvalue, 음수 eigenvalue를 모두 가진다. 역으로, $A$가 양수 eigenvalue, 음수 eigenvalue를 모두 가지면 $Q$는 indefinite이다.
 
 </div></li>
 
