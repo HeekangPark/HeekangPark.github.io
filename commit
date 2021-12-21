@@ -37,6 +37,9 @@ python _scripts/updateDateModified.py
 python _scripts/mergeConfig.py
 python _scripts/updateServiceWorkerVersion.py "$time"
 
+git config user.email "park.heekang33@gmail.com"
+git config user.name "Heekang Park"
+
 git add .
 
 commit_msg="commit from laptop, $time"

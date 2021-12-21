@@ -196,7 +196,7 @@ $$\begin{align}
 
 <li><div markdown="block">
 
-주축정리(The Principle Axes Theorem)
+**주축정리(The Principle Axes Theorem)**
 
 $n \times n$ symmetric matrix $A$에 대해, quadratric form $\mathbf{x}^T A \mathbf{x}$를 cross-product term이 존재하지 않는 quadratic form $\mathbf{y}^T D \mathbf{y}$으로 바꾸는 적절한 change of variable $\mathbf{x} = P \mathbf{y}$가 존재한다.
 
