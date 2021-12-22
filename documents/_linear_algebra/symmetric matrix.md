@@ -1,7 +1,7 @@
 ---
 title: "Symmetric Matrix"
 date_created: "2021-09-15"
-date_modified: "2021-12-21"
+date_modified: "2021-12-23"
 ---
 
 # symmetric matrix
@@ -78,7 +78,7 @@ $$\mathbf{v}_1 \cdot \mathbf{v}_2 = 0$$
 
 <li><div markdown="block">
 
-$n \times n$ 정사각행렬 $A$에 대해, $A$를 $n \times n$ [orthonormal matrix](/linear_algebra/orthogonality) $P$와 $n \times n$ 대각 행렬 $D$로 다음과 같이 나타내는 것을 **orthogonal diagonalization**이라 한다.
+$n \times n$ 정사각행렬 $A$에 대해, $A$를 $n \times n$ [orthonormal matrix](/linear_algebra/orthogonality) $P$와 $n \times n$ [대각 행렬](/linear_algebra/vector-matrix) $D$로 다음과 같이 나타내는 것을 **orthogonal diagonalization**이라 한다.
 
 $$A = PDP^T = PDP^{-1}$$
 
@@ -176,6 +176,18 @@ $$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = \sum_{i=1} ^n a_{ii} x_i^2 + 2 \su
 
 <li><div markdown="block">
 
+만약 $A$가 [대각 행렬](/linear_algebra/vector-matrix)이면 quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$는 cross-product term이 없다. 역으로, quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$가 cross-product term을 가지지 않으면 $A$는 대각 행렬이다.
+
+즉, quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$에 대해, 다음은 모두 동치이다.
+
+{:.equivalent}
+- $Q$는 cross-product term이 없다.
+- $A$는 대각 행렬이다.
+
+</div></li>
+
+<li><div markdown="block">
+
 벡터 $\mathbf{x},\,\mathbf{y} \in \mathbb{R}^n$과, [역행렬](/linear_algebra/inverse)이 존재하는 $n \times n$ 행렬 $P$에 대해,
 
 $$\mathbf{x} = P \mathbf{y},\qquad\qquad\mathbf{y} = P^{-1} \mathbf{x}$$
@@ -200,7 +212,7 @@ $$\begin{align}
 
 $n \times n$ symmetric matrix $A$에 대해, quadratric form $\mathbf{x}^T A \mathbf{x}$를 cross-product term이 존재하지 않는 quadratic form $\mathbf{y}^T D \mathbf{y}$으로 바꾸는 적절한 change of variable $\mathbf{x} = P \mathbf{y}$가 존재한다.
 
-이때 행렬 $P$의 열들을 quadratic form $\mathbf{x}^T A \mathbf{x}$의 **주축(principle axes)**이라 한다. 주축은 $\mathbb{R}^n$의 [orthonormal basis](/linear_algebra/orthogonality)이다(= $P$는 [orthonormal matrix](/linear_algebra/orthogonality)이다). 벡터 $\mathbf{y}$는 ($\mathbb{R}^n$의 orthonormal basis인) 주축 하에서의 $\mathbf{x}$의 [좌표 벡터(coordinate vector)](/linear_algebra/vector-space)이다. $D$는 
+이때, 행렬 $P$의 열들을 quadratic form $\mathbf{x}^T A \mathbf{x}$의 **주축(principle axes)**이라 한다. 주축은 $\mathbb{R}^n$의 [orthonormal basis](/linear_algebra/orthogonality)이다(= $P$는 [orthonormal matrix](/linear_algebra/orthogonality)이다). 벡터 $\mathbf{y}$는 ($\mathbb{R}^n$의 orthonormal basis인) 주축 하에서의 $\mathbf{x}$의 [좌표 벡터(coordinate vector)](/linear_algebra/vector-space)이다. $D$는 [대각 행렬](/linear_algebra/vector-matrix)이다.
 
 </div></li>
 

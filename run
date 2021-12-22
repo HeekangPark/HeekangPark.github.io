@@ -47,4 +47,4 @@ then
 fi
 
 # Run Server
-bundle exec jekyll serve --host 172.26.1.1 --port 4000 --incremental --livereload --livereload-port 4001
+bundle exec jekyll serve --host 172.26.0.1 --port 4000 --incremental --livereload --livereload-port 4001
