@@ -1,7 +1,7 @@
 ---
 title: "Eigenvector, Eigenvalue"
 date_created: "2021-10-20"
-date_modified: "2021-12-20"
+date_modified: "2021-12-24"
 ---
 
 # eigenvector, eigenvalue
@@ -96,17 +96,17 @@ $\lambda$에 상응하는 $A$의 eigenspace는 행렬 $(A - \lambda I)$의 [null
 
 정사각행렬 $A$에 대해, 스칼라 $\lambda \in \mathbb{R}$가 다음 식을 만족시키면 $\lambda$는 $A$의 eigenvalue이다.
 
-$$\text{det}(A-\lambda I) = 0$$
+$$\textrm{det}(A-\lambda I) = 0$$
 
 역으로, $\lambda$가 $A$의 eigenvalue이면 위 식은 항상 성립한다.
 
 즉, 정사각행렬 $A$와 스칼라 $\lambda$에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
-- $\text{det}(A-\lambda I) = 0$ (characteristic equation)
+- $\textrm{det}(A-\lambda I) = 0$ (characteristic equation)
 - $\lambda$는 $A$의 eigenvalue이다.
 
-이때 식 $\text{det}(A-\lambda I) = 0$을 **characteristic equation**이라 한다. 또한 $n \times n$ 정사각행렬 $A$에 대해, characteristic equation의 좌변 $\text{det}(A-\lambda I)$은 $\lambda$에 대한 $n$차 다항식이므로, $\text{det}(A-\lambda I)$을 **characteristic polynomial**이라 한다.
+이때 식 $\textrm{det}(A-\lambda I) = 0$을 **characteristic equation**이라 한다. 또한 $n \times n$ 정사각행렬 $A$에 대해, characteristic equation의 좌변 $\textrm{det}(A-\lambda I)$은 $\lambda$에 대한 $n$차 다항식이므로, $\textrm{det}(A-\lambda I)$을 **characteristic polynomial**이라 한다.
 
 </div></li>
 
@@ -126,7 +126,7 @@ $$A = \begin{bmatrix}
 우선 eigenvalue를 구해 보자. eigenvalue를 구하려면 characteristic equation을 이용하면 된다. $A$는 triangular matrix이므로, $A$의 characteristic equation은 다음과 같이 된다(triangular matrix의 [determinant](/linear_algebra/determinant)는 대각 성분의 곱이다).
 
 $$\begin{align}
-\text{det}\,(A - \lambda I) &= \begin{vmatrix}
+\textrm{det}\,(A - \lambda I) &= \begin{vmatrix}
 5 - \lambda & -2 & 6 & -1\\[0.5em]
 0 & 3 - \lambda & -8 & 0\\[0.5em]
 0 & 0 & 5 - \lambda & 4\\[0.5em]
@@ -231,9 +231,9 @@ $$\begin{align}
 
 <li><div markdown="block">
 
-multiplicity가 $k$인 eigenvalue의 eigenspace을 $\mathcal{B}$라 할 때, $\mathcal{B}$의 [차원](/linear_algebra/vector-space) $\text{dim}(\mathcal{B})$은 다음과 같은 성질이 있다.
+multiplicity가 $k$인 eigenvalue의 eigenspace을 $\mathcal{B}$라 할 때, $\mathcal{B}$의 [차원](/linear_algebra/vector-space) $\textrm{dim}(\mathcal{B})$은 다음과 같은 성질이 있다.
 
-$$1 \le \text{dim}(\mathcal{B}) \le k$$
+$$1 \le \textrm{dim}(\mathcal{B}) \le k$$
 
 예를 들어, 위 예제에서 eigenvalue $\lambda = 5$의 eigenspace의 차원은 1로, $\lambda = 5$의 multiplicity 2보다 작거나 같다. 또 eigenvalue $\lambda = 3$의 eigenspace의 차원은 1로, $\lambda = 3$의 multiplicity 1보다 작거나 같다.
 
@@ -360,8 +360,8 @@ $$A = \begin{bmatrix}
 이 행렬의 eigenvalue $\lambda$와 eigenspace $\mathcal{B}$를 구하면 다음과 같이 된다.
 
 {:.no-background}
-- $\lambda = 5$ : $\mathcal{B}\_{\lambda = 5} = \text{Span}\, \left \\{ \begin{bmatrix}-8\\\\4\\\\1\\\\0\\\\\end{bmatrix},\,\begin{bmatrix}-16\\\\4\\\\0\\\\1\\\\ \end{bmatrix} \right \\}$
-- $\lambda = -3$ : $\mathcal{B}\_{\lambda = -3} = \text{Span}\, \left \\{ \begin{bmatrix}0\\\\0\\\\1\\\\0\\\\\end{bmatrix},\,\begin{bmatrix}0\\\\0\\\\0\\\\1\\\\ \end{bmatrix} \right \\}$
+- $\lambda = 5$ : $\mathcal{B}\_{\lambda = 5} = \textrm{Span}\, \left \\{ \begin{bmatrix}-8\\\\4\\\\1\\\\0\\\\\end{bmatrix},\,\begin{bmatrix}-16\\\\4\\\\0\\\\1\\\\ \end{bmatrix} \right \\}$
+- $\lambda = -3$ : $\mathcal{B}\_{\lambda = -3} = \textrm{Span}\, \left \\{ \begin{bmatrix}0\\\\0\\\\1\\\\0\\\\\end{bmatrix},\,\begin{bmatrix}0\\\\0\\\\0\\\\1\\\\ \end{bmatrix} \right \\}$
 
 $A$는 4개의 linearly independent한 eigenvector를 가지므로 diagonalizable하다. (또는 $\lambda = 5$의 eigenspace의 차원(2)과 $\lambda = -3$의 eigenspace의 차원(2)의 총합이 4이므로 diagonalizable하다고 검증할 수도 있다).
 

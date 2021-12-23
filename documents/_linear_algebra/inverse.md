@@ -2,7 +2,7 @@
 title: "역행렬 (Inverse)"
 order: 6
 date_created: "2021-09-26"
-date_modified: "2021-11-04"
+date_modified: "2021-12-24"
 ---
 
 # 역행렬(inverse)이란?
@@ -74,13 +74,15 @@ $$B = BI = B(AC) = (BA)C = IC = C$$
 - 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$은 [일대일(one-to-one)](/linear_algebra/linear-transformation)이다.
 - $A^T$의 역행렬이 존재한다.
 - $A$의 열들의 집합은 $\mathbb{R}^n$의 [basis](/linear_algebra/vector-space)이다.
-- [$\text{Col}\,A = \mathbb{R}^n$](/linear_algebra/vector-space)
-- [$\text{dim}(\text{Col}\,A) = n$](/linear_algebra/vector-space)
-- [$\text{Rank}(A) = n$](/linear_algebra/vector-space)
-- [$\text{Nul}\,A = \\{\mathbf{0}\\}$](/linear_algebra/vector-space)
-- [$\text{dim}(\text{Nul}\,A) = 0$](/linear_algebra/vector-space)
-- [$\text{det}\,A \neq 0$](/linear_algebra/determinant)
+- $\textrm{Col}\,A = \textrm{Col}\,A^T = \textrm{Row}\,A = \textrm{Row}\,A^T = (\textrm{Nul}\,A)^\perp = (\textrm{Nul}\,A^T)^\perp = \mathbb{R}^n$
+- [$\textrm{dim}(\textrm{Col}\,A) = n$](/linear_algebra/vector-space)
+- [$\textrm{Rank}(A) = n$](/linear_algebra/vector-space)
+- $\textrm{Nul}\,A = \textrm{Nul}\,A^T = (\textrm{Col}\,A)^\perp = (\textrm{Col}\,A^T)^\perp = (\textrm{Row}\,A)^\perp = (\textrm{Row}\,A^T)^\perp = \\{\mathbf{0}\\}$
+- [$\textrm{dim}(\textrm{Nul}\,A) = 0$](/linear_algebra/vector-space)
+- [$\textrm{det}\,A \neq 0$](/linear_algebra/determinant)
 - 0은 $A$의 [eigenvalue](/linear_algebra/eigenvector-eigenvalue)가 아니다.
+- $A$는 $n$개의 0이 아닌 [singular value](/linear_algebra/symmetric-matrix)를 가진다.
+- $A$는 0인 [singular value](/linear_algebra/symmetric-matrix)를 가지지 않는다.
 
 </div></li>
 
@@ -216,9 +218,9 @@ $$A^{-1} = \begin{bmatrix}
 
 <li><div markdown="block">
 
-$n \times n$ 정사각행렬 $A$에 대해, 다음과 같은 [($i$-$j$)-cofactor](/linear_algebra/determinant)들의 행렬을 $A$의 **adjugate** 혹은 $A$의 **classical adjoint**라 하고, 기호로 $\text{adj}\,A$라 쓴다.
+$n \times n$ 정사각행렬 $A$에 대해, 다음과 같은 [($i$-$j$)-cofactor](/linear_algebra/determinant)들의 행렬을 $A$의 **adjugate** 혹은 $A$의 **classical adjoint**라 하고, 기호로 $\textrm{adj}\,A$라 쓴다.
 
-$$\text{adj}\,A = \begin{bmatrix}
+$$\textrm{adj}\,A = \begin{bmatrix}
 C_{11} & C_{21} & \cdots & C_{n1}\\[0.5em]
 C_{12} & C_{22} & \cdots & C_{n2}\\[0.5em]
 \vdots & \vdots & \ddots & \vdots\\[0.5em]
@@ -233,7 +235,7 @@ C_{1n} & C_{2n} & \cdots & C_{nn}\\[0.5em]
 
 역행렬이 존재하는 행렬 $A$의 역행렬 $A^{-1}$은 다음과 같이 구할 수 있다.
 
-$$A^{-1} = \frac{1}{\text{det}\,A} \text{adj}\,A$$
+$$A^{-1} = \frac{1}{\textrm{det}\,A} \textrm{adj}\,A$$
 
 </div></li>
 
@@ -291,8 +293,8 @@ C_{31} &= +\begin{vmatrix}
 \end{array}$$
 
 $$\begin{array}{cc}
-\Rightarrow &\text{det}\,A = a_{11}C_{11} + a_{12}C_{12} + a_{13}C_{13} = 14,\\[0.5em]
-{} &\text{adj}\,A = \begin{bmatrix}
+\Rightarrow &\textrm{det}\,A = a_{11}C_{11} + a_{12}C_{12} + a_{13}C_{13} = 14,\\[0.5em]
+{} &\textrm{adj}\,A = \begin{bmatrix}
 -2 & 14 & 4\\[0.5em]
 3 & -7 & 1\\[0.5em]
 5 & -7 & -3\\[0.5em]
@@ -301,7 +303,7 @@ $$\begin{array}{cc}
 
 따라서, $A^{-1}$은 다음과 같이 계산된다.
 
-$$A^{-1} = \frac{1}{\text{det}\,A} \text{adj}\,A = \frac{1}{14}\begin{bmatrix}
+$$A^{-1} = \frac{1}{\textrm{det}\,A} \textrm{adj}\,A = \frac{1}{14}\begin{bmatrix}
 -2 & 14 & 4\\[0.5em]
 3 & -7 & 1\\[0.5em]
 5 & -7 & -3\\[0.5em]

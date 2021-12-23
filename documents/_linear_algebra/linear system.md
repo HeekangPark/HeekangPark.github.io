@@ -2,7 +2,7 @@
 title: "선형연립방정식 (Linear System)"
 order: 2
 date_created: "2021-09-16"
-date_modified: "2021-11-04"
+date_modified: "2021-12-24"
 ---
 
 # 선형연립방정식(linear system)이란?
@@ -432,10 +432,10 @@ $$\mathbf{x} = A^{-1} \mathbf{b}$$
 [역행렬](/linear_algebra/inverse)이 존재하는 정사각행렬 $A \in \mathbb{R}^{n \times n}$에 대해, 선형연립방정식 $A \mathbf{x} = \mathbf{b}$의 해는 유일하며 [Cramer's rule](/linear_algebra/determinant)을 이용해 다음과 같이 계산할 수 있다.
 
 $$\mathbf{x} = \begin{bmatrix}
-\displaystyle\frac{\text{det}\,A_1 (\mathbf{b})}{\text{det}\,A}\\[0.5em]
-\displaystyle\frac{\text{det}\,A_2 (\mathbf{b})}{\text{det}\,A}\\[0.5em]
+\displaystyle\frac{\textrm{det}\,A_1 (\mathbf{b})}{\textrm{det}\,A}\\[0.5em]
+\displaystyle\frac{\textrm{det}\,A_2 (\mathbf{b})}{\textrm{det}\,A}\\[0.5em]
 \vdots\\[0.5em]
-\displaystyle\frac{\text{det}\,A_n (\mathbf{b})}{\text{det}\,A}\\[0.5em]
+\displaystyle\frac{\textrm{det}\,A_n (\mathbf{b})}{\textrm{det}\,A}\\[0.5em]
 \end{bmatrix}$$
 
 </div></li>

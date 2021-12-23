@@ -1,7 +1,7 @@
 ---
 title: "Orthogonality"
 date_created: "2021-10-31"
-date_modified: "2021-12-20"
+date_modified: "2021-12-24"
 ---
 
 # orthogonality
@@ -64,12 +64,23 @@ $\mathbb{R}^n$의 subspace $W$에 대해, $W^\perp$은 $\mathbb{R}^n$의 subspac
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$에 대해, $A$의 [row space](/linear_algebra/vector-space) $\text{Row}\, A$의 orthogonal complement는 $A$의 null space $\text{Nul}\, A$이다. 또한, $A$의 column space $\text{Col}\, A$의 orthogonal complement는 $A^T$의 null space $\text{Nul}\, A^T$이다.
+$m \times n$ 행렬 $A$에 대해, $A$의 [row space](/linear_algebra/vector-space) $\textrm{Row}\, A$의 orthogonal complement는 $A$의 null space $\textrm{Nul}\, A$이다. 또한, $A$의 column space $\textrm{Col}\, A$의 orthogonal complement는 $A^T$의 null space $\textrm{Nul}\, A^T$이다.
 
 $$\begin{align}
-(\text{Row}\, A)^\perp = \text{Nul}\, A\\[0.5em]
-(\text{Col}\, A)^\perp = \text{Nul}\, A^T\\[0.5em]
+(\textrm{Row}\, A)^\perp = \textrm{Nul}\, A\\[0.5em]
+(\textrm{Col}\, A)^\perp = \textrm{Nul}\, A^T\\[0.5em]
 \end{align}$$
+
+</div></li>
+
+<li><div markdown="block">
+
+[역행렬](/linear_algebra/inverse)이 존재하는 $n \times n$ 정사각행렬 $A$에 대해, 다음은 모두 동치이다.
+
+{:.equivalent}
+- $A$의 역행렬이 존재한다.
+- [$(\textrm{Col}\,A)^\perp = \\{ \mathbf{0} \\}$](/linear_algebra/vector-space)
+- [$(\textrm{Nul}\,A)^\perp = \mathbb{R}^n$](/linear_algebra/vector-space)
 
 </div></li>
 
@@ -225,39 +236,39 @@ $$\begin{align}
 
 $$\mathbf{z} = \mathbf{y} - \hat{\mathbf{y}}$$
 
-이런 식으로 벡터 $\mathbf{y}$를 orthogonal한 두 개의 벡터 $\hat{\mathbf{y}}$와 $\mathbf{z}$의 합으로 나타내는 것을 **orthogonal decomposition**이라 한다. 또한, $\hat{\mathbf{y}}$를 $W$ 위로의 $\mathbf{y}$의 **orthogonal projection**이라 하고(orthogonal projection of $\mathbf{y}$ onto $W$), $\text{proj}\_{ {}\_W} \mathbf{y}$라 쓴다.
+이런 식으로 벡터 $\mathbf{y}$를 orthogonal한 두 개의 벡터 $\hat{\mathbf{y}}$와 $\mathbf{z}$의 합으로 나타내는 것을 **orthogonal decomposition**이라 한다. 또한, $\hat{\mathbf{y}}$를 $W$ 위로의 $\mathbf{y}$의 **orthogonal projection**이라 하고(orthogonal projection of $\mathbf{y}$ onto $W$), $\textrm{proj}\_{ {}\_W} \mathbf{y}$라 쓴다.
 
 </div></li>
 
 <li><div markdown="block">
 
-만약 $\mathbf{y} \in W$라면, $\text{proj}\_{ {}\_W} \mathbf{y} = \mathbf{y}$가 된다.
+만약 $\mathbf{y} \in W$라면, $\textrm{proj}\_{ {}\_W} \mathbf{y} = \mathbf{y}$가 된다.
 
 </div></li>
 
 <li><div markdown="block">
 
-임의의 벡터 $\mathbf{v} \in W$에 대해(단, $\mathbf{v} \neq \text{proj}\_{ {}\_W} \mathbf{y}$) 다음이 성립한다.
+임의의 벡터 $\mathbf{v} \in W$에 대해(단, $\mathbf{v} \neq \textrm{proj}\_{ {}\_W} \mathbf{y}$) 다음이 성립한다.
 
-$$\lVert \mathbf{y} - \text{proj}_{ {}_W} \mathbf{y} \rVert < \lVert \mathbf{y} - \mathbf{v} \rVert$$
+$$\lVert \mathbf{y} - \textrm{proj}_{ {}_W} \mathbf{y} \rVert < \lVert \mathbf{y} - \mathbf{v} \rVert$$
 
-기하학적으로, 위 부등식은 $\text{proj}\_{ {}\_W} \mathbf{y}$가 $W$에서 $\mathbf{y}$와 가장 가까운 점임을 의미한다.
+기하학적으로, 위 부등식은 $\textrm{proj}\_{ {}\_W} \mathbf{y}$가 $W$에서 $\mathbf{y}$와 가장 가까운 점임을 의미한다.
 
-또한 대수적으로, 위 부등식은 $\text{proj}\_{ {}\_W} \mathbf{y}$가 $W$의 원소 중 $\mathbf{y}$에 대한 최고의 근사(the best approximation to $\mathbf{y}$ by elements of $W$)임을 의미한다.
+또한 대수적으로, 위 부등식은 $\textrm{proj}\_{ {}\_W} \mathbf{y}$가 $W$의 원소 중 $\mathbf{y}$에 대한 최고의 근사(the best approximation to $\mathbf{y}$ by elements of $W$)임을 의미한다.
 
 </div></li>
 
 <li><div markdown="block">
 
-만약 $\\{ \mathbf{u}\_1,\,\mathbf{u}\_2,\,\cdots,\,\mathbf{u}\_p\\}$가 orthonormal basis라면, $\text{proj}\_{ {}\_W} \mathbf{y}$은 다음과 같이 나타낼 수 있다.
+만약 $\\{ \mathbf{u}\_1,\,\mathbf{u}\_2,\,\cdots,\,\mathbf{u}\_p\\}$가 orthonormal basis라면, $\textrm{proj}\_{ {}\_W} \mathbf{y}$은 다음과 같이 나타낼 수 있다.
 
-$$\text{proj}_{ {}_W} \mathbf{y}
+$$\textrm{proj}_{ {}_W} \mathbf{y}
 = \sum_{i=1} ^p {(\mathbf{y} \cdot \mathbf{u}_i )\mathbf{u}_i }
 = (\mathbf{y} \cdot \mathbf{u}_1 ) \mathbf{u}_1 + (\mathbf{y} \cdot \mathbf{u}_2 ) \mathbf{u}_2 + \cdots + (\mathbf{y} \cdot \mathbf{u}_p ) \mathbf{u}_p$$
 
-행렬 $U = [\, \mathbf{u}\_1\quad\mathbf{u}\_2\quad\cdots\quad\mathbf{u}\_p \,]$를 이용하면 $\text{proj}\_{ {}\_W} \mathbf{y}$를 더 간단하게 표현할 수 있다.
+행렬 $U = [\, \mathbf{u}\_1\quad\mathbf{u}\_2\quad\cdots\quad\mathbf{u}\_p \,]$를 이용하면 $\textrm{proj}\_{ {}\_W} \mathbf{y}$를 더 간단하게 표현할 수 있다.
 
-$$\text{proj}_{ {}_W} \mathbf{y} = U U^T \mathbf{y}$$
+$$\textrm{proj}_{ {}_W} \mathbf{y} = U U^T \mathbf{y}$$
 
 </div></li>
 
@@ -297,7 +308,7 @@ $m \times n$ 행렬 $A$의 열들의 집합이 linearly independent하다면, $A
 
 $$A = QR$$
 
-이때, $Q$는 $\text{Col}\,A$의 orthonormal basis의 원소들로 이루어진 $m \times n$ 크기의 행렬로, Gram-Schmidt process 등의 방법을 이용해 구할 수 있다. 그리고 $R$은 대각 성분이 모두 양수인 $n \times n$ 크기의 [upper triangular matrix](/linear_algebra/vector-matrix)로, 다음 식을 이용해 구한다.
+이때, $Q$는 $\textrm{Col}\,A$의 orthonormal basis의 원소들로 이루어진 $m \times n$ 크기의 행렬로, Gram-Schmidt process 등의 방법을 이용해 구할 수 있다. 그리고 $R$은 대각 성분이 모두 양수인 $n \times n$ 크기의 [upper triangular matrix](/linear_algebra/vector-matrix)로, 다음 식을 이용해 구한다.
 
 $$R = Q^T A$$
 
@@ -333,13 +344,13 @@ $$\lVert \mathbf{b} - A \hat{\mathbf{x}} \rVert \le \lVert \mathbf{b} - A \mathb
 
 <div class="proof-folder" markdown="block">
 
-$\mathbf{x}$의 값이 어떻든 $A \mathbf{x}$는 $\text{Col}\,A$의 원소이다. 그러므로 least-square problem은 $\mathbf{b}$와 가장 가까운 $\text{Col}\,A$의 원소를 찾는 문제와 같다.
+$\mathbf{x}$의 값이 어떻든 $A \mathbf{x}$는 $\textrm{Col}\,A$의 원소이다. 그러므로 least-square problem은 $\mathbf{b}$와 가장 가까운 $\textrm{Col}\,A$의 원소를 찾는 문제와 같다.
 
 따라서, least-square problem은 다음 선형연립방정식을 푸는 것과 같다.
 
-$$A \mathbf{x} = \text{proj}_{ {}_{\text{Col}\,A}} \mathbf{b}$$
+$$A \mathbf{x} = \textrm{proj}_{ {}_{\textrm{Col}\,A}} \mathbf{b}$$
 
-$\text{proj}\_{ {}\_{\text{Col}\,A}} \mathbf{b} \in \text{Col}\,A$이므로, 위 선형연립방정식은 항상 consistent하다.
+$\textrm{proj}\_{ {}\_{\textrm{Col}\,A}} \mathbf{b} \in \textrm{Col}\,A$이므로, 위 선형연립방정식은 항상 consistent하다.
 
 이때 $\mathbf{b} - A\hat{\mathbf{x}}$는 $A$의 각 열과 orthogonal하므로, $A$의 각 열 $\mathbf{a}\_j$와 다음 식이 성립한다.
 

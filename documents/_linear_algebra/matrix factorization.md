@@ -2,7 +2,7 @@
 title: "Matrix Factorization"
 order: 7
 date_created: "2021-09-27"
-date_modified: "2021-12-20"
+date_modified: "2021-12-24"
 ---
 
 # matrix factorization이란?
@@ -255,7 +255,7 @@ linearly independent한 열들을 가진 $m \times n$ 행렬 $A$를 다음과 �
 
 $$A = QR$$
 
-- $Q$ : (크기 $m \times n$) $\text{Col}\,A$의 [orthonormal basis](/linear_algebra/orthogonality)의 원소들로 이루어진 행렬
+- $Q$ : (크기 $m \times n$) $\textrm{Col}\,A$의 [orthonormal basis](/linear_algebra/orthogonality)의 원소들로 이루어진 행렬
 - $R$ : (크기 $n \times n$) 대각 성분이 모두 양수인 [upper triangular matrix](/linear_algebra/vector-matrix)
 
 </div></li>

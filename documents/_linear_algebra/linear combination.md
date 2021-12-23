@@ -2,7 +2,7 @@
 title: "Linear Combination"
 order: 4
 date_created: "2021-09-20"
-date_modified: "2021-10-14"
+date_modified: "2021-12-24"
 ---
 
 # linear combination
@@ -27,9 +27,9 @@ $$\mathbf{y} = c_1 \mathbf{x}_1 + c_2 \mathbf{x}_2 + \cdots + c_p \mathbf{x}_p =
 
 <li><div markdown="block">
 
-벡터 $\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p \in \mathbb{R}^n$가 주어졌을 때, 이들 벡터들의 linear combination으로 만들 수 있는 모든 벡터들의 집합을 $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$이라 쓰고, "$\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p$에 의해 **span**된 집합"이라 읽는다.
+벡터 $\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p \in \mathbb{R}^n$가 주어졌을 때, 이들 벡터들의 linear combination으로 만들 수 있는 모든 벡터들의 집합을 $\textrm{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$이라 쓰고, "$\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p$에 의해 **span**된 집합"이라 읽는다.
 
-$$\text{Span}\{\mathbf{x}_1,\,\mathbf{x}_2,\,\cdots,\,\mathbf{x}_p\} = \{c_1 \mathbf{x}_1 + c_2 \mathbf{x}_2 + \cdots + c_p \mathbf{x}_p \,|\, c_i \in \mathbb{R}\,(i = 1,\,2,\,\cdots,\,p)\}$$
+$$\textrm{Span}\{\mathbf{x}_1,\,\mathbf{x}_2,\,\cdots,\,\mathbf{x}_p\} = \{c_1 \mathbf{x}_1 + c_2 \mathbf{x}_2 + \cdots + c_p \mathbf{x}_p \,|\, c_i \in \mathbb{R}\,(i = 1,\,2,\,\cdots,\,p)\}$$
 
 </div></li>
 
@@ -37,17 +37,17 @@ $$\text{Span}\{\mathbf{x}_1,\,\mathbf{x}_2,\,\cdots,\,\mathbf{x}_p\} = \{c_1 \ma
 
 span은 다음과 같은 성질이 있다.
 
-- $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\} \subset \mathbb{R}^n$
+- $\textrm{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\} \subset \mathbb{R}^n$
 
-  $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$는 항상 $\mathbb{R}^n$의 부분집합이 된다.
+  $\textrm{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$는 항상 $\mathbb{R}^n$의 부분집합이 된다.
 
-- $c \mathbf{x}_i \in \text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$ ($i = 1,\,2,\,\cdots,\,p$)
+- $c \mathbf{x}_i \in \textrm{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$ ($i = 1,\,2,\,\cdots,\,p$)
 
-  $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$는 항상 각 벡터의 모든 스칼라 배 벡터들을 원소로 가진다.
+  $\textrm{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$는 항상 각 벡터의 모든 스칼라 배 벡터들을 원소로 가진다.
 
-- $\mathbf{0} \in \text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$
+- $\mathbf{0} \in \textrm{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$
 
-  영벡터 $\mathbf{0}$는 $\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p$의 종류에 상관없이 언제나 $\text{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$의 원소가 된다.
+  영벡터 $\mathbf{0}$는 $\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p$의 종류에 상관없이 언제나 $\textrm{Span}\\{\mathbf{x}\_1,\,\mathbf{x}\_2,\,\cdots,\,\mathbf{x}\_p\\}$의 원소가 된다.
 
 </div></li>
 
@@ -55,7 +55,7 @@ span은 다음과 같은 성질이 있다.
 
 만약 벡터 $\mathbf{x}\_i \in \mathbb{R}^m$($i = 1,\,2,\,\cdots,\,p$)들에 대해
 
-$$\text{Span}\{\mathbf{x}_1,\,\mathbf{x}_2,\,\cdots,\,\mathbf{x}_p\} = \mathbb{R}^m$$
+$$\textrm{Span}\{\mathbf{x}_1,\,\mathbf{x}_2,\,\cdots,\,\mathbf{x}_p\} = \mathbb{R}^m$$
 
 가 성립한다면, 즉 벡터 $\mathbf{x}\_i \in \mathbb{R}^m$들의 linear combination으로 $\mathbb{R}^m$ 안의 모든 벡터들을 다 만들어낼 수 있다면, 이를
 

@@ -2,7 +2,7 @@
 title: "벡터공간 (Vector Space)"
 order: 8
 date_created: "2021-09-28"
-date_modified: "2021-11-04"
+date_modified: "2021-12-24"
 ---
 
 # 벡터공간(vector space)
@@ -88,7 +88,7 @@ subspace는 그 자체로 벡터공간이다.
 
 벡터공간 $V$의 원소 $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_p \in V$에 대해, 이들의 [span](/linear_algebra/linear-combination) $H$는 $V$의 subspace이다.
 
-$$H = \text{Span}\{\mathbf{v}_1,\,\mathbf{v}_2,\,\cdots,\,\mathbf{v}_p\} \subset V$$
+$$H = \textrm{Span}\{\mathbf{v}_1,\,\mathbf{v}_2,\,\cdots,\,\mathbf{v}_p\} \subset V$$
 
 이때, 집합 $\\{\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_p \\}$을 $H$의 **spanning set** 또는 **generating set**이라 부른다.
 
@@ -104,9 +104,9 @@ $$H = \text{Span}\{\mathbf{v}_1,\,\mathbf{v}_2,\,\cdots,\,\mathbf{v}_p\} \subset
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$에 대해, [homogeneous equation](/linear_algebra/linear-system) $A\mathbf{x} = \mathbf{0}$의 해 집합을 $A$의 **null space**라 하고, 기호로 $\text{Nul}\,A$라 쓴다. 즉,
+$m \times n$ 행렬 $A$에 대해, [homogeneous equation](/linear_algebra/linear-system) $A\mathbf{x} = \mathbf{0}$의 해 집합을 $A$의 **null space**라 하고, 기호로 $\textrm{Nul}\,A$라 쓴다. 즉,
 
-$$\text{Nul}\,A = \{\mathbf{x} \,|\, \mathbf{x} \in \mathbb{R}^{n},\,A\mathbf{x} = \mathbf{0}\}$$
+$$\textrm{Nul}\,A = \{\mathbf{x} \,|\, \mathbf{x} \in \mathbb{R}^{n},\,A\mathbf{x} = \mathbf{0}\}$$
 
 이다.
 
@@ -114,7 +114,7 @@ $$\text{Nul}\,A = \{\mathbf{x} \,|\, \mathbf{x} \in \mathbb{R}^{n},\,A\mathbf{x}
 
 <li><div markdown="block">
 
-$\text{Nul}\,A$는 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$에 의해 $\mathbb{R}^m$의 영벡터 $\mathbf{0}$으로 [매핑(mapping)](/linear_algebra/linear-transformation)되는 $\mathbb{R}^m$의 모든 원소들의 집합을 의미한다.
+$\textrm{Nul}\,A$는 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$에 의해 $\mathbb{R}^m$의 영벡터 $\mathbf{0}$으로 [매핑(mapping)](/linear_algebra/linear-transformation)되는 $\mathbb{R}^m$의 모든 원소들의 집합을 의미한다.
 
 {% include caption-img.html src="vector-space-null-space.png" %}
 
@@ -124,18 +124,18 @@ $\text{Nul}\,A$는 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$에 의해 $\mat
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$의 null space $\text{Nul}\,A$는 $\mathbb{R}^n$의 subspace이다.
+$m \times n$ 행렬 $A$의 null space $\textrm{Nul}\,A$는 $\mathbb{R}^n$의 subspace이다.
 
 </div></li>
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$에 대해, [homogeneous linear system](/linear_algebra/linear-system) $A\mathbf{x} = \mathbf{0}$가 trivial solution만 가진다면, $\text{Nul}\,A = \\{ \mathbf{0} \\}$가 된다. 역으로, $\text{Nul}\,A = \\{ \mathbf{0} \\}$이면, homogeneous linear system $A\mathbf{x} = \mathbf{0}$은 trivial solution만 가진다.
+$m \times n$ 행렬 $A$에 대해, [homogeneous linear system](/linear_algebra/linear-system) $A\mathbf{x} = \mathbf{0}$가 trivial solution만 가진다면, $\textrm{Nul}\,A = \\{ \mathbf{0} \\}$가 된다. 역으로, $\textrm{Nul}\,A = \\{ \mathbf{0} \\}$이면, homogeneous linear system $A\mathbf{x} = \mathbf{0}$은 trivial solution만 가진다.
 
 즉, $m \times n$ 행렬 $A$에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
-- $\text{Nul}\,A = \\{ \mathbf{0} \\}$
+- $\textrm{Nul}\,A = \\{ \mathbf{0} \\}$
 - $A\mathbf{x} = \mathbf{0}$는 trivial solution만 가진다.
 - 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$는 [one-to-one](/linear_algebra/linear-transformation)이다.
 
@@ -208,9 +208,9 @@ x_5\\[0.5em]
 1\\[0.5em]
 \end{bmatrix}$$
 
-따라서, 집합 $\left \\{\begin{bmatrix} 2\\\\[0.5em] 1\\\\[0.5em] 0\\\\[0.5em] 0\\\\[0.5em] 0\\\\[0.5em] \end {bmatrix},\,\begin{bmatrix} 1\\\\[0.5em] 0\\\\[0.5em] -2\\\\[0.5em] 1\\\\[0.5em] 0\\\\[0.5em] \end{bmatrix},\,\begin{bmatrix} -3\\\\[0.5em] 0\\\\[0.5em] 2\\\\[0.5em] 0\\\\[0.5em] 1\\\\[0.5em] \end{bmatrix} \right \\}$은 $\text{Nul}\,A$의 spanning set이 된다.
+따라서, 집합 $\left \\{\begin{bmatrix} 2\\\\[0.5em] 1\\\\[0.5em] 0\\\\[0.5em] 0\\\\[0.5em] 0\\\\[0.5em] \end {bmatrix},\,\begin{bmatrix} 1\\\\[0.5em] 0\\\\[0.5em] -2\\\\[0.5em] 1\\\\[0.5em] 0\\\\[0.5em] \end{bmatrix},\,\begin{bmatrix} -3\\\\[0.5em] 0\\\\[0.5em] 2\\\\[0.5em] 0\\\\[0.5em] 1\\\\[0.5em] \end{bmatrix} \right \\}$은 $\textrm{Nul}\,A$의 spanning set이 된다.
 
-$$\text{Nul}\,A = \text{Span} \left \{ \begin{bmatrix}
+$$\textrm{Nul}\,A = \textrm{Span} \left \{ \begin{bmatrix}
 2\\[0.5em]
 1\\[0.5em]
 0\\[0.5em]
@@ -240,9 +240,9 @@ $$\text{Nul}\,A = \text{Span} \left \{ \begin{bmatrix}
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$에 대해, $A$의 열(column)들로 만들 수 있는 모든 linear combination들의 집합을 $A$의 **column space**라 하고, 기호로 $\text{Col}\,A$라 쓴다. 즉, $A = [\,\mathbf{a}_1\quad\mathbf{a}_2\quad\cdots\quad\mathbf{a}_n\,]$이라 하면,
+$m \times n$ 행렬 $A$에 대해, $A$의 열(column)들로 만들 수 있는 모든 linear combination들의 집합을 $A$의 **column space**라 하고, 기호로 $\textrm{Col}\,A$라 쓴다. 즉, $A = [\,\mathbf{a}_1\quad\mathbf{a}_2\quad\cdots\quad\mathbf{a}_n\,]$이라 하면,
 
-$$\text{Col}\,A = \text{Span}\{ \mathbf{a}_1,\,\mathbf{a}_2,\,\cdots,\,\mathbf{a}_n \}$$
+$$\textrm{Col}\,A = \textrm{Span}\{ \mathbf{a}_1,\,\mathbf{a}_2,\,\cdots,\,\mathbf{a}_n \}$$
 
 이다.
 
@@ -250,29 +250,29 @@ $$\text{Col}\,A = \text{Span}\{ \mathbf{a}_1,\,\mathbf{a}_2,\,\cdots,\,\mathbf{a
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$의 column space $\text{Col}\,A$는 다음과 같이 쓸 수도 있다.
+$m \times n$ 행렬 $A$의 column space $\textrm{Col}\,A$는 다음과 같이 쓸 수도 있다.
 
-$$\text{Col}\,A = \{ \mathbf{b} \,|\, \mathbf{x} \in \mathbb{R}^n,\,A\mathbf{x} = \mathbf{b} \}$$
+$$\textrm{Col}\,A = \{ \mathbf{b} \,|\, \mathbf{x} \in \mathbb{R}^n,\,A\mathbf{x} = \mathbf{b} \}$$
 
-다시말해, $\text{Col}\,A$는 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$의 [치역(range)](/linear_algebra/linear-transformation)을 의미한다.
-
-</div></li>
-
-<li><div markdown="block">
-
-$m \times n$ 행렬 $A$의 column space $\text{Col}\,A$는 $\mathbb{R}^m$의 subspace이다.
+다시말해, $\textrm{Col}\,A$는 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$의 [치역(range)](/linear_algebra/linear-transformation)을 의미한다.
 
 </div></li>
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$에 대해, 식 $A\mathbf{x} = \mathbf{b}$가 모든 $\mathbf{b} \in \mathbb{R}^m$에 대해 해가 존재한다면, $\text{Col}\,A = \mathbb{R}^m$이 된다(= $A$의 열들이 $\mathbb{R}^m$을 [span](/linear_algebra/linear-combination)한다). 역으로, $\text{Col}\,A = \mathbb{R}^m$이면(= $A$의 열들이 $\mathbb{R}^m$을 [span](/linear_algebra/linear-combination)하면), 식 $A\mathbf{x} = \mathbf{b}$는 모든 $\mathbf{b} \in \mathbb{R}^m$에 대해 해가 존재한다.
+$m \times n$ 행렬 $A$의 column space $\textrm{Col}\,A$는 $\mathbb{R}^m$의 subspace이다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$m \times n$ 행렬 $A$에 대해, 식 $A\mathbf{x} = \mathbf{b}$가 모든 $\mathbf{b} \in \mathbb{R}^m$에 대해 해가 존재한다면, $\textrm{Col}\,A = \mathbb{R}^m$이 된다(= $A$의 열들이 $\mathbb{R}^m$을 [span](/linear_algebra/linear-combination)한다). 역으로, $\textrm{Col}\,A = \mathbb{R}^m$이면(= $A$의 열들이 $\mathbb{R}^m$을 [span](/linear_algebra/linear-combination)하면), 식 $A\mathbf{x} = \mathbf{b}$는 모든 $\mathbf{b} \in \mathbb{R}^m$에 대해 해가 존재한다.
 
 즉, $m \times n$ 행렬 $A$에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
 - $A\mathbf{x} = \mathbf{b}$가 모든 $\mathbf{b} \in \mathbb{R}^m$에 대해 해가 존재한다.
-- $\text{Col}\,A = \mathbb{R}^m$
+- $\textrm{Col}\,A = \mathbb{R}^m$
 - $A$의 열들이 $\mathbb{R}^m$을 [span](/linear_algebra/linear-combination)한다.
 
 </div></li>
@@ -291,7 +291,7 @@ $$A = \begin{bmatrix}
 
 위의 null space를 구할 때와 다르게, column space의 spanning set은 $A$의 열들 그 자체로 쉽게 구할 수 있다.
 
-$$\text{Col}\,A = \text{Span} \left \{ \begin{bmatrix}
+$$\textrm{Col}\,A = \textrm{Span} \left \{ \begin{bmatrix}
 -3\\[0.5em]
 1\\[0.5em]
 2\\[0.5em]
@@ -323,9 +323,9 @@ $$\text{Col}\,A = \text{Span} \left \{ \begin{bmatrix}
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$에 대해, $A$의 행(row)들로 만들 수 있는 모든 linear combination들의 집합을 $A$의 **row space**라 하고, 기호로 $\text{Row}\,A$라 쓴다. 즉, $A = \begin{bmatrix}\mathbf{r}_1\\\\\mathbf{r}_2\\\\\vdots\\\\\mathbf{r}_n\end{bmatrix}$이라 하면,
+$m \times n$ 행렬 $A$에 대해, $A$의 행(row)들로 만들 수 있는 모든 linear combination들의 집합을 $A$의 **row space**라 하고, 기호로 $\textrm{Row}\,A$라 쓴다. 즉, $A = \begin{bmatrix}\mathbf{r}_1\\\\\mathbf{r}_2\\\\\vdots\\\\\mathbf{r}_n\end{bmatrix}$이라 하면,
 
-$$\text{Row}\,A = \text{Span}\{ \mathbf{r}_1,\,\mathbf{r}_2,\,\cdots,\,\mathbf{r}_n \}$$
+$$\textrm{Row}\,A = \textrm{Span}\{ \mathbf{r}_1,\,\mathbf{r}_2,\,\cdots,\,\mathbf{r}_n \}$$
 
 이다.
 
@@ -335,25 +335,25 @@ $$\text{Row}\,A = \text{Span}\{ \mathbf{r}_1,\,\mathbf{r}_2,\,\cdots,\,\mathbf{r
 
 $A$의 행들은 $A^T$의 열이므로, 다음이 성립한다.
 
-$$\text{Row}\,A = \text{Col}\,A^T$$
+$$\textrm{Row}\,A = \textrm{Col}\,A^T$$
 
 </div></li>
 
 <li><div markdown="block">
 
-$m \times n$ 행렬 $A$의 row space $\text{Row}\,A$는 $\mathbb{R}^n$의 subspace이다.
+$m \times n$ 행렬 $A$의 row space $\textrm{Row}\,A$는 $\mathbb{R}^n$의 subspace이다.
 
 </div></li>
 
 <li><div markdown="block">
 
-행렬 $A$, $B$가 [행 동등하다면(row equivalent)](/linear_algebra/echelon-form) $\text{Row}\,A = \text{Row}\,B$이다.
+행렬 $A$, $B$가 [행 동등하다면(row equivalent)](/linear_algebra/echelon-form) $\textrm{Row}\,A = \textrm{Row}\,B$이다.
 
 </div></li>
 
 <li><div markdown="block">
 
-행렬 $A$가 echelon form이면, $A$의 [nonzero 행](/linear_algebra/echelon-form)들의 집합은 $\text{Row}\,A$의 basis가 된다.
+행렬 $A$가 echelon form이면, $A$의 [nonzero 행](/linear_algebra/echelon-form)들의 집합은 $\textrm{Row}\,A$의 basis가 된다.
 
 </div></li>
 
@@ -364,13 +364,13 @@ $m \times n$ 행렬 $A$의 row space $\text{Row}\,A$는 $\mathbb{R}^n$의 subspa
 {:.table-align-center .null-space-column-space-table}
 |             |                                                                                                null space                                                                                                 |                                                                                                                                 column space                                                                                                                                 |
 | :---------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|    정의     |                                                    $\text{Nul}\,A = \\{\mathbf{x} \,\|\, \mathbf{x} \in \mathbb{R}^{n},\,A\mathbf{x} = \mathbf{0}\\}$                                                     |                                                                                      $\text{Col}\,A = \\{ \mathbf{b} \,\|\, \mathbf{x} \in \mathbb{R}^n,\,A\mathbf{x} = \mathbf{b} \\}$                                                                                      |
+|    정의     |                                                    $\textrm{Nul}\,A = \\{\mathbf{x} \,\|\, \mathbf{x} \in \mathbb{R}^{n},\,A\mathbf{x} = \mathbf{0}\\}$                                                     |                                                                                      $\textrm{Col}\,A = \\{ \mathbf{b} \,\|\, \mathbf{x} \in \mathbb{R}^n,\,A\mathbf{x} = \mathbf{b} \\}$                                                                                      |
 | subspace of |                                                                                              $\mathbb{R}^n$                                                                                               |                                                                                                                                $\mathbb{R}^m$                                                                                                                                |
-| 원소의 성질 |                                                              벡터 $\mathbf{v} \in \text{Nul}\,A$는 항상 $A\mathbf{v} = \mathbf{0}$을 만족함                                                               |                                                                  벡터 $\mathbf{v} \in \text{Col}\,A$는 항상 $A\mathbf{x} = \mathbf{v}$를 [consistent](/linear_algebra/linear-system)하게 만드는 성질이 있음                                                                  |
-|  집합 식별  |                                                      $\text{Nul}\,A$가 어떤 집합인지를 보는 것은 어려움 :<br/>$A\mathbf{x} = \mathbf{0}$을 풀어야 함                                                      |                                                                                      $\text{Col}\,A$가 어떤 집합인지를 보는 것은 쉬움 :<br/>$A$의 열들의 linear combination을 구하면 됨                                                                                      |
-|  원소 식별  |                                    임의의 벡터 $\mathbf{v}$ 가 $\text{Nul}\,A$의 원소인지 판단하는 것은 쉬움 :<br/>$A\mathbf{v} = \mathbf{0}$를 만족하는지 확인하면 됨                                    |                                                                  임의의 벡터 $\mathbf{v}$ 가 $\text{Col}\,A$의 원소인지 판단하는 것은 어려움 :<br/>$A\mathbf{x} = \mathbf{v}$가 consistent한지 확인해야 함                                                                   |
+| 원소의 성질 |                                                              벡터 $\mathbf{v} \in \textrm{Nul}\,A$는 항상 $A\mathbf{v} = \mathbf{0}$을 만족함                                                               |                                                                  벡터 $\mathbf{v} \in \textrm{Col}\,A$는 항상 $A\mathbf{x} = \mathbf{v}$를 [consistent](/linear_algebra/linear-system)하게 만드는 성질이 있음                                                                  |
+|  집합 식별  |                                                      $\textrm{Nul}\,A$가 어떤 집합인지를 보는 것은 어려움 :<br/>$A\mathbf{x} = \mathbf{0}$을 풀어야 함                                                      |                                                                                      $\textrm{Col}\,A$가 어떤 집합인지를 보는 것은 쉬움 :<br/>$A$의 열들의 linear combination을 구하면 됨                                                                                      |
+|  원소 식별  |                                    임의의 벡터 $\mathbf{v}$ 가 $\textrm{Nul}\,A$의 원소인지 판단하는 것은 쉬움 :<br/>$A\mathbf{v} = \mathbf{0}$를 만족하는지 확인하면 됨                                    |                                                                  임의의 벡터 $\mathbf{v}$ 가 $\textrm{Col}\,A$의 원소인지 판단하는 것은 어려움 :<br/>$A\mathbf{x} = \mathbf{v}$가 consistent한지 확인해야 함                                                                   |
 |  선형변환   |                                                                                               커널(kernel)                                                                                                |                                                                                                                                 치역(range)                                                                                                                                  |
-| 특수한 경우 | $\text{Nul}\,A = \\{ \mathbf{0} \\}$<br/>⇔ $A\mathbf{x} = \mathbf{0}$는 trivial solution만 가진다<br/>⇔ 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$는 [one-to-one](/linear_algebra/linear-transformation)임 | $\text{Col}\,A = \mathbb{R}^m$<br/>⇔ $\mathbb{R}^m$의 모든 원소 $\mathbf{b}$에 대해, $A\mathbf{x} = \mathbf{b}$는 consistent함<br/>⇔ 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$는 $\mathbb{R}^n$을 $\mathbb{R}^m$ [위로 보낸다(onto)](/linear_algebra/linear-transformation). |
+| 특수한 경우 | $\textrm{Nul}\,A = \\{ \mathbf{0} \\}$<br/>⇔ $A\mathbf{x} = \mathbf{0}$는 trivial solution만 가진다<br/>⇔ 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$는 [one-to-one](/linear_algebra/linear-transformation)임 | $\textrm{Col}\,A = \mathbb{R}^m$<br/>⇔ $\mathbb{R}^m$의 모든 원소 $\mathbf{b}$에 대해, $A\mathbf{x} = \mathbf{b}$는 consistent함<br/>⇔ 선형변환 $\mathbf{x} \mapsto A\mathbf{x}$는 $\mathbb{R}^n$을 $\mathbb{R}^m$ [위로 보낸다(onto)](/linear_algebra/linear-transformation). |
 
 # basis
 
@@ -381,7 +381,7 @@ $m \times n$ 행렬 $A$의 row space $\text{Row}\,A$는 $\mathbb{R}^n$의 subspa
 벡터공간 $V$의 한 subspace $H$에 대해, 다음 조건을 만족하는 벡터들의 집합 $\mathcal{B} = \\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_p\\} \subset V$를 $H$의 **basis**라 한다.
 
 - $\mathcal{B}$는 [linearly independent](/linear_algebra/linear-combination)한 집합이다.
-- $\\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_p\\}$는 $H$의 spanning set이다. 즉, $H = \text{Span}\\{\mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_p\\}$
+- $\\{ \mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_p\\}$는 $H$의 spanning set이다. 즉, $H = \textrm{Span}\\{\mathbf{b}\_1,\,\mathbf{b}\_2,\,\cdots,\,\mathbf{b}\_p\\}$
 
 즉, basis는 $H$의 linearly independent한 spanning set이다.
 
@@ -389,11 +389,11 @@ $m \times n$ 행렬 $A$의 row space $\text{Row}\,A$는 $\mathbb{R}^n$의 subspa
 
 <li><div markdown="block">
 
-벡터공간 $V$의 부분집합 $S = \\{\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_p\\}$에 대해, $H = \text{Span}\,\\{\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_p\\}$라 하자. 이때, 다음이 성립한다.
+벡터공간 $V$의 부분집합 $S = \\{\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_p\\}$에 대해, $H = \textrm{Span}\,\\{\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_p\\}$라 하자. 이때, 다음이 성립한다.
 
 - 만약 $\mathbf{v}\_k \in S$가 $S$의 나머지 원소들의 linear combination이라면, $S$에서 $\mathbf{v}\_k$를 제거한 집합 $S' = S - \\{\mathbf{v}\_k\\}$은 여전히 $H$를 [span](/linear_algebra/linear-combination)한다. 즉,
   
-  $$H = \text{Span}\,S'$$
+  $$H = \textrm{Span}\,S'$$
 
 - 만약 $H \neq \\{\mathbf{0}\\}$라면, $H$의 basis는 $S$의 부분집합 중 하나이다.
 
@@ -405,7 +405,7 @@ $m \times n$ 행렬 $A$의 row space $\text{Row}\,A$는 $\mathbb{R}^n$의 subspa
 
 벡터공간 $V$의 basis는 유일하지 않다. 하지만 언제나 원소의 수는 같다. basis의 원소의 수를 $V$의 **차원(dimension)**이라 한다.
 
-조금 더 구체적으로, 어떤 벡터공간이 유한집합에 의해 span된다면, $V$는 **finite-dimensional**하다고 하고, $V$의 차원(dimension) $\text{dim}(V)$는 $V$의 basis의 원소의 개수로 정의된다. 만약 $V$가 유한집합에 의해 span되지 않는다면, $V$는 **infinite-dimensional**하다고 한다.
+조금 더 구체적으로, 어떤 벡터공간이 유한집합에 의해 span된다면, $V$는 **finite-dimensional**하다고 하고, $V$의 차원(dimension) $\textrm{dim}(V)$는 $V$의 basis의 원소의 개수로 정의된다. 만약 $V$가 유한집합에 의해 span되지 않는다면, $V$는 **infinite-dimensional**하다고 한다.
 
 </div></li>
 
@@ -413,7 +413,7 @@ $m \times n$ 행렬 $A$의 row space $\text{Row}\,A$는 $\mathbb{R}^n$의 subspa
 
 영벡터로만 구성된 subspace $\\{\mathbf{0}\\}$의 차원은 0이다.
 
-$$\text{dim}(\{\mathbf{0}\}) = 0$$
+$$\textrm{dim}(\{\mathbf{0}\}) = 0$$
 
 </div></li>
 
@@ -422,10 +422,10 @@ $$\text{dim}(\{\mathbf{0}\}) = 0$$
 finite-dimensional한 벡터공간 $V$의 차원은 다음과 같은 성질이 있다.
 
 - 벡터공간 $V$의 차원보다 더 많은 벡터로 구성된 $V$의 부분집합은 항상 linearly dependent하다.
-- linearly independent한 $V$의 부분집합의 원소의 개수는 항상 $\text{dim}(V)$보다 작거나 같다.
-- $\text{dim}(V)$개의 원소로 이루어진 linearly independent한 $V$의 부분집합은 항상 $V$의 basis이다.
-- $\text{dim}(V)$개의 원소로 이루어진, $V$를 span하는 $V$의 부분집합은 항상 $V$의 basis이다.
-- $V$의 subspace $H$ 역시 finite-dimensional이고, $\text{dim}(H)$은 항상 $\text{dim}(V)$보다 작거나 같다 : $\text{dim}(H) \le \text{dim}(V)$
+- linearly independent한 $V$의 부분집합의 원소의 개수는 항상 $\textrm{dim}(V)$보다 작거나 같다.
+- $\textrm{dim}(V)$개의 원소로 이루어진 linearly independent한 $V$의 부분집합은 항상 $V$의 basis이다.
+- $\textrm{dim}(V)$개의 원소로 이루어진, $V$를 span하는 $V$의 부분집합은 항상 $V$의 basis이다.
+- $V$의 subspace $H$ 역시 finite-dimensional이고, $\textrm{dim}(H)$은 항상 $\textrm{dim}(V)$보다 작거나 같다 : $\textrm{dim}(H) \le \textrm{dim}(V)$
 
 </div></li>
 
@@ -464,8 +464,8 @@ $$\mathbf{e}_1 = \begin{bmatrix}
 
 행렬 $A$의 null space, column space와 basis 간에는 다음과 같은 관계가 있다. 
 
-- $\text{dim}(\text{Nul}\,A )$는 homogeneous linear system $A\mathbf{x} = \mathbf{0}$의 [free variable](/linear_algebra/linear-system)의 수와 같다.
-- $A$의 [pivot column](/linear_algebra/echelon-form)들의 집합은 $\text{Col}\,A$의 basis이다. 즉, $\text{dim}(\text{Col}\,A )$는 $A$의 pivot column의 수이다.
+- $\textrm{dim}(\textrm{Nul}\,A )$는 homogeneous linear system $A\mathbf{x} = \mathbf{0}$의 [free variable](/linear_algebra/linear-system)의 수와 같다.
+- $A$의 [pivot column](/linear_algebra/echelon-form)들의 집합은 $\textrm{Col}\,A$의 basis이다. 즉, $\textrm{dim}(\textrm{Col}\,A )$는 $A$의 pivot column의 수이다.
 
 </div></li>
 
@@ -478,15 +478,15 @@ $$\mathbf{e}_1 = \begin{bmatrix}
 
 <li><div markdown="block">
 
-행렬 $A$의 column space $\text{Col}\,A$의 차원을 **rank**라 하고, 기호로 $\text{Rank}(A)$라 쓴다.
+행렬 $A$의 column space $\textrm{Col}\,A$의 차원을 **rank**라 하고, 기호로 $\textrm{Rank}(A)$라 쓴다.
 
-$$\text{Rank}(A) = \text{dim}(\text{Col}\,A)$$
+$$\textrm{Rank}(A) = \textrm{dim}(\textrm{Col}\,A)$$
 
 </div></li>
 
 <li><div markdown="block">
 
-$\text{Nul}\,A$의 차원을 $A$의 **nullity**라 한다.
+$\textrm{Nul}\,A$의 차원을 $A$의 **nullity**라 한다.
 
 </div></li>
 
@@ -495,7 +495,7 @@ $\text{Nul}\,A$의 차원을 $A$의 **nullity**라 한다.
 $m \times n$ 행렬 $A$에 대해, 다음 값들은 모두 같다.
 
 {:.text-align-center .overflow-x .mt-1 .mb-1}
-$\text{Rank}(A) = \text{dim}(\text{Col}\,A) = \text{dim}(\text{Row}\,A) = \text{Rank}(A^T) = A$의 pivot position의 개수
+$\textrm{Rank}(A) = \textrm{dim}(\textrm{Col}\,A) = \textrm{dim}(\textrm{Row}\,A) = \textrm{Rank}(A^T) = A$의 pivot position의 개수
 
 </div></li>
 
@@ -503,11 +503,11 @@ $\text{Rank}(A) = \text{dim}(\text{Col}\,A) = \text{dim}(\text{Row}\,A) = \text{
 
 $m \times n$ 행렬 $A$에 대해, 다음이 성립한다.
 
-$$\text{Rank}(A) + \text{dim}(\text{Nul}\,A) = n$$
+$$\textrm{Rank}(A) + \textrm{dim}(\textrm{Nul}\,A) = n$$
 
 다시말해,
 
-$$\text{dim}(\text{Col}\,A) + \text{dim}(\text{Nul}\,A) = n$$
+$$\textrm{dim}(\textrm{Col}\,A) + \textrm{dim}(\textrm{Nul}\,A) = n$$
 
 이다.
 
