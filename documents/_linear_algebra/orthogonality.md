@@ -1,7 +1,7 @@
 ---
 title: "Orthogonality"
 date_created: "2021-10-31"
-date_modified: "2021-12-24"
+date_modified: "2021-12-26"
 ---
 
 # orthogonality
@@ -180,21 +180,22 @@ $m \times n$ 행렬 $U$에 대해, 만약 $U$의 행들의 집합 $R = \\{\mathb
 
 <li><div markdown="block">
 
-행렬 $U$에 대해, $U^T U = I$라면 $U$는 orthonormal matrix이다. 역으로, $U$가 orthonormal matrix이면 $U^T U = I$가 성립한다.
-
-즉, orthonormal matrix $U$에 대해, 다음은 모두 동치이다.
+행렬 $U$에 대해, 다음은 모두 동치이다.
 
 {:.equivalent}
-- $U^T U = I$
 - $U$는 orthonormal matrix이다.
+- $U$는 [left-invertible](/linear_algebra/inverse)하고, $U$의 left inverse는 $U^T$이다.
+- $U^T U = I$
 
 </div></li>
 
 <li><div markdown="block">
 
-$n \times n$ 정사각행렬 $U$가 orthonormal matrix라면, $U$는 항상 [역행렬](/linear_algebra/inverse)을 가지고, 항상 다음이 성립한다.
+$m \times n$ orthonormal matrix $U$에 대해, 다음이 성립한다.
 
-$$U^{-1} = U^T$$
+- 만약 $m = n$이라면(= 정사각행렬이라면) $U$는 항상 [역행렬](/linear_algebra/inverse) $U^{-1} = U^T$를 가진다. 즉, $U U^T = I$도 성립한다.
+- 만약 $m > n$이라면, 항상 $U U^T = I$가 성립하진 않는다.
+- orthonormal matrix는 $m < n$일 수 없다.
 
 </div></li>
 
@@ -206,7 +207,11 @@ $m \times n$ orthonormal matrix $U$와, 벡터 $\mathbf{x} \in \mathbb{R}^n$, $\
 
     $$\lVert U \mathbf{x} \rVert = \lVert \mathbf{x} \rVert$$
 
-- $(U \mathbf{x}) \cdot (U \mathbf{y}) = \mathbf{x} \cdot \mathbf{y}$
+- orthonormal matrix에 임의의 벡터들을 곱해도, 그 벡터들 사이의 각도는 변하지 않는다.
+- orthonormal matrix에 임의의 벡터들을 곱해도, 그 벡터들 간의 내적은 변하지 않는다.
+    
+    {:.mathjax-mb-0}
+    $$(U \mathbf{x}) \cdot (U \mathbf{y}) = \mathbf{x} \cdot \mathbf{y}$$
 
 </div></li>
 

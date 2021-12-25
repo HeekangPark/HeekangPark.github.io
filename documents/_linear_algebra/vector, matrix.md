@@ -2,7 +2,7 @@
 title: "벡터와 행렬"
 order: 1
 date_created: "2021-09-13"
-date_modified: "2021-11-04"
+date_modified: "2021-12-26"
 ---
 
 # 벡터(vector)란?
@@ -541,6 +541,18 @@ $$(A^T)_{ij} = A_{ji}$$
 
 </div></li>
 
+<li><div markdown="block">
+
+$A^T A = I$인 행렬 $A$를 [orthogonal matrix](/linear_algebra/orthogonality) 혹은 orthonormal matrix라 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$A = A^T$인 정사각행렬 $A$를 [symmetric matrix](/linear_algebra/symmetric-matrix)라 한다.
+
+</div></li>
+
 </ul>
 
 ## 행렬의 대각합(trace)
@@ -636,13 +648,38 @@ y_{n}\\
 
 <li><div markdown="block">
 
+두 벡터 $\mathbf{x}$, $\mathbf{y}$ 사이의 각을 $\theta$이라 하면(단, $0 \le \theta \le \pi$), $\mathbf{x}$와 $\mathbf{y}$ 사이의 내적 $\mathbf{x} \cdot \mathbf{y}$는 아래에 나오는 $l\_2$ Norm을 써 다음과 같이 구할 수도 있다.
+
+$$\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos\theta$$
+
+</div></li>
+
+<li><div markdown="block">
+
 벡터의 내적은 다음과 같은 성질이 있다.
 
 - $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$에 대해, $\mathbf{x} \cdot \mathbf{y} = \mathbf{y} \cdot \mathbf{x}$
 - $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\mathbf{z} \in \mathbb{R}^{n}$에 대해, $(\mathbf{x} + \mathbf{y}) \cdot \mathbf{z} = \mathbf{x} \cdot \mathbf{z}  + \mathbf{y} \cdot \mathbf{z}$
 - $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha \mathbf{x}) \cdot \mathbf{y} = \alpha (\mathbf{x} \cdot \mathbf{y})$
-- $\mathbf{x} \in \mathbb{R}^{n}$에 대해, $\mathbf{x} \cdot \mathbf{x} \ge 0$
-- $\mathbf{x} \in \mathbb{R}^{n}$에 대해, $\mathbf{x} \cdot \mathbf{x} = 0$이면 $\mathbf{x} = \mathbf{0}$이다. 역도 성립한다(즉, $\mathbf{x} = \mathbf{0}$이면 $\mathbf{x} \cdot \mathbf{x} = 0$이다).
+- $\mathbf{x} \in \mathbb{R}^{n}$에 대해, $\mathbf{x} \cdot \mathbf{x} \ge 0$ (등호는 $\mathbf{x} = \mathbf{0}$일 때 성립한다)
+- $\mathbf{x}$, $\mathbf{y}$ 사이의 각을 $\theta$라 하면, 
+  
+  {:.no-background}
+  - $\theta$가 예각일 때 ($0 \le \theta < \frac{\pi}{2}$)
+    
+    $$\mathbf{x} \cdot \mathbf{y} > 0$$
+
+    $\theta = 0$일 때 최댓값 $\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert$을 가진다.
+
+  - $\theta$가 직각일 때 ($\theta = \frac{\pi}{2}$)
+    
+    $$\mathbf{x} \cdot \mathbf{y} = 0$$
+
+  - $\theta$가 둔각일 때 ($\frac{\pi}{2} < \theta \le \pi$)
+    
+    $$\mathbf{x} \cdot \mathbf{y} < 0$$
+
+    $\theta = \pi$일 때 최솟값 $-\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert$을 가진다.
 
 </div></li>
 
@@ -664,15 +701,19 @@ x_{2}\\
 x_{n}\\
 \end{bmatrix}$$
 
-벡터의 Norm $\lVert \mathbf{x} \rVert \_{p}$는 다음과 같이 계산된다.
+벡터의 Norm $\lVert \mathbf{x} \rVert \_{ p}$는 다음과 같이 계산된다.
 
-$$\lVert \mathbf{x} \rVert _{p} = \sqrt[p] {\sum_{i=1} ^n | x_i | ^p}$$
+$$\lVert \mathbf{x} \rVert _{ p} = \sqrt[p] {\sum_{i=1} ^n | x_i | ^p}$$
 
 </div></li>
 
 <li><div markdown="block">
 
-Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계산 결과 $\lVert \mathbf{x} \rVert \_{p}$는 스칼라가 된다.
+위 식에서 볼 수 있듯이, 벡터 $\mathbf{x}$의 Norm $\lVert \mathbf{x} \rVert \_{ p}$는 스칼라이다.
+
+벡터 $\mathbf{x}$에 대해, $\lVert \mathbf{x} \rVert \_{ p}$는 벡터 $\mathbf{x}$의 '크기'를 계산하는 것이라 이해할 수 있다.
+
+두 벡터 $\mathbf{x}$, $\mathbf{y}$에 대해, $\lVert \mathbf{x} - \mathbf{y} \rVert \_{ p}$는 두 벡터 $\mathbf{x}$, $\mathbf{y}$ 간의 '거리'를 구하는 것이라 이해할 수 있다.
 
 </div></li>
 
@@ -682,19 +723,19 @@ Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계�
 
 - **$l\_0$ Norm** : 벡터의 요소의 수를 의미한다.
 
-    $$\lVert \mathbf{x} \rVert _{0} = n$$
+    $$\lVert \mathbf{x} \rVert _{ 0} = n$$
 
 - **$l\_1$ Norm** : 벡터의 각 요소의 절대값의 합을 의미한다. 맨하탄 거리(Manhattan distance), 시가지 거리(taxicab distance)라고도 한다.
 
-    $$\lVert \mathbf{x} \rVert _{1} = \displaystyle\sum_{i=1} ^n \lvert x_i \rvert $$
+    $$\lVert \mathbf{x} \rVert _{ 1} = \displaystyle\sum_{i=1} ^n \lvert x_i \rvert $$
 
 - **$l\_2$ Norm** : 유클리드 거리(Euclidean distance), 피타고라스 거리(Pythagorean distance)라고도 한다. 벡터의 크기를 나타낼 때 가장 일반적으로 쓰는 Norm이다. 아래 첨자를 생략하고 $\lVert \mathbf{x} \rVert$로 사용하는 경우가 많다.
     
-    $$\lVert \mathbf{x} \rVert _{2} = \sqrt {\displaystyle\sum_{i=1} ^n x_i ^2 }$$
+    $$\lVert \mathbf{x} \rVert _{ 2} = \sqrt {\displaystyle\sum_{i=1} ^n x_i ^2 }$$
 
 - **$l\_\infty$ Norm** : 벡터의 각 요소의 절대값 중 최대값을 의미한다. 상한 거리(supremum distance), 체비쇼프 거리(Chebyshev distance, Tchebychev distance), 체스판 거리(chessboard distance)라고도 한다.
 
-    $$\lVert \mathbf{x} \rVert _{\infty} = \max \lvert x_i \rvert$$ 
+    $$\lVert \mathbf{x} \rVert _{ \infty} = \max \lvert x_i \rvert$$ 
 
 </div></li>
 
@@ -702,14 +743,34 @@ Norm은 벡터의 '크기'를 계산하는 것이라 이해할 수 있다. 계�
 
 $l\_2$ Norm은 다음과 같은 성질이 있다.
 
-- $\lVert \mathbf{x} \rVert ^2 = \lVert \mathbf{x} \rVert \_{2} ^2 = \mathbf{x} \cdot \mathbf{x} = \mathbf{x}^T \mathbf{x}$
+- $\lVert \mathbf{x} \rVert \ge 0$ (등호는 $\mathbf{x} = \mathbf{0}$일 때 성립한다)
+- $\lVert \mathbf{x} \rVert ^2 = \mathbf{x} \cdot \mathbf{x} = \mathbf{x}^T \mathbf{x}$
 - 스칼라 $c \in \mathbb{R}$에 대해, $\lVert c\mathbf{x} \rVert = \lvert c \rvert \lVert \mathbf{x} \rVert$
+- triangular inequality
+  
+  $$\lVert \mathbf{x} + \mathbf{y} \rVert \le \lVert \mathbf{x} \rVert + \lVert \mathbf{y} \rVert$$
+
+  등호는 $\mathbf{x}$와 $\mathbf{y}$가 같은 방향일 때(align) 성립한다.
+
+- Cauch-Schwarz inequality
+  
+  $$-\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \le \mathbf{x} \cdot \mathbf{y} \le \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert$$
+  
+  왼쪽 등호는 $\mathbf{x}$와 $\mathbf{y}$가 반대 방향일 때(oppose, $\mathbf{x}$, $\mathbf{y}$ 사이의 각이 $\pi$일 때) 성립한다. 오른쪽 등호는 $\mathbf{x}$와 $\mathbf{y}$가 같은 방향일 때(align, $\mathbf{x}$, $\mathbf{y}$ 사이의 각이 $0$일 때) 성립한다.
 
 </div></li>
 
 <li><div markdown="block">
 
 $\lVert \mathbf{x} \rVert = 1$인 벡터를 **단위벡터(unit vector)**라 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+두 벡터 $\mathbf{x}$, $\mathbf{y}$ 사이의 각(angle) $\theta$는 다음과 같이 구할 수 있다.
+
+$$\theta = \arccos \left(\frac{ \mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert} \right)$$
 
 </div></li>
 

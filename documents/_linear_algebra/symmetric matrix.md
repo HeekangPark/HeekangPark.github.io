@@ -1,7 +1,7 @@
 ---
 title: "Symmetric Matrix"
 date_created: "2021-09-15"
-date_modified: "2021-12-24"
+date_modified: "2021-12-26"
 ---
 
 # symmetric matrix
@@ -28,7 +28,7 @@ $m \times n$ 행렬 $A$에 대해,
 
 $$(A^T A)^T = A^T A^{TT} = A^T A$$
 
-이므로, $A^T A$는 항상 symmetric matrix이다.
+이므로, $A^T A$는 항상 symmetric matrix이다. 참고로 이런 꼴의 행렬을 **Gram matrix**라고 한다.
 
 </div></li>
 
@@ -250,6 +250,28 @@ $n \times n$ symmetric matrix $A$에 대해, quadratic form $Q(\mathbf{x}) = \ma
 
 </div></li>
 
+<li><div markdown="block">
+
+$n \times n$ symmetric matrix $A$에 대해, positive definite quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$는 다음과 같은 성질이 있다.
+
+- $A$의 [역행렬](/linear_algebra/inverse)이 존재한다.
+- $A$의 대각 성분들은 모두 양수이다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$n \times n$ Gram matrix $A = B^T B$에 대해, quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$는 항상 positive semidefinite이다.
+
+이때, 다음 세 가지는 모두 동치이다.
+
+{:.equivalent}
+- $Q$는 positive definite이다.
+- $\textrm{Nul}\,B = \\{ \mathbf{0} \\}$
+- $\textrm{Col}\,B^T = \mathbb{R}^n$이다.
+
+</div></li>
+
 </ul>
 
 # constrained optimization
@@ -325,7 +347,7 @@ $A$가 $r$개의 0이 아닌(nonzero) singular value를 가지고 있다고 하�
 
 **SVD (singular value decomposition)**
 
-$\textrm{Rank}(A) = r$인 $m \times n$ 행렬 $A$는 다음과 같이 분해할 수 있다.
+$\textrm{Rank}(A) = r$인 $m \times n$ 행렬 $A$는 다음과 같이 분해하는 것을 SVD(singular value decomposition)이라 한다.
 
 $$A = U \Sigma V^T$$
 

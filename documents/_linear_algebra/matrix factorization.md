@@ -2,7 +2,7 @@
 title: "Matrix Factorization"
 order: 7
 date_created: "2021-09-27"
-date_modified: "2021-12-24"
+date_modified: "2021-12-26"
 ---
 
 # matrix factorization이란?
@@ -35,12 +35,14 @@ matrix factorization과 행렬곱(matrix multiplication)의 관계는 인수분�
 
 <li><div markdown="block">
 
+정의
+
 $m \times n$ 행렬 $A$를 다음과 같이 나누는 것을 **LU factorization**이라 한다.
 
 $$A = LU$$
 
-- $L$ : (크기 $m \times m$) unit lower triangular matrix (대각 성분이 모두 1이고 대각선 위는 모두 0인 정사각행렬)
-- $U$ : (크기 $m \times n$) $A$의 [echelon form](/linear_algebra/echelon-form)
+- $L$ : [$m \times m$ 행렬] unit lower triangular matrix (대각 성분이 모두 1이고 대각선 위는 모두 0인 정사각행렬)
+- $U$ : [$m \times n$ 행렬] $A$의 [echelon form](/linear_algebra/echelon-form)
 
 LU factorization에서 "L"은 lower triangular matrix의 l을, "U"는 upper triangular matrix(echelon matrix)의 u를 의미한다(원래 triangular matrix는 정사각행렬에서 정의되지만, 넓게 보면 echelon matrix도 upper triangular matrix라 생각할 수 있다).
 
@@ -48,18 +50,28 @@ LU factorization에서 "L"은 lower triangular matrix의 l을, "U"는 upper tria
 
 <li><div markdown="block">
 
-LU Factorization은 다음과 같은 순서로 찾을 수 있다.
+판별법
 
-1. row replacement operation만을 사용하여 $m \times n$ 행렬 $A$를 echelon form $U$로 변환한다.
-2. $I\_m$에 1번 과정에서 적용한 row replacement operation을 역순으로 적용하여 $L$을 만든다.
-
-만약 row replacement operation만을 사용하여 행렬 $A$를 echelon form으로 만들 수 없다면, $A$는 LU factorization할 수 없는 행렬이다.
+row replacement operation만을 사용하여 행렬 $A$를 echelon form으로 만들 수 있다면, $A$는 LU factorization할 수 있는 행렬이다.
 
 </div></li>
 
 <li><div markdown="block">
 
-예를 들어, 다음 행렬에 LU factorization을 적용해 보자.
+구하는 방법
+
+LU Factorization은 다음과 같은 순서로 찾을 수 있다.
+
+1. row replacement operation만을 사용하여 $m \times n$ 행렬 $A$를 echelon form $U$로 변환한다.
+2. $I\_m$에 1번 과정에서 적용한 row replacement operation을 역순으로 적용하여 $L$을 만든다.
+
+</div></li>
+
+<li><div markdown="block">
+
+예제
+
+다음 행렬에 LU factorization을 적용해 보자.
 
 $$A = \begin{bmatrix}
 2 & 4 & -1 & 5 & -2\\[0.5em]
@@ -165,11 +177,13 @@ $$∴\,A = LU = \begin{bmatrix}
 
 <li><div markdown="block">
 
+정의
+
 [diagonalizable](/linear_algebra/eigenvector-eigenvalue)한 $n \times n$ 정사각행렬 $A$의 [eigenvalue](/linear_algebra/eigenvector-eigenvalue) $\lambda\_1,\,\lambda\_2,\,\cdots,\,\lambda\_n$ ($\lambda\_i$와 $\lambda\_j$는 같을 수도 있다)과 이에 상응하는 [eigenvector](/linear_algebra/eigenvector-eigenvalue) $\mathbf{v}\_1,\,\mathbf{v}\_2,\,\cdots,\,\mathbf{v}\_n$ ($A \mathbf{v}\_i = \lambda\_i \mathbf{v}\_i$)가 주어졌다고 하자. 이때 $A$를 다음과 같이 나누는 것을 **diagonalization** 또는 **eigenvalue decomposition**이라 한다.
 
 $$A = PDP^{-1}$$
 
-- $P$ : (크기 $n \times n$) $A$의 eigenvector들로 이루어진 행렬
+- $P$ : [$n \times n$ 행렬] $A$의 eigenvector들로 이루어진 행렬
 
     $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 
@@ -179,7 +193,7 @@ $$A = PDP^{-1}$$
     \vertbar & \vertbar & {} & \vertbar \\
     \end{bmatrix}$$
 
-- $D$ : (크기 $n \times n$) $A$의 eigenvalue들로 이루어진 대각 행렬
+- $D$ : [$n \times n$ 행렬] $A$의 eigenvalue들로 이루어진 대각 행렬
 
     $$\begin{bmatrix}
     \lambda_1 & 0 & \cdots & 0\\[0.5em]
@@ -188,11 +202,74 @@ $$A = PDP^{-1}$$
     0 & 0 & \cdots & \lambda_n\\[0.5em]
     \end{bmatrix}$$
 
-안타깝게도 모든 행렬 $A$를 diagonalization할 수 있는 것은 아니다. diagonalization할 수 있는 행렬을 **diagonalizable**하다고 한다(좀더 자세한 얘기는 [해당 문서](/linear_algebra/eigenvector-eigenvalue)를 참고하자).
+</div></li>
+
+<li><div markdown="block">
+
+판별법
+
+diagonalization할 수 있는 행렬을 **diagonalizable**하다고 한다. 어떤 행렬이 diagonalizable한지를 따지려면 다음 두 가지 방법을 사용할 수 있다.
+
+{:.no-background}
+- eigenvector를 이용한 방법
+
+    $n \times n$ 정사각행렬 $A$는 $n$개의 linearly independent한 eigenvector를 가질 때만 diagonalizable하다. 역으로, diagonalizable한 정사각행렬 $A$는 $n$개의 eigenvector를 가진다.
+
+    [이때 $n$개의 linearly independent한 eigenvector들의 집합은 $\mathbb{R}^n$의 basis가 되는데,](/linear_algebra/vector-space) 이렇게 만들어진 $\mathbb{R}^n$의 basis를 **eigenvector basis**라 한다.
+
+- eigenvalue를 이용한 방법
+
+    $A$는 $A$의 모든 eigenvalue들의 eigenspace의 [차원](/linear_algebra/vector-space)의 총합이 $n$일 때만 diagonalizable하다. 역으로, diagonalizable한 정사각행렬 $A$의 모든 eigenvalue들의 eigenspace의 차원의 총합은 $n$이다. 이때, eigenspace들의 차원의 총합이 $n$이라는 말은 characteristic polynomial이 일차식들로만 완전히 인수분해되고, 동시에 각 eigenvalue들의 eigenspace의 차원이 eigenvalue들의 multiplicity와 같다는 말이다.
+    
+좀더 자세한 얘기는 [해당 문서](/linear_algebra/eigenvector-eigenvalue)를 참고하자.
 
 </div></li>
 
 <li><div markdown="block">
+
+예제
+
+다음 행렬을 diagonalize해보자.
+
+$$A = \begin{bmatrix}
+5 & 0 & 0 & 0\\[0.5em]
+0 & 5 & 0 & 0\\[0.5em]
+1 & 4 & -3 & 0\\[0.5em]
+-1 & -2 & 0 & -3\\[0.5em]
+\end{bmatrix}$$
+
+이 행렬의 eigenvalue $\lambda$와 eigenspace $\mathcal{B}$를 구하면 다음과 같이 된다.
+
+{:.no-background}
+- $\lambda = 5$ : $\mathcal{B}\_{\lambda = 5} = \textrm{Span}\, \left \\{ \begin{bmatrix}-8\\\\4\\\\1\\\\0\\\\\end{bmatrix},\,\begin{bmatrix}-16\\\\4\\\\0\\\\1\\\\ \end{bmatrix} \right \\}$
+- $\lambda = -3$ : $\mathcal{B}\_{\lambda = -3} = \textrm{Span}\, \left \\{ \begin{bmatrix}0\\\\0\\\\1\\\\0\\\\\end{bmatrix},\,\begin{bmatrix}0\\\\0\\\\0\\\\1\\\\ \end{bmatrix} \right \\}$
+
+$A$는 4개의 linearly independent한 eigenvector를 가지므로 diagonalizable하다. (또는 $\lambda = 5$의 eigenspace의 차원(2)과 $\lambda = -3$의 eigenspace의 차원(2)의 총합이 4이므로 diagonalizable하다고 검증할 수도 있다).
+
+따라서 $A$는 다음과 같이 diagonalize된다.
+
+$$A = PDP^{-1} = \begin{bmatrix}
+-8 & -16 & 0 & 0\\[0.5em]
+4 & 4 & 0 & 0\\[0.5em]
+1 & 0 & 1 & 0\\[0.5em]
+0 & 1 & 0 & 1\\[0.5em]
+\end{bmatrix} \begin{bmatrix}
+5 & 0 & 0 & 0\\[0.5em]
+0 & 5 & 0 & 0\\[0.5em]
+0 & 0 & -3 & 0\\[0.5em]
+0 & 0 & 0 & -3\\[0.5em]
+\end{bmatrix} \left( \begin{bmatrix}
+-8 & -16 & 0 & 0\\[0.5em]
+4 & 4 & 0 & 0\\[0.5em]
+1 & 0 & 1 & 0\\[0.5em]
+0 & 1 & 0 & 1\\[0.5em]
+\end{bmatrix} \right )^{-1}$$
+
+</div></li>
+
+<li><div markdown="block">
+
+활용
 
 diagonalizable한 행렬 $A$의 거듭제곱 $A^k$는 다음과 같이 쉽게 구할 수 있다.
 
@@ -220,7 +297,7 @@ $$D^k = \begin{bmatrix}
 
 $$A = PDP^{-1} = PDP^T$$
 
-- $P$ : (크기 $n \times n$) $A$의 eigenvector들로 이루어진 [orthogonal matrix](/linear_algebra/orthogonality)
+- $P$ : [$n \times n$ 행렬] $A$의 eigenvector들로 이루어진 [orthogonal matrix](/linear_algebra/orthogonality)
 
     $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
 
@@ -230,7 +307,7 @@ $$A = PDP^{-1} = PDP^T$$
     \vertbar & \vertbar & {} & \vertbar \\
     \end{bmatrix}$$
 
-- $D$ : (크기 $n \times n$) $A$의 eigenvalue들로 이루어진 대각 행렬
+- $D$ : [$n \times n$ 행렬] $A$의 eigenvalue들로 이루어진 대각 행렬
 
     $$\begin{bmatrix}
     \lambda_1 & 0 & \cdots & 0\\[0.5em]
@@ -251,20 +328,296 @@ symmetric한 행렬 $A$는 diagonalization할 때 역행렬을 구하는 연산�
 
 <li><div markdown="block">
 
+정의
+
 linearly independent한 열들을 가진 $m \times n$ 행렬 $A$를 다음과 같이 나누는 것을 **QR factorization**이라 한다.
 
 $$A = QR$$
 
-- $Q$ : (크기 $m \times n$) $\textrm{Col}\,A$의 [orthonormal basis](/linear_algebra/orthogonality)의 원소들로 이루어진 행렬
-- $R$ : (크기 $n \times n$) 대각 성분이 모두 양수인 [upper triangular matrix](/linear_algebra/vector-matrix)
+- $Q$ : [$m \times n$ 행렬] $\textrm{Col}\,A$의 [orthonormal basis](/linear_algebra/orthogonality)의 원소들로 이루어진 행렬
+- $R$ : [$n \times n$ 행렬] 대각 성분이 모두 양수인 [upper triangular matrix](/linear_algebra/vector-matrix)
 
 </div></li>
 
 <li><div markdown="block">
 
-$Q$는 [Gram-Schmidt process](/linear_algebra/orthogonality) 등의 방법을 이용해 구할 수 있다. 그리고 $R$은 다음 식을 이용해 구한다.
+판별법
 
-$$R = Q^T A$$
+$m \times n$ 행렬 $A$의 열들이 linearly independent하기만 하면 항상 QR factorization이 가능하다.
+
+</div></li>
+
+<li><div markdown="block">
+
+방법
+
+1. $Q$ : [Gram-Schmidt process](/linear_algebra/orthogonality) 등의 방법을 이용해 구한다.
+2. $R$ : 다음 식을 이용해 구한다.
+
+    {:.mathjax-mb-0}
+    $$R = Q^T A$$
+
+</div></li>
+
+</ul>
+
+# SVD (singular value decomposition)
+
+<ul>
+
+<li><div markdown="block">
+
+정의
+
+$\textrm{Rank}(A) = r$인 $m \times n$ 행렬 $A$는 다음과 같이 분해하는 것을 SVD(singular value decomposition)이라 한다.
+
+$$A = U \Sigma V^T$$
+
+- $U$ : [$m \times m$ 행렬] orthonormal matrix. $U$의 각 열들을 **left singular vector**라 한다. $U$의 첫 $r$개의 열들은 $\mathbf{u}\_i = \displaystyle\frac{1}{\sigma\_i} A \mathbf{v}\_i$로 계산하고, 나머지 열들은 orthonormal matrix가 되도록 적당히 맞춰준다.
+
+- $\Sigma$ : [$m \times n$ 행렬] 첫 $r$개의 대각성분은 $A$의 0이 아닌 singular value $\sigma\_1 \ge \sigma\_2 \ge \cdots \ge \sigma\_r$들의 크기 순서대로, 나머지 대각성분 및 다른 위치의 값들은 모두 0으로 채워진 행렬 ([대각 행렬](/linear_algebra/vector-matrix)과 유사)
+
+    $$\Sigma = \begin{bmatrix}
+    \sigma_1 & 0 & \cdots & 0 & \cdots & 0 \\
+    0 & \sigma_2 & \cdots & 0 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots & {} & \vdots \\
+    0 & 0 & \cdots & \sigma_r & \cdots & 0\\
+    \vdots & \vdots & {} & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & 0 & \cdots & 0\\
+    \end{bmatrix}$$
+
+- $V$ : [$n \times n$ 행렬] orthonormal matrix. $V$의 각 열들을 **right singular vector**라 한다. $V$의 첫 $r$개의 열들은 $\mathbf{v}\_i$이고, 나머지 열들은 orthonormal matrix가 되도록 적당히 맞춰준다.
+
+$U$, $V$는 유일하게 결정되지 않지만, $\Sigma$는 $A$에 대해 유일하게 결정된다.
+
+</div></li>
+
+<li><div markdown="block">
+
+판별법
+
+$m \times n$ 행렬 $A$에는 항상 SVD를 적용할 수 있다.
+
+</div></li>
+
+<li><div markdown="block">
+
+예제
+
+다음 행렬을 SVD해보자.
+
+$$A = \begin{bmatrix}
+4 & 11 & 14\\
+8 & 7 & -2\\
+\end{bmatrix}$$
+
+우선 $A^T A$의 eigenvalue와 이에 상응하는 eigenvector들의 orthonormal set을 구한다.
+
+$$A^T A = \begin{bmatrix}
+80 & 100 & 40\\
+100 & 170 & 140\\
+40 & 140 & 200\\
+\end{bmatrix}$$
+
+이 행렬의 eigenvalue는 $\lambda\_1 = 360$, $\lambda\_2 = 90$, $\lambda\_3 = 0$이고, 각각 상응하는 eigenvector는 다음과 같다.
+
+$$\mathbf{v}_1 = \begin{bmatrix}
+\frac{1}{3}\\
+\frac{2}{3}\\
+\frac{2}{3}\\
+\end{bmatrix},\qquad
+\mathbf{v}_2 = \begin{bmatrix}
+-\frac{2}{3}\\
+-\frac{1}{3}\\
+\frac{2}{3}\\
+\end{bmatrix},\qquad
+\mathbf{v}_3 = \begin{bmatrix}
+\frac{2}{3}\\
+-\frac{2}{3}\\
+\frac{1}{3}\\
+\end{bmatrix}$$
+
+이를 이용해 $\Sigma$, $V$, $U$를 만든다. $\sigma\_1 = \sqrt{\lambda\_1} = 6 \sqrt{10}$, $\sigma\_2 = \sqrt{\lambda\_2} = 3 \sqrt{10}$, $\sigma\_3 = \sqrt{\lambda\_3} = 0$이므로,
+
+$$\Sigma = \begin{bmatrix}
+6 \sqrt{10} & 0 & 0\\
+0 & 3 \sqrt{10} & 0\\
+\end{bmatrix}$$
+
+$$V = \begin{bmatrix}
+\mathbf{v}_1 & \mathbf{v}_2 & (*) \\
+\end{bmatrix} = \begin{bmatrix}
+\mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3\\
+\end{bmatrix} = \begin{bmatrix}
+\frac{1}{3} & -\frac{2}{3} & \frac{2}{3}\\
+\frac{2}{3} & -\frac{1}{3} & -\frac{2}{3}\\
+\frac{2}{3} & \frac{2}{3} & \frac{1}{3}\\
+\end{bmatrix}$$
+
+($(*)$에는 $V$를 orthonormal matrix로 만들기 위하여 아무 값이나 사용해도 되기에, $\mathbf{v}\_3$의 값을 사용했다.)
+
+$$U = \begin{bmatrix}
+\displaystyle\frac{1}{\sigma_1} A \mathbf{v}_1 & \displaystyle\frac{1}{\sigma_2} A \mathbf{v}_2\\
+\end{bmatrix} = \begin{bmatrix}
+\frac{3}{\sqrt{10}} & \frac{1}{\sqrt{10}}\\
+\frac{1}{\sqrt{10}} & -\frac{3}{\sqrt{10}}\\
+\end{bmatrix}$$
+
+따라서 다음과 같이 된다.
+
+$$\begin{align}
+A &= \begin{bmatrix}
+4 & 11 & 14\\
+8 & 7 & -2\\
+\end{bmatrix} = \begin{bmatrix}
+\frac{3}{\sqrt{10}} & \frac{1}{\sqrt{10}}\\
+\frac{1}{\sqrt{10}} & -\frac{3}{\sqrt{10}}\\
+\end{bmatrix} \begin{bmatrix}
+6 \sqrt{10} & 0 & 0\\
+0 & 3 \sqrt{10} & 0\\
+\end{bmatrix} \begin{bmatrix}
+\frac{1}{3} & -\frac{2}{3} & \frac{2}{3}\\
+\frac{2}{3} & -\frac{1}{3} & -\frac{2}{3}\\
+\frac{2}{3} & \frac{2}{3} & \frac{1}{3}\\
+\end{bmatrix}^T \\[0.5em]
+&= \begin{bmatrix}
+\frac{3}{\sqrt{10}} & \frac{1}{\sqrt{10}}\\
+\frac{1}{\sqrt{10}} & -\frac{3}{\sqrt{10}}\\
+\end{bmatrix} \begin{bmatrix}
+6 \sqrt{10} & 0 & 0\\
+0 & 3 \sqrt{10} & 0\\
+\end{bmatrix} \begin{bmatrix}
+\frac{1}{3} & \frac{2}{3} & \frac{2}{3}\\
+-\frac{2}{3} & -\frac{1}{3} & \frac{2}{3}\\
+\frac{2}{3} & -\frac{2}{3} & \frac{1}{3}\\
+\end{bmatrix}\\[0.5em]
+\end{align}$$
+
+</div></li>
+
+</ul>
+
+# reduced SVD
+
+<ul>
+
+<li><div markdown="block">
+
+정의
+
+$\textrm{Rank}(A) = r$인 $m \times n$ 행렬 $A$는 다음과 같이 분해할 수도 있다.
+
+$$A = U_r D V_r^T$$
+
+- $U_r$ : [$m \times r$ 행렬] $U$의 앞 $r$개의 열들로만 구성된 행렬. 즉, 각 열이 $\mathbf{u}\_i = \displaystyle\frac{1}{\sigma\_i} A \mathbf{v}\_i$로 계산되는 행렬.
+- $D$ : [$r \times r$ 행렬] $A$의 0이 아닌 singular value $\sigma\_1 \ge \sigma\_2 \ge \cdots \ge \sigma\_r$들의 크기 순서대로 대각 성분이 구성된 채워진 대각 행렬
+
+    $$D = \begin{bmatrix}
+    \sigma_1 & 0 & \cdots & 0 \\
+    0 & \sigma_2 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots\\
+    0 & 0 & \cdots & \sigma_r\\
+    \end{bmatrix}$$
+
+- $V_r$ : [$n \times r$ 행렬] $V$의 앞 $r$개의 열들로만 구성된 행렬. 즉, 각 열이 $\mathbf{v}\_i$인 행렬.
+
+</div></li>
+
+<li><div markdown="block">
+
+판별법
+
+$m \times n$ 행렬 $A$에는 항상 SVD를 적용할 수 있다.
+
+</div></li>
+
+<li><div markdown="block">
+
+예제
+
+다음 행렬을 SVD해보자.
+
+$$A = \begin{bmatrix}
+4 & 11 & 14\\
+8 & 7 & -2\\
+\end{bmatrix}$$
+
+우선 $A^T A$의 eigenvalue와 이에 상응하는 eigenvector들의 orthonormal set을 구한다.
+
+$$A^T A = \begin{bmatrix}
+80 & 100 & 40\\
+100 & 170 & 140\\
+40 & 140 & 200\\
+\end{bmatrix}$$
+
+이 행렬의 eigenvalue는 $\lambda\_1 = 360$, $\lambda\_2 = 90$, $\lambda\_3 = 0$이고, 각각 상응하는 eigenvector는 다음과 같다.
+
+$$\mathbf{v}_1 = \begin{bmatrix}
+\frac{1}{3}\\
+\frac{2}{3}\\
+\frac{2}{3}\\
+\end{bmatrix},\qquad
+\mathbf{v}_2 = \begin{bmatrix}
+-\frac{2}{3}\\
+-\frac{1}{3}\\
+\frac{2}{3}\\
+\end{bmatrix},\qquad
+\mathbf{v}_3 = \begin{bmatrix}
+\frac{2}{3}\\
+-\frac{2}{3}\\
+\frac{1}{3}\\
+\end{bmatrix}$$
+
+이를 이용해 $D$, $V\_r$, $U\_r$를 만든다. $\sigma\_1 = \sqrt{\lambda\_1} = 6 \sqrt{10}$, $\sigma\_2 = \sqrt{\lambda\_2} = 3 \sqrt{10}$, $\sigma\_3 = \sqrt{\lambda\_3} = 0$에서 $r = 2$이므로,
+
+$$D = \begin{bmatrix}
+6 \sqrt{10} & 0\\
+0 & 3 \sqrt{10}\\
+\end{bmatrix}$$
+
+$$V_r = \begin{bmatrix}
+\mathbf{v}_1 & \mathbf{v}_2\\
+\end{bmatrix} = \begin{bmatrix}
+\frac{1}{3} & -\frac{2}{3}\\
+\frac{2}{3} & -\frac{1}{3}\\
+\frac{2}{3} & \frac{2}{3}\\
+\end{bmatrix}$$
+
+$$U_r = \begin{bmatrix}
+\displaystyle\frac{1}{\sigma_1} A \mathbf{v}_1 & \displaystyle\frac{1}{\sigma_2} A \mathbf{v}_2\\
+\end{bmatrix} = \begin{bmatrix}
+\frac{3}{\sqrt{10}} & \frac{1}{\sqrt{10}}\\
+\frac{1}{\sqrt{10}} & -\frac{3}{\sqrt{10}}\\
+\end{bmatrix}$$
+
+따라서 다음과 같이 된다.
+
+$$\begin{align}
+A &= \begin{bmatrix}
+4 & 11 & 14\\
+8 & 7 & -2\\
+\end{bmatrix} = \begin{bmatrix}
+\frac{3}{\sqrt{10}} & \frac{1}{\sqrt{10}}\\
+\frac{1}{\sqrt{10}} & -\frac{3}{\sqrt{10}}\\
+\end{bmatrix} \begin{bmatrix}
+6 \sqrt{10} & 0\\
+0 & 3 \sqrt{10}\\
+\end{bmatrix} \begin{bmatrix}
+\frac{1}{3} & -\frac{2}{3}\\
+\frac{2}{3} & -\frac{1}{3}\\
+\frac{2}{3} & \frac{2}{3}\\
+\end{bmatrix}^T \\[0.5em]
+&= \begin{bmatrix}
+\frac{3}{\sqrt{10}} & \frac{1}{\sqrt{10}}\\
+\frac{1}{\sqrt{10}} & -\frac{3}{\sqrt{10}}\\
+\end{bmatrix} \begin{bmatrix}
+6 \sqrt{10} & 0\\
+0 & 3 \sqrt{10}\\
+\end{bmatrix}  \begin{bmatrix}
+\frac{1}{3} & \frac{2}{3} & \frac{2}{3}\\
+-\frac{2}{3} & -\frac{1}{3} & \frac{2}{3}\\
+\end{bmatrix}\\[0.5em]
+\end{align}$$
 
 </div></li>
 

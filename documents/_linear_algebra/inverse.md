@@ -2,7 +2,7 @@
 title: "역행렬 (Inverse)"
 order: 6
 date_created: "2021-09-26"
-date_modified: "2021-12-24"
+date_modified: "2021-12-26"
 ---
 
 # 역행렬(inverse)이란?
@@ -11,19 +11,13 @@ date_modified: "2021-12-24"
 
 <li><div markdown="block">
 
-정사각행렬 $A \in \mathbb{R}^{n \times n}$에 대해 다음을 만족하는 정사각행렬 $C \in \mathbb{R}^{n \times n}$가 존재한다면,
+$n \times n$ 정사각행렬 $A$에 대해, 다음을 만족하는 $n \times n$ 정사각행렬 $C$가 존재한다면,
 
 $$CA = AC = I$$
 
-행렬 $A$는 **역행렬이 존재한다(invertible)**고 한다. 그리고 행렬 $C$를 행렬 $A$의 **역행렬(inverse)**이라 하고 기호로 다음과 같이 나타낸다.
+행렬 $A$는 **역행렬이 존재한다(invertible)**, 또는 **non-singular하다**고 한다(반대로, 역행렬이 존재하지 않는 행렬은 **singular**하다고 한다). 그리고 행렬 $C$를 행렬 $A$의 **역행렬(inverse)**이라 하고 기호로 다음과 같이 나타낸다.
 
 $$C = A^{-1}$$
-
-</div></li>
-
-<li><div markdown="block">
-
-역행렬이 존재하지 **않는** 행렬을 **singular matrix**, 역행렬이 존재하는 행렬을 **nonsingular matrix**라 한다.
 
 </div></li>
 
@@ -49,7 +43,7 @@ $$B = BI = B(AC) = (BA)C = IC = C$$
 
 역행렬은 다음과 같은 성질이 있다.
 
-- 행렬 $A$의 역행렬이 존재하면, 행렬 $A^{-1}$의 역행렬도 존재하며, 다음과 같이 계산된다 : $(A^{-1})^{-1} = A$
+- 행렬 $A$의 역행렬이 존재하면, 행렬 $A^{-1}$의 역행렬도 존재하며, 그 값은 $A$이다 : $(A^{-1})^{-1} = A$
 - 역행렬이 존재하는 행렬 $A \in \mathbb{R}^{n \times n}$, $B \in \mathbb{R}^{n \times n}$에 대해, $AB$, $BA$도 역행렬이 존재하며, 각각 다음과 같이 계산된다 : $(AB)^{-1} = B^{-1} A^{-1}$, $(BA)^{-1} = A^{-1} B^{-1}$
 - 행렬 $A$의 역행렬이 존재하면, 행렬 $A^{T}$의 역행렬도 존재하며, 다음과 같이 계산된다 : $(A^{T})^{-1} = (A^{-1})^{T}$
 - 행렬 $A$, $B$에 대해, 만약 $AB = I$라면 $A$와 $B$는 모두 역행렬이 존재하며, 각각 다음과 같이 계산된다 : $A^{-1} = B$, $B^{-1} = A$
@@ -83,6 +77,85 @@ $$B = BI = B(AC) = (BA)C = IC = C$$
 - 0은 $A$의 [eigenvalue](/linear_algebra/eigenvector-eigenvalue)가 아니다.
 - $A$는 $n$개의 0이 아닌 [singular value](/linear_algebra/symmetric-matrix)를 가진다.
 - $A$는 0인 [singular value](/linear_algebra/symmetric-matrix)를 가지지 않는다.
+
+</div></li>
+
+</ul>
+
+# left inverse, right inverse
+
+<ul>
+
+<li><div markdown="block">
+
+$m \times n$ 행렬 $A$에 대해, 다음을 만족하는 $n \times m$ 행렬 $C$를 $A$의 **left inverse (matrix)**라 한다.
+
+$$CA = I$$
+
+하나 이상의 left inverse를 가지는 행렬을 **left-invertible**하다고 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$m \times n$ 행렬 $A$에 대해, 다음을 만족하는 $n \times m$ 행렬 $B$를 $A$의 **right inverse (matrix)**라 한다.
+
+$$AB = I$$
+
+하나 이상의 right inverse를 가지는 행렬을 **right-invertible**하다고 한다.
+
+</div></li>
+
+<li><div markdown="block">
+
+역행렬과는 다르게, left inverse와 right inverse는 유일하지 않다.
+
+</div></li>
+
+<li><div markdown="block">
+
+역행렬은 left inverse와 right inverse가 둘 다 존재하는 경우로 이해할 수 있다. left inverse와 right inverse가 둘 다 존재하면 이 둘은 항상 같다.
+
+<div class="proof-folder" markdown="block">
+
+행렬 $A$의 left inverse를 $C$, right inverse를 $B$라고 하면,
+
+$$C = CI = C(AB) = (CA)B = IB = B$$
+
+</div>
+
+</div></li>
+
+<li><div markdown="block">
+
+$m \times n$ 행렬 $A$에 대해, 다음이 성립한다.
+
+- $m \ge n$인 경우에만 $A$는 left-invertible하다.
+- $m \le n$인 경우에만 $A$는 right-invertible하다.
+
+</div></li>
+
+<li><div markdown="block">
+
+$m \times n$ 행렬 $A$에 대해, 만약 $A$가 left-invertible하면 $\textrm{Nul}\,A = \\{ \mathbf{0} \\}$이다. 역으로, $\textrm{Nul}\,A = \\{ \mathbf{0} \\}$이면 $A$는 left-invertible하다.
+
+즉, $m \times n$ 행렬 $A$에 대해 다음은 모두 동치이다.
+
+{:.equivalent}
+- $A$는 left-invertible하다.
+- $\textrm{Nul}\,A = \\{ \mathbf{0} \\}$
+
+</div></li>
+
+<li><div markdown="block">
+
+$m \times n$ 행렬 $A$에 대해, 만약 $A$가 right-invertible하면 $\textrm{Col}\,A = \mathbb{R}^n$이다. 역으로, $\textrm{Col}\,A = \mathbb{R}^n$이면 $A$는 right-invertible하다.
+
+즉, $m \times n$ 행렬 $A$에 대해 다음은 모두 동치이다.
+
+{:.equivalent}
+- $A$는 right-invertible하다.
+- $\textrm{Col}\,A = \mathbb{R}^n$
 
 </div></li>
 
@@ -319,7 +392,7 @@ $$A^{-1} = \frac{1}{\textrm{det}\,A} \textrm{adj}\,A = \frac{1}{14}\begin{bmatri
 
 <li><div markdown="block">
 
-[orthonormal column](/linear_algebra/orthogonality)들을 가지는 $n \times n$ 정사각행렬 $U$의 역행렬 $U^{-1}$는 $U^T$와 같다.
+[orthonormal matrix](/linear_algebra/orthogonality) $U$의 역행렬 $U^{-1}$는 $U^T$와 같다.
 
 $$U^{-1} = U^T$$
 
