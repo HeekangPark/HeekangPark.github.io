@@ -4,7 +4,9 @@ $media-desktop: 75em !global;
 
 $left-panel-size: 18em !global;
 
-$line-height: 1.7 !global;
+$line-height: 1.8 !global;
 
-$normal-font: "NotoSansKR", sans-serif !global;
-$code-font: "UbuntuMono", "NanumGothicCoding", monospace !global;
+@at-root html {
+    --normal-font: "NotoSansKR", sans-serif;
+    --code-font: "UbuntuMono", "NanumGothicCoding", monospace;
+}

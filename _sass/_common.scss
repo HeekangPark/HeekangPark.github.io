@@ -81,7 +81,7 @@ body {
 	font-size: 1em;
 	overflow-y: scroll;
 	color: var(--site-text);
-	font-family: $normal-font;
+	font-family: var(--normal-font);
 	word-break: break-all;
 
 	a {
@@ -91,7 +91,7 @@ body {
 
 	pre,
 	code {
-		font-family: $code-font;
+		font-family: var(--code-font);
 	}
 }
 

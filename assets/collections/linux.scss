@@ -1,0 +1,95 @@
+---
+---
+
+@at-root html {
+    --syntax-input: #F8F8F2;
+    --syntax-prompt: #a4dcff;
+    --syntax-text: #a4dcff;
+    
+}
+
+.pseudo-code-header {
+    font-family: var(--code-font);
+    background-color: var(--syntax-highlight-code-header-background);
+    color: var(--syntax-highlight-code-header-text);
+    padding: {
+        top: 0.5em;
+        bottom: 0.5em;
+        left: 1em;
+        right: 1em;
+    }
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    margin: {
+        bottom: 0 !important;
+    }
+    border: {
+        bottom: 1px solid var(--syntax-highlight-code-header-border);
+    }
+
+    span.subtitle {
+        color: var(--syntax-highlight-code-header-subtitle);
+        font-size: 0.9em;
+    }
+
+    & + .pseudo-code {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}
+
+.pseudo-code {
+    font-family: var(--code-font);
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+    background-color: var(--syntax-highlight-block-background);
+    color: var(--syntax-highlight-block-text);
+    padding: {
+        top: 1em;
+        bottom: 1em;
+        left: 1em;
+        right: 1em;
+    }
+    margin: {
+        bottom: 1em;
+    }
+    border-radius: 0.5em;
+
+    z-index: 3;
+    position: relative;
+    white-space: nowrap;
+    color: var(--syntax-text);
+
+    p {
+        margin: {
+            bottom: 0 !important;
+        }
+    }
+
+    pre {
+        display: inline-block;
+    }
+    
+    $base-indent: 2em;
+
+    .indent {
+        padding-left: $base-indent;
+    }
+
+    @for $i from 1 through 6 {
+        $indent: $base-indent * $i;
+
+        .indent-#{$i} {
+            padding-left: $indent;
+        }
+    }
+
+    .prompt {
+        color: var(--syntax-prompt);
+    }
+
+    .input {
+        color: var(--syntax-input);
+    }
+}

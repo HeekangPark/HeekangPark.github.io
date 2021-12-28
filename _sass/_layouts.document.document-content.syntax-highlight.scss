@@ -6,6 +6,7 @@
     --syntax-highlight-block-border: #aaaaaa;
     --syntax-highlight-code-header-background: #181a26;
     --syntax-highlight-code-header-text: #f8f8f2;
+    --syntax-highlight-code-header-subtitle: #c1def0;
 
 }
 @at-root html[data-theme="bright"] {
@@ -258,7 +259,7 @@ code.highlighter-rouge {
 }
 
 p.code-header {
-    font-family: $code-font;
+    font-family: var(--code-font);
     background-color: var(--syntax-highlight-code-header-background);
     color: var(--syntax-highlight-code-header-text);
     padding: {
@@ -274,6 +275,11 @@ p.code-header {
     }
     border: {
         bottom: 1px solid var(--syntax-highlight-code-header-border);
+    }
+
+    span.subtitle {
+        color: var(--syntax-highlight-code-header-subtitle);
+        font-size: 0.9em;
     }
 
     & + figure.highlight {
