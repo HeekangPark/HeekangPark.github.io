@@ -13,9 +13,6 @@
   - docker 관련
     - docker 개념 및 사용법
     - docker-compose 개념 및 사용법
-  - 리눅스 관련
-    - lvm(linux volume manager) 개념 및 사용법
-      - <https://tech.cloud.nongshim.co.kr/2018/11/23/lvmlogical-volume-manager-1-%EA%B0%9C%EB%85%90/>
 - [New Collection] 윈도우 tips
   - 크롬 pdf 아이콘 설정
   - 윈도우에서 한글 입력시 자모 분리 현상 (win + h)

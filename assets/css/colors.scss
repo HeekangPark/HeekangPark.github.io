@@ -4,6 +4,7 @@
 html[data-theme="bright"] {
     --logo: #000000;
     --site-text: #000000;
+    --outdated-paragraph-text: #bbbbbb;
     --site-panel: #ffffff;
     --site-panel-shadow: #cacaca;
     --site-background: #eeeeee;
@@ -47,6 +48,7 @@ html[data-theme="bright"] {
 html[data-theme="dark"] {    
     --logo: #ffffff;
     --site-text: #d4d4d4;
+    --outdated-paragraph-text: #555555;
     --site-panel: #252525;
     --site-panel-shadow: #252525;
     --site-background: #1e1e1e;

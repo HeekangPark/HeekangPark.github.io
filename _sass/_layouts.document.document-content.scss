@@ -355,6 +355,10 @@ $bottom-margin: 1.5em;
         }
     }
 
+    .strikethrough {
+        text-decoration: line-through;
+    }
+
     @import "layouts.document.document-content.syntax-highlight";
     @import "includes.caption-img";
     @import "layouts.document.image-popup";
@@ -369,6 +373,21 @@ $bottom-margin: 1.5em;
                 margin: {
                     #{$name}: $bottom-margin * $i !important;
                 }
+            }
+        }
+    }
+
+    div.outdated,
+    div.deprecated {
+        color: var(--outdated-paragraph-text);
+
+        &:hover {
+            color: var(--site-text);
+        }
+
+        @for $i from 1 through 6 {
+            h#{$i} {
+                text-decoration: line-through;
             }
         }
     }

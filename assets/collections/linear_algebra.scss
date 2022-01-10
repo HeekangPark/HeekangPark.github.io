@@ -81,41 +81,77 @@
 }
 
 .folder-wrapper {
-    text-align: center;
     margin: {
         bottom: 0.5em !important;
     }
 
-    .hidden {
-        display: none !important;
-    }
-
     .folder-btn {
+        display: block;
+        text-align: center;
         color: var(--folder-btn-text);
         cursor: pointer;
-        display: inline-block;
+        user-select: none;
         padding: {
             top: 0.1em;
             bottom: 0.1em;
             left: 0.75em;
             right: 0.75em;
         }
+        margin: {
+            bottom: 0 !important;
+        }
         background-color: var(--folder-btn-background);
 
         &:hover {
             text-decoration: underline;
         }
+
+        &.hidden {
+            display: none !important;
+        }
+
+        &.folder-open-btn {
+            border-top-left-radius: 0.5em;
+            border-top-right-radius: 0.5em;
+            border-bottom-left-radius: 0.5em;
+            border-bottom-right-radius: 0.5em;
+        }
+
+        &.folder-close-top-btn {
+            border-top-left-radius: 0.5em;
+            border-top-right-radius: 0.5em;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &.folder-close-bottom-btn {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 0.5em;
+            border-bottom-right-radius: 0.5em;
+        }
     }
 
-    .folder-content {
+    .folder-content-wrapper {
         text-align: initial;
-        &.proof-folder {
-            border: 1px solid var(--folder-border);
-            padding: 1em;
+        box-sizing: border-box;
+        border: {
+            left: 1px solid var(--folder-border);
+            right: 1px solid var(--folder-border);
+        }
+        padding: {
+            left: 1em;
+            right: 1em;
+        }
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+
+        .folder-content {
             margin: {
+                top: 1em;
                 bottom: 1em;
             }
-            border-radius: 0.5em;
 
             .proof-mark {
                 padding: {
@@ -247,7 +283,8 @@ table.null-space-column-space-table {
     max-width: 100%;
     overflow-x: auto;
 
-    td, th {
+    td,
+    th {
         padding: {
             top: 0.5em;
             bottom: 0.5em;
