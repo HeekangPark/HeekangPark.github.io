@@ -32,7 +32,7 @@ description: "최근 수정된 문서"
         <div class="document">
             <p class="document-collection"><a href="/categories#{{ document.collection }}">{{ category }}<i class="fas fa-angle-right"></i>{{ collection }}</a></p>
             <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
-            <p class="document-preview ignore-mathjax"><a href="{{ document.url }}">{{ document.content | strip_html | truncate: 300 }}</a></p>
+            <p class="document-preview ignore-mathjax"><a href="{{ document.url }}">{{ document.content | strip_html | truncate: site.preview_length }}</a></p>
             <div class="document-tags with-icon">
                 <i class="icon fas fa-tag"></i>
                 <div class="tags">

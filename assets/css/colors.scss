@@ -43,6 +43,7 @@ html[data-theme="bright"] {
     --spinner: #aaaaaa;
     --scrollbar-thumb: #aaaaaa;
     --scrollbar-background: #dddddd;
+    --search-highlight-background: #ffff00;
 }
 
 html[data-theme="dark"] {    
@@ -87,4 +88,5 @@ html[data-theme="dark"] {
     --spinner: #aaaaaa;
     --scrollbar-thumb: #888888;
     --scrollbar-background: #333333;
+    --search-highlight-background: #576241;
 }

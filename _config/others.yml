@@ -31,6 +31,7 @@ kramdown:
 
 
 files_for_search_num: 6
+preview_length: 300
 
 home_recently_modified_doc_num: 3
 home_recently_created_doc_num: 3

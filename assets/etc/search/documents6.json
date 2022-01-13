@@ -55,8 +55,9 @@
                             "path": "{{ document.path }}",
                             "date_created": "{{ document.date_created | date: '%Y.%m.%d' }}",
                             "date_modified": "{{ document.date_modified | date: '%Y.%m.%d' }}",
-                            "preview": "{{ document.content | strip_html | strip_newlines | truncate: 300 | replace: '\', '\\\\' | replace: '"', '\"' | replace: '	', '\t' }}",
-                            "contents": "{{ document.content | strip_html | strip_newlines | append: category | append: collection.name | append: document.title | downcase | replace: '\', '\\\\' | replace: '"', '\"' | replace: '	', '\t' }}"
+                            "preview": "{{ document.content | strip_html | strip_newlines | truncate: site.preview_length | replace: '\', '\\\\' | replace: '"', '\"' | replace: '	', '\t' }}",
+                            "content": "{{ document.content | strip_html | strip_newlines | replace: '\', '\\\\' | replace: '"', '\"' | replace: '	', '\t' }}",
+                            "searching_content": "{{ document.content | strip_html | strip_newlines | append: category | append: collection.name | append: document.title | append: document_tags | downcase | replace: '\', '\\\\' | replace: '"', '\"' | replace: '	', '\t' }}"
                         }
 
                     {%- endif -%}

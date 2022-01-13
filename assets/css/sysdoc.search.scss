@@ -64,5 +64,9 @@
         font-size: 1.3em;
     }
 
+    .search-highlight {
+        background-color: var(--search-highlight-background);
+    }
+
     @import "documents.document";
 }

@@ -58,7 +58,7 @@ description: "검색 결과"
 
     function getHtml(documents) {
         let html = `<p class="result-num">총 ${documents.length}개의 문서가 검색되었습니다.</p>`;
-        if(documents.length == 0) {
+        if (documents.length == 0) {
             html += `<p class="no-result">검색 결과가 없습니다.</p>`;
         } else {
             for (let document of documents) {
@@ -150,61 +150,156 @@ description: "검색 결과"
             return [include_keywords, exclude_keywords];
         }
         let [include_keywords, exclude_keywords] = parseKeywords(keywords_str);
-        
+
         let target = $(".main-panel .documents");
         let spinner = $(".spinner-container");
 
         let files = [...Array({{ site.files_for_search_num }}).keys()].map(i => `documents${i + 1}.json`);
-        Promise.allSettled(files.map(function (file) {
-            return new Promise(function (resolve, reject) {
-                $.ajax({
-                    type: "GET",
-                    url: `{{ site.baseurl }}{{ site.assets }}/etc/search/${file}`,
-                    success: function (data) {
-                        let all_documents = data.documents;
-                        let result_documents = [];
-                        for (let document of all_documents) {
-                            let is_exclude = false;
-                            for (let keyword of exclude_keywords) {
-                                if (document.contents.includes(keyword)) {
-                                    is_exclude = true;
-                                    break;
-                                }
-                            }
-                            if (is_exclude) continue;
-
-                            for (let keyword of include_keywords) {
-                                if (document.contents.includes(keyword)) {
-                                    result_documents.push(document);
-                                    break;
-                                }
+    Promise.allSettled(files.map(function (file) {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                type: "GET",
+                url: `{{ site.baseurl }}{{ site.assets }}/etc/search/${file}`,
+                success: function (data) {
+                    let all_documents = data.documents;
+                    let result_documents = [];
+                    for (let document of all_documents) {
+                        let is_exclude = false;
+                        for (let keyword of exclude_keywords) {
+                            if (document.searching_content.includes(keyword)) {
+                                is_exclude = true;
+                                break;
                             }
                         }
+                        if (is_exclude) continue;
 
-                        resolve(result_documents);
-                    },
-                    error: function () {
-                        reject();
+                        for (let keyword of include_keywords) {
+                            if (document.searching_content.includes(keyword)) {
+                                result_documents.push(document);
+                                break;
+                            }
+                        }
                     }
-                })
+
+                    resolve(result_documents);
+                },
+                error: function () {
+                    reject();
+                }
             })
-        })).then(function (data) {
-            spinner.addClass("hidden");
-
-            let documents = data.filter(function (item) {
-                if (item.status == "fulfilled") return true;
-                else return false;
-            }).reduce((acc, cur) => acc = [...acc, ...cur.value], []);
-
-            target.append(getHtml(documents));
-            if(documents.length > 0) {
-                $(".documents .document").click(function() {
-                    let target = $(this).find(".document-title a").attr("href");
-                    window.location.href = target;
-                });
-                loadPageview();
-            }
         })
+    })).then(function (data) {
+        spinner.addClass("hidden");
+
+        let documents = data.filter(function (item) {
+            if (item.status == "fulfilled") return true;
+            else return false;
+        }).reduce((acc, cur) => acc = [...acc, ...cur.value], []);
+
+        let sorted_documents = sortDocuments(documents, include_keywords);
+        target.append(getHtml(sorted_documents));
+        if (documents.length > 0) {
+            $(".documents .document").click(function () {
+                let target = $(this).find(".document-title a").attr("href");
+                window.location.href = target;
+            });
+            loadPageview();
+        }
+    })
+    }
+
+    function sortDocuments(documents, keywords) {
+        let keywords_in_title_documents = [];
+        let keywords_in_category_documents = [];
+        let keywords_in_collection_documents = [];
+        let keywords_in_tags_documents = [];
+        let other_documents = [];
+
+        for (let document of documents) {
+            document.priority = 0;
+
+            let is_classified = false;
+
+            for (let keyword of keywords) {
+                let start_idx = document.title.toLowerCase().indexOf(keyword);
+                let end_idx = start_idx + keyword.length;
+                if (start_idx != -1) {
+                    document.title = document.title.substring(0, start_idx) + `<span class="search-highlight">` + document.title.substring(start_idx, end_idx) + `</span>` + document.title.substring(end_idx);
+                    document.priority++;
+                    if (!is_classified) keywords_in_title_documents.push(document);
+                    is_classified = true;
+                }
+            }
+            if(is_classified) continue;
+
+            for (let keyword of keywords) {
+                let start_idx = document.category.toLowerCase().indexOf(keyword);
+                let end_idx = start_idx + keyword.length;
+                if (start_idx != -1) {
+                    document.category = document.category.substring(0, start_idx) + `<span class="search-highlight">` + document.category.substring(start_idx, end_idx) + `</span>` + document.category.substring(end_idx);
+                    document.priority++;
+                    if (!is_classified) keywords_in_category_documents.push(document);
+                    is_classified = true;
+                }
+            }
+            if(is_classified) continue;
+
+            for (let keyword of keywords) {
+                let start_idx = document.collection_name.toLowerCase().indexOf(keyword);
+                let end_idx = start_idx + keyword.length;
+                if (start_idx != -1) {
+                    document.collection_name = document.collection_name.substring(0, start_idx) + `<span class="search-highlight">` + document.collection_name.substring(start_idx, end_idx) + `</span>` + document.collection_name.substring(end_idx);
+                    document.priority++;
+                    if (!is_classified) keywords_in_collection_documents.push(document);
+                    is_classified = true;
+                }
+            }
+            if(is_classified) continue;
+
+            for (let keyword of keywords) {
+                for (let tag of document.tags) {
+                    if (tag.includes(keyword)) {
+                        if(!is_classified) keywords_in_tags_documents.push(document);
+                        document.priority++;
+                        is_classified = true;
+                        break;
+                    }
+                }
+            }
+            if(is_classified) continue;
+
+            for(let keyword of keywords) {
+                let start_idx = document.content.toLowerCase().indexOf(keyword);
+                let end_idx = start_idx + keyword.length;
+                if (start_idx != -1) {
+                    document.content = document.content.substring(0, start_idx) + `<span class="search-highlight">` + document.content.substring(start_idx, end_idx) + `</span>` + document.content.substring(end_idx);
+                    document.priority++;
+                    if (!is_classified) {
+                        other_documents.push(document);
+                        let is_left_short = (start_idx - parseInt({{ site.preview_length }} / 2) < 0);
+                        let is_right_short = (end_idx + parseInt({{ site.preview_length }} / 2) >= document.content.length);
+                        let content_start_idx = is_left_short ? 0 : start_idx - parseInt({{ site.preview_length }} / 2);
+                        let content_end_idx = is_right_short ? document.content.length : end_idx + parseInt({{ site.preview_length }} / 2);
+                        document.preview = `${ is_left_short ? "" : "..." }` + document.content.substring(content_start_idx, content_end_idx) + `${ is_right_short ? "" : "..." }`;
+                    }
+                    is_classified = true;
+                }
+            }
+        }
+
+        sorting_func = function (a, b) {
+            if (a.priority < b.priority) return 1;
+            else if (a.priority > b.priority) return -1;
+            else return a.date_modified < b.date_modified;
+        }
+
+        keywords_in_title_documents = keywords_in_title_documents.sort(sorting_func);
+        keywords_in_category_documents = keywords_in_category_documents.sort(sorting_func);
+        keywords_in_collection_documents = keywords_in_collection_documents.sort(sorting_func);
+        keywords_in_tags_documents = keywords_in_tags_documents.sort(sorting_func);
+        other_documents = other_documents.sort(sorting_func);
+
+        return [...keywords_in_title_documents, ...keywords_in_category_documents, ...keywords_in_collection_documents, ...keywords_in_tags_documents, ...other_documents];
     }
 
 </script>
