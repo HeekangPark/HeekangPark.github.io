@@ -1,0 +1,29 @@
+---
+---
+
+@at-root html[data-theme="bright"] {
+    --table-border: #000000;
+    --table-selected-cell-background: #dddddd;
+    --ul-info-background: #e4f5ff;
+}
+
+@at-root html[data-theme="dark"] {
+    --table-border: #888888;
+    --table-selected-cell-background: #333333;
+    --ul-info-background: #333333;
+}
+
+p.info {
+    box-sizing: border-box;
+    margin: {
+        left: 0 !important;
+    }
+    padding: {
+        top: 1em !important;
+        bottom: 1em !important;
+        left: 1.5em !important;
+        right: 1.5em !important;
+    }
+    background-color: var(--ul-info-background);
+    border-radius: 1em;
+}

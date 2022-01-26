@@ -23,24 +23,36 @@ figure.caption-img {
     img.no-max-height {
         max-height: unset;
     }
-    figcaption.title {
-        text-align: center;
-        font-weight: bold;
-        font-size: 0.9em;
-        color: var(--caption-img-text);
-    }
-    figcaption.description {
-        text-align: center;
-        font-weight: normal;
-        font-size: 0.9em;
-        color: var(--caption-img-text);
-        line-height: 1.6;
+
+    figcaption {
+        max-width: 85%;
+        margin: 0 auto;
+
+        &.title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: var(--caption-img-text);
+        }
+
+        &.description {
+            word-wrap: break-word;
+            height: auto;
+            text-align: center;
+            font-weight: normal;
+            font-size: 0.9em;
+            color: var(--caption-img-text);
+            line-height: 1.6;
+        }
     }
 }
 
 @media screen and (max-width: #{$left-panel-size + $media-tablet + 4em}) {
     figure.caption-img {
         img {
+            max-width: 100%;
+        }
+        figcaption {
             max-width: 100%;
         }
     }

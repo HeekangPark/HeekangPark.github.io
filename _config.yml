@@ -155,6 +155,12 @@ collections:
     permalink: /:collection/:name
     tags:
     - linux
+  nlp:
+    category: Machine Learning
+    name: NLP
+    output: true
+    permalink: /:collection/:name
+    tags: []
   node.js:
     category: Applications / Frameworks / Libraries
     name: node.js
@@ -290,6 +296,11 @@ defaults:
 - scope:
     path: ''
     type: linux
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: nlp
   values:
     layout: document
 - scope:
