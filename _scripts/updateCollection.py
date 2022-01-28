@@ -329,21 +329,29 @@ def modifyCollection(collections, config):
             "tags": new_collection_tags
         }
 
-        # rename directories
+        # rename directory : documents/{collection}/
         old_directory = f"documents/_{old_collection_label}"
         new_directory = f"documents/_{new_collection_label}"
         if os.path.exists(old_directory):
             os.rename(old_directory, new_directory)
-
+        
+        # rename directory : assets/img/{collection}/
         old_directory = f"assets/img/{old_collection_label}"
         new_directory = f"assets/img/{new_collection_label}"
         if os.path.exists(old_directory):
             os.rename(old_directory, new_directory)
 
-        old_directory = f"assets/etc/{old_collection_label}"
-        new_directory = f"assets/etc/{new_collection_label}"
-        if os.path.exists(old_directory):
-            os.rename(old_directory, new_directory)
+        # rename file : assets/collections/{collection}.js
+        old_file = f"assets/collections/{old_collection_label}.js"
+        new_file = f"assets/collections/{new_collection_label}.js"
+        if os.path.exists(old_file):
+            os.rename(old_file, new_file)
+
+        # rename file : assets/collections/{collection}.scss
+        old_file = f"assets/collections/{old_collection_label}.scss"
+        new_file = f"assets/collections/{new_collection_label}.scss"
+        if os.path.exists(old_file):
+            os.rename(old_file, new_file)
 
     return collections, config
 

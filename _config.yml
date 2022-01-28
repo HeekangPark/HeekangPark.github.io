@@ -61,7 +61,7 @@ collections:
     permalink: /:collection/:name
     tags:
     - lecture
-    - machine_learning
+    - machine-learning
     - skku
   SNU_m3309.000200:
     category: Machine Learning
@@ -70,7 +70,9 @@ collections:
     permalink: /:collection/:name
     tags:
     - lecture
-    - machine_learning
+    - machine-learning
+    - reinforcement-learning
+    - rl
     - snu
   Stanford_cs231n:
     category: Machine Learning
@@ -79,7 +81,7 @@ collections:
     permalink: /:collection/:name
     tags:
     - lecture
-    - machine_learning
+    - machine-learning
     - stanford
   calculus:
     category: Math
@@ -128,7 +130,7 @@ collections:
     output: true
     permalink: /:collection/:name
     tags:
-    - programming_language
+    - programming-language
     - javascript
     - js
   jekyll:
@@ -140,13 +142,13 @@ collections:
     - blog
     - web
     - jekyll
-  linear_algebra:
+  linear-algebra:
     category: Math
     name: 선형대수학 (Linear Algebra)
     output: true
     permalink: /:collection/:name
     tags:
-    - linear_algebra
+    - linear-algebra
     - math
   linux:
     category: OS
@@ -155,12 +157,24 @@ collections:
     permalink: /:collection/:name
     tags:
     - linux
+  ml-shorts:
+    category: Machine Learning
+    name: 토막글
+    output: true
+    permalink: /:collection/:name
+    tags:
+    - machine-learning
+    - shorts
   nlp:
     category: Machine Learning
     name: NLP
     output: true
     permalink: /:collection/:name
-    tags: []
+    tags:
+    - machine-learning
+    - ml
+    - natural-language-processing
+    - nlp
   node.js:
     category: Applications / Frameworks / Libraries
     name: node.js
@@ -179,13 +193,13 @@ collections:
     tags:
     - numpy
     - python
-  paper_review:
+  paper-review:
     category: 기타 (Etc)
     name: 논문 리뷰
     output: true
     permalink: /:collection/:name
     tags:
-    - graduate_school
+    - graduate-school
     - snu
   pomodoro:
     category: Project
@@ -202,7 +216,7 @@ collections:
     output: true
     permalink: /:collection/:name
     tags:
-    - programming_language
+    - programming-language
     - python
   ssh:
     category: Applications / Frameworks / Libraries
@@ -219,7 +233,7 @@ collections:
     output: true
     permalink: /:collection/:name
     tags:
-    - virtual_application
+    - virtual-application
     - virtualbox
   vscode:
     category: Applications / Frameworks / Libraries
@@ -290,12 +304,17 @@ defaults:
     layout: document
 - scope:
     path: ''
-    type: linear_algebra
+    type: linear-algebra
   values:
     layout: document
 - scope:
     path: ''
     type: linux
+  values:
+    layout: document
+- scope:
+    path: ''
+    type: ml-shorts
   values:
     layout: document
 - scope:
@@ -315,7 +334,7 @@ defaults:
     layout: document
 - scope:
     path: ''
-    type: paper_review
+    type: paper-review
   values:
     layout: document
 - scope:

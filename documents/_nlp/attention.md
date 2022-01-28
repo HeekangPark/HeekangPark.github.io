@@ -1,10 +1,13 @@
 ---
 title: "어텐션 메커니즘 (Attention Mechanism)"
 date_created: "2022-01-25"
-date_modified: "2022-01-26"
+date_modified: "2022-01-28"
 ---
 
 # Seq2Seq 모델
+
+{:.info}
+[[2014] Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215)
 
 어텐션 메커니즘은 Seq2Seq 모델을 개선하기 위해 제안된 메커니즘이다. 따라서 어텐션 메커니즘을 잘 이해하려면 Seq2Seq 모델을 이해해야 한다.
 
@@ -46,6 +49,9 @@ Seq2Seq 모델의 학습 : 교사 강요(teacher forcing)
 - RNN 구조로 만들어진 모델이다 보니, 필연적으로 gradient vaninshing 현상이 발생한다.
 
 # 어텐션 메커니즘 (Attention Mechanism)
+
+{:.info}
+[[2015] Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473)
 
 어텐션 메커니즘은 Seq2Seq 모델의 문제점을 개선하기 위해 제안되었다. 어텐션 메커니즘의 아이디어는, **인코더의 마지막 은닉 상태(컨텍스트 벡터)뿐만 아니라, 인코더의 매 시점 은닉 상태들을 모두 사용하자**는 것이다. 구체적으로 디코더가 다음 단어(token)을 예측할 때 이전 은닉 상태, 이전 출력 단어(token)와 더불어 인코더의 매 시점 은닉 상태들의 가중합(weighted sum)인 **어텐션 값(attention value)**도 사용하자는 것이다.
 
@@ -149,3 +155,11 @@ $$f(s_{t-1}, h_k) = V^T \tanh (W_1 s_{t-1} + W_2 h_k) $$
 
 (위에서 설명한) Seq2Seq 모델에 어텐션을 사용하는 경우, query는 현재 디코더의 은닉 상태($s\_{t-1}$)에 해당되고, key와 value는 매 시점마다의 인코더 은닉 상태($h\_k$) 각각에 해당된다. 즉 key와 value가 같은 상황인 것이다.
 
+{% comment %}
+# 트랜스포머 (Transformer)
+
+{:.info}
+[[2017] Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+
+트랜스포머 모델은 Seq2Seq 모델, 어텐션 이후 나온 또 하나의 큰 도약이다. 트랜스포머 모델의 기본 아이디어는 Seq2Seq에서처럼 RNN 구조를 사용하지 않고, 오직 어텐션(과 FC 연산)
+{% endcomment %}

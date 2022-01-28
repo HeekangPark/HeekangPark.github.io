@@ -5,7 +5,7 @@ SKKU_swe3050:
   permalink: /:collection/:name
   tags:
   - lecture
-  - machine_learning
+  - machine-learning
   - skku
 SNU_m3309.000200:
   category: Machine Learning
@@ -14,7 +14,9 @@ SNU_m3309.000200:
   permalink: /:collection/:name
   tags:
   - lecture
-  - machine_learning
+  - machine-learning
+  - reinforcement-learning
+  - rl
   - snu
 Stanford_cs231n:
   category: Machine Learning
@@ -23,7 +25,7 @@ Stanford_cs231n:
   permalink: /:collection/:name
   tags:
   - lecture
-  - machine_learning
+  - machine-learning
   - stanford
 calculus:
   category: Math
@@ -72,7 +74,7 @@ javascript:
   output: true
   permalink: /:collection/:name
   tags:
-  - programming_language
+  - programming-language
   - javascript
   - js
 jekyll:
@@ -84,13 +86,13 @@ jekyll:
   - blog
   - web
   - jekyll
-linear_algebra:
+linear-algebra:
   category: Math
   name: 선형대수학 (Linear Algebra)
   output: true
   permalink: /:collection/:name
   tags:
-  - linear_algebra
+  - linear-algebra
   - math
 linux:
   category: OS
@@ -99,12 +101,24 @@ linux:
   permalink: /:collection/:name
   tags:
   - linux
+ml-shorts:
+  category: Machine Learning
+  name: 토막글
+  output: true
+  permalink: /:collection/:name
+  tags:
+  - machine-learning
+  - shorts
 nlp:
   category: Machine Learning
   name: NLP
   output: true
   permalink: /:collection/:name
-  tags: []
+  tags:
+  - machine-learning
+  - ml
+  - natural-language-processing
+  - nlp
 node.js:
   category: Applications / Frameworks / Libraries
   name: node.js
@@ -123,13 +137,13 @@ numpy:
   tags:
   - numpy
   - python
-paper_review:
+paper-review:
   category: 기타 (Etc)
   name: 논문 리뷰
   output: true
   permalink: /:collection/:name
   tags:
-  - graduate_school
+  - graduate-school
   - snu
 pomodoro:
   category: Project
@@ -146,7 +160,7 @@ python:
   output: true
   permalink: /:collection/:name
   tags:
-  - programming_language
+  - programming-language
   - python
 ssh:
   category: Applications / Frameworks / Libraries
@@ -163,7 +177,7 @@ virtualbox:
   output: true
   permalink: /:collection/:name
   tags:
-  - virtual_application
+  - virtual-application
   - virtualbox
 vscode:
   category: Applications / Frameworks / Libraries
