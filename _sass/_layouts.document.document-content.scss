@@ -377,18 +377,27 @@ $bottom-margin: 1.5em;
         }
     }
 
-    div.outdated,
-    div.deprecated {
+    .outdated,
+    .deprecated {
         color: var(--outdated-paragraph-text);
-
-        &:hover {
-            color: var(--site-text);
-        }
+        text-decoration: line-through;
 
         @for $i from 1 through 6 {
             h#{$i} {
                 text-decoration: line-through;
             }
         }
+
+        &:hover {
+            text-decoration: none;
+
+            @for $i from 1 through 6 {
+                h#{$i} {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        
     }
 }

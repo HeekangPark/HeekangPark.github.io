@@ -1,7 +1,7 @@
 ---
 title: "MotD (Message of the Day)"
 date_created: "2021-12-17"
-date_modified: "2021-12-18"
+date_modified: "2022-02-09"
 ---
 
 # MotD란?
@@ -43,6 +43,10 @@ printf "\n"
 {% highlight bash %}
 #!/bin/bash
 
+printf "\033[32m[SYSTEM INFO]\033[0m\n"
+
+################################################################################
+
 LAST_REBOOT=$(who -b | sed -e 's/^[[:space:]]*system[[:space:]]*boot[[:space:]]*//')
 LAST_REBOOT_ISO=$(date --date="$LAST_REBOOT" +"%F %T")
 
@@ -50,10 +54,19 @@ UPTIME_DAYS=$(expr `cat /proc/uptime | cut -d '.' -f1` % 31556926 / 86400)
 UPTIME_HOURS=$(expr `cat /proc/uptime | cut -d '.' -f1` % 31556926 % 86400 / 3600)
 UPTIME_MINUTES=$(expr `cat /proc/uptime | cut -d '.' -f1` % 31556926 % 86400 % 3600 / 60)
 
+printf "  \033[32mLast Reboot\033[0m: %s (\033[32mUptime\033[0m: %sD %sH %sM)\n" "$LAST_REBOOT_ISO" "$UPTIME_DAYS" "$UPTIME_HOURS" "$UPTIME_MINUTES"
+printf "\n"
+
+################################################################################
+
 OS_DISTRIB=$(lsb_release -s -d)
 OS_OS=$(uname -o)
 OS_KERNEL=$(uname -r)
 OS_MACHINE=$(uname -m)
+
+printf "  \033[32mOS\033[0m: %s (%s %s %s)\n" "$OS_DISTRIB" "$OS_OS" "$OS_KERNEL" "$OS_MACHINE"
+
+################################################################################
 
 CPU=$(cat /proc/cpuinfo | grep 'model name' | head -1 | cut -d ':' -f2 | sed -e 's/^[[:space:]]*//')
 CPU_SOCKET_NUM=$(lscpu | grep -E '^Socket' | cut -d ':' -f2 | sed -e 's/^[[:space:]]*//')
@@ -62,30 +75,30 @@ CPU_CORE_NUM=$(( $CPU_SOCKET_NUM * $CPU_CORE_PER_SOCKET ))
 CPU_THREAD_PER_CORE=$(lscpu | grep -E '^Thread\(s\) per core' | cut -d ':' -f2 | sed -e 's/^[[:space:]]*//')
 CPU_THREAD_NUM=$(( $CPU_CORE_NUM * $CPU_THREAD_PER_CORE ))
 
+printf "  \033[32mCPU\033[0m: %s (%s core(s), %s thread(s))\n" "$CPU" "$CPU_CORE_NUM" "$CPU_THREAD_NUM"
+
+################################################################################
+
 MEM=$(lsmem | grep -E '^Total online memory' | cut -d ':' -f2 | sed -e 's/^[[:space:]]*//')
 MEM_IN_USE=$(free | {
         read
         read TITLE MEM_TOTAL MEM_USED REST
         echo "$(( 100 * $MEM_USED / $MEM_TOTAL ))%"
 })
+PROCESS_NUM=$(ps -ef | wc -l)
+ZOMBIE_PROCESS_NUM=$(ps -ef | grep defunct | grep -v grep | wc -l)
+
+printf "  \033[32mMem\033[0m: %s (\033[32mUsage\033[0m: %s, \033[32mProcesses\033[0m: %s" "$MEM" "$MEM_IN_USE" "$PROCESS_NUM"
+
+if [ "$ZOMBIE_PROCESS_NUM" -eq "0" ]; then
+    printf ")\n"
+else
+    printf ", \033[31m%s zombies!\033[0m)\n" "$ZOMBIE_PROCESS_NUM"
+fi
+
+################################################################################
 
 GPUS=$(lspci | grep VGA | cut -d ':' -f3 | sed -e 's/^[[:space:]]*//' | sed -e 's/(.*)$//')
-
-DISK_INFOS=$(df -x squashfs -x tmpfs -x devtmpfs -x overlay -h | sed 1d)
-
-NETWORK_DEVICES=$(nmcli -f DEVICE connection show --active | sed 1d | sed -e 's/[[:space:]]*$//')
-
-USERS=$(w -h)
-
-printf "\033[32m[SYSTEM INFO]\033[0m\n"
-
-printf "  \033[32mLast Reboot\033[0m: %s (\033[32mUptime\033[0m: %sD %sH %sM)\n" "$LAST_REBOOT_ISO" "$UPTIME_DAYS" "$UPTIME_HOURS" "$UPTIME_MINUTES"
-printf "\n"
-
-printf "  \033[32mOS\033[0m: %s (%s %s %s)\n" "$OS_DISTRIB" "$OS_OS" "$OS_KERNEL" "$OS_MACHINE"
-
-printf "  \033[32mCPU\033[0m: %s (%s core(s), %s thread(s))\n" "$CPU" "$CPU_CORE_NUM" "$CPU_THREAD_NUM"
-printf "  \033[32mMem\033[0m: %s (\033[32mUsage\033[0m: %s)\n" "$MEM" "$MEM_IN_USE"
 
 printf "  \033[32mGPU(s)\033[0m:\n"
 IFS=$'\n'
@@ -94,6 +107,10 @@ do
         printf "    %s\n" "$GPU"
 done
 unset IFS
+
+################################################################################
+
+DISK_INFOS=$(df -x squashfs -x tmpfs -x devtmpfs -x overlay -h | sed 1d)
 
 printf "  \033[32mDisk(s)\033[0m:\n"
 IFS=$'\n'
@@ -110,6 +127,10 @@ do
 done
 unset IFS
 
+################################################################################
+
+NETWORK_DEVICES=$(nmcli -f DEVICE connection show --active | sed 1d | sed -e 's/[[:space:]]*$//')
+
 printf "  \033[32mIP Address(es)\033[0m:\n"
 IFS=$'\n'
 for NETWORK_DEVICE in $NETWORK_DEVICES
@@ -119,6 +140,10 @@ do
         printf "    %-16s: %s\n" "$NETWORK_DEVICE" "$NETWORK_IP_ADDR"
 done
 unset IFS
+
+################################################################################
+
+USERS=$(w -h)
 
 printf "  \033[32mLogin User(s)\033[0m:\n"
 IFS=$'\n'
@@ -132,6 +157,5 @@ do
         printf "    %-10s [ %5s ]    from %15s    since %s\n" "$USER_NAME" "$USER_TTY" "$USER_IP" "$USER_LOGIN_TIME_ISO"
 done
 unset IFS
-
 printf "\n"
 {% endhighlight %}

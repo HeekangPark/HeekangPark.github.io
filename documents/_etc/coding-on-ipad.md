@@ -2,7 +2,7 @@
 title: "iPad에서 개발환경 구축하기"
 tags: ["ipad", "code-server", "termius"]
 date_created: "2021-03-27"
-date_modified: "2021-10-14"
+date_modified: "2022-02-09"
 ---
 
 iPad를 구매한지 어연 3년이 되어간다. iPad 구매 전에는 어딜 가도 항상 무거운 노트북을 들고 다녀야 했지만, iPad 구매 후에는 노트북으로 하던 상당히 많은 일을 iPad로 대체하게 되어 노트북을 들고 다니지 않는 경우가 많아졌다. 그러나 코딩을 할 땐 어쩔 수 없이 노트북을 써야 했다. 만약 iPad에서 코딩마저 가능하다면 무거운 노트북을 안 들고 다녀도 될 거란 기대에, 필자는 iPad에서 코딩을 할 수 있는 방법을 정말 다각도로 연구해 보았다.
@@ -17,19 +17,48 @@ iPad는 네이티브 환경에서 코드 컴파일 및 실행이 거의 불가�
 
 # 원격 데스크탑
 
-[TeamViewer](https://www.teamviewer.com/ko/)나 [Chrome Remote Desktop](https://remotedesktop.google.com/support/), [Remote Desktop Mobile](https://apps.apple.com/us/app/remote-desktop-mobile/id714464092) 등의 프로그램을 사용하면 원격에 있는 PC에 접속하여 코딩을 할 수 있다. 진짜 PC에 접속하는 것이므로(iPad는 화면을 출력하고, 입력을 전송하는 터미널 역할만 한다) 이 문서에 있는 그 어떤 방법보다 강력한 방법일 것이다.
+{:.mb-0}
+[+ 22.02.09]
 
-TeamViewer의 경우 사용자 층이 많고 강력하다는 장점이 있으나, PC에 별도의 프로그램을 깔아야 해 시스템이 조금 더러워지고, 기업의 경우 유료로 사용해야 하고, 개인 사용자의 경우에도 정해진 시간이 지나면 연결이 강제적으로 끊긴다는(물론 나갔다 다시 들어가면 되긴 한다) 단점이 있다. Chrome Remote Desktop은 Chrome만 설치되어 있으면 별도 프로그램이 없어도 사용 가능하고 무료라는 장점이 있으나, 시스템 설정같은 창은 이를 통해 조작할 수 없다는 단점이 있다(보안 문제 또는 권한 문제 때문으로 보인다). Remote Desktop Mobile은 Microsoft에서 만든 것으로, Windows Pro를 사용해야 사용할 수 있다는 단점이 있다.
+원격 데스크탑 프로그램을 사용하면 원격에 있는 PC에 접속하여 코딩을 할 수 있다. 진짜 PC에 접속하는 것이므로(iPad는 화면을 출력하고, 입력을 전송하는 터미널 역할만 한다) 코딩뿐만 아니라 한글(hwp) 문서 편집 등 PC에서 할 수 있는 모든 일들을 다 할 수 있다! 성능과 기능의 관점에서 봤을 때, 이 방법이 이 문서에 있는 그 어떤 방법보다 강력한 방법일 것이다. 
 
-필자가 제일 처음 시도한 방식이 이 방식이었다. 처음에는 TeamViewer를 사용하다가 나중에는 Chrome Remote Desktop을 사용했다. 사용해보니 이 방법에는 단점이 많았다. 
+필자는 3가지 종류의 프로그램들을 사용해 보았다.
 
-1. 사용성이 별로 안 좋다 : PC에서 사용하는 앱들은 PC용으로 나온 것이다 보니 글자 크기나 버튼 배열 등이 PC 환경에 알맞게 만들어져 있다. 이를 iPad 화면에서 보면 너무 작아 읽기가 힘들고 클릭하기도 힘들다. 물론 화면을 확대해 볼 수는 있지만 화면을 확대하는 동작 자체가 사용성을 해친다.
-2. 안정적인 인터넷 연결이 필수적이다 : 인터넷 연결이 불안정하다면 버벅거리고, 비행기 같이 인터넷 연결을 할 수 없는 환경에서는 사용할 수 없다.
-3. 데이터를 많이 쓴다 : 필자가 가지고 있는 iPad는 Wi-Fi 모델이어서 많은 경우 휴대폰 핫스팟을 이용해 온라인에 접속하는데, 이런 원격 접속 앱들은 데이터를 많이 써 오래 쓰기엔 부담이 크다.
-4. 접속을 위해서는 항상 PC를 켜 놓아야 한다 : WOL 등을 구축하지 않는 한 이 기능을 쓰려면 항상 PC를 켜놔야 하는데, 필자는 집에 PC가 있어 전기세가 조금 부담되었다.
-5. 보안 이슈 : 몇몇 회사의 경우 보안상의 이유로 TeamViewer를 막아놓는 경우가 있다. 또한 이들 프로그램이 사용하는 RDP라는 프로토콜에 BlueKeep이라는 보안 취약점이 있었다(물론 지금은 해결됐다).
+- [TeamViewer](https://www.teamviewer.com/ko/)
+- [Chrome Remote Desktop](https://remotedesktop.google.com/support/)
+- [Remote Desktop Mobile](https://apps.apple.com/us/app/remote-desktop-mobile/id714464092) 
 
-그래서 필자는 안정적인 Wi-Fi 연결이 보장된 환경에서만 이 방식을 가끔 사용한다.
+TeamViewer의 경우 사용자 층이 많고 강력하다는 장점이 있으나, PC에 별도의 프로그램을 깔아야 해 시스템이 조금 더러워지고, 기업의 경우 유료로 사용해야 하고, 개인 사용자의 경우에도 정해진 시간이 지나면 연결이 강제적으로 끊긴다는(물론 나갔다 다시 들어가면 되긴 한다) 단점이 있다. Chrome Remote Desktop은 Chrome만 설치되어 있으면 별도 프로그램이 없어도 사용 가능하고 무료라는 장점이 있으나, 시스템 설정같은 창은 이를 통해 조작할 수 없다는 단점이 있다(보안 문제 또는 권한 문제 때문으로 보인다). Remote Desktop Mobile은 Microsoft에서 만든 것으로, 셋 중 가장 안정적이과 깔끔하나, Windows Pro를 사용해야 사용할 수 있다는 단점이 있다.
+
+필자가 제일 처음 시도한 방식이 이 방식이었다. 처음에는 TeamViewer를 사용하다가, Chrome Remote Desktop으로 넘어갔다가, 현재는 (Windows Pro를 지른 후) Remote Desktop Mobile을 사용하고 있다. 사용해보니 이 방법에는 다음과 같은 단점이 있었다.
+
+1. 사용성이 별로 안 좋다 : 화면 크기의 관점에서
+   
+   PC에서 사용하는 앱들은 PC용으로 나온 것이다 보니 글자 크기나 버튼 배열 등이 PC 환경에 알맞게 만들어져 있다. 이를 iPad 화면에서 보려 하니 문제가 많이 발생했다.
+
+   - 데스크탑에서 보던 화면을 그대로 보려고 하면 글씨나 버튼 등이 너무 작아 읽기가 힘들고 클릭하기도 힘들다. 화면을 확대해 볼 수는 있지만 화면을 확대하는 동작 자체가 사용성을 해친다.
+   - 원격 데스크탑 프로그램에는 일반적으로 기기의 화면 크기에 맞춰 자동으로 출력되는 화면 크기를 스케일링하는 옵션이 있다. 이 옵션을 쓰면 글씨 크기나 버튼 크기를 적당한 크기로 키울 수 있다. 그러나 TeamViewer나 Chrome Remote Desktop의 경우 스케일링 기능을 쓰면 잔 버그가 좀 많았다(Remote Desktop Mobile은 잘 동작했다). 그러나 이 옵션을 사용하면 화면에 한 번에 뜨는 정보의 양이 너무 적어져 마찬가지로 사용성이 별로 좋지 않았다.
+2. 사용성이 별로 안 좋다 : 입력의 관점에서
+   
+   iPad는 iPadOS 환경이지만, 필자가 원격 접속한 데스크탑은 Windows 환경이었다. iPadOS와 Windows 환경은 각기 다른 키보드 배열과 단축키 조합을 사용한다. 예를 들어 iPadOS 환경에서는 한/영 전환은 Windows 환경에서의 Caps Lock 키로, 복사/붙여넣기는 Windows 환경에서의 alt + c/v(iPadOS 환경에서의 cmd + c/v)로 수행한다. 근데 문제는 프로그램에 따라 사용하는 키 배열이 제각각이라는 것이다. 어떤 프로그램에서는 Windows의 키 배열을 사용하고, 또 어떤 프로그램에서는 iPadOS의 키 배열을 사용한다. 이러다 보니 생기는 불편함들이 좀 많다.
+
+3. 안정적인 인터넷 연결이 필수적이다
+   
+   인터넷 연결이 불안정하다면 버벅거리고, 비행기 같이 인터넷 연결을 할 수 없는 환경에서는 사용할 수 없다.
+
+4. 데이터를 많이 쓴다
+   
+   필자가 가지고 있는 iPad는 Wi-Fi 모델이어서 많은 경우 휴대폰 핫스팟을 이용해 온라인에 접속하는데, 이런 원격 접속 앱들은 데이터를 많이 써 오래 쓰기엔 부담이 크다.
+
+5. 접속을 위해서는 항상 PC를 켜 놓아야 한다
+   
+   WOL 등을 구축하지 않는 한 이 기능을 쓰려면 항상 PC를 켜놔야 하는데, 필자는 집에 PC가 있어 전기세가 조금 부담되었다.
+
+6. 보안 이슈
+   
+   몇몇 회사의 경우 보안상의 이유로 원격 데스크탑 프로그램들을 막아놓는 경우가 있다. 또한 이들 프로그램이 사용하는 RDP(Remote Desktop Protocol)라는 프로토콜에 BlueKeep이라는 보안 취약점이 있었다(물론 지금은 해결됐다).
+
+그래서 필자는 안정적인 Wi-Fi 연결이 보장된 환경에서만 이 방식을 사용한다.
 
 # Git
 
@@ -62,7 +91,7 @@ PC 또는 서버에서 작업하던 코드를 GitHub 등에 올린 후, Git Clie
 
 [Koder](https://koderapp.com/)라는 앱도 SSH Text Editing 기능을 지원한다! 이 앱은 Buffer Editor보다 사용성도 좋아서, 현재 가장 주력으로 쓰고 있는 SSH Text Editor이다. 다만 이 앱에도 약간의 단점이 있다.
 
-- SSH Public Key/Private Key를 통한 로그인이 안 된다(Password를 이용한 로그인은 잘 된다). 공식 Documentation에서 시키는 대로 했음에도, Private Key를 이용해 원격 서버에 로그인 시도를 하면 어떤 이유에서인지 Authentication Error가 뜬다.
+- <span class="outdated">SSH Public Key/Private Key를 통한 로그인이 안 된다(Password를 이용한 로그인은 잘 된다). 공식 Documentation에서 시키는 대로 했음에도, Private Key를 이용해 원격 서버에 로그인 시도를 하면 어떤 이유에서인지 Authentication Error가 뜬다.</span> [+ 22.02.09] 22년 2월 현재 잘 됨을 확인했다.
 - 내장 SSH Shell에서 한글이 깨진다.
 - 가끔 SSH 연결이 끊어져 편집한 내용을 업로드할 수 없을 때가 있다.
 
@@ -110,6 +139,7 @@ sudo usermod -aG docker $USER
 {:.code-header}
 run-code-server
 
+{:.no-prompt}
 {% highlight bash %}
 #!/bin/bash
 
@@ -134,6 +164,7 @@ mkdir -p ~/.code-server
 mkdir -p ~/.code-server/code-server-config
 mkdir -p ~/.code-server/vscode-config
 {% endhighlight %}
+
 ### 사용법
 
 iPad에서, SSH Shell(ex. Termius)을 이용해 작업하고자 하는 디렉토리에 가서 위에서 만든 스크립트를 실행한다.
@@ -158,8 +189,8 @@ Code-Server는 VSCode와 거의 동일한 환경이므로 텍스트 편집, 환�
 
 # 결론
 
-21.06.17. 현재 필자가 찾은 최고의 방법은 다음과 같다.
+22.02.09. 현재 필자가 찾은 최고의 방법은 다음과 같다.
 
-- 본격적인 코딩을 해야 할 때는 Chrome Remote Desktop을 이용한 원격 접속을 사용한다.
+- 본격적인 코딩을 해야 할 때는 Remote Desktop Mobile을 이용한 원격 접속을 사용한다.
 - 간단한 터미널 작업이 필요할 때는 (원격 서버를 만들어 놓고) Termius를 사용한다.
 - 간단한 코드 편집이 필요할 때는 (원격 서버를 만들어 놓고) Koder를 사용한다.
