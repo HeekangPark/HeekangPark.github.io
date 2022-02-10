@@ -324,10 +324,6 @@ $bottom-margin: 1.5em;
         }
     }
 
-    del {
-        color: var(--del-text);
-    }
-
     .footnotes {
         margin: {
             top: 3em;
@@ -377,9 +373,10 @@ $bottom-margin: 1.5em;
         }
     }
 
+    del,
     .outdated,
     .deprecated {
-        color: var(--outdated-paragraph-text);
+        color: var(--del-text);
         text-decoration: line-through;
 
         @for $i from 1 through 6 {
