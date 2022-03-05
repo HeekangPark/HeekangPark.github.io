@@ -363,6 +363,12 @@ $bottom-margin: 1.5em;
         text-align: center;
     }
 
+    details {
+        summary {
+            cursor: pointer;
+        }
+    }
+
     @each $abbr, $name in ("t": "top", "b": "bottom") {
         @for $i from 0 through 9 {
             .m#{$abbr}-#{$i} {

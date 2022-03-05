@@ -115,5 +115,19 @@
 			"</div></li>"
 		],
 		"description": "Insert li-div"
+	},
+	"summary-details": {
+		"scope": "markdown",
+		"prefix": ["summary-details", "녀ㅡㅡㅁ교-ㅇㄷㅅ먀ㅣㄴ"],
+		"body": [
+			"<details markdown=\"block\">",
+			"",
+			"<summary>${1:열기/접기}</summary>",
+			"",
+			"$2",
+			"",
+			"</details>"
+		],
+		"description": "Insert li-div"
 	}
 }

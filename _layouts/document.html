@@ -355,12 +355,15 @@ function activateCodeToolbox() {
 
             let content = undefined;
             if(code.find("table").length == 0) { //code without linenos
-                content = code.text();
+                content = code;
             } else { //code with linenos
-                content = code.find(".rouge-table .code").text();
+                content = code.find(".rouge-table .code");
             }
+
+            content = content.clone().find(".prompt").remove().end(); //remove prompt($) in bash code (new method)
+            content = content.text();
             
-            //remove prompt($) in bash code
+            //remove prompt($) in bash code (old method) (for backward compatibility)
             if(code.find("code").attr("data-lang") == "bash") {
                 content = content.split("\n").map((line) => {
                     line = $.trim(line);
@@ -474,16 +477,18 @@ function prependPromptOnBashCodeBlock() {
         }
     }
 
-    function getProperPrompts(content, prompt) {
-        let splits = content.split("\n");
+    function removeHTMLTag(str) {
+        return str.trim().replace(/<\/?[^>]+(>|$)/g, "").trim();
+    }
 
+    function prependPrompt(code, prompt) {
         let result = [];
-        for(let i = 0; i < splits.length; i++) {
-            let line = splits[i].trim().replace(/<\/?[^>]+(>|$)/g, "");
-            if(line.length == 0 || line.startsWith("#")) {
-                result.push(" ");
+        for (let line of code.split("\n")) {
+            let html_tag_removed_line = removeHTMLTag(line)
+            if(html_tag_removed_line.length == 0 || html_tag_removed_line.startsWith("#")) { // empty line or comment line
+                result.push(line);
             } else {
-                result.push(prompt);
+                result.push(`<span class="prompt">${prompt} </span>${line}`);
             }
         }
 
@@ -491,23 +496,27 @@ function prependPromptOnBashCodeBlock() {
     }
 
     // shell code block에 prompt 추가하기
-    const shell_classes = ["code.language-bash", "code.language-powershell"];
+    const shell_classes = ["code.language-bash", "code.language-powershell", "code.language-cmd"];
     $("figure.highlight").each(function(idx, elem) {
         let figure = $(this);
-        let code = figure.find(shell_classes.join(", "));
-        if(isExist(code) && !figure.hasClass("no-prompt")) {
+        let code_elem = figure.find(shell_classes.join(", "));
+        if(isExist(code_elem) && !figure.hasClass("no-prompt")) {
             let prompt = figure.hasClass("show-admin-prompt") ? "#" : "$";
 
-            let linenos = code.children("table.rouge-table");
-            if(isExist(linenos)) {
-                let content = linenos.find("td.code pre").html().trim();
-                linenos.find("td.gutter").after(`<td class="prompts"><pre>${getProperPrompts(content, prompt)}</pre></td>`);
+            let linenos_code_elem = code_elem.children("table.rouge-table");
+            let target = isExist(linenos_code_elem) ? linenos_code_elem.find("td.code pre") : code_elem;
+            
+            let prompted_code = prependPrompt(target.html().trim(), prompt);
+            target.html(prompted_code);
 
-            } else {
-                let content = code.html().trim();
-                code.empty().append(`<table class="rouge-table"><tbody><tr><td class="prompts"><pre>${getProperPrompts(content, prompt)}</pre></td><td class="code"><pre>${content}</pre></td></tr></tbody></table>`);
-            }
+            target.bind("copy", function(e) {
+                let text = $(this).clone().find(".prompt").remove().end().text();
+                e.originalEvent.clipboardData.setData("text/plain", text);
+                e.preventDefault();
+            });
         }
     })
+
+    
 }
 </script>
