@@ -47,7 +47,7 @@ figure.caption-img {
     }
 }
 
-@media screen and (max-width: #{$left-panel-size + $media-tablet + 4em}) {
+@media screen and (max-width: #{$left-panel-size + $media-phone + 4em}) {
     figure.caption-img {
         img {
             max-width: 100%;

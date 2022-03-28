@@ -54,7 +54,7 @@
         @import "documents.document";
     }
 
-    @media screen and (max-width: #{$left-panel-size + $media-phone + 4em}) {
+    @media screen and (max-width: #{$left-panel-size + $media-tablet + 4em}) {
         .welcome-title {
             display: flex;
         }
