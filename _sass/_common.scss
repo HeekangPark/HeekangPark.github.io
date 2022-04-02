@@ -1,32 +1,36 @@
 @font-face {
-	font-family: "NotoSansKR";
-	src: local("Noto Sans KR Light"), local("NotoSansKR-Light"),
-		url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.woff2") format("woff2");
-	//url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.otf") format("opentype");
-	font-display: block;
-	font-weight: normal;
+  font-family: "NotoSansKR";
+  src: local("Noto Sans KR Light"), local("NotoSansKR-Light"),
+    url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.woff2")
+      format("woff2");
+  //url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.otf") format("opentype");
+  font-display: block;
+  font-weight: normal;
 }
 
 @font-face {
-	font-family: "NotoSansKR";
-	src: local("Noto Sans KR Medium"), local("NotoSansKR-Medium"),
-		url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Medium.woff2") format("woff2");
-	font-display: block;
-	font-weight: bold;
+  font-family: "NotoSansKR";
+  src: local("Noto Sans KR Medium"), local("NotoSansKR-Medium"),
+    url("../fonts/sans-serif/Noto Sans KR/NotoSansKR-Medium.woff2")
+      format("woff2");
+  font-display: block;
+  font-weight: bold;
 }
 
 @font-face {
-	font-family: "UbuntuMono";
-	src: local("Ubuntu Mono Regular"), local("UbuntuMono-Regular"),
-		url("../fonts/monospace/Ubuntu Mono/UbuntuMono-Regular.woff2") format("woff2");
-	font-display: block;
+  font-family: "UbuntuMono";
+  src: local("Ubuntu Mono Regular"), local("UbuntuMono-Regular"),
+    url("../fonts/monospace/Ubuntu Mono/UbuntuMono-Regular.woff2")
+      format("woff2");
+  font-display: block;
 }
 
 @font-face {
-	font-family: "NanumGothicCoding";
-	src: local("Nanum Gothic Coding Regular"), local("NanumGothicCoding-Regular"),
-		url("../fonts/monospace/Nanum Gothic Coding/NanumGothicCoding-Regular.woff2") format("woff2");
-	font-display: block;
+  font-family: "NanumGothicCoding";
+  src: local("Nanum Gothic Coding Regular"), local("NanumGothicCoding-Regular"),
+    url("../fonts/monospace/Nanum Gothic Coding/NanumGothicCoding-Regular.woff2")
+      format("woff2");
+  font-display: block;
 }
 
 /*
@@ -70,47 +74,75 @@ td,
 pre,
 blockquote,
 input {
-	margin: 0;
-	padding: 0;
-	border: none;
-	min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-width: 0;
 }
 
 body {
-	background-color: var(--site-background);
-	font-size: 1em;
-	overflow-y: scroll;
-	color: var(--site-text);
-	font-family: var(--normal-font);
-	word-break: break-all;
+  background-color: var(--site-background);
+  font-size: 1em;
+  overflow-y: scroll;
+  color: var(--site-text);
+  font-family: var(--normal-font);
+  word-break: break-all;
 
-	a {
-		text-decoration: inherit;
-		color: inherit;
-	}
+  a {
+    text-decoration: inherit;
+    color: inherit;
+  }
 
-	pre,
-	code {
-		font-family: var(--code-font);
-	}
+  pre,
+  code {
+    font-family: var(--code-font);
+  }
 }
 
 * {
-	&::-webkit-scrollbar {
-		width: 6px;
-		height: 6px;
+  &::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--scrollbar-thumb);
+		background-clip: content-box;
+
+    &:vertical {
+      border: {
+        left: 6px solid transparent;
+        right: 2px solid transparent;
+      }
+    }
+
+    &:horizontal {
+      border: {
+        top: 4px solid transparent;
+        bottom: 4px solid transparent;
+      }
+    }
 
 		&:hover {
-			width: 15px;
+			&:vertical {
+				border: {
+					left: none;
+					right: none;
+				}
+			}
+
+			&:horizontal {
+				border: {
+					top: none;
+					bottom: none;
+				}
+			}
 		}
-	}
+  }
 
-	&::-webkit-scrollbar-thumb {
-		border-radius: 10px;
-		background-color: var(--scrollbar-thumb);
-	}
-
-	&::-webkit-scrollbar-track {
-		background-color: var(--scrollbar-background);
-	}
+  &::-webkit-scrollbar-track {
+    //background-color: var(--scrollbar-background);
+    background-color: transparent;
+  }
 }
