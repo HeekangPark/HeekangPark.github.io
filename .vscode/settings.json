@@ -2,5 +2,13 @@
     "cSpell.words": [
         "diagonalizable",
         "diagonalization"
-    ]
+    ],
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "/bin/bash",
+            "args": [
+                "-l"
+            ]
+        }
+    },
 }
