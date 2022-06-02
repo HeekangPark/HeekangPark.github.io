@@ -360,20 +360,8 @@ function activateCodeToolbox() {
                 content = code.find(".rouge-table .code");
             }
 
-            content = content.clone().find(".prompt").remove().end(); //remove prompt($) in bash code (new method)
+            content = content.clone().find(".prompt").remove().end(); //remove prompt($) in bash code
             content = content.text();
-            
-            //remove prompt($) in bash code (old method) (for backward compatibility)
-            if(code.find("code").attr("data-lang") == "bash") {
-                content = content.split("\n").map((line) => {
-                    line = $.trim(line);
-                    if(line[0] == "$") {
-                        return $.trim(line.substring(1));
-                    } else {
-                        return line;
-                    }
-                }).join("\n");
-            }
 
             let temp_textarea = $(`<textarea id="temp-textarea" style="width: 1px; height: 1px; margin: 0; padding: 0; border: none; resize: none; opacity: 0;">${content}</textarea>`);
             temp_textarea.appendTo(code);
@@ -508,12 +496,6 @@ function prependPromptOnBashCodeBlock() {
             
             let prompted_code = prependPrompt(target.html().trim(), prompt);
             target.html(prompted_code);
-
-            target.bind("copy", function(e) {
-                let text = $(this).clone().find(".prompt").remove().end().text();
-                e.originalEvent.clipboardData.setData("text/plain", text);
-                e.preventDefault();
-            });
         }
     })
 

@@ -87,6 +87,7 @@
 
     .prompt {
         color: var(--syntax-prompt);
+        user-select: none;
     }
 
     .input {

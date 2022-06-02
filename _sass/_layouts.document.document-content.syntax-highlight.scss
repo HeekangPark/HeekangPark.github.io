@@ -79,6 +79,10 @@ figure.highlight {
     pre {
         line-height: $code-line-height;
 
+        .prompt {
+            user-select: none;
+        }
+
         table.rouge-table {
             width: 100%;
             line-height: $code-line-height;
