@@ -1,0 +1,133 @@
+---
+---
+
+@at-root html[data-theme="bright"] {
+  --table-border: #000000;
+  --table-selected-cell-background: #dddddd;
+  --blockquote-icon: #ffffff;
+  --blockquote-icon-info: #0074D9;
+  --blockquote-icon-success: #2ECC40;
+  --blockquote-icon-warning: #FFDC00;
+  --blockquote-icon-error: #FF4136;
+}
+
+@at-root html[data-theme="dark"] {
+  --table-border: #888888;
+  --table-selected-cell-background: #333333;
+  --blockquote-icon: #ffffff;
+  --blockquote-icon-info: #0074D9;
+  --blockquote-icon-success: #2ECC40;
+  --blockquote-icon-warning: #FFDC00;
+  --blockquote-icon-error: #FF4136;
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 2px solid var(--table-border);
+  border-bottom: 2px solid var(--table-border);
+
+  caption {
+    padding-top: 0.5em;
+    caption-side: bottom;
+    font-weight: bold;
+  }
+
+  thead {
+    border-bottom: 1px solid var(--table-border);
+
+    tr {
+      border-bottom: 1px solid var(--table-border);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  tfoot {
+    border-top: 1px solid var(--table-border);
+  }
+
+  th,
+  td {
+    padding: 0.25em 0.5em;
+    font-weight: normal;
+  }
+
+  td {
+    text-align: right;
+  }
+}
+
+blockquote {
+  position: relative !important;
+  margin: 1em !important;
+  background: var(--blockquote-background) !important;
+  padding: {
+    top: 1em !important;
+    bottom: 1em !important;
+    left: 2em !important;
+    right: 1em !important;
+  }
+  border: {
+    left: 4px solid var(--blockquote-border) !important;
+  }
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125) !important;
+
+  &:before {
+    position: absolute !important;
+    top: 50% !important;
+    margin: {
+      top: -17px !important;
+    }
+    left: -17px !important;
+    background-color: var(--blockquote-background) !important;
+    color: var(--blockquote-icon) !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 100% !important;
+    text-align: center !important;
+    line-height: 30px !important;
+    font-weight: bold !important;
+    font-family: var(--code-font) !important;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  &.info {
+    border-color: var(--blockquote-icon-info) !important;
+
+    &:before {
+      content: "i" !important;
+      background-color: var(--blockquote-icon-info) !important;
+    }
+  }
+
+  &.success {
+    border-color: var(--blockquote-icon-success) !important;
+
+    &:before {
+      content: "✔" !important;
+      background-color: var(--blockquote-icon-success) !important;
+    }
+  }
+
+  &.warning {
+    border-color: var(--blockquote-icon-warning) !important;
+
+    &:before {
+      content: "!" !important;
+      background-color: var(--blockquote-icon-warning) !important;
+    }
+  }
+
+  &.error {
+    border-color: var(--blockquote-icon-error) !important;
+
+    &:before {
+      content: "x" !important;
+      background-color: var(--blockquote-icon-error) !important;
+    }
+  }
+}
