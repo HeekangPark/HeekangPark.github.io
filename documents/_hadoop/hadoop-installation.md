@@ -1,7 +1,7 @@
 ---
 title: "Hadoop 설치하기"
 date_created: "2021-07-28"
-date_modified: "2022-06-02"
+date_modified: "2022-06-04"
 ---
 
 # 시스템 구성
@@ -10,13 +10,13 @@ date_modified: "2022-06-02"
 
 dl14 서버를 가장 먼저 받았기에 이 서버를 네임노드로, 나머지 서버를 데이터노드로 하는 구성을 하였다.
 
-|       dl13        |       dl14       |   dl15    |   dl16    |
-| :---------------: | :--------------: | :-------: | :-------: |
-|     10.0.1.13     |    10.0.1.14     | 10.0.1.15 | 10.0.1.16 |
-| SecondaryNameNode |     NameNode     |           |           |
-|     DataNode      |   NodeManager    | DataNode  | DataNode  |
-|                   | ResourceManager  |           |           |
-|                   | JobHistoryServer |           |           |
+|       dl13        |       dl14       |    dl15     |    dl16     |
+| :---------------: | :--------------: | :---------: | :---------: |
+|     10.0.1.13     |    10.0.1.14     |  10.0.1.15  |  10.0.1.16  |
+|     DataNode      |     NameNode     |  DataNode   |  DataNode   |
+| SecondaryNameNode |                  |             |             |
+|    NodeManager    | ResourceManager  | NodeManager | NodeManager |
+|                   | JobHistoryServer |             |             |
 
 <style>
   table th, table td {
