@@ -1,7 +1,7 @@
 ---
 title: "GraphCodeBERT : Pre-Training Code Representations with Data Flow"
 date_created: "2021-09-03"
-date_modified: "2022-01-28"
+date_modified: "2022-06-11"
 ---
 
 {:.info}
@@ -25,7 +25,7 @@ date_modified: "2022-01-28"
 
 - GraphCodeBERT는 BERT를 따라 multi-layer bidirectional Transformer를 기본 뼈대로 사용함
 
-- [CodeSearchNet 데이터셋](/paper_review/papers-of-nlp-for-source-code#kramdown_codesearchnet-challenge--evaluating-the-state-of-semantic-code-search)을 이용해 GraphCodeBERT 학습
+- [CodeSearchNet 데이터셋](/paper-review/papers-of-nlp-for-source-code#kramdown_codesearchnet-challenge--evaluating-the-state-of-semantic-code-search)을 이용해 GraphCodeBERT 학습
 
 - 사전학습 과정
   1. 소스 코드 $C = \\{\, c\_1,\,c\_2,\,\cdots,\,c\_n \,\\}$와 이에 대한 주석 $W = \\{\, w\_1,\,w\_2,\,\cdots,\,w\_n \,\\}$가 주어졌을 때, 이를 이용해 Data Flow $\mathcal{G}(C) = (V,\,E)$를 만듦
