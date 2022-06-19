@@ -169,7 +169,12 @@
                 zIndex: 100
             };
 
-            {% if site.decoration == "watermelons" %}
+            {% if site.decoration == "sakuras" %}
+            options.minSize = 20;
+            options.count = 10;
+            options.maxOpacity = 0.8;
+            options.minOpacity = 0.6;
+            {% elsif site.decoration == "watermelons" %}
             options.minSize = 20;
             options.count = 15;
             options.maxOpacity = 0.6;

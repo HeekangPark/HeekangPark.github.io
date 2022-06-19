@@ -1,28 +1,57 @@
 ---
 title: "Hadoop 설치하기"
 date_created: "2021-07-28"
-date_modified: "2022-06-04"
+date_modified: "2022-06-19"
 ---
 
 # 시스템 구성
 
-사용하지 않는 연구실 우분투 서버 4대를 받아 다음과 같이 하둡 클러스터를 구성해 보기로 했다.
+사용하지 않는 연구실 우분투 서버 4대를 받아 다음과 같이 Hadoop 클러스터를 구성해 보기로 했다.
 
 dl14 서버를 가장 먼저 받았기에 이 서버를 네임노드로, 나머지 서버를 데이터노드로 하는 구성을 하였다.
 
-|       dl13        |       dl14       |    dl15     |    dl16     |
-| :---------------: | :--------------: | :---------: | :---------: |
-|     10.0.1.13     |    10.0.1.14     |  10.0.1.15  |  10.0.1.16  |
-|     DataNode      |     NameNode     |  DataNode   |  DataNode   |
-| SecondaryNameNode |                  |             |             |
-|    NodeManager    | ResourceManager  | NodeManager | NodeManager |
-|                   | JobHistoryServer |             |             |
-
-<style>
-  table th, table td {
-    width: 25%;
-  }
-</style>
+<table>
+    <thead>
+        <tr>
+            <th>dl13</th>
+            <th>dl14</th>
+            <th>dl15</th>
+            <th>dl16</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>10.0.1.13</td>
+            <td>10.0.1.14</td>
+            <td>10.0.1.15</td>
+            <td>10.0.1.16</td>
+        </tr>
+        <tr class="top-border">
+            <td>DataNode</td>
+            <td>NameNode</td>
+            <td>DataNode</td>
+            <td>DataNode</td>
+        </tr>
+        <tr>
+            <td>SecondaryNameNode</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>NodeManager</td>
+            <td>ResourceManager</td>
+            <td>NodeManager</td>
+            <td>NodeManager</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>JobHistoryServer</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
 
 > 지금부터 별다른 언급 없이 나오는 모든 코드들은 서버 4개에서 모두 실행해야 하는 코드이다.
 {:.info}
@@ -75,12 +104,12 @@ sudo vi /etc/hosts
 
 </blockquote>
 
-# 하둡 다운로드하기
+# Hadoop 다운로드하기
 
 2022년 6월 현재 가장 최신버전은 3.3.3이다.
 
 {:.code-header}
-하둡 다운로드
+Hadoop 다운로드
 
 {% highlight bash %}
 wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.3/hadoop-3.3.3.tar.gz
@@ -88,7 +117,7 @@ wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.3/hadoop-3.3.3.tar.gz
 
 # 자바 설치하기
 
-하둡 버전 3과 에러없이 호환되는 자바 버전은 8이다.
+Hadoop 버전 3과 에러없이 호환되는 자바 버전은 8이다.
 
 {:.code-header}
 자바 설치
@@ -97,12 +126,12 @@ wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.3/hadoop-3.3.3.tar.gz
 sudo apt install openjdk-8-jdk-headless
 {% endhighlight %}
 
-# 하둡 설치하기
+# Hadoop 설치하기
 
-`/usr/local` 디렉토리 밑에 하둡을 설치한다.
+`/usr/local` 디렉토리 밑에 Hadoop을 설치한다.
 
 {:.code-header}
-하둡 설치
+Hadoop 설치
 
 {% highlight bash %}
 tar -xzf hadoop-3.3.3.tar.gz
@@ -111,9 +140,9 @@ sudo ln -s /usr/local/hadoop-3.3.3 /usr/local/hadoop
 rm hadoop-3.3.3.tar.gz
 {% endhighlight %}
 
-# 하둡용 계정 만들기
+# Hadoop용 계정 만들기
 
-일반적으로 하둡은 독립된 계정에서 실행하는 경우가 많다. 하둡을 위한 계정을 만들자.
+일반적으로 Hadoop은 독립된 계정에서 실행하는 경우가 많다. Hadoop을 위한 계정 "hadoop"을 만들자.
 
 > 4개의 서버 모두 동일한 계정명을 사용해야 한다.
 {:.warning}
@@ -122,20 +151,20 @@ rm hadoop-3.3.3.tar.gz
 {:.info}
 
 {:.code-header}
-하둡용 계정 만들기
+Hadoop용 계정 "hadoop" 만들기
 
 {% highlight bash %}
 sudo adduser --gecos "" hadoop
 {% endhighlight %}
 
-설치한 하둡을 하둡용 계정 권한으로 수정한다.
+설치한 Hadoop을 hadoop 계정 권한으로 수정한다.
 
 {:.code-header}
-하둡 권한 수정
+Hadoop 권한 수정
 
 {% highlight bash %}
 sudo chown -R hadoop:hadoop /usr/local/hadoop-3.3.3
-sudo chown hadoop:hadoop /usr/local/hadoop
+sudo chown -h hadoop:hadoop /usr/local/hadoop
 {% endhighlight %}
 
 이제부터 모든 작업은 hadoop 계정에서 진행한다.
@@ -173,7 +202,6 @@ ssh-keygen
 {% highlight bash %}
 echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> ~/.bashrc
 echo 'export HADOOP_HOME=/usr/local/hadoop' >> ~/.bashrc
-echo 'export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop' >> ~/.bashrc
 echo 'export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop' >> ~/.bashrc
 echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_HOME/lib/native' >> ~/.bashrc
 echo 'export PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH' >> ~/.bashrc
@@ -181,9 +209,9 @@ echo 'export PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH' >> ~/
 source ~/.bashrc
 {% endhighlight %}
 
-# 하둡 환경설정하기
+# Hadoop 환경설정하기
 
-`$HADOOP_HOME/etc/hadoop` 디렉토리 밑의 다음 파일들을 수정해 하둡 환경설정을 진행한다.
+`$HADOOP_HOME/etc/hadoop` 디렉토리 밑의 다음 파일들을 수정해 Hadoop 환경설정을 진행한다.
 
 {:.code-header}
 $HADOOP_HOME/etc/hadoop/core-site.xml
@@ -286,7 +314,7 @@ dl15
 dl16
 {% endhighlight %}
 
-# 하둡 데이터노드 데이터 디렉토리 만들기
+# Hadoop 데이터노드 데이터 디렉토리 만들기
 
 데이터노드 클러스터(dl13, dl15, dl16)에서 다음 명령을 수행해 데이터 디렉토리를 만든다.
 
@@ -303,7 +331,7 @@ mkdir -p /usr/local/hadoop/data/datanode
 > 네임노드의 데이터 디렉토리(`$HADOOP_HOME/data/namenode`)는 hdfs 포멧 시 자동으로 생성되므로 굳이 만들 필요가 없다.
 {:.info}
 
-# hdfs 포멧
+# hdfs 포멧하기
 
 네임노드에서 다음 명령어를 실행한다.
 
@@ -314,12 +342,12 @@ hdfs 포멧(네임노드에서만 실행)
 $HADOOP_HOME/bin/hdfs namenode -format -force
 {% endhighlight %}
 
-# 하둡 실행
+# Hadoop 실행하기
 
 네임노드에서 다음 명령어를 실행한다.
 
 {:.code-header}
-하둡 실행(네임노드에서만 실행)
+Hadoop 실행(네임노드에서만 실행)
 
 {% highlight bash %}
 $HADOOP_HOME/sbin/start-dfs.sh
@@ -327,13 +355,13 @@ $HADOOP_HOME/sbin/start-yarn.sh
 $HADOOP_HOME/bin/mapred --daemon start historyserver
 {% endhighlight %}
 
-# 테스팅
+# 테스팅하기
 
-하둡이 정상적으로 실행중인지 확인해보자.
+Hadoop이 정상적으로 실행중인지 확인해보자.
 
 ## jps
 
-현재 실행 중인 jvm 프로세스 목록을 보여주는 `jps` 명령어를 이용하면 현재 클러스터에 어떤 하둡 프로세스가 올라와 있는지 확인할 수 있다.
+현재 실행 중인 jvm 프로세스 목록을 보여주는 `jps` 명령어를 이용하면 현재 클러스터에 어떤 Hadoop 프로세스가 올라와 있는지 확인할 수 있다.
 
 > 앞의 숫자와 각 항목의 순서는 다를 것이다. 어떤 항목이 실행중인지만 확인하자.
 {:.warning}
@@ -467,7 +495,7 @@ Num of Blocks: 46
 
 ## 웹 서버
 
-다음 url로 접속하면 현재 하둡의 실행 상태를 확인할 수 있다.
+다음 url로 접속하면 현재 Hadoop의 실행 상태를 확인할 수 있다.
 
 - NameNode : [http://dl14:9870](http://dl14:9870)
 - ResourceManager : [http://dl14:8088/](http://dl14:8088/)
@@ -475,12 +503,12 @@ Num of Blocks: 46
 
 ## 예제 : wordcount
 
-하둡 설치를 검증하기 위해 간단한 예제를 수행해보자.
+Hadoop 설치를 검증하기 위해 간단한 예제를 수행해보자.
 
 우선 업로드할 파일을 다운받자.
 
 {:.code-header}
-파일 다운로드 : Gutenberg 프로젝트에서 제공하는 성경 파일
+파일 다운로드 : Gutenberg 프로젝트의 성경(pg10.txt) 문서
 
 {% highlight bash %}
 wget https://www.gutenberg.org/cache/epub/10/pg10.txt
@@ -511,34 +539,34 @@ Found 1 items
 -rw-r--r--   3 hadoop supergroup    4457889 2022-06-03 06:49 /user/hadoop/pg10.txt
 {% endhighlight %}
 
-이 파일에 대해 하둡에서 제공하는 기본 예제 중 하나인 wordcount(단어 수 세기)를 수행해보자.
+이 파일에 대해 Hadoop에서 제공하는 기본 예제 중 하나인 wordcount(단어 수 세기)를 수행해보자.
 
 {:.code-header}
 wordcount
 
 {% highlight bash %}
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.3.jar wordcount /user/hadoop/pg10.txt /user/hadoop/output
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.3.jar wordcount /user/hadoop/pg10.txt /user/hadoop/hadoop-wordcount-output
 {% endhighlight %}
 
-실행이 완료되면 hdfs의 `/user/hadoop/output` 디렉토리에서 그 결과를 볼 수 있다.
+실행이 완료되면 hdfs의 `/user/hadoop/hadoop-wordcount-output` 디렉토리에서 그 결과를 볼 수 있다.
 
 {:.code-header}
 실행 결과 확인
 
 {% highlight bash %}
-hdfs dfs -ls /user/hadoop/output # output 디렉토리 탐색
-hdfs dfs -cat /user/hadoop/output/part-r-00000 # wordcount 결과 확인
-hdfs dfs -get /user/hadoop/output/part-r-00000 # 결과 파일 (로컬로) 다운로드
+hdfs dfs -ls /user/hadoop/hadoop-wordcount-output # hadoop-wordcount-output 디렉토리 탐색
+hdfs dfs -cat /user/hadoop/hadoop-wordcount-output/part-r-00000 # wordcount 결과 확인
+hdfs dfs -get /user/hadoop/hadoop-wordcount-output/part-r-00000 # 결과 파일 (로컬로) 다운로드
 {% endhighlight %}
 
-위 명령어들이 아무 문제 없이 수행되었다면 하둡이 성공적으로 잘 설치되었다는 것이다.
+위 명령어들이 아무 문제 없이 수행되었다면 Hadoop이 성공적으로 잘 설치되었다는 것이다.
 
-# 하둡 종료
+# Hadoop 종료하기
 
 네임노드에서 다음 명령어를 실행한다.
 
 {:.code-header}
-하둡 종료(네임노드에서만 실행)
+Hadoop 종료(네임노드에서만 실행)
 
 {% highlight bash %}
 $HADOOP_HOME/sbin/stop-dfs.sh
@@ -546,9 +574,9 @@ $HADOOP_HOME/sbin/stop-yarn.sh
 $HADOOP_HOME/bin/mapred --daemon stop historyserver
 {% endhighlight %}
 
-# hdfs 초기화
+# hdfs 초기화하기
 
-하둡을 종료한 후, 네임노드에서는 다음 명령어를 실행한다.
+만약 hdfs를 초기화하고 싶다면, Hadoop을 종료한 후 네임노드에서는 다음 명령어를 실행한다.
 
 {:.code-header}
 hdfs 초기화(네임노드)

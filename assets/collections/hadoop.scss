@@ -5,28 +5,28 @@
   --table-border: #000000;
   --table-selected-cell-background: #dddddd;
   --blockquote-icon: #ffffff;
-  --blockquote-icon-info: #0074D9;
-  --blockquote-icon-success: #2ECC40;
-  --blockquote-icon-warning: #FFDC00;
-  --blockquote-icon-error: #FF4136;
+  --blockquote-icon-info: #0074d9;
+  --blockquote-icon-success: #2ecc40;
+  --blockquote-icon-warning: #ffdc00;
+  --blockquote-icon-error: #ff4136;
 }
 
 @at-root html[data-theme="dark"] {
   --table-border: #888888;
   --table-selected-cell-background: #333333;
   --blockquote-icon: #ffffff;
-  --blockquote-icon-info: #0074D9;
-  --blockquote-icon-success: #2ECC40;
-  --blockquote-icon-warning: #FFDC00;
-  --blockquote-icon-error: #FF4136;
+  --blockquote-icon-info: #0074d9;
+  --blockquote-icon-success: #2ecc40;
+  --blockquote-icon-warning: #ffdc00;
+  --blockquote-icon-error: #ff4136;
 }
 
 table {
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
-  border-top: 2px solid var(--table-border);
-  border-bottom: 2px solid var(--table-border);
+  border-top: 3px solid var(--table-border);
+  border-bottom: 3px solid var(--table-border);
 
   caption {
     padding-top: 0.5em;
@@ -35,29 +35,35 @@ table {
   }
 
   thead {
-    border-bottom: 1px solid var(--table-border);
+    border-bottom: 2px solid var(--table-border);
 
+    th {
+      font-weight: bold;
+      padding: 0.25em 0.5em;
+      width: 25%;
+      text-align: center;
+    }
+  }
+
+  tbody {
     tr {
-      border-bottom: 1px solid var(--table-border);
+      &.top-border {
+        border: {
+          top: 1px solid var(--table-border);
+        }
+      }
 
-      &:last-child {
-        border-bottom: none;
+      td {
+        padding: 0.25em 0.5em;
+        font-weight: normal;
+        width: 25%;
+        text-align: center;
       }
     }
   }
 
   tfoot {
-    border-top: 1px solid var(--table-border);
-  }
-
-  th,
-  td {
-    padding: 0.25em 0.5em;
-    font-weight: normal;
-  }
-
-  td {
-    text-align: right;
+    border-top: 2px solid var(--table-border);
   }
 }
 
