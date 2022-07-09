@@ -2,7 +2,7 @@
 title: "자바스크립트 비동기"
 tags: ["callback", "promise"]
 date_created: "2020-09-28"
-date_modified: "2021-10-14"
+date_modified: "2022-07-09"
 ---
 
 # 자바스크립트와 비동기
@@ -249,7 +249,7 @@ Something goes wrong...
 
 그래서 콜백 함수는 실행되자마자 자신을 호출한 함수(caller)가 예외를 전달했는지 여부를 `if...else` 구문을 통해 확인해, 만약 예외가 전달되었다면 적절한 처리를 해 주어야 한다.
 
-[^9]: 실제 데이터는 두 번째 인자부터 전달한다. 만약 전달할 예외가 없다면 첫 번쨰 인자로 `null` 또는 `undefined`를 전달한다.
+[^9]: 실제 데이터는 두 번째 인자부터 전달한다. 만약 전달할 예외가 없다면 첫 번째 인자로 `null` 또는 `undefined`를 전달한다.
 
 {% highlight javascript linenos %}
 var fs = require("fs");

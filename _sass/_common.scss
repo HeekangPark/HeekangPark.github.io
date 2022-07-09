@@ -102,11 +102,11 @@ body {
 * {
   &::-webkit-scrollbar {
     width: 15px;
-    height: 15px;
+    height: 8px;
   }
 
   &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+    //border-radius: 10px;
     background-color: var(--scrollbar-thumb);
 		background-clip: content-box;
 
@@ -118,25 +118,22 @@ body {
     }
 
     &:horizontal {
+      border-radius: 10px;
       border: {
-        top: 4px solid transparent;
-        bottom: 4px solid transparent;
+        left: 2px solid transparent;
+        right: 2px solid transparent;
+        top: 2px solid transparent;
+        bottom: 2px solid transparent;
       }
     }
 
 		&:hover {
 			&:vertical {
-				border: {
-					left: none;
-					right: none;
-				}
+				border: none;
 			}
 
 			&:horizontal {
-				border: {
-					top: none;
-					bottom: none;
-				}
+				border: none;
 			}
 		}
   }

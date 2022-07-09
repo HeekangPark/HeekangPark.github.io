@@ -1,7 +1,7 @@
 ---
 title: "Feed Forward (Neural) Network vs. Fully Connected Network"
 date_created: "2022-01-27"
-date_modified: "2022-01-28"
+date_modified: "2022-07-09"
 ---
 
 {:.info}
@@ -19,7 +19,7 @@ FFNN은 이름 그대로 텐서(tensor)가 신경망의 앞으로만 전파되�
 
 # FC (Fully Connected Neural Network)
 
-반면 FC는, 조금 더 정확히는, fully connected layer[^2]는, 각 층(layer)의 모든 노드(뉴런)들이 그 다음 층의 모든 노드들과 하나도 뺴놓지 않고 모두 연결되어 있는, 정말 말 그대로 fully connected된 신경망을 의미한다. 즉 FC는, 각 층의 노드가 다음 층의 노드들과 듬성듬성 연결되어 있는 convolutional layer나 pooling layer 등과 대비되는 개념인 셈이다.
+반면 FC는, 조금 더 정확히는, fully connected layer[^2]는, 각 층(layer)의 모든 노드(뉴런)들이 그 다음 층의 모든 노드들과 하나도 빼놓지 않고 모두 연결되어 있는, 정말 말 그대로 fully connected된 신경망을 의미한다. 즉 FC는, 각 층의 노드가 다음 층의 노드들과 듬성듬성 연결되어 있는 convolutional layer나 pooling layer 등과 대비되는 개념인 셈이다.
 
 [^2]: dense layer라 부르기도 한다.
 

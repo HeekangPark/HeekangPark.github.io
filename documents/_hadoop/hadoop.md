@@ -1,8 +1,7 @@
 ---
 title: "하둡 생태계"
-tags: ["hadoop"]
 date_created: "2021-06-17"
-date_modified: "2021-10-14"
+date_modified: "2022-07-09"
 ---
 
 하둡 생태계(Hadoop Environment)에 대해 알아보자.
