@@ -1,15 +1,14 @@
-<figure class="caption-img">
-    {% if include.outside_img %}
-        {% assign img_url = include.src %}
-    {% elsif page.layout == "draft" %}
-        {% assign img_url = include.src | prepend: "/" | prepend: "draft" | prepend: "/img/" | prepend: site.assets | prepend: site.baseurl %}
-    {% else %}
-        {% assign img_url = include.src | prepend: "/" | prepend: page.collection | prepend: "/img/" | prepend: site.assets | prepend: site.baseurl %}
-    {% endif %}
+{% if include.outside_img %}
+    {% assign img_url = include.src %}
+{% elsif page.layout == "draft" %}
+    {% assign img_url = include.src | prepend: "/" | prepend: "draft" | prepend: "/img/" | prepend: site.assets | prepend: site.baseurl %}
+{% else %}
+    {% assign img_url = include.src | prepend: "/" | prepend: page.collection | prepend: "/img/" | prepend: site.assets | prepend: site.baseurl %}
+{% endif %}
 
-    <a href="{{ img_url }}">
-        <img {% if include.class %}class="{{ include.class }}"{% endif %} src="{{ img_url }}" {% if include.title %}alt="{{ include.title }}"{% endif %}>
-    </a>
+<figure class="caption-img">
+    
+    <img {% if include.class %}class="{{ include.class }}"{% endif %} src="{{ img_url }}" {% if include.title %}alt='{{ include.title | strip_html }}'{% endif %}>
     
     {% if include.title %}
         <figcaption class="title">{{ include.title }}</figcaption>

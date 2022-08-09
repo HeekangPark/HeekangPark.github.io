@@ -1,18 +1,13 @@
 - `documents/_SKKU_swe3050/` 업데이트
   - Regression 내용 보강
     - Generalized Linear Model(GLM) 내용 바탕으로 Logistic Regression 설명
-- Nextcloud 서버 구축기
-  - 보안 관련
-    - ssh 사용법
-      - ssh 포트 변경
-      - ssh forwarding 정리
-      - ssh client escape sequence 정리
-        - <https://coderwall.com/p/5wp2wg/start-port-forwarding-over-an-existing-ssh-connection-instead-of-creating-a-new-one>
-    - ufw 사용법
-      - <https://webdir.tistory.com/206>
-  - docker 관련
-    - docker 개념 및 사용법
-    - docker-compose 개념 및 사용법
+- ssh 사용법
+  - ssh 포트 변경
+  - ssh forwarding 정리
+  - ssh client escape sequence 정리
+    - <https://coderwall.com/p/5wp2wg/start-port-forwarding-over-an-existing-ssh-connection-instead-of-creating-a-new-one>
+- ufw 사용법
+  - <https://webdir.tistory.com/206>
 - [New Collection] 윈도우 tips
   - 크롬 pdf 아이콘 설정
   - 윈도우에서 한글 입력시 자모 분리 현상 (win + h)

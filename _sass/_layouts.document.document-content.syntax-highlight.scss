@@ -1,6 +1,8 @@
 @at-root html {
     --syntax-highlight-block-background: #282a36;
     --syntax-highlight-block-text: #f8f8f2;
+    --syntax-highlight-block-langbox-text: #888888;
+    --syntax-highlight-block-langbox-background: #614834;
     --syntax-highlight-block-toolbox: #ffffff;
     --syntax-highlight-block-lineno: #888888;
     --syntax-highlight-block-border: #aaaaaa;
@@ -13,7 +15,7 @@
     --syntax-highlight-code-result-background: #eeeeee;
     --syntax-highlight-code-result-text: #000000;
     --syntax-highlight-inline-background: #eeeeee;
-    --syntax-highlight-inline-text: #000000;
+    --syntax-highlight-inline-text: #eb6161;
     --syntax-highlight-code-header-border: #f8f8f2;
 }
 
@@ -21,8 +23,9 @@
     --syntax-highlight-code-result-background: #333333;
     --syntax-highlight-code-result-text: #d5d5d5;
     --syntax-highlight-inline-background: #444444;
-    --syntax-highlight-inline-text: #d5d5d5;
+    --syntax-highlight-inline-text: #f0b2b2;
     --syntax-highlight-code-header-border: #888888;
+    
 }
 
 $code-line-height: 1.6;
@@ -47,10 +50,31 @@ figure.highlight {
     z-index: 3;
     position: relative;
 
+    .code-langbox {
+        line-height: initial;
+        user-select: none;
+        position: absolute;
+        top: 0em;
+        right: 1em;
+        font-size: 0.8em;
+        font-family: var(--code-font);
+        color: var(--syntax-highlight-block-langbox-text);
+        background-color: var(--syntax-highlight-block-langbox-background);
+        padding: {
+            top: 0.25em;
+            bottom: 0.25em;
+            left: 0.25em;
+            right: 0.25em;
+        };
+        border-bottom-left-radius: 0.25em;
+        border-bottom-right-radius: 0.25em;
+    }
+
     .code-toolbox {
         line-height: initial;
         position: absolute;
-        bottom: 1em;
+        font-size: 0.8em;
+        bottom: 0.75em;
         right: 1em;
         color: var(--syntax-highlight-block-toolbox);
         margin: {
@@ -86,6 +110,10 @@ figure.highlight {
         table.rouge-table {
             width: 100%;
             line-height: $code-line-height;
+            border: {
+                top: none;
+                bottom: none;
+            }
             margin: {
                 bottom: 0;
             }

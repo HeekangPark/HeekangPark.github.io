@@ -396,11 +396,7 @@ body {
     }
 }
 
-@media screen and (max-width: #{$left-panel-size + $media-desktop + 4em}) { 
-    body {
-        display: initial;
-    }    
-
+@media screen and (max-width: #{$left-panel-size + $media-desktop + 4em}) {
     .container {
         grid-template-columns: $left-panel-size 1fr;
     }

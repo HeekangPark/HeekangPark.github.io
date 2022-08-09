@@ -330,6 +330,34 @@ function activateFootnotePopups() {
 }
 
 function activateCodeToolbox() {
+    function addLangBox(code) {
+        // if hide-lang-box is set, do not add lang box
+        if(code.hasClass("hide-lang-box")) return;
+        
+        // use data-lang of <code> for lang
+        let lang = code.find("code").attr("data-lang");
+
+        // if lang is specified, overwirte
+        let code_classes = code.attr("class").split(" ");
+        for(let code_class of code_classes) {
+            if(code_class.startsWith("lang-")) {
+                lang = code_class.substring(5);
+                break;
+            }
+        }
+        
+        // if lang is properly defined, add lang box
+        if (lang) {
+            let langbox = $(`<div class="code-langbox">${lang}</div>`);
+            langbox.appendTo(code);
+
+            // follow on horizontal scroll
+            code.scroll(function() {
+                langbox.css("right", `calc(1em - ${code.scrollLeft()}px)`);
+            })
+        }
+    }
+
     function addToolBox(code) {
         let toolbox = $(`<div class="code-toolbox"></div>`);
         toolbox.appendTo(code);
@@ -355,7 +383,7 @@ function activateCodeToolbox() {
 
             let content = undefined;
             if(code.find("table").length == 0) { //code without linenos
-                content = code;
+                content = code.find("code");
             } else { //code with linenos
                 content = code.find(".rouge-table .code");
             }
@@ -411,6 +439,7 @@ function activateCodeToolbox() {
         let code = $(this);
         if(code.hasClass("code-result")) return;  //if code-result, skip
 
+        addLangBox(code);
         addToolBox(code);
     });
 }
@@ -442,10 +471,8 @@ function activateImagePopup() {
         }
     }
 
-    $(".main-panel .document .toc-content-container .document-content .caption-img a").click(function(e) {
-        e.preventDefault();
-
-        let src = $(this).attr("href");
+    $(".main-panel .document .toc-content-container .document-content .caption-img img").click(function(e) {
+        let src = $(this).attr("src");
         openImagePopup(src);
     });
 

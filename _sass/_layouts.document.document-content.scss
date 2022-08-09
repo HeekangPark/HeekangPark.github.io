@@ -1,406 +1,411 @@
 $bottom-margin: 1.5em;
 
 .document-content {
-    $h1-font-size: 1.6em;
-    $h2-font-size: 1.5em;
-    $h3-font-size: 1.4em;
-    $h4-font-size: 1.3em;
-    $h5-font-size: 1.2em;
-    $h6-font-size: 1.1em;
-    $max-top-margin: 1.5em;
+  $h1-font-size: 1.6em;
+  $h2-font-size: 1.5em;
+  $h3-font-size: 1.4em;
+  $h4-font-size: 1.3em;
+  $h5-font-size: 1.2em;
+  $h6-font-size: 1.1em;
+  $max-top-margin: 1.5em;
 
-    box-sizing: border-box;
-    line-height: $line-height;
+  box-sizing: border-box;
+  line-height: $line-height;
 
-    counter-reset: h1counter 0;
+  counter-reset: h1counter 0;
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        //font-weight: bold;
-        padding: {
-            bottom: 0.25em;
-        }
-        border: {
-            //bottom: 1px solid var(--site-border);
-        }
-        margin: {
-            bottom: 0.5em;
-        }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    //font-weight: bold;
+    padding: {
+      bottom: 0.25em;
+    }
+    border: {
+      //bottom: 1px solid var(--site-border);
+    }
+    margin: {
+      bottom: 0.5em;
+    }
+  }
+
+  h1 {
+    font-size: $h1-font-size;
+    margin: {
+      top: min($h1-font-size * 1.5, $max-top-margin);
+    }
+    counter-reset: h2counter 0;
+    &::before {
+      //content: counter(h1counter, decimal) ". ";
+      counter-increment: h1counter;
+    }
+    + h2 {
+      margin: {
+        top: $h2-font-size;
+      }
     }
 
-    h1 {
-        font-size: $h1-font-size;
-        margin: {
-            top: min($h1-font-size * 1.5, $max-top-margin);
-        }
-        counter-reset: h2counter 0;
-        &::before {
-            //content: counter(h1counter, decimal) ". ";
-            counter-increment: h1counter;
-        }
-        + h2 {
-            margin: {
-                top: $h2-font-size;
-            }
-        }
+    &:first-child {
+      margin: {
+        top: 0;
+      }
+    }
+  }
 
-        &:first-child {
-            margin: {
-                top: 0;
-            }
-        }
+  h2 {
+    font-size: $h2-font-size;
+    margin: {
+      top: min($h2-font-size * 1.5, $max-top-margin);
+    }
+    counter-reset: h3counter 0;
+    &::before {
+      //content: counter(h1counter, decimal) "." counter(h2counter, decimal) ". ";
+      counter-increment: h2counter;
+    }
+    + h3 {
+      margin: {
+        top: $h3-font-size;
+      }
+    }
+  }
+
+  h3 {
+    font-size: $h3-font-size;
+    margin: {
+      top: min($h3-font-size * 1.5, $max-top-margin);
+    }
+    counter-reset: h4counter 0;
+    &::before {
+      //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) ". ";
+      counter-increment: h3counter;
+    }
+    + h4 {
+      margin: {
+        top: $h4-font-size;
+      }
+    }
+  }
+
+  h4 {
+    font-size: $h4-font-size;
+    margin: {
+      top: min($h4-font-size * 1.5, $max-top-margin);
+    }
+    counter-reset: h5counter 0;
+    &::before {
+      //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) ". ";
+      counter-increment: h4counter;
+    }
+    + h5 {
+      margin: {
+        top: $h5-font-size;
+      }
+    }
+  }
+
+  h5 {
+    font-size: $h5-font-size;
+    margin: {
+      top: min($h5-font-size * 1.5, $max-top-margin);
+    }
+    counter-reset: h6counter 0;
+    &::before {
+      //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) ". ";
+      counter-increment: h5counter;
+    }
+    + h6 {
+      margin: {
+        top: $h6-font-size;
+      }
+    }
+  }
+
+  h6 {
+    font-size: $h6-font-size;
+    margin: {
+      top: min($h6-font-size * 1.5, $max-top-margin);
     }
 
-    h2 {
-        font-size: $h2-font-size;
-        margin: {
-            top: min($h2-font-size * 1.5, $max-top-margin);
-        }
-        counter-reset: h3counter 0;
-        &::before {
-            //content: counter(h1counter, decimal) "." counter(h2counter, decimal) ". ";
-            counter-increment: h2counter;
-        }
-        + h3 {
-            margin: {
-                top: $h3-font-size;
-            }
-        }
+    &::before {
+      //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) "." counter(h6counter, decimal) ". ";
+      counter-increment: h6counter;
+    }
+  }
+
+  p {
+    margin: {
+      bottom: $bottom-margin;
+    }
+  }
+
+  ul,
+  ol {
+    list-style-position: outside;
+    margin: {
+      left: 2em;
+      top: 0.25em;
+      bottom: $bottom-margin;
     }
 
-    h3 {
-        font-size: $h3-font-size;
+    > li {
+      position: relative;
+      margin: {
+        bottom: 0.5em;
+      }
+
+      &:last-of-type {
         margin: {
-            top: min($h3-font-size * 1.5, $max-top-margin);
+          bottom: 0;
         }
-        counter-reset: h4counter 0;
-        &::before {
-            //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) ". ";
-            counter-increment: h3counter;
+      }
+
+      p {
+        margin: {
+          bottom: 0.5em;
         }
-        + h4 {
-            margin: {
-                top: $h4-font-size;
-            }
+      }
+    }
+  }
+
+  ul.guide-line {
+    li {
+      &::after {
+        content: "";
+        position: absolute;
+        height: calc(100% + 0.15em);
+        top: 1.2em;
+        left: -1.05em; // Noto Sans KR
+        width: 1px;
+        background: repeating-linear-gradient(
+          to bottom,
+          var(--ul-guide-line),
+          var(--ul-guide-line) 2px,
+          transparent 2px,
+          transparent 4px
+        );
+      }
+
+      &:last-of-type {
+        &::after {
+          content: none;
         }
+      }
     }
 
-    h4 {
-        font-size: $h4-font-size;
-        margin: {
-            top: min($h4-font-size * 1.5, $max-top-margin);
-        }
-        counter-reset: h5counter 0;
-        &::before {
-            //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) ". ";
-            counter-increment: h4counter;
-        }
-        + h5 {
-            margin: {
-                top: $h5-font-size;
-            }
-        }
-    }
-
-    h5 {
-        font-size: $h5-font-size;
-        margin: {
-            top: min($h5-font-size * 1.5, $max-top-margin);
-        }
-        counter-reset: h6counter 0;
-        &::before {
-            //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) ". ";
-            counter-increment: h5counter;
-        }
-        + h6 {
-            margin: {
-                top: $h6-font-size;
-            }
-        }
-    }
-
-    h6 {
-        font-size: $h6-font-size;
-        margin: {
-            top: min($h6-font-size * 1.5, $max-top-margin);
-        }
-
-        &::before {
-            //content: counter(h1counter, decimal) "." counter(h2counter, decimal) "." counter(h3counter, decimal) "." counter(h4counter, decimal) "." counter(h5counter, decimal) "." counter(h6counter, decimal) ". ";
-            counter-increment: h6counter;
-        }
-    }
-
-    p {
-        margin: {
-            bottom: $bottom-margin;
-        }
+    ol {
+      > li::after {
+        content: none;
+      }
     }
 
     ul,
     ol {
-        list-style-position: outside;
+      margin: {
+        bottom: 0;
+      }
+    }
+  }
+
+  blockquote {
+    padding: {
+      left: 2em;
+      right: 2em;
+      top: 1em;
+      bottom: 1em;
+    }
+    margin: {
+      top: $bottom-margin;
+      bottom: $bottom-margin;
+    }
+    background-color: var(--blockquote-background);
+    border: {
+      left: 10px solid var(--blockquote-border);
+    }
+    box-sizing: border-box;
+
+    p {
+      &:last-child {
         margin: {
-            left: 2em;
-            top: 0.25em;
-            bottom: $bottom-margin;
+          bottom: 0;
         }
+      }
 
-        > li {
-            position: relative;
-            margin: {
-                bottom: 0.5em;
-            }
-
-            &:last-of-type {
-                margin: {
-                    bottom: 0;
-                }
-            }
-
-            p {
-                margin: {
-                    bottom: 0.5em;
-                }
-            }
-        }
+      &.title {
+        font-size: 1.1em;
+        font-weight: bold;
+      }
     }
 
-    ul.guide-line {
-        li {
-            &::after {
-                content: "";
-                position: absolute;
-                height: calc(100% + 0.15em);
-                top: 1.2em;
-                left: -1.05em; // Noto Sans KR
-                width: 1px;
-                background: repeating-linear-gradient(
-                    to bottom,
-                    var(--ul-guide-line),
-                    var(--ul-guide-line) 2px,
-                    transparent 2px,
-                    transparent 4px
-                );
-            }
-
-            &:last-of-type {
-                &::after {
-                    content: none;
-                }
-            }
-        }
-
-        ol {
-            > li::after {
-                content: none;
-            }
-        }
-
-        ul,
-        ol {
-            margin: {
-                bottom: 0;
-            }
-        }
-    }
-
-    blockquote {
-        padding: {
-            left: 2em;
-            right: 2em;
-            top: 1em;
-            bottom: 1em;
-        }
+    ul,
+    ol {
+      &:last-child {
         margin: {
-            top: $bottom-margin;
-            bottom: $bottom-margin;
+          bottom: 0;
         }
-        background-color: var(--blockquote-background);
-        border: {
-            left: 10px solid var(--blockquote-border);
-        }
-        box-sizing: border-box;
+      }
+    }
+  }
 
-        p {
-            &:last-child {
-                margin: {
-                    bottom: 0;
-                }
-            }
+  table {
+    margin: {
+      bottom: $bottom-margin;
+    }
+  }
 
-            &.title {
-                font-size: 1.1em;
-                font-weight: bold;
-            }
-        }
+  sup[role="doc-noteref"] {
+    box-sizing: border-box;
+    font-size: inherit;
+    user-select: none;
+    word-break: keep-all;
 
-        ul,
-        ol {
-            &:last-child {
-                margin: {
-                    bottom: 0;
-                }
-            }
-        }
+    .footnote {
+      &::before {
+        content: "[";
+      }
+      &::after {
+        content: "]";
+      }
+      font-size: 0.75em;
+
+      &.hidden {
+        display: none;
+      }
     }
 
-    table {
+    .footnote-popup {
+      z-index: 5;
+      border: {
+        top: 2px var(--footnote-popup-border) solid;
+      }
+      overflow-y: auto;
+      box-shadow: 0em 0em 0.5em var(--footnote-popup-shadow);
+      padding: {
+        top: 0.5em;
+        bottom: 0.5em;
+        left: 0.75em;
+        right: 0.75em;
+      }
+      position: fixed;
+      bottom: 1em;
+      background-color: var(--footnote-popup-background);
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-gap: 0.5em;
+      font-size: 0.9em;
+      transition: transform 0.3s;
+      max-height: 30%;
+      font-weight: initial;
+      font-style: initial;
+      color: var(--site-text);
+      font-family: var(--normal-font);
+      word-break: break-all;
+      white-space: normal;
+      text-align: initial;
+
+      &.hidden {
+        transform: translateY(200%);
+        visibility: hidden;
+      }
+    }
+  }
+
+  a {
+    &:link {
+      color: var(--site-hyperlink-unclicked);
+    }
+    &:visited {
+      color: var(--site-hyperlink-clicked);
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .footnotes {
+    margin: {
+      top: 3em;
+      bottom: 3em;
+    }
+    padding: {
+      top: 1em;
+    }
+    border: {
+      top: 1px solid var(--site-border);
+    }
+
+    .reversefootnote {
+      font-size: 0.8em;
+    }
+
+    p {
+      margin: {
+        bottom: 0;
+      }
+    }
+
+    ol > li {
+      line-height: 2;
+    }
+  }
+
+  .strikethrough {
+    text-decoration: line-through;
+  }
+
+  @import "layouts.document.document-content.syntax-highlight";
+  @import "includes.caption-img";
+  @import "layouts.document.image-popup";
+
+  .text-align-center {
+    text-align: center;
+  }
+
+  details {
+    summary {
+      cursor: pointer;
+    }
+  }
+
+  @each $abbr, $name in ("t": "top", "b": "bottom") {
+    @for $i from 0 through 9 {
+      .m#{$abbr}-#{$i} {
         margin: {
-            bottom: $bottom-margin;
+          #{$name}: $bottom-margin * $i !important;
         }
+      }
     }
+  }
 
-    sup[role="doc-noteref"] {
-        box-sizing: border-box;
-        font-size: inherit;
-        user-select: none;
-        word-break: keep-all;
+  del,
+  .outdated,
+  .deprecated {
+    color: var(--del-text);
+    text-decoration: line-through;
 
-        .footnote {
-            &::before {
-                content: "[";
-            }
-            &::after {
-                content: "]";
-            }
-            font-size: 0.75em;
-
-            &.hidden {
-                display: none;
-            }
-        }
-
-        .footnote-popup {
-            z-index: 5;
-            border: {
-                top: 2px var(--footnote-popup-border) solid;
-            }
-            overflow-y: auto;
-            box-shadow: 0em 0em 0.5em var(--footnote-popup-shadow);
-            padding: {
-                top: 0.5em;
-                bottom: 0.5em;
-                left: 0.75em;
-                right: 0.75em;
-            }
-            position: fixed;
-            bottom: 1em;
-            background-color: var(--footnote-popup-background);
-            box-sizing: border-box;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            grid-gap: 0.5em;
-            font-size: 0.9em;
-            transition: transform 0.3s;
-            max-height: 30%;
-            font-weight: initial;
-            font-style: initial;
-            color: var(--site-text);
-            font-family: var(--normal-font);
-            word-break: break-all;
-            white-space: normal;
-
-            &.hidden {
-                transform: translateY(200%);
-                visibility: hidden;
-            }
-        }
-    }
-
-    a {
-        &:link {
-            color: var(--site-hyperlink-unclicked);
-        }
-        &:visited {
-            color: var(--site-hyperlink-clicked);
-        }
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-
-    .footnotes {
-        margin: {
-            top: 3em;
-            bottom: 3em;
-        }
-        padding: {
-            top: 1em;
-        }
-        border: {
-            top: 1px solid var(--site-border);
-        }
-
-        .reversefootnote {
-            font-size: 0.8em;
-        }
-
-        p {
-            margin: {
-                bottom: 0;
-            }
-        }
-
-        ol > li {
-            line-height: 2;
-        }
-    }
-
-    .strikethrough {
+    @for $i from 1 through 6 {
+      h#{$i} {
         text-decoration: line-through;
+      }
     }
 
-    @import "layouts.document.document-content.syntax-highlight";
-    @import "includes.caption-img";
-    @import "layouts.document.image-popup";
+    &:hover {
+      text-decoration: none;
 
-    .text-align-center {
-        text-align: center;
-    }
-
-    details {
-        summary {
-            cursor: pointer;
+      @for $i from 1 through 6 {
+        h#{$i} {
+          text-decoration: none;
         }
+      }
     }
+  }
 
-    @each $abbr, $name in ("t": "top", "b": "bottom") {
-        @for $i from 0 through 9 {
-            .m#{$abbr}-#{$i} {
-                margin: {
-                    #{$name}: $bottom-margin * $i !important;
-                }
-            }
-        }
+  em {
+    margin: {
+        right: 0.2em;
     }
-
-    del,
-    .outdated,
-    .deprecated {
-        color: var(--del-text);
-        text-decoration: line-through;
-
-        @for $i from 1 through 6 {
-            h#{$i} {
-                text-decoration: line-through;
-            }
-        }
-
-        &:hover {
-            text-decoration: none;
-
-            @for $i from 1 through 6 {
-                h#{$i} {
-                    text-decoration: none;
-                }
-            }
-        }
-
-        
-    }
+  }
 }
