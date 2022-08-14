@@ -1,7 +1,7 @@
 ---
 title: "Positional Encoding vs. Positional Embedding"
 date_created: "2022-01-28"
-date_modified: "2022-01-28"
+date_modified: "2022-08-14"
 ---
 
 전통적으로, 자연어로 된 문장을 조작해야 하는 NLP 영역에서는 연속적인(sequential) 데이터를 자연스럽게 입력으로 받아들일 수 있는 RNN 기반 모델이 많이 사용되어 왔다. 예를 들어, 문장 "John loves Susan"과 "Susan loves John"은 같은 단어들로 구성되어 있지만, 그 단어들의 위치(순서)가 달라 서로 다른 문장이다. 이때 RNN 모델에서는 문장 "John loves Susan"에 대해 ["John", "loves", "Susan"] 순으로 하나씩 입력되므로, "John"이 첫 번째 단어이고, "loves"가 두 번째 단어이고, "Susan"이 세 번째 단어라는 정보가 자연스럽게 입력된다. 또 문장 "Susan loves John"은 ["Susan", "loves", "John"]의 순서로 입력되므로, RNN 모델은 두 문장이 다르다는 사실을 쉽게 학습한다.
@@ -14,9 +14,9 @@ date_modified: "2022-01-28"
 
 그렇다면 Positional Encoding과 Positional Embedding의 차이는 무엇일까?
 
-# Positional Encoding
+# Positional Encoding (Sinusoid Positional Embedding)
 
-Transformer를 제일 처음 제안했던 논문 "[[2017] Attention Is All You Need](https://arxiv.org/abs/1706.03762)"에서는 모델에 위치 정보를 입력하기 위해 Positional Encoding이라는 방법을 사용했다. 이 방법은 간단하다. 각 단어(token)의 위치마다 고유한 값(정확히는, 벡터)을 만들어 내는 *적절한* 함수를 이용해, 문장에서 각 단어의 위치를 설명하는 위치 임베딩 벡터를 만든 뒤, 단어 임베딩 벡터에 더하는 것이다.
+Transformer를 제일 처음 제안했던 논문 "[[2017] Attention Is All You Need](https://arxiv.org/abs/1706.03762)"에서는 모델에 위치 정보를 입력하기 위해 Positional Encoding, 또는 Sinusoid Positional Embedding이라 불리는 방법을 사용했다. 이 방법은 간단하다. 각 단어(token)의 위치마다 고유한 값(정확히는, 벡터)을 만들어 내는 *적절한* 함수를 이용해, 문장에서 각 단어의 위치를 설명하는 위치 임베딩 벡터를 만든 뒤, 단어 임베딩 벡터에 더하는 것이다.
 
 이때 적절한 함수란 다음 조건을 만족시키는 함수를 말한다.
 
@@ -52,6 +52,34 @@ $$f(p, i) = \begin{cases}
   - 번역 : <https://hongl.tistory.com/231>  [한글]
 - <https://kazemnejad.com/blog/transformer_architecture_positional_encoding/>  [영문]
   - 번역 : <https://skyjwoo.tistory.com/entry/positional-encoding%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80>  [한글]
+
+## 구현
+
+다음과 같이 사전에 최대 입력 길이(`max_seq_len`)까지의 위치 임베딩을 미리 계산해 놓고, 입력이 들어올 때 바로 바로 가져다 쓰는 방식으로 구현할 수 있다.
+
+{:.code-header}
+Positional Encoding
+
+{% highlight python %}
+import torch.nn as nn
+
+class PositionalEncoding(nn.Module):
+    def __init__(self, max_seq_len, hidden_size):
+        super().__init__()
+        pe = torch.zeros(max_seq_len, hidden_size)
+        position = torch.arange(0, max_seq_len).unsqueeze(1)
+        div_term = torch.exp((torch.arange(0, hidden_size, 2, dtype=torch.float) *
+                              -(math.log(10000.0) / hidden_size)))
+        pe[:, 0::2] = torch.sin(position.float() * div_term)
+        pe[:, 1::2] = torch.cos(position.float() * div_term)
+        pe = pe.unsqueeze(0)
+        
+        self.register_buffer('pe', pe)
+    
+    def forward(self, word_emb):
+        pos_emb = self.pe[:, :word_emb.shape[1]]
+        return sent_embs + pos_emb
+{% endhighlight %}
 
 # Positional Embedding
 
