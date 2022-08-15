@@ -1,7 +1,7 @@
 ---
 title: "CodeSearchNet : Evaluating the state of Semantic Code Search"
 date_created: "2021-09-02"
-date_modified: "2022-01-28"
+date_modified: "2022-08-15"
 tags: ["nlp", "nlp-for-source-code"]
 ---
 

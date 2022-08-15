@@ -1,7 +1,7 @@
 ---
 title: "ENAS (Efficient Neural Architecture Search)"
 date_created: "2020-09-24"
-date_modified: "2022-01-28"
+date_modified: "2022-08-15"
 ---
 
 ENAS(Efficient Neural Architecture Search)는 의 논문 \<Efficient Neural Architecture Search via Parameter Sharing\>에 등장한 NAS 기술이다.

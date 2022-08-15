@@ -13,8 +13,9 @@
     </div>
 
     <div class="section site-title">
-        <a href="/" class="logo"><img src="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.logo }}"></a>
-        <p class="title"><a href="/">{{ site.title }}</a></p>
+        <a href="/" target="_self" class="logo"><img
+                src="{{ site.baseurl }}{{ site.assets }}/{{ site.data.info.logo }}"></a>
+        <p class="title"><a href="/" target="_self">{{ site.title }}</a></p>
     </div>
 
     <div class="section nav">
@@ -33,7 +34,7 @@
         {% assign sysdocs = sysdocs_with_nav_order | concat: sysdocs_without_nav_order %}
         {% for sysdoc in sysdocs %}
         <p class="nav-item">
-            <a href="{{ sysdoc.url }}">
+            <a href="{{ sysdoc.url }}" target="_self">
                 <span class="icon"><i class="{{ sysdoc.icon }}"></i></span>
                 <span class="text">{{ sysdoc.title | upcase }}</span>
             </a>
@@ -67,10 +68,10 @@
 
     <div class="section contact">
         <div class="contact-links">
-            <p class="contact-link-item email"><a href="mailto://{{ site.data.info.email }}"><i
+            <p class="contact-link-item email"><a href="mailto://{{ site.data.info.email }}" target="_blank"><i
                         class="far fa-envelope"></i></a></p>
-            <p class="contact-link-item github"><a href="https://github.com/{{ site.data.info.github }}"><i
-                        class="fab fa-github"></i></a></p>
+            <p class="contact-link-item github"><a href="https://github.com/{{ site.data.info.github }}"
+                    target="_blank"><i class="fab fa-github"></i></a></p>
         </div>
     </div>
 </div>

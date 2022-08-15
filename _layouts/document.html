@@ -37,7 +37,7 @@ show_ad: true
     <div class="document-head">
         {% unless page.no_collection %}
         {% if collection %}
-            <p class="document-collection"><a href="/categories#{{ collection.label }}">{{ collection.category }}<i class="fas fa-angle-right"></i>{{ collection.name }}</a></p>
+            <p class="document-collection"><a href="/categories#{{ collection.label }}" target="_self">{{ collection.category }}<i class="fas fa-angle-right"></i>{{ collection.name }}</a></p>
         {% endif %}
         {% endunless %}
 
@@ -66,12 +66,12 @@ show_ad: true
         <div class="head-document-navigator-btns">
             {% unless is_first %}
                 <div class="document-navigator-btn prev-document-btn" title="이전 문서로 : {{ prev_document.title }}">
-                    <a href="{{ prev_document.url }}"><i class="fas fa-chevron-left"></i></a>
+                    <a href="{{ prev_document.url }}" target="_self"><i class="fas fa-chevron-left"></i></a>
                 </div>
             {% endunless %}
             {% unless is_last %}
                 <div class="document-navigator-btn next-document-btn" title="다음 문서로 : {{ next_document.title }}">
-                    <a href="{{ next_document.url }}"><i class="fas fa-chevron-right"></i></a>
+                    <a href="{{ next_document.url }}" target="_self"><i class="fas fa-chevron-right"></i></a>
                 </div>
             {% endunless %}
         </div>
@@ -96,7 +96,7 @@ show_ad: true
             <i class="fas fa-tag icon"></i>
             <div class="tags">
                 {%- for tag in document_tags -%}
-                    <p class="tag"><a href="/tags#{{ tag }}">{{ tag }}</a></p>
+                    <p class="tag"><a href="/tags#{{ tag }}" target="_self">{{ tag }}</a></p>
                 {%- endfor -%}
             </div>
         </div>
@@ -109,7 +109,7 @@ show_ad: true
         <div class="adjacent-documents">
             {% unless is_first %}
                 <div class="prev-document-btn btn">
-                    <a href="{{ prev_document.url }}">
+                    <a href="{{ prev_document.url }}" target="_self">
                         <p class="name">이전 문서</p>
                         <p class="title">{{ prev_document.title }}</p>
                     </a>
@@ -117,7 +117,7 @@ show_ad: true
             {% endunless %}
             {% unless is_last %}
                 <div class="next-document-btn btn">
-                    <a href="{{ next_document.url }}">
+                    <a href="{{ next_document.url }}" target="_self">
                         <p class="name">다음 문서</p>
                         <p class="title">{{ next_document.title }}</p>
                     </a>
@@ -135,7 +135,7 @@ show_ad: true
                     {% endif %}
 
                     <div class="collection-document {{ class }}">
-                        <a href="{{ document.url }}">
+                        <a href="{{ document.url }}" target="_self">
                             <p class="document-title">{{ document.title }}</p>
                             <div class="document-info">
                                 <p class="document-date-modified with-icon">

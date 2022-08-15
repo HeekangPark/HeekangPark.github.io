@@ -202,16 +202,16 @@ function updateVisibleDocuments() {
 
 function getDocumentHtml(document) {
     let html = `<div class="document">
-    <p class="document-collection"><a href="/categories#${document.collection_label}">${document.category}<i class="fas fa-angle-right"></i>${document.collection_name}</a></p>
-    <p class="document-title"><a href="${document.url}">${document.title}</a></p>
-    <p class="document-preview ignore-mathjax"><a href="${document.url}">${document.preview.replace('\"', '"').replace("\\\\", "\\")}</a></p>
+    <p class="document-collection"><a href="/categories#${document.collection_label}" target="_self">${document.category}<i class="fas fa-angle-right"></i>${document.collection_name}</a></p>
+    <p class="document-title"><a href="${document.url}" target="_self">${document.title}</a></p>
+    <p class="document-preview ignore-mathjax"><a href="${document.url}" target="_self">${document.preview.replace('\"', '"').replace("\\\\", "\\")}</a></p>
     <div class="document-tags with-icon">
         <i class="icon fas fa-tag"></i>
         <div class="tags">
 `;
     
     for(let tag of document.tags) {
-        html += `            <p class="tag"><a href="/tags#${tag}">${tag}</a></p>
+        html += `            <p class="tag"><a href="/tags#${tag}" target="_self">${tag}</a></p>
 `;
     }
     

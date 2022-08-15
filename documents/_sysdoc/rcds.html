@@ -30,15 +30,15 @@ description: "최근 추가된 문서"
             {% endif %}
         {% endfor %}
         <div class="document">
-            <p class="document-collection"><a href="/categories#{{ document.collection }}">{{ category }}<i class="fas fa-angle-right"></i>{{ collection }}</a></p>
-            <p class="document-title"><a href="{{ document.url }}">{{ document.title }}</a></p>
-            <p class="document-preview ignore-mathjax"><a href="{{ document.url }}">{{ document.content | strip_html | truncate: site.preview_length }}</a></p>
+            <p class="document-collection"><a href="/categories#{{ document.collection }}" target="_self">{{ category }}<i class="fas fa-angle-right"></i>{{ collection }}</a></p>
+            <p class="document-title"><a href="{{ document.url }}" target="_self">{{ document.title }}</a></p>
+            <p class="document-preview ignore-mathjax"><a href="{{ document.url }}" target="_self">{{ document.content | strip_html | truncate: site.preview_length }}</a></p>
             <div class="document-tags with-icon">
                 <i class="icon fas fa-tag"></i>
                 <div class="tags">
                     {%- assign document_tags = document.tags | compact | uniq | join: delim | downcase | split: delim | concat: collection_tags | compact | uniq | sort -%}
                     {%- for tag in document_tags -%}
-                        <p class="tag"><a href="/tags#{{ tag }}">{{ tag }}</a></p>
+                        <p class="tag"><a href="/tags#{{ tag }}" target="_self">{{ tag }}</a></p>
                     {%- endfor -%}
                 </div>
             </div>

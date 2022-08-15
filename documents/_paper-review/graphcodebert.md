@@ -1,12 +1,14 @@
 ---
 title: "GraphCodeBERT : Pre-Training Code Representations with Data Flow"
 date_created: "2021-09-03"
-date_modified: "2022-06-11"
+date_modified: "2022-08-15"
 ---
 
 {:.info}
-- 논문 링크 : <https://arxiv.org/pdf/2009.08366.pdf>
+- 논문 링크 : <https://arxiv.org/abs/2009.08366>
 - 코드/데이터셋 링크 : <https://github.com/microsoft/CodeBERT/tree/master/GraphCodeBERT>
+
+{% include caption-img.html src="graphcodebert.png" title="GraphCodeBERT" description="src: <a href=\"https://arxiv.org/abs/2009.08366\">[2021] GraphCodeBERT: Pre-training Code Representations with Data Flow</a>" %}
 
 {:.guide-line}
 - ELMo, GPT, BERT 등의 사전학습 모델(pre-trained model)의 성공은 프로그래밍 언어에 대한 사전학습 모델의 발전을 촉진함
@@ -42,7 +44,7 @@ date_modified: "2022-06-11"
   
   4. $N$개의 Transformer layer를 사용해 입력 벡터를 contextual representation $H^N$으로 변환 : $H^n = transformer\_n (H^{n-1})$ ($n \in [1,\,N]$)
        - Transformer layer는 동일한 구조의 multi-headed self-attention operation을 수행하는 transformer와, 뒤이은 Feed Forward Layer로 구성됨
-       - $G^n = LN(\,MultiAttn(H^{n-1}) + H^{n-1}$
+       - $G^n = LN(\,MultiAttn(H^{n-1}) + H^{n-1}\,)$
        - $H^n = LN(\,FFN(G^n) + G^n\,)$
          
          - $MultiAttn()$ : Multi-headed self-attention 매커니즘
