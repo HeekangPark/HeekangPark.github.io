@@ -417,6 +417,7 @@ body {
 @media screen and (max-width: #{$left-panel-size + $media-desktop + 4em}) {
     .container {
         grid-template-columns: $left-panel-size 1fr;
+        width: 100%;
     }
 }
 

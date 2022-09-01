@@ -1,7 +1,7 @@
 ---
 title: "Huggingface BERT 톺아보기"
 date_created: "2022-07-23"
-date_modified: "2022-08-09"
+date_modified: "2022-09-01"
 ---
 
 <style>
@@ -46,15 +46,11 @@ pip install ipywidgets
 
 # Tokenizer
 
-Huggingface의 모든 transformer 모델들은 문자열(string) 형태로 된 텍스트를 바로 입력으로 받을 수 없다. Huggingface 모델들은 텍스트를 tokenize한 후 각 token들을 고유한 정수로 바꾼 것, 그러니까 token id들의 리스트(sequence of token ids)를 입력으로 받는다. 이때 Huggingface tokenizer를 사용하면 Huggingface 모델들이 사용하는 형태의 입력을 손쉽게 만들 수 있다.
+Huggingface에서 제공하는 대부분의 transformer 모델들은 문자열(string)로 된 텍스트를 입력으로 바로 받을 수 없다. 예를 들어 BERT의 경우 tokenize한 후 각 token들을 고유한 정수로 바꾼 것, 그러니까 token id들의 리스트(sequence of token ids)를 입력으로 받는다. 게다가 `attention_mask`, `token_type_ids`와 같은 추가적인 데이터를 요구한다.
 
-구체적으로, Huggingface의 tokenizer는 다음 3가지 작업을 한다.
+이에 Huggingface의 모델들은 각 모델별로 tokenizer라는 것을 제공한다. tokenizer는 자신과 짝이 맞는 모델이 어떤 데이터를 원하는지를 알아, 그에 맞게 데이터를 가공해 반환한다. 이 tokenizer의 출력값은 거의 그대로 모델로 들어가게 된다.
 
-- 텍스트를 token 단위로 분할하고(tokenization),
-- 각 token를 고유한 정수값(token id)으로 변환하고,
-- 이외 기타 모델이 사용하는 추가적인 정보를 추가하여 반환한다.
-
-다음과 같이 `AutoTokenizer.from_pretrained()` 메소드에 모델명을 입력하면 모델이 사전학습될 때 사용한 tokenizer를 불러와 사용할 수 있다. 사전학습 때와 동일한 tokenizer를 사용해야 모델이 원하는 형태의 입력을 정확히 만들 수 있다.
+그래서 Huggingface 모델 사용의 제 1단계는 "해당 모델의 tokenizer 불러오기" 이다. 다음과 같이 `AutoTokenizer.from_pretrained()` 메소드에 모델명을 입력하면 모델과 매치되는 tokenizer를 불러올 수 있다. 이를 이용해 `bert-base-uncased` 모델의 tokenizer를 불러오자.
 
 {% highlight python %}
 from transformers import AutoTokenizer
