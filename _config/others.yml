@@ -35,7 +35,7 @@ preview_length: 300
 
 home_recently_modified_doc_num: 3
 home_recently_created_doc_num: 3
-decoration: "watermelons"  # ["sakuras", "watermelons", "leaves", "snowflakes", "raindrops", "suns"]
+decoration: "leaves"  # ["sakuras", "watermelons", "leaves", "snowflakes", "raindrops", "suns"]
 
 collections:
   sysdoc:
