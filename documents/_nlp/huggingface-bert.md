@@ -1,7 +1,7 @@
 ---
 title: "Huggingface BERT 톺아보기"
 date_created: "2022-07-23"
-date_modified: "2022-09-01"
+date_modified: "2022-09-02"
 ---
 
 <style>
@@ -46,9 +46,11 @@ pip install ipywidgets
 
 # Tokenizer
 
-Huggingface에서 제공하는 대부분의 transformer 모델들은 문자열(string)로 된 텍스트를 입력으로 바로 받을 수 없다. 예를 들어 BERT의 경우 tokenize한 후 각 token들을 고유한 정수로 바꾼 것, 그러니까 token id들의 리스트(sequence of token ids)를 입력으로 받는다. 게다가 `attention_mask`, `token_type_ids`와 같은 추가적인 데이터를 요구한다.
+Huggingface에서 제공하는 대부분의 transformer 모델들은 텍스트를 바로 입력으로 받을 수 없다. 예를 들어 BERT 모델의 경우 문자열(string)로 된 텍스트 그 자체가 아닌, 텍스트를 tokenize한 후 각 token들을 고유한 정수로 바꾼 것, 그러니까 token id들의 리스트(sequence of token ids)를 입력으로 받는다. 게다가 `attention_mask`, `token_type_ids`와 같은 추가적인 데이터를 요구한다.
 
-이에 Huggingface의 모델들은 각 모델별로 tokenizer라는 것을 제공한다. tokenizer는 자신과 짝이 맞는 모델이 어떤 데이터를 원하는지를 알아, 그에 맞게 데이터를 가공해 반환한다. 이 tokenizer의 출력값은 거의 그대로 모델로 들어가게 된다.
+이때 Huggingface에서는 각 모델별로 tokenizer라는 것을 제공한다. tokenizer는 자신과 짝이 맞는 모델이 어떤 형태의 입력을 요구하는지를 알고 있어, tokenizer를 이용하면 텍스트를 전처리, 가공해 모델의 입력값(model input)을 만들 수 있다. 우린 그냥 tokenizer의 출력을 그대로 모델에 넣어주기만 하면 된다.
+
+{% include caption-img.html src="huggingface-bert-tokenizer.png" title="Fig.01 Huggingface Tokenizer" description="tokenizer는 모델이 받아들일 수 있는 형태로 입력 텍스트를 가공해 준다." %}
 
 그래서 Huggingface 모델 사용의 제 1단계는 "해당 모델의 tokenizer 불러오기" 이다. 다음과 같이 `AutoTokenizer.from_pretrained()` 메소드에 모델명을 입력하면 모델과 매치되는 tokenizer를 불러올 수 있다. 이를 이용해 `bert-base-uncased` 모델의 tokenizer를 불러오자.
 
@@ -335,15 +337,23 @@ BERT는 다양한 task에 대해 fine-tuning하여 사용할 수 있다. 특정 
 
 이때 1번에서 쌓은 추가 layer를 head라 부른다. Huggingface에서는 다양한 task에서 BERT를 손쉽게 사용할 수 있도록 미리 다양한 종류의 head를 붙인 BERT를 제공한다. 예를 들어 extractive question answering task에 사용할 수 있도록 fully-connected layer head를 붙인 `BertForQuestionAnswering`, masked language modeling task에 사용할 수 있도록 MLM head(masked language modeling head)를 붙인 `BertForMaskedLM` 등이 있다.
 
-Huggingface BERT가 어떻게 구현되어있는지 보기 위해 head가 없는 순수 BERT를 살펴보도록 하자. head 없는 순수 BERT는 Huggingface에서 `BertModel`이라는 이름으로 구현되어 있다. 다음과 같이 `BertModel.from_pretrained()` 메소드를 이용하면 사전학습된 BERT 모델과 그 가중치를 손쉽게 불러올 수 있다. 이때 `add_pooling_layer` 인자에 `False`를 주어 pooling layer가 자동으로 추가되는 것을 막았다(default: `True`).
+Huggingface BERT가 어떻게 구현되어있는지 보기 위해 head가 없는 순수 BERT를 살펴보도록 하자. head 없는 순수 BERT는 Huggingface에서 `BertModel`이라는 이름으로 구현되어 있다. 다음과 같이 `BertModel.from_pretrained()` 메소드를 이용하면 사전학습된 BERT 모델과 그 가중치를 손쉽게 불러올 수 있다.
 
 {% highlight python %}
 from transformers import BertModel
 
-model = BertModel.from_pretrained("bert-base-uncased", add_pooling_layer=False)
+model = BertModel.from_pretrained("bert-base-uncased", add_pooling_layer=False, output_hidden_states=True, output_attentions=True)
 {% endhighlight %}
 
-위 명령어를 실행하면 다음과 같은 경고 문구가 뜰 것이다.
+`add_pooling_layer`, `output_hidden_states`, `output_attentions` 인자를 추가로 준 것을 볼 수 있는데, 각 인자는 다음과 같은 역할을 한다.
+
+- `add_pooling_layer` : BERT 위에 추가적으로 pooling layer를 쌓을 것인지 여부를 결정한다(default: `True`). pooling layer는 `[CLS]` token의 embedding만을 뽑아 linear 연산과 activation 연산을 수행하는 layer로, BERT를 이용해 classification task를 수행할 때 주로 사용한다.
+- `output_hidden_states` : BERT의 각 layer의 hidden state들을 담고 있는 배열 `hidden_states`를 출력할 것인지 여부를 결정한다(default: `False`). 
+- `ouput_attentions` : BERT의 각 layer의 attention distribution(attention weight)들을 담고 있는 배열 `attentions`를 출력할 것인지 여부를 결정한다(default: `False`).
+
+본 문서에서는 BERT의 동작 과정을 알아보는 것이 목적이므로 `add_pooling_layer`에는 `False`를, `output_hidden_states`와 `output_attentions`에는 `True`를 주었다.
+
+참고로 위 명령어를 실행하면 다음과 같은 경고 문구가 뜰 것이다.
 
 {% highlight text %}
 Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertModel: ['cls.predictions.transform.dense.weight', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.dense.bias', 'bert.pooler.dense.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.bias', 'cls.predictions.decoder.weight', 'bert.pooler.dense.bias', 'cls.seq_relationship.weight', 'cls.seq_relationship.bias']
@@ -481,6 +491,71 @@ BertModel(
   )
 )
 {% endhighlight %}
+
+`BertModel`을 사용하는 방법은 매우 간단하다. 일반적인 torch module(`torch.nn.Module`)을 쓰듯이 입력값을 넣어주면 된다. 다음과 같이 tokenizer로 만든 입력값을 `BertModel`에 넣어주자.
+
+{% highlight python %}
+model_input = tokenizer("I love NLP!", return_tensors="pt")
+output = model(**model_input)
+{% endhighlight %}
+
+`BertModel`의 출력값에는 다음 값들이 포함되어 있다.
+
+{% highlight python %}
+print(output.keys())
+{% endhighlight %}
+
+{:.code-result.default-open}
+{% highlight text %}
+odict_keys(['last_hidden_state', 'hidden_states', 'attentions'])
+{% endhighlight %}
+
+각 값들의 의미를 살펴보자. 우선 `last_hidden_state`는 마지막 layer의 hidden state이다. `bert-base-uncased`의 경우 `(batch_size, sequence_length, 768)` 크기의 tensor이다. 일반적으로 이 값을 입력된 텍스트에 대해 BERT가 생성한 최종 embedding으로 여긴다. 이 embedding을 사용하여 downstream task를 수행한다.
+
+{% highlight python %}
+print(output.last_hidden_state.shape)
+{% endhighlight %}
+
+{:.code-result.default-open}
+{% highlight text %}
+torch.Size([1, 7, 768])
+{% endhighlight %}
+
+`hidden_states`는 각 layer의 hidden state를 모아놓은 list이다. 이때 마지막 layer일수록 뒤에 있다. 즉 `hidden_states[-1]`과 `last_hidden_state`는 같다. `bert-base-uncased`의 경우 길이 13인 list이고(첫 번째 원소는 `BertEmbeddings` 모듈의 출력값이다), 각 원소는 크기 `(batch_size, sequence_length, 768)`인 tensor이다.
+
+{% highlight python %}
+print(len(output.hidden_states))
+print(output.hidden_states[-1] == output.last_hidden_state)
+print(output.hidden_states[0].shape)
+{% endhighlight %}
+
+{:.code-result.default-open}
+{% highlight text %}
+13
+tensor([[[True, True, True,  ..., True, True, True],
+         [True, True, True,  ..., True, True, True],
+         [True, True, True,  ..., True, True, True],
+         ...,
+         [True, True, True,  ..., True, True, True],
+         [True, True, True,  ..., True, True, True],
+         [True, True, True,  ..., True, True, True]]])
+torch.Size([1, 7, 768])
+{% endhighlight %}
+
+`attentions`은 각 layer의 attention weight를 모아놓은 list이다. 이때 마지막 layer일수록 뒤에 있다. `bert-base-uncased`의 경우 길이 12인 list이고, 각 원소는 크기 `(batch_size, 12, sequence_length, sequence_length)`인 tensor이다.
+
+{% highlight python %}
+print(len(output.attentions))
+print(output.attentions[0].shape)
+{% endhighlight %}
+
+{:.code-result.default-open}
+{% highlight text %}
+12
+torch.Size([1, 12, 7, 7])
+{% endhighlight %}
+
+## 구현
 
 이제 이 `BertModel`이 실제로 어떻게 구현되어 있는지 알아보자. [Huggingface github](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_bert.py)에서 `BertModel`의 구현 코드를 볼 수 있다.
 
@@ -782,7 +857,7 @@ Embedding(2, 768)
 
 그리고 line 57 ~ 60에서 위 3개의 layer에서 만들어진 embedding들(`word_embeddings`, `position_embeddings`, `token_type_embeddings`)을 모두 합쳐서 `embeddings`라는 embedding을 만드는 것을 볼 수 있다. `word_embeddings`, `position_embeddings`, `token_type_embeddings`들은 모두 크기가 같은(`hidden_size`) 벡터들이므로, 이들을 더해서 만들어진 `embeddings` 역시 `hidden_size` 크기의 벡터이다. 그리고 line 61, 62에서 이 `embeddings`를 layer normalization layer(`torch.nn.LayerNorm`)와 dropout layer(`torch.nn.Dropout`)에 순차적으로 통과시켜 최종 embedding을 만드는 것을 볼 수 있다.
 
-{% include caption-img.html src="huggingface-bert-bertembeddings.png" title="Fig.01 BertEmbeddings" description="Huggingface BERT의 embeddings 모듈은 token들의 embedding(<code class='language-plaintext highlighter-rouge'>word_embeddings</code>)과 segment embedding(<code class='language-plaintext highlighter-rouge'>token_type_embeddings</code>), 그리고 position embeddings(<code class='language-plaintext highlighter-rouge'>position_embeddings</code>)을 모두 합쳐 encoder 모듈로의 입력 embedding을 만든다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1810.04805'>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019, Delvin et el.)</a>" %}
+{% include caption-img.html src="huggingface-bert-bertembeddings.png" title="Fig.02 BertEmbeddings" description="Huggingface BERT의 embeddings 모듈은 token들의 embedding(<code class='language-plaintext highlighter-rouge'>word_embeddings</code>)과 segment embedding(<code class='language-plaintext highlighter-rouge'>token_type_embeddings</code>), 그리고 position embeddings(<code class='language-plaintext highlighter-rouge'>position_embeddings</code>)을 모두 합쳐 encoder 모듈로의 입력 embedding을 만든다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1810.04805'>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019, Delvin et el.)</a>" %}
 
 이번에는 `BertEncoder`의 코드를 살펴보자.
 
@@ -890,7 +965,7 @@ class BertEncoder(nn.Module):
 
 우선 line 5에서 `layer`라는 이름으로 `BertLayer` 모듈이 `torch.nn.ModuleList`로 `config.num_hidden_layers`개(`bert-base-uncased`의 경우 12개) 쌓여 있는 것을 볼 수 있다.
 
-{% include caption-img.html src="huggingface-bert-bertencoder.png" title="Fig.02 BertEncoder" description="Huggingface BERT의 encoder(파란색)는 BertLayer(노란색, 연두색 각 줄)가 여러 줄 쌓여 있는 것이다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1810.04805'>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019, Delvin et el.)</a>" %}
+{% include caption-img.html src="huggingface-bert-bertencoder.png" title="Fig.03 BertEncoder" description="Huggingface BERT의 encoder(파란색)는 BertLayer(노란색, 연두색 각 줄)가 여러 줄 쌓여 있는 것이다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1810.04805'>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019, Delvin et el.)</a>" %}
 
 그리고 line 26 ~ 72에서 이들 `BertLayer`를 하나씩 사용하고 있는 것을 볼 수 있다.
 
@@ -990,7 +1065,7 @@ class BertLayer(nn.Module):
         return layer_output
 {% endhighlight %}
 
-{% include caption-img.html src="huggingface-bert-bertlayer-transformer.png" title="Fig.03 Transformer" description="이 그림은 Transformer의 구조를 나타낸 그림으로, BERT는 Transformer의 encoder 부분만을 가져와 만든 것이다. 이때 <code class='language-plaintext highlighter-rouge'>BertLayer</code>는 왼쪽 encoder의 (N번 반복된다는) 사각형 하나를 의미한다. <code class='language-plaintext highlighter-rouge'>attention</code> 모듈은 위 그림에서 주황색 multi-head attention 블록을 의미하고 <code class='language-plaintext highlighter-rouge'>intermediate</code> 모듈은 파란색 feed-forward 블록을 의미한다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1706.03762'>Attention Is All You Need (2017, Vaswani et el.)</a>" %}
+{% include caption-img.html src="huggingface-bert-bertlayer-transformer.png" title="Fig.04 Transformer" description="이 그림은 Transformer의 구조를 나타낸 그림으로, BERT는 Transformer의 encoder 부분만을 가져와 만든 것이다. 이때 <code class='language-plaintext highlighter-rouge'>BertLayer</code>는 왼쪽 encoder의 (N번 반복된다는) 사각형 하나를 의미한다. <code class='language-plaintext highlighter-rouge'>attention</code> 모듈은 위 그림에서 주황색 multi-head attention 블록을 의미하고 <code class='language-plaintext highlighter-rouge'>intermediate</code> 모듈은 파란색 feed-forward 블록을 의미한다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1706.03762'>Attention Is All You Need (2017, Vaswani et el.)</a>" %}
 
 위 그림은 Transformer 논문([Attention Is All You Need (2017, Vaswani et el.)](https://arxiv.org/abs/1706.03762))에서 가지고 온 것인데, 모두 알고 있다시피 BERT는 Transformer의 encoder-decoder 구조 중 encoder 부분만을 가져와 만든 것이다. 이때 `BertLayer`는 왼쪽 encoder의 (N번 반복된다는) 사각형 하나를 의미한다.
 
@@ -1051,7 +1126,7 @@ class BertAttention(nn.Module):
         return outputs
 {% endhighlight %}
 
-`BertAttention` 모듈은 `BertSelfAttention` 클래스로 만들어진 `self` 모듈(line 4)과 `BertSelfOutput` 클래스로 만들어진 `output` 모듈로 구성되어 있다. `self` 모듈은 multi-head self attention 연산을 수행하는 모듈이고(Fig.03의 주황색 블록), `output` 모듈은 layer normalization 연산을 수행하는 모듈이다(Fig.03의 노란색 블록).
+`BertAttention` 모듈은 `BertSelfAttention` 클래스로 만들어진 `self` 모듈(line 4)과 `BertSelfOutput` 클래스로 만들어진 `output` 모듈로 구성되어 있다. `self` 모듈은 multi-head self attention 연산을 수행하는 모듈이고(Fig.04의 주황색 블록), `output` 모듈은 layer normalization 연산을 수행하는 모듈이다(Fig.04의 노란색 블록).
 
 `BertAttention`이 하는 일은 아주 간단하다. 입력된 `hidden_states`에 대해 `self` 모듈을 불러 multi-head self attention 연산을 수행하고(line 36 ~ 44), 그 결과와 원본 `hidden_states`를 가지고(즉 일종의 residual connection을 만드는 것이다) layer normalization을 수행하여(line 45) 반환한다.
 
@@ -1202,7 +1277,7 @@ $$\text{head}_i = \text{Attention}(QW_i^Q,\,KW_i^K,\,VW_i^V)$$
 {:.mathjax-mt-0}
 $$\text{Attention}(Q,\,K,\,V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$$
 
-{% include caption-img.html src="huggingface-bert-bertselfattention-attention.png" title="Fig.04 Multi-head, Scaled Dot Product Self Attention" description="BERT가 사용하는 multi-head, scaled dot product self attention의 구조를 도식화하면 위와 같다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1706.03762'>Attention Is All You Need (2017, Vaswani et el.)</a>" %}
+{% include caption-img.html src="huggingface-bert-bertselfattention-attention.png" title="Fig.05 Multi-head, Scaled Dot Product Self Attention" description="BERT가 사용하는 multi-head, scaled dot product self attention의 구조를 도식화하면 위와 같다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1706.03762'>Attention Is All You Need (2017, Vaswani et el.)</a>" %}
 
 (multi-head self attention 연산 자체에 대한 조금 더 자세한 설명은 [본 블로그의 다른 문서](/nlp/attention)을 참조하기 바란다.)
 
@@ -1347,7 +1422,7 @@ class BertIntermediate(nn.Module):
         return hidden_states
 {% endhighlight %}
 
-상술했듯이 `BertIntermediate` 모듈은 Fig.03의 "Feed Forward" 블록을 의미한다. 이 블록은 linear 연산 이후 activation 함수를 적용하고 다시 linear 연산을 수행하는, 상당히 전통적인 feed forward 연산을 의미한다.
+상술했듯이 `BertIntermediate` 모듈은 Fig.04의 "Feed Forward" 블록을 의미한다. 이 블록은 linear 연산 이후 activation 함수를 적용하고 다시 linear 연산을 수행하는, 상당히 전통적인 feed forward 연산을 의미한다.
 
 $$FFN(x) = \text{activation}(xW_1 + b_1)W_2 + b_2$$
 
@@ -1377,11 +1452,11 @@ class BertOutput(nn.Module):
         return hidden_states
 {% endhighlight %}
 
-상술했듯이 `BertOutput` 모듈은 Fig.03의 "Add & Norm" 블록을 의미한다. 우선 `torch.nn.Linear`로 구현된 `dense` layer를 거쳐, `(batch_size, sequence_length, intermediate_size)` 크기였던 `hidden_states`를 다시 `(batch_size, sequence_length, hidden_size)` 크기로 변환한다.
+상술했듯이 `BertOutput` 모듈은 Fig.04의 "Add & Norm" 블록을 의미한다. 우선 `torch.nn.Linear`로 구현된 `dense` layer를 거쳐, `(batch_size, sequence_length, intermediate_size)` 크기였던 `hidden_states`를 다시 `(batch_size, sequence_length, hidden_size)` 크기로 변환한다.
 
 그리고 그 결과는 `input_tensor`라는 이름의 인자로 받는, `BertIntermediate` 모듈에 들어가기 전 (`BertAttention` 모듈의 출력값이었던) 원본 `hidden_states`와 더해져(residual connection) layer normalization(line 11)이 수행된다.
 
-추가로, `BertModel`의 line 19에 보면 `BertPooler` 클래스를 이용해 만들어진 `pooler` 모듈이 있는 것을 볼 수 있다. 우리가 로드한 모델의 경우 상술했듯이 로드 시 `add_pooling_layer` 인자에 `False`를 주었기 때문에 이 `pooler` 모듈은 동작하지 않는다(`None`이 들어가 있다). 그래도 코드를 살펴보자.
+추가로, `BertModel`의 line 19에 보면 `BertPooler` 클래스를 이용해 만들어진 `pooler` 모듈이 있는 것을 볼 수 있다. 우리가 로드한 모델의 경우 상술했듯이 로드 시 `add_pooling_layer` 인자에 `False`를 주었기 때문에 이 `pooler` 모듈은 동작하지 않는다(`None`이 들어가 있다).
 
 {:.code-header}
 BertPooler
@@ -1410,7 +1485,12 @@ line 10에서 이 입력값으로부터 각 batch를 구성하는 sequence들의
 
 # 최종 정리
 
-정리하면, `BertModel`을 구성하는 각 모듈이 하는 일은 다음과 같다.
+정리하면, `BertModel`은
+
+- 입력으로 `input_ids`(텍스트를 tokenize한 리스트), `token_type_ids`(Sentence A, Sentence B 정보), `attention_mask`(batch에서의 padding 정보)를 받아,
+- 출력으로 `last_hidden_state`(마지막 layer의 hidden state), (`output_hidden_states`가 `True`인 경우) `hidden_states`(각 layer의 hidden state), (`output_attentions`가 `True`인 경우) `attentions`(각 layer에서의 attention distribution)을 반환한다.
+
+`BertModel`을 구성하는 각 모듈이 하는 일은 다음과 같다.
 
 1. `BertEmbeddings` : 입력된 `input_ids`를 위치 정보가 반영된 embedding으로 변환한다.
 
