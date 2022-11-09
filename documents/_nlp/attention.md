@@ -1,7 +1,7 @@
 ---
 title: "어텐션 메커니즘 (Attention Mechanism)"
 date_created: "2022-01-25"
-date_modified: "2022-08-09"
+date_modified: "2022-11-09"
 ---
 
 # Seq2Seq 모델
@@ -112,11 +112,11 @@ Seq2Seq + attention 모델의 동작 과정을 조금 더 자세히 알아보자
 
 어텐션 메커니즘의 동작 과정은 query, key, value라는 이름으로 일반화할 수 있다.
 
-1. 스코어 함수를 이용, query와 각 key들 간의 어텐션 스코어를 계산한다.
-2. softmax 함수를 이용, query와 각 key들간의 어텐션 스코어들을 어텐션 분포로 변환한다.
-3. 어텐션 분포를 이용해 각 value들의 가중합(어텐션 값)을 구한다.
+1. 유사도(similarity) 계산 : 스코어 함수를 이용, query와 각 key들 간의 어텐션 스코어를 계산한다.
+2. 정규화(normalization) : softmax 함수를 이용, query와 각 key들간의 어텐션 스코어들을 어텐션 분포로 변환한다.
+3. 가중합(weighted sum) 계산 : 어텐션 분포를 이용해 각 value들의 가중합(어텐션 값)을 구한다.
 
-즉 어텐션 연산은 한 마디로 query와 key들 사이의 유사도에 따라 value들의 가중합을 구하는 연산이라 이해할 수 있다. 이때 query와 key들간의 유사도는 스코어 함수를 이용해 계산한다. 다르게 표현하면, 어텐션 연산은 query에 대해 value들을 '요약'하는 것이다.
+즉 어텐션 연산은 query에 대해 value들을 '요약'하는 것이다. 다르게 말하면, 어텐션 연산은 어떤 value에 '집중'할지 결정하는 것이다. 어텐션 연산이 수행되면, 중요한(= query와 유사도가 높은 key를 가진) value에 더 '집중'하게 된다.
 
 {% include caption-img.html src="attention-qkv.png" title="Fig.03 Attention" description="어텐션 연산은 query(주황색)와 key들(녹색) 사이의 유사도(노란색)에 따라, key와 짝지어져 있는 value들(파란색)의 가중합을 구하는 연산이라 이해할 수 있다. 이때 query와 key들 간의 유사도는 스코어 함수를 이용해 계산한다." %}
 
