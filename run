@@ -3,30 +3,25 @@
 dir_name=$( dirname $0 )
 cd $dir_name
 
-# kill previously running test server
-pid=$(netstat -tnlp 2>/dev/null | grep ":4000" | awk -F'LISTEN *|/' '/^(tcp|udp)/{print $2}')
-
-if [ -n "$pid" ]
-then
-    kill $pid
-    echo -e "\033[31mprocess $pid killed\033[0m"
+# build image if not exists
+if [[ "$(docker images -q jekyll:latest 2> /dev/null)" == "" ]]; then
+    docker build -f Dockerfile -t jekyll .
 fi
 
-unset pid
+# kill previously running test server
+docker rm $(docker stop $(docker ps -a -q --filter ancestor=jekyll:latest --format="{{.ID}}"))
 
 # Show Draft
 draft_dir="draft"
 draft_sysdoc_hidden="documents/_sysdoc/.draft.html"
 draft_sysdoc_exposed="documents/_sysdoc/draft.html"
 
-if [ -d ".$draft_dir" ]
-then 
+if [ -d ".$draft_dir" ]; then 
     mv ".$draft_dir" "$draft_dir"
     echo -e "\033[32mDraft : directory activated\033[0m"
 fi
 
-if [ -f "$draft_sysdoc_hidden" ]
-then 
+if [ -f "$draft_sysdoc_hidden" ]; then 
     mv "$draft_sysdoc_hidden" "$draft_sysdoc_exposed"
     echo -e "\033[32mDraft : sysdoc activated\033[0m"
 fi
@@ -41,10 +36,9 @@ conda activate jekyll
 python _scripts/updateDateModified.py
 python _scripts/mergeConfig.py
 
-if [ -f ".jekyll-metadata" ]
-then 
-    rm ".jekyll-metadata"
+if [ -f ".jekyll-metadata" ]; then 
+    rm -f ".jekyll-metadata"
 fi
 
 # Run Server
-bundle exec jekyll serve --host 172.26.0.1 --port 4000 --incremental --livereload --livereload-port 4001
+docker compose -f docker-compose.yml up

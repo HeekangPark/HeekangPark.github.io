@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  blog:
+    image: jekyll
+    ports:
+      - "4000:4000"
+      - "4001:4001"
+    volumes:
+      - ".:/jekyll"
+    network_mode: "host"
+    working_dir: /jekyll
+    command: [ "./docker-run.sh" ]

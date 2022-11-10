@@ -2,10 +2,30 @@ title: Reinventing the Wheel
 subtitle: Wheel's Development Blog
 baseurl: ""
 timezone: Asia/Seoul
+encoding: utf-8
+repository: HeekangPark/HeekangPark.github.io
 plugins:
   - jekyll-sitemap
   - jekyll-feed
-exclude: [".vscode", ".gitignore", "run", "commit", "updateCollection", "createTIL", "convertFont", "README.md", "Gemfile", "Gemfile.lock", "_scripts", "_config", "requirements.txt", "sources.md"]
+exclude: [
+  ".vscode",
+  ".gitignore",
+  "run",
+  "commit",
+  "updateCollection",
+  "createTIL",
+  "convertFont",
+  "README.md",
+  "Gemfile",
+  "Gemfile.lock",
+  "_scripts",
+  "_config",
+  "requirements.txt",
+  "sources.md",
+  "docker-compose.yml",
+  "Dockerfile",
+  "docker-run.sh"
+]
 
 assets: /assets
 layouts_dir: _layouts
