@@ -327,6 +327,10 @@ function activateFootnotePopups() {
         .css("width", `${getFootnoteWidth()}px`)
         .css("left", `${getFootnoteLeft()}px`);
     })
+
+    //make footnotes not popup new tab when clicked
+    $(".main-panel .document .toc-content-container .document-content sup[role='doc-noteref'] a.footnote").attr("target", "_self");
+    $(".main-panel .document .toc-content-container .document-content .footnotes[role='doc-endnotes'] ol li a.reversefootnote").attr("target", "_self");
 }
 
 function activateCodeToolbox() {

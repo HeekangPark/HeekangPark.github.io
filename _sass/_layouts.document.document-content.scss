@@ -408,4 +408,24 @@ $bottom-margin: 1.5em;
         right: 0.2em;
     }
   }
+
+  .text-color-gray {
+    color: var(--text-color-gray);
+  }
+
+  .text-color-red {
+    color: var(--text-color-red);
+  }
+
+  .text-color-blue {
+    color: var(--text-color-blue);
+  }
+
+  .text-color-green {
+    color: var(--text-color-green);
+  }
+
+  .text-color-yellow {
+    color: var(--text-color-yellow);
+  }
 }

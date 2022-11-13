@@ -1,7 +1,7 @@
 ---
 title: "Positional Encoding vs. Positional Embedding"
 date_created: "2022-01-28"
-date_modified: "2022-08-14"
+date_modified: "2022-11-13"
 ---
 
 전통적으로, 자연어로 된 문장을 조작해야 하는 NLP 영역에서는 연속적인(sequential) 데이터를 자연스럽게 입력으로 받아들일 수 있는 RNN 기반 모델이 많이 사용되어 왔다. 예를 들어, 문장 "John loves Susan"과 "Susan loves John"은 같은 단어들로 구성되어 있지만, 그 단어들의 위치(순서)가 달라 서로 다른 문장이다. 이때 RNN 모델에서는 문장 "John loves Susan"에 대해 ["John", "loves", "Susan"] 순으로 하나씩 입력되므로, "John"이 첫 번째 단어이고, "loves"가 두 번째 단어이고, "Susan"이 세 번째 단어라는 정보가 자연스럽게 입력된다. 또 문장 "Susan loves John"은 ["Susan", "loves", "John"]의 순서로 입력되므로, RNN 모델은 두 문장이 다르다는 사실을 쉽게 학습한다.
@@ -46,7 +46,7 @@ $$f(p, i) = \begin{cases}
 
 - $i$ : 출력되는 위치 임베딩 벡터의 요소(element) 인덱스를 의미하는 변수. 예를 들어 단어 임베딩 벡터의 차원이 5라 할 때, $i = 2$를 하면 [ x, x, o, x, x ]에서 o의 위치에 해당하는 값이 계산된다. 즉 하나의 위치 임베딩 벡터를 계산하기 위해서는 위 식에 $i = 0$부터 $i = (d-1)$까지 넣어 가며 모두 계산해야 한다.
 
-왜 이렇게 복잡한 함수를 쓰는지, 그리고 이 함수의 성질에 대한 설명은 아래 문서들을 참고하면 좋을 것 같다.
+왜 이렇게 복잡한 함수를 쓰는지, 그리고 이 함수의 성질에 대한 설명은 아래 문서들을 참고하자.
 
 - <https://towardsdatascience.com/master-positional-encoding-part-i-63c05d90a0c3>  [영문]
   - 번역 : <https://hongl.tistory.com/231>  [한글]

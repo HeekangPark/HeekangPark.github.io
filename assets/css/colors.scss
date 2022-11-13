@@ -43,6 +43,11 @@ html[data-theme="bright"] {
     --scrollbar-thumb: #aaaaaa;
     --scrollbar-background: #dddddd;
     --search-highlight-background: #ffff00;
+    --text-color-red: #ff0000;
+    --text-color-green: #00ff00;
+    --text-color-blue: #0000ff;
+    --text-color-yellow: #ffff00;
+    --text-color-gray: #aaaaaa;
 }
 
 html[data-theme="dark"] {    
@@ -87,4 +92,9 @@ html[data-theme="dark"] {
     --scrollbar-thumb: #888888;
     --scrollbar-background: #333333;
     --search-highlight-background: #576241;
+    --text-color-red: #ff0000;
+    --text-color-green: #00ff00;
+    --text-color-blue: #0000ff;
+    --text-color-yellow: #ffff00;
+    --text-color-gray: #aaaaaa;
 }
