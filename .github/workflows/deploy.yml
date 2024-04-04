@@ -2,7 +2,7 @@ name: Deploy Vitepress site to GitHub Pages
 
 on:
   push:
-    branches: [master]
+    branches: [v2]
 
   workflow_dispatch:
 
