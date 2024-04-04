@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "NotoSansKR";
+  src:
+    local("Noto Sans KR Light"), local("NotoSansKR-Light"),
+    url("@/assets/fonts/sans-serif/Noto Sans KR/NotoSansKR-Light.woff2") format("woff2");
+  font-display: block;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "NotoSansKR";
+  src:
+    local("Noto Sans KR Medium"), local("NotoSansKR-Medium"),
+    url("@/assets/fonts/sans-serif/Noto Sans KR/NotoSansKR-Medium.woff2") format("woff2");
+  font-display: block;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "UbuntuMono";
+  src:
+    local("Ubuntu Mono Regular"), local("UbuntuMono-Regular"),
+    url("@/assets/fonts/monospace/Ubuntu Mono/UbuntuMono-Regular.woff2") format("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "NanumGothicCoding";
+  src:
+    local("Nanum Gothic Coding Regular"), local("NanumGothicCoding-Regular"),
+    url("@/assets/fonts/monospace/Nanum Gothic Coding/NanumGothicCoding-Regular.woff2") format("woff2");
+  font-display: block;
+}
+
+html {
+  --normal-font: "NotoSansKR", sans-serif;
+  --code-font: "UbuntuMono", "NanumGothicCoding", monospace;
+}

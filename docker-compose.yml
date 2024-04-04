@@ -1,13 +1,19 @@
-version: "3.3"
-
+version: "3.8"
 services:
-  blog:
-    image: jekyll
+  code-server:
+    image: codercom/code-server:latest
+    restart: always
+    container_name: code-server--blog
     ports:
-      - "4000:4000"
-      - "4001:4001"
+      - 11110:8080
     volumes:
-      - ".:/jekyll"
-    network_mode: "host"
-    working_dir: /jekyll
-    command: [ "./docker-run.sh" ]
+      - ./.code-server/local:/home/coder/.local
+      - ./.code-server/config:/home/coder/.config
+      - ./:/home/coder/project
+    environment:
+      - DOCKER_USER=heekang
+    user: 1000:1000
+
+networks:
+  default:
+    name: code-server--blog

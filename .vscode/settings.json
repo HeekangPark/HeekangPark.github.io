@@ -11,4 +11,9 @@
             ]
         }
     },
+    "files.exclude": {
+        "**/.git": true,
+        ".vscode": true,
+        ".code-server": true
+    }
 }

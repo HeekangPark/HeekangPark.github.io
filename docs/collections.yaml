@@ -1,0 +1,11 @@
+# - path: javascript
+#   name: JavaScript
+#   tags: ["js", "javascript"]
+- path: ml
+  name: Machine Learning
+  tags: ["ml", "machine-learning"]
+  subcollections:
+    - path: shorts
+      name: 토막글
+      tags: ["shorts"]
+      is_series: false

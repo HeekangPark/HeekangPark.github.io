@@ -1,0 +1,98 @@
+@import "variables";
+
+@mixin desktop {
+  @media screen and (max-width: #{$main-panel-size-desktop + $left-panel-size + $panel-gap * 3}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: #{$main-panel-size-tablet + $left-panel-size + $panel-gap * 3}) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media screen and (max-width: #{$main-panel-size-phone + $left-panel-size + $panel-gap * 3}) {
+    @content;
+  }
+}
+
+@mixin shadow_outset_small {
+  box-shadow: 0 2px 2px var(--shadow-dark),
+              0 -2px 2px var(--shadow-bright);
+}
+
+@mixin shadow_outset {
+  box-shadow: 0 4px 4px var(--shadow-dark),
+              0 -4px 4px var(--shadow-bright);
+}
+
+@mixin shadow_outset_large {
+  box-shadow: 0 6px 6px var(--shadow-dark),
+              0 -6px 6px var(--shadow-bright);
+}
+
+@mixin shadow_inset_small {
+  box-shadow: inset 0 2px 2px var(--shadow-dark),
+              inset 0 -2px 2px var(--shadow-bright);
+}
+
+@mixin shadow_inset {
+  box-shadow: inset 0 4px 4px var(--shadow-dark),
+              inset 0 -4px 4px var(--shadow-bright);
+}
+
+@mixin shadow_inset_large {
+  box-shadow: inset 0 6px 6px var(--shadow-dark),
+              inset 0 -6px 6px var(--shadow-bright);
+}
+
+@mixin scrollbar($border_radius: 0.5em, $size: 0.75em) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    background-clip: content-box;
+
+    border-radius: $border_radius;
+
+    &:hover {
+      border: none;
+      background-color: var(--scrollbar-thumb-hover);
+    }
+
+    &:active {
+      border: none;
+      background-color: var(--scrollbar-thumb-active);
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+}
+
+
+@mixin gap {
+
+  margin: {
+    top: $gap_size;
+    bottom: $gap_size;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

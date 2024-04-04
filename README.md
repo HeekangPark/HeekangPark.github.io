@@ -1,23 +1,27 @@
 # HeekangPark.github.io
+
 ## About Me
 
-안녕하세요. 서울대학교 공과대학 협동과정 인공지능전공 석박통합과정에 재학중인 Wheel 입니다. 세상을 바꾸는 훌륭한 개발자가 되고 싶습니다. 감사합니다.
+안녕하세요. 개발자 HK 입니다.
 
 ### 관심분야
 
-아직 학생이기에 다양한 분야를 경험해보려 하고 있습니다.
+다음과 같은 것들에 관심이 있습니다.
 
-- Programming Languages : C/C++/Java/Python/C#
-- 웹
-  - 프론트엔드 : html, css/scss, JavaScript
-  - 백엔드 : Node.js
-- 서버 : Ubuntu Server, Docker
-- 앱 : Android
-- 기계학습
-  - 강화학습
-  - NLP
-  - 비전
-  - 딥러닝 프레임워크 : PyTorch
+- AI/ML
+  - NLP, RL, Vision
+  - Framework : PyTorch
+- Programming Languages : Python, JS/TS
+- Web
+  - Frontend : Vue.js, Svelte
+  - Backend : Node.js(Express), Flask, FastAPI
+- DevOps : Docker, Git
+- OS : Ubuntu, Windows
+- DB : MySQL, MongoDB, PostgreSQL, SQLite, Redis, Elasticsearch
+- App : Android
+- Security
+- Self hosting
+- etc.
 
 ## About Blog
 
@@ -32,24 +36,7 @@
 - 바퀴는 모든 기술 중 가장 기초 기술입니다. 이런 기초부터 다시 발명할 정도로 _차근차근_ 무언가를 만들 때 Reinventing the Wheel이라는 표현을 씁니다.
 - 바퀴는 이미 발명되었고 수많은 개량을 거친 후에 오늘날에는 더이상 발전할 게 없을 정도로까지 발전된 기술입니다. 이런 바퀴를 "재발명"하는 것은 어리석은 일입니다. 누군가 이미 해 놓은 일에 _쓸데없이 시간과 노력을 투자하고 있을 때_  "Reinventing the Wheel"이라는 표현을 씁니다.
 
-이 블로그는 그야말로 _바퀴를 재발명하는_ 블로그입니다. 프로그래밍을 배우고 있는 학생으로서 제가 이 블로그에 올릴 내용들은 누군가 이미 만들어 놓았거나, 심지어는 더 좋은 개량본이 있는 "바퀴"들일 겁니다. 하지만 이렇게 바퀴부터 차근차근 개발해 나가다 보면 언젠가는 남들이 개발하지 않았던 무언가를 개발할 수 있게 되리라 믿습니다.
-
-### 블로그 내용
-
-이 블로그에는 다음과 같은 내용들이 작성될 것입니다.
-
-- 새롭게 공부하고 있는 내용
-- 새롭게 알게 된 스킬
-- 프로젝트
-- 기타 취미생활
-
-### 블로그 구조
-
-본 블로그는 다음과 같은 구조로 되어 있습니다.
-
-- 카테고리(Category) : 카테고리는 여러 컬렉션들을 공통적인 주제로 묶어 놓은 것입니다. 카테고리는 여러 컬렉션들로 구성됩니다.
-- 컬랙션(Collection) : 시리즈는 한 목적(Objective) 또는 동기(Motivation) 하에 작성된 문서들의 집합입니다. 컬렉션는 여러 문서들로 구성됩니다.
-- 문서(Document) : 문서는 본 블로그를 구성하는 가장 최소의 단위입니다. 문서는 하나의 웹 페이지입니다. 문서는 태그를 가질 수 있습니다.
+이 블로그는 그야말로 _바퀴를 재발명하는_ 블로그입니다. 제가 이 블로그에 올릴 내용들은 상당수 누군가 이미 만들어 놓았거나, 심지어는 더 좋은 개량본이 있는 "바퀴"들일 겁니다. 하지만 이렇게 차근차근 바퀴부터 만들어 나가다 보면 언젠가는 남들이 만들지 못했던 무언가를 만들 수 있을 것이라 생각합니다.
 
 ### 라이선스
 
