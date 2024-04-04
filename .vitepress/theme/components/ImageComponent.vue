@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { useRoute } from 'vitepress';
 
 const props = defineProps<{
   src: string
@@ -8,7 +9,17 @@ const props = defineProps<{
   alt?: string
 }>();
 
-const src = computed(() => props.src);
+const route = useRoute();
+
+const src = computed(() => {
+  if (props.src.startsWith('http')) { // External URL
+    return props.src;
+  } else if (props.src.startsWith('/')) { // Absolute path
+    return props.src;
+  } else { // Relative path
+    return `/imgs/${route.path.split('/').slice(1, -1).join('/')}/${props.src}`;
+  }
+});
 const alt = computed(() => props.alt || props.title || props.src);
 
 const popover = ref(false);
