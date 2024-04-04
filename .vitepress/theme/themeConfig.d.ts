@@ -13,5 +13,8 @@ export type ThemeConfig = {
     lightTheme: string,
     darkTheme: string,
   },
+  googleAnalytics: {
+    trackingId: string,
+  },
   since: number,
 }
