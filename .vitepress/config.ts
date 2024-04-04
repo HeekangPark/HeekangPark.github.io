@@ -97,4 +97,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     }
   },
   //ignoreDeadLinks: true,
+  sitemap: {
+    hostname: "https://heekangpark.github.io",
+  },
 })
