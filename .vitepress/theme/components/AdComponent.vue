@@ -22,14 +22,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7509436363176620"
-     crossorigin="anonymous"></script>
-  <ins
-    class="adsbygoogle"
-    style="display:block"
-    :data-ad-client="adClient"
-    :data-ad-slot="adSlot"
-    data-ad-format="auto"
-    data-full-width-responsive="true"
-  ></ins>
+  <div class="wrapper">
+    <ins class="adsbygoogle" style="display:block" :data-ad-client="adClient" :data-ad-slot="adSlot"
+      data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
 </template>
+
+<style scoped lang="scss">
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+</style>
