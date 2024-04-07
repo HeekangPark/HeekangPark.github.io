@@ -31,6 +31,9 @@ onMounted(() => {
 <style scoped lang="scss">
 .wrapper {
   width: 100%;
+  display: flex;
+  justify-content: center;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 </style>
