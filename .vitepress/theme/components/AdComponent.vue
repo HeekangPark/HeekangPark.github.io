@@ -22,18 +22,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="wrapper">
-    <ins class="adsbygoogle" style="display:block" :data-ad-client="adClient" :data-ad-slot="adSlot"
-      data-ad-format="auto" data-full-width-responsive="true"></ins>
-  </div>
+  <ins class="adsbygoogle" style="display:block" :data-ad-client="adClient" :data-ad-slot="adSlot"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
 </template>
 
 <style scoped lang="scss">
-.wrapper {
+.adsbygoogle {
+  display: block;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  max-width: 100%;
   overflow-x: auto;
-  overflow-y: hidden;
+  margin: 0 auto;
 }
 </style>
