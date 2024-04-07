@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRoute } from 'vitepress';
+//import { createMarkdownRenderer } from 'vitepress';
 
 const props = defineProps<{
   src: string
@@ -10,6 +11,14 @@ const props = defineProps<{
 }>();
 
 const route = useRoute();
+
+// const config = globalThis.VITEPRESS_CONFIG.srdDir;
+// const md = await createMarkdownRenderer(
+//   config.srcDir,
+//   config.markdown,
+//   config.site.base,
+//   config.logger
+// )
 
 const src = computed(() => {
   if (props.src.startsWith('http')) { // External URL
@@ -22,6 +31,9 @@ const src = computed(() => {
 });
 const alt = computed(() => props.alt || props.title || props.src);
 
+const title = computed(() => props.title ? props.title : ''); // md.renderInline(props.title) : ''
+const description = computed(() => props.description ? props.description : ''); //md.renderInline(props.description) : ''
+
 const popover = ref(false);
 </script>
 
@@ -29,8 +41,8 @@ const popover = ref(false);
   <figure class="figure">
     <img class="img" :src="src" :alt="alt" @click="popover = true"/>
     <figcaption class="figcaption" v-if="props.title || props.description">
-      <p class="title" v-if="props.title">{{ props.title }}</p>
-      <p class="description" v-if="props.description">{{ props.description }}</p>
+      <p class="title" v-if="props.title">{{ title }}</p>
+      <p class="description" v-if="props.description">{{ description }}</p>
     </figcaption>
   </figure>
   <div class="popover" v-if="popover" @click.self="popover = false">
@@ -49,7 +61,7 @@ const popover = ref(false);
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 0.1em;
+  row-gap: 0.5em;
 
   .img {
     max-width: min(100%, 800px);
@@ -62,6 +74,7 @@ const popover = ref(false);
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var(--site-muted-text);
     
     .title {
       font-weight: bold;
@@ -71,7 +84,6 @@ const popover = ref(false);
     }
 
     .description {
-      color: var(--site-muted-text);
       margin: 0 !important;
       text-align: center;
       line-height: 1.5 !important;

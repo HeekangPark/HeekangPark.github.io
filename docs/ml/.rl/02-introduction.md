@@ -20,9 +20,9 @@ date_modified: "2021-10-14"
 
 [^1]: (귀를 통해) "앉아!"라는 말을 듣고, 행동(action)을 수행하고, 그게 맞는 행동일 경우(앉기) 보상(간식)을 받는다.
 
-강화학습(RL, Reinforcement Learning)은 바로 이런 식의 학습법을 의미한다. 조금 더 형식적으로 말하면, RL은 **에이전트(agent)가 환경(environment) 내에서 받을 수 있는 보상(reward)의 총합을 최대화하기 위해 각 상황(situation)에서 어떻게 행동(action)해야 하는지를 학습하는 학습법**을 의미한다. 강아지에게 "앉아!"를 훈련하는 위 경우엔 에이전트는 강아지이고, 환경은 "앉아!"라 말하고 간식을 주는 주인이고, 보상은 간식이다. 강아지는 주인이 "앉아!"라 말하는 현재 상황에서 다양한 행동(ex. 눕기, 뛰기, 걷기, 짖기 등)을 할 수 있지만, 그 중 앉기를 했을 때 보상이 제일 크다(= 간식을 받을 수 있다)는 것을 **시행착오(trial-and-error search)**를 통해 알게 된다. 시행착오는 다른 학습법에는 없고 오직 RL에만 있는, RL의 중요한 특징 중 하나이다.
+강화학습(RL, Reinforcement Learning)은 바로 이런 식의 학습법을 의미한다. 조금 더 형식적으로 말하면, RL은 **에이전트(agent)가 환경(environment) 내에서 받을 수 있는 보상(reward)의 총합을 최대화하기 위해 각 상황(situation)에서 어떻게 행동(action)해야 하는지를 학습하는 학습법**을 의미한다. 강아지에게 "앉아!"를 훈련하는 위 경우엔 에이전트는 강아지이고, 환경은 "앉아!"라 말하고 간식을 주는 주인이고, 보상은 간식이다. 강아지는 주인이 "앉아!"라 말하는 현재 상황에서 다양한 행동(ex. 눕기, 뛰기, 걷기, 짖기 등)을 할 수 있지만, 그 중 앉기를 했을 때 보상이 제일 크다(= 간식을 받을 수 있다)는 것을 **시행착오(trial-and-error search)** 를 통해 알게 된다. 시행착오는 다른 학습법에는 없고 오직 RL에만 있는, RL의 중요한 특징 중 하나이다.
 
-다른 학습법에는 없고 RL에만 있는, RL의 또 다른 중요한 특징으로는 **지연된 보상(delayed reward)**이 있다. RL에서의 보상은 즉각적이지 않을 수 있다. 예를 들어 체스 게임에서, 에이전트의 보상은 체스 말을 움직이는 행동 직후가 아닌 체스 게임의 승패가 결정났을 때 주어진다. 그래서 에이전트는 순간 순간의 보상을 최대화하는 선택이 아닌, (특정 기간 동안의) 전체 보상의 합을 최대화하는 선택을 해야 한다. 바로 이 점이 RL을 어렵게, 또 그리고 흥미롭게 만드는 요소이다.
+다른 학습법에는 없고 RL에만 있는, RL의 또 다른 중요한 특징으로는 **지연된 보상(delayed reward)** 이 있다. RL에서의 보상은 즉각적이지 않을 수 있다. 예를 들어 체스 게임에서, 에이전트의 보상은 체스 말을 움직이는 행동 직후가 아닌 체스 게임의 승패가 결정났을 때 주어진다. 그래서 에이전트는 순간 순간의 보상을 최대화하는 선택이 아닌, (특정 기간 동안의) 전체 보상의 합을 최대화하는 선택을 해야 한다. 바로 이 점이 RL을 어렵게, 또 그리고 흥미롭게 만드는 요소이다.
 
 참고로 RL은 **학습법**이란 의미 뿐만 아니라, 환경 안에서 받을 수 있는 보상의 총합을 극대화하는 **문제**, 그리고 이런 문제와 해결법(학습법)을 다루는 **학문 분야**라는 의미로도 사용된다. 이 세가지 뜻은 유사하지만 집중하는 부분이 조금씩 다르기에, RL이라는 말을 보면 주변 문맥을 잘 읽어 어느 의미로 사용되었는지를 파악해야 한다.
 
@@ -62,7 +62,7 @@ Exploitation과 Exploration 중 어떤 것을 선택해야 할까? 이 문제를
 
 RL 시스템을 구성하는 핵심 요소는 정책(policy), 보상 시그널(reward signal), 가치 함수(value function), 모델(model), 이렇게 4가지가 있다.
 
-{% include caption-img.html src="02-main-element-of-RL.png" title="Fig.01 Main Element of RL" %}
+<v-image src="02-main-element-of-RL.png" title="Fig.01 Main Element of RL" />
 
 ## 정책(policy)
 
@@ -129,11 +129,11 @@ tic-tac-toe 게임의 인공지능을 만들어 보자.
 
 [^5]: 게임판의 한 칸에는 O, X, 공백(아직 아무도 놓지 않음), 이렇게 3가지 상태가 가능하므로 3×3 게임판에서 가능한 모든 경우의 수는 $3^9=19,683$이 된다. 물론 이 중 상당수는 실제 게임에서 도달 불가능한 상태이기에, 이들을 전략적으로 제거하면 경우의 수를 훨씬 줄일 수 있다.
 
-{% include caption-img.html src="02-tic-tac-toe-evolutionary-method-policy1.png" title="Fig.02 Tic-Tac-Toe 게임 - 진화적 방법 - 정책 1" %}
+<v-image src="02-tic-tac-toe-evolutionary-method-policy1.png" title="Fig.02 Tic-Tac-Toe 게임 - 진화적 방법 - 정책 1" />
 
 다른 정책을 적용하면 다른 식으로 게임이 풀리게 된다.
 
-{% include caption-img.html src="02-tic-tac-toe-evolutionary-method-policy2.png" title="Fig.03 Tic-Tac-Toe 게임 - 진화적 방법 - 정책 2" %}
+<v-image src="02-tic-tac-toe-evolutionary-method-policy2.png" title="Fig.03 Tic-Tac-Toe 게임 - 진화적 방법 - 정책 2" />
 
 2\. 각 정책들에 대해, 정책이 시키는 대로 행동하며 적(opponent)과 여러 판의 게임을 진행한다. 게임 결과를 바탕으로 해당 정책을 적용했을 때의 승률을 추정한다.
 
@@ -145,7 +145,7 @@ RL 방법으로 tic-tac-toe 게임의 인공지능을 만드려면 다음 과정
 
 1\. 가치 함수를 초기화한다. 가치 함수는 3×3 게임판에서 가능한 모든 경우에 대해 가치를 계산해 놓은 배열이다. 즉 만약 배열에서 상태 A의 가치가 상태 B의 가치보다 크게 되어 있다면, 상태 A가 상태 B보다 더 "좋은" 상태라는 뜻이다.
 
-{% include caption-img.html src="02-tic-tac-toe-rl-policy.png" title="Fig.04 Tic-Tac-Toe 게임 - RL" %}
+<v-image src="02-tic-tac-toe-rl-policy.png" title="Fig.04 Tic-Tac-Toe 게임 - RL" />
 
 가치 함수의 배열에서, X가 이기는 경우[^6]의 가치를 1, X가 지는 경우의 가치를 0, 나머지 경우(아직 승부가 나지 않은 경우)의 가치를 0.5[^7]로 초기화한다.
 
@@ -169,7 +169,7 @@ $$V(S_t) = V(S_t) + \alpha [V(S_{t+1}) - V(S_t)]$$
 
 적(opponent)이 고정되어 있을 때 $\alpha$의 값이 시간에 따라 작아진다면(ex. $\alpha = 1/t$) 이 방법은 수렴한다(= (해당 적을 상대할 때의) 각 상태의 승률의 참값(true probability of winning)을 계산할 수 있다). 만약 적이 고정되어 있지 않다면, $\alpha$의 값이 시간에 따라 감소하지 않더라도 잘 학습된다.
 
-이 방식으로 학습하는 것을 [TD Learning(Temporal-Difference Learning)](/SNU_m3309.000200/07-td)이라 한다. TD Learning은 model-free method 중 하나이다.
+이 방식으로 학습하는 것을 [TD Learning(Temporal-Difference Learning)](/ml/rl/07-td)이라 한다. TD Learning은 model-free method 중 하나이다.
 
 # RL에 대한 오해들
 

@@ -9,3 +9,6 @@
       name: 토막글
       tags: ["shorts"]
       is_series: false
+    # - path: rl
+    #   name: Reinforcement Learning
+    #   tags: ["rl", "reinforcement-learning"]

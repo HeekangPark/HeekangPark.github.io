@@ -11,11 +11,11 @@ date_modified: "2022-01-26"
 
 > 철수는 미국 여행 중 라스베가스 공항을 경유하게 되었다. 다음 비행기는 2시간 후 출발할 예정이라, 철수는 그동안 라스베가스 공항의 명물, 슬롯머신을 당겨 보기로 했다. 다행히 공항에 사람이 별로 없어서 철수는 10대의 슬롯머신을 독점적으로 사용할 수 있다. 각 슬롯머신에서 돈을 딸 확률은 기기마다 각자 다른 값으로 고정되어 있고, 한 번에 한 대의 슬롯머신만 당길 수 있다고 할 때, 철수는 어떤 전략을 취해야 가장 많은 돈을 딸 수 있을까?
 
-이와 같이 k개의 선택 가능한 옵션(행동)이 있고, 한 옵션을 선택하면 고정된 확률 분포(stationary probability distribution)에 따라 보상(numerical reward)을 받을 수 있을 때, 특정 시간(횟수) 동안 받을 수 있는 전체 보상을 최대화하는 문제를 **k-armed Bandit Problem** 또는 **Multi-armed Bandit Problem(MAB)**이라 한다.[^1] 
+이와 같이 k개의 선택 가능한 옵션(행동)이 있고, 한 옵션을 선택하면 고정된 확률 분포(stationary probability distribution)에 따라 보상(numerical reward)을 받을 수 있을 때, 특정 시간(횟수) 동안 받을 수 있는 전체 보상을 최대화하는 문제를 **k-armed Bandit Problem** 또는 **Multi-armed Bandit Problem(MAB)** 이라 한다.[^1] 
 
 [^1]: 많은 책이나 블로그에서 k-armed Bandit Problem을 잘못 해석해 "외팔이 강도(One-armed Bandit)가 k개의 슬롯머신을 당길 때 보상을 최대화하는 문제"라 설명을 하는데, 사실 one-armed bandit는 미국에서는 슬롯 머신을 부르는 속어이다(팔 하나(레버)를 달고 당신을 털어가기 때문). k-armed Bandit Problem은 여기에서 이름을 따온 것이다. 즉 k-armed Bandit Problem이라 하면 (정상적인 사람이) 레버가 k개 있는 슬롯 머신에서, k개의 레버 중 하나를 골라 당기는 과정을 여러 번 반복할 때 받을 전체 보상을 최대화하는 문제를 뜻한다.
 
-만약 철수가 전체 슬롯머신의 당첨 확률 분포를 정확히 알고 있다면, 당연히 그 중 가장 높은 당첨 기댓값을 가진 기기만 2시간 내내 당기는 것이 가장 많은 돈을 따는 방법일 것이다. 하지만 철수는 ~~당연히~~ 슬롯머신들의 확률 분포를 정확히 모르기에 여러 번의 시행착오를 통해 이를 추정해야 한다. 이때 [이전 글](/SNU_m3309.000200/02-introduction#kramdown_exploitation-vs-exploration)에서 살펴본 Exploitation과 Exploration 사이의 딜레마가 적용된다. k-armed Bandit Problem에서 당첨 기댓값은 가치(value)의 역할을 한다. 여러 행동들 중 현재 추정하고 있는 가치가 가장 큰 행동, 즉 현재 추정 중인 최선 행동(optimal action)을 **탐욕적 행동(greedy action)**이라 한다. 만약 철수가 탐욕적 행동을 수행한다면(= 당첨 기댓값이 가장 높은 슬롯 머신을 당긴다면) 철수는 Exploitation을 수행한 것이다. 그러나 철수가 **비탐욕적 행동(nongreedy action)**[^2]을 수행한다면 철수는 Exploration을 수행한 것이다. 비탐욕적 행동을 수행하면 그 과정에서 확률 분포를 더 정확히 추정할 수 있게 되기 때문이다.[^3] 더 많은 Exploration을 진행할수록 더 정확한 당첨 확률 분포를 알 수 있겠지만, 전체 시간 제한이 있으므로(2시간) Exploration에 너무 많은 시간을 투자하면 Exploitation 시간이 줄어, 막상 결과적으로 얻는 최종 액수는 적어질 것이다. Exploitation과 Exploration 둘 중 어떤 것을 할지 결정하기 위해서는 추정한 가치의 정확도(precision), 불확실성(uncertainty), 남은 횟수(remaining step) 등 다양한 값들을 복합적으로 고려해야 한다.
+만약 철수가 전체 슬롯머신의 당첨 확률 분포를 정확히 알고 있다면, 당연히 그 중 가장 높은 당첨 기댓값을 가진 기기만 2시간 내내 당기는 것이 가장 많은 돈을 따는 방법일 것이다. 하지만 철수는 ~~당연히~~ 슬롯머신들의 확률 분포를 정확히 모르기에 여러 번의 시행착오를 통해 이를 추정해야 한다. 이때 [이전 글](/ml/rl/02-introduction#exploitation-vs-exploration)에서 살펴본 Exploitation과 Exploration 사이의 딜레마가 적용된다. k-armed Bandit Problem에서 당첨 기댓값은 가치(value)의 역할을 한다. 여러 행동들 중 현재 추정하고 있는 가치가 가장 큰 행동, 즉 현재 추정 중인 최선 행동(optimal action)을 **탐욕적 행동(greedy action)** 이라 한다. 만약 철수가 탐욕적 행동을 수행한다면(= 당첨 기댓값이 가장 높은 슬롯 머신을 당긴다면) 철수는 Exploitation을 수행한 것이다. 그러나 철수가 **비탐욕적 행동(nongreedy action)**[^2]을 수행한다면 철수는 Exploration을 수행한 것이다. 비탐욕적 행동을 수행하면 그 과정에서 확률 분포를 더 정확히 추정할 수 있게 되기 때문이다.[^3] 더 많은 Exploration을 진행할수록 더 정확한 당첨 확률 분포를 알 수 있겠지만, 전체 시간 제한이 있으므로(2시간) Exploration에 너무 많은 시간을 투자하면 Exploitation 시간이 줄어, 막상 결과적으로 얻는 최종 액수는 적어질 것이다. Exploitation과 Exploration 둘 중 어떤 것을 할지 결정하기 위해서는 추정한 가치의 정확도(precision), 불확실성(uncertainty), 남은 횟수(remaining step) 등 다양한 값들을 복합적으로 고려해야 한다.
 
 [^2]: 탐욕적 행동이 아닌 행동
 [^3]: 이 과정에서 탐욕적 행동이 바뀔 수도 있다.
@@ -26,13 +26,13 @@ Action-value Method란 각 행동으로 인해 얻을 수 있을 가치를 추�
 
 ## Sample-average Method
 
-각 행동의 가치를 추정하는 가장 간단한 방법은 **Sample-average Method**이다. 이 방법은 이때까지의 실험 결과로 얻은 보상들의 평균을 가치로 사용하는 방법이다. 즉 특정 시간 $t$에서 특정 행동 $a$의 가치를 $Q\_t(a)$라 할 때,
+각 행동의 가치를 추정하는 가장 간단한 방법은 **Sample-average Method**이다. 이 방법은 이때까지의 실험 결과로 얻은 보상들의 평균을 가치로 사용하는 방법이다. 즉 특정 시간 $t$에서 특정 행동 $a$의 가치를 $Q_t(a)$라 할 때,
 
 $$Q_t(a) = \frac{\textrm{시간 }t\textrm{ 이전에 }a\textrm{가 실행되며 받은 모든 보상의 합}}{\textrm{시간 }t\textrm{ 이전에 }a\textrm{가 실행된 횟수}} = \frac{\sum_{i=1}^{t-1} R_i \cdot \mathbb{1}_{A_i=a}}{\sum_{i=1}^{t-1} \mathbb{1}_{A_i=a}}$$
 
-이라 추정하는 것이다. 여기서 $\mathbb{1}\_{predicate}$는 $predicate$ 조건이 참일 때 1, 거짓일 때 0이 되는 확률 변수(random variable)를 뜻하고, $A\_i$는 시간 $i$($\le t$)에 시행한 행동을 뜻한다. 즉 시간 $i$에 행동 $a$를 수행했다면 $\mathbb{1}\_{A\_i=a} = 1$이 되고, 시간 $i$에 $a$가 아닌 다른 행동을 수행했다면 $\mathbb{1}\_{A\_i=a} = 0$이 된다. 만약 위 식에서 분모가 0이면(즉 시간 $t$ 동안 행동 $a$가 한 번도 시행되지 않았다면) $Q\_t(a)$로 적당한 기본값(ex. 0)을 사용한다.
+이라 추정하는 것이다. 여기서 $\mathbb{1}_{predicate}$는 $predicate$ 조건이 참일 때 1, 거짓일 때 0이 되는 확률 변수(random variable)를 뜻하고, $A_i$는 시간 $i$($\le t$)에 시행한 행동을 뜻한다. 즉 시간 $i$에 행동 $a$를 수행했다면 $\mathbb{1}_{A_i=a} = 1$이 되고, 시간 $i$에 $a$가 아닌 다른 행동을 수행했다면 $\mathbb{1}_{A_i=a} = 0$이 된다. 만약 위 식에서 분모가 0이면(즉 시간 $t$ 동안 행동 $a$가 한 번도 시행되지 않았다면) $Q_t(a)$로 적당한 기본값(ex. 0)을 사용한다.
 
-큰 수의 법칙(the law of large numbers)에 의해, $a$를 여러 번 시행하면 할 수록 $Q\_t(a)$는 실제 가치 $q\_{*}(a)$로 수렴한다.
+큰 수의 법칙(the law of large numbers)에 의해, $a$를 여러 번 시행하면 할 수록 $Q_t(a)$는 실제 가치 $q_{*}(a)$로 수렴한다.
 
 ## ε-greedy Method
 
@@ -40,19 +40,16 @@ $$Q_t(a) = \frac{\textrm{시간 }t\textrm{ 이전에 }a\textrm{가 실행되며 
 
 그렇다면 $\varepsilon$이 얼마일 때가 가장 좋을까? 이를 확인하기 위해서 **k-armed Testbed**를 사용할 수 있다. k-armed Testbed는 k-armed Bandit Problem을 해결하기 위한 Action-value Method의 성능을 비교하기 위해 사용하는 데이터 셋으로, 다음과 같은 방법으로 만든다.
 
-- $k$개의 행동들에 대해, 각 행동 $a\_i$($1 \le i \le k$)의 가치의 참값 $q\_*(a\_i)$는 평균 0, 분산 1인 정규분보에서 무작위로 추출한다.
-- 특정 시간 $t$에서 특정 행동 $A\_t \in \\{ a\_i \| 1 \le i \le k \\}$가 선택되었을 때, 이 행동으로 받는 보상 $R\_t$는 평균 $q\_*(A\_t)$, 분산 1인 정규분포에서 무작위로 추출한다.
+- $k$개의 행동들에 대해, 각 행동 $a_i$($1 \le i \le k$)의 가치의 참값 $q_*(a_i)$는 평균 0, 분산 1인 정규분보에서 무작위로 추출한다.
+- 특정 시간 $t$에서 특정 행동 $A_t \in \{ a_i \| 1 \le i \le k \}$가 선택되었을 때, 이 행동으로 받는 보상 $R_t$는 평균 $q_*(A_t)$, 분산 1인 정규분포에서 무작위로 추출한다.
 
-{% include caption-img.html src="03-10-armed-testbed.png" title="Fig.01 10-armed Testbed" description="출처 : Richard S. Sutton, Andrew G. Barto, <Reinforcement Learning : An Introduction>, 2nd Edition, pg. 28, Figure 2.1" %}
+<v-image src="03-10-armed-testbed.png" title="Fig.01 10-armed Testbed" description="출처 : Richard S. Sutton, Andrew G. Barto, <Reinforcement Learning : An Introduction>, 2nd Edition, pg. 28, Figure 2.1" />
 
 10-armed Testbed를 이용해 $\varepsilon=0.001$, $\varepsilon=0.1$, $\varepsilon=0$(Greedy Method)일 때의 $\varepsilon$-greedy Method의 성능을 비교해 보자. 
 
-<div class="code-folder" markdown="block">
+::: details Code : $\varepsilon$-greedy Method, 10-armed Testbed
 
-{:.code-header}
-$\varepsilon$-greedy Method, 10-armed Testbed
-
-{% highlight python linenos %}
+```python:line-numbers
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -144,9 +141,10 @@ plt.xlabel("Steps")
 plt.ylabel("Optimal Action Rate")
 plt.legend()
 plt.show()
-{% endhighlight %}
+```
 
-{:.guide-line}
+**코드 설명**
+
 - line 4 ~ 31 : $\varepsilon$-greedy Method를 수행하는 에이전트
   - line 5 : `GreedyAgent.__init__()` 메서드
     - k-armed bandit problem에서의 k(당길 수 있는 팔 수), $\varepsilon$ 값을 인자로 받음
@@ -175,27 +173,27 @@ plt.show()
 - line 75 ~ 82 : Average Reward 그래프 그리기
 - line 84 ~ 91 : Optimal Action Rate 그래프 그리기
 
-</div>
+:::
 
-{% include caption-img.html src="03-epsilon-method-average-reward.png" title="Fig.02 Average Reward (예시)" description="$\varepsilon=0$, $\varepsilon=0.1$, $\varepsilon=0.01$으로 하여 $\varepsilon$-greedy Method를 적용 (k=10, steps=2000, repeats=100)" %}
+<v-image src="03-epsilon-method-average-reward.png" title="Fig.02 Average Reward (예시)" description="$\varepsilon=0$, $\varepsilon=0.1$, $\varepsilon=0.01$으로 하여 $\varepsilon$-greedy Method를 적용 (k=10, steps=2000, repeats=100)" />
 
-{% include caption-img.html src="03-epsilon-method-optimal-action-rate.png" title="Fig.03 Optimal Action Rate (예시)" description="$\varepsilon=0$, $\varepsilon=0.1$, $\varepsilon=0.01$으로 하여 $\varepsilon$-greedy Method를 적용 (k=10, steps=2000, repeats=100)" %}
+<v-image src="03-epsilon-method-optimal-action-rate.png" title="Fig.03 Optimal Action Rate (예시)" description="$\varepsilon=0$, $\varepsilon=0.1$, $\varepsilon=0.01$으로 하여 $\varepsilon$-greedy Method를 적용 (k=10, steps=2000, repeats=100)" />
 
 위 그래프에서 볼 수 있듯이 $\varepsilon$이 얼마든 $\varepsilon$-greedy Method를 적용하면 경험이 쌓일수록 받을 수 있는 평균 보상이 커진다. 특히 Greedy Method($\varepsilon=0$)의 경우 처음에는 다른 방법들보다 조금 더 빨리 좋아지지만, 최적 행동(optimal action)이 아닌 차(次)적 행동(suboptimal action)에 빠지기 쉬워 시간이 지나면 가장 낮은 성능을 보이게 된다. 한편 $\varepsilon=0.01$일 때는 $\varepsilon=0.1$일 때보다 최적 행동을 찾는데 더 오랜 시간이 걸려 비교적 천천히 좋아진다. 하지만 충분히 오랜 시간이 지나면 최적 행동을 최대 91%의 확률로만 시행할 수 있는 $\varepsilon=0.1$보다 최대 99.1%의 확률로 시행할 수 있는 $\varepsilon=0.01$가 받는 보상이 더 많아진다. 만약 시간이 지남에 따라 점점 감소하는 $\varepsilon$을 사용한다면 $\varepsilon$이 클 때의 장점(빠르게 최적 행동을 찾는다)과 $\varepsilon$이 작을 때의 장점(최적 행동을 많이 시행해 받는 보상을 최대화한다)을 합칠 수 있다.
 
-사실 최적의 $\varepsilon$ 값은 지금 풀고자 하는 문제에 따라 달라진다. 만약 Testbed의 분산이 1이 아닌 10이라면, $\varepsilon$의 값이 커야 좋을 것이다. 하지만 만약 분산이 0이라면 Greedy Method($\varepsilon=0$)이 가장 좋은 방법일 것이다. 또한 만약 각 행동들의 실제 가치(true value) $q\_{*}(a)$가 고정되어 있지 않다면(nonstationary) 탐색(exploration)이 매우 중요해진다. 탐색을 통해 현재 추정 중인 최선의 행동보다 더 좋은 행동이 있는지를 찾아야 하기 때문이다.
+사실 최적의 $\varepsilon$ 값은 지금 풀고자 하는 문제에 따라 달라진다. 만약 Testbed의 분산이 1이 아닌 10이라면, $\varepsilon$의 값이 커야 좋을 것이다. 하지만 만약 분산이 0이라면 Greedy Method($\varepsilon=0$)이 가장 좋은 방법일 것이다. 또한 만약 각 행동들의 실제 가치(true value) $q_{*}(a)$가 고정되어 있지 않다면(nonstationary) 탐색(exploration)이 매우 중요해진다. 탐색을 통해 현재 추정 중인 최선의 행동보다 더 좋은 행동이 있는지를 찾아야 하기 때문이다.
 
 ## Incremental Implementation
 
 Sample-average Method는 각 행동의 가치를 추정한 값으로 각 행동들이 이때까지 시행 결과 받은 시행당 평균 보상을 사용한다. 이를 위해서 위 코드에서는 가치 추정값을 사용할 때마다 각 행동이 선택되어 받은 보상의 합을 저장하는 `reward_sum` 변수를 각 행동들이 선택된 횟수를 저장하는 `count` 변수로 나눠 매번 평균을 계산했다. 총 $k$개의 행동이 있다고 할 때, 이 방법은 매 시행마다 $k$번의 나눗셈 연산이 필요하다. 이를 최적화할 수는 없을까?
 
-만약 특정 행동이 이때까지 $n - 1$번 뽑혔고, 그때마다 각각 $R\_1$, $R\_2$, ..., $R\_{n - 1}$만큼의 보상을 받았다 해 보자. 그렇다면 해당 행동의 가치 $Q\_{n}$[^4]은 다음과 같이 계산 가능하다.
+만약 특정 행동이 이때까지 $n - 1$번 뽑혔고, 그때마다 각각 $R_1$, $R_2$, ..., $R_{n - 1}$만큼의 보상을 받았다 해 보자. 그렇다면 해당 행동의 가치 $Q_{n}$[^4]은 다음과 같이 계산 가능하다.
 
-[^4]: $Q\_{n - 1}$이 아닌 $Q\_{n}$인 이유는 다음과 같다: Sample-average Method는 이전 결과들로부터 각 행동의 가치를 추정하고, 이를 기반으로 행동을 결정하고, 결정한 행동을 수행해 보상을 받는 과정을 반복하는 것이다. 이때 시점 $n - 1$에서 받은 $n - 1$번째 보상을 이용해 가치를 업데이트하는 것은 시점 $n$일 때이므로 $Q\_{n - 1}$이 아닌 $Q\_n$라 하는 것이다.
+[^4]: $Q_{n - 1}$이 아닌 $Q_{n}$인 이유는 다음과 같다: Sample-average Method는 이전 결과들로부터 각 행동의 가치를 추정하고, 이를 기반으로 행동을 결정하고, 결정한 행동을 수행해 보상을 받는 과정을 반복하는 것이다. 이때 시점 $n - 1$에서 받은 $n - 1$번째 보상을 이용해 가치를 업데이트하는 것은 시점 $n$일 때이므로 $Q_{n - 1}$이 아닌 $Q_n$라 하는 것이다.
 
 $$Q_n = \frac{R_1 + R_2 + \cdots + R_{n - 1}}{n - 1}$$
 
-그렇다면 $Q\_{n+1}$은 다음과 같이 계산할 수 있다.
+그렇다면 $Q_{n+1}$은 다음과 같이 계산할 수 있다.
 
 $$\begin{align}
 Q_{n+1}
@@ -208,7 +206,7 @@ $$
 
 이렇게 하면 매 시행마다 단 한 번의 나눗셈 연산이면 충분하다. 이와 같이 업데이트 식을 이전 항으로부터 연속적으로 계산할 수 있는 점화식의 형태로 구현하는 것을 **Incremental Implementation**이라 한다. 
 
-### 여담 : $Q\_{n+1} = Q\_n + \alpha(R\_n - Q\_n)$
+### 여담 : $Q_{n+1} = Q_n + \alpha(R_n - Q_n)$
 
 위 문단에서 살펴본 식을 조금 더 자세히 분석해보자.
 
@@ -216,24 +214,21 @@ $$Q_{n+1} = Q_n + \frac{1}{n}(R_n - Q_n)$$
 
 사실 위 식은 강화학습에 자주 등장하는, 아주 전형적인 형태의 식이다.
 
-$$\textrm{(새 추정값)} = \textrm{(이전 추정값)} + \textrm{(스텝 크기)} \cdot [\textrm{(목표값)} - \textrm{(이전 추정값)}]$$
+`(새 추정값) = (이전 추전값) + (스텝 크기) · [(목표값) - (이전 추정값)]` {.text-align-center .text-size-lg}
 
-이 식에서 $[\textrm{(목표값)} - \textrm{(이전 추정값)}]$ 항은 목표값과 이전 추정값 사이의 오차(error)를 구하는 항이다. 위 식을 계속 적용해 나가면 목표값과 추정값 사이의 오차는 점점 줄어들게 된다(= 추정값과 목표값은 점점 유사해진다). 식이 한 번 수행될 때마다 추정값은 $\textrm{(스텝 크기)}$만큼 목표값에 다가가게 된다. 일반적으로 스텝 크기(step size)는 $\alpha\_t(a)$ 또는 그냥 간단히 $\alpha$라 표기한다. Sample-average Method는 스텝 크기로 $\frac{1}{n}$을 사용한다(= 매 시행마다 $\frac{1}{n}$씩 가까워진다).
+이 식에서 `[(목표값) - (이전 추정값)]` 항은 목표값과 이전 추정값 사이의 오차(error)를 구하는 항이다. 위 식을 계속 적용해 나가면 목표값과 추정값 사이의 오차는 점점 줄어들게 된다(= 추정값과 목표값은 점점 유사해진다). 식이 한 번 수행될 때마다 추정값은 `(스텝 크기)`만큼 목표값에 다가가게 된다. 일반적으로 스텝 크기(step size)는 $\alpha_t(a)$ 또는 그냥 간단히 $\alpha$라 표기한다. Sample-average Method는 스텝 크기로 $\frac{1}{n}$을 사용한다(= 매 시행마다 $\frac{1}{n}$씩 가까워진다).
 
 $$Q_{n+1} = Q_n + \alpha(R_n - Q_n)$$
 
-Sample-average Method에서 $Q\_n$이 가까워져야 할 목표값은 사실 $q\_* (a)$이다. 하지만 $q\_* (a)$은 알 수 없으므로 비록 약간의 노이즈(noise)가 있지만 $R\_n$을 목표값으로 삼고 움직인다. $q\_* (a)$의 확률 분포가 고정되어(stationary) 있다면 시행 횟수가 충분히 큰 경우 $Q\_n$은 $q\_* (a)$에 수렴한다.
+Sample-average Method에서 $Q_n$이 가까워져야 할 목표값은 사실 $q_* (a)$이다. 하지만 $q_* (a)$은 알 수 없으므로 비록 약간의 노이즈(noise)가 있지만 $R_n$을 목표값으로 삼고 움직인다. $q_* (a)$의 확률 분포가 고정되어(stationary) 있다면 시행 횟수가 충분히 큰 경우 $Q_n$은 $q_* (a)$에 수렴한다.
 
 ### 구현
 
 Incremental Implementation을 적용하여 위 코드의 `GreedyAgent`를 다시 구현하면 다음과 같이 된다.
 
-<div class="code-folder" markdown="block">
+::: details Code : $\varepsilon$-greedy Method, Incremental Implementation
 
-{:.code-header}
-$\varepsilon$-greedy Method, Incremental Implementation
-
-{% highlight python linenos %}
+```python:line-numbers
 class GreedyAgent:
     def __init__(self, k, epsilon):
         self.k = k
@@ -262,15 +257,16 @@ class GreedyAgent:
     
     def getAverageReward(self):
         return self.getTotalReward() / np.sum(self.count)
-{% endhighlight %}
+```
 
-{:.guide-line}
+**코드 설명**
+
 - line 5 : 이때까지 받은 보상의 합을 저장하던 `reward_sum` 변수 대신, 가치 추정치를 저장하는 `estimated_values` 변수 사용
 - line 9 : 매번 `GreedyAgent.getEstimatedValues()` 메서드가 호출될 때마다 평균값을 계산하는 대신, 이미 계산된 `estimated_values`를 반환
 - line 22 : Incremental Implementation 적용
 - line 25, line 28 : `estimated_values`을 사용하는 방법으로 변경
 
-</div>
+:::
 
 # Nonstationary Bandit Problem
 
@@ -282,11 +278,9 @@ class GreedyAgent:
 
 Nonstationary Bandit Problem 상황에서는 과거에 받았던 보상보다 최근에 받았던 보상에 더 큰 가중치를 주는 것이 자연스럽다. 이를 구현하는 가장 간단한 방법은 Incremental Implementation 문단에서의 $\alpha$에 (0, 1] 사이의 고정된 상수를 사용하는 것이다. 이 방법을 **Exponential Recency-weighted Average Method**이라 한다.
 
-{:.mathjax-mb-0}
 $$Q_{n+1} = Q_n + \alpha(R_n - Q_n)$$
 
-{:.text-align-center}
-(단, $\alpha \in (0,\,1]$는 상수)
+(단, $\alpha \in (0,\,1]$는 상수) {.text-align-center .under-mathjax}
 
 이 식을 풀어 쓰면 다음과 같이 된다.
 
@@ -304,15 +298,15 @@ Q_{n+1}
 \end{align}
 $$
 
-$\alpha=1$일 때는 $Q\_n = R\_n$이 된다.[^6] 즉, 이 경우에는 과거의 지식(경험)을 전혀 사용하지 않고, 바로 직전에 받은 보상을 가치 추청값으로 쓴다는 뜻이 된다.
+$\alpha=1$일 때는 $Q_n = R_n$이 된다.[^6] 즉, 이 경우에는 과거의 지식(경험)을 전혀 사용하지 않고, 바로 직전에 받은 보상을 가치 추청값으로 쓴다는 뜻이 된다.
 
 [^6]: $0^0 = 1$로 계산한다.
 
-이 방법을 왜 Exponential Recency-weighted Average Method이라 부를까? 우선 위 식을 잘 보면 보상들($R\_i$)과 $Q\_1$ 앞에 붙은 계수들의 합 $(1-\alpha)^{n} + \sum\_{i=1} ^{n} \alpha(1-\alpha)^{n-i}$은 항상 1임을 알 수 있다. 즉 이 식은 가중 평균(Weighted Average)을 구하는 식이다.
+이 방법을 왜 Exponential Recency-weighted Average Method이라 부를까? 우선 위 식을 잘 보면 보상들($R_i$)과 $Q_1$ 앞에 붙은 계수들의 합 $(1-\alpha)^{n} + \sum_{i=1} ^{n} \alpha(1-\alpha)^{n-i}$은 항상 1임을 알 수 있다. 즉 이 식은 가중 평균(Weighted Average)을 구하는 식이다.
 
-<div class="proof-folder" markdown="block">
+::: details 증명 : $(1-\alpha)^{n} + \sum_{i=1} ^{n} \alpha(1-\alpha)^{n-i}$ = 1
 
-$\beta = 1 - \alpha$라 하면 $(1-\alpha)^{n} + \sum\_{i=1} ^{n} \alpha(1-\alpha)^{n-i}$은 다음과 같이 된다.
+$\beta = 1 - \alpha$라 하면 $(1-\alpha)^{n} + \sum_{i=1} ^{n} \alpha(1-\alpha)^{n-i}$은 다음과 같이 된다.
 
 {:.mathjax-mb-0}
 $$\begin{align}
@@ -325,29 +319,27 @@ $$\begin{align}
 \end{align}
 $$
 
-</div>
+:::
 
-또한 각 보상 $R\_i$에 붙는 가중치 $\alpha(1-\alpha)^{n-i}$는 $n-i$에 영향을 받는다. $0 \le n-i < 1$이므로, 더 오래된 보상일수록(= $i$가 작을수록 = 가장 최근 보상과 해당 보상 사이에 받은 보상의 개수 $n-i$가 많을수록) 가중치는 기하급수적으로 작아지고, 반대로 최근에 받은 보상일수록 가중치가 기하급수적으로 커진다. 이 때문에 $\alpha$에 상수를 쓰는 이 방법을 Exponential Recency-weighted Average Method라 부르는 것이다.
+또한 각 보상 $R_i$에 붙는 가중치 $\alpha(1-\alpha)^{n-i}$는 $n-i$에 영향을 받는다. $0 \le n-i < 1$이므로, 더 오래된 보상일수록(= $i$가 작을수록 = 가장 최근 보상과 해당 보상 사이에 받은 보상의 개수 $n-i$가 많을수록) 가중치는 기하급수적으로 작아지고, 반대로 최근에 받은 보상일수록 가중치가 기하급수적으로 커진다. 이 때문에 $\alpha$에 상수를 쓰는 이 방법을 Exponential Recency-weighted Average Method라 부르는 것이다.
 
-### 여담 : $Q\_{n+1} = Q\_n + \alpha(R\_n - Q\_n)$가 수렴할 $\alpha$의 조건
+### 여담 : $Q_{n+1} = Q_n + \alpha(R_n - Q_n)$가 수렴할 $\alpha$의 조건
 
-위 [Incremental Implementation 문단](#kramdown_incremental-implementation)에서 유도한 식을 다시 한 번 살펴보자.
+위 [Incremental Implementation 문단](#incremental-implementation)에서 유도한 식을 다시 한 번 살펴보자.
 
 $$Q_{n+1} = Q_n + \alpha(R_n - Q_n)$$
 
-우리는 이때까지 $\alpha$로 $\frac{1}{n}$이 사용된 경우(Sample-average Method)와, 상수가 사용된 경우(Exponential Recency-weighted Average Method), 이렇게 두 가지 경우를 보았다. $\alpha = \frac{1}{n}$인 경우 큰 수의 법칙에 의해 $Q\_n$은 $q\_* (a)$로 수렴하지만, 상수인 경우엔 수렴하지 않는다.[^7] 이 둘 이외에도 다양한 값 또는 함수를 $\alpha$로 사용할 수 있다. 그렇다면 한 가지 의문이 생긴다. 위 식을 수렴하게 하는 $\alpha$의 조건은 무엇일까?
+우리는 이때까지 $\alpha$로 $\frac{1}{n}$이 사용된 경우(Sample-average Method)와, 상수가 사용된 경우(Exponential Recency-weighted Average Method), 이렇게 두 가지 경우를 보았다. $\alpha = \frac{1}{n}$인 경우 큰 수의 법칙에 의해 $Q_n$은 $q_* (a)$로 수렴하지만, 상수인 경우엔 수렴하지 않는다.[^7] 이 둘 이외에도 다양한 값 또는 함수를 $\alpha$로 사용할 수 있다. 그렇다면 한 가지 의문이 생긴다. 위 식을 수렴하게 하는 $\alpha$의 조건은 무엇일까?
 
 [^7]: 수렴하지 않기에 확률 분포가 고정되어 있지 않는 상황(nonstationary)에서도 잘 작동하는 것이다.
 
-Stochastic Approximation Theory에 의하면, $\alpha\_n (a)$은 다음 조건일 때 100% 확률로 수렴한다.
+Stochastic Approximation Theory에 의하면, $\alpha_n (a)$은 다음 조건일 때 100% 확률로 수렴한다.
 
-{:.mathjax-mb-0}
 $$\sum_{n=1} ^{\infty}\alpha_n (a) = \infty \qquad\textrm{and}\qquad \sum_{n=1} ^{\infty}\alpha_n ^2 (a) = c$$
 
-{:.text-align-center}
-(단, $c$는 상수)
+(단, $c$는 상수) {.text-align-center .under-mathjax}
 
-첫 번째 조건의 의미는 $\alpha\_n (a)$가 충분히 커, 초기값이 어떻든, 노이즈가 있어도 결국 이들을 극복할 수 있다는 뜻이다. 두 번째 조건의 의미는 $\alpha\_n (a)$의 값이 충분히 작아져, 결국 수렴하게 된다는 뜻이다.
+첫 번째 조건의 의미는 $\alpha_n (a)$가 충분히 커, 초기값이 어떻든, 노이즈가 있어도 결국 이들을 극복할 수 있다는 뜻이다. 두 번째 조건의 의미는 $\alpha_n (a)$의 값이 충분히 작아져, 결국 수렴하게 된다는 뜻이다.
 
 $\alpha_n (a)=\frac{1}{n}$일 때는(Sample-average Method) 위 두 조건을 만족시키므로 수렴한다.[^8] 하지만 $\alpha_n (a)=\alpha$일 땐(Exponential Recency-weighted Average Method) 두 번째 조건이 성립하지 않으므로 수렴하지 않는다.
 
@@ -357,7 +349,7 @@ $\alpha_n (a)=\frac{1}{n}$일 때는(Sample-average Method) 위 두 조건을 �
 
 # Optimistic Initial Values
 
-위 [Incremental Implementation 문단](#kramdown_incremental-implementation)에서 유도한 식을 다시 한 번 살펴보자.
+위 [Incremental Implementation 문단](#incremental-implementation)에서 유도한 식을 다시 한 번 살펴보자.
 
 $$\begin{align}
 Q_{n+1}
@@ -366,20 +358,17 @@ Q_{n+1}
 \end{align}
 $$
 
-$Q\_{n}$을 구하는 식에 각 행동에 대한 초기 가치 추정값 $Q\_1$이 있는 것을 볼 수 있다. $Q\_1$은 일종의 편향(bias)으로서 동작하게 된다. Sample-average Method에서는 모든 행동들이 한 번씩 시행되면 편향이 없어지게 된다. 하지만 Exponential Recency-weighted Average Method에서는 편향이 없어지지 않고 계속 남아있다.
+$Q_{n}$을 구하는 식에 각 행동에 대한 초기 가치 추정값 $Q_1$이 있는 것을 볼 수 있다. $Q_1$은 일종의 편향(bias)으로서 동작하게 된다. Sample-average Method에서는 모든 행동들이 한 번씩 시행되면 편향이 없어지게 된다. 하지만 Exponential Recency-weighted Average Method에서는 편향이 없어지지 않고 계속 남아있다.
 
-사실 이 편향은 나쁜 것이 아니다. 이를 적절히 잘 활용하면 더 효율적인 학습이 가능하게 만들 수 있다. 예를 들어 만약 우리가 각 행동들이 줄 보상에 대한 사전지식(prior knowledge)이 있다면 이를 $Q\_1$에 담을 수 있다. 또한 Optimistic Initial Values라는 기법을 이용하면 탐색(Exploration)이 더 잘 일어나게 만들 수 있다.
+사실 이 편향은 나쁜 것이 아니다. 이를 적절히 잘 활용하면 더 효율적인 학습이 가능하게 만들 수 있다. 예를 들어 만약 우리가 각 행동들이 줄 보상에 대한 사전지식(prior knowledge)이 있다면 이를 $Q_1$에 담을 수 있다. 또한 Optimistic Initial Values라는 기법을 이용하면 탐색(Exploration)이 더 잘 일어나게 만들 수 있다.
 
-위에서 나온 10-armed Testbed 상황을 생각해보자. 기존에는 이 Testbed에 대해 초기 가치 추정값으로 0을 사용했다. 하지만 만약 초기 가치 추정값으로 "+5"를 사용하면 어떻게 될까? 이 Testbed의 각 행동들의 실제 가치 $q\_{*}(a)$는 평균 0, 분산 1의 정규분포를 따르므로, "+5"라는 값은 엄청나게 낙관적인(optimistic) 추정값이다. 이 상태에서 를 적용해 보자. 각 행동의 시행 결과 받는 보상은 거의 대부분의 경우 "+5"보다 작은, 아주 "실망스러운" 값일 것이다. 그 결과 에이전트는 Greedy Method($\varepsilon=0$인 $\varepsilon$-greedy Method)를 따른다 해도 계속해서 탐색을 수행하게 된다. 이처럼 초기값으로 낙관적인 값을 줘 탐색이 더 많이 일어나게 하는 기법을 **Optimistic Initial Values**이라 한다.[^9]
+위에서 나온 10-armed Testbed 상황을 생각해보자. 기존에는 이 Testbed에 대해 초기 가치 추정값으로 0을 사용했다. 하지만 만약 초기 가치 추정값으로 "+5"를 사용하면 어떻게 될까? 이 Testbed의 각 행동들의 실제 가치 $q_{*}(a)$는 평균 0, 분산 1의 정규분포를 따르므로, "+5"라는 값은 엄청나게 낙관적인(optimistic) 추정값이다. 이 상태에서 를 적용해 보자. 각 행동의 시행 결과 받는 보상은 거의 대부분의 경우 "+5"보다 작은, 아주 "실망스러운" 값일 것이다. 그 결과 에이전트는 Greedy Method($\varepsilon=0$인 $\varepsilon$-greedy Method)를 따른다 해도 계속해서 탐색을 수행하게 된다. 이처럼 초기값으로 낙관적인 값을 줘 탐색이 더 많이 일어나게 하는 기법을 **Optimistic Initial Values**이라 한다.[^9]
 
-[^9]: 사실 우리가 "+5"를 낙관적인 값으로 선택할 수 있었던 것은 이미 $q\_{*}(a)$가 평균 0, 분산 1인 정규분포를 따른다는 사전 지식을 알고 있었기 때문에 가능했다. 즉 크게 보면 Optimistic Initial Values도 사전 지식을 $Q\_1$에 담은 것이라 할 수 있다.
+[^9]: 사실 우리가 "+5"를 낙관적인 값으로 선택할 수 있었던 것은 이미 $q_{*}(a)$가 평균 0, 분산 1인 정규분포를 따른다는 사전 지식을 알고 있었기 때문에 가능했다. 즉 크게 보면 Optimistic Initial Values도 사전 지식을 $Q_1$에 담은 것이라 할 수 있다.
 
-<div class="code-folder" markdown="block">
+::: details Code : $\varepsilon$-greedy Method, Optimistic Initial Values
 
-{:.code-header}
-$\varepsilon$-greedy Method, Optimistic Initial Values
-
-{% highlight python linenos %}
+```python:line-numbers
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -461,20 +450,21 @@ plt.xlabel("Steps")
 plt.ylabel("Optimal Action Rate")
 plt.legend()
 plt.show()
-{% endhighlight %}
+```
 
-{:.guide-line}
-- line 5 : $Q\_1$을 의미하는 변수 `q1`을 받을 수 있게 변경
+**코드 설명**
+
+- line 5 : $Q_1$을 의미하는 변수 `q1`을 받을 수 있게 변경
   - line 8 : `q1`으로 초기화된 `estimated_values` 변수 생성
 - line 25 : $\alpha=0.1$로 고정
-- line 48 ~ 54 : $\varepsilon=0$, $Q\_1=5$일 때와 $\varepsilon=0.1$, $Q_1=0$일 때, 이렇게 두 가지 설정값을 준비
+- line 48 ~ 54 : $\varepsilon=0$, $Q_1=5$일 때와 $\varepsilon=0.1$, $Q_1=0$일 때, 이렇게 두 가지 설정값을 준비
 - line 59 : `configs` 변수에 저장된 설정값에 따라 에이전트 생성
 
-</div>
+:::
 
-{% include caption-img.html src="03-optimistic-initial-values-optimal-action-rate.png" title="Fig.04 Optimal Action Rate (예시)" description="[$\varepsilon=0$, $Q_1=5$], [$\varepsilon=0.1$, $Q_1=0$]으로 하여 $\varepsilon$-greedy Method를 적용 (k=10, steps=1000, repeats=100, $\alpha=0.1$)" %}
+<v-image src="03-optimistic-initial-values-optimal-action-rate.png" title="Fig.04 Optimal Action Rate (예시)" description="[$\varepsilon=0$, $Q_1=5$], [$\varepsilon=0.1$, $Q_1=0$]으로 하여 $\varepsilon$-greedy Method를 적용 (k=10, steps=1000, repeats=100, $\alpha=0.1$)" />
 
-Fig.04에서 볼 수 있듯이 실제로 Optimistic Initial Values($\varepsilon=0$, $Q\_1=5$)를 사용한 경우 단순한 $\varepsilon$-greedy Method($\varepsilon=0.1$, $Q\_1=0$)를 사용했을 때보다 초기에는 탐색을 많이 해 성능이 낮으나, 결국엔 성능이 더 좋아지는 것을 볼 수 있다.
+Fig.04에서 볼 수 있듯이 실제로 Optimistic Initial Values($\varepsilon=0$, $Q_1=5$)를 사용한 경우 단순한 $\varepsilon$-greedy Method($\varepsilon=0.1$, $Q_1=0$)를 사용했을 때보다 초기에는 탐색을 많이 해 성능이 낮으나, 결국엔 성능이 더 좋아지는 것을 볼 수 있다.
 
 그러나 Optimistic Initial Values 기법은 Stationary Problem을 풀 때는 꽤 효과적이지만, Nonstationary Problem을 풀 때는 그닥 효과적이지 않다는 단점이 있다.[^10]
 
@@ -491,36 +481,30 @@ k-armed Bandit Problem을 풂에 있어, 탐색(Exploration)은 매우 중요하
  
 **UCB(Upper-Confidence-Bound) Action Selection**은 바로 이 점에 착안하여 만들어진 기법이다. 시간 $t$까지 특정 행동 $a$가 시행된 횟수를 $N_t(a)$라 할 때, UCB Action Selection은 다음 규칙을 이용해 행동을 선택한다.
 
-{:.mb-0}
 1. 만약 한 번도 시행되지 않은 행동이 있다면($N_t(a) = 0$) 해당 행동을 선택한다.
-2. 만약 모든 행동들이 한 번 이상 시행되었다면 다음 식을 이용해 행동을 선택한다 :
+2. 만약 모든 행동들이 한 번 이상 시행되었다면 다음 식을 이용해 행동을 선택한다 :{.above-mathjax}
 
-{:.mathjax-mb-0}
 $$A_t = \underset{a}{\operatorname{arg max}} \left[ Q_t(a) + c \sqrt{\frac{\ln t}{N_t(a)}} \, \right]$$
 
-{:.text-align-center}
-(단, $c>0$)
+(단, $c>0$) {.text-align-center .under-mathjax}
 
 위 식의 의미를 생각해보자. 앞에서 배웠던 Greedy Method는 가장 큰 가치 추정값을 가지는 행동을 선택했다. 이를 식으로 표현하면 다음과 같이 된다.
 
 $$A_t = \underset{a}{\operatorname{arg max}} \left[ Q_t(a) \right]$$
 
-UCB Action Selection의 식은 Greedy Method의 식에 $c \sqrt{\frac{\ln t}{N\_t(a)}}$ 항을 추가한 것이다. 이 항을 불확실도 항(uncertainty term)이라 부른다. 행동 $a$의 가치 추정값의 불확실도(uncertainty)를 나타내기 때문이다.
+UCB Action Selection의 식은 Greedy Method의 식에 $c \sqrt{\frac{\ln t}{N_t(a)}}$ 항을 추가한 것이다. 이 항을 불확실도 항(uncertainty term)이라 부른다. 행동 $a$의 가치 추정값의 불확실도(uncertainty)를 나타내기 때문이다.
 
-행동 $a$를 기준으로, $a$가 많이 선택될수록(= 불확실도가 내려갈수록) 분모($N\_t(a)$)의 값이 커지므로 불확실도 항의 값은 작아진다. 또한 만약 다른 행동을 많이 선택했다면 분자($\ln t$)가 커지므로 불확실도 항의 값은 작아진다. 분자에 자연로그를 사용함으로서 시간이 지남에 따라 불확실도 항은 계속 커지지만(= unbounded) 그 증가폭은 점점 감소한다.
+행동 $a$를 기준으로, $a$가 많이 선택될수록(= 불확실도가 내려갈수록) 분모($N_t(a)$)의 값이 커지므로 불확실도 항의 값은 작아진다. 또한 만약 다른 행동을 많이 선택했다면 분자($\ln t$)가 커지므로 불확실도 항의 값은 작아진다. 분자에 자연로그를 사용함으로서 시간이 지남에 따라 불확실도 항은 계속 커지지만(= unbounded) 그 증가폭은 점점 감소한다.
 
 불확실도 항의 $c$는 탐색(Exploration)의 강도를 조절하는 값이다. 이 값이 크다면 더 많은 탐색을 수행하게 되고, 이 값이 작다면 더 많은 활용(Exploitation)[^11]을 수행하게 된다.
 
-[^11]: $Q\_t(a)$의 값이 큰 행동 $a$를 선택
+[^11]: $Q_t(a)$의 값이 큰 행동 $a$를 선택
 
 사실 Upper-Confidence-Bound란 통계학에서 신뢰구간(Confidence Interval)의 오른쪽 끝을 의미하는 말이다. 예를 들어 "정확도 95 ± 3% 테스트"에서 95 + 3 = 98%가 Upper-Confidence-Bound이다. UCB Action Selection의 이름은 바로 여기에서 나왔다. 우리의 목표는 가장 가치가 높은 행동을 뽑는 것이다. 이미 여러 번 시행된 행동의 경우 가치 추정값이 꽤 명확할 것이다. 즉 분산(variance)이 작다. 하지만 아직 몇 번 시행되지 않은 행동의 경우 가치 추정값이 불분명할 것이다. 즉 분산이 크다. 이때 UCB Action Selection은 모든 행동들에게서 동일한 면적(신뢰도)의 신뢰구간을 그린 후, 그 끝(UCB)이 가장 큰 행동을 선택하는 것이다. UCB Action Selection으로 어떤 행동이 선택되었다면, 그 행동은 가치 추정값(= 평균이 커)이 커서 선택되었을 수도 있고, 실제 가치는 작더라도 불확실성이 커(= 분산이 커) 선택되었을 수도 있다(동일한 신뢰도를 사용하기에 분산이 크면 평균(가치 추정값)이 작더라도 UCB가 커진다). 이때 신뢰도를 의미하는 파라미터가 $c$이다. 신뢰도가 높을수록 더 넓은 신뢰구간이 형성된다. 즉 분산이 큰(= 아직 불명확한) 행동들에 더 민감히 반응하겠다는(= 더 많이 뽑겠다는 = 탐색을 더 적극적으로 수행하겠다는) 의미가 된다.
 
-<div class="code-folder" markdown="block">
+::: details Code : UCB Action Selection
 
-{:.code-header}
-UCB Action Selection
-
-{% highlight python linenos %}
+```python:line-numbers
 import numpy as np
 from matplotlib import pyplot as plt
 from abc import *
@@ -643,9 +627,10 @@ plt.xlabel("Steps")
 plt.ylabel("Average Reward")
 plt.legend()
 plt.show()
-{% endhighlight %}
+```
 
-{:.guide-line}
+**코드 설명**
+
 - line 5 ~ 35 : 추상 클래스 `Agent` 생성
 - line 37 ~ 56 : `Agent`를 상속받은, $\varepsilon$-greedy Method를 사용하는 에이전트
 - line 58 ~ 78 : `Agent`를 상속받은, UCB Action Selection을 사용하는 에이전트
@@ -655,9 +640,9 @@ plt.show()
 - line 97 ~ 113 : 시뮬레이션
 - line 115 ~ 122 : 그래프 출력
 
-</div>
+:::
 
-{% include caption-img.html src="03-ucb-average-reward.png" title="Fig.05 Average Reward (예시)" description="UCB Action Selection($c=2$)를 사용한 에이전트와 $\varepsilon$-greedy Method($\varepsilon=0.1$)를 사용한 에이전트들의 매 단계별 평균 수령 보상 (k=10, steps=1000, repeats=100)" %}
+<v-image src="03-ucb-average-reward.png" title="Fig.05 Average Reward (예시)" description="UCB Action Selection($c=2$)를 사용한 에이전트와 $\varepsilon$-greedy Method($\varepsilon=0.1$)를 사용한 에이전트들의 매 단계별 평균 수령 보상 (k=10, steps=1000, repeats=100)" />
 
 위 그래프에서 볼 수 있다시피 UCB Action Selection은 성능이 꽤 좋다. 하지만 이 방법에는 한계가 많다. 대표적으로 이 방법은 Nonstationary Problem에는 적용하기 힘들다. 또한 탐색해야 하는 상태 공간(state space)이 너무 크다면, 특히 함수 추정(Function Approximation)을 써야 할 정도로 상태 공간이 크다면 UCB Action Selection을 적용하기 힘들다.
 
@@ -665,32 +650,25 @@ plt.show()
 
 **Gradient Bandit Algorithm**은 각 행동에 대한 선호도(preference)를 학습하고, 이를 기반으로 다음 행동을 선택하는 알고리즘이다. 이 알고리즘은 다음과 같이 동작한다.
 
-<div class="ol" markdown="block">
+1. 시점 $t$에서의 행동 $a$의 선호도를 $H_t(a)$라 할 때, 모든 행동들의 초기 선호도 $H_1 (a)$를 0으로 초기화한다.
 
-{:.ol-item}
-시점 $t$에서의 행동 $a$의 선호도를 $H\_t(a)$라 할 때, 모든 행동들의 초기 선호도 $H\_1 (a)$를 0으로 초기화한다.
+2. 시점 $t$에서 행동 $a$를 시행할 확률을 $\pi _t (a)$라 할 때, Softmax distribution(= Gibbs distribution = Boltzmann distribution)을 이용해 $\pi _t (a)$를 계산한 후 이를 이용해 다음 행동을 선택한다.
 
-{:.ol-item}
-시점 $t$에서 행동 $a$를 시행할 확률을 $\pi \_t (a)$라 할 때, Softmax distribution(= Gibbs distribution = Boltzmann distribution)을 이용해 $\pi \_t (a)$를 계산한 후 이를 이용해 다음 행동을 선택한다.
+    $$\pi _t (a) = \frac{e^{H_t(a)}}{\sum_{b=1}^k e^{H_t (b)}}$$
 
-$$\pi _t (a) = \frac{e^{H_t(a)}}{\sum_{b=1}^k e^{H_t (b)}}$$
+3. $A_t$가 선택되어 시행되고 그 결과 보상 $R_t$를 받았다고 하자. 시점 $t-1$까지 받은 모든 보상의 평균을 $\bar{R}_t$이라 할 때,[^12] Stochastic Gradient Ascent를 이용해 선호도를 업데이트한다.
 
-{:.ol-item}
-$A\_t$가 선택되어 시행되고 그 결과 보상 $R\_t$를 받았다고 하자. 시점 $t-1$까지 받은 모든 보상의 평균을 $\bar{R}\_t$이라 할 때,[^12] Stochastic Gradient Ascent를 이용해 선호도를 업데이트한다.
+    $$\begin{cases}
+    H_{t+1}(a) = H_t (a) + \alpha (R_t - \bar{R}_t)(1 - \pi_t (a)) & \textrm{(if } a = A_t \textrm{)}\\[0.5em]
+    H_{t+1}(a) = H_t (a) - \alpha (R_t - \bar{R}_t)\pi_t (a) & \textrm{(if } a \neq A_t \textrm{)}
+    \end{cases}
+    $$
 
-[^12]: 단, $\bar{R}\_1 = R\_1$
+[^12]: 단, $\bar{R}_1 = R_1$
 
-$$\begin{cases}
-H_{t+1}(a) = H_t (a) + \alpha (R_t - \bar{R}_t)(1 - \pi_t (a)) & \textrm{(if } a = A_t \textrm{)}\\[0.5em]
-H_{t+1}(a) = H_t (a) - \alpha (R_t - \bar{R}_t)\pi_t (a) & \textrm{(if } a \neq A_t \textrm{)}
-\end{cases}
-$$
+이때까지의 방법들은 모두 각 행동들의 수행 결과 받은 보상을 기준으로 해당 행동의 가치(앞으로 받을 것으로 예상되는 보상)를 추정하고, 이를 기반으로 다음 행동을 선택하는 Action-value Method였다. 하지만 Gradient Bandit Algorithm은 Action-value Method가 아니다. Gradient Bandit Algorithm의 선호도는 말 그대로 해당 행동을 다른 행동에 비해 얼마나 선호하는지를 나타내는 값으로서 보상과 아무런 관계가 없다. 선호도가 크면 해당 행동은 더 자주 선택되고, 선호도가 낮으면 해당 행동은 덜 선택된다. 단적으로, 각 행동들의 선호도 $H_t(a)$에 모두 1,000을 더해도 각 행동이 선택될 확률 $\pi _t (a)$에는 아무런 영향이 없다.[^13]
 
-</div>
-
-이때까지의 방법들은 모두 각 행동들의 수행 결과 받은 보상을 기준으로 해당 행동의 가치(앞으로 받을 것으로 예상되는 보상)를 추정하고, 이를 기반으로 다음 행동을 선택하는 Action-value Method였다. 하지만 Gradient Bandit Algorithm은 Action-value Method가 아니다. Gradient Bandit Algorithm의 선호도는 말 그대로 해당 행동을 다른 행동에 비해 얼마나 선호하는지를 나타내는 값으로서 보상과 아무런 관계가 없다. 선호도가 크면 해당 행동은 더 자주 선택되고, 선호도가 낮으면 해당 행동은 덜 선택된다. 단적으로, 각 행동들의 선호도 $H\_t(a)$에 모두 1,000을 더해도 각 행동이 선택될 확률 $\pi \_t (a)$에는 아무런 영향이 없다.[^13]
-
-[^13]: Softmax function에서 $e^{H\_t(a) + 1000} = e^{1000} \cdot e^{H\_t(a)}$이므로 $e^{1000}$이 모두 약분된다.
+[^13]: Softmax function에서 $e^{H_t(a) + 1000} = e^{1000} \cdot e^{H_t(a)}$이므로 $e^{1000}$이 모두 약분된다.
 
 선호도 업데이트 식을 조금 더 자세히 살펴보자.
 
@@ -700,16 +678,13 @@ H_{t+1}(a) = H_t (a) - \alpha (R_t - \bar{R}_t)\pi_t (a) & \textrm{(if } a \neq 
 \end{cases}
 $$
 
-이 식에서 $\alpha > 0$는 스텝 크기(step size)를 의미한다. 그리고 $\bar{R}\_t$는 일종의 베이스라인 역할을 한다. 만약 어떤 행동을 시행해 받은 보상($R\_t$)이 베이스라인($\bar{R}\_t$)보다 크다면 해당 행동의 선호도($H\_t (a)$)를 증가시키고, 다른 행동들의 선호도를 감소시킨다. 반대로 어떤 행동을 시행해 받은 보상이 베이스라인보다 작다면 해당 행동의 선호도를 감소시키고 다른 행동들의 선호도를 증가시킨다. 이때 $\bar{R}\_t$는 위에서 살펴본 [Incremental Implementation](#kramdown_incremental-implementation)을 이용하면 쉽게 계산할 수 있다.
+이 식에서 $\alpha > 0$는 스텝 크기(step size)를 의미한다. 그리고 $\bar{R}_t$는 일종의 베이스라인 역할을 한다. 만약 어떤 행동을 시행해 받은 보상($R_t$)이 베이스라인($\bar{R}_t$)보다 크다면 해당 행동의 선호도($H_t (a)$)를 증가시키고, 다른 행동들의 선호도를 감소시킨다. 반대로 어떤 행동을 시행해 받은 보상이 베이스라인보다 작다면 해당 행동의 선호도를 감소시키고 다른 행동들의 선호도를 증가시킨다. 이때 $\bar{R}_t$는 위에서 살펴본 [Incremental Implementation](#kramdown_incremental-implementation)을 이용하면 쉽게 계산할 수 있다.
 
-10-armed Testbed에서 Gradient Bandit Algorithm을 시험해보자. 이때 10-armed Testbed의 설정을 조금 바꿔, 각 행동의 실제 가치($q\_* (a)$)들이 평균 4, 분산 1의 정규분포에서 추출되게 해 보자.
+10-armed Testbed에서 Gradient Bandit Algorithm을 시험해보자. 이때 10-armed Testbed의 설정을 조금 바꿔, 각 행동의 실제 가치($q_* (a)$)들이 평균 4, 분산 1의 정규분포에서 추출되게 해 보자.
 
-<div class="code-folder" markdown="block">
+::: details Code : Gradient Bandit Algorithm
 
-{:.code-header}
-Gradient Bandit Algorithm
-
-{% highlight python linenos %}
+```python:line-numbers
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -793,21 +768,22 @@ plt.xlabel("Steps")
 plt.ylabel("Optimal Action Rate")
 plt.legend()
 plt.show()
-{% endhighlight %}
+```
 
-{:.guide-line}
+**코드 설명**
+
 - line 4 ~ 35 : Gradient Bandit Algorithm을 사용하는 에이전트
   - line 5 ~ 11 : `GradientBanditAgent.__init__()` 메서드
-    - line 5 : 취할 수 있는 행동의 개수를 나타내는 `k`, $\alpha$를 나타내는 `alpha`, 베이스라인($\bar{H}\_t$) 사용 유무를 나타내는 `use_baseline` 매개변수 사용
-    - line 8 : 선호도 `H`는 0으로 초기화($H\_1 (a)$)
+    - line 5 : 취할 수 있는 행동의 개수를 나타내는 `k`, $\alpha$를 나타내는 `alpha`, 베이스라인($\bar{H}_t$) 사용 유무를 나타내는 `use_baseline` 매개변수 사용
+    - line 8 : 선호도 `H`는 0으로 초기화($H_1 (a)$)
     - line 10 : 베이스라인 `baseline`은 0으로 초기화
   - line 13 ~ 16 : 에이전트를 초기화하는 `GradientBanditAgent.reset()` 메서드
-  - line 18 ~ 20 : 각 행동의 시행 확률 $\pi\_t (a)$를 반환하는 `GradientBanditAgent.getPi()` 메서드
+  - line 18 ~ 20 : 각 행동의 시행 확률 $\pi_t (a)$를 반환하는 `GradientBanditAgent.getPi()` 메서드
   - line 22 ~ 29 : 행동의 시행 후 받은 보상을 바탕으로 학습을 진행하는 `GradientBanditAgent.train()` 메서드
     - line 23 ~ 25 : 선호도 업데이트
       - line 23 ~ 24 : `indicator`라는 배열을 사용해 Gradient Bandit Algorithm의 선호도 업데이트 식을 하나로 합침
     - line 27 ~ 29 : `use_baseline`이 `False`인 경우 `baseline`을 업데이트하지 않음(`baseline`이 계속 초기값(0)을 가지게 함). `use_baseline`이 True인 경우 Incremental Implementation을 이용해 `baseline`을 업데이트.
-  - line 31 ~ 32 : $\pi\_t (a)$를 기반으로 다음 행동을 결정하는 `GradientBanditAgent.chooseAction()` 메서드
+  - line 31 ~ 32 : $\pi_t (a)$를 기반으로 다음 행동을 결정하는 `GradientBanditAgent.chooseAction()` 메서드
   - line 34 ~ 35 : 현재 에이전트의 설정값을 반환하는 `GradientBanditAgent.getName()` 메서드
 - line 37 ~ 47 : k-armed Testbed
   - line 38 ~ 40 : `Testbed.__init__()` 메서드
@@ -817,15 +793,15 @@ plt.show()
 - line 59 ~ 74 : 시뮬레이션 진행
 - line 76 ~ 83 : Optimal Action Rate 그래프 그리기
 
-</div>
+:::
 
-{% include caption-img.html src="03-gradient-bandit-algorithm-optimal-action-rate.png" title="Fig.06 Optimal Action Rate (예시)" description="$\alpha=0.1$인 경우와 $\alpha=0.4$인 경우, <code class='language-plaintext highlighter-rouge'>use_baseline = True</code>인 경우와 <code class='language-plaintext highlighter-rouge'>use_baseline = False</code>를 조합한 4가지 Gradient Bandit Algorithm을 사용하는 에이전트들의 최적 행동 선택 비율 (k=10, steps=1000, repeats=100)" %}
+<v-image src="03-gradient-bandit-algorithm-optimal-action-rate.png" title="Fig.06 Optimal Action Rate (예시)" description="$\alpha=0.1$인 경우와 $\alpha=0.4$인 경우, ``se_baseline = True`인 경우와 `use_baseline = False`를 조합한 4가지 Gradient Bandit Algorithm을 사용하는 에이전트들의 최적 행동 선택 비율 (k=10, steps=1000, repeats=100)" />
 
-정상적인 Gradient Bandit Algorithm의 경우 $\bar{R}\_t$의 존재 덕분에 $q\_* (a)$가 평균 4인 정규분포에서 추출됐어도 정상적으로 잘 작동한다. 하지만 위 그래프에서 볼 수 있듯이 베이스라인($\bar{R}\_t$)을 사용하지 않게 한 에이전트는 성능이 낮게 나온다.
+정상적인 Gradient Bandit Algorithm의 경우 $\bar{R}_t$의 존재 덕분에 $q_* (a)$가 평균 4인 정규분포에서 추출됐어도 정상적으로 잘 작동한다. 하지만 위 그래프에서 볼 수 있듯이 베이스라인($\bar{R}_t$)을 사용하지 않게 한 에이전트는 성능이 낮게 나온다.
 
-## 심화 : Gradient Bandit Algorithm의 선호도 업데이트 식 유도 과정
+::: details 심화 : Gradient Bandit Algorithm의 선호도 업데이트 식 유도 과정
 
-각 행동의 시행 확률 $\pi\_t (x)$가 주어졌을 때, Gradient Bandit Algorithm의 "성능"은 보상의 기댓값으로 정의할 수 있다(= 성능이 좋을수록 기대할 수 있는 보상의 크기가 크다).
+각 행동의 시행 확률 $\pi_t (x)$가 주어졌을 때, Gradient Bandit Algorithm의 "성능"은 보상의 기댓값으로 정의할 수 있다(= 성능이 좋을수록 기대할 수 있는 보상의 크기가 크다).
 
 $$\mathbb{E}[R_t] = \sum _{x} \pi_t (x) q_* (x)$$
 
@@ -847,22 +823,22 @@ $$
 
 $$\sum _{x} \frac{\partial \pi_t (x)}{\partial H_t (a)} = \frac{\partial}{\partial H_t (a)} \left[ \sum _{x} \pi_t (x) \right] = \frac{\partial}{\partial H_t (a)} \left[ 1 \right] = 0$$
 
-이므로, 위 식에 다음과 같이 베이스라인(baseline) 항 $B\_t$를 추가할 수 있다(단, 베이스라인은 $x$와 관련없는 스칼라 값이다).
+이므로, 위 식에 다음과 같이 베이스라인(baseline) 항 $B_t$를 추가할 수 있다(단, 베이스라인은 $x$와 관련없는 스칼라 값이다).
 
 $$\begin{align}
 H_{t+1}(a)
 &= H_{t}(a) + \alpha \sum _{x} q_* (x) \frac{\partial \pi_t (x)}{\partial H_t (a)}\\[0.5em]
 &= H_{t}(a) + \alpha \sum _{x} (q_* (x) - B_t) \frac{\partial \pi_t (x)}{\partial H_t (a)}\\[0.5em]
 &= H_{t}(a) + \alpha \sum _{x} (q_* (x) - B_t) \frac{\partial \pi_t (x)}{\partial H_t (a)} \frac{\pi_t (x)}{\pi_t (x)}\\[0.5em]
-&= H_{t}(a) + \alpha \bbox[{{ site.data.mathjax.highlightColor1 }}, {{ site.data.mathjax.highlightPadding }}]{\sum _{x} \pi_t (x)(q_* (x) - B_t) \frac{\partial \pi_t (x)}{\partial H_t (a)} \frac{1}{\pi_t (x)}}\\[0.5em]
+&= H_{t}(a) + \alpha \bbox[border: 2px solid red, 5px]{\sum _{x} \pi_t (x)(q_* (x) - B_t) \frac{\partial \pi_t (x)}{\partial H_t (a)} \frac{1}{\pi_t (x)}}\\[0.5em]
 \end{align}
 $$
 
-이때 위 식의 노란색 영역은 가능한 모든 행동 $A\_t$에 대해, $A\_t$가 일어날 확률 $\pi\_t(A\_t)$와 $\displaystyle (q\_* (A\_t) - B\_t) \frac{\partial \pi\_t (A\_t)}{\partial H\_t (a)} \frac{1}{\pi\_t (A\_t)}$를 곱한, 일종의 기댓값이라 이해할 수 있다. 즉,
+이때 위 식의 빨간색 테두리 영역은 가능한 모든 행동 $A_t$에 대해, $A_t$가 일어날 확률 $\pi_t(A_t)$와 $\displaystyle (q_* (A_t) - B_t) \frac{\partial \pi_t (A_t)}{\partial H_t (a)} \frac{1}{\pi_t (A_t)}$를 곱한, 일종의 기댓값이라 이해할 수 있다. 즉,
 
 $$\sum _{x} \pi_t (x)(q_* (x) - B_t) \frac{\partial \pi_t (x)}{\partial H_t (a)} \frac{1}{\pi_t (x)} = \mathbb{E}\left[ (q_* (A_t) - B_t) \frac{\partial \pi_t (A_t)}{\partial H_t (a)} \frac{1}{\pi_t (A_t)} \right]$$
 
-이라 쓸 수 있다. 또한 $\mathbb{1}\_{a=x}$를 $a=x$일 때 1, $a \neq x$일 때 0이 되는 확률변수라 하면
+이라 쓸 수 있다. 또한 $\mathbb{1}_{a=x}$를 $a=x$일 때 1, $a \neq x$일 때 0이 되는 확률변수라 하면
 
 $$\begin{align}
 \frac{\partial \pi_t (A_t)}{\partial H_t (a)}
@@ -884,11 +860,11 @@ H_{t+1}(a)
 \end{align}
 $$
 
-가 된다. 이때 우리는 $q\_* (A\_t)$를 바로 알 순 없지만, 실험을 통해 받는 보상의 기댓값으로 이를 추정할 수 있다. 이를 수식으로 나타내면 다음과 같다.
+가 된다. 이때 우리는 $q_* (A_t)$를 바로 알 순 없지만, 실험을 통해 받는 보상의 기댓값으로 이를 추정할 수 있다. 이를 수식으로 나타내면 다음과 같다.
 
 $$q_* (A_t) = \mathbb{E}[R_t | A_t]$$
 
-또한 베이스라인으로 $A\_t$에 의존하지 않는 값인 $\bar{R}\_t$를 사용할 수 있다.
+또한 베이스라인으로 $A_t$에 의존하지 않는 값인 $\bar{R}_t$를 사용할 수 있다.
 
 $$\begin{align}
 H_{t+1}(a)
@@ -914,7 +890,9 @@ $$
 
 이렇게 Gradient Ascent Algorithm의 선호도 업데이트 식을 유도할 수 있다.
 
-눈치챘겠지만 사실 베이스라인 $B\_t$은 모든 행동 $x$에 대해서 독립적이기만 하면 된다. 즉 $B\_t$로 그냥 0을 사용해도 되고, 아무런 숫자(1000)를 써도 된다는 것이다. 하지만 적절한 값을 베이스라인으로 사용하면 선호도 $H\_t(a)$의 수렴 속도를 빠르게 할 수 있다. 평균 보상($\bar{R}\_t$)은 최고의 선택이 아닐 순 있지만, 계산하기 쉽고 꽤 잘 작동하는 베이스라인이다.
+눈치챘겠지만 사실 베이스라인 $B_t$은 모든 행동 $x$에 대해서 독립적이기만 하면 된다. 즉 $B_t$로 그냥 0을 사용해도 되고, 아무런 숫자(1000)를 써도 된다는 것이다. 하지만 적절한 값을 베이스라인으로 사용하면 선호도 $H_t(a)$의 수렴 속도를 빠르게 할 수 있다. 평균 보상($\bar{R}_t$)은 최고의 선택이 아닐 순 있지만, 계산하기 쉽고 꽤 잘 작동하는 베이스라인이다.
+
+:::
 
 # 확장 : Associative Search (Contextual Bandits)
 
@@ -937,16 +915,13 @@ $$
 - UCB Action Selection : UCB가 높은 행동을 결정론적으로(deterministically) 선택한다. 아직 여러번 시행되지 않은 행동은 UCB가 높다.
 - Gradient Bandit Algorithm : 각 행동의 선호도(preference)를 기반으로 다음 행동을 확률적으로 선택한다.
 
-그렇다면 위 네 가지 방법 중 어떤 방법이 k-armed Bandit Problem을 해결하는 가장 좋은 방법일까? 사실 각 방법들은 독자적인 파라미터를 사용하기에 이들을 바로 비교하는 것은 어렵다. 이들을 비교하는 한 가지 방법으로 각 방법별로 학습 곡선(learning curve)을 그린 후 이를 비교하는 방법이 있다. 학습 곡선이란 여러 개의 파라미터 값들에 대해 목표값을 그래프로 나타낸 것을 말한다. 모든 파라미터에 대해 학습 곡선을 그리면 또 비교가 어려워지므로, 위 네 가지 방법 각각 핵심 파라미터($\varepsilon$, $Q\_1 (a)$, $c$, $\alpha$)를 바꿔가며 평균 보상[^16]을 계산하자. 이를 그래프로 나타내면 Fig.07과 같이 된다(참고로 이렇게 그린 그래프를 Parameter Study라 한다).
+그렇다면 위 네 가지 방법 중 어떤 방법이 k-armed Bandit Problem을 해결하는 가장 좋은 방법일까? 사실 각 방법들은 독자적인 파라미터를 사용하기에 이들을 바로 비교하는 것은 어렵다. 이들을 비교하는 한 가지 방법으로 각 방법별로 학습 곡선(learning curve)을 그린 후 이를 비교하는 방법이 있다. 학습 곡선이란 여러 개의 파라미터 값들에 대해 목표값을 그래프로 나타낸 것을 말한다. 모든 파라미터에 대해 학습 곡선을 그리면 또 비교가 어려워지므로, 위 네 가지 방법 각각 핵심 파라미터($\varepsilon$, $Q_1 (a)$, $c$, $\alpha$)를 바꿔가며 평균 보상[^16]을 계산하자. 이를 그래프로 나타내면 Fig.07과 같이 된다(참고로 이렇게 그린 그래프를 Parameter Study라 한다).
 
 [^16]: 평균 보상은 다음과 같이 계산한다: 한 Testbed에 대해 1,000스탭 시뮬레이션을 돌려, 각 스탭마다 받는 보상의 평균값을 구하는 과정을 100번 시행. 그렇게 나온 평균 보상들의 평균.
 
-<div class="code-folder" markdown="block">
+::: details Code : Parameter Study
 
-{:.code-header}
-Parameter Study
-
-{% highlight python linenos %}
+```python:line-numbers
 import numpy as np
 from matplotlib import pyplot as plt
 from abc import *
@@ -1160,11 +1135,10 @@ plt.xticks(values, ["1/128", "1/64", "1/32", "1/16", "1/8", "1/4", "1/2", "1", "
 plt.minorticks_off()
 plt.legend(bbox_to_anchor=(1, 1))
 plt.show()
-{% endhighlight %}
+```
 
-</div>
+:::
 
-{% include caption-img.html src="03-parameter-study.png" title="Fig.07 Parameter Study (예시)" description="위에서 학습한 k-armed Bandit Problem을 푸는 네 가지 방법들에 대한 Parameter Study" %}
+<v-image src="03-parameter-study.png" title="Fig.07 Parameter Study (예시)" description="위에서 학습한 k-armed Bandit Problem을 푸는 네 가지 방법들에 대한 Parameter Study" />
 
 위 그래프를 보면 모든 방법들의 그래프가 ∩ 모양을 띄고 있음을 볼 수 있다. 이는 모든 방법들이 극단적으로 크거나 극단적으로 작은 파라미터에서는 좋은 성능을 보이지 못한다는 것을 보여준다. 위 그래프에 의하면 UCB Action Selection이 가장 좋은 성능을 보인다고 할 수 있겠다.
-

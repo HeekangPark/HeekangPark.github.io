@@ -49,6 +49,16 @@ s {
   }
 }
 
+sup {
+  font-size: 0.8em;
+  vertical-align: super;
+}
+
+sub {
+  font-size: 0.8em;
+  vertical-align: sub;
+}
+
 /* block elements */
 @for $i from 1 through 6 {
   h#{$i} {
@@ -401,6 +411,7 @@ div[class*="language-"] {
     grid-template-columns: auto 1fr;
 
     .line-numbers-wrapper {
+      user-select: none;
       grid-column: 1 / 2;
       grid-row: 1 / 2;
 
@@ -411,8 +422,9 @@ div[class*="language-"] {
         right: $code-block-padding;
       }
 
-      ;
+      color: var(--shiki-text);
       text-align: right;
+      opacity: 0.5;
 
       border: {
         right: 1px solid color-mix(in srgb, var(--shiki-text) 10%, transparent);
@@ -570,12 +582,37 @@ div[class*="language-"] {
   }
 }
 
+// markdown-it-mathjax
 mjx-container {
   width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
   padding: {
+    top: 0.25em;
     bottom: 0.25em;
   }
   @include gap;
   @include scrollbar(0.5em, 0.75em);
+  font-size: 0.9em;
+}
+
+// markdown-it-attrs
+.text-align-center {
+  text-align: center;
+}
+
+.text-size-lg {
+  font-size: 1.1em;
+}
+
+.under-mathjax {
+  margin: {
+    top: -$gap_size;
+  }
+}
+
+.above-mathjax {
+  margin: {
+    bottom: -calc(#{$gap_size} / 2);
+  }
 }

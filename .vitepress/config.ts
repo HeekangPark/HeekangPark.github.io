@@ -4,6 +4,7 @@ import { defineConfigWithTheme } from 'vitepress';
 import type { ThemeConfig } from '@/themeConfig';
 
 import footnote from 'markdown-it-footnote';
+import markdownItAttrs from 'markdown-it-attrs';
 //import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs';
 
 const themeConfig: ThemeConfig = {
@@ -49,7 +50,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     ["meta", { name: "author", content: themeConfig.author.name }],
     ["link", { rel: "icon", href: "/icons/icon-light.ico", media: "(prefers-color-scheme: light)" }],
     ["link", { rel: "icon", href: "/icons/icon-dark.ico", media: "(prefers-color-scheme: dark)" }],
-    ["script", { async: true, src: `https://www.googletagmanager.com/gtag/js?id=${themeConfig.googleAnalytics.trackingId}` }],
+    ["script", { async: "", src: `https://www.googletagmanager.com/gtag/js?id=${themeConfig.googleAnalytics.trackingId}` }],
     ["script", {}, `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${themeConfig.googleAnalytics.trackingId}');`]
   ],
   vite: {
@@ -96,6 +97,13 @@ export default defineConfigWithTheme<ThemeConfig>({
       md.renderer.rules.table_close = function (tokens, idx, options) {
         return '</table></div>';
       }
+
+      // markdown-it-attrs
+      md.use(markdownItAttrs, {
+        leftDelimiter: '{',
+        rightDelimiter: '}',
+        allowedAttributes: []
+      });
 
       // tabs plugin
       //md.use(tabsMarkdownPlugin);

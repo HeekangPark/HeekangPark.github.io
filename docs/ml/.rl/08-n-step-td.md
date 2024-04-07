@@ -14,7 +14,7 @@ $S\_0$, $A\_0$, $R\_1$, $S\_1$, $A\_1$, $R\_2$, $S\_2$, $A\_2$, …, $R\_{T}$, $
 
 이때 상태 $S\_t$의 가치 함수 $V(S\_t)$를 업데이트하는 방법을 생각해 보자.
 
-[MC Method](/SNU_m3309.000200/06-mc)에서는 시점 $t+1$부터 에피소드 종료까지 관측한 (전체) 보상들($R\_{t + 1}$, $R\_{t+2}$, …, $R\_T$)을 기반으로 하여 $V(S\_t)$를 업데이트했다.
+[MC Method](/ml/rl/06-mc)에서는 시점 $t+1$부터 에피소드 종료까지 관측한 (전체) 보상들($R\_{t + 1}$, $R\_{t+2}$, …, $R\_T$)을 기반으로 하여 $V(S\_t)$를 업데이트했다.
 
 {:.mathjax-mb-0}
 $$\begin{align}
@@ -27,7 +27,7 @@ $$
 {:.text-align-center}
 (단, $G\_{t} = R\_{t + 1} + \gamma R\_{t+2} + \cdots + \gamma^{T - t - 1} R\_T$)
 
-한편, [1-step TD Method(= TD(0) Method)](/SNU_m3309.000200/07-td)에서는 시점 $t+1$에서 관측한 보상 $R\_{t+1}$과 상태 $S\_{t+1}$에서의 가치 추정값 $V(S\_{t+1})$[^1]을 기반으로 하여 $V(S\_t)$를 업데이트했다.
+한편, [1-step TD Method(= TD(0) Method)](/ml/rl/07-td)에서는 시점 $t+1$에서 관측한 보상 $R\_{t+1}$과 상태 $S\_{t+1}$에서의 가치 추정값 $V(S\_{t+1})$[^1]을 기반으로 하여 $V(S\_t)$를 업데이트했다.
 
 [^1]: $V(S\_{t+1})$는 미래에 받을 보상들($R\_{t+2}$, $R\_{t+3}$, …, $R\_{T}$)에 대한 프록시(proxy) 역할을 한다.
 
@@ -138,7 +138,7 @@ $n$-step TD Prediction
 
 ## 예제 : Random Walk
 
-[이전 글](/SNU_m3309.000200/07-td#kramdown_예제--random-walk)에서 보았던 Random Walk 문제에서 첫 번째 에피소드로 다음과 같은 에피소드를 얻었다고 해 보자.
+[이전 글](/ml/rl/07-td#kramdown_예제--random-walk)에서 보았던 Random Walk 문제에서 첫 번째 에피소드로 다음과 같은 에피소드를 얻었다고 해 보자.
 
 {:.text-align-center}
 C, 0, D, 0, E, 1, T
@@ -306,7 +306,7 @@ if __name__ == "__main__":
 
 ### On-policy $n$-step SARSA
 
-[이전 글](/SNU_m3309.000200/07-td#kramdown_sarsa)에서 살펴본 SARSA와 $n$-step TD Method를 결합해 보자. $n$-step TD Method 버전의 SARSA를 **$n$-step SARSA**라 한다. 참고로 이전 글에서 배운 TD(0) Method 버전의 SARSA는 1-step SARSA 또는 SARSA(0)이라 부른다.
+[이전 글](/ml/rl/07-td#kramdown_sarsa)에서 살펴본 SARSA와 $n$-step TD Method를 결합해 보자. $n$-step TD Method 버전의 SARSA를 **$n$-step SARSA**라 한다. 참고로 이전 글에서 배운 TD(0) Method 버전의 SARSA는 1-step SARSA 또는 SARSA(0)이라 부른다.
 
 SARSA에서는 행동-가치 함수(action-value function)를 사용하므로, $n$-step Return $G\_{t:t+n}$을 다음과 같이 $Q$를 사용하여 재정의하자.
 
@@ -372,7 +372,7 @@ On-policy $n$-step SARSA ($\varepsilon$-greedy Policy 사용)
 
 ### On-policy $n$-step Expected SARSA
 
-[이전 글](/SNU_m3309.000200/07-td#kramdown_expected-sarsa)에서 살펴본 Expected SARSA와 $n$-step TD Method를 결합하면 **$n$-step Expected SARSA**를 얻을 수 있다. $n$-step Expected SARSA는 다음과 같은 $n$-step Return을 정의해 사용한다.
+[이전 글](/ml/rl/07-td#kramdown_expected-sarsa)에서 살펴본 Expected SARSA와 $n$-step TD Method를 결합하면 **$n$-step Expected SARSA**를 얻을 수 있다. $n$-step Expected SARSA는 다음과 같은 $n$-step Return을 정의해 사용한다.
 
 $$G_{t:t+n} = \begin{cases}
 R_{t+1} + \gamma R_{t+2} + \cdots + \gamma^{n-1} R_{t+n} + \gamma^n \sum_a \pi (a \,|\, S_{t+n}) Q(S_{t+n},\,a) & (t + n < T)\\[0.5em]
@@ -437,7 +437,7 @@ $\pi$ : $Q$에 대한 $\varepsilon$-greedy Policy
 
 ### Importance-sampling ratio
 
-Off-policy Learning은 학습이 진행되는 목표 정책(target policy) $\pi$와 데이터를 생성하는 행동 정책(behavior policy) $b$가 다른 학습법이었다. $b$로 생성한 데이터를 이용해 $\pi$를 학습시키기 위해선 [MC Method](/SNU_m3309.000200/06-mc#kramdown_off-policy-prediction)에서 살펴본 **Importance Sampling** 기법을 사용해야 한다. 목표 정책 $\pi$와 행동 정책 $b$ 사이의 **Importance-sampling ratio** $\rho\_{t:h}$는 다음과 같이 정의된다.
+Off-policy Learning은 학습이 진행되는 목표 정책(target policy) $\pi$와 데이터를 생성하는 행동 정책(behavior policy) $b$가 다른 학습법이었다. $b$로 생성한 데이터를 이용해 $\pi$를 학습시키기 위해선 [MC Method](/ml/rl/06-mc#kramdown_off-policy-prediction)에서 살펴본 **Importance Sampling** 기법을 사용해야 한다. 목표 정책 $\pi$와 행동 정책 $b$ 사이의 **Importance-sampling ratio** $\rho\_{t:h}$는 다음과 같이 정의된다.
 
 $$\rho_{t:h} = \prod _{k=t} ^{\min(h,\,T-1)} \frac{\pi(A_k\,|\,S_k)}{b(A_k\,|\,S_k)}$$
 
@@ -579,7 +579,7 @@ $b$ : 모든 $s \in \mathcal{S}$, $a \in \mathcal{A}(s)$에 대해 $b(a \,\|\, s
 
 ### $n$-step Tree Backup Algorithm
 
-[이전 글](/SNU_m3309.000200/07-td)에서 봤던 Q-Learning과 Expected SARSA는 Importance Sampling을 사용하지 않고도 Off-policy Learning을 수행했다. 그렇다면 Importance Sampling을 사용하지 않는 Off-policy $n$-step Learning은 없을까?
+[이전 글](/ml/rl/07-td)에서 봤던 Q-Learning과 Expected SARSA는 Importance Sampling을 사용하지 않고도 Off-policy Learning을 수행했다. 그렇다면 Importance Sampling을 사용하지 않는 Off-policy $n$-step Learning은 없을까?
 
 한편, Expected SARSA의 Return을 구하는 과정을 생각해보자. (1-step) Expected SARSA Return은 다음 상태 $S\_{t+1}$에서 받을 수 있는 보상들의 기댓값이었다. $n$-step Expected SARSA Return은 보상 $R_{t+1}$, $R_{t+2}$, …, $R_{t+n}$과, 상태 $S\_{t+n}$에서 받을 수 있는 보상들의 기댓값의 합이었다. 그런데 만약, 거치는 모든 상태 $S\_{t+1}$, $S\_{t+2}$, …, $S\_{t+n}$에서 보상들의 기댓값을 구한다면 더 정확하지 않을까?
 

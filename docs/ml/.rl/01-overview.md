@@ -5,7 +5,11 @@ date_created: "2021-03-02"
 date_modified: "2021-10-14"
 ---
 
-2021-1학기 강화학습(M3309.000200) 강의 노트
+2021-1학기 서울대 강화학습(M3309.000200) 강의 노트
+
+도서 <Reinforcement Learning: An Introduction (2nd Edition)> by Richard S. Sutton and Andrew G. Barto 내용을 정리함
+
+<v-image src="https://m.media-amazon.com/images/I/71nk3rOK3jL._SL1500_.jpg" description="<Reinforcement Learning: An Introduction (2nd Edition)>, Richard S. Sutton and Andrew G. Barto" />
 
 # 강화학습이란?
 

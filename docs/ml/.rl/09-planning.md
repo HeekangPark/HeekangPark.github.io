@@ -29,7 +29,7 @@ Distribution Model이 있다면 이를 이용해 결과 샘플을 만들 수 있
 - 모델 기반 방법(Model-based Method) : 모델을 이용해 학습을 진행하는 RL 학습법
 - Model-free Method : 모델을 이용하지 않고 학습을 진행하는 RL 학습법
 
-모델 기반 방법의 예로는 [DP](/SNU_m3309.000200/05-dp)가 있다. DP에서는 환경에 대해 모든 지식이 주어진 경우를 가정했는데, Distribution Model이 주어졌다면 DP를 적용할 수 있다. Model-free Method의 예로는 [MC Method](/SNU_m3309.000200/06-mc), [TD Method](/SNU_m3309.000200/07-td)가 있다.
+모델 기반 방법의 예로는 [DP](/ml/rl/05-dp)가 있다. DP에서는 환경에 대해 모든 지식이 주어진 경우를 가정했는데, Distribution Model이 주어졌다면 DP를 적용할 수 있다. Model-free Method의 예로는 [MC Method](/ml/rl/06-mc), [TD Method](/ml/rl/07-td)가 있다.
 
 # Planning
 
@@ -37,7 +37,7 @@ Distribution Model이 있다면 이를 이용해 결과 샘플을 만들 수 있
 
 [^2]: 엄밀히 말하면, 이 설명은 State-space Planning에 대한 설명이다. Planning은 State-space Planning과 Plan-space Planning, 이렇게 두 가지로 크게 구분할 수 있다. Plan-space Planning은 Plan 공간(Plan space)을 (일반적으로 진화적 방법(evolutionary method)을 사용해) 탐색하며 최적의 Plan을 찾는 방법이다(최적의 Plan으로 만들어지는 정책이 최적 정책이 된다). Plan-space Planning은 State-space Planning에 비해 조금 더 유연하다는 장점이 있으나, (RL에서 특히 중점적으로 다루는) 연속적 확률 결정 문제(stochastic sequential decision problem)에는 효율적으로 적용하기 어렵다는 단점이 있다. 따라서 일반적으로 RL에서는 State-space Planning을 사용한다.
 
-사실 Planning은 거창하게 새로운 것이 아니다. 우리가 이전에 봤던 [MC Method](/SNU_m3309.000200/06-mc), [TD Method](/SNU_m3309.000200/07-td)와 같은 Model-free Method에서는 환경과 실제로 상호작용하면서 만든 실제 경험(real experience)을 토대로 학습이 진행되었는데, Planning은 모델이 생성한 가짜 경험(simulated experience)에 대해 동일한 알고리즘을 적용하는 것이다.[^3] 예를 들어 다음과 같이 모델이 생성한 가짜 경험에 대해 Q-Learning을 적용하는, Q-Planning을 생각할 수 있다.
+사실 Planning은 거창하게 새로운 것이 아니다. 우리가 이전에 봤던 [MC Method](/ml/rl/06-mc), [TD Method](/ml/rl/07-td)와 같은 Model-free Method에서는 환경과 실제로 상호작용하면서 만든 실제 경험(real experience)을 토대로 학습이 진행되었는데, Planning은 모델이 생성한 가짜 경험(simulated experience)에 대해 동일한 알고리즘을 적용하는 것이다.[^3] 예를 들어 다음과 같이 모델이 생성한 가짜 경험에 대해 Q-Learning을 적용하는, Q-Planning을 생각할 수 있다.
 
 [^3]: 모델을 사용하여, 모델이 만들어낸 가짜 경험(simulated experience)을 이용해 에이전트를 학습시키는 것을 Planning이라 한다. 한편 앞에서 배웠던 것처럼, 모델을 사용하지 않고 실제 경험(real experience)을 이용해 에이전트를 학습시키는 것을 Learning이라 한다(비록 한국어로는 둘 다 학습이라 하지만 말이다). 그래서 Model-free Method 버전의 MC Method, TD Method는 각각 MC Learning, TD Learning이라, Model-based Method 버전의 MC Method, TD Method는 MC Planning, TD Planning이라 부른다.
 

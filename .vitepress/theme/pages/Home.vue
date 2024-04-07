@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import _ from "lodash";
 import { computed } from "vue";
-import { useData } from "vitepress";
+import { Content, useData } from "vitepress";
 import type { ThemeConfig } from "@/themeConfig";
 
 import Panel from "@/layouts/Panel.vue";
@@ -34,6 +34,12 @@ const recently_modified_document_paths = computed(() => {
 <template>
   <Panel>
     <p class="site-title">{{ themeData.title }}</p>
+    <div class="section notices">
+      <p class="section-title">Notices</p>
+      <div class="section-content">
+        <Content></Content>
+      </div>
+    </div>
     <div class="section recently-added-documents-section">
       <p class="section-title">Recently Added Documents</p>
       <div class="section-content">
@@ -58,7 +64,7 @@ const recently_modified_document_paths = computed(() => {
 <style lang="scss" scoped>
 @import "@/styles/mixins";
 
-$gap: 4em;
+$gap: 48px;
 
 .site-title {
   font-size: 2em;
@@ -72,11 +78,27 @@ $gap: 4em;
     right: 1em;
   }
 
+  margin: {
+    bottom: $gap;
+  }
+
   color: var(--site-text);
   border-radius: 0.5em;
   word-break: keep-all;
 
   @include shadow_inset_small;
+}
+
+.notices {
+  .section-title {
+    margin: {
+      bottom: 0.5em;
+    }
+  }
+
+  .section-content :deep(> *) {
+    @import "@/styles/document.scss";
+  }
 }
 
 .section {
@@ -105,7 +127,7 @@ $gap: 4em;
   }
 
   padding: {
-    top: 2em;
+    top: 1em;
   }
 
   display: flex;
