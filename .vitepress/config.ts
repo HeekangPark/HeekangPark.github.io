@@ -25,6 +25,10 @@ const themeConfig: ThemeConfig = {
   googleAnalytics: {
     trackingId: "G-325ND33JD3"
   },
+  googleAdSense: {
+    adClient: "ca-pub-7509436363176620",
+    adSlot: "7405859258"
+  },
   since: 2020
 };
 

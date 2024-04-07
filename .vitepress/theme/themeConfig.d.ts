@@ -16,5 +16,9 @@ export type ThemeConfig = {
   googleAnalytics: {
     trackingId: string,
   },
+  googleAdSense: {
+    adClient: string,
+    adSlot: string,
+  },
   since: number,
 }

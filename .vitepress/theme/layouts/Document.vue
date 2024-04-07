@@ -9,6 +9,7 @@ import shikiTheme from 'tm-themes/themes/dark-plus.json';
 import Panel from "@/layouts/Panel.vue";
 import TagComponent from "@/components/TagComponent.vue";
 import Giscus from "@giscus/vue";
+import AdComponent from '@/components/AdComponent.vue';
 
 import { useGlobalState } from '@/store';
 
@@ -200,12 +201,16 @@ const giscusTheme = computed(() => {
       </div>
     </div>
   </Panel>
-  <Panel class="comment">
+  <Panel class="comment panel">
     <p class="panel-title">Comments</p>
     <Giscus id="comments" :repo="themeData.giscus.repo" :repoId="themeData.giscus.repoId"
       :category="themeData.giscus.category" :categoryId="themeData.giscus.categoryId" mapping="pathname" strict="0"
       reactionsEnabled="1" emitMetadata="0" inputPosition="top" :theme="giscusTheme" lang="ko" loading="lazy"
       crossorigin="anonymous" async />
+  </Panel>
+  <Panel class="ad panel">
+    <p class="panel-title">Advertisement</p>
+    <AdComponent />
   </Panel>
 </template>
 
@@ -690,7 +695,7 @@ const giscusTheme = computed(() => {
   }
 }
 
-.comment {
+.panel {
   .panel-title {
     font-size: 1.25em;
     margin-bottom: 2em;
