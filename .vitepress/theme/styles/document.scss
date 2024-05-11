@@ -59,6 +59,32 @@ sub {
   vertical-align: sub;
 }
 
+.footnote-ref {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
+  word-break: keep-all;
+  user-select: none;
+
+  a {
+    color: var(--hyperlink-unclicked-text);
+
+    &:hover {
+      color: var(--hyperlink-unclicked-hover-text);
+      text-decoration: underline;
+    }
+  }
+
+  color: var(--hyperlink-unclicked-text);
+
+  &:hover {
+    color: var(--hyperlink-unclicked-hover-text);
+    text-decoration: underline;
+  }
+}
+
 /* block elements */
 @for $i from 1 through 6 {
   h#{$i} {
@@ -206,6 +232,7 @@ ul,
 ol {
   @include gap;
   list-style-position: outside;
+  line-height: $line-height;
 
   padding: {
     left: 1.5em;
@@ -587,10 +614,12 @@ mjx-container {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+
   padding: {
     top: 0.25em;
     bottom: 0.25em;
   }
+
   @include gap;
   @include scrollbar(0.5em, 0.75em);
   font-size: 0.9em;

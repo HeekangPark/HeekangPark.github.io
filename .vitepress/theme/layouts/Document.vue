@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import _ from 'lodash';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUpdated } from 'vue';
 import { useData } from 'vitepress';
 import type { ThemeConfig } from "@/themeConfig";
 
@@ -18,6 +18,7 @@ const props = defineProps<{
 }>();
 
 import { data } from "@/data/documents.data";
+import { nextTick } from 'vue';
 const { collections, documents, tags } = data;
 
 const state = useGlobalState();
@@ -34,6 +35,13 @@ const collection = computed(() => {
   }
   return null;
 });
+
+const collection_full_name = computed(() => {
+  if (collection.value) {
+    return [...collection.value.parent_collection_paths, collection.value.path].map(path => collections[path].name).join(" / ");
+  }
+  return null;
+})
 
 const collection_document_paths = computed(() => {
   if (collection.value) {
@@ -79,12 +87,144 @@ const { theme: themeData } = useData<ThemeConfig>();
 const giscusTheme = computed(() => {
   return state.isDark.value ? themeData.value.giscus.darkTheme : themeData.value.giscus.lightTheme;
 });
+
+// footnotes
+const el__content = ref<HTMLElement | null>(null);
+const el__footnote_popup = ref<HTMLElement | null>(null);
+const footnote_popups = ref<{ [key: string]: HTMLElement }>({});
+const selected_footnote_id = ref<string | null>(null);
+
+const showFootnotePopup = (id: string, top: number, left: number) => {
+  selected_footnote_id.value = id;
+
+  el__footnote_popup.value.classList.remove("hidden");
+  el__footnote_popup.value.innerHTML = footnote_popups.value[id].innerHTML;
+
+  const rect_self = el__footnote_popup.value.getBoundingClientRect();
+  el__footnote_popup.value.style.setProperty("--top", `${top - rect_self.height}px`);
+  el__footnote_popup.value.style.setProperty("--left", `${left}px`);
+}
+
+const hideFootnotePopup = () => {
+  if (selected_footnote_id.value === null) return;
+
+  selected_footnote_id.value = null;
+  el__footnote_popup.value.innerHTML = "";
+  el__footnote_popup.value.classList.add("hidden");
+}
+
+const buildFootnotePopups = () => {
+  // reset
+  footnote_popups.value = {};
+  selected_footnote_id.value = null;
+
+  // build popups
+  el__content.value?.querySelectorAll(".footnote-item").forEach((el, i) => {
+    const copy = el.cloneNode(true) as HTMLElement;
+
+    const a = copy.querySelector(".footnote-backref");
+    a.remove();
+
+    const div = window.document.createElement("div");
+    div.innerHTML = copy.innerHTML;
+
+    footnote_popups.value[copy.id] = div;
+  });
+
+  // link popups
+  el__content.value?.querySelectorAll(".footnote-ref").forEach((el, i) => {
+    const a = el.querySelector("a");
+    if (a) {
+      const span = window.document.createElement("span");
+      span.innerHTML = a.innerHTML;
+      span.id = a.id;
+      a.replaceWith(span);
+
+      const target = a.getAttribute("href")?.slice(1);
+      span.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (selected_footnote_id.value === target) {
+          hideFootnotePopup();
+        } else {
+          const rect_content = el__content.value?.getBoundingClientRect();
+          const rect_span = span.getBoundingClientRect();
+          const top = rect_span.top - rect_content.top;
+          const left = rect_span.left - rect_content.left + rect_span.width / 2;
+          showFootnotePopup(target, top, left);
+        }
+      });
+    }
+  });
+
+  // close popups on click outside
+  window.document.addEventListener("click", async (e) => {
+    await nextTick();
+
+    if (selected_footnote_id.value !== null) {
+      if (!(e.target as HTMLElement).closest(".footnote-popup") && !(e.target as HTMLElement).closest(".footnote-ref")) {
+        hideFootnotePopup();
+      }
+    }
+  });
+
+
+  console.log("footnote popups built");
+}
+
+// toc
+const el__toc = ref<HTMLElement | null>(null);
+const buildTOC = () => {
+  // reset
+  el__toc.value.innerHTML = "";
+
+  // build toc
+  let prev_level = 0;
+  let level_indices = [0, 1, 1, 1, 1, 1, 1];
+
+  el__content.value?.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((el) => {
+    const level = parseInt(el.tagName.slice(1));
+    const content = el.innerHTML;
+    const id = el.id;
+
+    const div = window.document.createElement("div");
+
+    div.classList.add("toc-item");
+    div.classList.add(`toc-level-${level}`);
+
+    div.innerHTML = `<span class="toc-item-idx">${level_indices[level]}. </span><a href="#${id}">${content}</a>`;
+
+    el__toc.value.appendChild(div);
+
+    level_indices[level] += 1;
+    if (level < prev_level) {
+      for (let i = level + 1; i <= 6; i++) {
+        level_indices[i] = 1;
+      }
+    }
+    prev_level = level;
+  });
+}
+
+onMounted(async () => {
+  await nextTick();
+  buildTOC();
+  buildFootnotePopups();
+});
+
+onUpdated(async () => {
+  await nextTick();
+  buildTOC();
+  buildFootnotePopups();
+});
 </script>
 
 <template>
   <Panel class="document">
     <div class="document-header">
-      <p class="collection"><a :href="collection.path">{{ collection.name }}</a></p>
+      <p class="collection"><a :href="collection.path">
+          {{ collection_full_name }}
+        </a></p>
       <h1 class="title">{{ document.title }}</h1>
       <div class="wrapable">
         <p class="with-icon date-created" v-if="document.date_created">
@@ -145,10 +285,12 @@ const giscusTheme = computed(() => {
       </div>
     </div>
     <div class="content" :style="{
-        '--shiki-background': (shikiTheme as any).colors['editor.background'],
-        '--shiki-text': (shikiTheme as any).colors['editor.foreground'],
-      }">
+      '--shiki-background': (shikiTheme as any).colors['editor.background'],
+      '--shiki-text': (shikiTheme as any).colors['editor.foreground'],
+    }" ref="el__content">
+      <div class="toc" ref="el__toc"></div>
       <Content></Content>
+      <div class="footnote-popup hidden" ref="el__footnote_popup"></div>
     </div>
     <div class="relative-documents">
       <div class="tags-section section">
@@ -173,8 +315,8 @@ const giscusTheme = computed(() => {
       <div class="sibling-documents-section section">
         <p class="section-title">같은 컬랙션의 다른 문서</p>
         <div class="sibling-documents">
-          <a v-for="sibling_document in sibling_documents"
-            :key="sibling_document.path" class="sibling-document" :href="sibling_document.path">
+          <a v-for="sibling_document in sibling_documents" :key="sibling_document.path" class="sibling-document"
+            :href="sibling_document.path">
             <p class="document-title">{{ sibling_document.title }}</p>
             <div class="document-meta">
               <p class="with-icon date-created" v-if="sibling_document.date_created">
@@ -217,6 +359,81 @@ const giscusTheme = computed(() => {
 <style scoped lang="scss">
 @import "@/styles/variables";
 @import "@/styles/mixins";
+
+.toc {
+  display: inline-block;
+  border: 1px solid var(--site-border);
+  border-radius: 1em;
+  overflow-x: auto;
+
+  padding: {
+    top: 1.5em;
+    bottom: 1.5em;
+    left: 1.5em;
+    right: 1.5em;
+  }
+
+  margin: {
+    bottom: 2em;
+  }
+
+  &::before {
+    display: block;
+    content: "[Table of Contents]";
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--site-text);
+
+    margin: {
+      bottom: 1em;
+    }
+  }
+
+  :deep(.toc-item) {
+    padding: {
+      top: 0.25em;
+      bottom: 0.25em;
+    }
+
+    @for $i from 1 through 6 {
+      &.toc-level-#{$i} {
+        margin-left: calc((#{$i} - 1) * 1.5em);
+      }
+    }
+  }
+}
+
+.footnote-popup {
+  --aside: 1em;
+  --tip_size: 0.5em;
+
+  display: block;
+  position: absolute;
+  z-index: 2000;
+  left: calc(-1 * var(--aside));
+  right: calc(-1 * var(--aside));
+  top: calc(var(--top) - var(--tip_size));
+  padding: 1em;
+  border-radius: 0.5em;
+  background: var(--footnote-popup-background);
+  border: 1px solid var(--footnote-popup-border);
+  color: var(--site-text);
+  font-size: 0.9rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: calc(var(--left) + var(--aside));
+    transform: translateX(-50%);
+    border: var(--tip_size) solid transparent;
+    border-top-color: var(--footnote-popup-border);
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
 
 .document {
   --scrollbar-thumb: var(--document-scrollbar-thumb);
@@ -460,39 +677,12 @@ const giscusTheme = computed(() => {
 
   }
 
-  .content:deep(> *) {
-    @import "@/styles/document.scss";
+  .content {
+    font-size: 1rem;
+    position: relative;
 
-    .toc {
-      display: inline-block;
-      border: 1px solid var(--site-border);
-      border-radius: 1em;
-
-      padding: {
-        top: 1em;
-        bottom: calc(1em - 8px);
-        left: 1em;
-        right: calc(1em + 8px);
-      }
-
-      &::before {
-        display: block;
-        content: "[Table of Contents]";
-        font-size: 1.1em;
-        font-weight: bold;
-        color: var(--site-text);
-
-        margin: {
-          bottom: 1em;
-        }
-      }
-
-      .toc-list {
-        margin: {
-          top: 0;
-          bottom: 0;
-        }
-      }
+    &:deep(> *) {
+      @import "@/styles/document.scss";
     }
   }
 
@@ -648,7 +838,7 @@ const giscusTheme = computed(() => {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          
+
           padding: 1em;
           border-radius: 1em;
           color: var(--site-muted-text);

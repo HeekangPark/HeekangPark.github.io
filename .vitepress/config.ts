@@ -3,9 +3,9 @@ import { resolve } from 'path';
 import { defineConfigWithTheme } from 'vitepress';
 import type { ThemeConfig } from '@/themeConfig';
 
-import footnote from 'markdown-it-footnote';
+import markdownItFootnote from 'markdown-it-footnote';
+//import markdownItFootnote from "./footnote";
 import markdownItAttrs from 'markdown-it-attrs';
-//import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs';
 
 const themeConfig: ThemeConfig = {
   title: "Reinventing the Wheel",
@@ -90,17 +90,8 @@ export default defineConfigWithTheme<ThemeConfig>({
       lazyLoading: true,
     },
     config: (md) => {
-      // activate footnotes
-      md.use(footnote);
-
-      // wrap tables with div
-      md.renderer.rules.table_open = function (tokens, idx, options) {
-        return '<div class="table-wrapper"><table>';
-      }
-
-      md.renderer.rules.table_close = function (tokens, idx, options) {
-        return '</table></div>';
-      }
+      // markdown-it-footnote
+      md.use(markdownItFootnote);
 
       // markdown-it-attrs
       md.use(markdownItAttrs, {
@@ -109,8 +100,21 @@ export default defineConfigWithTheme<ThemeConfig>({
         allowedAttributes: []
       });
 
-      // tabs plugin
-      //md.use(tabsMarkdownPlugin);
+      // markdown-it customization : wrap tables with div
+      md.renderer.rules.table_open = (tokens, idx, options) => '<div class="table-wrapper"><table>';
+      md.renderer.rules.table_close = (tokens, idx, options) => '</table></div>';
+
+      // markdown-it-footnote customization : assign vue ref attributes to footnotes
+      md.renderer.rules.footnote_ref = (tokens, idx, options, env, slf) => {
+        const id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
+        const caption = slf.rules.footnote_caption(tokens, idx, options, env, slf);
+        let refid = id;
+
+        if (tokens[idx].meta.subId > 0) refid += `:${tokens[idx].meta.subId}`;
+
+        //return `<sup class="footnote-ref" :ref="(el) => if(el__footnote_refs !== null) el__footnote_refs.push(el);"><a href="#fn${id}" id="fnref${refid}">${caption}</a></sup>`;
+        return `<sup class="footnote-ref" ref="el__footnote_ref"><a href="#fn${id}" id="fnref${refid}">${caption}</a></sup>`;
+      }
     }
   },
   //ignoreDeadLinks: true,

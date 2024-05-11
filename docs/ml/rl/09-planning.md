@@ -2,12 +2,14 @@
 title: "L09. Planning and Learning with Tabular Methods"
 order: 9
 date_created: "2021-06-21"
-date_modified: "2021-12-24"
+date_modified: "2024-05-12"
 ---
+
+<style src="./styles.scss"></style>
 
 # 모델(Model)
 
-**모델(Model)**은 상태(state)와 행동(action)을 입력으로 받아 다음 상태와 보상(reward)을 출력하는 일종의 함수다. 에이전트(agent)는 특정 상태에서 환경(environment)이 특정 행동에 어떻게 반응할 지 예측하기 위해 모델을 사용한다.
+**모델(Model)** 은 상태(state)와 행동(action)을 입력으로 받아 다음 상태와 보상(reward)을 출력하는 일종의 함수다. 에이전트(agent)는 특정 상태에서 환경(environment)이 특정 행동에 어떻게 반응할 지 예측하기 위해 모델을 사용한다.
 
 모델은 크게 두 종류로 구분할 수 있다.
 
@@ -41,10 +43,9 @@ Distribution Model이 있다면 이를 이용해 결과 샘플을 만들 수 있
 
 [^3]: 모델을 사용하여, 모델이 만들어낸 가짜 경험(simulated experience)을 이용해 에이전트를 학습시키는 것을 Planning이라 한다. 한편 앞에서 배웠던 것처럼, 모델을 사용하지 않고 실제 경험(real experience)을 이용해 에이전트를 학습시키는 것을 Learning이라 한다(비록 한국어로는 둘 다 학습이라 하지만 말이다). 그래서 Model-free Method 버전의 MC Method, TD Method는 각각 MC Learning, TD Learning이라, Model-based Method 버전의 MC Method, TD Method는 MC Planning, TD Planning이라 부른다.
 
-{:.pseudo-code-header}
-Random-sample Q-Planning
+::: info Pseudo Code : Random-sample Q-Planning
 
-<div class="pseudo-code" markdown="block">
+<div class="pseudo-code">
 
 <span class="keyword-highlight">Loop</span> forever:
 
@@ -56,6 +57,8 @@ Random-sample Q-Planning
 
 </div>
 
+:::
+
 # Dyna
 
 위에서 살펴본 Q-Planning은 Offline 상황에서 오직 주어진 모델과 Planning만을 이용해 에이전트를 학습시키는 방법이었다. 그렇다면 Online 상황에서는 어떻게 될까? 그러니까, 환경과 상호작용하면서 계속 새로운 정보를 얻는 상황에서는 어떻게 Planning을 해야 할까?
@@ -65,10 +68,10 @@ Random-sample Q-Planning
 - 실제 경험을 바로 사용해 (MC Method, TD Method 등의 방법을 이용하여) 가치 함수를 계산하고 정책을 개선한다. 이를 **Direct RL**이라 한다.
 - 실제 경험을 이용하여 모델을 학습시키고[^4], 이렇게 학습된 모델을 이용해 Planning을 수행한다(= 모델이 생성한 가짜 경험(simulated experience)을 사용해[^5] 가치 함수를 계산하고 정책을 개선한다). 이를 **Indirect RL**이라 한다.
 
-[^4]: 이를 **모델 학습(Model Learning)**이라 한다.
+[^4]: 이를 **모델 학습(Model Learning)** 이라 한다.
 [^5]: 참고로 가짜 경험(simulated experience) 생성을 위해, 시작 상태(starting state)와 행동(action)을 선택해 모델에 입력하는 과정을 **Search Control**이라 한다.
 
-{% include caption-img.html src="09-dyna.png" title="Fig.01 Dyna" description="Dyna는 Online 상황에서 사용할 수 있는, Planning, 행동(acting), 학습(Learning)을 결합한 RL 방법이다." %}
+<v-image src="09-dyna.png" title="Fig.01 Dyna" description="Dyna는 Online 상황에서 사용할 수 있는, Planning, 행동(acting), 학습(Learning)을 결합한 RL 방법이다." />
 
 Indirect RL은 주어진 (실제) 경험을 극한까지 사용하는 방법이다. 따라서 Indirect RL을 수행하면 적은 수의 경험으로도(= 실제 환경과 최소한의 상호작용을 하고도) 에이전트를 학습시킬 수 있다. 한편 Direct RL은 훨씬 간단하고, 무엇보다 모델을 설계한 방법에 따라 발생할 수 있는 편향(bias)이 없다는 장점이 있다.
 
@@ -77,58 +80,51 @@ Dyna-Q는 Q-Learning으로 Direct RL을 수행하고, Q-Planning으로 Indirect 
 [^6]: 일반적으로 Dyna 알고리즘에서는 (Dyna-Q에서처럼) Direct RL과 Indirect RL에서 동일한 RL Method를 사용한다.
 [^7]: 아래 코드에서 Acting, Learning, Planning은 순차적으로(sequentially) 실행되는 것처럼 서술되어 있다. 하지만 이는 설명의 명확성을 위한 것으로, 원래 Dyna 알고리즘에서 Acting, Learning, Planning은 동시에 시행된다. 즉, 환경과 상호작용을 하는 동시에 기존 경험들을 토대로 Learning(Direct RL)을 진행하고, 또 동시에 모델 학습 및 Planning(Indirect RL)을 진행한다. 사실 Planning을 통해 더 좋은 정책(policy)을 빠르게 학습하면 학습할수록 실제 받는 보상의 크기가 커지므로, Planning은 가능한 한 빨리 하는 것이 좋다.
 
-{:.pseudo-code-header}
-Dyna-Q
+::: info Pseudo Code : Dyna-Q
 
-<div class="pseudo-code" markdown="block">
+<div class="pseudo-code">
 
 모든 $s \in \mathcal{S}^{+}$, $a \in \mathcal{A}(s)$에 대해, $Q(s,\,a) \in \mathbb{R}$을 임의의 값으로 초기화. 단, $Q(\textrm{terminal},\,\cdot) = 0$.
 
 모든 $s \in \mathcal{S}^{+}$, $a \in \mathcal{A}(s)$에 대해, $Model(s,\,a) = [\,]$ (empty list)
 
-<span class="comment-highlight">// $Model$에 상태-행동 쌍 $(s,\,a)$를 입력하면, 상태 $s$에서 행동 $a$를 수행했을 때 받게 되는
+<span class="comment-highlight">// $Model$에 상태-행동 쌍 $(s,\,a)$를 입력하면, 상태 $s$에서 행동 $a$를 수행했을 때 받게 되는</span>
 
 <span class="comment-highlight">// (정확히는, 받을 것으로 예상되는) 보상과 다음 상태를 반환한다.</span>
 
-{:.mt-1}
-<span class="keyword-highlight">Loop</span> forever:
+<span class="keyword-highlight">Loop</span> forever: {.mt-1}
 
 <span class="indent-1"/>$S \leftarrow$ 현재 상태(nonterminal state)
 
-{:.mt-1}
-<span class="indent-1"/>현재 $Q$에 대해 $\varepsilon$-greedy Policy를 사용하여 $S$에서의 행동 $A$를 선택. 즉, $A \leftarrow \varepsilon$-greedy$(S,\,Q)$
+<span class="indent-1"/>현재 $Q$에 대해 $\varepsilon$-greedy Policy를 사용하여 $S$에서의 행동 $A$를 선택. 즉, $A \leftarrow \varepsilon$-greedy$(S,\,Q)$ {.mt-1}
 
-<span class="indent-1"/>$A$ 시행하고, 보상 $R$과 다음 상태 $S'$ 관측<span class="comment-highlight"> //Acting</span>
+<span class="indent-1"/>$A$ 시행하고, 보상 $R$과 다음 상태 $S'$ 관측<span class="comment-highlight"> // Acting</span>
 
-{:.mt-1}
-<span class="indent-1"/>$Q(S,\,A) \leftarrow Q(S,\,A) + \alpha [R + \gamma \max\_a Q(S',\,a) - Q(S,\,A)]$<span class="comment-highlight"> //Learning (Direct RL)</span>
+<span class="indent-1"/>$Q(S,\,A) \leftarrow Q(S,\,A) + \alpha [R + \gamma \max_a Q(S',\,a) - Q(S,\,A)]$<span class="comment-highlight"> // Learning (Direct RL)</span> {.mt-1}
 
-{:.mt-1}
-<span class="indent-1"/>$Model(S,\,A) \leftarrow R,\,S'$<span class="comment-highlight"> //Model Learning</span>
+<span class="indent-1"/>$Model(S,\,A) \leftarrow R,\,S'$<span class="comment-highlight"> // Model Learning</span> {.mt-1}
 
-{:.mt-1}
-<span class="indent-1"/><span class="keyword-highlight">Loop</span> repeat $n$ times:<span class="comment-highlight"> //Planning</span>
+<span class="indent-1"/><span class="keyword-highlight">Loop</span> repeat $n$ times:<span class="comment-highlight"> // Planning</span> {.mt-1}
 
 <span class="indent-2"/>$S \leftarrow$ $Model$에 저장된 상태 중 하나를 무작위로 선택
 
 <span class="indent-2"/>$A \leftarrow $ $Model(S)$에 저장된 행동 중 하나를 무작위로 선택
 
-{:.mt-1}
-<span class="indent-2"/>$R,\,S' \leftarrow Model(S,\,A)$
+<span class="indent-2"/>$R,\,S' \leftarrow Model(S,\,A)$ {.mt-1}
 
-{:.mt-1}
-<span class="indent-2"/>$Q(S,\,A) \leftarrow Q(S,\,A) + \alpha [R + \gamma \max\_a Q(S',\,a) - Q(S,\,A)]$
+<span class="indent-2"/>$Q(S,\,A) \leftarrow Q(S,\,A) + \alpha [R + \gamma \max_a Q(S',\,a) - Q(S,\,A)]$ {.mt-1}
 
 </div>
+
+:::
+
+
 
 ## 예제 : Maze
 
 다음 예제를 살펴보자.
 
-<blockquote markdown="block">
-
-{:.title}
-Maze
+::: info Maze
 
 Fig.02와 같은 미로가 주어졌다고 해 보자. 미로에서 에이전트는 다음과 같이 움직인다.
 
@@ -137,18 +133,15 @@ Fig.02와 같은 미로가 주어졌다고 해 보자. 미로에서 에이전트
 - G로의 이동은 +1의 보상을 받는다. 이를 제외한 모든 이동은 0의 보상을 받는다.
 - 에이전트가 G에 도달하면 다시 S로 이동해 새로운 에피소드를 시작한다.
 
-{% include caption-img.html src="09-maze.png" title="Fig.02 Maze" description="S에서 시작해, G에 도달하는 것이 목표이다. 에이전트가 G에 도달하면 다시 S로 이동해 새로운 에피소드를 시작한다. 각 칸에서 에이전트는 상, 하, 좌, 우, 4방향으로 한 칸씩 움직일 수 있다. 단, 장애물(검은 칸) 또는 미로 바깥으로는 이동할 수 없다. G로의 이동은 +1의 보상을 받는다. 이를 제외한 모든 이동은 0의 보상을 받는다." %}
+<v-image src="09-maze.png" title="Fig.02 Maze" description="S에서 시작해, G에 도달하는 것이 목표이다. 에이전트가 G에 도달하면 다시 S로 이동해 새로운 에피소드를 시작한다. 각 칸에서 에이전트는 상, 하, 좌, 우, 4방향으로 한 칸씩 움직일 수 있다. 단, 장애물(검은 칸) 또는 미로 바깥으로는 이동할 수 없다. G로의 이동은 +1의 보상을 받는다. 이를 제외한 모든 이동은 0의 보상을 받는다." />
 
-</blockquote>
+:::
 
 Dyna-Q를 이용해 Maze를 푸는 에이전트를 학습시켜 보자.
 
-<div class="code-folder" markdown="block">
+::: details Code : Maze
 
-{:.code-header}
-Maze
-
-{% highlight python linenos %}
+```python:line-numbers
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -357,9 +350,10 @@ if __name__ == "__main__":
     histories /= repeats
     
     drawGraph(histories, episode_num=episode_num, planning_nums=planning_nums)
-{% endhighlight %}
+```
 
-{:.guide-line}
+**코드 설명**
+
 - line 4 ~ 45 : `Env` 클래스
   - line 13 ~ 14 : `Env._getStateIdx()` 메소드
     - 현재 상태(state)를 반환
@@ -401,11 +395,11 @@ if __name__ == "__main__":
     - Planning을 0번(= Direct RL만 수행), 5번, 50번 수행하는 에이전트를 이용해, 30개의 에피소드로 학습하는 과정을 10번 반복 실행하여, 그 결과를 평균하여 그래프로 출력
     - Planning을 하든 안 하든 첫 번째 에피소드에서 G에 도달아끼까지 필요한 step의 수는 같으므로(약 2,000 step) 그래프에서 생략하였다.
 
-</div>
+:::
 
-{% include caption-img.html src="09-maze-result1.png" title="Fig.03 Maze - 결과" description="화살표는 각 칸에서 에이전트가 선택한 행동(action)을 나타낸다." %}
+<v-image src="09-maze-result1.png" title="Fig.03 Maze - 결과" description="화살표는 각 칸에서 에이전트가 선택한 행동(action)을 나타낸다." />
 
-{% include caption-img.html src="09-maze-result2.png" title="Fig.04 Maze - Planning 횟수에 따른 필요 step 수" description="Planning을 0번, 5번, 50번 수행하는 에이전트를 이용해, 30개의 에피소드로 학습하는 과정을 10번 반복 실행하여, 그 결과를 평균하여 그래프로 출력하였다. 첫 번째 에피소드의 결과는 생략하였다." %}
+<v-image src="09-maze-result2.png" title="Fig.04 Maze - Planning 횟수에 따른 필요 step 수" description="Planning을 0번, 5번, 50번 수행하는 에이전트를 이용해, 30개의 에피소드로 학습하는 과정을 10번 반복 실행하여, 그 결과를 평균하여 그래프로 출력하였다. 첫 번째 에피소드의 결과는 생략하였다." />
 
 Fig.04에서, Planning을 많이 하는 에이전트는 Planning을 조금 하는 에이전트에 비해 적은 수의 에피소드만 가지고도 학습이 잘 되는 것을 볼 수 있다.[^8] 구체적으로, 첫 번째 에피소드에서는 Planning을 하지 않는 에이전트(파란색)와 Planning을 하는 에이전트(주황색, 초록색) 모두에서 오직 한 개 상태(G)의 가치만 업데이트된다.[^9] 하지만 두 번째 에피소드에서 Planning을 하지 않는 에이전트에서는 여전히 오직 한 개 상태(G 바로 직전 상태)의 가치만 업데이트되는 반면, Planning을 하는 에이전트에서는 (모델이 기억하고 있는 정보를 사용해) 여러 개의 상태의 가치가 업데이트된다.
 
@@ -420,12 +414,9 @@ Fig.04에서, Planning을 많이 하는 에이전트는 Planning을 조금 하�
 
 예를 들어 다음과 같은 경우를 생각해 보자.
 
-<blockquote markdown="block">
+::: info Blocking Maze
 
-{:.title}
-Blocking Maze
-
-{% include caption-img.html src="09-blocking-maze.png" title="Fig.05 Blocking Maze" description="1,000 step이 지나면 왼쪽 미로에서 오른쪽 미로로 바뀐다." %}
+<v-image src="09-blocking-maze.png" title="Fig.05 Blocking Maze" description="1,000 step이 지나면 왼쪽 미로에서 오른쪽 미로로 바뀐다." />
 
 - 처음에는 Fig.05의 왼쪽과 같은 미로가 주어진다.
 - 에피소드는 S에서 시작한다.
@@ -434,18 +425,15 @@ Blocking Maze
 - 에이전트가 G에 도달하면 다시 S로 이동해 새로운 에피소드를 시작한다.
 - **1,000 step이 지나면 Fig.05의 오른쪽 미로로 바뀐다.**
 
-</blockquote>
+:::
 
 Blocking Maze에서는 1,000 step이 지나면 뚫려 있던 오른쪽 길이 막히므로, 최적 경로는 왼쪽으로 돌아가는 먼 길이 된다. 이 문제를 Dyna-Q를 이용해 푼다고 생각해 보자. Dyna-Q는 최적 경로를 찾긴 할 것이나, 오른쪽 길이 막혔다는 정보가 모델에 업데이트되고 행동-가치 함수(action-value function) $Q$가 업데이트되기 전까진 에이전트는 계속해서 오른쪽 길로 가려 할 것이다.
 
 또 다른 경우를 생각해 보자.
 
-<blockquote markdown="block">
+::: info Shortcut Maze
 
-{:.title}
-Shortcut Maze
-
-{% include caption-img.html src="09-shortcut-maze.png" title="Fig.06 Shortcut Maze" description="3,000 step이 지나면 왼쪽 미로에서 오른쪽 미로로 바뀐다." %}
+<v-image src="09-shortcut-maze.png" title="Fig.06 Shortcut Maze" description="3,000 step이 지나면 왼쪽 미로에서 오른쪽 미로로 바뀐다." />
 
 - 처음에는 Fig.06의 왼쪽과 같은 미로가 주어진다.
 - 에피소드는 S에서 시작한다.
@@ -454,7 +442,7 @@ Shortcut Maze
 - 에이전트가 G에 도달하면 다시 S로 이동해 새로운 에피소드를 시작한다.
 - **3,000 step이 지나면 Fig.06의 오른쪽 미로로 바뀐다.**
 
-</blockquote>
+:::
 
 Shortcut Maze에서는 3,000 step이 지나면 막혀 있던 오른쪽 길이 열리므로, 최적 경로는 오른쪽의 지름길을 사용하는 길이 되고, 왼쪽 길을 사용하는 기존의 경로는 차적 경로(sub-optimal path)가 된다. 이 문제를 Dyna-Q를 이용해 푼다고 생각해 보자. Blocking Maze와 같이 환경이 안 좋아 지는 경우 Dyna-Q는 시간은 좀 걸리겠지만 어쨌든 최적 경로를 찾긴 한다. 그러나 Shortcut Maze와 같이 환경이 오히려 좋아지는 경우, Dyna-Q는 $\varepsilon$-greedy Policy의 $\varepsilon$만큼의 확률로만 새로운 경로를 탐색하므로 기존의 차적 경로에 '만족'하고 최적 경로를 못 찾을 확률이 높다.
 
@@ -462,20 +450,19 @@ Shortcut Maze에서는 3,000 step이 지나면 막혀 있던 오른쪽 길이 �
 
 그렇다면 Exploration을 어떻게, 얼마나 하게 해 줘야 할까? Exploration을 하지 않으면 에이전트가 환경 변화에 둔감해지게 되지만, 그렇다고 너무 많이 하면 얻을 수 있는 총 보상의 합이 줄어들게 된다.
 
-이 문제는 사실 전형적인 Exploitation-Exploration Dilemma로, Exploration과 Exploitation의 비율을 '완벽하게' 결정하는 방법은 없다. 다만 **Dyna-Q+**라 부르는, 휴리스틱적인 해법이 있다.
+이 문제는 사실 전형적인 Exploitation-Exploration Dilemma로, Exploration과 Exploitation의 비율을 '완벽하게' 결정하는 방법은 없다. 다만 **Dyna-Q+** 라 부르는, 휴리스틱적인 해법이 있다.
 
 Dyna-Q+의 핵심 아이디어는 오랫동안 갱신되지 않은 상태-행동 쌍에 '가중치'를 줘 에이전트가 모델이 잘못되어진 것을 빨리 발견하게 하는 것이다. 구체적으로, Dyna-Q+ 에이전트는 각 상태-행동 쌍이 마지막으로 시행된 이후 얼마나 많은 시간(time step)이 경과했는지를 추적한다. 더 많은 시간이 경과했을수록, 모델이 해당 상태-행동 쌍에 대해 기억하고 있는 결과가 잘못되어졌을 가능성이 크다. 어떤 상태-행동 쌍 $(S,\,A)$을 시행하면 보상 $R$을 받고 상태 $S'$로 전이한다는 것을 모델이 기억하고 있다고 해 보자. $(S,\,A)$이 마지막으로 시행된지 $\tau$만큼의 시간이 지났다고 할 때, Dyna-Q+는 Planning 업데이트 과정에서 보상으로 $R$이 아닌 $R + \kappa \sqrt{\tau}$을 사용해 업데이트를 진행한다($\kappa$는 작은 상수).
 
-$$Q(S,\,A) = Q(S,\,A) + \alpha \left[\, \bbox[{{ site.data.mathjax.highlightColor1 }}, {{ site.data.mathjax.highlightPadding }}]{(\, R + \kappa \sqrt{\tau} \,)} + \gamma \max_a Q(S',\,a) - Q(S,\,A) \,\right]$$
+$$Q(S,\,A) = Q(S,\,A) + \alpha \left[\, \bbox[border: 2px solid red, 5px]{(\, R + \kappa \sqrt{\tau} \,)} + \gamma \max_a Q(S',\,a) - Q(S,\,A) \,\right]$$
 
 위와 같이 하면 $\tau$가 큰(= 오래도록 시도되지 않은) 상태-행동 쌍의 가치(value)가 커진다. Dyna-Q(+)에서는 현재 행동-가치 함수 $Q$에 대해 $\varepsilon$-greedy Policy를 적용해 다음 행동을 결정하므로, 결과적으로 해당 상태-행동 쌍이 선택될 확률이 높아진다. 
 
 Dyna-Q+를 의사 코드로 나타내면 다음과 같다.
 
-{:.pseudo-code-header}
-Dyna-Q+
+::: info Pseudo Code : Dyna-Q+
 
-<div class="pseudo-code" markdown="block">
+<div class="pseudo-code">
 
 모든 $s \in \mathcal{S}^{+}$, $a \in \mathcal{A}(s)$에 대해, $Q(s,\,a) \in \mathbb{R}$을 임의의 값으로 초기화. 단, $Q(\textrm{terminal},\,\cdot) = 0$.
 
@@ -487,23 +474,19 @@ Dyna-Q+
 
 <span class="comment-highlight">// 마지막으로 수행한 time step을 반환한다.</span>
 
-{:.mt-1}
-$t_{cur} \leftarrow 0$
+$t_{cur} \leftarrow 0$ {.mt-1}
 
 <span class="keyword-highlight">Loop</span> forever:
 
 <span class="indent-1"/>$t_{cur} \leftarrow t_{cur}+1$, $S \leftarrow$ 현재 상태(nonterminal state)
 
-{:.mt-1}
-<span class="indent-1"/>현재 $Q$에 대해 $\varepsilon$-greedy Policy를 사용하여 $S$에서의 행동 $A$를 선택. 즉, $A \leftarrow \varepsilon$-greedy$(S,\,Q)$
+<span class="indent-1"/>현재 $Q$에 대해 $\varepsilon$-greedy Policy를 사용하여 $S$에서의 행동 $A$를 선택. 즉, $A \leftarrow \varepsilon$-greedy$(S,\,Q)$ {.mt-1}
 
-<span class="indent-1"/>$A$ 시행하고, 보상 $R$과 다음 상태 $S'$ 관측<span class="comment-highlight"> //Acting</span>
+<span class="indent-1"/>$A$ 시행하고, 보상 $R$과 다음 상태 $S'$ 관측<span class="comment-highlight"> // Acting</span>
 
-{:.mt-1}
-<span class="indent-1"/>$Q(S,\,A) \leftarrow Q(S,\,A) + \alpha [R + \gamma \max\_a Q(S',\,a) - Q(S,\,A)]$<span class="comment-highlight"> //Learning (Direct RL)</span>
+<span class="indent-1"/>$Q(S,\,A) \leftarrow Q(S,\,A) + \alpha [R + \gamma \max_a Q(S',\,a) - Q(S,\,A)]$<span class="comment-highlight"> // Learning (Direct RL)</span> {.mt-1}
 
-{:.mt-1}
-<span class="indent-1"/><span class="comment-highlight">//Model Learning</span>
+<span class="indent-1"/><span class="comment-highlight">// Model Learning</span> {.mt-1}
 
 <span class="indent-1"/><span class="keyword-highlight">If</span> $Model$에 $S$가 없으면:
 
@@ -511,8 +494,7 @@ $t_{cur} \leftarrow 0$
 
 <span class="indent-1"/>$Model(S,\,A) \leftarrow R,\,S',\,t_{cur}$
 
-{:.mt-1}
-<span class="indent-1"/><span class="comment-highlight">//Planning</span>
+<span class="indent-1"/><span class="comment-highlight">// Planning</span> {.mt-1}
 
 <span class="indent-1"/><span class="keyword-highlight">Loop</span> repeat $n$ times:
 
@@ -520,18 +502,17 @@ $t_{cur} \leftarrow 0$
 
 <span class="indent-2"/>$A \leftarrow $ $Model(S)$에 저장된 행동 중 하나를 무작위로 선택
 
-{:.mt-1}
-<span class="indent-2"/>$R,\,S',\,t_{last} \leftarrow Model(S,\,A)$
+<span class="indent-2"/>$R,\,S',\,t_{last} \leftarrow Model(S,\,A)$ {.mt-1}
 
-{:.mt-1}
-<span class="indent-2"/>$\tau = t_{cur} - t_{last}$
+<span class="indent-2"/>$\tau = t_{cur} - t_{last}$ {.mt-1}
 
 <span class="indent-2"/>$R = R + \kappa \sqrt{\tau}$
 
-{:.mt-1}
-<span class="indent-2"/>$Q(S,\,A) \leftarrow Q(S,\,A) + \alpha [R + \gamma \max\_a Q(S',\,a) - Q(S,\,A)]$
+<span class="indent-2"/>$Q(S,\,A) \leftarrow Q(S,\,A) + \alpha [R + \gamma \max_a Q(S',\,a) - Q(S,\,A)]$ {.mt-1}
 
 </div>
+
+:::
 
 Dyna-Q+의 의사 코드는 Dyna-Q 의사 코드와 대부분 유사하지만, 몇 가지 눈여겨봐야 하는 차이점이 있다.
 
@@ -542,12 +523,9 @@ Dyna-Q+의 의사 코드는 Dyna-Q 의사 코드와 대부분 유사하지만, �
 
 위에서 살펴본 Blocking Maze와 Shortcut Maze를 Dyna-Q+를 이용해 풀어보자.
 
-<div class="code-folder" markdown="block">
+::: details Code : Dyna-Q vs. Dyna-Q+ : Blocking Maze, Shortcut Maze
 
-{:.code-header}
-Dyna-Q vs. Dyna-Q+ : Blocking Maze, Shortcut Maze
-
-{% highlight python linenos %}
+```python:line-numbers
 import numpy as np
 import matplotlib.pyplot as plt
 from abc import *
@@ -804,9 +782,10 @@ if __name__ == "__main__":
     dyna_q_plus_rewards /= repeats
     
     drawGraph(dyna_q_rewards, dyna_q_plus_rewards, env)
-{% endhighlight %}
+```
 
-{:.guide-line}
+**코드 설명**
+
 - line 9 ~ 71 : `Env` 클래스
   - 위 Maze 예제의 `Env` 클래스와 유사. 다만 Maze 예제의 `Env`는 Episodic Task를 위한 환경이었다면, 이 `Env`는 Continuing Task를 위한 환경이다.
   - line 35 ~ 38 : `Env.init()` 메소드
@@ -843,11 +822,11 @@ if __name__ == "__main__":
   - line 241 ~ 256 : Fig.08 출력
     - Dyna-Q 에이전트와 Dyna-Q+ 에이전트의 학습을 각각 `repeat`번 반복한 후 그 결과를 평균내어 그래프를 그림
 
-</div>
+:::
 
-{% include caption-img.html src="09-blocking-maze-result.png" title="Fig.07 Dyna-Q vs. Dyna-Q+ : Blocking Maze" description="파란색 선은 Dyna-Q 에이전트, 주황색 선은 Dyna-Q+ 에이전트의 결과를 나타낸다. 점선은 환경이 변한 시간을 나타낸다." %}
+<v-image src="09-blocking-maze-result.png" title="Fig.07 Dyna-Q vs. Dyna-Q+ : Blocking Maze" description="파란색 선은 Dyna-Q 에이전트, 주황색 선은 Dyna-Q+ 에이전트의 결과를 나타낸다. 점선은 환경이 변한 시간을 나타낸다." />
 
-{% include caption-img.html src="09-shortcut-maze-result.png" title="Fig.08 Dyna-Q vs. Dyna-Q+ : Shortcut Maze" description="파란색 선은 Dyna-Q 에이전트, 주황색 선은 Dyna-Q+ 에이전트의 결과를 나타낸다. 점선은 환경이 변한 시간을 나타낸다." %}
+<v-image src="09-shortcut-maze-result.png" title="Fig.08 Dyna-Q vs. Dyna-Q+ : Shortcut Maze" description="파란색 선은 Dyna-Q 에이전트, 주황색 선은 Dyna-Q+ 에이전트의 결과를 나타낸다. 점선은 환경이 변한 시간을 나타낸다." />
 
 Fig.07을 보면 환경이 바뀐 후 Dyna-Q+ 에이전트(주황색)가 Dyna-Q 에이전트(파란색)보다 좀 더 일찍 수평 구간(= 보상을 받지 못하는 상태)를 벗어난다. 즉 Dyna-Q+가 Dyna-Q에 비해 환경의 변화에 좀 더 잘 대응했다는 것이다. 마찬가지로, Fig.08을 보면 환경이 바뀐 이후에도 Dyna-Q 에이전트는 환경의 변화를 인지하지 못하고 계속 같은 기울기를 유지하지만, Dyna-Q+ 에이전트는 환경의 변화를 감지해 기울기가 조금 더 커진 것을(= 지름길을 찾았다는 것을) 볼 수 있다.
 
@@ -856,13 +835,13 @@ Fig.07, Fig.08을 보면 환경이 바뀌기 전에도 Dyna-Q+ 에이전트가 D
 [^10]: Fig.07, Fig.08을 얻을 때는 $n=10$, $\alpha=1.0$, $\gamma=0.9$, $\varepsilon=0.1$, $\kappa=0.001$을 사용했다. Fig.09를 얻을 때는 $n=10$, $\alpha=0.5$, $\gamma=0.9$, $\varepsilon=0.1$, $\kappa=0.01$을 사용했다.
 [^11]: 이렇게 해도 수평 구간은 Dyna-Q+가 Dyna-Q보다 더 잘 탈출하는 것을 볼 수 있다.
 
-{% include caption-img.html src="09-blocking-maze-result-bad.png" title="Fig.09 Dyna-Q vs. Dyna-Q+ : Blocking Maze 2" description="$n=10$, $\alpha=0.5$, $\gamma=0.9$, $\varepsilon=0.1$, $\kappa=0.01$을 사용하면 위와 같은 결과를 얻는다." %}
+<v-image src="09-blocking-maze-result-bad.png" title="Fig.09 Dyna-Q vs. Dyna-Q+ : Blocking Maze 2" description="$n=10$, $\alpha=0.5$, $\gamma=0.9$, $\varepsilon=0.1$, $\kappa=0.01$을 사용하면 위와 같은 결과를 얻는다." />
 
 # Prioritized Sweeping
 
 Dyna-Q에서의 Planning 과정을 한번 생각해 보자. Dyna-Q의 Planning은 에이전트가 경험했던 상태-행동 쌍 중 무작위로 하나를 선택(uniform selection)해 해당 가치를 업데이트하는 식으로 이루어졌다. 그러나 과연 이 방법이 효율적인 방법일까?
 
-예를 들어, 위 [Maze 문제](#kramdown_예제--maze)에서 Dyna-Q 에이전트가 처음으로 `G`에 도달해 보상 1을 막 받은 시점을 생각해 보자. 에이전트는 이 실제 경험을 이용해 `G`에 도달하기 바로 직전 상태-행동 쌍의 가치를 업데이트한다. 그리고 Planning을 시작한다. 그러나 현재 에이전트의 행동-가치 함수 $Q$는 `G`에 도달하기 바로 직전 상태-행동 쌍에서를 제외하곤 모두 초기값 0에서 아무런 업데이트가 없었다. 하지만 Dyna-Q Planning에선 무작위 선택을 하므로, 이전 과정에서 가치가 업데이트되지 않은 상태-행동 쌍이 선택되어 가치 함수가 전혀 업데이트되지 않는, 의미없는 Planning이 일어날 수 있다. 만약 풀고자 하는 문제의 상태-행동 쌍 공간이 넓다면 이는 학습 속도를 엄청나게 저해시키는 문제가 된다.
+예를 들어, 위 [Maze 문제](#예제-maze)에서 Dyna-Q 에이전트가 처음으로 `G`에 도달해 보상 1을 막 받은 시점을 생각해 보자. 에이전트는 이 실제 경험을 이용해 `G`에 도달하기 바로 직전 상태-행동 쌍의 가치를 업데이트한다. 그리고 Planning을 시작한다. 그러나 현재 에이전트의 행동-가치 함수 $Q$는 `G`에 도달하기 바로 직전 상태-행동 쌍에서를 제외하곤 모두 초기값 0에서 아무런 업데이트가 없었다. 하지만 Dyna-Q Planning에선 무작위 선택을 하므로, 이전 과정에서 가치가 업데이트되지 않은 상태-행동 쌍이 선택되어 가치 함수가 전혀 업데이트되지 않는, 의미없는 Planning이 일어날 수 있다. 만약 풀고자 하는 문제의 상태-행동 쌍 공간이 넓다면 이는 학습 속도를 엄청나게 저해시키는 문제가 된다.
 
 그렇다면 어떻게 하면 효율적인 Planning이 가능할까? 가치 업데이트가 될 가능성이 있는 '유용한' 상태-행동 쌍에서부터 거꾸로 가면서 Planning을 진행하면 효율적인 Planning이 가능하다. 구체적으로, Planning을 진행할 상태-행동 쌍을 무작위로 고르는 것이 아니라, 이전 단계에서 가치가 업데이트된 상태-행동 쌍에서부터 거꾸로 가면서(backward focusing) Planning을 진행하는 것이다.
 
@@ -870,10 +849,9 @@ Dyna-Q에서의 Planning 과정을 한번 생각해 보자. Dyna-Q의 Planning�
 
 이 두 가지 아이디어를 **Prioritized Sweeping**이라 한다. 구체적으로, 우선순위 큐(priority queue)를 하나 두고, 가치 변동량이 특정 임계값 $\omega$를 넘기면 가치 변동량을 우선순위로 하여 해당 상태-행동 쌍을 우선순위 큐에 넣는다. 그리고 이 큐에서 enqueue하여 가짜 경험(simulated experience)을 생성하고 Q-Learning(혹은 Q-Planning)을 진행한다. 만약 이 과정에서 업데이트된 가치의 변동량이 또다시 임계값 $\omega$를 넘기면 이를 다시 큐에 넣고 위 과정을 반복한다. 결정론적인 환경에서의 Prioritized Sweeping를 의사 코드로 나타내면 다음과 같다.
 
-{:.pseudo-code-header}
-Dyna-Q with Prioritized Sweeping on Deterministic Environment
+::: info Pseudo Code : Dyna-Q with Prioritized Sweeping on Deterministic Environment
 
-<div class="pseudo-code" markdown="block">
+<div class="pseudo-code">
 
 모든 $s \in \mathcal{S}^{+}$, $a \in \mathcal{A}(s)$에 대해, $Q(s,\,a) \in \mathbb{R}$을 임의의 값으로 초기화. 단, $Q(\textrm{terminal},\,\cdot) = 0$.
 
@@ -881,44 +859,37 @@ Dyna-Q with Prioritized Sweeping on Deterministic Environment
 
 $PQueue = [\,]$ (empty priority queue)
 
-{:.mt-1}
-<span class="keyword-highlight">Loop</span> forever:
+<span class="keyword-highlight">Loop</span> forever: {.mt-1}
 
 <span class="indent-1"/>$S \leftarrow$ 현재 상태(nonterminal state), $A \leftarrow policy(S,\,Q)$
 
-<span class="indent-1"/>$A$ 시행하고, 보상 $R$과 다음 상태 $S'$ 관측<span class="comment-highlight"> //Acting</span>
+<span class="indent-1"/>$A$ 시행하고, 보상 $R$과 다음 상태 $S'$ 관측<span class="comment-highlight"> // Acting</span>
 
-{:.mt-1}
-<span class="indent-1"/>$Model(S,\,A) \leftarrow R,\,S'$<span class="comment-highlight"> //Model Learning</span>
+<span class="indent-1"/>$Model(S,\,A) \leftarrow R,\,S'$<span class="comment-highlight"> // Model Learning</span> {.mt-1}
 
-{:.mt-1}
-<span class="indent-1"/>$P \leftarrow \| R + \gamma \max\_a Q(S',\,a) - Q(S,\,A)\|$<span class="comment-highlight"> //Priority(가치 변동량) 계산</span>
+<span class="indent-1"/>$P \leftarrow \| R + \gamma \max_a Q(S',\,a) - Q(S,\,A)\|$<span class="comment-highlight"> // Priority(가치 변동량) 계산</span> {.mt-1}
 
 <span class="indent-1"/><span class="keyword-highlight">If</span> $P > \omega$:
 
 <span class="indent-2"/>$PQueue$에 우선순위 $P$로 $(S,\,A)$ 삽입
 
-{:.mt-1}
-<span class="indent-1"/><span class="keyword-highlight">Loop</span> repeat $n$ times:
+<span class="indent-1"/><span class="keyword-highlight">Loop</span> repeat $n$ times: {.mt-1}
 
 <span class="indent-2"/><span class="keyword-highlight">If</span> $PQueue$가 비었으면:
 
 <span class="indent-3"/><span class="keyword-highlight">break</span>
 
-{:.mt-1}
-<span class="indent-2"/>$S,\,A \leftarrow enqueue(PQueue)$
+<span class="indent-2"/>$S,\,A \leftarrow enqueue(PQueue)$ {.mt-1}
 
 <span class="indent-2"/>$R,\,S' \leftarrow Model(S,\,A)$
 
-{:.mt-1}
-<span class="indent-2"/>$Q(S,\,A) \leftarrow Q(S,\,A) + \alpha [R + \gamma \max\_a Q(S',\,a) - Q(S,\,A)]$
+<span class="indent-2"/>$Q(S,\,A) \leftarrow Q(S,\,A) + \alpha [R + \gamma \max_a Q(S',\,a) - Q(S,\,A)]$ {.mt-1}
 
-{:.mt-1}
-<span class="indent-2"/><span class="keyword-highlight">Loop</span> for $S$로 향할 것으로 예상되는 모든 $\bar{S}$, $\bar{A}$에 대해:
+<span class="indent-2"/><span class="keyword-highlight">Loop</span> for $S$로 향할 것으로 예상되는 모든 $\bar{S}$, $\bar{A}$에 대해: {.mt-1}
 
 <span class="indent-3"/>$\bar{R} \leftarrow Model(\bar{S},\,\bar{A},\,S)$
 
-<span class="indent-3"/>$P \leftarrow \| \bar{R} + \gamma \max\_a Q(S,\,a) - Q(\bar{S},\,\bar{A})\|$
+<span class="indent-3"/>$P \leftarrow \| \bar{R} + \gamma \max_a Q(S,\,a) - Q(\bar{S},\,\bar{A})\|$
 
 <span class="indent-3"/><span class="keyword-highlight">If</span> $P > \omega$:
 
@@ -926,16 +897,15 @@ $PQueue = [\,]$ (empty priority queue)
 
 </div>
 
+:::
+
 확률론적인 환경(stochastic environment)으로의 확장도 간단하다. 각 상태-행동 쌍이 시행되었을 때 어떤 상태로 몇 번 전이했는지를 모델이 기억하게 한 후, Planning 때 이 값을 이용하여 확률을 계산해 (이때까지 했던 Sample Update가 아닌) Expected Update를 진행하면 된다.
 
 ## 예제 : Prioritized Sweeping on Mazes
 
-위 [Maze 문제](#kramdown_예제--maze)를 약간 변형한 다음 예제를 살펴보자.
+위 [Maze 문제](#예제-maze)를 약간 변형한 다음 예제를 살펴보자.
 
-<blockquote markdown="block">
-
-{:.title}
-Scaling Maze
+::: info Scaling Maze
 
 Fig.02의 미로의 해상도(resolution)를 변경하여 Fig.10과 같은 미로들을 얻었다. 각 미로들에서의 규칙은 Maze 문제에서와 동일하다.
 
@@ -945,18 +915,15 @@ Fig.02의 미로의 해상도(resolution)를 변경하여 Fig.10과 같은 미�
 - G(0 × `scale`, 8 × `scale`)로의 이동은 +1의 보상을 받는다. 이를 제외한 모든 이동은 0의 보상을 받는다.
 - 에이전트가 G에 도달하면 곧바로 S로 이동해 새로운 에피소드를 시작한다.
 
-{% include caption-img.html src="09-scaling-maze.png" title="Fig.10 Scaling Maze" description="Fig.02의 미로의 해상도를 변경하여 위와 같은 미로들을 얻었다." %}
+<v-image src="09-scaling-maze.png" title="Fig.10 Scaling Maze" description="Fig.02의 미로의 해상도를 변경하여 위와 같은 미로들을 얻었다." />
 
-</blockquote>
+:::
 
 이들 미로들에 대해 순수 Dyna-Q만을 사용할 때와 Prioritized Sweeping이 적용된 Dyna-Q를 사용할 때의 행동 가치 함수 업데이트 횟수의 차이를 비교해 보자.
 
-<div class="code-folder" markdown="block">
+::: details Code : Scaling Maze
 
-{:.code-header}
-Scaling Maze
-
-{% highlight python linenos %}
+```python:line-numbers
 import numpy as np
 from queue import PriorityQueue
 import matplotlib.pyplot as plt
@@ -1212,10 +1179,10 @@ if __name__ == "__main__":
         results[i] = (sum(dyna_q_results) / repeats, sum(dyna_q_ps_results) / repeats)
 
     drawGraph(scales=scales, results=results)
+```
 
-{% endhighlight %}
+**코드 설명**
 
-{:.guide-line}
 - line 5 ~ 75 : `Env` 클래스
   - 위 Maze 예제의 `Env` 클래스와 유사. 다만 이 `Env`는 `scale` 값에 따라 스케일러블(scalable)하다.
   - line 30 ~ 44 : `Env._getObstacles()` 메소드
@@ -1255,9 +1222,9 @@ if __name__ == "__main__":
   - line 239 : 사용할 `scale` 값 설정 (1, 2, ..., 10)
   - line 242 ~ 255 : 각 `scale` 값에 대해 최적 가치 함수가 되기까지 몇 번의 업데이트가 있었는지 `repeats`번 시험한 후 그 결과를 평균내어 Fig.11을 그린다.
 
-</div>
+:::
 
-{% include caption-img.html src="09-scaling-maze-result.png" title="Fig.11 Dyna-Q vs. Dyna-Q with Prioritized Sweeping" description="파란색 선은 Dyna-Q 에이전트, 주황색 선은 Prioritized Sweeping을 사용하는 Dyna-Q 에이전트의 결과를 나타낸다." %}
+<v-image src="09-scaling-maze-result.png" title="Fig.11 Dyna-Q vs. Dyna-Q with Prioritized Sweeping" description="파란색 선은 Dyna-Q 에이전트, 주황색 선은 Prioritized Sweeping을 사용하는 Dyna-Q 에이전트의 결과를 나타낸다." />
 
 위 결과에서 볼 수 있듯이 Prioritized Sweeping을 사용하는 Dyna-Q 에이전트는 순수한 Dyna-Q 에이전트를 사용할 때보다 언제나 빠르게 최적 가치 함수로 수렴한다.
 

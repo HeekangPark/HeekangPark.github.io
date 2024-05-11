@@ -1,6 +1,6 @@
-# - path: javascript
-#   name: JavaScript
-#   tags: ["js", "javascript"]
+- path: javascript
+  name: JavaScript
+  tags: ["js", "javascript"]
 - path: ml
   name: Machine Learning
   tags: ["ml", "machine-learning"]
@@ -9,6 +9,10 @@
       name: 토막글
       tags: ["shorts"]
       is_series: false
-    # - path: rl
-    #   name: Reinforcement Learning
-    #   tags: ["rl", "reinforcement-learning"]
+    - path: rl
+      name: Reinforcement Learning
+      tags: ["rl", "reinforcement-learning"]
+
+# - path: test
+#   name: test
+  

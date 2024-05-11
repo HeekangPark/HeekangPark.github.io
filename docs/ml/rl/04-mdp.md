@@ -2,8 +2,10 @@
 title: "L04. Markov Decision Process"
 order: 4
 date_created: "2021-03-26"
-date_modified: "2021-12-24"
+date_modified: "2024-05-12"
 ---
+
+<style src="./styles.scss"></style>
 
 # 에이전트와 환경의 관계
 

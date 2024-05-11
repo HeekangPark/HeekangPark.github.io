@@ -14,6 +14,9 @@ html {
 
   --site-logo-filter: invert(13%) sepia(46%) saturate(0%) hue-rotate(168deg) brightness(78%) contrast(83%);
 
+  --footnote-popup-background: #e0e0e0;
+  --footnote-popup-border: #b3b9c1;
+
   // scrollbar
   --body-scrollbar-thumb: #afafaf; //#a8b2c0;
   --body-scrollbar-thumb-hover: #9f9f9f; //#9ca5b3;
@@ -71,6 +74,9 @@ html.dark {
   --shadow-dark: rgba(0, 0, 0, 0.3);
 
   --nprogress: #bb86fc;
+
+  --footnote-popup-background: #484f58;
+  --footnote-popup-border: #484f58;
 
   --body-scrollbar-thumb: #31363c;
   --body-scrollbar-thumb-hover: #3a4047;

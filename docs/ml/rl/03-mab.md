@@ -2,8 +2,10 @@
 title: "L03. Multi-armed Bandits"
 order: 3
 date_created: "2021-03-15"
-date_modified: "2022-01-26"
+date_modified: "2024-05-12"
 ---
+
+<style src="./styles.scss"></style>
 
 # k-armed Bandit Problem
 
@@ -678,7 +680,7 @@ H_{t+1}(a) = H_t (a) - \alpha (R_t - \bar{R}_t)\pi_t (a) & \textrm{(if } a \neq 
 \end{cases}
 $$
 
-이 식에서 $\alpha > 0$는 스텝 크기(step size)를 의미한다. 그리고 $\bar{R}_t$는 일종의 베이스라인 역할을 한다. 만약 어떤 행동을 시행해 받은 보상($R_t$)이 베이스라인($\bar{R}_t$)보다 크다면 해당 행동의 선호도($H_t (a)$)를 증가시키고, 다른 행동들의 선호도를 감소시킨다. 반대로 어떤 행동을 시행해 받은 보상이 베이스라인보다 작다면 해당 행동의 선호도를 감소시키고 다른 행동들의 선호도를 증가시킨다. 이때 $\bar{R}_t$는 위에서 살펴본 [Incremental Implementation](#kramdown_incremental-implementation)을 이용하면 쉽게 계산할 수 있다.
+이 식에서 $\alpha > 0$는 스텝 크기(step size)를 의미한다. 그리고 $\bar{R}_t$는 일종의 베이스라인 역할을 한다. 만약 어떤 행동을 시행해 받은 보상($R_t$)이 베이스라인($\bar{R}_t$)보다 크다면 해당 행동의 선호도($H_t (a)$)를 증가시키고, 다른 행동들의 선호도를 감소시킨다. 반대로 어떤 행동을 시행해 받은 보상이 베이스라인보다 작다면 해당 행동의 선호도를 감소시키고 다른 행동들의 선호도를 증가시킨다. 이때 $\bar{R}_t$는 위에서 살펴본 [Incremental Implementation](#incremental-implementation)을 이용하면 쉽게 계산할 수 있다.
 
 10-armed Testbed에서 Gradient Bandit Algorithm을 시험해보자. 이때 10-armed Testbed의 설정을 조금 바꿔, 각 행동의 실제 가치($q_* (a)$)들이 평균 4, 분산 1의 정규분포에서 추출되게 해 보자.
 

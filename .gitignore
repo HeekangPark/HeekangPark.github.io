@@ -3,3 +3,5 @@ yarn-error.log
 .code-server
 dist
 .vitepress/cache
+docs/.test
+docs/test
