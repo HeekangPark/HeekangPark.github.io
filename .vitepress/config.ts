@@ -23,7 +23,7 @@ const themeConfig: ThemeConfig = {
     darkTheme: "dark"
   },
   googleAnalytics: {
-    trackingId: "G-325ND33JD3"
+    trackingId: "G-WVJLK632XK"
   },
   googleAdSense: {
     adClient: "ca-pub-7509436363176620",
