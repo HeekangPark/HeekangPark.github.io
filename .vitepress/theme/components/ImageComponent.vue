@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRoute } from 'vitepress';
-//import { createMarkdownRenderer } from 'vitepress';
+import { data as imageTextsData } from "@/data/imageTexts.data";
+
+//console.log(imageTextsData);
 
 const props = defineProps<{
   src: string
@@ -10,15 +12,9 @@ const props = defineProps<{
   alt?: string
 }>();
 
-const route = useRoute();
+console.log(props.description);
 
-// const config = globalThis.VITEPRESS_CONFIG.srdDir;
-// const md = await createMarkdownRenderer(
-//   config.srcDir,
-//   config.markdown,
-//   config.site.base,
-//   config.logger
-// )
+const route = useRoute();
 
 const src = computed(() => {
   if (props.src.startsWith('http')) { // External URL
@@ -31,8 +27,17 @@ const src = computed(() => {
 });
 const alt = computed(() => props.alt || props.title || props.src);
 
-const title = computed(() => props.title ? props.title : ''); // md.renderInline(props.title) : ''
-const description = computed(() => props.description ? props.description : ''); //md.renderInline(props.description) : ''
+const escape = (text: string) => {
+  // return text.replace(/&/g, '&amp;')
+  //             .replace(/</g, '&lt;')
+  //             .replace(/>/g, '&gt;')
+  //             .replace(/"/g, '&quot;');
+
+  return text;
+}
+
+const title = computed(() => props.title ? imageTextsData[escape(props.title.trim())] : '');
+const description = computed(() => props.description ? imageTextsData[escape(props.description.trim())] : '');
 
 const popover = ref(false);
 </script>
@@ -41,8 +46,8 @@ const popover = ref(false);
   <figure class="figure">
     <img class="img" :src="src" :alt="alt" @click="popover = true"/>
     <figcaption class="figcaption" v-if="props.title || props.description">
-      <p class="title" v-if="props.title">{{ title }}</p>
-      <p class="description" v-if="props.description">{{ description }}</p>
+      <p class="title" v-if="props.title" v-html="title"></p>
+      <p class="description" v-if="props.description" v-html="description"></p>
     </figcaption>
   </figure>
   <div class="popover" v-if="popover" @click.self="popover = false">

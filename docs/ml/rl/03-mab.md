@@ -797,7 +797,7 @@ plt.show()
 
 :::
 
-<v-image src="03-gradient-bandit-algorithm-optimal-action-rate.png" title="Fig.06 Optimal Action Rate (예시)" description="$\alpha=0.1$인 경우와 $\alpha=0.4$인 경우, ``se_baseline = True`인 경우와 `use_baseline = False`를 조합한 4가지 Gradient Bandit Algorithm을 사용하는 에이전트들의 최적 행동 선택 비율 (k=10, steps=1000, repeats=100)" />
+<v-image src="03-gradient-bandit-algorithm-optimal-action-rate.png" title="Fig.06 Optimal Action Rate (예시)" description="$\alpha=0.1$인 경우와 $\alpha=0.4$인 경우, `use_baseline = True`인 경우와 `use_baseline = False`를 조합한 4가지 Gradient Bandit Algorithm을 사용하는 에이전트들의 최적 행동 선택 비율 (k=10, steps=1000, repeats=100)" />
 
 정상적인 Gradient Bandit Algorithm의 경우 $\bar{R}_t$의 존재 덕분에 $q_* (a)$가 평균 4인 정규분포에서 추출됐어도 정상적으로 잘 작동한다. 하지만 위 그래프에서 볼 수 있듯이 베이스라인($\bar{R}_t$)을 사용하지 않게 한 에이전트는 성능이 낮게 나온다.
 

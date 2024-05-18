@@ -1,0 +1,1 @@
+export type ImageTextsData = { [text: string]: string };

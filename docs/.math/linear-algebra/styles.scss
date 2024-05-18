@@ -1,0 +1,20 @@
+.equivalent {
+  list-style: none outside;
+
+  &.text-align-center {
+      text-align: center;
+  }
+
+  > li {
+      &::marker {
+          content: "⇔　";
+          font-weight: normal;
+      }
+
+      &:first-of-type {
+          &::marker {
+              content: "　　";
+          }
+      }
+  }
+}
