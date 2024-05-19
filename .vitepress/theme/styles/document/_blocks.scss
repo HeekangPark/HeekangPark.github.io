@@ -1,0 +1,173 @@
+@import "@/styles/mixins";
+@import "@/styles/variables";
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-size: 1.6em - ($i - 1) * 0.1em;
+
+    margin: {
+      top: 1.5em;
+      bottom: 0.5em;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+hr {
+  @include gap;
+  border: none;
+  border-top: 1px solid var(--site-border);
+}
+
+p {
+  @include gap;
+  line-height: $line-height;
+}
+
+.table-wrapper {
+  @include gap;
+  overflow-x: auto;
+  @include scrollbar(0.5em, 0.75em);
+
+  padding: {
+    bottom: 0.25em;
+  }
+
+  table {
+    border-collapse: collapse;
+
+    margin: {
+      left: auto;
+      right: auto;
+    }
+
+    max-width: 100%;
+
+    border: {
+      top: 2px solid var(--table-border);
+      bottom: 2px solid var(--table-border);
+    }
+
+    caption {
+      padding: {
+        top: calc($gap_size / 2);
+      }
+
+      text-align: center;
+      caption-side: bottom;
+      font-weight: bold;
+    }
+
+    thead {
+      border: {
+        bottom: 1px solid var(--table-border);
+      }
+
+      font-weight: bold;
+      word-break: keep-all;
+      word-wrap: break-word;
+
+      tr {
+        border: {
+          bottom: 1px solid var(--table-border);
+        }
+
+        &:last-child {
+          border: {
+            bottom: none;
+          }
+        }
+      }
+    }
+
+    tfoot {
+      border: {
+        top: 1px solid var(--table-border);
+      }
+    }
+
+    tbody {
+      td {
+        font-weight: normal;
+
+        tr:hover {
+          background-color: var(--table-selected-cell-background);
+        }
+      }
+    }
+
+    td,
+    th {
+      padding: {
+        top: calc($gap_size / 2);
+        bottom: calc($gap_size / 2);
+        left: $gap_size;
+        right: $gap_size;
+      }
+
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+}
+
+blockquote {
+  @include gap;
+  background: var(--blockquote-background);
+
+  border: {
+    left: 4px solid var(--blockquote-border);
+  }
+
+  padding: {
+    top: 1.5 * $gap_size;
+    bottom: 1.5 * $gap_size;
+    left: $gap_size;
+    right: $gap_size;
+  }
+
+  p:first-child {
+    margin: {
+      top: 0;
+    }
+  }
+
+  p:last-child {
+    margin: {
+      bottom: 0;
+    }
+  }
+}
+
+ul,
+ol {
+  @include gap;
+  list-style-position: outside;
+  line-height: $line-height;
+
+  padding: {
+    left: 1.5em;
+  }
+
+  ul,
+  ol {
+    margin: {
+      top: 0;
+      bottom: 0;
+    }
+  }
+
+  li {
+    margin: {
+      top: calc($gap_size / 2);
+      bottom: calc($gap_size / 2);
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}

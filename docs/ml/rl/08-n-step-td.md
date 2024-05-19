@@ -24,7 +24,7 @@ V(S_t)
 \end{align}
 $$
 
-(단, $G_{t} = R_{t + 1} + \gamma R_{t+2} + \cdots + \gamma^{T - t - 1} R_T$) {.text-align-center .below-mathjax}
+(단, $G_{t} = R_{t + 1} + \gamma R_{t+2} + \cdots + \gamma^{T - t - 1} R_T$) {.text-align-center .mt-n1}
 
 한편, [1-step TD Method(= TD(0) Method)](/ml/rl/07-td)에서는 시점 $t+1$에서 관측한 보상 $R_{t+1}$과 상태 $S_{t+1}$에서의 가치 추정값 $V(S_{t+1})$[^1]을 기반으로 하여 $V(S_t)$를 업데이트했다.
 

@@ -26,32 +26,6 @@
     font-family: var(--code-font);
   }
 
-  .mt-0 {
-    margin-top: 0 !important;
-  }
-  
-  .mb-0 {
-    margin-bottom: 0 !important;
-  }
-  
-  .m-0 {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-  }
-  
-  .mt-1 {
-    margin-top: 1em !important;
-  }
-  
-  .mb-1 {
-    margin-bottom: 1em !important;
-  }
-  
-  .m-1 {
-    margin-top: 1em !important;
-    margin-bottom: 1em !important;
-  }
-
   .keyword-highlight {
     //color: #569CD6 !important;
     color: #C586C0 !important;
@@ -60,8 +34,4 @@
   .comment-highlight {
     color: #6A9955 !important;
   }
-}
-
-.below-mathjax {
-  margin-top: -1em !important;
 }

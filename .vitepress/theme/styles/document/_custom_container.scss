@@ -1,0 +1,82 @@
+@import "@/styles/mixins";
+@import "@/styles/variables";
+
+.custom-block {
+  @include gap;
+  background: var(--custom-block-background);
+
+  border: {
+    left: 4px solid var(--custom-block-default);
+  }
+
+  padding: {
+    top: 1.5 * $gap_size;
+    bottom: 1.5 * $gap_size;
+    left: $gap_size;
+    right: $gap_size;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    .header-anchor {
+      display: none;
+    }
+  }
+
+  p:first-child {
+    margin: {
+      top: 0;
+    }
+  }
+
+  p:last-child {
+    margin: {
+      bottom: 0;
+    }
+  }
+
+  .custom-block-title {
+    font-weight: bold;
+  }
+
+  &.info {
+    border-color: var(--custom-block-info);
+  }
+
+  &.tip {
+    border-color: var(--custom-block-tip);
+  }
+
+  &.warning {
+    border-color: var(--custom-block-warning);
+  }
+
+  &.danger {
+    border-color: var(--custom-block-danger);
+  }
+
+  &.note {
+    border-color: var(--custom-block-note);
+  }
+
+  &.important {
+    border-color: var(--custom-block-important);
+  }
+
+  &.caution {
+    border-color: var(--custom-block-caution);
+  }
+
+  &.details {
+    border-color: var(--custom-block-details);
+
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}

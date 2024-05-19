@@ -1,0 +1,128 @@
+@import "@/styles/mixins";
+@import "@/styles/variables";
+
+// align
+.text-align-center {
+  text-align: center !important;
+}
+
+.text-align-left {
+  text-align: left !important;
+}
+
+.text-align-right {
+  text-align: right !important;
+}
+
+// font-size
+.text-size-lg {
+  font-size: 1.1em !important;
+}
+
+.text-size-md {
+  font-size: 1em !important;
+}
+
+.text-size-sm {
+  font-size: 0.9em !important;
+}
+
+// margin
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.m-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.mt-1 {
+  margin-top: $gap_size !important;
+}
+
+.mb-1 {
+  margin-bottom: $gap_size !important;
+}
+
+.m-1 {
+  margin-top: $gap_size !important;
+  margin-bottom: $gap_size !important;
+}
+
+.mt-n1 {
+  margin: {
+    top: -$gap_size !important;
+  }
+}
+
+.mb-n1 {
+  margin: {
+    bottom: calc(-1 * #{$gap_size} / 2) !important;
+  }
+}
+
+// color
+.text-color-red {
+  color: red;
+}
+
+.text-color-green {
+  color: green;
+}
+
+.text-color-blue {
+  color: blue;
+}
+
+.text-color-yellow {
+  color: yellow;
+}
+
+.text-color-orange {
+  color: orange;
+}
+
+.text-color-purple {
+  color: purple;
+}
+
+.text-color-pink {
+  color: pink;
+}
+
+.text-color-gray {
+  color: gray;
+}
+
+.text-color-black {
+  color: black;
+}
+
+.text-color-white {
+  color: white;
+}
+
+.text-color-lightgray {
+  color: lightgray;
+}
+
+.text-color-darkgray {
+  color: darkgray;
+}
+
+.text-color-lightblue {
+  color: lightblue;
+}
+
+.text-color-lightgreen {
+  color: lightgreen;
+}
+
+.text-color-lightyellow {
+  color: lightyellow;
+}

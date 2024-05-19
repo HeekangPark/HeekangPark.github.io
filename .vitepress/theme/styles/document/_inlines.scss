@@ -1,0 +1,59 @@
+@import "@/styles/mixins";
+@import "@/styles/variables";
+
+a {
+  text-decoration: underline;
+  //transition: color 0.2s, text-decoration 0.2s;
+
+  &[href^="http://"]::before,
+  &[href^="https://"]::before {
+    content: "🔗";
+    //content: "🌐";
+    font-size: 0.9em;
+  }
+
+  &:link {
+    color: var(--hyperlink-unclicked-text);
+
+    &::after {
+      color: inherit;
+    }
+
+    &:hover {
+      color: var(--hyperlink-unclicked-hover-text);
+      text-decoration: underline;
+    }
+  }
+
+  &:visited {
+    color: var(--hyperlink-clicked-text);
+
+    &::after {
+      color: inherit;
+    }
+
+    &:hover {
+      color: var(--hyperlink-clicked-hover-text);
+      text-decoration: underline;
+    }
+  }
+}
+
+s {
+  color: var(--del-text);
+  text-decoration: line-through;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+sup {
+  font-size: 0.8em;
+  vertical-align: super;
+}
+
+sub {
+  font-size: 0.8em;
+  vertical-align: sub;
+}

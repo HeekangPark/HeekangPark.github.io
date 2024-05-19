@@ -1,0 +1,32 @@
+@import "@/styles/mixins";
+@import "@/styles/variables";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  position: relative;
+
+  .header-anchor::before {
+    content: "#";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    margin: {
+      left: -0.875em;
+    }
+
+    user-select: none;
+    text-decoration: none;
+    transition: opacity 0.25s;
+    opacity: 0;
+    color: var(--header-anchor);
+  }
+
+  &:hover .header-anchor::before {
+    opacity: 1;
+  }
+}

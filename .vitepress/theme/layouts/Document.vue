@@ -167,9 +167,6 @@ const buildFootnotePopups = () => {
       }
     }
   });
-
-
-  console.log("footnote popups built");
 }
 
 // toc
@@ -461,6 +458,7 @@ onUpdated(async () => {
       display: inline-block;
       color: var(--site-muted-text);
       font-size: 1em;
+      text-align: center;
 
       margin: {
         bottom: 0.5em;

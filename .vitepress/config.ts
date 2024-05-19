@@ -90,6 +90,10 @@ export default defineConfigWithTheme<ThemeConfig>({
       lazyLoading: true,
     },
     config: (md) => {
+      // markdown-it customization : wrap tables with div
+      md.renderer.rules.table_open = (tokens, idx, options) => '<div class="table-wrapper"><table>';
+      md.renderer.rules.table_close = (tokens, idx, options) => '</table></div>';
+      
       // markdown-it-footnote
       md.use(markdownItFootnote);
 
@@ -99,22 +103,6 @@ export default defineConfigWithTheme<ThemeConfig>({
         rightDelimiter: '}',
         allowedAttributes: []
       });
-
-      // markdown-it customization : wrap tables with div
-      md.renderer.rules.table_open = (tokens, idx, options) => '<div class="table-wrapper"><table>';
-      md.renderer.rules.table_close = (tokens, idx, options) => '</table></div>';
-
-      // markdown-it-footnote customization : assign vue ref attributes to footnotes
-      md.renderer.rules.footnote_ref = (tokens, idx, options, env, slf) => {
-        const id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
-        const caption = slf.rules.footnote_caption(tokens, idx, options, env, slf);
-        let refid = id;
-
-        if (tokens[idx].meta.subId > 0) refid += `:${tokens[idx].meta.subId}`;
-
-        //return `<sup class="footnote-ref" :ref="(el) => if(el__footnote_refs !== null) el__footnote_refs.push(el);"><a href="#fn${id}" id="fnref${refid}">${caption}</a></sup>`;
-        return `<sup class="footnote-ref" ref="el__footnote_ref"><a href="#fn${id}" id="fnref${refid}">${caption}</a></sup>`;
-      }
     }
   },
   //ignoreDeadLinks: true,

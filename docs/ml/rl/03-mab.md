@@ -282,7 +282,7 @@ Nonstationary Bandit Problem 상황에서는 과거에 받았던 보상보다 �
 
 $$Q_{n+1} = Q_n + \alpha(R_n - Q_n)$$
 
-(단, $\alpha \in (0,\,1]$는 상수) {.text-align-center .under-mathjax}
+(단, $\alpha \in (0,\,1]$는 상수) {.text-align-center .mt-n1}
 
 이 식을 풀어 쓰면 다음과 같이 된다.
 
@@ -339,7 +339,7 @@ Stochastic Approximation Theory에 의하면, $\alpha_n (a)$은 다음 조건일
 
 $$\sum_{n=1} ^{\infty}\alpha_n (a) = \infty \qquad\textrm{and}\qquad \sum_{n=1} ^{\infty}\alpha_n ^2 (a) = c$$
 
-(단, $c$는 상수) {.text-align-center .under-mathjax}
+(단, $c$는 상수) {.text-align-center .mt-n1}
 
 첫 번째 조건의 의미는 $\alpha_n (a)$가 충분히 커, 초기값이 어떻든, 노이즈가 있어도 결국 이들을 극복할 수 있다는 뜻이다. 두 번째 조건의 의미는 $\alpha_n (a)$의 값이 충분히 작아져, 결국 수렴하게 된다는 뜻이다.
 
@@ -484,11 +484,11 @@ k-armed Bandit Problem을 풂에 있어, 탐색(Exploration)은 매우 중요하
 **UCB(Upper-Confidence-Bound) Action Selection**은 바로 이 점에 착안하여 만들어진 기법이다. 시간 $t$까지 특정 행동 $a$가 시행된 횟수를 $N_t(a)$라 할 때, UCB Action Selection은 다음 규칙을 이용해 행동을 선택한다.
 
 1. 만약 한 번도 시행되지 않은 행동이 있다면($N_t(a) = 0$) 해당 행동을 선택한다.
-2. 만약 모든 행동들이 한 번 이상 시행되었다면 다음 식을 이용해 행동을 선택한다 :{.above-mathjax}
+2. 만약 모든 행동들이 한 번 이상 시행되었다면 다음 식을 이용해 행동을 선택한다 :{.mb-n1}
 
 $$A_t = \underset{a}{\operatorname{arg max}} \left[ Q_t(a) + c \sqrt{\frac{\ln t}{N_t(a)}} \, \right]$$
 
-(단, $c>0$) {.text-align-center .under-mathjax}
+(단, $c>0$) {.text-align-center .mt-n1}
 
 위 식의 의미를 생각해보자. 앞에서 배웠던 Greedy Method는 가장 큰 가치 추정값을 가지는 행동을 선택했다. 이를 식으로 표현하면 다음과 같이 된다.
 

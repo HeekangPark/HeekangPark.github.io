@@ -3,16 +3,12 @@ import { ref, computed } from 'vue';
 import { useRoute } from 'vitepress';
 import { data as imageTextsData } from "@/data/imageTexts.data";
 
-//console.log(imageTextsData);
-
 const props = defineProps<{
   src: string
   title?: string
   description?: string
   alt?: string
 }>();
-
-console.log(props.description);
 
 const route = useRoute();
 

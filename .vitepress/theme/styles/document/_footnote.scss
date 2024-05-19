@@ -1,0 +1,28 @@
+@import "@/styles/mixins";
+@import "@/styles/variables";
+
+.footnote-ref {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
+  word-break: keep-all;
+  user-select: none;
+
+  a {
+    color: var(--hyperlink-unclicked-text);
+
+    &:hover {
+      color: var(--hyperlink-unclicked-hover-text);
+      text-decoration: underline;
+    }
+  }
+
+  color: var(--hyperlink-unclicked-text);
+
+  &:hover {
+    color: var(--hyperlink-unclicked-hover-text);
+    text-decoration: underline;
+  }
+}
