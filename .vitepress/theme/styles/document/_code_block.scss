@@ -1,9 +1,6 @@
 @import "@/styles/mixins";
 @import "@/styles/variables";
 
-$code-block-border-radius: 0.5em;
-$code-block-padding: 1em;
-
 :not(pre)>code {
   border-radius: 4px;
 
@@ -95,7 +92,6 @@ div[class*="language-"] {
     overflow-x: auto;
 
     .line {
-
       &.highlighted,
       &.has-focus {
         @include full_line;

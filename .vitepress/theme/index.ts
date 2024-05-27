@@ -5,6 +5,7 @@ import nprogress from 'nprogress';
 import { useGlobalState } from '@/store';
 
 import ImageComponent from '@/components/ImageComponent.vue';
+import CodeBlockComponent from '@/components/CodeBlockComponent.vue';
 import Layout from "./Layout.vue";
 
 import { OhVueIcon, addIcons } from "oh-vue-icons";
@@ -65,7 +66,8 @@ export default {
   enhanceApp({ app, router }) {
     app.component("v-icon", OhVueIcon);
     app.use(createHead());
-    app.component("v-image", ImageComponent)
+    app.component("v-image", ImageComponent);
+    app.component("v-codeblock", CodeBlockComponent);
     //enhanceAppWithTabs(app);
 
     setTimeout(() => {

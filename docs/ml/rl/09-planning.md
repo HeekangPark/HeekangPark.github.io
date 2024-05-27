@@ -108,7 +108,7 @@ Dyna-Q는 Q-Learning으로 Direct RL을 수행하고, Q-Planning으로 Indirect 
 
 <span class="indent-2"/>$S \leftarrow$ $Model$에 저장된 상태 중 하나를 무작위로 선택
 
-<span class="indent-2"/>$A \leftarrow $ $Model(S)$에 저장된 행동 중 하나를 무작위로 선택
+<span class="indent-2"/>$A \leftarrow$ $Model(S)$에 저장된 행동 중 하나를 무작위로 선택
 
 <span class="indent-2"/>$R,\,S' \leftarrow Model(S,\,A)$ {.mt-1}
 
@@ -500,7 +500,7 @@ $t_{cur} \leftarrow 0$ {.mt-1}
 
 <span class="indent-2"/>$S \leftarrow$ $Model$에 저장된 상태 중 하나를 무작위로 선택
 
-<span class="indent-2"/>$A \leftarrow $ $Model(S)$에 저장된 행동 중 하나를 무작위로 선택
+<span class="indent-2"/>$A \leftarrow$ $Model(S)$에 저장된 행동 중 하나를 무작위로 선택
 
 <span class="indent-2"/>$R,\,S',\,t_{last} \leftarrow Model(S,\,A)$ {.mt-1}
 
