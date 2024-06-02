@@ -6,13 +6,18 @@ date_modified: "2024-04-14"
 
 line before codeblock
 
-<v-codeblock>
+<v-codeblock title="test">
 
-```python
-print("Hello, World!")
+```python:line-numbers
+print("removed") # [!code --]
+print("added") # [!code ++]
+print("error") # [!code error]
+print("warning") # [!code warning]
+print("highlgiht") # [!code highlight]
+print("focus") # [!code focus]
 ```
 
-```text
+```result
 Hello, World!
 ```
 
@@ -32,6 +37,7 @@ print("Highlight line 1")
 
 ```python
 print("Focuesed line 1") # [!code focus]
+# another line
 ```
 
 ```python
@@ -41,4 +47,4 @@ print("error") # [!code error]
 print("warning") # [!code warning]
 ```
 
-line after codeblock
+line after `codeblock`

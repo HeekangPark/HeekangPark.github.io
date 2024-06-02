@@ -23,17 +23,8 @@ const src = computed(() => {
 });
 const alt = computed(() => props.alt || props.title || props.src);
 
-const escape = (text: string) => {
-  // return text.replace(/&/g, '&amp;')
-  //             .replace(/</g, '&lt;')
-  //             .replace(/>/g, '&gt;')
-  //             .replace(/"/g, '&quot;');
-
-  return text;
-}
-
-const title = computed(() => props.title ? imageTextsData[escape(props.title.trim())] : '');
-const description = computed(() => props.description ? imageTextsData[escape(props.description.trim())] : '');
+const title = computed(() => props.title ? imageTextsData[props.title.trim()] : props.title.trim());
+const description = computed(() => props.description ? imageTextsData[props.description.trim()] : props.description.trim());
 
 const popover = ref(false);
 </script>

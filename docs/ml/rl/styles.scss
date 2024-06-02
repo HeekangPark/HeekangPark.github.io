@@ -4,8 +4,8 @@
   $code-block-border-radius: 0.5em;
   $code-block-padding: 1em;
 
-  background-color: var(--shiki-background);
-  color: var(--shiki-text);
+  background-color: var(--code-block-background);
+  color: var(--code-block-text);
   border-radius: $code-block-border-radius;
   line-height: 1.5;
   @include scrollbar($code-block-border-radius, 0.75em);

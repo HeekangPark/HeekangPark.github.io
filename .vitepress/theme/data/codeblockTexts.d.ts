@@ -1,0 +1,1 @@
+export type CodeblockTextData = { [text: string]: string };

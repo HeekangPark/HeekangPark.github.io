@@ -282,8 +282,11 @@ onUpdated(async () => {
       </div>
     </div>
     <div class="content" :style="{
-      '--shiki-background': (shikiTheme as any).colors['editor.background'],
-      '--shiki-text': (shikiTheme as any).colors['editor.foreground'],
+      '--code-block-background': (shikiTheme as any).colors['editor.background'],
+      '--code-block-text': (shikiTheme as any).colors['editor.foreground'],
+      '--code-block-menu-background': (shikiTheme as any).colors['menu.background'],
+      '--code-block-menu-border': (shikiTheme as any).colors['menu.border'],
+      '--code-block-menu-text': (shikiTheme as any).colors['menu.foreground'],
     }" ref="el__content">
       <div class="toc" ref="el__toc"></div>
       <Content></Content>

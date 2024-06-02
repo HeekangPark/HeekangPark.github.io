@@ -12,24 +12,33 @@ transformer 시대의 서막을 연 것은 BERT였다. BERT가 처음 등장했�
 
 우선 현재 사용중인 머신의 CUDA 버전에 맞춰 적절한 pytorch 패키지를 설치한다. 
 
+<v-codeblock title="pytorch 패키지 설치 (CUDA 11.6)">
+
 ```bash
-# pytorch 패키지 설치 (CUDA 11.6)
 pip install torch --extra-index-url https://download.pytorch.org/whl/cu116
 ```
 
+</v-codeblock>
+
 그리고 transformers 패키지를 설치한다.
 
+<v-codeblock title="transformers 패키지 설치">
+
 ```bash
-# transformers 패키지 설치
 pip install transformers
 ```
 
+</v-codeblock>
+
 Jupyter Notebook/Lab을 사용한다면 ipywidgets 패키지를 설치해야 transfoermers 패키지가 정상적으로 동작하므로 이 역시 설치한다. (패키지 설치가 완료된 이후에는 커널을 재시작하고 페이지를 새로고침해 줘야 한다.)
 
+<v-codeblock title="ipywidgets 패키지 설치 (Jupyter Notebook/Lab 사용자의 경우)">
+
 ```bash
-# ipywidgets 패키지 설치 (Jupyger Notebook/Lab 사용자의 경우)
 pip install ipywidgets
 ```
+
+</v-codeblock>
 
 # Tokenizer
 
@@ -49,19 +58,21 @@ tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
 
 Huggingface tokenizer의 사용법은 매우 간단하다. 다음과 같이 tokenize할 문자열을 tokenizer에 인자로 넣기만 하면 된다.
 
+<v-codeblock>
+
 ```python
 tokenizer("I love NLP!")
 ```
 
-::: details 실행결과
-
-```text
+```result
 {'input_ids': [101, 1045, 2293, 17953, 2361, 999, 102], 'token_type_ids': [0, 0, 0, 0, 0, 0, 0], 'attention_mask': [1, 1, 1, 1, 1, 1, 1]}
 ```
 
-:::
+</v-codeblock>
 
 tokenizer가 반환하는 출력값은 여러 항목들이 들어 있는 python dictionary이고(정확히는 `BatchEncoding` 객체이지만 dictionary라 생각해도 무방하다), 각 항목의 값(value)들은 python list이다. 즉 다음과 같이 각각의 값들에 접근할 수 있다.
+
+<v-codeblock>
 
 ```python
 tokens = tokenizer("I love NLP!")
@@ -71,15 +82,13 @@ print(f"token type ids : {tokens['token_type_ids']}")
 print(f"attention mask : {tokens['attention_mask']}")
 ```
 
-::: details 실행결과
-
-```text
+```result
 input ids : [101, 1045, 2293, 17953, 2361, 999, 102]
-token type ids : [0, 0, 0, 0, 0, 0, 0]
+token type ids : [0, 0, 0, 0, 0, 0, 0] //[!code highlight]
 attention mask : [1, 1, 1, 1, 1, 1, 1]
 ```
 
-:::
+</v-codeblock>
 
 `bert-base-uncased` tokenizer 출력값에 있는 각 항목의 의미는 다음과 같다.
 
@@ -89,6 +98,8 @@ attention mask : [1, 1, 1, 1, 1, 1, 1]
 
 이들 항목은 `bert-base-uncased` 모델이 입력값으로 요구하는 것들이다. Huggingface의 tokenizer는 자신과 짝이 되는 모델이 어떤 항목들을 입력값으로 요구한다는 것을 '알고' 이에 맞춰 출력값에 필요한 항목들을 자동으로 추가해 준다. 만약 `token_type_ids`, `attention_mask`가 필요없다면 다음과 같이 `return_token_type_ids`, `return_attention_mask` 인자에 `False`를 주면 된다.
 
+<v-codeblock>
+
 ```python
 tokenizer(
     "I love NLP!",
@@ -97,29 +108,27 @@ tokenizer(
 )
 ```
 
-::: details 실행결과
-
-```text
+```result
 {'input_ids': [101, 1045, 2293, 17953, 2361, 999, 102]}
 ```
 
-:::
+</v-codeblock>
 
 `tokenizer.convert_ids_to_tokens()` 메소드를 사용하면 token id를 token으로 변환할 수 있다.
+
+<v-codeblock>
 
 ```python
 print(tokenizer.convert_ids_to_tokens(1045))  # 하나만 바꿀 수도 있고
 print(tokenizer.convert_ids_to_tokens([101, 1045, 2293, 17953, 2361, 999, 102]))  # 여러 개를 바꿀 수도 있다
 ```
 
-::: details 실행결과
-
-```text
+```result
 i
 ['[CLS]', 'i', 'love', 'nl', '##p', '!', '[SEP]']
 ```
 
-:::
+</v-codeblock>
 
 위 결과를 보면 token들이 모두 소문자임을 볼 수 있다. 이는 `bert-base-uncased` tokenizer가 이름에 걸맞게 입력된 텍스트를 모두 소문자로 변환한 후 tokenization을 진행하기 때문에 그렇다.
 
@@ -135,21 +144,23 @@ i
 
 BERT가 사용하는 special token들의 정보는 tokenizer 객체에서 다음과 같이 확인할 수 있다.
 
+<v-codeblock>
+
 ```python
 print(f"special token ids : {tokenizer.all_special_ids}")
 print(f"special tokens : {tokenizer.all_special_tokens}")
 ```
 
-::: details 실행결과
-
-```text
+```result
 special token ids : [100, 102, 0, 101, 103]
 special tokens : ['[UNK]', '[SEP]', '[PAD]', '[CLS]', '[MASK]']
 ```
 
-:::
+</v-codeblock>
 
 만약 tokenizer가 자동으로 special token을 추가하는 것을 막고 싶다면 다음과 같이 `add_special_tokens` 인자를 `False`로 주면 된다(default: `True`).
+
+<v-codeblock>
 
 ```python
 tokens = tokenizer(
@@ -160,16 +171,16 @@ print(f"token ids : {tokens['input_ids']}")
 print(f"tokens : {tokenizer.convert_ids_to_tokens(tokens['input_ids'])}")
 ```
 
-::: details 실행결과
-
-```text
+```result
 token ids : [1045, 2293, 17953, 2361, 999]
 tokens : ['i', 'love', 'nl', '##p', '!']
 ```
 
-:::
+</v-codeblock>
 
 필요하다면 `add_special_tokens` 인자를 `False`로 주고 다음과 같이 special token을 직접 입력할 수 있다.
+
+<v-codeblock>
 
 ```python
 tokens = tokenizer(
@@ -180,16 +191,16 @@ print(f"token ids : {tokens['input_ids']}")
 print(f"tokens : {tokenizer.convert_ids_to_tokens(tokens['input_ids'])}")
 ```
 
-::: details 실행결과
-
-```text
+```result
 token ids : [101, 1045, 2293, 17953, 2361, 999, 102]
 tokens : ['[CLS]', 'i', 'love', 'nl', '##p', '!', '[SEP]']
 ```
 
-:::
+</v-codeblock>
 
 혹은 다음과 같이 할 수도 있다.
+
+<v-codeblock>
 
 ```python
 tokens = tokenizer(
@@ -200,49 +211,49 @@ print(f"token ids : {tokens['input_ids']}")
 print(f"tokens : {tokenizer.convert_ids_to_tokens(tokens['input_ids'])}")
 ```
 
-::: details 실행결과
-
-```text
+```result
 token ids : [101, 1045, 2293, 17953, 2361, 999, 102]
 tokens : ['[CLS]', 'i', 'love', 'nl', '##p', '!', '[SEP]']
 ```
 
-:::
+</v-codeblock>
 
 `tokenizer.convert_tokens_to_ids()` 메소드를 사용하면 이번엔 반대로 token을 token id로 변환할 수 있다.
+
+<v-codeblock>
 
 ```python
 print(tokenizer.convert_tokens_to_ids("i"))  # 하나만 바꿀 수도 있고
 print(tokenizer.convert_tokens_to_ids(['[CLS]', 'i', 'love', 'nl', '##p', '!', '[SEP]']))  # 여러 개를 바꿀 수도 있다
 ```
 
-::: details 실행결과
-
-```text
+```result
 1045
 [101, 1045, 2293, 17953, 2361, 999, 102]
 ```
 
-:::
+</v-codeblock>
 
 참고로 이 메소드에는 반드시 tokenizer의 vocabulary에 존재하는 token만 입력해야 한다. 존재하지 않는 token, 이를테면 대문자 "I" 따위를 변환하려 하면 `[UNK]` 토큰으로 변환된다.
 
 `tokenizer.decode()` 메소드를 사용하면 token id들의 리스트(sequence of token id)를 다시 원문 문자열로 바꿀 수 있다. `tokenizer.convert_ids_to_tokens()` 메소드와 비슷하지만, `tokenizer.decode()` 메소드는 token들을 모아 자동으로 하나의 문자열 형태로 반환해 준다는 점에서 다르다.
+
+<v-codeblock>
 
 ```python
 tokens = tokenizer("I love NLP!")
 tokenizer.decode(tokens["input_ids"])
 ```
 
-::: details 실행결과
-
-```text
+```result
 '[CLS] i love nlp! [SEP]'
 ```
 
-:::
+</v-codeblock>
 
 `tokenizer.decode()` 메소드를 사용할 때 다음과 같이 `skip_special_tokens` 인자를 True로 주면 special token들은 무시하고 문자열로 변환된다(default: `False`).
+
+<v-codeblock>
 
 ```python
 tokens = tokenizer("I love NLP!")
@@ -251,31 +262,31 @@ print(f"Decoded : {tokenizer.decode(tokens['input_ids'])}")
 print(f"Decoded (skip special tokens) : {tokenizer.decode(tokens['input_ids'], skip_special_tokens=True)}")
 ```
 
-::: details 실행결과
-
-```text
+```result
 {'input_ids': [101, 1045, 2293, 17953, 2361, 999, 102], 'token_type_ids': [0, 0, 0, 0, 0, 0, 0], 'attention_mask': [1, 1, 1, 1, 1, 1, 1]}
 Decoded : [CLS] i love nlp! [SEP]
 Decoded (skip special tokens) : i love nlp!
 ```
 
-:::
+</v-codeblock>
 
 tokenizer를 사용해 여러 텍스트를 동시에 tokenize할 수도 있다. tokenizer는 다음과 같이 `List[str]` 형태로 입력이 들어오면 batch 입력이라 이해하고, 각 string별로 따로따로 `input_ids`, `token_type_ids`, `attention_mask`를 만들어 준다.
+
+<v-codeblock>
 
 ```python
 tokenizer(["I love NLP!", "I don't like NLP..."])
 ```
 
-::: details 실행결과
-
-```text
+```result
 {'input_ids': [[101, 1045, 2293, 17953, 2361, 999, 102], [101, 1045, 2123, 1005, 1056, 2066, 17953, 2361, 1012, 1012, 1012, 102]], 'token_type_ids': [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], 'attention_mask': [[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]}
 ```
 
-:::
+</v-codeblock>
 
 다음과 같이 `List[List[str]]` 형태로 입력이 들어오면 tokenizer는 하위 list(`List[str]`)가 sentence A, sentence B를 입력하는 것이라 이해하고, 다음과 같이 출력한다. `token_type_ids`에 0(sentence A)과 1(sentence B)이 둘 다 있는 것을 볼 수 있다.
+
+<v-codeblock>
 
 ```python
 tokenizer([
@@ -284,23 +295,23 @@ tokenizer([
 ])
 ```
 
-::: details 실행결과
-
-```text
+```result
 {'input_ids': [[101, 1045, 2293, 17953, 2361, 999, 102, 1045, 2123, 1005, 1056, 2066, 17953, 2361, 1012, 1012, 1012, 102], [101, 2045, 2003, 2019, 6207, 1012, 102, 1045, 2215, 2000, 4521, 2009, 1012, 102]], 'token_type_ids': [[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1]], 'attention_mask': [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]}
 ```
 
-:::
+</v-codeblock>
 
 이때 BERT는 한 번에 sentence A, setence B, 이렇게 두 개의 sentence만 입력받을 수 있기 때문에, `List[List[str]]` 형태로 입력을 할 땐 하위 list(`List[str]`)의 원소 개수가 2개를 넘겨선 안 된다.
 
 ```python
 tokenizer([
-    ["You can't", "pass more than", "two strings:-("]
+    ["You can't", "pass more than", "two strings:-("] # [!code error]
 ])  # ERROR
 ```
 
 tokenization 과정에서 다음과 같이 `return_tensors` 옵션을 주면 torch tensor 형태로 출력을 받을 수 있다.
+
+<v-codeblock>
 
 ```python
 tokenizer(
@@ -309,24 +320,24 @@ tokenizer(
 )
 ```
 
-::: details 실행결과
-
-```text
+```result
 {'input_ids': tensor([[  101,  1045,  2293, 17953,  2361,   999,   100,   102]]), 'token_type_ids': tensor([[0, 0, 0, 0, 0, 0, 0, 0]]), 'attention_mask': tensor([[1, 1, 1, 1, 1, 1, 1, 1]])}
 ```
 
-:::
+</v-codeblock>
 
 batch 입력을 할 때, 만약 각 텍스트의 token 수가 다르다면 pytorch tensor로 출력을 받을 수 없다. torch tensor의 각 row는 크기가 같아야 하기 때문이다.
 
 ```python
 tokenizer(
-    ["I love NLP!", "I don't like NLP..."],
+    ["I love NLP!", "I don't like NLP..."], # [!code error]
     return_tensors="pt"
 )  # ERROR
 ```
 
 이를 해결하기 위해, 일반적으로는 입력의 최대 길이(max length)를 정해 놓고, 이 길이를 넘는 텍스트는 자르고(truncate), 이 길이에 못 미치는 텍스트는 padding을 추가하는 방법을 사용할 수 있다. 다음과 같이 하면 최대 길이 10을 넘는 텍스트는 자르고 부족한 부분에는 padding을 추가해 모든 텍스트의 길이가 같도록 만들 수 있다.
+
+<v-codeblock>
 
 ```python
 tokenizer(
@@ -338,13 +349,11 @@ tokenizer(
 )
 ```
 
-::: details 실행결과
-
-```text
+```result
 {'input_ids': tensor([[  101,  1045,  2293, 17953,  2361,   999,   102,     0,     0,     0], [  101,  1045,  2123,  1005,  1056,  2066, 17953,  2361,  1012,   102]]), 'token_type_ids': tensor([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]), 'attention_mask': tensor([[1, 1, 1, 1, 1, 1, 1, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])}
 ```
 
-:::
+</v-codeblock>
 
 참고로 truncation의 단위는 token 단위이다. 또 입력의 최대 길이 계산에는 special token 역시 포함된다.
 
@@ -395,27 +404,27 @@ Some weights of the model checkpoint at bert-base-uncased were not used when ini
 
 Huggingface의 BERT 모델은 약 108M개의 개의 파라미터로 이루어져 있다.
 
+<v-codeblock>
+
 ```python
 model.num_parameters()
 ```
 
-::: details 실행결과
-
-```text
+```result
 108891648
 ```
 
-:::
+</v-codeblock>
 
 또 그 구조는 다음과 같다.
+
+<v-codeblock>
 
 ```python
 model
 ```
 
-::: details 실행결과
-
-```text
+```result
 BertModel(
   (embeddings): BertEmbeddings(
     (word_embeddings): Embedding(30522, 768, padding_idx=0)
@@ -528,7 +537,7 @@ BertModel(
 )
 ```
 
-:::
+</v-codeblock>
 
 `BertModel`을 사용하는 방법은 매우 간단하다. 일반적인 torch module(`torch.nn.Module`)을 쓰듯이 입력값을 넣어주면 된다. 다음과 같이 tokenizer로 만든 입력값을 `BertModel`에 넣어주자.
 
@@ -539,33 +548,35 @@ output = model(**model_input)
 
 `BertModel`의 출력값에는 다음 값들이 포함되어 있다.
 
+<v-codeblock>
+
 ```python
 print(output.keys())
 ```
 
-::: details 실행결과
-
-```text
+```result
 odict_keys(['last_hidden_state', 'hidden_states', 'attentions'])
 ```
 
-:::
+</v-codeblock>
 
 각 값들의 의미를 살펴보자. 우선 `last_hidden_state`는 마지막 layer의 hidden state이다. `bert-base-uncased`의 경우 `(batch_size, sequence_length, 768)` 크기의 tensor이다. 일반적으로 이 값을 입력된 텍스트에 대해 BERT가 생성한 최종 embedding으로 여긴다. 이 embedding을 사용하여 downstream task를 수행한다.
+
+<v-codeblock>
 
 ```python
 print(output.last_hidden_state.shape)
 ```
 
-::: details 실행결과
-
-```text
+```result
 torch.Size([1, 7, 768])
 ```
 
-:::
+</v-codeblock>
 
 `hidden_states`는 각 layer의 hidden state를 모아놓은 list이다. 이때 마지막 layer일수록 뒤에 있다. 즉 `hidden_states[-1]`과 `last_hidden_state`는 같다. `bert-base-uncased`의 경우 길이 13인 list이고(첫 번째 원소는 `BertEmbeddings` 모듈의 출력값이다), 각 원소는 크기 `(batch_size, sequence_length, 768)`인 tensor이다.
+
+<v-codeblock>
 
 ```python
 print(len(output.hidden_states))
@@ -573,9 +584,7 @@ print(output.hidden_states[-1] == output.last_hidden_state)
 print(output.hidden_states[0].shape)
 ```
 
-::: details 실행결과
-
-```text
+```result
 13
 tensor([[[True, True, True,  ..., True, True, True],
          [True, True, True,  ..., True, True, True],
@@ -587,30 +596,31 @@ tensor([[[True, True, True,  ..., True, True, True],
 torch.Size([1, 7, 768])
 ```
 
-:::
+</v-codeblock>
 
 `attentions`은 각 layer의 attention weight를 모아놓은 list이다. 이때 마지막 layer일수록 뒤에 있다. `bert-base-uncased`의 경우 길이 12인 list이고, 각 원소는 크기 `(batch_size, 12, sequence_length, sequence_length)`인 tensor이다.
+
+<v-codeblock>
 
 ```python
 print(len(output.attentions))
 print(output.attentions[0].shape)
 ```
 
-::: details 실행결과
-
-```text
+```result
 12
 torch.Size([1, 12, 7, 7])
 ```
 
-:::
+</v-codeblock>
 
 ## 구현
 
 이제 이 `BertModel`이 실제로 어떻게 구현되어 있는지 알아보자. [Huggingface github](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_bert.py)에서 `BertModel`의 구현 코드를 볼 수 있다.
 
+<v-codeblock title="BertModel">
+
 ```python:line-numbers
-# BertModel
 class BertModel(BertPreTrainedModel):
     """
     The model can behave as an encoder (with only self-attention) as well as a decoder, in which case a layer of
@@ -783,6 +793,8 @@ class BertModel(BertPreTrainedModel):
         )
 ```
 
+</v-codeblock>
+
 `BertModel`의 핵심 모듈은 `BertEmbeddings` 클래스로 만들어진 `embeddings` 모듈(line 16)과 `BertEncoder` 클래스로 만들어진 `encoder` 모듈(line 17)이다. (`BertPooler` 클래스로 만들어진 `pooler` 모듈도 있지만, `BertModel` 로드 시 `add_pooling_layer` 인자에 `False`를 줘서 로드했기에 동작하지 않는다. `BertPooler`에 대한 자세한 설명은 아래에서 확인할 수 있다.)
 
 우선 `embeddings` 모듈은 입력된 정수 형태의 token id들을 embedding 형태로 변환하는 모듈이다. line 138 ~ 144를 보면 `embeddings` 모듈이 `input_ids`, `token_type_ids` 등의 입력 데이터들을 받아 `embedding_output`이라는 embedding을 반환하는 것을 볼 수 있다.
@@ -791,8 +803,9 @@ class BertModel(BertPreTrainedModel):
 
 각 모듈을 조금 더 자세히 알아보자. `BertEmbeddings`의 코드는 다음과 같다.
 
+<v-codeblock title="BertEmbeddings">
+
 ```python:line-numbers
-# BertEmbeddings
 class BertEmbeddings(nn.Module):
     """Construct the embeddings from word, position and token_type embeddings."""
 
@@ -858,19 +871,21 @@ class BertEmbeddings(nn.Module):
         return embeddings
 ```
 
+</v-codeblock>
+
 `BertEmbeddings`는 5개의 layer로 이루어져 있다. 이 중 첫 번째 layer인 `word_embeddings` layer는 입력된 정수 형태의 token id들을 `hidden_size` 크기의 벡터로 변환하는 layer로, `torch.nn.Embedding`을 이용해 구현되어 있다(line 6).
+
+<v-codeblock>
 
 ```python
 model.embeddings.word_embeddings
 ```
 
-::: details 실행결과
-
-```text
+```result
 Embedding(30522, 768, padding_idx=0)
 ```
 
-:::
+</v-codeblock>
 
 여기서 30522는 BERT가 이해하고 있는 token의 총 개수(= vocabulary 크기)를 의미하고, 768은 `bert-base-uncased`에서 `hidden_size`의 크기를 의미한다. 즉 이 layer를 거치면 768차원의 embedding을 얻을 수 있다. 참고로 찾아보면 `hidden_size`라는 표현 대신 `emb_size`(embedding size) 또는 `d_model`(dimension of model)의 표현을 쓰는 문서도 있는데, 이 문서에서는 코드에 사용된 변수명을 따라 `hidden_size`라는 표현을 사용하도록 하겠다.
 
@@ -878,35 +893,35 @@ line 53, 54를 보면, `input_embeds`가 입력되지 않은 경우 `word_embedd
 
 두 번째 layer인 `position_embeddings` layer는 각 token의 위치 정보를 `hidden_size` 차원의 벡터 형태로 입력하는 layer로, 마찬가지로 `torch.nn.Embedding`을 이용해 구현되어 있다(line 7).
 
+<v-codeblock>
+
 ```python
 model.embeddings.position_embeddings
 ```
 
-::: details 실행결과
-
-```text
+```result
 Embedding(512, 768)
 ```
 
-:::
+</v-codeblock>
 
 여기서 512는 BERT가 한 번에 받아들일 수 있는 최대 token 수를 의미하고, 768은 마찬가지로 `hidden_size`(출력되는 embedding의 차원)를 의미한다. line 39, 40을 보면, `position_ids`가 직접 입력되지 않은 경우 `past_key_values_length`(default: 0)부터 `seq_length + past_key_values_length`까지 token의 길이(`seq_length`)개의 정수를 `position_ids`로 삼는 것을 볼 수 있다. 그리고 line 59에서 `position_ids`를 인덱스로 하여 `model.embeddings.position_embeddings` layer로 `position_+embeddings`를 계산하는 것을 볼 수 있다. 이때 성능을 위해 line 16에서 `position_ids`를 BERT가 한 번에 받아들일 수 있는 최대 token 수까지 `torch.nn.Module.register_buffer`로 미리 만들어 놓은 것을 볼 수 있다.
 
-참고로 token의 위치 정보를 입력하는 방법에는 positional encoding 방법과 positional embedding 방법이 있는데, 이 중 huggingface의 BERT는 positional embedding 방식을 사용한다. 두 방법의 차이에 대해서 조금 더 알고 싶다면 [이 문서](/ml-shorts/positional-encoding-vs-positional-embedding)를 참조하자.
+참고로 token의 위치 정보를 입력하는 방법에는 positional encoding 방법과 positional embedding 방법이 있는데, 이 중 huggingface의 BERT는 positional embedding 방식을 사용한다. 두 방법의 차이에 대해서 조금 더 알고 싶다면 [이 문서](/ml/shorts/positional-encoding-vs-positional-embedding)를 참조하자.
 
 세 번째 layer인 `token_type_embeddings`는 각 token의 타입 정보를 입력하는 layer로, 마찬가지로 `torch.nn.Embedding`을 이용해 구현되어 있다(line 8).
+
+<v-codeblock>
 
 ```python
 model.embeddings.token_type_embeddings
 ```
 
-::: details 실행결과
-
-```text
+```result
 Embedding(2, 768)
 ```
 
-:::
+</v-codeblock>
 
 여기서 2는 BERT가 받아들일 수 있는 sentence 개수(sentence A, sentence B)를 의미하고, 768은 마찬가지로 `hidden_size`(출력되는 embedding의 차원)를 의미한다. line 45 ~ 51을 보면, `token_type_ids`가 직접 입력되지 않은 경우 디폴트로 모든 값이 0으로 채워진 `token_type_ids`를 만들어 사용한다는 것을 볼 수 있다.
 
@@ -916,8 +931,9 @@ Embedding(2, 768)
 
 이번에는 `BertEncoder`의 코드를 살펴보자.
 
+<v-codeblock title="BertEncoder">
+
 ```python:line-numbers
-# BertEncoder
 class BertEncoder(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -1016,6 +1032,8 @@ class BertEncoder(nn.Module):
 
 ```
 
+</v-codeblock>
+
 우선 line 5에서 `layer`라는 이름으로 `BertLayer` 모듈이 `torch.nn.ModuleList`로 `config.num_hidden_layers`개(`bert-base-uncased`의 경우 12개) 쌓여 있는 것을 볼 수 있다.
 
 <v-image src="huggingface-bert-bertencoder.png" title="Fig.03 BertEncoder" description="Huggingface BERT의 encoder(파란색)는 BertLayer(노란색, 연두색 각 줄)가 여러 줄 쌓여 있는 것이다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1810.04805'>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019, Delvin et el.)</a>" />
@@ -1028,8 +1046,9 @@ line 47 ~ 54, line 56 ~ 64를 보면, 이전 `BertLayer`의 hidden states(`hidde
 
 이번엔 `BertLayer`의 코드를 살펴보자.
 
+<v-codeblock title="BertLayer">
+
 ```python:line-numbers
-# BertLayer
 class BertLayer(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -1116,6 +1135,8 @@ class BertLayer(nn.Module):
         return layer_output
 ```
 
+</v-codeblock>
+
 <v-image src="huggingface-bert-bertlayer-transformer.png" title="Fig.04 Transformer" description="이 그림은 Transformer의 구조를 나타낸 그림으로, BERT는 Transformer의 encoder 부분만을 가져와 만든 것이다. 이때 <code>BertLayer</code>는 왼쪽 encoder의 (N번 반복된다는) 사각형 하나를 의미한다. <code>attention</code> 모듈은 위 그림에서 주황색 multi-head attention 블록을 의미하고 <code>intermediate</code> 모듈은 파란색 feed-forward 블록을 의미한다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1706.03762'>Attention Is All You Need (2017, Vaswani et el.)</a>" />
 
 위 그림은 Transformer 논문([Attention Is All You Need (2017, Vaswani et el.)](https://arxiv.org/abs/1706.03762))에서 가지고 온 것인데, 모두 알고 있다시피 BERT는 Transformer의 encoder-decoder 구조 중 encoder 부분만을 가져와 만든 것이다. 이때 `BertLayer`는 왼쪽 encoder의 (N번 반복된다는) 사각형 하나를 의미한다.
@@ -1124,8 +1145,9 @@ class BertLayer(nn.Module):
 
 하나씩 확인해보자. 우선 `BertAttention`의 코드는 다음과 같다.
 
+<v-codeblock title="BertAttention">
+
 ```python:line-numbers
-# BertAttention
 class BertAttention(nn.Module):
     def __init__(self, config, position_embedding_type=None):
         super().__init__()
@@ -1175,14 +1197,17 @@ class BertAttention(nn.Module):
         return outputs
 ```
 
+</v-codeblock>
+
 `BertAttention` 모듈은 `BertSelfAttention` 클래스로 만들어진 `self` 모듈(line 4)과 `BertSelfOutput` 클래스로 만들어진 `output` 모듈로 구성되어 있다. `self` 모듈은 multi-head self attention 연산을 수행하는 모듈이고(Fig.04의 주황색 블록), `output` 모듈은 layer normalization 연산을 수행하는 모듈이다(Fig.04의 노란색 블록).
 
 `BertAttention`이 하는 일은 아주 간단하다. 입력된 `hidden_states`에 대해 `self` 모듈을 불러 multi-head self attention 연산을 수행하고(line 36 ~ 44), 그 결과와 원본 `hidden_states`를 가지고(즉 일종의 residual connection을 만드는 것이다) layer normalization을 수행하여(line 45) 반환한다.
 
 `BertSelfAttention`의 코드는 다음과 같다.
 
+<v-codeblock title="BertSelfAttention">
+
 ```python:line-numbers
-# BertSelfAttention
 class BertSelfAttention(nn.Module):
     def __init__(self, config, position_embedding_type=None):
         super().__init__()
@@ -1310,36 +1335,29 @@ class BertSelfAttention(nn.Module):
         return outputs
 ```
 
+</v-codeblock>
+
 `BertSelfAttention` 모듈은 BERT의 가장 핵심적인 연산인 multi-head self attention 연산을 수행하는 모듈이다. BERT의 multi-head self attention을 수식으로 나타내면 다음과 같다.
 
-{:.mathjax-mb-0}
 $$\text{MultiHead}(Q,\,K,\,V) = \text{Concat}(\text{head}_1,\,...,\,\text{head}_h)W^O$$
 
-{:.mathjax-mb-0}
-$$\text{where}$$
+(단, $\text{head}_i = \text{Attention}(QW_i^Q,\,KW_i^K,\,VW_i^V)$, {.text-align-center}
 
-{:.mathjax-m-0}
-$$\text{head}_i = \text{Attention}(QW_i^Q,\,KW_i^K,\,VW_i^V)$$
-
-{:.mathjax-mt-0}
-$$\text{Attention}(Q,\,K,\,V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$$
+$\text{Attention}(Q,\,K,\,V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$ ) {.text-align-center}
 
 <v-image src="huggingface-bert-bertselfattention-attention.png" title="Fig.05 Multi-head, Scaled Dot Product Self Attention" description="BERT가 사용하는 multi-head, scaled dot product self attention의 구조를 도식화하면 위와 같다.<br/>이미지 출처 : <a href='https://arxiv.org/abs/1706.03762'>Attention Is All You Need (2017, Vaswani et el.)</a>" />
 
-(multi-head self attention 연산 자체에 대한 조금 더 자세한 설명은 [본 블로그의 다른 문서](/nlp/attention)을 참조하기 바란다.)
+(multi-head self attention 연산 자체에 대한 조금 더 자세한 설명은 [본 블로그의 다른 문서들](/ml/nlp/attention/04-transformer)을 참조하기 바란다.)
 
 `BertSelfAttention` 모듈은 우선 크기 `(batch_size, sequence_length, hidden_size)`의 `hidden_states` $X$를 입력으로 받는다. `bert-base-uncased`의 경우, `hidden_size`의 값은 768이므로 $X$의 크기는 `(batch_size, sequence_length, 768)`이다.
 
 그럼 이 $X$를 `torch.nn.Linear`로 구현된 `query` layer, `key` layer, `value` layer에 넣어 query $Q$, key $K$, value $V$를 각각 얻는다(line 43, 65, 66).
 
-{:.mathjax-mb-0}
-$$Q = X W^Q$$
+$Q = X W^Q$ {.text-align-center .mb-0}
 
-{:.mathjax-m-0}
-$$K = X W^K$$
+$K = X W^K$ {.text-align-center .m-0}
 
-{:.mathjax-mt-0}
-$$V = X W^V$$
+$V = X W^V$ {.text-align-center .mt-0}
 
 단, $W^Q$, $W^K$, $W^V$는 크기 `(hidden_size, hidden_size)`인 가중치 배열이다. 그리고 $Q$, $K$, $V$의 크기는 모두 `(batch_size, sequence_length, hidden_size)`이다. `bert-base-uncased`의 경우, `hidden_size`의 크기가 768이기에, $W^Q$, $W^K$, $W^V$의 크기는 `(768, 768)`이 되고, $Q$, $K$, $V$의 크기는 `(batch_size, sequence_length, 768)`이 된다.
 
@@ -1353,8 +1371,9 @@ $$e = \frac{Q K^T}{\sqrt{d_k}}$$
 
 그리고 attention mask를 이용, attention 연산이 수행되지 말아야 할 token들에 대해 masking 처리를 한다(line 100 ~ 102). 코드를 보면 attention score(`attention_scores`)와 attention mask(`attention_mask`)를 단순히 더하는 방식으로 구현되어 있는 것을 볼 수 있는데, 일단 여기서의 attention mask는 tokenizer가 만든, 0과 1로 이루어진 배열이 아니다. 이 attention mask는 `BertModel`의 line 118에서 `get_extended_attention_mask` 메소드로 가공된 `extended_attention_mask`이다(`BertModel` line 147). `get_extended_attention_mask` 메소드는 `PreTrainedModel`로부터 상속받은 메소드로, 다음과 같이 구현되어 있다.
 
+<v-codeblock title="get_extended_attention_mask()<br/>(from [transformers/src/transformers/modeling_utils.py](https://github.com/huggingface/transformers/blob/main/src/transformers/modeling_utils.py))">
+
 ```python:line-numbers
-# get_extended_attention_mask (from [transformers/src/transformers/modeling_utils.py](https://github.com/huggingface/transformers/blob/main/src/transformers/modeling_utils.py))
 def get_extended_attention_mask(
     self, attention_mask: Tensor, input_shape: Tuple[int], device: device = None, dtype: torch.float = None
 ) -> Tensor:
@@ -1406,6 +1425,8 @@ def get_extended_attention_mask(
     return extended_attention_mask
 ```
 
+</v-codeblock>
+
 보다시피 `get_extended_attention_mask` 메소드는 tokenizer가 만든 0과 1로 이루어진 attention mask를 입력받아 적절히 차원을 맞추고(line 36), 0이 입력된 곳에는 `torch.finfo(dtype).min`을, 1이 입력된 곳에는 0을 넣은 `extended_attention_mask`를 생성하여(line 48) 반환하는 메소드이다. `torch.finfo(dtype).min`은 모델이 다루는 데이터 타입(`dtype`)에서 표현할 수 있는 가장 작은 값을 나타내는 값이다. 사실상 음의 무한대(-∞)를 의미한다고 보면 된다. `bert-base-uncased`의 경우 `dtype`은 `torch.float32`이고, `torch.finfo(dtype).min`의 값은 -3.4028234663852886e+38이다. `torch.finfo(dtype).min`이 더해진 값에 후술할 softmax 연산을 수행하면 그 값은 너무 작기에 모두 0으로 죽는다. 즉, masking이 되는 것이다.
 
 다시 `BertSelfAttention` 구현으로 돌아가서, 이제 이렇게 masking된 attention score에 softmax 연산을 적용해 attention distribution $\alpha$(`attention_probs`)를 얻는다(line 105).
@@ -1420,12 +1441,13 @@ $$a = \alpha V$$
 
 이렇게 각 attention head에서 attention 연산이 끝났으면 각 attention head의 attention value들을 다시 합친다(concatenate)(line 117 ~ 119). 여기까지 하면 최종 결과는 `(batch_size, sequence_length, hidden_size)` 크기의 텐서가 된다.
 
-그리고 이 텐서에 마지막으로 크기 `(hidden_size, hidden_size)`의 $W^O$ 가중치 행렬을 곱해주는 linear 연산을 해야 하는데, (왜 이렇게 구현되어 있는지 잘은 모르겠지만) 이 연산은 `BertSelfOutput` 모듈에서 진행된다. 
+그리고 이 텐서에 마지막으로 크기 `(hidden_size, hidden_size)`의 $W^O$ 가중치 행렬을 곱해주는 linear 연산을 해야 하는데, (왜 이렇게 구현되어 있는지 잘은 모르겠지만) 이 연산은 `BertSelfOutput` 모듈에서 진행된다.[^1]
 
 `BertSelfOutput`의 코드는 다음과 같다.
 
+<v-codeblock title="BertSelfOutput">
+
 ```python:line-numbers
-# BertSelfOutput
 class BertSelfOutput(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -1440,14 +1462,17 @@ class BertSelfOutput(nn.Module):
         return hidden_states
 ```
 
+</v-codeblock>
+
 multi-head self attention 연산 후 얻어진 `hidden_states`에 대해, 우선 `torch.nn.Linear`로 구현된, $W^O$를 곱해주는 `dense` layer를 한 번 거친다(line 9). `dense` layer는 `hidden_states`의 크기를 바꾸지 않고 동일하게 `(batch_size, sequence_length, hidden_size)`로 유지한다.
 
 그리고 그 결과는 `input_tensor`라는 이름의 인자로 받는, multi-head self attention 연산을 수행하기 전의 원본 `hidden_states`와 더해져(residual connection) layer normalization(line 11)이 수행된다.
 
 이제 `BertLayer`를 구성하는 또다른 모듈인 `BertIntermediate` 모듈을 살펴보자.
 
+<v-codeblock title="BertIntermediate">
+
 ```python:line-numbers
-# BertIntermediate
 class BertIntermediate(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -1463,6 +1488,8 @@ class BertIntermediate(nn.Module):
         return hidden_states
 ```
 
+</v-codeblock>
+
 상술했듯이 `BertIntermediate` 모듈은 Fig.04의 "Feed Forward" 블록을 의미한다. 이 블록은 linear 연산 이후 activation 함수를 적용하고 다시 linear 연산을 수행하는, 상당히 전통적인 feed forward 연산을 의미한다.
 
 $$FFN(x) = \text{activation}(xW_1 + b_1)W_2 + b_2$$
@@ -1471,12 +1498,15 @@ $$FFN(x) = \text{activation}(xW_1 + b_1)W_2 + b_2$$
 
 그리고 그 결과에 activation 함수인 `hidden_act` 함수를 적용한다(line 5 ~ 8, 12). 참고로 원래 Transformer 모델에서는 `hidden_act` 함수로 ReLU를 사용하지만, BERT에서는 GeLU를 사용한다. 논문에서는 그 이유로 GPT와의 성능 비교를 위해 GPT가 사용한 GeLU를 사용했다고 밝혔다.
 
-그리고 마지막으로 한번 더 linear 연산을 해야 하는데, (이번에도 이유는 모르겠지만) 이 연산은 `BertOutput`에 구현되어 있다.
+그리고 마지막으로 한번 더 linear 연산을 해야 하는데, (이번에도 이유는 모르겠지만) 이 연산은 `BertOutput`에 구현되어 있다.[^1]
+
+[^1]: huggingface forum 문의 결과 단순한 design decision이라 한다 : [참고](https://discuss.huggingface.co/t/bertselfattention-bertselfoutput-implementation/21439)
 
 `BertLayer`를 구성하는 마지막 모듈인 `BertOutput` 모듈의 코드는 다음과 같다.
 
+<v-codeblock title="BertOutput">
+
 ```python:line-numbers
-# BertOutput
 class BertOutput(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -1491,14 +1521,17 @@ class BertOutput(nn.Module):
         return hidden_states
 ```
 
+</v-codeblock>
+
 상술했듯이 `BertOutput` 모듈은 Fig.04의 "Add & Norm" 블록을 의미한다. 우선 `torch.nn.Linear`로 구현된 `dense` layer를 거쳐, `(batch_size, sequence_length, intermediate_size)` 크기였던 `hidden_states`를 다시 `(batch_size, sequence_length, hidden_size)` 크기로 변환한다.
 
 그리고 그 결과는 `input_tensor`라는 이름의 인자로 받는, `BertIntermediate` 모듈에 들어가기 전 (`BertAttention` 모듈의 출력값이었던) 원본 `hidden_states`와 더해져(residual connection) layer normalization(line 11)이 수행된다.
 
 추가로, `BertModel`의 line 19에 보면 `BertPooler` 클래스를 이용해 만들어진 `pooler` 모듈이 있는 것을 볼 수 있다. 우리가 로드한 모델의 경우 상술했듯이 로드 시 `add_pooling_layer` 인자에 `False`를 주었기 때문에 이 `pooler` 모듈은 동작하지 않는다(`None`이 들어가 있다).
 
+<v-codeblock title="BertPooler">
+
 ```python:line-numbers
-# BertPooler
 class BertPooler(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -1513,6 +1546,8 @@ class BertPooler(nn.Module):
         pooled_output = self.activation(pooled_output)
         return pooled_output
 ```
+
+</v-codeblock>
 
 이 모듈은 `encoder` 모듈이 만든 `embedding_output`의 첫 번째 요소, 그러니까 마지막 `BertLayer`가 출력한 `hidden_states`를 입력으로 받는다(`BertModel` line 157, 158).
 

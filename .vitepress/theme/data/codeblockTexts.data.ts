@@ -1,18 +1,16 @@
 import type { SiteConfig } from "vitepress";
 import type { ThemeConfig } from "@/themeConfig";
-import type { ImageTextsData } from "@/data/imageTexts";
+import type { CodeblockTextData } from "@/data/codeblockTexts";
 
 import _ from "lodash";
 import { createMarkdownRenderer, createContentLoader } from "vitepress";
 
-declare const data: ImageTextsData;
+declare const data: CodeblockTextData;
 export { data };
 
 const config: SiteConfig<ThemeConfig> = globalThis.VITEPRESS_CONFIG;
 
-const srcAttrPattern = /src="([^"]*)"/;
 const titleAttrPattern = /title="([^"]*)"/;
-const descriptionAttrPattern = /description="([^"]*)"/;
 
 const getAttrValue = (pattern: RegExp, text: string) => {
   const match = text.match(pattern);
@@ -49,25 +47,19 @@ export default createContentLoader("**/*.md", {
       config.logger
     );
 
-    const result: ImageTextsData = {};
+    const result: CodeblockTextData = {};
     markdownFiles.forEach(({ src }) => {
       _.chain(src)
         .split("\n")
-        .filter((line) => line.startsWith("<v-image") && line.endsWith("/>"))
+        .filter((line) => line.startsWith("<v-codeblock") && line.endsWith(">"))
         .map((tag) => {
           return {
-            src: getAttrValue(srcAttrPattern, tag),
             title: getAttrValue(titleAttrPattern, tag),
-            description: getAttrValue(descriptionAttrPattern, tag)
           };
         })
         .forEach((item) => {
           if (item.title !== null && !result.hasOwnProperty(item.title)) {
             result[decodeHTMLCodes(item.title)] = md.renderInline(item.title);
-          }
-
-          if (item.description !== null && !result.hasOwnProperty(item.description)) {
-            result[decodeHTMLCodes(item.description)] = md.renderInline(item.description);
           }
         })
         .value();
