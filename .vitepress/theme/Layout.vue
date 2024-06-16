@@ -17,7 +17,6 @@ import About from '@/pages/About.vue';
 import Collections from '@/pages/Collections.vue';
 import Collection from '@/pages/Collection.vue';
 import Tags from '@/pages/Tags.vue';
-//import Tag from '@/pages/Tag.vue';
 import Guestbook from "@/pages/Guestbook.vue";
 import Search from "@/pages/Search.vue";
 

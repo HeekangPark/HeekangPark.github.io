@@ -1,16 +1,19 @@
 <script lang="ts" setup>
 import _ from "lodash";
-import { computed } from "vue";
-import { Content, useData } from "vitepress";
+import { computed, ref, type Ref, onMounted, onUpdated } from "vue";
+
+import { useData } from "vitepress";
 import type { ThemeConfig } from "@/themeConfig";
+const { theme: themeData } = useData<ThemeConfig>();
 
 import Panel from "@/layouts/Panel.vue";
 import DocumentBlockComponent from "@/components/DocumentBlockComponent.vue";
 
-const { theme: themeData } = useData<ThemeConfig>();
-
 import { data } from "@/data/documents.data";
 const { documents, collections, tags } = data;
+
+import { useGlobalState } from '@/store';
+const state = useGlobalState();
 
 const recently_added_document_paths = computed(() => {
   return _.chain(documents)
@@ -29,6 +32,15 @@ const recently_modified_document_paths = computed(() => {
     .take(5)
     .value();
 });
+
+const pageviews: Ref<{ [path: string]: number } | null> = ref(null);
+onMounted(async () => {
+  pageviews.value = await state.getPageviews();
+});
+
+onUpdated(async () => {
+  pageviews.value = await state.getPageviews();
+});
 </script>
 
 <template>
@@ -44,14 +56,14 @@ const recently_modified_document_paths = computed(() => {
       <p class="section-title">Recently Added Documents</p>
       <div class="section-content">
         <DocumentBlockComponent v-for="document_path in recently_added_document_paths" :key="document_path"
-          :document_path="document_path" />
+          :document_path="document_path" :pageviews="pageviews" />
       </div>
     </div>
     <div class="section recently-modified-documents-section">
       <p class="section-title">Recently Modified Documents</p>
       <div class="section-content">
         <DocumentBlockComponent v-for="document_path in recently_modified_document_paths" :key="document_path"
-          :document_path="document_path" />
+          :document_path="document_path" :pageviews="pageviews" />
       </div>
     </div>
     <div class="footer">

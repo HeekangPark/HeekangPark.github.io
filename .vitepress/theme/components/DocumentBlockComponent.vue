@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { ref, type Ref, computed, onMounted, onUpdated, watch } from "vue";
 import { useRouter } from "vitepress";
 
 import TagComponent from "./TagComponent.vue";
@@ -7,25 +7,30 @@ import TagComponent from "./TagComponent.vue";
 import { data } from "@/data/documents.data";
 const { documents, collections } = data;
 
+import { useGlobalState } from "@/store";
+const state = useGlobalState();
+
 const props = withDefaults(defineProps<{
   document_path: string;
   do_not_show_collection?: boolean;
   do_not_show_excerpt?: boolean;
   do_not_show_date_created?: boolean;
   do_not_show_date_modified?: boolean;
-  do_not_show_views?: boolean;
+  do_not_show_pageview?: boolean;
   do_not_show_tags?: boolean;
   depth?: number;
   indent?: string;
+  pageviews?: { [key: string]: number };
 }>(), {
   do_not_show_collection: false,
   do_not_show_excerpt: false,
   do_not_show_date_created: false,
   do_not_show_date_modified: false,
-  do_not_show_views: false,
+  do_not_show_pageview: false,
   do_not_show_tags: false,
   depth: -1,
   indent: "2em",
+  pageviews: null
 });
 
 const document = computed(() => {
@@ -51,6 +56,12 @@ const onDocumentBlockClicked = () => {
     router.go(document.value.path);
   }
 };
+
+const pageview = computed(() => {
+  if (props.pageviews && props.pageviews[props.document_path] !== null) {
+    return props.pageviews[props.document_path];
+  } else return null;
+});
 </script>
 
 <template>
@@ -80,12 +91,12 @@ const onDocumentBlockClicked = () => {
           </span>
           <span class="value">{{ document.date_modified }}</span>
         </p>
-        <p class="with-icon views" v-if="document.views">
+        <p class="with-icon pageview" v-if="!props.do_not_show_pageview && pageview !== null">
           <span class="name">
             <v-icon class="icon" name="bi-eye" scale="1" title="Views" />
             <span class="text">Views</span>
           </span>
-          <span class="value">{{ document.views }}</span>
+          <span class="value">{{ pageview }}</span>
         </p>
       </div>
       <p class="excerpt" v-if="!props.do_not_show_excerpt">{{ document.excerpt }}</p>

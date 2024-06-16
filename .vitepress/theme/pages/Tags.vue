@@ -1,21 +1,19 @@
 <script lang="ts" setup>
 import _ from 'lodash';
 
-import { ref, computed } from 'vue';
-import type { Ref } from 'vue';
+import { computed, ref, type Ref, onMounted, onUpdated } from "vue";
 
 import { data } from "@/data/documents.data";
 const { collections, documents, tags } = data;
 
 import { useGlobalState } from '@/store';
+const state = useGlobalState();
 
 import Panel from "@/layouts/Panel.vue";
 import TagComponent from '@/components/TagComponent.vue';
 import ButtonComponent from '@/components/ButtonComponent.vue';
 import RadioButtonComponent from '@/components/RadioButtonComponent.vue';
 import DocumentBlockComponent from '@/components/DocumentBlockComponent.vue';
-
-const state = useGlobalState();
 
 const tag_paths = computed(() => _.chain(tags).keys().sortBy().value());
 
@@ -53,6 +51,15 @@ const selected_document_paths = computed(() => {
 });
 
 const logic: Ref<"and" | "or"> = ref("and");
+
+const pageviews: Ref<{ [path: string]: number } | null> = ref(null);
+onMounted(async () => {
+  pageviews.value = await state.getPageviews();
+});
+
+onUpdated(async () => {
+  pageviews.value = await state.getPageviews();
+});
 </script>
 
 <template>
@@ -73,7 +80,7 @@ const logic: Ref<"and" | "or"> = ref("and");
     <p class="count" v-else>{{ selected_document_paths.length }} document(s) found</p>
     <div class="documents" v-if="selected_document_paths.length > 0">
       <DocumentBlockComponent v-for="document_path in selected_document_paths" :key="document_path"
-        :document_path="document_path" />
+        :document_path="document_path" :pageviews="pageviews" />
     </div>
   </Panel>
 </template>

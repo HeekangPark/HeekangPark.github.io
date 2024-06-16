@@ -19,13 +19,13 @@
         - path: attention
           name: 어텐션 메커니즘
           tags: ["attention"]
-# - path: math
-#   name: Math
-#   tags: ["math"]
-#   subcollections:
-#     - path: linear-algebra
-#       name: Linear Algebra
-#       tags: ["linear-algebra"]
+- path: math
+  name: Math
+  tags: ["math"]
+  subcollections:
+    - path: linear-algebra
+      name: Linear Algebra
+      tags: ["linear-algebra"]
 
 # - path: test
 #   name: test

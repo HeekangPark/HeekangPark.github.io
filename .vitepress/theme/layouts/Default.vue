@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import _ from "lodash";
 import { computed } from "vue";
 import { useWindowScroll } from "@vueuse/core";
-import { useGlobalState } from "@/store";
 
 import LeftPanel from "@/components/LeftPanelComponent.vue";
 
+import { useGlobalState } from "@/store";
 const state = useGlobalState();
 
 const isLeftPanelOpen = computed(() => state.isLeftPanelOpen.value);

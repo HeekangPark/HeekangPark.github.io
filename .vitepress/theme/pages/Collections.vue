@@ -1,9 +1,12 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
 import _ from 'lodash';
+import { computed, ref, type Ref, onMounted, onUpdated } from "vue";
 
 import { data } from "@/data/documents.data";
 const { collections, documents, tags } = data;
+
+import { useGlobalState } from '@/store';
+const state = useGlobalState();
 
 import Panel from "@/layouts/Panel.vue";
 import CollectionComponent from '@/components/CollectionComponent.vue';
@@ -22,13 +25,22 @@ const top_level_collection_paths = computed(() => {
 
   return Array.from(collection_paths);
 })
+
+const pageviews: Ref<{ [path: string]: number } | null> = ref(null);
+onMounted(async () => {
+  pageviews.value = await state.getPageviews();
+});
+
+onUpdated(async () => {
+  pageviews.value = await state.getPageviews();
+});
 </script>
 
 <template>
   <Panel>
     <p class="page-title">Collections</p>
     <CollectionComponent v-for="collection_path in top_level_collection_paths" :key="collection_path"
-      :collection_path="collection_path" :depth="0" />
+      :collection_path="collection_path" :depth="0" :views="pageviews" />
   </Panel>
 </template>
 

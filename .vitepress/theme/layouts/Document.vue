@@ -1,27 +1,27 @@
 <script setup lang="ts">
 import _ from 'lodash';
-import { ref, computed, onMounted, onUpdated } from 'vue';
-import { useData } from 'vitepress';
-import type { ThemeConfig } from "@/themeConfig";
-
-import shikiTheme from 'tm-themes/themes/dark-plus.json';
+import { ref, computed, onMounted, onUpdated, nextTick, type Ref } from 'vue';
 
 import Panel from "@/layouts/Panel.vue";
 import TagComponent from "@/components/TagComponent.vue";
 import Giscus from "@giscus/vue";
 import AdComponent from '@/components/AdComponent.vue';
 
+import shikiTheme from 'tm-themes/themes/dark-plus.json';
+
+import { useData } from 'vitepress';
+import type { ThemeConfig } from "@/themeConfig";
+const { theme: themeData } = useData<ThemeConfig>();
+
+import { data } from "@/data/documents.data";
+const { collections, documents, tags } = data;
+
 import { useGlobalState } from '@/store';
+const state = useGlobalState();
 
 const props = defineProps<{
   path: string;
 }>();
-
-import { data } from "@/data/documents.data";
-import { nextTick } from 'vue';
-const { collections, documents, tags } = data;
-
-const state = useGlobalState();
 
 const document = computed(() => {
   if (Object.keys(documents).includes(props.path)) {
@@ -83,7 +83,6 @@ const toggle_series_opened = () => {
   is_series_opened.value = !is_series_opened.value;
 };
 
-const { theme: themeData } = useData<ThemeConfig>();
 const giscusTheme = computed(() => {
   return state.isDark.value ? themeData.value.giscus.darkTheme : themeData.value.giscus.lightTheme;
 });
@@ -203,16 +202,25 @@ const buildTOC = () => {
   });
 }
 
+// pageviews
+const pageviews: Ref<{ [path: string]: number } | null> = ref(null);
+
 onMounted(async () => {
   await nextTick();
   buildTOC();
   buildFootnotePopups();
+
+  // update pageviews
+  pageviews.value = await state.getPageviews();
 });
 
 onUpdated(async () => {
   await nextTick();
   buildTOC();
   buildFootnotePopups();
+
+  // update pageviews
+  pageviews.value = await state.getPageviews();
 });
 </script>
 
@@ -238,12 +246,12 @@ onUpdated(async () => {
           </span>
           <span class="value">{{ document.date_modified }}</span>
         </p>
-        <p class="with-icon views" v-if="document.views">
+        <p class="with-icon views" v-if="pageviews && pageviews[props.path] !== null">
           <span class="name">
             <v-icon class="icon" name="bi-eye" scale="1" title="Views" />
             <span class="text">Views</span>
           </span>
-          <span class="value">{{ document.views }}</span>
+          <span class="value">{{ pageviews[props.path] }}</span>
         </p>
       </div>
     </div>
@@ -331,11 +339,11 @@ onUpdated(async () => {
                 </span>
                 <span class="value">{{ sibling_document.date_modified }}</span>
               </p>
-              <p class="with-icon views" v-if="sibling_document.views">
+              <p class="with-icon views" v-if="pageviews && pageviews[sibling_document.path] !== null">
                 <span class="name">
                   <v-icon class="icon" name="bi-eye" scale="1" title="Views" />
                 </span>
-                <span class="value">{{ sibling_document.views }}</span>
+                <span class="value">{{ pageviews[sibling_document.path] }}</span>
               </p>
             </div>
           </a>

@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import _ from "lodash";
-import { ref, computed, type Ref } from "vue";
-import { useData, useRoute, useRouter } from 'vitepress';
-import { useGlobalState } from "@/store";
-import type { Document } from "@/data/documents";
+import { computed, ref, type Ref, onMounted, onUpdated } from "vue";
 
 import Panel from "@/layouts/Panel.vue";
 import SearchComponent from "@/components/SearchComponent.vue";
 import DocumentBlockComponent from "@/components/DocumentBlockComponent.vue";
 
+import { useGlobalState } from "@/store";
 const state = useGlobalState();
 
 const searchModel = computed({
@@ -25,6 +23,15 @@ const search = () => {
   if (!searchModel.value) return;
   state.search(searchModel.value);
 }
+
+const pageviews: Ref<{ [path: string]: number } | null> = ref(null);
+onMounted(async () => {
+  pageviews.value = await state.getPageviews();
+});
+
+onUpdated(async () => {
+  pageviews.value = await state.getPageviews();
+});
 </script>
 
 <template>
@@ -38,7 +45,7 @@ const search = () => {
     <p class="count" v-else>{{ searched_document_paths.length }} document(s)  found</p>
     <div class="documents" v-if="searched_document_paths.length > 0">
       <DocumentBlockComponent v-for="path in searched_document_paths" :key="path"
-        :document_path="path" />
+        :document_path="path" :pageviews="pageviews" />
     </div>
   </Panel>
 </template>

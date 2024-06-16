@@ -44,7 +44,6 @@ export type Document = {
   date_created: string | null;
   date_modified: string | null;
   order: number | null;
-  views: number | null;
   tag_paths: string[];
   src: string;
 }

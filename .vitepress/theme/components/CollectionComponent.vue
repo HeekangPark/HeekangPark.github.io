@@ -16,6 +16,7 @@ const props = withDefaults(defineProps<{
   show_documents?: boolean;
   show_subcollections?: boolean;
   initial_closed?: boolean;
+  views?: { [key: string]: number };
 }>(), {
   indent: "2em",
   show_collection_name: true,
@@ -23,7 +24,8 @@ const props = withDefaults(defineProps<{
   show_description: true,
   show_documents: true,
   show_subcollections: true,
-  initial_closed: true
+  initial_closed: true,
+  views: null
 });
 
 const collection = computed(() => {
@@ -53,14 +55,14 @@ const closed = ref(props.initial_closed);
     </p>
     <div class="documents" v-if="collection.document_paths.length > 0" v-show="!closed">
       <DocumentBlockComponent v-for="document_path in collection.document_paths" :key="document_path"
-        :document_path="document_path" :depth="props.depth" :indent="props.indent" />
+        :document_path="document_path" :depth="props.depth" :indent="props.indent" :pageviews="props.views" />
     </div>
     <div class="subcollections"
       v-if="props.show_subcollections && collection.subcollection_paths.length > 0" v-show="!closed">
       <CollectionComponent v-for="subcollection_path in collection.subcollection_paths" :key="subcollection_path"
         :collection_path="subcollection_path" :show_collection_name="props.show_collection_name"
         :show_full_collection_name="false" :show_description="props.show_description"
-        :show_documents="props.show_documents" :depth="props.depth + 1" :indent="props.indent" />
+        :show_documents="props.show_documents" :depth="props.depth + 1" :indent="props.indent" :views="props.views" />
     </div>
   </div>
 </template>

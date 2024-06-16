@@ -113,7 +113,6 @@ export default {
         date_created: document_raw.frontmatter.date_created || null,
         date_modified: document_raw.frontmatter.date_modified || null,
         order: document_raw.frontmatter.order || null,
-        views: 0,
         tag_paths: tag_paths,
         src: document_raw.src,
       }
