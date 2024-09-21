@@ -5,7 +5,7 @@ date_created: "2021-09-13"
 date_modified: "2024-05-13"
 ---
 
-<styles src="./styles.scss"></styles>
+<style src="./styles.scss"></style>
 
 # 벡터(vector)란?
 
@@ -25,7 +25,7 @@ date_modified: "2024-05-13"
 
   이때 $x_i$ ($i = 1,\,2,\,\cdots,\,n$)을 벡터의 $i$번째 **요소(element)**, **성분(component)**, 혹은 **항목(entry)** 이라 한다.
 
-  (벡터에 대한 보다 정확한 정의는 [해당 문서](/linear_algebra/vector-space)를 참고하기 바란다.)
+  (벡터에 대한 보다 정확한 정의는 [해당 문서](/math/linear-algebra/08-vector-space)를 참고하기 바란다.)
 
 - 모든 $n$-벡터들의 집합을 $\mathbb{R}^n$이라 표기한다.
 
@@ -35,6 +35,7 @@ date_modified: "2024-05-13"
 
   - $\mathbf{0}$ (영벡터, zero vector) : 모든 성분이 0인 벡터. $x_i = 0$ ($i = 1,\,2,\,\cdots,\,n$)
   - $\mathbf{e}_i$ ($i$번째 단위 벡터, $i$<sup>th</sup> unit vector, $i$<sup>th</sup> basis vector) : $x_i = 1$, $x_k = 0$ ($i \neq k$)
+  {.border}
 
 # 행렬(matrix)이란?
 
@@ -56,7 +57,9 @@ date_modified: "2024-05-13"
 
 - **정사각행렬(square matrix)** 은 행렬의 가로와 세로의 크기가 같은 행렬을 의미한다.
 
-  **triangular matrix**는 정사각행렬 중 대각선 아래 또는 위가 모두 0인 행렬을 의미한다. **lower triangular matrix**는 대각선 위가 모두 0인 정사각행렬을, **upper triangular matrix**는 대각선 아래가 모두 0인 정사각행렬을 의미한다.
+- **triangular matrix**는 정사각행렬 중 대각선 아래 또는 위가 모두 0인 행렬을 의미한다.
+  
+  **lower triangular matrix**는 대각선 위가 모두 0인 정사각행렬을, **upper triangular matrix**는 대각선 아래가 모두 0인 정사각행렬을 의미한다.
 
 - $n$-벡터는 $n \times 1$ 행렬이라 이해할 수 있다. 이를 강조하기 위해 벡터를 **열 백터(column vector)** 라 표현하기도 한다.
 
@@ -101,12 +104,13 @@ date_modified: "2024-05-13"
   - $O_{m \times n}$ (영행렬, zero matrix) : 모든 성분이 0인 행렬. $a_{ij} = 0$ ($i = 1,\,2,\,\cdots,\,m$, $j = 1,\,2,\,\cdots,\,n$)
   - $D_{n \times n}$ (대각 행렬, diagonal matrix) : 주대각선 성분을 제외한 나머지 성분은 모두 0인 정사각행렬. $a_{ik} = 0$ ($k \neq i$)
   - $E_{n \times n}$, $I_{n \times n}$ (단위 행렬, unit matrix) : 주대각선 성분만 1이고 나머지 성분은 모두 0인 정사각행렬. 즉 단위행렬은 대각행렬의 일종이다. $a_{ii} = 1$, $a_{ik} = 0$ ($k \neq i$).
+  {.border}
 
   대부분의 경우 행렬의 크기는 명시적으로 표시할 필요가 없을 정도로 명백하므로, $O$, $D$, $E$, $I$ 등과 같이 아래첨자는 생략해 쓴다.
 
 - 행렬은 여러 개의 작은 행렬들이 모여 구성된 것으로 이해할 수 있다.
 
-  예를 들어, 다음과 같은 3 × 6 행렬은
+  예를 들어, 다음과 같은 3 × 6 행렬은 {.mt-1}
 
   $$A = \left[ \begin{array} {cccccc}
   3 & 0 & -1 & 5 & 9 & -2\\[0.5em]
@@ -152,7 +156,7 @@ date_modified: "2024-05-13"
 
   이때 작은 행렬들을 **partitioned matrix** 또는 **block matrix**라 부른다.
 
-  행렬의 합, 차는 같은 위치에 있는 partitioned matrix끼리 수행하면 된다. 행렬과 스칼라의 곱 역시 각 partitioned matrix에 스칼라를 곱하면 된다. 행렬과 행렬의 곱도 우리가 아는 행렬곱 연산 방식 그대로 각 partitioned matrix에 대해 수행하면 된다.
+  행렬의 합, 차는 같은 위치에 있는 partitioned matrix끼리 수행하면 된다. 행렬과 스칼라의 곱 역시 각 partitioned matrix에 스칼라를 곱하면 된다. 행렬과 행렬의 곱도 우리가 아는 행렬곱 연산 방식 그대로 각 partitioned matrix에 대해 수행하면 된다. {.mt-1}
 
 # 벡터와 행렬의 연산
 
@@ -193,6 +197,7 @@ date_modified: "2024-05-13"
   - 교환법칙은 성립한다 : $A \pm B = B \pm A$
   - 결합법칙이 성립한다 : $(A \pm B) \pm C = A \pm (B \pm C)$
   - 영행렬은 합 연산의 항등원이다 : $A + O = O + A = A$
+  {.border}
 
 ## 행렬의 곱
 
@@ -225,6 +230,7 @@ date_modified: "2024-05-13"
   - $\alpha (A \pm B) = \alpha A \pm \alpha B$
   - $(\alpha + \beta) A = \alpha A + \beta A$
   - $(\alpha \beta)A = \alpha (\beta A)$
+  {.border}
 
 ### 행렬과 행렬의 곱 
 
@@ -248,17 +254,17 @@ date_modified: "2024-05-13"
   두 행렬의 곱 $C$는 다음과 같이 계산된다.
 
   $$C = AB = \begin{bmatrix}
-  \rowcolor{ #cc944d } a_{11} & a_{12} & \cdots & a_{1p} \\
+  \rowcolor{#e2e27a}\color{black} a_{11} & \color{black} a_{12} & \color{black} \cdots & \color{black} a_{1p} \\
   a_{21} & a_{22} & \cdots & a_{2p} \\
   \vdots & \vdots & \ddots & \vdots \\
   a_{m1} & a_{m2} & \cdots & a_{mp} \\
   \end{bmatrix} \begin{bmatrix}
-  b_{11} & b_{12} \columncolor{ #cc944d } & \cdots & b_{1n} \\
-  b_{21} & b_{22} & \cdots & b_{2n} \\
-  \vdots & \vdots & \ddots & \vdots \\
-  b_{p1} & b_{p2} & \cdots & b_{pn} \\
+  b_{11} & \columncolor{#e2e27a}\color{black} b_{12} & \cdots & b_{1n} \\
+  b_{21} & \color{black} b_{22} & \cdots & b_{2n} \\
+  \vdots & \color{black} \vdots & \ddots & \vdots \\
+  b_{p1} & \color{black} b_{p2} & \cdots & b_{pn} \\
   \end{bmatrix} = \begin{bmatrix}
-  \displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{k1} & \cellcolor{ #cc944d } \displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{k2} & \cdots & \displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{kn} \\
+  \displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{k1} & \cellcolor{#e2e27a}\color{black} \displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{k2} & \cdots & \displaystyle\sum_{k=1} ^p a_{1k} \cdot b_{kn} \\
   \displaystyle\sum_{k=1} ^p a_{2k} \cdot b_{k1} & \displaystyle\sum_{k=1} ^p a_{2k} \cdot b_{k2} & \cdots & \displaystyle\sum_{k=1} ^p a_{2k} \cdot b_{kn} \\
   \vdots & \vdots & \ddots & \vdots \\
   \displaystyle\sum_{k=1} ^p a_{mk} \cdot b_{k1} & \displaystyle\sum_{k=1} ^p a_{mk} \cdot b_{k2} & \cdots & \displaystyle\sum_{k=1} ^p a_{mk} \cdot b_{kn} \\
@@ -268,9 +274,11 @@ date_modified: "2024-05-13"
 
   $$C_{ij} = \sum_{k=1} ^p a_{ik} \cdot b_{kj}$$
 
-- **$A(m \times \bbox[#cc944d, 5px]{p})$의 열의 수와 $B(\bbox[#cc944d, 5px]{p} \times n)$의 행의 수가 같을 때만 곱할 수 있다.** 계산 결과 $C$는 $m \times n$ 행렬이 된다($A$의 행의 수와 $B$의 열의 수의 곱을 크기로 갖는다).
+- **$A(m \times \bbox[#e2e27a, 5px]{\color{black} p})$의 열의 수와 $B(\bbox[#e2e27a, 5px]{\color{black} p} \times n)$의 행의 수가 같을 때만 곱할 수 있다.** 계산 결과 $C$는 $m \times n$ 행렬이 된다($A$의 행의 수와 $B$의 열의 수의 곱을 크기로 갖는다).
 
-- 행렬과 행렬의 곱은 벡터적으로 이해할 수 있다. 구체적으로, 행렬 $A \in \mathbb{R}^{m \times p}$, $B \in \mathbb{R}^{p \times n}$가 다음과 같이 주어졌다고 해 보자.
+- 행렬과 행렬의 곱은 벡터적으로 이해할 수 있다.
+  
+  구체적으로, 행렬 $A \in \mathbb{R}^{m \times p}$, $B \in \mathbb{R}^{p \times n}$가 다음과 같이 주어졌다고 해 보자. {.mt-1}
 
   $$\newcommand{\vertbar}{\rule[-1ex]{0.5pt}{3ex}}
   \newcommand{\horzbar}{\rule[.5ex]{4ex}{0.5pt}}
@@ -349,6 +357,7 @@ date_modified: "2024-05-13"
   - 분배법칙이 성립한다 : $A(B + C) = AB + AC$, $(A + B)C = AC + BC$
   - 교환법칙은 성립하지 **않는다** : $AB \neq BA$
   - 단위 행렬은 행렬곱 연산의 항등원이다 : $A \in \mathbb{R}^{n \times n}$, $I \in \mathbb{R}^{n \times n}$에 대해, $AI = IA = A$
+  {.border}
 
 ### 행렬의 거듭제곱
 
@@ -393,10 +402,11 @@ date_modified: "2024-05-13"
   - $A \in \mathbb{R}^{m \times p}$, $B \in \mathbb{R}^{p \times n}$에 대해, $(AB)^T = B^T A^T$
   - $A \in \mathbb{R}^{m \times n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha A)^T = \alpha A^T$
   - 역행렬이 존재하는 행렬 $A$에 대해, $(A^{-1})^T = (A^T)^{-1}$
+  {.border}
 
-- $A^T A = I$인 행렬 $A$를 [orthogonal matrix](/linear_algebra/orthogonality) 혹은 orthonormal matrix라 한다.
+- $A^T A = I$인 행렬 $A$를 [orthogonal matrix](/math/linear-algebra/11-orthogonality) 혹은 orthonormal matrix라 한다.
 
-- $A = A^T$인 정사각행렬 $A$를 [symmetric matrix](/linear_algebra/symmetric-matrix)라 한다.
+- $A = A^T$인 정사각행렬 $A$를 [symmetric matrix](/math/linear-algebra/12-symmetric-matrix)라 한다.
 
 
 ## 행렬의 대각합(trace)
@@ -424,7 +434,7 @@ date_modified: "2024-05-13"
   - $A \in \mathbb{R}^{n \times n}$, 실수 $\alpha \in \mathbb{R}$에 대해, $tr(\alpha A) = \alpha tr(A)$
   - $A \in \mathbb{R}^{n \times p}$, $B \in \mathbb{R}^{p \times n}$에 대해, $tr(AB) = tr(BA)$
   - $A \in \mathbb{R}^{n \times p}$, $B \in \mathbb{R}^{p \times q}$, $C \in \mathbb{R}^{q \times n}$에 대해, $tr(ABC) = tr(BCA) = tr(CAB)$
-
+  {.border}
 
 ## 벡터의 내적(inner product, dot product)
 
@@ -464,7 +474,7 @@ date_modified: "2024-05-13"
   $$\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos\theta$$
 
 - 벡터의 내적은 다음과 같은 성질이 있다.
-
+  
   - $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$에 대해, $\mathbf{x} \cdot \mathbf{y} = \mathbf{y} \cdot \mathbf{x}$
   - $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\mathbf{z} \in \mathbb{R}^{n}$에 대해, $(\mathbf{x} + \mathbf{y}) \cdot \mathbf{z} = \mathbf{x} \cdot \mathbf{z}  + \mathbf{y} \cdot \mathbf{z}$
   - $\mathbf{x} \in \mathbb{R}^{n}$, $\mathbf{y} \in \mathbb{R}^{n}$, $\alpha \in \mathbb{R}$에 대해, $(\alpha \mathbf{x}) \cdot \mathbf{y} = \alpha (\mathbf{x} \cdot \mathbf{y})$
@@ -486,7 +496,8 @@ date_modified: "2024-05-13"
       $$\mathbf{x} \cdot \mathbf{y} < 0$$
 
       $\theta = \pi$일 때 최솟값 $-\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert$을 가진다.
-
+    
+  {.border}
 
 ## 벡터의 Norm
 
@@ -506,9 +517,9 @@ date_modified: "2024-05-13"
 
 - 위 식에서 볼 수 있듯이, 벡터 $\mathbf{x}$의 Norm $\lVert \mathbf{x} \rVert _{ p}$는 스칼라이다.
 
-  벡터 $\mathbf{x}$에 대해, $\lVert \mathbf{x} \rVert _{ p}$는 벡터 $\mathbf{x}$의 '크기'를 계산하는 것이라 이해할 수 있다.
+- 벡터 $\mathbf{x}$에 대해, $\lVert \mathbf{x} \rVert _{ p}$는 벡터 $\mathbf{x}$의 '크기'를 계산하는 것이라 이해할 수 있다.
 
-  두 벡터 $\mathbf{x}$, $\mathbf{y}$에 대해, $\lVert \mathbf{x} - \mathbf{y} \rVert _{ p}$는 두 벡터 $\mathbf{x}$, $\mathbf{y}$ 간의 '거리'를 구하는 것이라 이해할 수 있다.
+- 두 벡터 $\mathbf{x}$, $\mathbf{y}$에 대해, $\lVert \mathbf{x} - \mathbf{y} \rVert _{ p}$는 두 벡터 $\mathbf{x}$, $\mathbf{y}$ 간의 '거리'를 구하는 것이라 이해할 수 있다.
 
 - 자주 사용되는 Norm으로는 다음이 있다.
 
@@ -526,7 +537,9 @@ date_modified: "2024-05-13"
 
   - **$l_\infty$ Norm** : 벡터의 각 요소의 절대값 중 최대값을 의미한다. 상한 거리(supremum distance), 체비쇼프 거리(Chebyshev distance, Tchebychev distance), 체스판 거리(chessboard distance)라고도 한다.
 
-    $$\lVert \mathbf{x} \rVert _{ \infty} = \max \lvert x_i \rvert$$ 
+    $$\lVert \mathbf{x} \rVert _{ \infty} = \max \lvert x_i \rvert$$
+  
+  {.border}
 
 - $l_2$ Norm은 다음과 같은 성질이 있다.
 
@@ -544,6 +557,8 @@ date_modified: "2024-05-13"
     $$-\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \le \mathbf{x} \cdot \mathbf{y} \le \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert$$
     
     왼쪽 등호는 $\mathbf{x}$와 $\mathbf{y}$가 반대 방향일 때(oppose, $\mathbf{x}$, $\mathbf{y}$ 사이의 각이 $\pi$일 때) 성립한다. 오른쪽 등호는 $\mathbf{x}$와 $\mathbf{y}$가 같은 방향일 때(align, $\mathbf{x}$, $\mathbf{y}$ 사이의 각이 $0$일 때) 성립한다.
+  
+  {.border}
 
 - $\lVert \mathbf{x} \rVert = 1$인 벡터를 **단위벡터(unit vector)** 라 한다.
 

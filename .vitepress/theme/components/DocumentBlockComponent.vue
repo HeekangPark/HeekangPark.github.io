@@ -68,12 +68,12 @@ const pageview = computed(() => {
   <div class="document-block" @click.stop="onDocumentBlockClicked">
     <div class="indentation" :style="{ '--depth': props.depth, '--indent': props.indent }">
       <p class="collection" v-if="!props.do_not_show_collection">
-        <span v-for="collection_path, i in [...collection.parent_collection_paths, collection.path]" :key="collection_path">
+        <template v-for="collection_path, i in [...collection.parent_collection_paths, collection.path]" :key="collection_path">
           <span class="item" @click.stop="onCollectionClicked(collection_path)">
             {{ collections[collection_path].name }}
           </span>
           <span class="delim" v-if="i < collection.parent_collection_paths.length">/</span>
-        </span>
+        </template>
       </p>
       <p class="title">{{ document.title }}</p>
       <div class="metas">
@@ -157,7 +157,6 @@ $margin: 0.5em;
   }
 
   .collection {
-    display: inline-block;
     font-size: 0.9em;
     color: var(--site-muted-text);
     display: inline-flex;

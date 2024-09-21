@@ -26,6 +26,13 @@
     - path: linear-algebra
       name: Linear Algebra
       tags: ["linear-algebra"]
+- path: python
+  name: Python
+  tags: ["python", "py", "python3"]
+  subcollections:
+    - path: oop
+      name: Object-Oriented Programming in Python
+      tags: ["oop"]
 
 # - path: test
 #   name: test

@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "vitepress dev --force --strictPort --host 0.0.0.0",
-    "build": "vitepress build",
+    "build": "NODE_OPTIONS=--max_old_space_size=4096 vitepress build",
     "preview": "vitepress preview --port 5173 --host 0.0.0.0"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "@vueuse/core": "^10.9.0",
     "@vueuse/head": "^2.0.0",
     "fuse.js": "^7.0.0",
+    "heapdump": "^0.3.15",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "oh-vue-icons": "^1.0.0-rc3",

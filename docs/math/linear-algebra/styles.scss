@@ -1,0 +1,75 @@
+@import "@/styles/mixins";
+@import "@/styles/variables";
+
+ul.equivalent {
+  list-style: none outside;
+  border-radius: 0.5em;
+  border: 1px solid var(--site-text);
+
+  margin: {
+    top: calc(0.5 * $gap_size) !important;
+    bottom: $gap_size !important;
+  }
+
+  >li {
+    padding: {
+      left: 0.5em;
+    }
+
+    &::marker {
+      content: "⇔";
+      font-weight: normal;
+    }
+
+    &:first-of-type {
+      &::marker {
+        content: "　";
+      }
+    }
+  }
+}
+
+ul.same {
+  list-style: none outside;
+  border-radius: 0.5em;
+  border: 1px solid var(--site-text);
+
+  margin: {
+    top: calc(0.5 * $gap_size) !important;
+    bottom: $gap_size !important;
+  }
+
+  >li {
+    padding: {
+      left: 0.5em;
+    }
+
+    &::marker {
+      content: "＝";
+      font-weight: normal;
+    }
+
+    &:first-of-type {
+      &::marker {
+        content: "　";
+      }
+    }
+  }
+}
+
+ul.border,
+ol.border {
+  border-radius: 0.5em;
+  border: 1px solid var(--site-text);
+
+  margin: {
+    top: calc(0.5 * $gap_size) !important;
+    bottom: $gap_size !important;
+  }
+
+  >li {
+    margin: {
+      left: 0.5em;
+    }
+  }
+}

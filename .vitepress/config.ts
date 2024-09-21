@@ -4,7 +4,6 @@ import { defineConfigWithTheme } from 'vitepress';
 import type { ThemeConfig } from '@/themeConfig';
 
 import markdownItFootnote from 'markdown-it-footnote';
-//import markdownItFootnote from "./footnote";
 import markdownItAttrs from 'markdown-it-attrs';
 
 const themeConfig: ThemeConfig = {

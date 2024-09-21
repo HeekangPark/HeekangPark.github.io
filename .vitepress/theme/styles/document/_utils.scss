@@ -54,6 +54,19 @@
   margin-bottom: $gap_size !important;
 }
 
+.mt-2 {
+  margin-top: calc(2 * $gap_size) !important;
+}
+
+.mb-2 {
+  margin-bottom: calc(2 * $gap_size) !important;
+}
+
+.m-2 {
+  margin-top: calc(2 * $gap_size) !important;
+  margin-bottom: calc(2 * $gap_size) !important;
+}
+
 .mt-n1 {
   margin: {
     top: -$gap_size !important;

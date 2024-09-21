@@ -7,7 +7,8 @@ import Fuse from 'fuse.js';
 import { data } from "@/data/documents.data";
 const { documents } = data;
 
-const pageview_update_interval_sec = 60 * 60 * 6;
+const pageview_url = 'https://reinventing-the-wheel-20240404.du.r.appspot.com/pageview';
+const pageview_update_interval = 60 * 60 * 6; // in seconds
 
 export const useGlobalState = createGlobalState(() => {
   /* left panel */
@@ -89,7 +90,7 @@ export const useGlobalState = createGlobalState(() => {
   const pageviews_last_updated: Ref<number | null> = ref(null);
 
   const fetchPageviews = async () => {
-    const response = await fetch('https://reinventing-the-wheel-20240404.du.r.appspot.com/pageview');
+    const response = await fetch(pageview_url);
     const fetched_pageviews = await response.json();
     _.chain(documents)
       .keys()
@@ -106,7 +107,7 @@ export const useGlobalState = createGlobalState(() => {
   }
 
   const getPageviews = async () => {
-    if (pageviews_last_updated.value === null || Date.now() - pageviews_last_updated.value > pageview_update_interval_sec * 1000) {
+    if (pageviews_last_updated.value === null || Date.now() - pageviews_last_updated.value > pageview_update_interval * 1000) {
       await fetchPageviews();
     }
 
@@ -114,7 +115,7 @@ export const useGlobalState = createGlobalState(() => {
   }
 
   const getPageview = async (path: string) => {
-    if (pageviews_last_updated.value === null || Date.now() - pageviews_last_updated.value > pageview_update_interval_sec * 1000) {
+    if (pageviews_last_updated.value === null || Date.now() - pageviews_last_updated.value > pageview_update_interval * 1000) {
       await fetchPageviews();
     }
 

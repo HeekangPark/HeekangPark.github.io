@@ -27,6 +27,13 @@
     }
   }
 
+  p {
+    margin: {
+      top: $gap_size;
+      bottom: $gap_size;
+    }
+  }
+
   p:first-child {
     margin: {
       top: 0;
@@ -41,6 +48,10 @@
 
   .custom-block-title {
     font-weight: bold;
+    margin: {
+      top: 0;
+      bottom: $gap_size;
+    }
   }
 
   &.info {

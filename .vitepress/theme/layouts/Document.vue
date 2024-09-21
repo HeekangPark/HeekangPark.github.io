@@ -36,13 +36,6 @@ const collection = computed(() => {
   return null;
 });
 
-const collection_full_name = computed(() => {
-  if (collection.value) {
-    return [...collection.value.parent_collection_paths, collection.value.path].map(path => collections[path].name).join(" / ");
-  }
-  return null;
-})
-
 const collection_document_paths = computed(() => {
   if (collection.value) {
     return collection.value.document_paths;
@@ -227,9 +220,15 @@ onUpdated(async () => {
 <template>
   <Panel class="document">
     <div class="document-header">
-      <p class="collection"><a :href="collection.path">
-          {{ collection_full_name }}
-        </a></p>
+      <p class="collection" v-if="collection">
+        <template v-for="collection_path, i in [...collection.parent_collection_paths, collection.path]"
+          :key="collection_path">
+          <a class="item" :href="collection_path">
+            {{ collections[collection_path].name }}
+          </a>
+          <span class="delim" v-if="i < collection.parent_collection_paths.length">/</span>
+        </template>
+      </p>
       <h1 class="title">{{ document.title }}</h1>
       <div class="wrapable">
         <p class="with-icon date-created" v-if="document.date_created">
@@ -466,13 +465,27 @@ onUpdated(async () => {
     }
 
     .collection {
-      display: inline-block;
+      display: inline-flex;
+      flex-wrap: wrap;
+      font-size: 0.9em;
       color: var(--site-muted-text);
-      font-size: 1em;
-      text-align: center;
+      justify-content: center;
 
       margin: {
         bottom: 0.5em;
+      }
+
+      .item {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .delim {
+        margin: {
+          left: 0.5em;
+          right: 0.5em;
+        }
       }
     }
 

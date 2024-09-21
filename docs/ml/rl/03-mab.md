@@ -310,7 +310,6 @@ $\alpha=1$일 때는 $Q_n = R_n$이 된다.[^6] 즉, 이 경우에는 과거의 
 
 $\beta = 1 - \alpha$라 하면 $(1-\alpha)^{n} + \sum_{i=1} ^{n} \alpha(1-\alpha)^{n-i}$은 다음과 같이 된다.
 
-{:.mathjax-mb-0}
 $$\begin{align}
 (1-\alpha)^{n} + \sum_{i=1} ^{n} \alpha(1-\alpha)^{n-i}
 &= (1-\alpha)^{n} + \alpha[1 + (1-\alpha) + (1-\alpha)^2 + \cdots + (1-\alpha)^{n-1}]\\[0.5em]
