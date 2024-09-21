@@ -2,7 +2,7 @@
 title: "선형변환 (Linear Transformation)"
 order: 5
 date_created: "2021-09-26"
-date_modified: "2022-01-28"
+date_modified: "2024-09-21"
 ---
 
 <style src="./styles.scss"></style>

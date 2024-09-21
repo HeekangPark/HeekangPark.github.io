@@ -2,7 +2,7 @@
 title: "판별식 (Determinant)"
 order: 9
 date_created: "2021-10-14"
-date_modified: "2022-01-28"
+date_modified: "2024-09-21"
 ---
 
 <style src="./styles.scss"></style>
@@ -98,7 +98,7 @@ date_modified: "2022-01-28"
 
 - $n \times n$ 행렬 $A = [\, \mathbf{a}_1 \quad \mathbf{a}_2 \quad \cdots \quad \mathbf{a}_n \,]$과 벡터 $\mathbf{b} \in \mathbb{R}^n$에 대해, $A$의 $i$번째 열 $\mathbf{a}_i$를 $\mathbf{b}$로 교체한 행렬을 $A_i (\mathbf{b})$라 하자.
 
-  $$A_{i}(\mathbf{b}) = [\,\mathbf{a}_1 \quad \cdots \quad \mathbf{a}_{i-1} \,\,\, \bbox[#e2e27a, 5px]{\,\,\mathbf{b}\,\,} \,\,\, \mathbf{a}_{i+1} \quad \cdots \quad \mathbf{a}_n \,]$$
+  $$A_{i}(\mathbf{b}) = [\,\mathbf{a}_1 \quad \cdots \quad \mathbf{a}_{i-1} \,\,\, \bbox[#e2e27a, 5px]{\,\,\color{black} \mathbf{b}\,\,} \,\,\, \mathbf{a}_{i+1} \quad \cdots \quad \mathbf{a}_n \,]$$
 
 - 역행렬이 존재하는 $n \times n$ 행렬 $A$가 주어졌다고 해 보자. 임의의 벡터 $\mathbf{b} \in \mathbb{R}^n$에 대해, 식 $A \mathbf{x} = \mathbf{b}$는 항상 유일한 해를 가지고, 그 해는 다음과 같다.
 

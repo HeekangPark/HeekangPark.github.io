@@ -2,7 +2,7 @@
 title: "Linear Combination"
 order: 4
 date_created: "2021-09-20"
-date_modified: "2024-05-13"
+date_modified: "2024-09-21"
 ---
 
 <style src="./styles.scss"></style>

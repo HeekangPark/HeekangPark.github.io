@@ -2,7 +2,7 @@
 title: "선형연립방정식 (Linear System)"
 order: 2
 date_created: "2021-09-16"
-date_modified: "2022-01-28"
+date_modified: "2024-09-21"
 ---
 
 <style src="./styles.scss"></style>

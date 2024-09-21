@@ -2,7 +2,7 @@
 title: "Symmetric Matrix"
 order: 12
 date_created: "2021-09-15"
-date_modified: "2022-01-28"
+date_modified: "2024-09-21"
 ---
 
 <style src="./styles.scss"></style>

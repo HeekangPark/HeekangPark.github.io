@@ -2,7 +2,7 @@
 title: "Eigenvector, Eigenvalue"
 order: 10
 date_created: "2021-10-20"
-date_modified: "2022-01-28"
+date_modified: "2024-09-21"
 ---
 
 <style src="./styles.scss"></style>

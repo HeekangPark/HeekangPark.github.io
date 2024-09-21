@@ -2,7 +2,7 @@
 title: "벡터공간 (Vector Space)"
 order: 8
 date_created: "2021-09-28"
-date_modified: "2022-01-28"
+date_modified: "2024-09-21"
 ---
 
 <style src="./styles.scss"></style>
