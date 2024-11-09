@@ -29,10 +29,10 @@
 - path: python
   name: Python
   tags: ["python", "py", "python3"]
-  subcollections:
-    - path: oop
-      name: Object-Oriented Programming in Python
-      tags: ["oop"]
+  # subcollections:
+  #   - path: oop
+  #     name: Object-Oriented Programming in Python
+  #     tags: ["oop"]
 
 # - path: test
 #   name: test
