@@ -11,7 +11,7 @@ import shikiTheme from 'tm-themes/themes/dark-plus.json';
 
 import { useData } from 'vitepress';
 import type { ThemeConfig } from "@/themeConfig";
-const { theme: themeData } = useData<ThemeConfig>();
+const { theme: themeData, frontmatter } = useData<ThemeConfig>();
 
 import { data } from "@/data/documents.data";
 const { collections, documents, tags } = data;
@@ -193,28 +193,29 @@ const buildTOC = () => {
     }
     prev_level = level;
   });
+
+  if (el__toc.value.children.length === 0 || frontmatter.value.toc === false) {
+    el__toc.value.style.display = "none";
+  } else {
+    el__toc.value.style.display = "block";
+  }
 }
 
 // pageviews
 const pageviews: Ref<{ [path: string]: number } | null> = ref(null);
 
-onMounted(async () => {
+// update document
+const update_document = async () => {
   await nextTick();
   buildTOC();
   buildFootnotePopups();
 
   // update pageviews
   pageviews.value = await state.getPageviews();
-});
+}
 
-onUpdated(async () => {
-  await nextTick();
-  buildTOC();
-  buildFootnotePopups();
-
-  // update pageviews
-  pageviews.value = await state.getPageviews();
-});
+onMounted(update_document);
+onUpdated(update_document);
 </script>
 
 <template>
